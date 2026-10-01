@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Configuración sensible
+.env
+
+# Tests & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs & Temporal
+*.log
+logs/
+.hermes/
