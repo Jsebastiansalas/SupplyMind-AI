@@ -1,0 +1,17 @@
+{
+  "case_id": "case_003",
+  "currency": "USD",
+  "billed_amount": "15000.0",
+  "received_amount": "12000.0",
+  "difference": "-3000.0",
+  "root_cause": "Discrepancia de precio unitario en factura de $3,000.00 USD respecto al precio pactado en la Orden de Compra aprobada.",
+  "evidence": [
+    "Discrepancia de precio en PROD-301: facturado $150.0 vs acordado $120.0",
+    "Deducción aplicada en comprobante PAY-4401: código DED-PRICE-ADJUSTMENT, motivo 'Deducción por sobreprecio facturado ($150.00/u vs $120.00/u acordado en PO-55100) en 100 unidades PROD-301', monto $3,000.00",
+    "Respaldo contractual: Los precios facturados deben ajustarse a la Orden de Compra según CLAUSE-3.1."
+  ],
+  "justified_amount": "3000.00",
+  "claimable_amount": "0.00",
+  "confidence": 0.98,
+  "recommended_action": "Aceptar deducción de $3,000.00 USD aplicada por el cliente en cuentas por cobrar, emitir Nota de Crédito comercial por ajuste de tarifa y actualizar maestro de precios en el ERP del proveedor."
+}

@@ -1,0 +1,17 @@
+{
+  "case_id": "case_001",
+  "currency": "USD",
+  "billed_amount": "9000.0",
+  "received_amount": "8200.0",
+  "difference": "-800.0",
+  "root_cause": "Faltante físico en entrega valorado en $800.00 USD, constatado en remisión de entrega firmada con sello de recepción en bodega.",
+  "evidence": [
+    "Faltante físico comprobado en PROD-002 (Caja Café Gourmet Tostado 24x500g): 10 unidades faltantes s/ remisión DEL-9912 valoradas en $800.00",
+    "Deducción aplicada en comprobante PAY-7710: código DED-MISSING-ITEM, motivo 'Deducción por 10 cajas faltantes PROD-002 s/ remisión DEL-9912', monto $800.00",
+    "Respaldo contractual: La CLAUSE-4.2 (Faltantes Físicos en Recepción) autoriza la deducción del 100% del valor unitario cuando exista constancia firmada en la remisión."
+  ],
+  "justified_amount": "800.00",
+  "claimable_amount": "0.00",
+  "confidence": 0.98,
+  "recommended_action": "Aceptar deducción de $800.00 USD en cuentas por cobrar y emitir Nota de Crédito comercial por dicho valor a favor del cliente para conciliar y cerrar la cuenta."
+}

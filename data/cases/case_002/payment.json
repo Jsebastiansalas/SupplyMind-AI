@@ -1,0 +1,27 @@
+{
+  "payment_id": "PAY-9931",
+  "invoice_reference": "INV-88301",
+  "payment_date": "2026-10-05",
+  "currency": "USD",
+  "amount_paid": 37700.00,
+  "deductions": [
+    {
+      "code": "DED-MISSING-PHYSICAL",
+      "reason": "Deducción por 50 cajas faltantes PROD-102 s/ remisión DEL-12044",
+      "amount": 4000.00,
+      "reference_doc": "DEL-12044"
+    },
+    {
+      "code": "DED-ALLEGED-DAMAGE",
+      "reason": "Retención por supuesta avería interna PROD-103 no acreditada en muelle ni reportada en 48h",
+      "amount": 6500.00,
+      "reference_doc": null
+    },
+    {
+      "code": "DED-UNILATERAL-PENALTY",
+      "reason": "Penalización administrativa unilateral no contemplada en contrato comercial",
+      "amount": 6000.00,
+      "reference_doc": null
+    }
+  ]
+}

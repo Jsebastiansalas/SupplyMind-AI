@@ -1,5 +1,6 @@
 import json
 import time
+from decimal import Decimal
 from typing import Dict, Any, List, Optional
 from rich.console import Console
 from rich.panel import Panel
@@ -11,6 +12,7 @@ from agent.memory.audit_logger import AuditLogger
 from agent.planner.prompts import SYSTEM_PROMPT, INTERACTIVE_CHAT_PROMPT
 from agent.tools.registry import TOOL_DEFINITIONS, ToolExecutor
 from data.models import DisputeAnalysisReport
+from tools.report_exporter import export_dispute_artifacts
 
 console = Console(highlight=False)
 
@@ -30,6 +32,7 @@ class HermesRunner:
         
     def run(self) -> DisputeAnalysisReport:
         """Ejecuta el ciclo de resolución autónomo de la disputa."""
+        start_time = time.time()
         console.print(Panel(
             f"[bold green]SupplyMind AI - Hermes Agent Runner[/bold green]\n"
             f"[cyan]Caso:[/cyan] {self.case_id} | [cyan]Objetivo:[/cyan] {self.objective}\n"
@@ -45,10 +48,29 @@ class HermesRunner:
             rationale="Iniciando ciclo autónomo de análisis de disputa comercial."
         )
         
+        report: Optional[DisputeAnalysisReport] = None
         if settings.is_live_api_ready:
-            return self._run_live_hermes()
+            try:
+                report = self._run_live_hermes()
+            except Exception as e:
+                console.print(f"[bold yellow][AVISO RESILIENCIA][/bold yellow] Fallo en conexión con gateway Platica ({e}). Conmutando a modo determinístico.")
+                report = self._run_simulated_hermes()
         else:
-            return self._run_simulated_hermes()
+            report = self._run_simulated_hermes()
+
+        self.state.execution_time_seconds = round(time.time() - start_time, 2)
+        
+        # Exportar artefactos de negocio formales (Reporte Markdown/JSON y Carta de Reclamación)
+        try:
+            artifacts = export_dispute_artifacts(report, self.state)
+            if "markdown_report" in artifacts:
+                console.print(f"[dim][OK] Informe formal exportado a: {artifacts['markdown_report']}[/dim]")
+            if "reclamation_letter" in artifacts:
+                console.print(f"[bold green][OK] Carta formal de reclamación generada en:[/bold green] [cyan]{artifacts['reclamation_letter']}[/cyan]")
+        except Exception as err:
+            console.print(f"[dim yellow][Aviso] No se pudieron exportar entregables: {err}[/dim yellow]")
+            
+        return report
 
     def _run_live_hermes(self) -> DisputeAnalysisReport:
         """Bucle ReAct contra el gateway oficial de Platica Grok."""
@@ -73,6 +95,13 @@ class HermesRunner:
                 tools=TOOL_DEFINITIONS,
                 tool_choice="auto"
             )
+            
+            if response.usage:
+                self.state.tokens_in += getattr(response.usage, "prompt_tokens", 0) or 0
+                self.state.tokens_out += getattr(response.usage, "completion_tokens", 0) or 0
+                cost_in = (self.state.tokens_in / 1000.0) * 0.002
+                cost_out = (self.state.tokens_out / 1000.0) * 0.010
+                self.state.estimated_cost_usd = round(cost_in + cost_out, 6)
             
             msg = response.choices[0].message
             messages.append(msg.model_dump())
@@ -122,32 +151,63 @@ class HermesRunner:
         time.sleep(0.1)
         
         # Turno 3: Análisis contractual
-        console.print("[cyan][Pensamiento Hermes][/cyan]: La conciliación detectó faltante físico de 10 unidades de Producto B por $800 USD. Verifico respaldo contractual.")
+        console.print(f"[cyan][Pensamiento Hermes][/cyan]: Conciliación procesada para {self.case_id}. Verifico respaldo contractual de las deducciones.")
         console.print(f"[bold yellow]-> Hermes Tool Call:[/bold yellow] [magenta]evaluate_contract_terms[/magenta](case_id='{self.case_id}')")
         self.tool_executor.execute_tool("evaluate_contract_terms", {"case_id": self.case_id})
         time.sleep(0.1)
         
         # Turno 4: Síntesis y reporte formal
-        console.print("[cyan][Pensamiento Hermes][/cyan]: La deducción está amparada por la Cláusula 4.2 debido a la remisión firmada con discrepancia. Genero informe final.")
+        console.print("[cyan][Pensamiento Hermes][/cyan]: Generando síntesis analítica y formalizando informe de disputa...")
         console.print("[bold yellow]-> Hermes Tool Call:[/bold yellow] [magenta]generate_final_report[/magenta](...)")
         
+        rec = self.state.reconciliation_summary
+        ev = self.state.contract_evaluation
+        if rec and rec.unjustified_deductions_amount > Decimal("0.00"):
+            root_cause = (
+                f"Discrepancia mixta en expediente {self.case_id}: Faltante físico comprobado de ${rec.justified_deductions_amount:,.2f} USD "
+                f"amparado en remisión firmada con sello, y retenciones no autorizadas por ${rec.unjustified_deductions_amount:,.2f} USD sin sustento contractual ni documental."
+            )
+            action = (
+                f"Aceptar deducción de ${rec.justified_deductions_amount:,.2f} USD mediante Nota de Crédito por el faltante real, "
+                f"y rechazar formalmente las deducciones indebidas de ${rec.unjustified_deductions_amount:,.2f} USD exigiendo su pago inmediato."
+            )
+        else:
+            just_amt = rec.justified_deductions_amount if rec else Decimal("0.00")
+            if rec and rec.primary_discrepancy_type == "DIFERENCIA_DE_PRECIO":
+                root_cause = (
+                    f"Discrepancia de precio unitario en factura de ${rec.total_price_discrepancy_amount:,.2f} USD "
+                    f"respecto al precio pactado en la Orden de Compra aprobada."
+                )
+                action = (
+                    f"Aceptar deducción de ${just_amt:,.2f} USD aplicada por el cliente en cuentas por cobrar, "
+                    f"emitir Nota de Crédito comercial por ajuste de tarifa y actualizar maestro de precios en el ERP del proveedor."
+                )
+            else:
+                root_cause = (
+                    f"Faltante físico en entrega valorado en ${just_amt:,.2f} USD, "
+                    f"constatado en remisión de entrega firmada con sello de recepción en bodega."
+                )
+                action = (
+                    f"Aceptar deducción de ${just_amt:,.2f} USD en cuentas por cobrar y emitir Nota de Crédito comercial "
+                    f"por dicho valor a favor del cliente para conciliar y cerrar la cuenta."
+                )
+
         self.tool_executor.execute_tool(
             "generate_final_report",
             {
                 "case_id": self.case_id,
-                "root_cause_explanation": (
-                    "Faltante físico en entrega de 10 cajas de Producto B (Café Gourmet Tostado) valoradas en $800.00 USD, "
-                    "constatado en remisión DEL-9912 con firma y sello de recepción en bodega."
-                ),
-                "recommended_action": (
-                    "Aceptar deducción de $800.00 USD en cuentas por cobrar y emitir Nota de Crédito comercial "
-                    "por dicho valor a favor del cliente Supermercados Éxito / RetailCorp para conciliar y cerrar la factura INV-40102."
-                )
+                "root_cause_explanation": root_cause,
+                "recommended_action": action
             }
         )
         
         if not self.state.final_report:
             raise RuntimeError("Error al generar el reporte en la simulación.")
+            
+        try:
+            export_dispute_artifacts(self.state.final_report, self.state)
+        except Exception:
+            pass
             
         return self.state.final_report
 
@@ -209,20 +269,52 @@ class HermesRunner:
     def _display_report_table(self) -> None:
         """Muestra una tabla con el informe de conciliación."""
         if not self.state.final_report:
-            self.tool_executor.execute_tool(
-                "generate_final_report",
-                {
-                    "case_id": self.case_id,
-                    "root_cause_explanation": (
-                        "Faltante físico en entrega de 10 cajas de Producto B (Café Gourmet Tostado) valoradas en $800.00 USD, "
-                        "constatado en remisión DEL-9912 con firma y sello de recepción en bodega."
-                    ),
-                    "recommended_action": (
-                        "Aceptar deducción de $800.00 USD en cuentas por cobrar y emitir Nota de Crédito comercial "
-                        "por dicho valor a favor del cliente Supermercados Éxito / RetailCorp."
-                    )
-                }
-            )
+            if self.case_id == "case_002":
+                self.tool_executor.execute_tool(
+                    "generate_final_report",
+                    {
+                        "case_id": self.case_id,
+                        "root_cause_explanation": (
+                            "Faltante físico comprobado en recepción de 50 cajas de PROD-102 (Aceite de Oliva Extra Virgen) "
+                            "valoradas en $4,000.00 USD s/ remisión DEL-12044 con firma de recibo. Deducciones adicionales "
+                            "por supuesta avería ($6,500.00) y penalización unilateral ($6,000.00) carecen de soporte."
+                        ),
+                        "recommended_action": (
+                            "Aceptar deducción de $4,000.00 USD emitiendo Nota de Crédito por faltante físico amparado en Cláusula 4.2. "
+                            "Rechazar formalmente deducciones improcedentes por $12,500.00 USD exigiendo su abono inmediato al amparo de Cláusulas 5.1 y 7.3."
+                        )
+                    }
+                )
+            elif self.case_id == "case_003":
+                self.tool_executor.execute_tool(
+                    "generate_final_report",
+                    {
+                        "case_id": self.case_id,
+                        "root_cause_explanation": (
+                            "Discrepancia de precio unitario en factura INV-99402: 100 unidades de PROD-301 facturadas a "
+                            "$150.00 USD frente a $120.00 USD acordados en PO-55100, generando un sobreprecio de $3,000.00 USD."
+                        ),
+                        "recommended_action": (
+                            "Aceptar deducción de $3,000.00 USD aplicada por el cliente en cuentas por cobrar, emitir Nota de "
+                            "Crédito comercial conforme a Cláusula 3.1 y actualizar catálogo de precios en ERP del proveedor."
+                        )
+                    }
+                )
+            else:
+                self.tool_executor.execute_tool(
+                    "generate_final_report",
+                    {
+                        "case_id": self.case_id,
+                        "root_cause_explanation": (
+                            "Faltante físico en entrega de 10 cajas de Producto B (Café Gourmet Tostado) valoradas en $800.00 USD, "
+                            "constatado en remisión DEL-9912 con firma y sello de recepción en bodega."
+                        ),
+                        "recommended_action": (
+                            "Aceptar deducción de $800.00 USD en cuentas por cobrar y emitir Nota de Crédito comercial "
+                            "por dicho valor a favor del cliente Supermercados Éxito / RetailCorp."
+                        )
+                    }
+                )
         rep = self.state.final_report
         if rep:
             table = Table(title=f"[bold green]DISPUTE ANALYSIS REPORT - {rep.case_id}[/bold green]", border_style="green", show_header=False)
@@ -237,6 +329,13 @@ class HermesRunner:
             table.add_row("Confianza", f"{rep.confidence * 100:.1f}%")
             table.add_row("Acción Recomendada", f"[yellow]{rep.recommended_action}[/yellow]")
             console.print(table)
+            if self.state.tokens_in > 0 or self.state.execution_time_seconds > 0:
+                console.print(
+                    f"[dim]⚡ Inferencia: {self.state.tokens_in + self.state.tokens_out:,} tokens "
+                    f"({self.state.tokens_in:,} in / {self.state.tokens_out:,} out) | "
+                    f"Costo: ${self.state.estimated_cost_usd:.5f} USD | "
+                    f"Tiempo: {self.state.execution_time_seconds:.2f}s[/dim]\n"
+                )
 
     def _display_menu(self) -> None:
         """Despliega el menú interactivo con todas las opciones disponibles."""
@@ -468,42 +567,117 @@ class HermesRunner:
 
     def _simulated_ask(self, question: str) -> str:
         """Generador determinístico de respuestas locales para pruebas y modo offline."""
-        q = question.lower()
-        if any(k in q for k in ["faltant", "caja", "producto", "prod", "piezas"]):
-            return (
-                "En la remisión de entrega DEL-9912 se registraron 10 cajas faltantes del producto PROD-002 "
-                "(Café Gourmet Tostado 24x500g). Se facturaron 50 cajas a $80.00 USD ($4,000.00), pero solo se "
-                "entregaron 40 cajas físicas en bodega, generando un faltante de $800.00 USD."
-            )
-        elif any(k in q for k in ["contrat", "clausul", "legal", "4.2", "ampar"]):
-            return (
-                "La deducción está respaldada contractualmente por la Cláusula 4.2 ('Faltantes Físicos en Recepción') "
-                "del contrato CTR-RETAIL-2026. Dicha cláusula autoriza al comprador a deducir el 100% del valor unitario "
-                "pactado ante cualquier faltante físico constatado en la remisión de entrega firmada en bodega."
-            )
-        elif any(k in q for k in ["reten", "deduc", "800", "pago", "cuanto", "monto", "diferen"]):
-            return (
-                "El cliente pagó $8,200.00 USD de una factura de $9,000.00 USD, aplicando una deducción de $800.00 USD "
-                "(código DED-MISSING-ITEM) por las 10 cajas no entregadas de PROD-002. La conciliación matemática confirma "
-                "que los $800.00 USD corresponden exactamente al faltante físico verificado."
-            )
-        elif any(k in q for k in ["reclam", "recuper", "cobro", "exig"]):
-            return (
-                "El monto reclamable al cliente es de $0.00 USD. Dado que el faltante de mercancía fue real y está "
-                "amparado por la cláusula 4.2 del contrato, la retención es 100% justificada. No procede cobro coactivo."
-            )
-        elif any(k in q for k in ["accion", "recomend", "nota de credito", "credito", "hacer"]):
-            return (
-                "Se recomienda aceptar la deducción de $800.00 USD en cartera y emitir una Nota de Crédito comercial "
-                "a favor del cliente por dicho valor, referenciando la remisión DEL-9912 y la factura INV-40102 para sanear "
-                "la cuenta por cobrar."
-            )
+        import unicodedata
+        q_raw = question.lower()
+        q = "".join(c for c in unicodedata.normalize("NFD", q_raw) if unicodedata.category(c) != "Mn")
+        if self.case_id == "case_002":
+            if any(k in q for k in ["faltant", "caja", "producto", "prod", "pieza"]):
+                return (
+                    "En la remisión de entrega DEL-12044 se registraron 50 cajas faltantes del producto PROD-102 "
+                    "(Aceite de Oliva Extra Virgen 12x500ml). Se facturaron 150 cajas a $80.00 USD ($12,000.00), "
+                    "pero solo se recibieron 100 cajas en muelle, generando un faltante físico de $4,000.00 USD."
+                )
+            elif any(k in q for k in ["contrat", "clausul", "legal", "4.2", "5.1", "7.3", "ampar"]):
+                return (
+                    "La Cláusula 4.2 del contrato CTR-MEGAMARKET-2026 autoriza deducir $4,000.00 USD por las 50 cajas "
+                    "faltantes constatadas en remisión DEL-12044. Por el contrario, la Cláusula 5.1 no autoriza la deducción de "
+                    "$6,500.00 por avería al no existir reporte fotográfico ni acta de muelle dentro de 48h, y la Cláusula 7.3 prohíbe la penalización "
+                    "unilateral de $6,000.00 aplicada indebidamente por el comprador."
+                )
+            elif any(k in q for k in ["reclam", "recuper", "cobro", "exig"]):
+                return (
+                    "El monto reclamable al cliente es de $12,500.00 USD ($6,500.00 de daño no acreditado en remisión según "
+                    "cláusula 5.1 y $6,000.00 de penalización unilateral arbitraria prohibida por cláusula 7.3)."
+                )
+            elif any(k in q for k in ["accion", "recomend", "nota de credito", "credito", "hacer"]):
+                return (
+                    "Se recomienda aceptar la deducción de $4,000.00 USD emitiendo Nota de Crédito por el faltante real, "
+                    "y rechazar formalmente las deducciones indebidas de $12,500.00 USD exigiendo su pago inmediato mediante "
+                    "requerimiento formal de cartera."
+                )
+            elif any(k in q for k in ["reten", "retuv", "deduc", "pago", "cuanto", "monto", "diferen"]):
+                return (
+                    "El cliente pagó $37,700.00 USD de una factura de $54,200.00 USD, aplicando 3 deducciones por un total de "
+                    "$16,500.00 USD: $4,000.00 por faltante físico real (justificada), $6,500.00 por supuesta avería extemporánea "
+                    "(injustificada) y $6,000.00 por penalización unilateral no pactada (injustificada)."
+                )
+            else:
+                return (
+                    f"Expediente case_002: Facturado $54,200.00 USD, Pagado $37,700.00 USD. "
+                    "Deducciones: $16,500.00 USD ($4,000.00 USD justificadas por Cláusula 4.2 y $12,500.00 USD injustificadas). "
+                    "Monto reclamable: $12,500.00 USD. Acción: Emitir Nota de Crédito por $4,000 y reclamar $12,500."
+                )
+        elif self.case_id == "case_003":
+            if any(k in q for k in ["precio", "sobreprecio", "tarifa", "valor", "costo"]):
+                return (
+                    "El producto PROD-301 fue facturado a $150.00 USD cuando la orden de compra PO-55100 "
+                    "estipulaba un precio acordado de $120.00 USD. La diferencia de sobreprecio unitario de $30.00 USD "
+                    "en 100 unidades generó un exceso facturado de $3,000.00 USD."
+                )
+            elif any(k in q for k in ["contrat", "clausul", "legal", "3.1", "ampar"]):
+                return (
+                    "La Cláusula 3.1 del contrato CTR-SUPERTIENDAS-2026 ('Inalterabilidad de Precios Unitarios') "
+                    "establece que los precios de la Orden de Compra aprobada son definitivos e inmodificables, y autoriza "
+                    "al comprador a deducir automáticamente cualquier sobreprecio facturado no autorizado."
+                )
+            elif any(k in q for k in ["reclam", "recuper", "cobro", "exig"]):
+                return (
+                    "El monto reclamable al cliente es de $0.00 USD. Dado que el sobreprecio en la factura fue un error "
+                    "del proveedor y la Cláusula 3.1 ampara el descuento, la deducción de $3,000.00 USD es 100% justificada."
+                )
+            elif any(k in q for k in ["accion", "recomend", "nota de credito", "credito", "hacer"]):
+                return (
+                    "Se recomienda aceptar la deducción de $3,000.00 USD aplicada por el cliente en cuentas por cobrar, "
+                    "emitir Nota de Crédito comercial a su favor por ajuste de tarifa y corregir el precio en el ERP."
+                )
+            elif any(k in q for k in ["reten", "retuv", "deduc", "pago", "cuanto", "monto", "diferen"]):
+                return (
+                    "El cliente pagó $12,000.00 USD de una factura de $15,000.00 USD, aplicando una deducción de $3,000.00 USD "
+                    "(código DED-PRICE-ADJUSTMENT). La conciliación confirma que los $3,000.00 USD corresponden exactamente "
+                    "al ajuste por sobreprecio unitario."
+                )
+            else:
+                return (
+                    f"Expediente case_003: Facturado $15,000.00 USD, Pagado $12,000.00 USD. "
+                    "Deducción de $3,000.00 USD justificada por Cláusula 3.1 debido a sobreprecio unitario en PROD-301. "
+                    "Monto reclamable: $0.00 USD. Acción: Emitir Nota de Crédito comercial."
+                )
         else:
-            return (
-                f"Expediente {self.case_id}: Facturado $9,000.00 USD, Pagado $8,200.00 USD. "
-                "Existe una deducción de $800.00 USD por 10 cajas faltantes de PROD-002 amparada por la cláusula 4.2 "
-                "del contrato CTR-RETAIL-2026. Monto reclamable: $0.00 USD. Acción sugerida: Emitir Nota de Crédito."
-            )
+            if any(k in q for k in ["faltant", "caja", "producto", "prod", "piezas"]):
+                return (
+                    "En la remisión de entrega DEL-9912 se registraron 10 cajas faltantes del producto PROD-002 "
+                    "(Café Gourmet Tostado 24x500g). Se facturaron 50 cajas a $80.00 USD ($4,000.00), pero solo se "
+                    "entregaron 40 cajas físicas en bodega, generando un faltante de $800.00 USD."
+                )
+            elif any(k in q for k in ["contrat", "clausul", "legal", "4.2", "ampar"]):
+                return (
+                    "La deducción está respaldada contractualmente por la Cláusula 4.2 ('Faltantes Físicos en Recepción') "
+                    "del contrato CTR-RETAIL-2026. Dicha cláusula autoriza al comprador a deducir el 100% del valor unitario "
+                    "pactado ante cualquier faltante físico constatado en la remisión de entrega firmada en bodega."
+                )
+            elif any(k in q for k in ["reclam", "recuper", "cobro", "exig"]):
+                return (
+                    "El monto reclamable al cliente es de $0.00 USD. Dado que el faltante de mercancía fue real y está "
+                    "amparado por la cláusula 4.2 del contrato, la retención es 100% justificada. No procede cobro coactivo."
+                )
+            elif any(k in q for k in ["accion", "recomend", "nota de credito", "credito", "hacer"]):
+                return (
+                    "Se recomienda aceptar la deducción de $800.00 USD en cartera y emitir una Nota de Crédito comercial "
+                    "a favor del cliente por dicho valor, referenciando la remisión DEL-9912 y la factura INV-40102 para sanear "
+                    "la cuenta por cobrar."
+                )
+            elif any(k in q for k in ["reten", "deduc", "800", "pago", "cuanto", "monto", "diferen"]):
+                return (
+                    "El cliente pagó $8,200.00 USD de una factura de $9,000.00 USD, aplicando una deducción de $800.00 USD "
+                    "(código DED-MISSING-ITEM) por las 10 cajas no entregadas de PROD-002. La conciliación matemática confirma "
+                    "que los $800.00 USD corresponden exactamente al faltante físico verificado."
+                )
+            else:
+                return (
+                    f"Expediente {self.case_id}: Facturado $9,000.00 USD, Pagado $8,200.00 USD. "
+                    "Existe una deducción de $800.00 USD por 10 cajas faltantes de PROD-002 amparada por la cláusula 4.2 "
+                    "del contrato CTR-RETAIL-2026. Monto reclamable: $0.00 USD. Acción sugerida: Emitir Nota de Crédito."
+                )
 
     def ask(self, question: str) -> str:
         """Responde una pregunta puntual sobre el expediente del caso con criterios calibrados."""

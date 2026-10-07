@@ -1,0 +1,23 @@
+{
+  "contract_id": "CTR-SUPERTIENDAS-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-RETAIL-303",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-3.1",
+      "title": "Inalterabilidad de Precios Unitarios Acordados",
+      "text": "Los precios unitarios facturados deben coincidir estrictamente con los precios pactados en la Orden de Compra respectiva. Cualquier excedente en factura será descontado automáticamente en la liquidación del pago por el Comprador.",
+      "policy": "STRICT_MATCH",
+      "tolerance_percentage": 0.00
+    },
+    {
+      "clause_id": "CLAUSE-4.2",
+      "title": "Faltantes Físicos en Recepción",
+      "text": "El Comprador podrá deducir el valor unitario de faltantes físicos constatados en la remisión de entrega firmada.",
+      "policy": "DEDUCTION_ALLOWED_ON_SIGNED_DISCREPANCY",
+      "tolerance_percentage": 0.00
+    }
+  ]
+}

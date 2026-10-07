@@ -1,0 +1,15 @@
+{
+  "payment_id": "PAY-4401",
+  "invoice_reference": "INV-99402",
+  "payment_date": "2026-10-02",
+  "currency": "USD",
+  "amount_paid": 12000.00,
+  "deductions": [
+    {
+      "code": "DED-PRICE-ADJUSTMENT",
+      "reason": "Deducción por sobreprecio facturado ($150.00/u vs $120.00/u acordado en PO-55100) en 100 unidades PROD-301",
+      "amount": 3000.00,
+      "reference_doc": "PO-55100"
+    }
+  ]
+}

@@ -30,3 +30,9 @@ class DisputeState(BaseModel):
     
     # Registro de error si ocurriera
     error_message: Optional[str] = None
+    
+    # Métricas de ejecución y unit economics
+    tokens_in: int = 0
+    tokens_out: int = 0
+    estimated_cost_usd: float = 0.0
+    execution_time_seconds: float = 0.0

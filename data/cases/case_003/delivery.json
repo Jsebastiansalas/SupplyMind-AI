@@ -1,0 +1,19 @@
+{
+  "delivery_id": "DEL-33019",
+  "po_reference": "PO-55100",
+  "delivery_date": "2026-09-22",
+  "received_by": "Julián Restrepo (Jefe de Bodega Central)",
+  "warehouse_location": "SuperTiendas CEDI Medellín - Muelle 4",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "PROD-301",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibido 100% completo y conforme en muelle. Sin faltantes ni averías físicas."
+    }
+  ]
+}

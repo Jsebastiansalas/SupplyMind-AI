@@ -27,6 +27,13 @@ def main():
     is_interactive = any(a.lower() in ["-i", "--interactive", "chat", "--chat"] for a in args)
     is_ask = any(a.lower() in ["ask", "--ask", "-q", "pregunta"] for a in args)
     is_calibrate = any(a.lower() in ["calibrar", "--calibrar", "benchmark", "--benchmark", "train"] for a in args)
+    is_evaluate = any(a.lower() in ["evaluar", "--evaluar", "demo", "--demo", "verify"] for a in args)
+
+    # 0. Modo Evaluación Integral para Jurados
+    if is_evaluate:
+        from scripts.evaluar_jurado import run_jury_evaluation
+        run_jury_evaluation()
+        return
     
     # Extraer case_id de argumentos si existe (default: case_001)
     case_id = "case_001"
@@ -114,7 +121,14 @@ def main():
     # Confirmación de trazabilidad y bitácora
     log_file = runner.audit_logger.log_file
     console.print(f"\n[dim][OK] Trazabilidad y bitacora de decisiones guardada en: {log_file}[/dim]")
-    console.print("[dim]💡 Tip: Para modo interactivo ejecuta:[/dim] [bold cyan]python main.py -i[/bold cyan] [dim]| Para calibrar criterio:[/dim] [bold cyan]python main.py calibrar[/bold cyan]\n")
+    if runner.state.tokens_in > 0 or runner.state.execution_time_seconds > 0:
+        console.print(
+            f"[dim]⚡ Inferencia: {runner.state.tokens_in + runner.state.tokens_out:,} tokens "
+            f"({runner.state.tokens_in:,} in / {runner.state.tokens_out:,} out) | "
+            f"Costo: ${runner.state.estimated_cost_usd:.5f} USD | "
+            f"Tiempo: {runner.state.execution_time_seconds:.2f}s[/dim]"
+        )
+    console.print("[dim]💡 Tip: Para modo interactivo ejecuta:[/dim] [bold cyan]python main.py -i[/bold cyan] [dim]| Para evaluación integral:[/dim] [bold cyan]python main.py evaluar[/bold cyan]\n")
 
 if __name__ == "__main__":
     main()

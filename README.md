@@ -166,6 +166,24 @@ DEFAULT_CURRENCY=USD
 
 ---
 
+## ⚡ 6.1 Guía Rápida para Jurados y Evaluadores (30 Segundos)
+
+Para evaluar **todo el proyecto de forma desatendida e instantánea**, ejecuta un solo comando:
+```bash
+python main.py evaluar
+# o directamente:
+python scripts/evaluar_jurado.py
+```
+
+### Lo que este comando verifica automáticamente en ~3 segundos:
+1. **Entorno & Credenciales:** Conexión con Platica Gateway y modelo `grok-4.7`.
+2. **51 Pruebas Automatizadas:** 100% de éxito en la suite `pytest`.
+3. **Resolución de los 3 Casos B2B:** `case_001` ($9K), `case_002` ($54.2K) y `case_003` ($15K).
+4. **Entregables de Negocio Generados:** Informes ejecutivos y **Carta Formal de Reclamación** de $12,500 USD en [reports/](file:///c:/Users/USUARIO/Downloads/platica/reports/).
+5. **Unit Economics:** Demostración de costo real de inferencia (< $0.005 USD por expediente).
+
+---
+
 ## 🏃 7. Ejecución del Agente
 
 Para analizar el caso de prueba `case_001`:
@@ -254,13 +272,30 @@ python scripts/calibrate_agent.py case_001
 Haz preguntas específicas directamente desde tu terminal:
 ```bash
 python main.py ask case_001 "¿Por qué el cliente aplicó una deducción de 800 dólares?"
-python main.py ask case_001 "¿Qué dice la cláusula contractual sobre los faltantes de bodega?"
-python main.py ask case_001 "¿Cuánto dinero podemos reclamar legalmente?"
+python main.py ask case_002 "¿Cuánto dinero podemos reclamar legalmente al cliente y por qué?"
 ```
+
+#### 4. Casos de Prueba Disponibles:
+- **`case_001` (Básico):** Factura de $9,000.00 USD, 2 productos. Faltante físico de 10 cajas ($800.00 USD) 100% justificado en Cláusula 4.2. Saldo reclamable: **$0.00 USD**.
+- **`case_002` (Complejo - Alta Cuantía):** Factura de $54,200.00 USD, 4 productos de alto valor. Diferencia de -$16,500.00 USD descompuesta en:
+  * $4,000.00 USD justificados (50 cajas faltantes de PROD-102 en remisión DEL-12044 a $80.00 c/u según Cláusula 4.2).
+  * $6,500.00 USD injustificados (supuesta avería de PROD-103 no acreditada en muelle ni reportada en 48h según Cláusula 5.1).
+  * $6,000.00 USD injustificados (penalización administrativa unilateral prohibida por Cláusula 7.3).
+  * **Saldo reclamable:** **$12,500.00 USD** (genera automáticamente la *Carta Formal de Reclamación* en [reports/carta_reclamacion_case_002.md](file:///c:/Users/USUARIO/Downloads/platica/reports/)).
+- **`case_003` (Discrepancia de Precio Unitario):** Factura de $15,000.00 USD vs Orden de Compra de $12,000.00 USD. Sobreprecio de $30.00 USD/u facturado en 100 cajas de PROD-301. Deducción de $3,000.00 USD 100% justificada por el comprador conforme a Cláusula 3.1 (*Inalterabilidad de Precios*). Saldo reclamable: **$0.00 USD**.
 
 ---
 
-## 🧪 8. Pruebas Automatizadas
+## 📑 8. Entregables de Negocio Generados (`reports/`)
+
+Cada análisis genera automáticamente artefactos ejecutivos listos para enviar a cartera o al cliente:
+1. **Informe Formal en Markdown (`reports/dispute_report_<case_id>.md`):** Diagnóstico completo, tablas financieras, causa raíz y dictamen legal.
+2. **Exportación Estructurada (`reports/dispute_report_<case_id>.json`):** Payload de integración para ERP o sistema de cobranza.
+3. **Carta Formal de Reclamación Comercial (`reports/carta_reclamacion_<case_id>.md`):** Cuando existe saldo reclamable (ej. $12,500 USD en `case_002`), redacta una carta formal con membrete, fundamentación jurídica y plazo de 15 días hábiles.
+
+---
+
+## 🧪 9. Pruebas Automatizadas
 
 Ejecuta la suite completa de pruebas:
 ```bash
@@ -268,25 +303,28 @@ pytest -v
 ```
 Resultado:
 ```text
-35 passed in 12.71s (100% de pruebas exitosas)
+51 passed in 1.05s (100% de pruebas exitosas)
 ```
 
 ---
 
-## 📋 9. Estado del Proyecto (Hito S1 Completado y Calibrado)
+## 📋 10. Estado del Proyecto (Hito S1 Completado al 100% & Avanzando en Hito S2)
 
-- [x] **Hito S1 (Semana 1 - Agente Corriendo & Calibrado):**
+- [x] **Hito S1 (Semana 1 - Agente Corriendo, Calibrado & Blindado para Jurados):**
+  - [x] Suite de evaluación instantánea para jurados (`python main.py evaluar`).
   - [x] Arquitectura basada en Hermes Agent con Grok 4.7 vía Platica Gateway.
   - [x] Motor de conciliación determinístico en `Decimal` (cero alucinaciones).
-  - [x] Caso sintético `case_001` con 5 documentos comerciales estructurados.
-  - [x] Reporte formal `Dispute Analysis Report` completo.
-  - [x] Bitácora auditable de decisiones (`logs/audit_trail_case_001.jsonl`).
+  - [x] Matriz de casos B2B completa: `case_001` ($9K), `case_002` ($54.2K) y `case_003` ($15K).
+  - [x] Generación de entregables formales (Reportes Markdown/JSON y Carta de Reclamación de $12.5k).
+  - [x] Reporte formal `Dispute Analysis Report` completo con trazabilidad JSONL.
   - [x] Terminal interactiva expandida (8 comandos de inspección y chat REPL).
-  - [x] Módulo de entrenamiento y calibración de criterio con control presupuestario (< $1.00 USD).
-  - [x] 35 pruebas automatizadas pasando en verde al 100%.
+  - [x] Módulo de entrenamiento y calibración de criterio (< $1.00 USD).
+  - [x] 51 pruebas automatizadas pasando en verde al 100% (< 1.1s).
 - [ ] **Hito S2 (Semana 2 - Herramientas Reales y Robustez):**
-  - Soporte para averías complejas, penalizaciones por entrega tardía (OTIF) y diferencias de precio.
-  - Manejo de expedientes incompletos y excepciones.
+  - [x] Soporte para discrepancias mixtas (faltante físico + avería extemporánea + penalización arbitraria en `case_002`).
+  - [x] Soporte para discrepancias de precio unitario en `case_003`.
+  - [ ] Ingesta de archivos PDF/OCR y carga dinámica de expedientes externos.
+  - [ ] Manejo de expedientes incompletos y excepciones.
 - [ ] **Hito S3 (Semana 3 - Evaluación Masiva):**
   - Dataset de 30+ casos de prueba reales/sintéticos.
   - Reporte de costo por tarea y consumo de tokens.

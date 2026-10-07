@@ -1,0 +1,44 @@
+{
+  "contract_id": "CTR-MEGAMARKET-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-RETAIL-202",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-3.1",
+      "title": "Condiciones de Precios y Órdenes de Compra",
+      "text": "Los precios unitarios facturados deben coincidir estrictamente con los precios pactados en la Orden de Compra vinculante emitida previamente por el comprador.",
+      "policy": "STRICT_MATCH",
+      "tolerance_percentage": 0.00
+    },
+    {
+      "clause_id": "CLAUSE-4.2",
+      "title": "Faltantes Físicos en Recepción",
+      "text": "En caso de que las cantidades recibidas en bodega sean inferiores a las facturadas y esto conste en la remisión de entrega firmada con sello de discrepancia en muelle, el comprador está facultado para deducir automáticamente del pago el 100% del valor unitario de las unidades faltantes.",
+      "policy": "DEDUCTION_ALLOWED_ON_SIGNED_DISCREPANCY",
+      "tolerance_percentage": 0.00
+    },
+    {
+      "clause_id": "CLAUSE-5.1",
+      "title": "Mercancía Dañada o Averiada",
+      "text": "Toda avería detectada durante el descargue debe notificarse dentro de 48 horas con acta fotográfica para autorizar devolución o nota de crédito. Deducciones posteriores sin constancia en remisión ni fotos son nulas.",
+      "policy": "PHOTO_EVIDENCE_REQUIRED",
+      "tolerance_percentage": 0.00
+    },
+    {
+      "clause_id": "CLAUSE-7.3",
+      "title": "Prohibición de Penalizaciones Unilaterales",
+      "text": "Se prohíbe la aplicación de penalizaciones administrativas o descuentos unilaterales que no cuenten con estipulación previa y constancia documental aceptada por ambas partes.",
+      "policy": "STRICT_MATCH",
+      "tolerance_percentage": 0.00
+    },
+    {
+      "clause_id": "CLAUSE-8.2",
+      "title": "Plazos de Pago y Conciliación",
+      "text": "Las facturas se pagarán a 30 días fecha de recepción. Toda deducción debe estar estrictamente amparada por la remisión de entrega o informe de calidad avalado.",
+      "policy": "NET_30_DAYS",
+      "tolerance_percentage": 0.00
+    }
+  ]
+}

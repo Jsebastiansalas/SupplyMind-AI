@@ -1,0 +1,41 @@
+{
+  "invoice_id": "INV-88301",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-RETAIL-202",
+  "po_reference": "PO-44120",
+  "issue_date": "2026-09-10",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "PROD-101",
+      "description": "Saco Arroz Extra Gourmet 50kg",
+      "quantity": 200,
+      "unit_price": 45.00,
+      "total_price": 9000.00
+    },
+    {
+      "item_id": "PROD-102",
+      "description": "Caja Aceite de Oliva Extra Virgen 12x500ml",
+      "quantity": 150,
+      "unit_price": 80.00,
+      "total_price": 12000.00
+    },
+    {
+      "item_id": "PROD-103",
+      "description": "Caja Café Especial Liofilizado 24x100g",
+      "quantity": 120,
+      "unit_price": 110.00,
+      "total_price": 13200.00
+    },
+    {
+      "item_id": "PROD-104",
+      "description": "Caja Atún Lomo en Oliva 48x170g",
+      "quantity": 100,
+      "unit_price": 200.00,
+      "total_price": 20000.00
+    }
+  ],
+  "subtotal": 54200.00,
+  "tax": 0.00,
+  "total_amount": 54200.00
+}

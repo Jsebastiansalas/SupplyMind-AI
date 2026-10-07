@@ -1,0 +1,43 @@
+{
+  "delivery_id": "DEL-12044",
+  "po_reference": "PO-44120",
+  "delivery_date": "2026-09-15",
+  "received_by": "Mauricio Gómez (Supervisor de Recepción MegaMarket)",
+  "warehouse_location": "MegaMarket CEDI Norte - Muelle 12",
+  "signed": true,
+  "discrepancy_reported": true,
+  "items": [
+    {
+      "item_id": "PROD-101",
+      "quantity_delivered": 200,
+      "quantity_received": 200,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibido completo y conforme"
+    },
+    {
+      "item_id": "PROD-102",
+      "quantity_delivered": 150,
+      "quantity_received": 100,
+      "missing_quantity": 50,
+      "damaged_quantity": 0,
+      "notes": "Faltante físico comprobado en tarima: 50 cajas no despachadas. Constancia firmada en remisión y sello de muelle."
+    },
+    {
+      "item_id": "PROD-103",
+      "quantity_delivered": 120,
+      "quantity_received": 120,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibido completo conforme con sellos de seguridad intactos. Cero averías al descargue."
+    },
+    {
+      "item_id": "PROD-104",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibido completo y conforme"
+    }
+  ]
+}

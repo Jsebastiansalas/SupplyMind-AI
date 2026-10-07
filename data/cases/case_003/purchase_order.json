@@ -1,0 +1,17 @@
+{
+  "po_id": "PO-55100",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-RETAIL-303",
+  "order_date": "2026-09-15",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "PROD-301",
+      "description": "Lote Café Tostado Colombiano Selección Especial 500g",
+      "ordered_quantity": 100,
+      "agreed_unit_price": 120.00,
+      "total_price": 12000.00
+    }
+  ],
+  "total_amount": 12000.00
+}

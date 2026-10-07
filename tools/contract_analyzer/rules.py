@@ -76,6 +76,7 @@ def evaluate_contract_compliance(
                         explanation=f"Los precios facturados deben ajustarse a la Orden de Compra según {clause.clause_id}."
                     )
                 )
+                is_valid = True
 
     if is_valid and summary.unjustified_deductions_amount == Decimal("0.00"):
         assessment = (

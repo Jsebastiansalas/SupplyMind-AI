@@ -1,0 +1,19 @@
+{
+  "case_id": "case_002",
+  "currency": "USD",
+  "billed_amount": "54200.0",
+  "received_amount": "37700.0",
+  "difference": "-16500.0",
+  "root_cause": "Discrepancia mixta en expediente case_002: Faltante físico comprobado de $4,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $12,500.00 USD sin sustento contractual ni documental.",
+  "evidence": [
+    "Faltante físico comprobado en PROD-102 (Caja Aceite de Oliva Extra Virgen 12x500ml): 50 unidades faltantes s/ remisión DEL-12044 valoradas en $4,000.00",
+    "Deducción aplicada en comprobante PAY-9931: código DED-MISSING-PHYSICAL, motivo 'Deducción por 50 cajas faltantes PROD-102 s/ remisión DEL-12044', monto $4,000.00",
+    "Deducción aplicada en comprobante PAY-9931: código DED-ALLEGED-DAMAGE, motivo 'Retención por supuesta avería interna PROD-103 no acreditada en muelle ni reportada en 48h', monto $6,500.00",
+    "Deducción aplicada en comprobante PAY-9931: código DED-UNILATERAL-PENALTY, motivo 'Penalización administrativa unilateral no contemplada en contrato comercial', monto $6,000.00",
+    "Respaldo contractual: La CLAUSE-4.2 (Faltantes Físicos en Recepción) autoriza la deducción del 100% del valor unitario cuando exista constancia firmada en la remisión."
+  ],
+  "justified_amount": "4000.00",
+  "claimable_amount": "12500.00",
+  "confidence": 0.98,
+  "recommended_action": "Aceptar deducción de $4,000.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $12,500.00 USD exigiendo su pago inmediato."
+}

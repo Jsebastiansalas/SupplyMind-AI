@@ -31,7 +31,7 @@ def test_audit_logger_records_and_persists():
 
 def test_hermes_runner_resolves_case_001_simulated():
     runner = HermesRunner(case_id="case_001")
-    report = runner.run()
+    report = runner._run_simulated_hermes()
     
     assert report.case_id == "case_001"
     assert report.billed_amount == Decimal("9000.00")

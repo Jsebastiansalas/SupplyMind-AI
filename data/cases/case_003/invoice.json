@@ -1,0 +1,20 @@
+{
+  "invoice_id": "INV-99402",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-RETAIL-303",
+  "po_reference": "PO-55100",
+  "issue_date": "2026-09-20",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "PROD-301",
+      "description": "Lote Café Tostado Colombiano Selección Especial 500g",
+      "quantity": 100,
+      "unit_price": 150.00,
+      "total_price": 15000.00
+    }
+  ],
+  "subtotal": 15000.00,
+  "tax": 0.00,
+  "total_amount": 15000.00
+}

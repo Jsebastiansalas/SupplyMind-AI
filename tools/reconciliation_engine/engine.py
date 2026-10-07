@@ -128,8 +128,8 @@ def reconcile_dispute_data(
     total_deductions = sum((d.amount for d in payment.deductions), Decimal("0.00"))
     
     # 4. Evaluación de deducciones justificadas vs injustificadas
-    physical_discrepancy_total = total_missing_amount + total_damaged_amount
-    justified_deductions = min(total_deductions, physical_discrepancy_total)
+    objective_discrepancy_total = total_missing_amount + total_damaged_amount + total_price_discrepancy_amount
+    justified_deductions = min(total_deductions, objective_discrepancy_total)
     unjustified_deductions = max(Decimal("0.00"), total_deductions - justified_deductions)
     
     # Identificar causa principal
