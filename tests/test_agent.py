@@ -46,3 +46,24 @@ def test_hermes_runner_resolves_case_001_simulated():
     
     # Verificar bitácora auditable generada
     assert runner.audit_logger.log_file.exists()
+
+def test_hermes_runner_ask_simulated():
+    runner = HermesRunner(case_id="case_001")
+    
+    # Pregunta sobre faltantes
+    ans_faltante = runner._simulated_ask("¿Qué faltante de cajas hubo?")
+    assert "PROD-002" in ans_faltante
+    assert "10 cajas" in ans_faltante
+    assert "800" in ans_faltante
+    
+    # Pregunta sobre contrato
+    ans_contrato = runner._simulated_ask("¿Qué cláusula del contrato autoriza la deducción?")
+    assert "4.2" in ans_contrato
+    
+    # Pregunta sobre monto reclamable
+    ans_reclamable = runner._simulated_ask("¿Cuánto dinero podemos reclamar?")
+    assert "0.00" in ans_reclamable
+    
+    # Pregunta sobre recomendación
+    ans_accion = runner._simulated_ask("¿Qué acción se debe tomar?")
+    assert "nota de crédito" in ans_accion.lower() or "nota de credito" in ans_accion.lower()
