@@ -67,3 +67,37 @@ def test_hermes_runner_ask_simulated():
     # Pregunta sobre recomendación
     ans_accion = runner._simulated_ask("¿Qué acción se debe tomar?")
     assert "nota de crédito" in ans_accion.lower() or "nota de credito" in ans_accion.lower()
+
+def test_calibrated_prompts_contain_expert_criteria():
+    from agent.planner.prompts import SYSTEM_PROMPT, INTERACTIVE_CHAT_PROMPT
+    assert "JERARQUÍA PROBATORIA" in SYSTEM_PROMPT
+    assert "MATRIZ DE CAUSA RAÍZ" in SYSTEM_PROMPT
+    assert "CONFIDENCE SCORING" in SYSTEM_PROMPT
+    assert "JERARQUÍA PROBATORIA" in INTERACTIVE_CHAT_PROMPT
+
+def test_agent_trainer_budget_limit_and_calculation():
+    from agent.training.trainer import AgentTrainer
+    trainer = AgentTrainer(budget_limit_usd=1.00)
+    assert trainer.budget_limit_usd == 1.00
+    assert trainer.total_spent_usd == 0.0
+    
+    # Prueba de cálculo de costo con tarifas Grok
+    cost = trainer._calc_cost(tokens_in=1000, tokens_out=1000)
+    assert cost == 0.012  # (1*0.002) + (1*0.010)
+    
+    # Validación de verificación presupuestaria
+    assert trainer._check_budget() is True
+    trainer.total_spent_usd = 1.05
+    assert trainer._check_budget() is False
+
+def test_hermes_runner_inspection_and_menu_methods():
+    runner = HermesRunner(case_id="case_001")
+    runner._ensure_case_loaded()
+    
+    # Verificar que los métodos de inspección corran sin excepciones
+    runner._display_menu()
+    runner._display_documents_inspection()
+    runner._display_reconciliation_details()
+    runner._display_contract_evaluation()
+    runner._display_audit_log_tail()
+

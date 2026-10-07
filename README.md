@@ -217,18 +217,40 @@ Turno 4: Consultando a Grok (grok-4.7)...
 [OK] Analisis completado exitosamente.
 ```
 
-### 💬 Modos Adicionales de Interacción:
+### 💬 Modos Avanzados de Interacción:
 
-#### 1. Modo Conversacional Interactivo (Chat en Vivo):
-Inicia una sesión de diálogo continuo con el analista para hacerle preguntas en lenguaje natural sobre cualquier aspecto del expediente:
+#### 1. Terminal de Control y Chat Interactivo (Menú Expandido):
+Inicia el centro de comando interactivo del analista:
 ```bash
 python main.py -i
 # o especificando el caso:
 python main.py -i case_001
 ```
-*Comandos disponibles durante la sesión: `reporte` (despliega la tabla formal), `ayuda` (sugerencias de preguntas), `salir`.*
+El menú interactivo te ofrece **8 opciones directas** además de chat libre en lenguaje natural:
+- `[1] 🧠 Analizar Disputa`: Ejecuta el ciclo autónomo ReAct con Grok paso a paso.
+- `[2] 📊 Ver Reporte Formal`: Despliega la tabla formal del dictamen (`Dispute Analysis Report`).
+- `[3] 📂 Inspeccionar Documentos`: Explora a fondo el expediente (Factura, OC, Remisión, Pago y Contrato).
+- `[4] 🔢 Conciliación Detallada`: Auditoría matemática línea a línea de unidades, precios e impactos en `Decimal`.
+- `[5] ⚖️ Dictamen Contractual`: Tabla de cumplimiento de cláusulas comerciales (CLAUSE-4.2, etc.).
+- `[6] 📜 Bitácora de Auditoría`: Visor de los últimos eventos registrados en la bitácora JSONL.
+- `[7] 🎯 Calibrar Criterio AI`: Ejecuta el benchmark de entrenamiento y evaluación de criterio con control de presupuesto.
+- `[8] 🔄 Cambiar / Recargar Caso`: Permite alternar de expediente activo en caliente.
+- `[0] 🚪 Salir`: Finaliza la sesión guardando la bitácora de auditoría.
+- *O escribe cualquier pregunta libre a Grok en cualquier momento (ej. "¿Por qué el cliente retuvo $800?").*
 
-#### 2. Consulta Puntual desde Línea de Comandos:
+#### 2. Calibración y Entrenamiento de Criterio (< $1.00 USD):
+Evalúa y calibra el razonamiento de Grok frente a la matriz de criterios senior B2B (cero alucinación, rigor probatorio, alineación contractual y mitigación de riesgo):
+```bash
+python main.py calibrar
+# o mediante el script directo:
+python scripts/calibrate_agent.py case_001
+```
+*Métricas reales de la batería de calibración:*
+- **Puntaje Global de Criterio:** `100.0 / 100.0 (CALIBRADO)`
+- **Tokens Consumidos:** `6,530 tokens`
+- **Gasto Total:** `~$0.02666 USD` (menos de 3 centavos de dólar sobre un tope de $1.00 USD).
+
+#### 3. Consulta Puntual desde Línea de Comandos (One-Liner):
 Haz preguntas específicas directamente desde tu terminal:
 ```bash
 python main.py ask case_001 "¿Por qué el cliente aplicó una deducción de 800 dólares?"
@@ -246,21 +268,22 @@ pytest -v
 ```
 Resultado:
 ```text
-32 passed in 15.04s (100% de pruebas exitosas)
+35 passed in 12.71s (100% de pruebas exitosas)
 ```
 
 ---
 
-## 📋 9. Estado del Proyecto (Hito S1 Completado)
+## 📋 9. Estado del Proyecto (Hito S1 Completado y Calibrado)
 
-- [x] **Hito S1 (Semana 1 - Agente Corriendo):**
+- [x] **Hito S1 (Semana 1 - Agente Corriendo & Calibrado):**
   - [x] Arquitectura basada en Hermes Agent con Grok 4.7 vía Platica Gateway.
   - [x] Motor de conciliación determinístico en `Decimal` (cero alucinaciones).
   - [x] Caso sintético `case_001` con 5 documentos comerciales estructurados.
   - [x] Reporte formal `Dispute Analysis Report` completo.
   - [x] Bitácora auditable de decisiones (`logs/audit_trail_case_001.jsonl`).
-  - [x] CLI enriquecido e interactivo (`main.py`).
-  - [x] 31 pruebas automatizadas pasando en verde.
+  - [x] Terminal interactiva expandida (8 comandos de inspección y chat REPL).
+  - [x] Módulo de entrenamiento y calibración de criterio con control presupuestario (< $1.00 USD).
+  - [x] 35 pruebas automatizadas pasando en verde al 100%.
 - [ ] **Hito S2 (Semana 2 - Herramientas Reales y Robustez):**
   - Soporte para averías complejas, penalizaciones por entrega tardía (OTIF) y diferencias de precio.
   - Manejo de expedientes incompletos y excepciones.

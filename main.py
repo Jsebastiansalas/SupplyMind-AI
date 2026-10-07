@@ -26,6 +26,7 @@ def main():
     # Detectar banderas de modo
     is_interactive = any(a.lower() in ["-i", "--interactive", "chat", "--chat"] for a in args)
     is_ask = any(a.lower() in ["ask", "--ask", "-q", "pregunta"] for a in args)
+    is_calibrate = any(a.lower() in ["calibrar", "--calibrar", "benchmark", "--benchmark", "train"] for a in args)
     
     # Extraer case_id de argumentos si existe (default: case_001)
     case_id = "case_001"
@@ -46,7 +47,14 @@ def main():
         runner.interactive_chat()
         return
 
-    # 2. Modo Consulta Puntual (CLI)
+    # 2. Modo Calibración y Benchmark de Criterio
+    if is_calibrate:
+        from agent.training.trainer import AgentTrainer
+        trainer = AgentTrainer(budget_limit_usd=1.00)
+        trainer.run_calibration(case_id=case_id)
+        return
+
+    # 3. Modo Consulta Puntual (CLI)
     if is_ask:
         question_parts = [a for a in args if a.lower() not in ["ask", "--ask", "-q", "pregunta"] and not a.startswith("case_")]
         question = " ".join(question_parts) or "¿Por qué existe una diferencia en el pago?"
@@ -59,7 +67,7 @@ def main():
         console.print(f"\n[bold cyan]SupplyMind AI:[/bold cyan] {answer}\n")
         return
 
-    # 3. Modo Análisis Autónomo Formal (Default)
+    # 4. Modo Análisis Autónomo Formal (Default)
     console.print(Panel.fit(
         "[bold cyan]SupplyMind AI[/bold cyan] - [yellow]Analista Autonomo de Disputas B2B[/yellow]\n"
         "[dim]Reto Agente Platica.mx x Campuslands - Powered by Hermes Agent & Grok[/dim]",
@@ -106,8 +114,7 @@ def main():
     # Confirmación de trazabilidad y bitácora
     log_file = runner.audit_logger.log_file
     console.print(f"\n[dim][OK] Trazabilidad y bitacora de decisiones guardada en: {log_file}[/dim]")
-    console.print("[bold green][OK] Analisis completado exitosamente.[/bold green]")
-    console.print("[dim]💡 Tip: Para conversar interactivamente con el agente, ejecuta:[/dim] [bold cyan]python main.py -i[/bold cyan]\n")
+    console.print("[dim]💡 Tip: Para modo interactivo ejecuta:[/dim] [bold cyan]python main.py -i[/bold cyan] [dim]| Para calibrar criterio:[/dim] [bold cyan]python main.py calibrar[/bold cyan]\n")
 
 if __name__ == "__main__":
     main()

@@ -238,6 +238,234 @@ class HermesRunner:
             table.add_row("Acción Recomendada", f"[yellow]{rep.recommended_action}[/yellow]")
             console.print(table)
 
+    def _display_menu(self) -> None:
+        """Despliega el menú interactivo con todas las opciones disponibles."""
+        menu_text = (
+            "[bold cyan]1[/bold cyan]  [bold white]🧠 Analizar Disputa[/bold white]       [dim]-> Ejecutar ciclo autónomo ReAct con Grok[/dim]\n"
+            "[bold cyan]2[/bold cyan]  [bold white]📊 Ver Reporte Formal[/bold white]       [dim]-> Cuadro ejecutivo con causa raíz y acción[/dim]\n"
+            "[bold cyan]3[/bold cyan]  [bold white]📂 Inspeccionar Documentos[/bold white]  [dim]-> Ver Factura, OC, Remisión, Pago y Contrato[/dim]\n"
+            "[bold cyan]4[/bold cyan]  [bold white]🔢 Conciliación Detallada[/bold white]   [dim]-> Auditoría línea a línea en Decimal[/dim]\n"
+            "[bold cyan]5[/bold cyan]  [bold white]⚖️  Dictamen Contractual[/bold white]     [dim]-> Cláusulas aplicables y amparo jurídico[/dim]\n"
+            "[bold cyan]6[/bold cyan]  [bold white]📜 Bitácora de Auditoría[/bold white]    [dim]-> Historial de trazabilidad JSONL[/dim]\n"
+            "[bold cyan]7[/bold cyan]  [bold white]🎯 Calibrar Criterio AI[/bold white]     [dim]-> Benchmark de entrenamiento (< $1.00 USD)[/dim]\n"
+            "[bold cyan]8[/bold cyan]  [bold white]🔄 Cambiar / Recargar Caso[/bold white]  [dim]-> Cambiar expediente activo actual[/dim]\n"
+            "[bold cyan]?[/bold cyan]  [bold white]💡 Ayuda[/bold white]                    [dim]-> Preguntas sugeridas y atajos[/dim]\n"
+            "[bold cyan]0[/bold cyan]  [bold white]🚪 Salir[/bold white]                    [dim]-> Finalizar sesión interactiva[/dim]\n\n"
+            "[italic dim]O escribe cualquier pregunta en lenguaje natural directamente a Grok.[/italic dim]"
+        )
+        console.print(Panel(
+            menu_text,
+            title=f"[bold green]SupplyMind AI - Menú de Control Interactivo ({self.case_id})[/bold green]",
+            border_style="cyan"
+        ))
+
+    def _display_documents_inspection(self) -> None:
+        """Muestra una inspección estructurada de los 5 documentos del caso."""
+        self._ensure_case_loaded()
+        docs = self.state.loaded_documents
+        if not docs:
+            console.print("[yellow]No hay documentos cargados en memoria.[/yellow]")
+            return
+            
+        inv = docs.get("invoice")
+        po = docs.get("purchase_order")
+        deliv = docs.get("delivery")
+        pay = docs.get("payment")
+        ctr = docs.get("contract")
+
+        console.print(f"\n[bold green]═══ EXPEDIENTE COMERCIAL: {self.case_id} ═══[/bold green]\n")
+
+        # 1. Factura vs Orden de Compra
+        t_order = Table(title="[bold cyan]1. Factura Comercial (INV) vs Orden de Compra (PO)[/bold cyan]", border_style="cyan")
+        t_order.add_column("Documento", style="bold")
+        t_order.add_column("Referencia", style="white")
+        t_order.add_column("Fecha", style="dim")
+        t_order.add_column("Líneas", justify="center")
+        t_order.add_column("Total Facturado / Pactado", justify="right", style="green")
+
+        if inv:
+            t_order.add_row("Factura Comercial", inv.invoice_id, inv.issue_date, str(len(inv.items)), f"${inv.total_amount:,.2f} {inv.currency}")
+        if po:
+            t_order.add_row("Orden de Compra", po.po_id, po.order_date, str(len(po.items)), f"${po.total_amount:,.2f} {po.currency}")
+        console.print(t_order)
+
+        # 2. Remisión de Entrega
+        if deliv:
+            t_del = Table(title=f"[bold cyan]2. Remisión de Entrega en Bodega ({deliv.delivery_id})[/bold cyan]", border_style="blue")
+            t_del.add_column("Ítem / Producto", style="white")
+            t_del.add_column("Cant. Despachada", justify="center")
+            t_del.add_column("Cant. Recibida", justify="center", style="green")
+            t_del.add_column("Faltante", justify="center", style="bold red")
+            t_del.add_column("Avería", justify="center", style="yellow")
+            t_del.add_column("Recepción y Sello", style="dim")
+
+            for item in deliv.items:
+                t_del.add_row(
+                    item.item_id,
+                    str(item.quantity_delivered),
+                    str(item.quantity_received),
+                    str(item.missing_quantity) if item.missing_quantity > 0 else "-",
+                    str(item.damaged_quantity) if item.damaged_quantity > 0 else "-",
+                    f"Recibido por: {deliv.received_by} (Firmado: {'Sí' if deliv.signed else 'No'})"
+                )
+            console.print(t_del)
+
+        # 3. Comprobante de Pago y Deducciones
+        if pay:
+            t_pay = Table(title=f"[bold cyan]3. Comprobante de Pago Bancario ({pay.payment_id})[/bold cyan]", border_style="magenta")
+            t_pay.add_column("Concepto", style="bold")
+            t_pay.add_column("Monto / Código", justify="right")
+            t_pay.add_column("Motivo Registrado por el Comprador", style="white")
+
+            t_pay.add_row("Monto Efectivo Pagado", f"${pay.amount_paid:,.2f} {pay.currency}", f"Factura Ref: {pay.invoice_reference}")
+            for d in pay.deductions:
+                t_pay.add_row(f"Deducción Aplicada ({d.code})", f"-${d.amount:,.2f} {pay.currency}", d.reason)
+            console.print(t_pay)
+
+        # 4. Contrato Comercial
+        if ctr:
+            t_ctr = Table(title=f"[bold cyan]4. Contrato Marco ({ctr.contract_id})[/bold cyan]", border_style="yellow")
+            t_ctr.add_column("Cláusula", style="bold")
+            t_ctr.add_column("Título", style="white")
+            t_ctr.add_column("Política / Regla Contractual", style="dim")
+
+            for c in ctr.clauses:
+                t_ctr.add_row(c.clause_id, c.title, c.policy)
+            console.print(t_ctr)
+        console.print("\n")
+
+    def _display_reconciliation_details(self) -> None:
+        """Muestra la tabla determinística detallada de conciliación."""
+        self._ensure_case_loaded()
+        rec = self.state.reconciliation_summary
+        if not rec:
+            console.print("[yellow]No se ha ejecutado la conciliación todavía.[/yellow]")
+            return
+
+        table = Table(title=f"[bold green]CONCILIACIÓN MATEMÁTICA LÍNEA POR LÍNEA ({self.case_id})[/bold green]", border_style="green")
+        table.add_column("Ítem", style="bold white")
+        table.add_column("Cant. Facturada", justify="center")
+        table.add_column("Cant. Recibida", justify="center")
+        table.add_column("Faltante", justify="center", style="bold red")
+        table.add_column("Avería", justify="center", style="bold yellow")
+        table.add_column("Precio Unitario", justify="right")
+        table.add_column("Impacto Financiero", justify="right", style="bold red")
+
+        for d in rec.discrepancies:
+            table.add_row(
+                d.item_id,
+                str(d.billed_quantity),
+                str(d.received_quantity),
+                str(d.missing_quantity) if d.missing_quantity > 0 else "-",
+                str(d.damaged_quantity) if d.damaged_quantity > 0 else "-",
+                f"${d.invoiced_unit_price:,.2f}",
+                f"-${d.total_impact:,.2f}" if d.total_impact > 0 else "$0.00"
+            )
+
+        console.print("\n")
+        console.print(table)
+
+        summary_box = Table(show_header=False, border_style="cyan")
+        summary_box.add_column("Concepto", style="bold", width=30)
+        summary_box.add_column("Monto", style="green")
+
+        summary_box.add_row("Total Facturado", f"${rec.billed_amount:,.2f} USD")
+        summary_box.add_row("Total Pagado", f"${rec.received_amount:,.2f} USD")
+        summary_box.add_row("Diferencia Neta", f"[bold red]${rec.difference:,.2f} USD[/bold red]")
+        summary_box.add_row("Deducciones Justificadas", f"[green]${rec.justified_deductions_amount:,.2f} USD[/green]")
+        summary_box.add_row("Deducciones Injustificadas", f"${rec.unjustified_deductions_amount:,.2f} USD")
+        summary_box.add_row("Tipo Primario de Discrepancia", rec.primary_discrepancy_type)
+        console.print(summary_box)
+        console.print("\n")
+
+    def _display_contract_evaluation(self) -> None:
+        """Muestra el desglose del análisis legal y contractual."""
+        self._ensure_case_loaded()
+        ev = self.state.contract_evaluation
+        if not ev:
+            console.print("[yellow]No se ha ejecutado el análisis contractual todavía.[/yellow]")
+            return
+
+        table = Table(title=f"[bold green]EVALUACIÓN DE CUMPLIMIENTO CONTRACTUAL ({ev.contract_id})[/bold green]", border_style="yellow")
+        table.add_column("Cláusula", style="bold cyan")
+        table.add_column("Título", style="white")
+        table.add_column("Aplicable", justify="center")
+        table.add_column("Autoriza Deducción", justify="center")
+        table.add_column("Fundamento Jurídico", style="dim")
+
+        for m in ev.matches:
+            table.add_row(
+                m.clause_id,
+                m.title,
+                "[green]SÍ[/green]" if m.is_applicable else "[dim]NO[/dim]",
+                "[green]SÍ[/green]" if m.is_deduction_authorized else "[red]NO[/red]",
+                m.explanation
+            )
+
+        console.print("\n")
+        console.print(table)
+
+        summary_box = Table(show_header=False, border_style="yellow")
+        summary_box.add_column("Dictamen", style="bold", width=25)
+        summary_box.add_column("Detalle", style="white")
+        summary_box.add_row("Validez Contractual", "[bold green]DEDUCCIÓN VÁLIDA[/bold green]" if ev.contractual_justification_valid else "[bold red]DEDUCCIÓN NO VÁLIDA[/bold red]")
+        summary_box.add_row("Evaluación Jurídica", ev.summary_legal_assessment)
+        summary_box.add_row("Recomendación Contractual", ev.recommended_contract_action)
+        console.print(summary_box)
+        console.print("\n")
+
+    def _display_audit_log_tail(self, limit: int = 8) -> None:
+        """Muestra los últimos eventos de trazabilidad de la bitácora JSONL."""
+        log_file = self.audit_logger.log_file
+        if not log_file.exists():
+            console.print(f"[dim]No hay bitácora generada aún en {log_file}[/dim]")
+            return
+
+        lines = log_file.read_text(encoding="utf-8").strip().splitlines()
+        last_lines = lines[-limit:] if len(lines) > limit else lines
+
+        table = Table(title=f"[bold green]ÚLTIMOS EVENTOS DE AUDITORÍA ({log_file.name})[/bold green]", border_style="cyan")
+        table.add_column("Paso", justify="center", style="bold")
+        table.add_column("Fase", style="magenta")
+        table.add_column("Tipo Acción", style="cyan")
+        table.add_column("Nombre / Evento", style="white")
+        table.add_column("Detalle / Justificación", style="dim")
+
+        for line in last_lines:
+            try:
+                item = json.loads(line)
+                step = str(item.get("step_number", "-"))
+                phase = item.get("phase", "-")
+                act_type = item.get("action_type", "-")
+                name = item.get("name", "-")
+                rationale = item.get("rationale") or str(item.get("details", {}))
+                table.add_row(step, phase, act_type, name, rationale[:80] + ("..." if len(rationale) > 80 else ""))
+            except Exception:
+                continue
+
+        console.print("\n")
+        console.print(table)
+        console.print(f"[dim]Ruta completa: {log_file} ({len(lines)} eventos registrados)[/dim]\n")
+
+    def _run_calibration(self) -> None:
+        """Ejecuta el benchmark de calibración de criterio con tope presupuestario."""
+        from agent.training.trainer import AgentTrainer
+        trainer = AgentTrainer(budget_limit_usd=1.00)
+        trainer.run_calibration(case_id=self.case_id)
+
+    def _switch_case(self, new_case_id: str) -> None:
+        """Cambia el caso activo del expediente."""
+        new_case_id = new_case_id.strip()
+        if not new_case_id:
+            return
+        self.case_id = new_case_id
+        self.objective = f"Analiza la disputa {new_case_id}"
+        self.state = DisputeState(case_id=new_case_id, objective=self.objective)
+        self.audit_logger = AuditLogger(case_id=new_case_id)
+        self.tool_executor = ToolExecutor(state=self.state, audit_logger=self.audit_logger)
+        self._ensure_case_loaded()
+        console.print(f"[bold green][OK] Caso activo cambiado a:[/bold green] [cyan]{new_case_id}[/cyan]\n")
+
     def _simulated_ask(self, question: str) -> str:
         """Generador determinístico de respuestas locales para pruebas y modo offline."""
         q = question.lower()
@@ -278,7 +506,7 @@ class HermesRunner:
             )
 
     def ask(self, question: str) -> str:
-        """Responde una pregunta puntual sobre el expediente del caso."""
+        """Responde una pregunta puntual sobre el expediente del caso con criterios calibrados."""
         self._ensure_case_loaded()
         
         if settings.is_live_api_ready:
@@ -335,12 +563,13 @@ class HermesRunner:
         self._ensure_case_loaded()
         
         console.print(Panel(
-            f"[bold cyan]SupplyMind AI - Modo Conversacional Interactivo[/bold cyan]\n"
-            f"[white]Caso activo:[/white] [green]{self.case_id}[/green] | [yellow]Modo:[/yellow] {'Grok en Vivo (Platica Gateway)' if settings.is_live_api_ready else 'Harness Local'}\n\n"
-            f"[dim]Escribe tus preguntas sobre la factura, remisión, pagos, contrato o recomendaciones.\n"
-            f"Comandos útiles: '[bold yellow]reporte[/bold yellow]' (ver cuadro formal), '[bold yellow]ayuda[/bold yellow]' (preguntas sugeridas), '[bold yellow]salir[/bold yellow]' (terminar).[/dim]",
+            f"[bold cyan]SupplyMind AI - Terminal de Control y Chat Interactivo[/bold cyan]\n"
+            f"[white]Caso activo:[/white] [green]{self.case_id}[/green] | [yellow]Modo:[/yellow] {'Grok 4.7 en Vivo (Platica Gateway)' if settings.is_live_api_ready else 'Harness Local'}\n"
+            f"[dim]Escribe el número de la opción, comando o haz cualquier pregunta libre sobre la disputa.[/dim]",
             border_style="cyan"
         ))
+        
+        self._display_menu()
         
         conversation_history: List[Dict[str, Any]] = [
             {"role": "system", "content": INTERACTIVE_CHAT_PROMPT},
@@ -358,51 +587,114 @@ class HermesRunner:
 
         while True:
             try:
-                console.print("[bold green]Tú >[/bold green] ", end="")
+                console.print(f"[bold green]SupplyMind [{self.case_id}] >[/bold green] ", end="")
                 user_input = input().strip()
             except (EOFError, KeyboardInterrupt):
-                console.print("\n[dim]Sesión finalizada.[/dim]")
+                console.print("\n[dim]Sesión finalizada por el usuario.[/dim]")
                 break
 
             if not user_input:
                 continue
 
             cmd = user_input.lower()
-            if cmd in ["salir", "exit", "quit", "q", "adios", "bye"]:
-                console.print(f"\n[bold cyan]SupplyMind AI:[/bold cyan] [yellow]Hasta luego. Bitácora guardada en {self.audit_logger.log_file}[/yellow]\n")
+            
+            # 0. Salir
+            if cmd in ["0", "salir", "exit", "quit", "q", "adios", "bye"]:
+                console.print(f"\n[bold cyan]SupplyMind AI:[/bold cyan] [yellow]Hasta luego. Bitácora final guardada en {self.audit_logger.log_file}[/yellow]\n")
                 break
 
-            if cmd in ["reporte", "informe", "report", "tabla"]:
+            # 1. Analizar disputa (Run autónomo)
+            if cmd in ["1", "analizar", "resolver", "run"]:
+                console.print("\n[bold]Ejecutando ciclo autónomo de resolución...[/bold]")
+                self.run()
                 self._display_report_table()
+                continue
+
+            # 2. Ver Reporte Formal
+            if cmd in ["2", "reporte", "informe", "report", "tabla"]:
+                self._display_report_table()
+                continue
+
+            # 3. Inspeccionar Documentos
+            if cmd in ["3", "documentos", "docs", "expediente"]:
+                self._display_documents_inspection()
+                continue
+
+            # 4. Conciliación Detallada
+            if cmd in ["4", "conciliacion", "conciliar", "math"]:
+                self._display_reconciliation_details()
+                continue
+
+            # 5. Dictamen Contractual
+            if cmd in ["5", "contrato", "legal", "clausulas"]:
+                self._display_contract_evaluation()
+                continue
+
+            # 6. Bitácora de Auditoría
+            if cmd in ["6", "bitacora", "auditoria", "log", "trail"]:
+                self._display_audit_log_tail()
+                continue
+
+            # 7. Calibrar Criterio AI
+            if cmd in ["7", "calibrar", "entrenar", "benchmark"]:
+                self._run_calibration()
+                continue
+
+            # 8. Cambiar / Recargar Caso
+            if cmd in ["8", "caso", "cambiar"]:
+                console.print(f"[bold cyan]Ingresa el ID del caso a cargar (actual: {self.case_id}):[/bold cyan] ", end="")
+                new_id = input().strip()
+                if new_id:
+                    self._switch_case(new_id)
+                    # Actualizar historial
+                    conversation_history = [
+                        {"role": "system", "content": INTERACTIVE_CHAT_PROMPT},
+                        {"role": "system", "content": f"DATOS CONCILIADOS DEL EXPEDIENTE:\n{self._build_context_summary()}"}
+                    ]
+                continue
+
+            # Menú y ayuda
+            if cmd in ["menu", "m"]:
+                self._display_menu()
+                continue
+
+            if cmd in ["cls", "clear", "limpiar"]:
+                import os
+                os.system("cls" if os.name == "nt" else "clear")
+                self._display_menu()
                 continue
 
             if cmd in ["ayuda", "help", "?"]:
                 console.print(Panel(
-                    "[bold]Preguntas sugeridas que puedes hacerme:[/bold]\n"
+                    "[bold]Comandos Rápidos:[/bold]\n"
+                    "- [yellow]1[/yellow] a [yellow]8[/yellow]: Acceso directo a las funciones del menú.\n"
+                    "- [yellow]menu[/yellow]: Muestra el menú principal nuevamente.\n"
+                    "- [yellow]cls[/yellow]: Limpia la pantalla.\n"
+                    "- [yellow]0[/yellow] o [yellow]salir[/yellow]: Termina la sesión.\n\n"
+                    "[bold]Ejemplos de preguntas libres en lenguaje natural:[/bold]\n"
                     "- [cyan]¿Por qué el cliente retuvo $800 dólares?[/cyan]\n"
-                    "- [cyan]¿Qué dice la cláusula contractual sobre faltantes?[/cyan]\n"
-                    "- [cyan]¿Qué producto tuvo faltante y cuántas cajas?[/cyan]\n"
+                    "- [cyan]¿Qué dice la cláusula 4.2 del contrato comercial?[/cyan]\n"
+                    "- [cyan]¿Qué producto tuvo faltante y cuántas cajas no llegaron?[/cyan]\n"
                     "- [cyan]¿Cuánto dinero podemos recuperar o reclamar legalmente?[/cyan]\n"
-                    "- [cyan]¿Qué acción comercial debemos tomar ahora?[/cyan]\n"
-                    "- [yellow]reporte[/yellow] (Muestra el cuadro formal de conciliación)",
-                    title="Guía de Interacción",
+                    "- [cyan]¿Qué acción comercial debemos tomar con cartera?[/cyan]",
+                    title="Guía de Interacción y Comandos",
                     border_style="yellow"
                 ))
                 continue
 
-            # Procesar pregunta
+            # Pregunta libre a Grok en lenguaje natural
             self.audit_logger.log_step(
                 phase="INTERACTIVE_CHAT",
                 action_type="USER_QUERY",
                 name="User_Question",
                 details={"case_id": self.case_id, "question": user_input},
-                rationale="Pregunta formulada por el usuario en modo interactivo."
+                rationale="Pregunta interactiva formulada por el operador."
             )
 
             if client:
                 conversation_history.append({"role": "user", "content": user_input})
                 try:
-                    console.print("[dim]Consultando a Grok...[/dim]")
+                    console.print("[dim]Consultando a Grok con criterios calibrados...[/dim]")
                     response = client.chat.completions.create(
                         model=settings.MODEL_NAME,
                         messages=conversation_history,
@@ -455,4 +747,5 @@ class HermesRunner:
                     rationale="Respuesta simulada local."
                 )
                 console.print(f"\n[bold cyan]SupplyMind AI:[/bold cyan] {assistant_reply}\n")
+
 
