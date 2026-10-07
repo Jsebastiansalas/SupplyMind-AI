@@ -1,0 +1,24 @@
+{
+  "po_id": "PO-8821",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-RETAIL-101",
+  "order_date": "2026-08-25",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "PROD-001",
+      "description": "Caja Aceite Vegetal Premium 12x1L",
+      "ordered_quantity": 100,
+      "agreed_unit_price": 50.00,
+      "total_price": 5000.00
+    },
+    {
+      "item_id": "PROD-002",
+      "description": "Caja Café Gourmet Tostado 24x500g",
+      "ordered_quantity": 50,
+      "agreed_unit_price": 80.00,
+      "total_price": 4000.00
+    }
+  ],
+  "total_amount": 9000.00
+}

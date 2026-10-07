@@ -1,0 +1,15 @@
+{
+  "payment_id": "PAY-7710",
+  "invoice_reference": "INV-40102",
+  "payment_date": "2026-09-30",
+  "currency": "USD",
+  "amount_paid": 8200.00,
+  "deductions": [
+    {
+      "code": "DED-MISSING-ITEM",
+      "reason": "Deducción por 10 cajas faltantes PROD-002 s/ remisión DEL-9912",
+      "amount": 800.00,
+      "reference_doc": "DEL-9912"
+    }
+  ]
+}
