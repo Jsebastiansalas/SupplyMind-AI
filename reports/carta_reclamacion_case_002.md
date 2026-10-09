@@ -1,6 +1,6 @@
 # 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
 **Ref: Expediente de Cartera case_002 / Factura INV-88301**  
-**Fecha:** 07 de October de 2026  
+**Fecha:** 09 de October de 2026  
 **De:** Departamento de Cartera y Asuntos Comerciales — VEN-001  
 **Para:** Gerencia de Cuentas por Pagar y Conciliación — CUST-RETAIL-202  
 
@@ -18,7 +18,7 @@ Aceptamos de plena conformidad la deducción por valor de **$4,000.00 USD**, deb
 #### 2. Deducciones Objetadas y Saldo Reclamable: **$12,500.00 USD**
 Rechazamos formalmente las deducciones adicionales aplicadas por un importe total de **$12,500.00 USD**, por carecer de soporte probatorio y contrariar los términos del contrato comercial **CTR-MEGAMARKET-2026**:
 - **Causa Raíz:** Discrepancia mixta en expediente case_002: Faltante físico comprobado de $4,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $12,500.00 USD sin sustento contractual ni documental.
-- **Fundamentación Contractual:** Existe un monto no justificado de $12,500.00 que no cuenta con respaldo contractual ni físico en las remisiones de entrega.
+- **Fundamentación Contractual:** Evaluación algorítmica y semántica completada. Posible deducción de $12,500.00 requiere análisis final por el Agente.
 
 #### 3. Requerimiento de Pago
 En virtud de lo anterior, solicitamos comedidamente realizar la programación y transferencia del saldo retenido injustificadamente por valor de:

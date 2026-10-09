@@ -1,0 +1,15 @@
+{
+  "payment_id": "PAY-ENT-001",
+  "invoice_reference": "INV-ENT-001",
+  "payment_date": "2026-06-10",
+  "currency": "USD",
+  "amount_paid": 42500.00,
+  "deductions": [
+    {
+      "code": "DED-DAMAGE-PENALTY",
+      "reason": "Caja de servidor averiada. Penalidad 150% segun clausula 37",
+      "amount": 7500.00,
+      "reference_doc": "delivery.png"
+    }
+  ]
+}

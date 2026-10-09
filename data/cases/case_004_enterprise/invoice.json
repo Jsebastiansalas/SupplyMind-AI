@@ -1,0 +1,20 @@
+{
+  "invoice_id": "INV-ENT-001",
+  "vendor_id": "GTS-999",
+  "customer_id": "MCR-111",
+  "po_reference": "PO-ENT-555",
+  "issue_date": "2026-06-01",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SRV-X9",
+      "description": "Servidor Rack X9",
+      "quantity": 10,
+      "unit_price": 5000.00,
+      "total_price": 50000.00
+    }
+  ],
+  "subtotal": 50000.00,
+  "tax": 0.00,
+  "total_amount": 50000.00
+}

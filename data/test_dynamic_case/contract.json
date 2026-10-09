@@ -1,0 +1,37 @@
+{
+  "contract_id": "CTR-RETAIL-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-RETAIL-101",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-3.1",
+      "title": "Condiciones de Precios y Órdenes de Compra",
+      "text": "Los precios unitarios facturados deben coincidir estrictamente con los precios pactados en la Orden de Compra respectiva.",
+      "policy": "STRICT_MATCH",
+      "tolerance_percentage": 0.00
+    },
+    {
+      "clause_id": "CLAUSE-4.2",
+      "title": "Faltantes Físicos en Recepción",
+      "text": "En caso de que las cantidades recibidas en bodega sean inferiores a las facturadas y esto conste en la remisión de entrega firmada con sello de discrepancia, el comprador está facultado para deducir automáticamente del pago el 100% del valor unitario facturado de las unidades faltantes.",
+      "policy": "DEDUCTION_ALLOWED_ON_SIGNED_DISCREPANCY",
+      "tolerance_percentage": 0.00
+    },
+    {
+      "clause_id": "CLAUSE-5.1",
+      "title": "Mercancía Dañada o Averiada",
+      "text": "Toda avería detectada durante el descargue debe notificarse dentro de 48 horas con acta fotográfica para autorizar devolución o nota de crédito.",
+      "policy": "PHOTO_EVIDENCE_REQUIRED",
+      "tolerance_percentage": 0.00
+    },
+    {
+      "clause_id": "CLAUSE-8.2",
+      "title": "Plazos de Pago y Conciliación",
+      "text": "Las facturas se pagarán a 30 días fecha de recepción. Toda deducción debe estar respaldada por remisión de entrega o informe de calidad.",
+      "policy": "NET_30_DAYS",
+      "tolerance_percentage": 0.00
+    }
+  ]
+}

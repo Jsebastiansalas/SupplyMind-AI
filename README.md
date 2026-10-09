@@ -1,6 +1,6 @@
 # SupplyMind AI 🧠📦
 > **Analista Digital Autónomo de Disputas Comerciales en Cadenas de Suministro B2B**  
-> *Proyecto desarrollado para el **Reto Agente 2026** (Platica.mx × Campuslands) sobre la arquitectura **Hermes Agent** y el motor de razonamiento **Grok 4.7 (xAI)**.*
+> *Proyecto desarrollado para el **Reto Agente 2026** (Platica.mx × Campuslands) sobre la arquitectura **SKYNET Framework** y el motor de razonamiento **Grok 4.7 (xAI)**.*
 
 ---
 
@@ -28,7 +28,7 @@ Actualmente, estos casos exigen análisis manual de equipos de cartera, logísti
 **SupplyMind AI** es un agente autónomo que opera como un **Analista Digital Senior de Conciliación**.
 Dado un objetivo en lenguaje natural:
 ```bash
-python main.py "Analiza la disputa case_001"
+py main.py "Analiza la disputa case_001"
 ```
 El agente:
 1. **Analiza el objetivo** y planifica los pasos necesarios.
@@ -49,11 +49,11 @@ El agente:
 
 ---
 
-## 🏗️ 4. Arquitectura del Agente sobre Hermes y Grok
+## 🏗️ 4. Arquitectura del Agente sobre SKYNET y Grok
 
 ```mermaid
 graph TD
-    User([Usuario en Terminal / CLI]) -->|"Analiza la disputa case_001"| Runner[Hermes Agent Runner]
+    User([Usuario en Terminal / CLI]) -->|"Analiza la disputa case_001"| Runner[SKYNET Framework Runner]
     
     subgraph "1. Cerebro Cognitivo Remoto"
         PlaticaGateway["Platica Gateway (api.reto.pltk.mx/v1)"]
@@ -61,7 +61,7 @@ graph TD
         PlaticaGateway <--> Grok
     end
     
-    subgraph "2. Orquestador Agéntico Hermes (Local)"
+    subgraph "2. Orquestador Agéntico SKYNET (Local)"
         Runner <-->|Tool Calling Protocol| PlaticaGateway
         Runner --> ToolRegistry[Registro de Herramientas JSON-Schema]
         Runner --> StateMem[DisputeState: Memoria de Trabajo]
@@ -119,7 +119,7 @@ platica/
 ├── agent/
 │   ├── __init__.py
 │   ├── core/
-│   │   ├── hermes_runner.py          # Orquestador del bucle agéntico Hermes con Grok
+│   │   ├── skynet_runner.py          # Orquestador del bucle agéntico SKYNET con Grok
 │   │   └── state.py                  # Estado del proceso y memoria de trabajo
 │   ├── planner/
 │   │   └── prompts.py                # Directrices de Analista Senior B2B
@@ -132,7 +132,7 @@ platica/
 │   ├── test_models.py                # Pruebas de modelos Pydantic
 │   ├── test_case_001.py              # Pruebas del dataset sintético
 │   ├── test_tools.py                 # Pruebas de las 4 herramientas determinísticas
-│   └── test_agent.py                 # Pruebas de integración del bucle Hermes y Grok
+│   └── test_agent.py                 # Pruebas de integración del bucle SKYNET y Grok
 │
 └── logs/                             # Bitácoras de auditoría generadas en ejecución
 ```
@@ -146,7 +146,7 @@ platica/
 
 ### 1. Clonar e instalar entorno virtual:
 ```bash
-python -m venv .venv
+py -m venv .venv
 .\.venv\Scripts\activate
 pip install -r requirements.txt
 ```
@@ -170,9 +170,9 @@ DEFAULT_CURRENCY=USD
 
 Para evaluar **todo el proyecto de forma desatendida e instantánea**, ejecuta un solo comando:
 ```bash
-python main.py evaluar
+py main.py evaluar
 # o directamente:
-python scripts/evaluar_jurado.py
+py scripts/evaluar_jurado.py
 ```
 
 ### Lo que este comando verifica automáticamente en ~3 segundos:
@@ -188,14 +188,14 @@ python scripts/evaluar_jurado.py
 
 Para analizar el caso de prueba `case_001`:
 ```bash
-python main.py "Analiza la disputa case_001"
+py main.py "Analiza la disputa case_001"
 ```
 
 ### Salida esperada en terminal:
 ```text
 ┌────────────────────────────────────────────────────────────────┐
 │ SupplyMind AI - Analista Autonomo de Disputas B2B              │
-│ Reto Agente Platica.mx x Campuslands - Powered by Hermes Agent │
+│ Reto Agente Platica.mx x Campuslands - Powered by SKYNET Framework │
 └────────────────────────────────────────────────────────────────┘
 Iniciando analisis para: case_001
 
@@ -235,33 +235,51 @@ Turno 4: Consultando a Grok (grok-4.7)...
 [OK] Analisis completado exitosamente.
 ```
 
-### 💬 Modos Avanzados de Interacción:
-
-#### 1. Terminal de Control y Chat Interactivo (Menú Expandido):
-Inicia el centro de comando interactivo del analista:
+#### 1. Centro de Control y Chat Interactivo Multi-Caso (S1):
+Inicia el centro de comando interactivo unificado para los **3 casos**:
 ```bash
-python main.py -i
-# o especificando el caso:
-python main.py -i case_001
+py main.py -i
+# o con el entorno virtual:
+.\.venv\Scripts\python.exe main.py -i
+
+# o entrando directamente a un expediente específico:
+py main.py -i case_002
+py main.py -i 2
+py main.py -i c3
 ```
-El menú interactivo te ofrece **8 opciones directas** además de chat libre en lenguaje natural:
-- `[1] 🧠 Analizar Disputa`: Ejecuta el ciclo autónomo ReAct con Grok paso a paso.
-- `[2] 📊 Ver Reporte Formal`: Despliega la tabla formal del dictamen (`Dispute Analysis Report`).
-- `[3] 📂 Inspeccionar Documentos`: Explora a fondo el expediente (Factura, OC, Remisión, Pago y Contrato).
-- `[4] 🔢 Conciliación Detallada`: Auditoría matemática línea a línea de unidades, precios e impactos en `Decimal`.
-- `[5] ⚖️ Dictamen Contractual`: Tabla de cumplimiento de cláusulas comerciales (CLAUSE-4.2, etc.).
-- `[6] 📜 Bitácora de Auditoría`: Visor de los últimos eventos registrados en la bitácora JSONL.
-- `[7] 🎯 Calibrar Criterio AI`: Ejecuta el benchmark de entrenamiento y evaluación de criterio con control de presupuesto.
-- `[8] 🔄 Cambiar / Recargar Caso`: Permite alternar de expediente activo en caliente.
-- `[0] 🚪 Salir`: Finaliza la sesión guardando la bitácora de auditoría.
-- *O escribe cualquier pregunta libre a Grok en cualquier momento (ej. "¿Por qué el cliente retuvo $800?").*
+
+> 💡 **Nota Windows:** Si `python` invoca la tienda de aplicaciones, usa `py main.py -i` o la ruta directa `.\.venv\Scripts\python.exe main.py -i`.
+
+Al iniciar sin argumentos, el agente te presenta el **Hub de Selección Multi-Caso**:
+- `[1]` Iniciar en **case_001** (Básico: Faltante físico de $800 USD)
+- `[2]` Iniciar en **case_002** (Complejo Alta Cuantía: $12,500 USD reclamables)
+- `[3]` Iniciar en **case_003** (Discrepancia de Precios: $3,000 USD sobreprecio en Factura vs PO)
+- `[4]` Desplegar **Matriz Comparativa** de los 3 casos simultáneamente
+- `[5]` Ejecutar **Evaluación S1 del Jurado** en 30 segundos
+- `[0]` Salir
+
+Dentro de la sesión interactiva, tienes acceso a **control multi-caso total**:
+- **Gestión del Expediente Activo:**
+  - `[1] 🧠 Analizar Disputa`: Ejecuta el ciclo autónomo ReAct con Grok paso a paso.
+  - `[2] 📊 Ver Reporte Formal`: Despliega tabla formal y verifica entregables en `reports/`.
+  - `[3] 📂 Inspeccionar Documentos`: Factura, OC, Remisión, Pago y Contrato del expediente.
+  - `[4] 🔢 Conciliación Detallada`: Auditoría matemática en `Decimal` línea por línea.
+  - `[5] ⚖️ Dictamen Contractual`: Cumplimiento y amparo de cláusulas (4.2, 5.1, 7.3, 3.1).
+  - `[6] 📜 Bitácora de Auditoría`: Visor de los últimos eventos registrados en JSONL.
+  - `[7] 🎯 Calibrar Criterio AI`: Benchmark con control estricto de presupuesto (< $1.00 USD).
+- **Operaciones Multi-Caso y Navegación Rápida:**
+  - `[8] 🔄 Cambiar de Expediente`: Selector interactivo guiado entre 1, 2 y 3.
+  - `[9] 🌐 Matriz Comparativa`: Cuadro comparativo en vivo con los 3 casos de la cartera en paralelo.
+  - `[E] ⚡ Evaluación S1 Jurado`: Ejecuta la suite de verificación completa en 1 clic.
+  - **Atajos Directos:** Escribe `c1`, `c2` o `c3` en cualquier momento en el prompt para alternar instantáneamente de expediente.
+  - **Consultas Cruzadas en Lenguaje Natural:** Pregunta libremente a Grok sobre cualquier caso o comparativas (ej. *"¿Cuánto dinero podemos recuperar en el caso 2?"*, *"Compara los 3 casos de la cartera"*).
 
 #### 2. Calibración y Entrenamiento de Criterio (< $1.00 USD):
 Evalúa y calibra el razonamiento de Grok frente a la matriz de criterios senior B2B (cero alucinación, rigor probatorio, alineación contractual y mitigación de riesgo):
 ```bash
-python main.py calibrar
+py main.py calibrar
 # o mediante el script directo:
-python scripts/calibrate_agent.py case_001
+py scripts/calibrate_agent.py case_001
 ```
 *Métricas reales de la batería de calibración:*
 - **Puntaje Global de Criterio:** `100.0 / 100.0 (CALIBRADO)`
@@ -271,8 +289,8 @@ python scripts/calibrate_agent.py case_001
 #### 3. Consulta Puntual desde Línea de Comandos (One-Liner):
 Haz preguntas específicas directamente desde tu terminal:
 ```bash
-python main.py ask case_001 "¿Por qué el cliente aplicó una deducción de 800 dólares?"
-python main.py ask case_002 "¿Cuánto dinero podemos reclamar legalmente al cliente y por qué?"
+py main.py ask case_001 "¿Por qué el cliente aplicó una deducción de 800 dólares?"
+py main.py ask case_002 "¿Cuánto dinero podemos reclamar legalmente al cliente y por qué?"
 ```
 
 #### 4. Casos de Prueba Disponibles:
@@ -311,8 +329,8 @@ Resultado:
 ## 📋 10. Estado del Proyecto (Hito S1 Completado al 100% & Avanzando en Hito S2)
 
 - [x] **Hito S1 (Semana 1 - Agente Corriendo, Calibrado & Blindado para Jurados):**
-  - [x] Suite de evaluación instantánea para jurados (`python main.py evaluar`).
-  - [x] Arquitectura basada en Hermes Agent con Grok 4.7 vía Platica Gateway.
+  - [x] Suite de evaluación instantánea para jurados (`py main.py evaluar`).
+  - [x] Arquitectura basada en SKYNET Framework con Grok 4.7 vía Platica Gateway.
   - [x] Motor de conciliación determinístico en `Decimal` (cero alucinaciones).
   - [x] Matriz de casos B2B completa: `case_001` ($9K), `case_002` ($54.2K) y `case_003` ($15K).
   - [x] Generación de entregables formales (Reportes Markdown/JSON y Carta de Reclamación de $12.5k).

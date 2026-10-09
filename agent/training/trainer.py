@@ -15,7 +15,7 @@ from rich.table import Table
 from rich.panel import Panel
 
 from config.settings import settings
-from agent.core.hermes_runner import HermesRunner
+from agent.core.skynet_runner import SkynetRunner
 
 console = Console(highlight=False)
 
@@ -51,7 +51,7 @@ class CalibrationResult(BaseModel):
 
 class AgentTrainer:
     """
-    Ejecuta baterías de entrenamiento y calibración de criterio sobre Grok y Hermes.
+    Ejecuta baterías de entrenamiento y calibración de criterio sobre Grok y SKYNET.
     Garantiza un control presupuestario estricto con un tope máximo configurable (por defecto $1.00 USD).
     """
     def __init__(self, budget_limit_usd: float = 1.00):
@@ -87,7 +87,7 @@ class AgentTrainer:
             border_style="cyan"
         ))
 
-        runner = HermesRunner(case_id=case_id)
+        runner = SkynetRunner(case_id=case_id)
         
         # 1. Escenario Base: Análisis Autónomo Integral
         console.print("\n[bold]1/4 Evaluando: Cero Alucinación y Resolución Integral...[/bold]")
@@ -142,7 +142,7 @@ class AgentTrainer:
         self._display_results(calibration)
         return calibration
 
-    def _eval_scenario_full_run(self, runner: HermesRunner, case_id: str) -> ScenarioResult:
+    def _eval_scenario_full_run(self, runner: SkynetRunner, case_id: str) -> ScenarioResult:
         """Prueba de ejecución autónoma completa."""
         try:
             report = runner.run()
@@ -188,7 +188,7 @@ class AgentTrainer:
                 feedback=f"Error en ejecución: {e}"
             )
 
-    def _eval_scenario_contract(self, runner: HermesRunner, case_id: str) -> ScenarioResult:
+    def _eval_scenario_contract(self, runner: SkynetRunner, case_id: str) -> ScenarioResult:
         """Prueba de criterio contractual."""
         tokens_in = 650
         tokens_out = 250
@@ -223,7 +223,7 @@ class AgentTrainer:
             details={"reply_snippet": reply[:180] + "..."}
         )
 
-    def _eval_scenario_evidence(self, runner: HermesRunner, case_id: str) -> ScenarioResult:
+    def _eval_scenario_evidence(self, runner: SkynetRunner, case_id: str) -> ScenarioResult:
         """Prueba de rigor probatorio documental."""
         tokens_in = 700
         tokens_out = 260
@@ -261,7 +261,7 @@ class AgentTrainer:
             details={"reply_snippet": reply[:180] + "..."}
         )
 
-    def _eval_scenario_action(self, runner: HermesRunner, case_id: str) -> ScenarioResult:
+    def _eval_scenario_action(self, runner: SkynetRunner, case_id: str) -> ScenarioResult:
         """Prueba de formulación de la acción comercial y mitigación de riesgo."""
         tokens_in = 680
         tokens_out = 240

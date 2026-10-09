@@ -1,0 +1,17 @@
+{
+  "case_id": "data/test_dynamic_case",
+  "currency": "USD",
+  "billed_amount": "9000.0",
+  "received_amount": "8200.0",
+  "difference": "-800.0",
+  "root_cause": "Causa raíz: FALTANTE FÍSICO de mercancía en recepción. La factura y la Orden de Compra coinciden en total ($9,000.00) y no hay discrepancia de precio ni avería. En el ítem PROD-002 (Caja Café Gourmet Tostado 24x500g) se facturaron 50 unidades a $80.00 y la remisión DEL-9912 registra solo 40 recibidas, con 10 unidades faltantes valoradas en $800.00. El comprador aplicó una única deducción de $800.00 (código DED-MISSING-ITEM en PAY-7710, pago recibido $8,200.00), alineada exactamente con el faltante consignado en la remisión firmada. La Cláusula 4.2 del contrato CTR-RETAIL-2026 autoriza la deducción del 100% del valor unitario cuando existe constancia firmada en remisión. Jerarquía probatoria: Nivel 1 (DEL firmada) + Nivel 2 (CTR/PO) + Nivel 3 (PAY). Deducción JUSTIFICADA en su totalidad; saldo reclamable $0.00. Confianza 0.97.",
+  "evidence": [
+    "Faltante físico comprobado en PROD-002 (Caja Café Gourmet Tostado 24x500g): 10 unidades faltantes s/ remisión DEL-9912 valoradas en $800.00",
+    "Deducción aplicada en comprobante PAY-7710: código DED-MISSING-ITEM, motivo 'Deducción por 10 cajas faltantes PROD-002 s/ remisión DEL-9912', monto $800.00",
+    "Respaldo contractual: La CLAUSE-4.2 (Faltantes Físicos en Recepción) autoriza la deducción del 100% del valor unitario cuando exista constancia firmada en la remisión."
+  ],
+  "justified_amount": "800.00",
+  "claimable_amount": "0.00",
+  "confidence": 0.98,
+  "recommended_action": "Aceptar la deducción de $800.00 en cartera y emitir Nota de Crédito comercial por exactamente $800.00 para sanear la cuenta por cobrar del caso. Notificar a logística/despacho para auditar el control de carga en muelle sobre PROD-002. No iniciar objeción ni cobro coactivo: la evidencia física y contractual respalda al comprador."
+}

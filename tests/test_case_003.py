@@ -99,9 +99,9 @@ def test_case_003_deterministic_reconciliation():
     assert report.confidence >= 0.90
     assert "precio" in report.root_cause.lower()
 
-def test_case_003_hermes_runner_ask_simulated():
-    from agent.core.hermes_runner import HermesRunner
-    runner = HermesRunner(case_id="case_003")
+def test_case_003_skynet_runner_ask_simulated():
+    from agent.core.skynet_runner import SkynetRunner
+    runner = SkynetRunner(case_id="case_003")
     runner._ensure_case_loaded()
     
     ans_precio = runner._simulated_ask("¿Qué sobreprecio hubo en la factura?")

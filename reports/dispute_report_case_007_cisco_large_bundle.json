@@ -1,0 +1,25 @@
+{
+  "case_id": "case_007_cisco_large_bundle",
+  "currency": "USD",
+  "billed_amount": "125000.00",
+  "received_amount": "98000.00",
+  "difference": "-27000.00",
+  "root_cause": "Discrepancia mixta en expediente case_007_cisco_large_bundle: Faltante físico comprobado de $13,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $14,000.00 USD sin sustento contractual ni documental.",
+  "evidence": [
+    "Discrepancia de precio en SKU-ROUTER-CORECarrier-Grade: facturado $5000.00 vs acordado $4500.00",
+    "Discrepancia de precio en SKU-FIREWALL-NG: facturado $6000.00 vs acordado $5500.00",
+    "Faltante físico comprobado en SKU-FIBER-TRANS (100GbE QSFP28 Single-Mode Optical Transceiver): 10 unidades faltantes s/ remisión ACTA-REC-DALLAS-4410 valoradas en $4,000.00",
+    "Mercancía averiada en SKU-SFP-MODULE: 5 unidades valoradas en $1,500.00",
+    "Deducción aplicada en comprobante WIRE-TELCO-2026-99014: código DED-PRC-VAR, motivo 'Price variance correction to agreed Purchase', monto $7,500.00",
+    "Deducción aplicada en comprobante WIRE-TELCO-2026-99014: código DED-SHORTAGE, motivo 'Physical dock shortage 10x SKU-FIBER-TRANS', monto $4,000.00",
+    "Deducción aplicada en comprobante WIRE-TELCO-2026-99014: código DED-DAMAGE, motivo 'Damaged goods 5x SKU-SFP-MODULE crushed', monto $1,500.00",
+    "Deducción aplicada en comprobante WIRE-TELCO-2026-99014: código DED-UNAUTH-PENALTYArbitrary, motivo 'unannounced freight unloading penal', monto $14,000.00",
+    "Respaldo contractual: Precios facturados deben ajustarse a la OC.",
+    "Respaldo contractual: La 4.2 autoriza la deducción.",
+    "Respaldo contractual: La 5.1 autoriza la deducción."
+  ],
+  "justified_amount": "13000.00",
+  "claimable_amount": "14000.00",
+  "confidence": 0.98,
+  "recommended_action": "Aceptar deducción de $13,000.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $14,000.00 USD exigiendo su pago inmediato."
+}

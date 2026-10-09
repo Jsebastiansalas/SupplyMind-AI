@@ -8,7 +8,7 @@
   "evidence": [
     "Discrepancia de precio en PROD-301: facturado $150.0 vs acordado $120.0",
     "Deducción aplicada en comprobante PAY-4401: código DED-PRICE-ADJUSTMENT, motivo 'Deducción por sobreprecio facturado ($150.00/u vs $120.00/u acordado en PO-55100) en 100 unidades PROD-301', monto $3,000.00",
-    "Respaldo contractual: Los precios facturados deben ajustarse a la Orden de Compra según CLAUSE-3.1."
+    "Respaldo contractual: Precios facturados deben ajustarse a la OC."
   ],
   "justified_amount": "3000.00",
   "claimable_amount": "0.00",

@@ -8,7 +8,7 @@
   "evidence": [
     "Faltante físico comprobado en PROD-002 (Caja Café Gourmet Tostado 24x500g): 10 unidades faltantes s/ remisión DEL-9912 valoradas en $800.00",
     "Deducción aplicada en comprobante PAY-7710: código DED-MISSING-ITEM, motivo 'Deducción por 10 cajas faltantes PROD-002 s/ remisión DEL-9912', monto $800.00",
-    "Respaldo contractual: La CLAUSE-4.2 (Faltantes Físicos en Recepción) autoriza la deducción del 100% del valor unitario cuando exista constancia firmada en la remisión."
+    "Respaldo contractual: La CLAUSE-4.2 autoriza la deducción."
   ],
   "justified_amount": "800.00",
   "claimable_amount": "0.00",

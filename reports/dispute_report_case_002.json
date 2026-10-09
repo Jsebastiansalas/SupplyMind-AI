@@ -10,7 +10,7 @@
     "Deducción aplicada en comprobante PAY-9931: código DED-MISSING-PHYSICAL, motivo 'Deducción por 50 cajas faltantes PROD-102 s/ remisión DEL-12044', monto $4,000.00",
     "Deducción aplicada en comprobante PAY-9931: código DED-ALLEGED-DAMAGE, motivo 'Retención por supuesta avería interna PROD-103 no acreditada en muelle ni reportada en 48h', monto $6,500.00",
     "Deducción aplicada en comprobante PAY-9931: código DED-UNILATERAL-PENALTY, motivo 'Penalización administrativa unilateral no contemplada en contrato comercial', monto $6,000.00",
-    "Respaldo contractual: La CLAUSE-4.2 (Faltantes Físicos en Recepción) autoriza la deducción del 100% del valor unitario cuando exista constancia firmada en la remisión."
+    "Respaldo contractual: La CLAUSE-4.2 autoriza la deducción."
   ],
   "justified_amount": "4000.00",
   "claimable_amount": "12500.00",

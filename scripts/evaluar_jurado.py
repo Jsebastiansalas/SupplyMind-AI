@@ -29,7 +29,7 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 from config.settings import settings
-from agent.core.hermes_runner import HermesRunner
+from agent.core.skynet_runner import SkynetRunner
 
 console = Console(highlight=False)
 
@@ -93,6 +93,18 @@ def run_jury_evaluation() -> bool:
             "name": "Discrepancia de Precio (Sobreprecio en Factura vs PO)",
             "exp_diff": Decimal("-3000.00"),
             "exp_claim": Decimal("0.00")
+        },
+        {
+            "id": "case_007_cisco_large_bundle",
+            "name": "PDFs Masivos Arbitrarios (Cisco $125k Infraestructura)",
+            "exp_diff": Decimal("-27000.00"),
+            "exp_claim": Decimal("14000.00")
+        },
+        {
+            "id": "case_008_homedepot_damaged_scanned",
+            "name": "Visión OCR Muelle (Home Depot $42k Avería Papel)",
+            "exp_diff": Decimal("-8200.00"),
+            "exp_claim": Decimal("4000.00")
         }
     ]
 
@@ -108,8 +120,8 @@ def run_jury_evaluation() -> bool:
     total_claimable = Decimal("0.00")
 
     for c in cases_to_test:
-        runner = HermesRunner(case_id=c["id"])
-        report = runner._run_simulated_hermes()
+        runner = SkynetRunner(case_id=c["id"])
+        report = runner._run_simulated_skynet()
         total_claimable += report.claimable_amount
         
         status = "PASSED" if report.claimable_amount == c["exp_claim"] else "FAIL"

@@ -1,0 +1,27 @@
+{
+  "delivery_id": "DEL-9912",
+  "po_reference": "PO-8821",
+  "delivery_date": "2026-09-03",
+  "received_by": "Carlos Mendoza (Jefe de Almacén Central)",
+  "warehouse_location": "Bodega Central RetailCorp - Muelle 4",
+  "signed": true,
+  "discrepancy_reported": true,
+  "items": [
+    {
+      "item_id": "PROD-001",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibido completo y en perfecto estado"
+    },
+    {
+      "item_id": "PROD-002",
+      "quantity_delivered": 50,
+      "quantity_received": 40,
+      "missing_quantity": 10,
+      "damaged_quantity": 0,
+      "notes": "Faltante físico en estiba: solo se recibieron 40 cajas. Anotado en remisión física con firma del transportista y sello de discrepancia."
+    }
+  ]
+}

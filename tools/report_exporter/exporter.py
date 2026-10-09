@@ -18,7 +18,7 @@ def generate_markdown_report(report: DisputeAnalysisReport, state: Optional[Disp
     
     lines = [
         f"# 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B",
-        f"> **Expediente:** `{report.case_id}` | **Generado por:** SupplyMind AI (Hermes Agent / Grok 4.7)",
+        f"> **Expediente:** `{report.case_id}` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)",
         f"> **Fecha de Emisión:** {timestamp} | **Nivel de Confianza:** {report.confidence * 100:.1f}%\n",
         "---",
         "## 1. RESUMEN FINANCIERO EJECUTIVO\n",
@@ -134,16 +134,18 @@ def export_dispute_artifacts(report: DisputeAnalysisReport, state: Optional[Disp
     """
     REPORTS_DIR.mkdir(parents=True, exist_ok=True)
     generated_files = {}
+    from pathlib import Path
+    safe_case_id = Path(report.case_id).name
     
     # 1. Reporte Markdown
     md_content = generate_markdown_report(report, state)
-    md_path = REPORTS_DIR / f"dispute_report_{report.case_id}.md"
+    md_path = REPORTS_DIR / f"dispute_report_{safe_case_id}.md"
     with open(md_path, "w", encoding="utf-8") as f:
         f.write(md_content)
     generated_files["markdown_report"] = str(md_path)
     
     # 2. Reporte JSON
-    json_path = REPORTS_DIR / f"dispute_report_{report.case_id}.json"
+    json_path = REPORTS_DIR / f"dispute_report_{safe_case_id}.json"
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(report.model_dump(mode="json"), f, indent=2, ensure_ascii=False)
     generated_files["json_report"] = str(json_path)
@@ -151,7 +153,7 @@ def export_dispute_artifacts(report: DisputeAnalysisReport, state: Optional[Disp
     # 3. Carta de Reclamación (si hay monto a reclamar)
     if report.claimable_amount > Decimal("0.00"):
         letter_content = generate_reclamation_letter(report, state)
-        letter_path = REPORTS_DIR / f"carta_reclamacion_{report.case_id}.md"
+        letter_path = REPORTS_DIR / f"carta_reclamacion_{safe_case_id}.md"
         with open(letter_path, "w", encoding="utf-8") as f:
             f.write(letter_content)
         generated_files["reclamation_letter"] = str(letter_path)

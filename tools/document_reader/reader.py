@@ -25,29 +25,97 @@ def load_case_documents(case_id: str) -> Dict[str, Any]:
     - 'payment': PaymentReceipt
     - 'contract': CommercialContract
     """
-    case_path = settings.DATA_DIR / case_id
+    provided_path = Path(case_id)
+    if provided_path.is_absolute() or provided_path.exists():
+        case_path = provided_path
+    else:
+        case_path = settings.DATA_DIR / case_id
+
     if not case_path.exists() or not case_path.is_dir():
-        raise DocumentReaderError(f"El expediente del caso '{case_id}' no existe en {settings.DATA_DIR}")
+        raise DocumentReaderError(f"El expediente del caso '{case_id}' no existe (ruta evaluada: {case_path})")
         
-    required_files = {
-        "invoice": ("invoice.json", Invoice),
-        "purchase_order": ("purchase_order.json", PurchaseOrder),
-        "delivery": ("delivery.json", DeliveryNote),
-        "payment": ("payment.json", PaymentReceipt),
-        "contract": ("contract.json", CommercialContract),
-    }
-    
+    from tools.document_reader.classifier import DocumentClassifier
+    from tools.document_reader.pdf_parser import PDFCaseParser
+
+    mapped = DocumentClassifier.classify_and_map_case_directory(case_path)
     documents = {}
-    for doc_key, (file_name, model_cls) in required_files.items():
-        file_path = case_path / file_name
-        if not file_path.exists():
-            raise DocumentReaderError(f"Falta el documento requerido '{file_name}' en el expediente '{case_id}'")
-            
+    
+    # 1. Factura (Invoice)
+    if "invoice" in mapped:
+        inv_file = mapped["invoice"]
         try:
-            with open(file_path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-            documents[doc_key] = model_cls.model_validate(data)
+            if inv_file.suffix.lower() == ".json":
+                with open(inv_file, "r", encoding="utf-8") as f:
+                    documents["invoice"] = Invoice.model_validate(json.load(f))
+            elif inv_file.suffix.lower() == ".pdf":
+                documents["invoice"] = PDFCaseParser.parse_invoice(inv_file)
         except Exception as e:
-            raise DocumentReaderError(f"Error al validar '{file_name}' en '{case_id}': {str(e)}")
-            
+            raise DocumentReaderError(f"Error al procesar factura '{inv_file.name}' en '{case_id}': {str(e)}")
+    else:
+        raise DocumentReaderError(f"Falta el documento requerido de Factura (invoice) en el expediente '{case_id}'")
+
+    # 2. Orden de Compra (Purchase Order)
+    if "purchase_order" in mapped:
+        po_file = mapped["purchase_order"]
+        try:
+            if po_file.suffix.lower() == ".json":
+                with open(po_file, "r", encoding="utf-8") as f:
+                    documents["purchase_order"] = PurchaseOrder.model_validate(json.load(f))
+            elif po_file.suffix.lower() == ".pdf":
+                documents["purchase_order"] = PDFCaseParser.parse_purchase_order(po_file)
+        except Exception as e:
+            raise DocumentReaderError(f"Error al procesar orden de compra '{po_file.name}' en '{case_id}': {str(e)}")
+    else:
+        raise DocumentReaderError(f"Falta el documento requerido de Orden de Compra (purchase_order) en el expediente '{case_id}'")
+
+    # 3. Comprobante de Pago (Payment Receipt)
+    if "payment" in mapped:
+        pay_file = mapped["payment"]
+        try:
+            if pay_file.suffix.lower() == ".json":
+                with open(pay_file, "r", encoding="utf-8") as f:
+                    documents["payment"] = PaymentReceipt.model_validate(json.load(f))
+            elif pay_file.suffix.lower() == ".pdf":
+                documents["payment"] = PDFCaseParser.parse_payment_receipt(pay_file)
+        except Exception as e:
+            raise DocumentReaderError(f"Error al procesar comprobante de pago '{pay_file.name}' en '{case_id}': {str(e)}")
+    else:
+        raise DocumentReaderError(f"Falta el documento requerido de Comprobante de Pago (payment) en el expediente '{case_id}'")
+
+    # 4. Contrato Comercial (Commercial Contract)
+    if "contract" in mapped:
+        con_file = mapped["contract"]
+        try:
+            if con_file.suffix.lower() == ".json":
+                with open(con_file, "r", encoding="utf-8") as f:
+                    documents["contract"] = CommercialContract.model_validate(json.load(f))
+            elif con_file.suffix.lower() == ".pdf":
+                documents["contract"] = PDFCaseParser.parse_contract(con_file)
+            elif con_file.suffix.lower() == ".md":
+                from tools.contract_analyzer.rag import ContractRAG
+                rag = ContractRAG()
+                documents["contract"] = rag.ingest_contract_markdown(str(case_id), con_file)
+        except Exception as e:
+            raise DocumentReaderError(f"Error al procesar contrato '{con_file.name}' en '{case_id}': {str(e)}")
+    else:
+        raise DocumentReaderError(f"Falta el documento requerido de Contrato (contract) en el expediente '{case_id}'")
+
+    # 5. Remisión de Entrega (Delivery Note)
+    if "delivery" in mapped:
+        del_file = mapped["delivery"]
+        try:
+            if del_file.suffix.lower() == ".json":
+                with open(del_file, "r", encoding="utf-8") as f:
+                    documents["delivery"] = DeliveryNote.model_validate(json.load(f))
+            elif del_file.suffix.lower() == ".pdf":
+                documents["delivery"] = PDFCaseParser.parse_delivery_note(del_file)
+            elif del_file.suffix.lower() in [".png", ".jpg", ".jpeg", ".webp"]:
+                from tools.ocr_engine.vision import OCREngine
+                ocr = OCREngine()
+                documents["delivery"] = ocr.extract_delivery_note(del_file)
+        except Exception as e:
+            raise DocumentReaderError(f"Error al procesar remisión de entrega '{del_file.name}' en '{case_id}': {str(e)}")
+    else:
+        raise DocumentReaderError(f"Falta el documento requerido de Remisión (delivery) en el expediente '{case_id}'")
+
     return documents

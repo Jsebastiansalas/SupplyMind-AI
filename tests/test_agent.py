@@ -1,10 +1,10 @@
 from decimal import Decimal
-from agent.core.hermes_runner import HermesRunner
+from agent.core.skynet_runner import SkynetRunner
 from agent.memory.audit_logger import AuditLogger
 from agent.core.state import DisputeState, ProcessStatus
 from agent.tools.registry import TOOL_DEFINITIONS, ToolExecutor
 
-def test_hermes_tool_definitions_schema():
+def test_skynet_tool_definitions_schema():
     assert len(TOOL_DEFINITIONS) == 4
     names = [t["function"]["name"] for t in TOOL_DEFINITIONS]
     assert "read_dispute_documents" in names
@@ -29,9 +29,9 @@ def test_audit_logger_records_and_persists():
     if logger.log_file.exists():
         logger.log_file.unlink()
 
-def test_hermes_runner_resolves_case_001_simulated():
-    runner = HermesRunner(case_id="case_001")
-    report = runner._run_simulated_hermes()
+def test_skynet_runner_resolves_case_001_simulated():
+    runner = SkynetRunner(case_id="case_001")
+    report = runner._run_simulated_skynet()
     
     assert report.case_id == "case_001"
     assert report.billed_amount == Decimal("9000.00")
@@ -47,8 +47,8 @@ def test_hermes_runner_resolves_case_001_simulated():
     # Verificar bitácora auditable generada
     assert runner.audit_logger.log_file.exists()
 
-def test_hermes_runner_ask_simulated():
-    runner = HermesRunner(case_id="case_001")
+def test_skynet_runner_ask_simulated():
+    runner = SkynetRunner(case_id="case_001")
     
     # Pregunta sobre faltantes
     ans_faltante = runner._simulated_ask("¿Qué faltante de cajas hubo?")
@@ -90,8 +90,8 @@ def test_agent_trainer_budget_limit_and_calculation():
     trainer.total_spent_usd = 1.05
     assert trainer._check_budget() is False
 
-def test_hermes_runner_inspection_and_menu_methods():
-    runner = HermesRunner(case_id="case_001")
+def test_skynet_runner_inspection_and_menu_methods():
+    runner = SkynetRunner(case_id="case_001")
     runner._ensure_case_loaded()
     
     # Verificar que los métodos de inspección corran sin excepciones
@@ -100,4 +100,33 @@ def test_hermes_runner_inspection_and_menu_methods():
     runner._display_reconciliation_details()
     runner._display_contract_evaluation()
     runner._display_audit_log_tail()
+    runner._display_all_cases_comparison()
+
+def test_skynet_runner_multi_case_features():
+    runner = SkynetRunner(case_id="case_001")
+    
+    # 1. Prueba de cambio con alias '2'
+    runner._switch_case("2")
+    assert runner.case_id == "case_002"
+    assert runner.state.case_id == "case_002"
+    
+    # 2. Prueba de cambio con alias '3'
+    runner._switch_case("c3")
+    assert runner.case_id == "case_003"
+    
+    # 3. Pregunta comparativa multi-caso
+    ans_comp = runner._simulated_ask("compara los 3 casos de la cartera")
+    assert "case_001" in ans_comp
+    assert "case_002" in ans_comp
+    assert "case_003" in ans_comp
+    assert "12,500" in ans_comp
+    
+    # 4. Pregunta cruzada hacia caso 2 estando en caso 3
+    ans_cross_2 = runner._simulated_ask("¿Cuánto dinero es reclamable en el caso 2?")
+    assert "12,500.00" in ans_cross_2
+    
+    # 5. Volver a caso 1 con alias '1'
+    runner._switch_case("caso 1")
+    assert runner.case_id == "case_001"
+
 

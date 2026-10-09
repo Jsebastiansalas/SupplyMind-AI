@@ -15,7 +15,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 
-from agent.core.hermes_runner import HermesRunner
+from agent.core.skynet_runner import SkynetRunner
 from config.settings import settings
 
 console = Console(highlight=False)
@@ -37,22 +37,104 @@ def main():
     
     # Extraer case_id de argumentos si existe (default: case_001)
     case_id = "case_001"
+    explicit_case = False
     for a in args:
-        if a.startswith("case_"):
+        if Path(a).is_dir():
+            # Si el argumento es un directorio existente (ej. ruta absoluta o relativa)
+            case_id = str(Path(a).resolve())
+            explicit_case = True
+            break
+        elif a.startswith("case_"):
             case_id = a
+            explicit_case = True
             break
         elif "case_" in a:
             for part in a.split():
                 if part.startswith("case_"):
                     case_id = part
+                    explicit_case = True
                     break
-
-    runner = HermesRunner(case_id=case_id)
+        elif a.lower() in ["c1", "caso1", "caso 1", "1"]:
+            case_id = "case_001"
+            explicit_case = True
+            break
+        elif a.lower() in ["c2", "caso2", "caso 2", "2"]:
+            case_id = "case_002"
+            explicit_case = True
+            break
+        elif a.lower() in ["c3", "caso3", "caso 3", "3"]:
+            case_id = "case_003"
+            explicit_case = True
+            break
 
     # 1. Modo Interactivo Conversacional continuo
     if is_interactive:
+        if not explicit_case:
+            hub_panel = Panel(
+                "[bold cyan]SupplyMind AI - Centro de Control Interactivo Multi-Caso[/bold cyan]\n"
+                "[dim]Reto Agente Platica.mx x Campuslands - Hito S1 (Semana 1)[/dim]\n\n"
+                "[bold white]Selecciona el expediente con el que deseas interactuar:[/bold white]\n\n"
+                "  [bold green][1][/bold green] [bold white]case_001[/bold white] : Básico (Faltante Físico de $800 USD)\n"
+                "  [bold green][2][/bold green] [bold white]case_002[/bold white] : Complejo Alta Cuantía ($54.2k facturados, $12,500 reclamables)\n"
+                "  [bold green][3][/bold green] [bold white]case_003[/bold white] : Discrepancia de Precios (Sobreprecio de $3,000 en Factura)\n"
+                "  [bold green][4][/bold green] [bold white]Matriz Comparativa[/bold white] : Ver los 3 expedientes simultáneamente\n"
+                "  [bold green][5][/bold green] [bold white]Evaluar Jurado[/bold white] : Suite completa automatizada (30s)\n"
+                "  [bold green][6][/bold green] [bold white]case_005_amazon_shortage[/bold white] : [bold cyan]PDF Real[/bold cyan] (Amazon Dock Shortage y Multa ASN)\n"
+                "  [bold green][7][/bold green] [bold white]case_006_walmart_otif_pricing[/bold white] : [bold cyan]PDF Real[/bold cyan] (Walmart OTIF y Sobreprecio)\n"
+                "  [bold green][8][/bold green] [bold white]case_007_cisco_large_bundle[/bold white] : [bold cyan]PDF Masivo Multi-Pág.[/bold cyan] (Cisco $125k, Nombres Arbitrarios y Clasificación Autónoma)\n"
+                "  [bold green][9][/bold green] [bold white]case_008_homedepot_damaged_scanned[/bold white] : [bold cyan]Visión OCR Multimodal[/bold cyan] (Home Depot $42k, Remisión Papel Escaneada con Sello de Muelle)\n"
+                "  [bold red][0][/bold red] Salir\n",
+                title="[bold green]Menú de Selección de Caso[/bold green]",
+                border_style="cyan"
+            )
+            console.print(hub_panel)
+            try:
+                console.print("[bold yellow]Ingresa una opción [1-9, o Enter para Caso 1]: [/bold yellow]", end="")
+                choice = input().strip()
+            except (EOFError, KeyboardInterrupt):
+                choice = "0"
+
+            if choice == "0":
+                console.print("\n[dim]Sesión finalizada por el usuario.[/dim]\n")
+                return
+            elif choice in ["2", "case_002", "c2"]:
+                case_id = "case_002"
+            elif choice in ["3", "case_003", "c3"]:
+                case_id = "case_003"
+            elif choice in ["6", "case_005", "case_005_amazon_shortage", "c5"]:
+                case_id = "case_005_amazon_shortage"
+            elif choice in ["7", "case_006", "case_006_walmart_otif_pricing", "c6"]:
+                case_id = "case_006_walmart_otif_pricing"
+            elif choice in ["8", "case_007", "case_007_cisco_large_bundle", "c7", "c8"]:
+                case_id = "case_007_cisco_large_bundle"
+            elif choice in ["9", "case_008", "case_008_homedepot_damaged_scanned", "c9"]:
+                case_id = "case_008_homedepot_damaged_scanned"
+            elif choice == "4":
+                runner_temp = SkynetRunner(case_id="case_001")
+                runner_temp._display_all_cases_comparison()
+                console.print("[bold yellow]¿Con qué caso deseas iniciar el chat interactivo? [1, 2 o 3]: [/bold yellow]", end="")
+                try:
+                    c_after = input().strip()
+                    if c_after in ["2", "case_002", "c2"]:
+                        case_id = "case_002"
+                    elif c_after in ["3", "case_003", "c3"]:
+                        case_id = "case_003"
+                    else:
+                        case_id = "case_001"
+                except (EOFError, KeyboardInterrupt):
+                    return
+            elif choice == "5":
+                from scripts.evaluar_jurado import run_jury_evaluation
+                run_jury_evaluation()
+                return
+            else:
+                case_id = "case_001"
+
+        runner = SkynetRunner(case_id=case_id)
         runner.interactive_chat()
         return
+
+    runner = SkynetRunner(case_id=case_id)
 
     # 2. Modo Calibración y Benchmark de Criterio
     if is_calibrate:
@@ -77,7 +159,7 @@ def main():
     # 4. Modo Análisis Autónomo Formal (Default)
     console.print(Panel.fit(
         "[bold cyan]SupplyMind AI[/bold cyan] - [yellow]Analista Autonomo de Disputas B2B[/yellow]\n"
-        "[dim]Reto Agente Platica.mx x Campuslands - Powered by Hermes Agent & Grok[/dim]",
+        "[dim]Reto Agente Platica.mx x Campuslands - Powered by SKYNET Framework & Grok[/dim]",
         border_style="cyan"
     ))
     

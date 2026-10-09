@@ -104,9 +104,9 @@ def test_case_002_deterministic_reconciliation():
     assert report.claimable_amount == Decimal("12500.00")
     assert report.confidence >= 0.90
 
-def test_case_002_hermes_runner_ask_simulated():
-    from agent.core.hermes_runner import HermesRunner
-    runner = HermesRunner(case_id="case_002")
+def test_case_002_skynet_runner_ask_simulated():
+    from agent.core.skynet_runner import SkynetRunner
+    runner = SkynetRunner(case_id="case_002")
     runner._ensure_case_loaded()
     
     ans_faltante = runner._simulated_ask("¿Qué faltante de cajas hubo?")

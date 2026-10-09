@@ -1,0 +1,17 @@
+{
+  "po_id": "PO-ENT-555",
+  "vendor_id": "GTS-999",
+  "customer_id": "MCR-111",
+  "order_date": "2026-05-15",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SRV-X9",
+      "description": "Servidor Rack X9",
+      "ordered_quantity": 10,
+      "agreed_unit_price": 5000.00,
+      "total_price": 50000.00
+    }
+  ],
+  "total_amount": 50000.00
+}

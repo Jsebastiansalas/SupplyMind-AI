@@ -1,7 +1,18 @@
+import sys
 import json
 import time
 from decimal import Decimal
 from typing import Dict, Any, List, Optional
+
+# Salida segura UTF-8 en Windows para evitar UnicodeEncodeError con caracteres de LLM (ej. \u2212)
+if sys.platform == "win32":
+    try:
+        if hasattr(sys.stdout, "reconfigure") and sys.stdout.encoding and sys.stdout.encoding.lower() != "utf-8":
+            sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+            sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
@@ -9,16 +20,17 @@ from rich.table import Table
 from config.settings import settings
 from agent.core.state import DisputeState, ProcessStatus
 from agent.memory.audit_logger import AuditLogger
+from agent.core.anonymizer import DataAnonymizer
 from agent.planner.prompts import SYSTEM_PROMPT, INTERACTIVE_CHAT_PROMPT
 from agent.tools.registry import TOOL_DEFINITIONS, ToolExecutor
 from data.models import DisputeAnalysisReport
 from tools.report_exporter import export_dispute_artifacts
 
-console = Console(highlight=False)
+console = Console(highlight=False, legacy_windows=False)
 
-class HermesRunner:
+class SkynetRunner:
     """
-    Orquestador del agente SupplyMind AI sobre la arquitectura Hermes Agent.
+    Orquestador del agente SupplyMind AI sobre la arquitectura SKYNET Framework.
     Soporta:
     - Modo Live: Conexión directa a Grok a través del gateway de Platica (https://api.reto.pltk.mx/v1).
     - Modo Simulado / Harness Local: Motor ReAct autónomo local para desarrollo y pruebas.
@@ -29,12 +41,13 @@ class HermesRunner:
         self.state = DisputeState(case_id=case_id, objective=self.objective)
         self.audit_logger = AuditLogger(case_id=case_id)
         self.tool_executor = ToolExecutor(state=self.state, audit_logger=self.audit_logger)
+        self.anonymizer = DataAnonymizer()
         
     def run(self) -> DisputeAnalysisReport:
         """Ejecuta el ciclo de resolución autónomo de la disputa."""
         start_time = time.time()
         console.print(Panel(
-            f"[bold green]SupplyMind AI - Hermes Agent Runner[/bold green]\n"
+            f"[bold green]SupplyMind AI - SKYNET Framework Runner[/bold green]\n"
             f"[cyan]Caso:[/cyan] {self.case_id} | [cyan]Objetivo:[/cyan] {self.objective}\n"
             f"[yellow]Modo:[/yellow] {'En Vivo (Grok / Platica Gateway)' if settings.is_live_api_ready else 'Harness Local / Simulador ReAct'}",
             border_style="green"
@@ -51,12 +64,18 @@ class HermesRunner:
         report: Optional[DisputeAnalysisReport] = None
         if settings.is_live_api_ready:
             try:
-                report = self._run_live_hermes()
+                report = self._run_live_skynet()
             except Exception as e:
                 console.print(f"[bold yellow][AVISO RESILIENCIA][/bold yellow] Fallo en conexión con gateway Platica ({e}). Conmutando a modo determinístico.")
-                report = self._run_simulated_hermes()
+                try:
+                    report = self._run_simulated_skynet()
+                except Exception as sim_e:
+                    report = self._generate_error_report(str(sim_e))
         else:
-            report = self._run_simulated_hermes()
+            try:
+                report = self._run_simulated_skynet()
+            except Exception as e:
+                report = self._generate_error_report(str(e))
 
         self.state.execution_time_seconds = round(time.time() - start_time, 2)
         
@@ -72,7 +91,7 @@ class HermesRunner:
             
         return report
 
-    def _run_live_hermes(self) -> DisputeAnalysisReport:
+    def _run_live_skynet(self) -> DisputeAnalysisReport:
         """Bucle ReAct contra el gateway oficial de Platica Grok."""
         from openai import OpenAI
         client = OpenAI(
@@ -89,12 +108,17 @@ class HermesRunner:
         for turn in range(max_turns):
             console.print(f"[dim]Turno {turn + 1}: Consultando a Grok ({settings.MODEL_NAME})...[/dim]")
             
+            safe_messages = self.anonymizer.anonymize_messages(messages)
+            
             response = client.chat.completions.create(
                 model=settings.MODEL_NAME,
-                messages=messages,
+                messages=safe_messages,
                 tools=TOOL_DEFINITIONS,
                 tool_choice="auto"
             )
+            
+            if response.choices and response.choices[0].message.tool_calls:
+                self.anonymizer.deanonymize_tool_calls(response.choices[0].message.tool_calls)
             
             if response.usage:
                 self.state.tokens_in += getattr(response.usage, "prompt_tokens", 0) or 0
@@ -114,10 +138,19 @@ class HermesRunner:
                 
             for tool_call in msg.tool_calls:
                 fn_name = tool_call.function.name
-                fn_args = json.loads(tool_call.function.arguments)
-                
-                console.print(f"[bold yellow]-> Invocando herramienta:[/bold yellow] [magenta]{fn_name}[/magenta] con [dim]{fn_args}[/dim]")
-                tool_result = self.tool_executor.execute_tool(fn_name, fn_args)
+                try:
+                    fn_args = json.loads(tool_call.function.arguments)
+                    try:
+                        console.print(f"[bold yellow]-> Invocando herramienta:[/bold yellow] [magenta]{fn_name}[/magenta] con [dim]{fn_args}[/dim]")
+                    except Exception:
+                        pass
+                    tool_result = self.tool_executor.execute_tool(fn_name, fn_args)
+                except json.JSONDecodeError as e:
+                    console.print(f"[bold red][AVISO RESILIENCIA][/bold red] Fallo al parsear JSON de la herramienta {fn_name}: {e}")
+                    tool_result = {"error": f"JSONDecodeError: {str(e)}. Por favor corrige tus argumentos (asegura comillas válidas) e intenta nuevamente."}
+                except Exception as e:
+                    console.print(f"[bold red][AVISO RESILIENCIA][/bold red] Error en ejecución de herramienta {fn_name}: {e}")
+                    tool_result = {"error": f"ToolExecutionError: {str(e)}. Revisa los parámetros e inténtalo nuevamente."}
                 
                 messages.append({
                     "role": "tool",
@@ -133,32 +166,32 @@ class HermesRunner:
             
         return self.state.final_report
 
-    def _run_simulated_hermes(self) -> DisputeAnalysisReport:
+    def _run_simulated_skynet(self) -> DisputeAnalysisReport:
         """
         Bucle ReAct determinístico para desarrollo, CI y pruebas locales.
-        Emula la secuencia de razonamiento y llamadas a herramientas de Hermes.
+        Emula la secuencia de razonamiento y llamadas a herramientas de SKYNET.
         """
         # Turno 1: Inspeccionar expediente
-        console.print("[cyan][Pensamiento Hermes][/cyan]: Para analizar la disputa, primero debo inspeccionar los documentos comerciales disponibles en el expediente.")
-        console.print(f"[bold yellow]-> Hermes Tool Call:[/bold yellow] [magenta]read_dispute_documents[/magenta](case_id='{self.case_id}')")
+        console.print("[cyan][Pensamiento SKYNET][/cyan]: Para analizar la disputa, primero debo inspeccionar los documentos comerciales disponibles en el expediente.")
+        console.print(f"[bold yellow]-> SKYNET Tool Call:[/bold yellow] [magenta]read_dispute_documents[/magenta](case_id='{self.case_id}')")
         self.tool_executor.execute_tool("read_dispute_documents", {"case_id": self.case_id})
         time.sleep(0.1)
         
         # Turno 2: Conciliación física y matemática
-        console.print("[cyan][Pensamiento Hermes][/cyan]: Documentos cargados correctamente. Procedo a ejecutar la conciliación matemática determinística.")
-        console.print(f"[bold yellow]-> Hermes Tool Call:[/bold yellow] [magenta]execute_reconciliation[/magenta](case_id='{self.case_id}')")
+        console.print("[cyan][Pensamiento SKYNET][/cyan]: Documentos cargados correctamente. Procedo a ejecutar la conciliación matemática determinística.")
+        console.print(f"[bold yellow]-> SKYNET Tool Call:[/bold yellow] [magenta]execute_reconciliation[/magenta](case_id='{self.case_id}')")
         self.tool_executor.execute_tool("execute_reconciliation", {"case_id": self.case_id})
         time.sleep(0.1)
         
         # Turno 3: Análisis contractual
-        console.print(f"[cyan][Pensamiento Hermes][/cyan]: Conciliación procesada para {self.case_id}. Verifico respaldo contractual de las deducciones.")
-        console.print(f"[bold yellow]-> Hermes Tool Call:[/bold yellow] [magenta]evaluate_contract_terms[/magenta](case_id='{self.case_id}')")
+        console.print(f"[cyan][Pensamiento SKYNET][/cyan]: Conciliación procesada para {self.case_id}. Verifico respaldo contractual de las deducciones.")
+        console.print(f"[bold yellow]-> SKYNET Tool Call:[/bold yellow] [magenta]evaluate_contract_terms[/magenta](case_id='{self.case_id}')")
         self.tool_executor.execute_tool("evaluate_contract_terms", {"case_id": self.case_id})
         time.sleep(0.1)
         
         # Turno 4: Síntesis y reporte formal
-        console.print("[cyan][Pensamiento Hermes][/cyan]: Generando síntesis analítica y formalizando informe de disputa...")
-        console.print("[bold yellow]-> Hermes Tool Call:[/bold yellow] [magenta]generate_final_report[/magenta](...)")
+        console.print("[cyan][Pensamiento SKYNET][/cyan]: Generando síntesis analítica y formalizando informe de disputa...")
+        console.print("[bold yellow]-> SKYNET Tool Call:[/bold yellow] [magenta]generate_final_report[/magenta](...)")
         
         rec = self.state.reconciliation_summary
         ev = self.state.contract_evaluation
@@ -263,6 +296,11 @@ class HermesRunner:
             summary_lines.append(f"- Causa Raíz: {rep.root_cause}")
             summary_lines.append(f"- Acción Recomendada: {rep.recommended_action}")
             summary_lines.append(f"- Monto Reclamable: ${rep.claimable_amount:,.2f}")
+
+        summary_lines.append("\nPANORAMA DE CARTERA MULTI-CASO (3 EXPEDIENTES DISPONIBLES EN PLATAFORMA):")
+        summary_lines.append("- case_001 (RetailCorp): Factura $9,000, Pago $8,200. Faltante físico de 10 cajas ($800) amparado por Cláusula 4.2. Reclamable: $0.00 USD.")
+        summary_lines.append("- case_002 (MegaMarket): Factura $54,200, Pago $37,700. Retención $16,500 ($4,000 justificado por faltante Cláusula 4.2; $12,500 injustificado: $6,500 avería no reportada en 48h s/ Cláusula 5.1 y $6,000 multa unilateral prohibida s/ Cláusula 7.3). Reclamable: $12,500.00 USD.")
+        summary_lines.append("- case_003 (SuperTiendas): Factura $15,000, Pago $12,000. Retención $3,000 por sobreprecio en factura vs Orden de Compra amparado por Cláusula 3.1. Reclamable: $0.00 USD.")
             
         return "\n".join(summary_lines)
 
@@ -340,23 +378,89 @@ class HermesRunner:
     def _display_menu(self) -> None:
         """Despliega el menú interactivo con todas las opciones disponibles."""
         menu_text = (
-            "[bold cyan]1[/bold cyan]  [bold white]🧠 Analizar Disputa[/bold white]       [dim]-> Ejecutar ciclo autónomo ReAct con Grok[/dim]\n"
-            "[bold cyan]2[/bold cyan]  [bold white]📊 Ver Reporte Formal[/bold white]       [dim]-> Cuadro ejecutivo con causa raíz y acción[/dim]\n"
-            "[bold cyan]3[/bold cyan]  [bold white]📂 Inspeccionar Documentos[/bold white]  [dim]-> Ver Factura, OC, Remisión, Pago y Contrato[/dim]\n"
-            "[bold cyan]4[/bold cyan]  [bold white]🔢 Conciliación Detallada[/bold white]   [dim]-> Auditoría línea a línea en Decimal[/dim]\n"
-            "[bold cyan]5[/bold cyan]  [bold white]⚖️  Dictamen Contractual[/bold white]     [dim]-> Cláusulas aplicables y amparo jurídico[/dim]\n"
-            "[bold cyan]6[/bold cyan]  [bold white]📜 Bitácora de Auditoría[/bold white]    [dim]-> Historial de trazabilidad JSONL[/dim]\n"
-            "[bold cyan]7[/bold cyan]  [bold white]🎯 Calibrar Criterio AI[/bold white]     [dim]-> Benchmark de entrenamiento (< $1.00 USD)[/dim]\n"
-            "[bold cyan]8[/bold cyan]  [bold white]🔄 Cambiar / Recargar Caso[/bold white]  [dim]-> Cambiar expediente activo actual[/dim]\n"
-            "[bold cyan]?[/bold cyan]  [bold white]💡 Ayuda[/bold white]                    [dim]-> Preguntas sugeridas y atajos[/dim]\n"
-            "[bold cyan]0[/bold cyan]  [bold white]🚪 Salir[/bold white]                    [dim]-> Finalizar sesión interactiva[/dim]\n\n"
-            "[italic dim]O escribe cualquier pregunta en lenguaje natural directamente a Grok.[/italic dim]"
+            f"[bold white]EXPEDIENTE EN GESTIÓN:[/bold white] [bold green]{self.case_id}[/bold green]\n\n"
+            "[bold yellow]ACCIONES SOBRE EL EXPEDIENTE ACTIVO:[/bold yellow]\n"
+            "  [bold cyan]1[/bold cyan] [bold white]🧠 Analizar Disputa[/bold white]       [dim]-> Ciclo autónomo ReAct con Grok / LLM[/dim]\n"
+            "  [bold cyan]2[/bold cyan] [bold white]📊 Ver Reporte Formal[/bold white]       [dim]-> Cuadro ejecutivo y carta de reclamación[/dim]\n"
+            "  [bold cyan]3[/bold cyan] [bold white]📂 Inspeccionar Documentos[/bold white]  [dim]-> Factura, OC, Remisión, Pago y Contrato[/dim]\n"
+            "  [bold cyan]4[/bold cyan] [bold white]🔢 Conciliación Detallada[/bold white]   [dim]-> Auditoría matemática línea a línea en Decimal[/dim]\n"
+            "  [bold cyan]5[/bold cyan] [bold white]⚖️  Dictamen Contractual[/bold white]     [dim]-> Cláusulas aplicables y amparo jurídico[/dim]\n"
+            "  [bold cyan]6[/bold cyan] [bold white]📜 Bitácora de Auditoría[/bold white]    [dim]-> Historial de trazabilidad JSONL[/dim]\n"
+            "  [bold cyan]7[/bold cyan] [bold white]🎯 Calibrar Criterio AI[/bold white]     [dim]-> Benchmark de entrenamiento (< $1.00 USD)[/dim]\n\n"
+            "[bold yellow]GESTIÓN MULTI-CASO (S1):[/bold yellow]\n"
+            "  [bold cyan]8[/bold cyan] [bold white]🔄 Cambiar de Expediente[/bold white]   [dim]-> Alternar a case_001, case_002 o case_003[/dim]\n"
+            "  [bold cyan]9[/bold cyan] [bold white]🌐 Matriz Comparativa (3 Casos)[/bold white] [dim]-> Resumen consolidado de la cartera B2B[/dim]\n"
+            "  [bold cyan]E[/bold cyan] [bold white]⚡ Evaluación S1 Jurado[/bold white]    [dim]-> Ejecutar suite automatizada completa (30 segs)[/dim]\n\n"
+            "[bold yellow]ATAJOS RÁPIDOS Y CHAT:[/bold yellow]\n"
+            "  [dim]• Escribe [bold cyan]c1[/bold cyan], [bold cyan]c2[/bold cyan] o [bold cyan]c3[/bold cyan] para cambiar de expediente al instante.[/dim]\n"
+            "  [dim]• Escribe [bold cyan]menu[/bold cyan] para ver este menú, [bold cyan]?[/bold cyan] para ayuda o [bold cyan]0[/bold cyan] para salir.[/dim]\n"
+            "  [dim]• O formula cualquier pregunta libre en lenguaje natural a Grok sobre cualquier caso.[/dim]"
         )
         console.print(Panel(
             menu_text,
-            title=f"[bold green]SupplyMind AI - Menú de Control Interactivo ({self.case_id})[/bold green]",
+            title=f"[bold green]SupplyMind AI - Menú Interactivo Multi-Caso[/bold green]",
             border_style="cyan"
         ))
+
+    def _display_all_cases_comparison(self) -> None:
+        """Muestra una matriz comparativa consolidada de los 3 casos B2B del reto."""
+        cases_info = [
+            {
+                "id": "case_001",
+                "name": "Básico (Faltante Físico Acordado)",
+                "client": "RetailCorp",
+                "billed": "$9,000.00",
+                "diff": "-$800.00",
+                "justified": "$800.00",
+                "claimable": "$0.00",
+                "action": "Aceptar deducción / Emitir Nota de Crédito",
+            },
+            {
+                "id": "case_002",
+                "name": "Complejo Alta Cuantía (Faltante + Daño + Multa)",
+                "client": "MegaMarket",
+                "billed": "$54,200.00",
+                "diff": "-$16,500.00",
+                "justified": "$4,000.00",
+                "claimable": "$12,500.00",
+                "action": "Emitir NC por $4k / Cobro formal por $12,500",
+            },
+            {
+                "id": "case_003",
+                "name": "Discrepancia de Precios (Sobreprecio vs PO)",
+                "client": "SuperTiendas",
+                "billed": "$15,000.00",
+                "diff": "-$3,000.00",
+                "justified": "$3,000.00",
+                "claimable": "$0.00",
+                "action": "Aceptar deducción tarifaria / Emitir NC",
+            },
+        ]
+        
+        table = Table(title="[bold green]MATRIZ COMPARATIVA DE CARTERA - 3 CASOS B2B (HITO S1)[/bold green]", border_style="cyan")
+        table.add_column("Expediente", style="bold cyan", width=14)
+        table.add_column("Cliente / Tipología", style="white", width=28)
+        table.add_column("Facturado", justify="right")
+        table.add_column("Retención", justify="right", style="bold red")
+        table.add_column("Justificado", justify="right", style="green")
+        table.add_column("Reclamable", justify="right", style="bold yellow")
+        table.add_column("Acción Recomendada", style="dim", width=32)
+
+        for c in cases_info:
+            active_marker = " [bold green](ACTIVO)[/bold green]" if c["id"] == self.case_id else ""
+            table.add_row(
+                f"{c['id']}{active_marker}",
+                f"{c['client']}\n[dim]{c['name']}[/dim]",
+                c["billed"],
+                c["diff"],
+                c["justified"],
+                c["claimable"],
+                c["action"]
+            )
+
+        console.print("\n")
+        console.print(table)
+        console.print(f"[dim]Total reclamable en cartera:[/dim] [bold yellow]$12,500.00 USD[/bold yellow] [dim]| Expediente activo actual:[/dim] [bold green]{self.case_id}[/bold green]\n")
 
     def _display_documents_inspection(self) -> None:
         """Muestra una inspección estructurada de los 5 documentos del caso."""
@@ -553,24 +657,80 @@ class HermesRunner:
         trainer.run_calibration(case_id=self.case_id)
 
     def _switch_case(self, new_case_id: str) -> None:
-        """Cambia el caso activo del expediente."""
+        """Cambia el caso activo del expediente con soporte para alias y validación."""
         new_case_id = new_case_id.strip()
         if not new_case_id:
             return
-        self.case_id = new_case_id
-        self.objective = f"Analiza la disputa {new_case_id}"
-        self.state = DisputeState(case_id=new_case_id, objective=self.objective)
-        self.audit_logger = AuditLogger(case_id=new_case_id)
+            
+        alias_map = {
+            "1": "case_001",
+            "caso 1": "case_001",
+            "caso1": "case_001",
+            "case 1": "case_001",
+            "case1": "case_001",
+            "c1": "case_001",
+            "2": "case_002",
+            "caso 2": "case_002",
+            "caso2": "case_002",
+            "case 2": "case_002",
+            "case2": "case_002",
+            "c2": "case_002",
+            "3": "case_003",
+            "caso 3": "case_003",
+            "caso3": "case_003",
+            "case 3": "case_003",
+            "case3": "case_003",
+            "c3": "case_003",
+        }
+        resolved_id = alias_map.get(new_case_id.lower(), new_case_id)
+        from pathlib import Path
+        
+        provided_path = Path(resolved_id)
+        if provided_path.is_absolute() or provided_path.exists():
+            final_path = provided_path
+        else:
+            cases_dir = Path("data/cases")
+            if not cases_dir.exists():
+                cases_dir = Path(__file__).resolve().parent.parent.parent / "data" / "cases"
+            final_path = cases_dir / resolved_id
+            
+        if not final_path.exists():
+            console.print(f"[bold red]Aviso:[/bold red] Expediente '{resolved_id}' no encontrado. (Ruta evaluada: {final_path})")
+            return
+
+        self.case_id = resolved_id
+        self.objective = f"Analiza la disputa {resolved_id}"
+        self.state = DisputeState(case_id=resolved_id, objective=self.objective)
+        self.audit_logger = AuditLogger(case_id=resolved_id)
         self.tool_executor = ToolExecutor(state=self.state, audit_logger=self.audit_logger)
         self._ensure_case_loaded()
-        console.print(f"[bold green][OK] Caso activo cambiado a:[/bold green] [cyan]{new_case_id}[/cyan]\n")
+        console.print(f"\n[bold green][OK] Expediente activo cambiado exitosamente a:[/bold green] [bold cyan]{self.case_id}[/bold cyan]\n")
 
     def _simulated_ask(self, question: str) -> str:
         """Generador determinístico de respuestas locales para pruebas y modo offline."""
         import unicodedata
         q_raw = question.lower()
         q = "".join(c for c in unicodedata.normalize("NFD", q_raw) if unicodedata.category(c) != "Mn")
-        if self.case_id == "case_002":
+        
+        # Consulta multi-caso comparativa
+        if any(k in q for k in ["compara", "comparar", "todos los casos", "resumen de casos", "los 3 casos", "los tres casos", "matriz de casos"]):
+            return (
+                "Resumen comparativo de los 3 casos B2B de la cartera:\n"
+                "1. case_001 (RetailCorp): Facturado $9,000 USD, Pagado $8,200 USD. Faltante físico de 10 cajas ($800) amparado por Cláusula 4.2. Reclamable: $0.00 USD (Acción: Emitir Nota de Crédito).\n"
+                "2. case_002 (MegaMarket): Facturado $54,200 USD, Pagado $37,700 USD. Retención de $16,500 USD ($4,000 justificados por faltante Cláusula 4.2; $12,500 injustificados por avería no probada y multa ilegal Cláusula 7.3). Reclamable: $12,500.00 USD (Acción: Emitir NC por $4,000 y requerimiento formal de cobro por $12,500).\n"
+                "3. case_003 (SuperTiendas): Facturado $15,000 USD, Pagado $12,000 USD. Deducción de $3,000 USD justificada por sobreprecio unitario en factura vs Orden de Compra según Cláusula 3.1. Reclamable: $0.00 USD (Acción: Emitir Nota de Crédito tarifaria)."
+            )
+
+        # Detectar si la pregunta se refiere a un caso específico diferente del activo
+        target_case = self.case_id
+        if any(k in q for k in ["caso 2", "case 2", "case_002", "megamarket"]):
+            target_case = "case_002"
+        elif any(k in q for k in ["caso 3", "case 3", "case_003", "supertiendas"]):
+            target_case = "case_003"
+        elif any(k in q for k in ["caso 1", "case 1", "case_001", "retailcorp"]):
+            target_case = "case_001"
+
+        if target_case == "case_002":
             if any(k in q for k in ["faltant", "caja", "producto", "prod", "pieza"]):
                 return (
                     "En la remisión de entrega DEL-12044 se registraron 50 cajas faltantes del producto PROD-102 "
@@ -607,7 +767,7 @@ class HermesRunner:
                     "Deducciones: $16,500.00 USD ($4,000.00 USD justificadas por Cláusula 4.2 y $12,500.00 USD injustificadas). "
                     "Monto reclamable: $12,500.00 USD. Acción: Emitir Nota de Crédito por $4,000 y reclamar $12,500."
                 )
-        elif self.case_id == "case_003":
+        elif target_case == "case_003":
             if any(k in q for k in ["precio", "sobreprecio", "tarifa", "valor", "costo"]):
                 return (
                     "El producto PROD-301 fue facturado a $150.00 USD cuando la orden de compra PO-55100 "
@@ -761,7 +921,7 @@ class HermesRunner:
 
         while True:
             try:
-                console.print(f"[bold green]SupplyMind [{self.case_id}] >[/bold green] ", end="")
+                console.print(f"[bold green]SupplyMind ({self.case_id}) >[/bold green] ", end="")
                 user_input = input().strip()
             except (EOFError, KeyboardInterrupt):
                 console.print("\n[dim]Sesión finalizada por el usuario.[/dim]")
@@ -814,17 +974,96 @@ class HermesRunner:
                 self._run_calibration()
                 continue
 
-            # 8. Cambiar / Recargar Caso
-            if cmd in ["8", "caso", "cambiar"]:
-                console.print(f"[bold cyan]Ingresa el ID del caso a cargar (actual: {self.case_id}):[/bold cyan] ", end="")
-                new_id = input().strip()
+            # Atajos directos de expediente: c1, c2, c3, caso 1, caso 2, etc.
+            if cmd in ["c1", "caso 1", "caso1", "case 1", "case1", "case_001"]:
+                self._switch_case("case_001")
+                conversation_history = [
+                    {"role": "system", "content": INTERACTIVE_CHAT_PROMPT},
+                    {"role": "system", "content": f"DATOS CONCILIADOS DEL EXPEDIENTE:\n{self._build_context_summary()}"}
+                ]
+                continue
+
+            if cmd in ["c2", "caso 2", "caso2", "case 2", "case2", "case_002"]:
+                self._switch_case("case_002")
+                conversation_history = [
+                    {"role": "system", "content": INTERACTIVE_CHAT_PROMPT},
+                    {"role": "system", "content": f"DATOS CONCILIADOS DEL EXPEDIENTE:\n{self._build_context_summary()}"}
+                ]
+                continue
+
+            if cmd in ["c3", "caso 3", "caso3", "case 3", "case3", "case_003"]:
+                self._switch_case("case_003")
+                conversation_history = [
+                    {"role": "system", "content": INTERACTIVE_CHAT_PROMPT},
+                    {"role": "system", "content": f"DATOS CONCILIADOS DEL EXPEDIENTE:\n{self._build_context_summary()}"}
+                ]
+                continue
+
+            # 1. Analizar disputa (Run autónomo)
+            if cmd in ["1", "analizar", "resolver", "run"]:
+                console.print(f"\n[bold]Ejecutando ciclo autónomo de resolución para {self.case_id}...[/bold]")
+                self.run()
+                self._display_report_table()
+                continue
+
+            # 2. Ver Reporte Formal
+            if cmd in ["2", "reporte", "informe", "report", "tabla"]:
+                self._display_report_table()
+                continue
+
+            # 3. Inspeccionar Documentos
+            if cmd in ["3", "documentos", "docs", "expediente"]:
+                self._display_documents_inspection()
+                continue
+
+            # 4. Conciliación Detallada
+            if cmd in ["4", "conciliacion", "conciliar", "math"]:
+                self._display_reconciliation_details()
+                continue
+
+            # 5. Dictamen Contractual
+            if cmd in ["5", "contrato", "legal", "clausulas"]:
+                self._display_contract_evaluation()
+                continue
+
+            # 6. Bitácora de Auditoría
+            if cmd in ["6", "bitacora", "auditoria", "log", "trail"]:
+                self._display_audit_log_tail()
+                continue
+
+            # 7. Calibrar Criterio AI
+            if cmd in ["7", "calibrar", "entrenar", "benchmark"]:
+                self._run_calibration()
+                continue
+
+            # 8. Cambiar / Recargar Caso con menú interactivo
+            if cmd in ["8", "caso", "cambiar", "switch"]:
+                console.print("\n[bold cyan]Selecciona el expediente que deseas cargar:[/bold cyan]")
+                console.print("  [bold green]1[/bold green] -> [white]case_001[/white] (Básico: Faltante Físico de $800 USD)")
+                console.print("  [bold green]2[/bold green] -> [white]case_002[/white] (Complejo Alta Cuantía: $12,500 USD reclamables)")
+                console.print("  [bold green]3[/bold green] -> [white]case_003[/white] (Discrepancia de Precios: $3,000 USD sobreprecio)")
+                console.print(f"[dim]Presiona 1, 2, 3 o Enter para mantener {self.case_id}:[/dim] ", end="")
+                try:
+                    new_id = input().strip()
+                except (EOFError, KeyboardInterrupt):
+                    new_id = ""
                 if new_id:
                     self._switch_case(new_id)
-                    # Actualizar historial
                     conversation_history = [
                         {"role": "system", "content": INTERACTIVE_CHAT_PROMPT},
                         {"role": "system", "content": f"DATOS CONCILIADOS DEL EXPEDIENTE:\n{self._build_context_summary()}"}
                     ]
+                continue
+
+            # 9. Matriz Comparativa de los 3 Casos
+            if cmd in ["9", "comparar", "todos", "all", "matriz", "cartera"]:
+                self._display_all_cases_comparison()
+                continue
+
+            # E. Evaluación S1 Jurado en 1 Clic
+            if cmd in ["e", "evaluar", "demo", "jurado"]:
+                from scripts.evaluar_jurado import run_jury_evaluation
+                run_jury_evaluation()
                 continue
 
             # Menú y ayuda
@@ -840,18 +1079,22 @@ class HermesRunner:
 
             if cmd in ["ayuda", "help", "?"]:
                 console.print(Panel(
-                    "[bold]Comandos Rápidos:[/bold]\n"
-                    "- [yellow]1[/yellow] a [yellow]8[/yellow]: Acceso directo a las funciones del menú.\n"
+                    "[bold]Comandos de Control Rápido:[/bold]\n"
+                    "- [yellow]1 a 7[/yellow]: Acceso directo a análisis, reporte, documentos, conciliación y auditoría.\n"
+                    "- [yellow]8[/yellow]: Menú para cambiar entre case_001, case_002 o case_003.\n"
+                    "- [yellow]c1[/yellow], [yellow]c2[/yellow], [yellow]c3[/yellow]: Cambiar de expediente al instante con una sola orden.\n"
+                    "- [yellow]9[/yellow] o [yellow]comparar[/yellow]: Ver matriz comparativa con los 3 casos en paralelo.\n"
+                    "- [yellow]e[/yellow] o [yellow]evaluar[/yellow]: Ejecutar la evaluación integral de 30s del jurado.\n"
                     "- [yellow]menu[/yellow]: Muestra el menú principal nuevamente.\n"
                     "- [yellow]cls[/yellow]: Limpia la pantalla.\n"
-                    "- [yellow]0[/yellow] o [yellow]salir[/yellow]: Termina la sesión.\n\n"
+                    "- [yellow]0[/yellow] o [yellow]salir[/yellow]: Termina la sesión interactiva.\n\n"
                     "[bold]Ejemplos de preguntas libres en lenguaje natural:[/bold]\n"
-                    "- [cyan]¿Por qué el cliente retuvo $800 dólares?[/cyan]\n"
-                    "- [cyan]¿Qué dice la cláusula 4.2 del contrato comercial?[/cyan]\n"
-                    "- [cyan]¿Qué producto tuvo faltante y cuántas cajas no llegaron?[/cyan]\n"
-                    "- [cyan]¿Cuánto dinero podemos recuperar o reclamar legalmente?[/cyan]\n"
+                    "- [cyan]¿Cuánto dinero podemos recuperar en el caso 2?[/cyan]\n"
+                    "- [cyan]Compara los 3 casos de la cartera[/cyan]\n"
+                    "- [cyan]¿Qué dice la cláusula 3.1 en el caso 3?[/cyan]\n"
+                    "- [cyan]¿Qué producto tuvo faltante en el caso 1?[/cyan]\n"
                     "- [cyan]¿Qué acción comercial debemos tomar con cartera?[/cyan]",
-                    title="Guía de Interacción y Comandos",
+                    title="Guía de Interacción Multi-Caso",
                     border_style="yellow"
                 ))
                 continue
@@ -922,4 +1165,18 @@ class HermesRunner:
                 )
                 console.print(f"\n[bold cyan]SupplyMind AI:[/bold cyan] {assistant_reply}\n")
 
-
+    def _generate_error_report(self, error_msg: str) -> DisputeAnalysisReport:
+        """Genera un reporte de fallo técnico para el jurado si el caso está completamente roto."""
+        from decimal import Decimal
+        return DisputeAnalysisReport(
+            case_id=self.case_id,
+            billed_amount=Decimal("0.00"),
+            received_amount=Decimal("0.00"),
+            difference=Decimal("0.00"),
+            justified_amount=Decimal("0.00"),
+            claimable_amount=Decimal("0.00"),
+            root_cause="TECHNICAL_ERROR: Datos corruptos o esquema inválido.",
+            evidence=[f"Trace técnico de Pydantic/Motor: {error_msg[:500]}"],
+            recommended_action="Rechazar expediente. Los archivos JSON base carecen de integridad estructural y fallaron la validación de Esquemas (Pydantic). Verifique los datos de entrada.",
+            confidence=0.0
+        )

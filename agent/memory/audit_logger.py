@@ -28,7 +28,8 @@ class AuditLogger:
         
         # Asegurar directorio de logs
         settings.LOGS_DIR.mkdir(parents=True, exist_ok=True)
-        self.log_file = settings.LOGS_DIR / f"audit_trail_{case_id}.jsonl"
+        safe_case_id = Path(case_id).name
+        self.log_file = settings.LOGS_DIR / f"audit_trail_{safe_case_id}.jsonl"
 
     def log_step(
         self,

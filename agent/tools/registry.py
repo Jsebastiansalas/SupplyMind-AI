@@ -6,7 +6,7 @@ from tools.reconciliation_engine.engine import reconcile_dispute_data
 from tools.contract_analyzer.rules import evaluate_contract_compliance
 from tools.report_generator.generator import build_dispute_report
 
-# Especificación formal JSON-Schema para Hermes y Grok
+# Especificación formal JSON-Schema para SKYNET y Grok
 TOOL_DEFINITIONS = [
     {
         "type": "function",
@@ -87,7 +87,7 @@ TOOL_DEFINITIONS = [
 ]
 
 class ToolExecutor:
-    """Ejecutor y despachador de herramientas para el bucle agéntico Hermes."""
+    """Ejecutor y despachador de herramientas para el bucle agéntico SKYNET."""
     def __init__(self, state: DisputeState, audit_logger: AuditLogger):
         self.state = state
         self.audit_logger = audit_logger
