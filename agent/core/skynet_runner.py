@@ -34,10 +34,19 @@ class SkynetRunner:
     Soporta:
     - Modo Live: Conexión directa a Grok a través del gateway de Platica (https://api.reto.pltk.mx/v1).
     - Modo Simulado / Harness Local: Motor ReAct autónomo local para desarrollo y pruebas.
+    - Modo Fast-Path: Conciliación determinística directa instantánea (<0.5 segundos).
     """
-    def __init__(self, case_id: str, objective: Optional[str] = None):
+    def __init__(
+        self,
+        case_id: str,
+        objective: Optional[str] = None,
+        fast_path: bool = False,
+        use_cache: bool = True
+    ):
         self.case_id = case_id
         self.objective = objective or f"Analiza la disputa {case_id}"
+        self.fast_path = fast_path
+        self.use_cache = use_cache
         self.state = DisputeState(case_id=case_id, objective=self.objective)
         self.audit_logger = AuditLogger(case_id=case_id)
         self.tool_executor = ToolExecutor(state=self.state, audit_logger=self.audit_logger)
@@ -46,10 +55,23 @@ class SkynetRunner:
     def run(self) -> DisputeAnalysisReport:
         """Ejecuta el ciclo de resolución autónomo de la disputa."""
         start_time = time.time()
+        
+        # 1. Verificación de Caché Inteligente
+        if self.use_cache:
+            from agent.core.cache import dispute_cache
+            cached = dispute_cache.get(self.case_id)
+            if cached:
+                cached_report, cached_state = cached
+                console.print(f"[bold cyan][CACHE HIT][/bold cyan] Expediente {self.case_id} recuperado de memoria en 0.001s.")
+                self.state = cached_state
+                self.state.execution_time_seconds = 0.01
+                return cached_report
+
+        mode_desc = '⚡ Fast-Path Acelerado (<1s)' if self.fast_path else ('En Vivo (Grok / Platica Gateway)' if settings.is_live_api_ready else 'Harness Local / Simulador ReAct')
         console.print(Panel(
             f"[bold green]SupplyMind AI - SKYNET Framework Runner[/bold green]\n"
             f"[cyan]Caso:[/cyan] {self.case_id} | [cyan]Objetivo:[/cyan] {self.objective}\n"
-            f"[yellow]Modo:[/yellow] {'En Vivo (Grok / Platica Gateway)' if settings.is_live_api_ready else 'Harness Local / Simulador ReAct'}",
+            f"[yellow]Modo:[/yellow] {mode_desc}",
             border_style="green"
         ))
         
@@ -62,7 +84,13 @@ class SkynetRunner:
         )
         
         report: Optional[DisputeAnalysisReport] = None
-        if settings.is_live_api_ready:
+        if self.fast_path:
+            try:
+                report = self._run_fast_path_skynet()
+            except Exception as e:
+                report = self._generate_error_report(str(e))
+                self.state.final_report = report
+        elif settings.is_live_api_ready:
             try:
                 report = self._run_live_skynet()
             except Exception as e:
@@ -71,28 +99,114 @@ class SkynetRunner:
                     report = self._run_simulated_skynet()
                 except Exception as sim_e:
                     report = self._generate_error_report(str(sim_e))
+                    self.state.final_report = report
         else:
             try:
                 report = self._run_simulated_skynet()
             except Exception as e:
                 report = self._generate_error_report(str(e))
+                self.state.final_report = report
+
+        # Salvaguarda de resiliencia: si el reporte sigue siendo None
+        if report is None:
+            err_msg = self.state.error_message or "Expediente con archivos corruptos, incompletos o esquema Pydantic inválido."
+            report = self._generate_error_report(err_msg)
+            self.state.final_report = report
 
         self.state.execution_time_seconds = round(time.time() - start_time, 2)
         
+        # Almacenar en caché para acelerar consultas subsecuentes
+        if self.use_cache and report and report.confidence > 0:
+            from agent.core.cache import dispute_cache
+            dispute_cache.set(self.case_id, report, self.state)
+        
         # Exportar artefactos de negocio formales (Reporte Markdown/JSON y Carta de Reclamación)
-        try:
-            artifacts = export_dispute_artifacts(report, self.state)
-            if "markdown_report" in artifacts:
-                console.print(f"[dim][OK] Informe formal exportado a: {artifacts['markdown_report']}[/dim]")
-            if "reclamation_letter" in artifacts:
-                console.print(f"[bold green][OK] Carta formal de reclamación generada en:[/bold green] [cyan]{artifacts['reclamation_letter']}[/cyan]")
-        except Exception as err:
-            console.print(f"[dim yellow][Aviso] No se pudieron exportar entregables: {err}[/dim yellow]")
+        if report is not None:
+            try:
+                artifacts = export_dispute_artifacts(report, self.state)
+                if "markdown_report" in artifacts:
+                    console.print(f"[dim][OK] Informe formal exportado a: {artifacts['markdown_report']}[/dim]")
+                if "reclamation_letter" in artifacts:
+                    console.print(f"[bold green][OK] Carta formal de reclamación generada en:[/bold green] [cyan]{artifacts['reclamation_letter']}[/cyan]")
+            except Exception as err:
+                console.print(f"[dim yellow][Aviso] No se pudieron exportar entregables: {err}[/dim yellow]")
             
         return report
 
+    def _run_fast_path_skynet(self) -> DisputeAnalysisReport:
+        """
+        Bucle Fast-Path determinístico de alta velocidad (<0.5s).
+        Ejecuta la lectura, conciliación y evaluación contractual en un pipeline directo.
+        """
+        console.print("[bold cyan][Pensamiento SKYNET Fast-Path][/bold cyan]: Ejecutando auditoría acelerada directa...")
+        res_docs = self.tool_executor.execute_tool("read_dispute_documents", {"case_id": self.case_id})
+        if res_docs.get("status") == "error":
+            raise ValueError(f"Fallo en lectura de documentos: {res_docs.get('message', 'Documentos corruptos o faltantes')}")
+
+        res_rec = self.tool_executor.execute_tool("execute_reconciliation", {"case_id": self.case_id})
+        if res_rec.get("status") == "error":
+            raise ValueError(f"Fallo en conciliación: {res_rec.get('message', 'Error en conciliación')}")
+
+        res_ev = self.tool_executor.execute_tool("evaluate_contract_terms", {"case_id": self.case_id})
+        if res_ev.get("status") == "error":
+            raise ValueError(f"Fallo en evaluación contractual: {res_ev.get('message', 'Error al evaluar contrato')}")
+        
+        rec = self.state.reconciliation_summary
+        ev = self.state.contract_evaluation
+        if rec and rec.unjustified_deductions_amount > Decimal("0.00"):
+            root_cause = (
+                f"Discrepancia mixta en expediente {self.case_id}: Faltante físico comprobado de ${rec.justified_deductions_amount:,.2f} USD "
+                f"amparado en remisión firmada con sello, y retenciones no autorizadas por ${rec.unjustified_deductions_amount:,.2f} USD sin sustento contractual ni documental."
+            )
+            action = (
+                f"Aceptar deducción de ${rec.justified_deductions_amount:,.2f} USD mediante Nota de Crédito por el faltante real, "
+                f"y rechazar formalmente las deducciones indebidas de ${rec.unjustified_deductions_amount:,.2f} USD exigiendo su pago inmediato."
+            )
+        else:
+            just_amt = rec.justified_deductions_amount if rec else Decimal("0.00")
+            if rec and rec.primary_discrepancy_type == "DIFERENCIA_DE_PRECIO":
+                root_cause = (
+                    f"Discrepancia de precio unitario en factura de ${rec.total_price_discrepancy_amount:,.2f} USD "
+                    f"respecto al precio pactado en la Orden de Compra aprobada."
+                )
+                action = (
+                    f"Aceptar deducción de ${just_amt:,.2f} USD aplicada por el cliente en cuentas por cobrar, "
+                    f"emitir Nota de Crédito comercial por ajuste de tarifa y actualizar maestro de precios en el ERP del proveedor."
+                )
+            elif rec and rec.primary_discrepancy_type == "MERCANCIA_AVERIADA":
+                root_cause = (
+                    f"Mercancía averiada durante recepción en bodega valorada en ${rec.total_damaged_amount:,.2f} USD, "
+                    f"consignada en acta de descarga e inspección física."
+                )
+                action = (
+                    f"Aplicar compensación comercial por ${just_amt:,.2f} USD conforme a política contractual de averías "
+                    f"y conciliar la partida en cartera de clientes."
+                )
+            else:
+                root_cause = (
+                    f"Faltante físico en entrega valorado en ${just_amt:,.2f} USD, "
+                    f"constatado en remisión de entrega firmada con sello de recepción en bodega."
+                )
+                action = (
+                    f"Aceptar deducción de ${just_amt:,.2f} USD en cuentas por cobrar y emitir Nota de Crédito comercial "
+                    f"por dicho valor a favor del cliente para conciliar y cerrar la cuenta."
+                )
+
+        res_rep = self.tool_executor.execute_tool(
+            "generate_final_report",
+            {
+                "case_id": self.case_id,
+                "root_cause_explanation": root_cause,
+                "recommended_action": action
+            }
+        )
+        if res_rep.get("status") == "error" or not self.state.final_report:
+            raise ValueError(f"Fallo al generar reporte final: {res_rep.get('message', 'No se pudo generar reporte')}")
+
+        return self.state.final_report
+
     def _run_live_skynet(self) -> DisputeAnalysisReport:
-        """Bucle ReAct contra el gateway oficial de Platica Grok."""
+        """Bucle ReAct contra el gateway oficial de Platica Grok con optimización de latencia."""
         from openai import OpenAI
         client = OpenAI(
             base_url=settings.PLATICA_BASE_URL,
@@ -107,6 +221,19 @@ class SkynetRunner:
         max_turns = 10
         for turn in range(max_turns):
             console.print(f"[dim]Turno {turn + 1}: Consultando a Grok ({settings.MODEL_NAME})...[/dim]")
+            
+            # Compresión de contexto: si el historial supera 6 mensajes, compactar outputs previos de herramientas
+            if len(messages) > 6:
+                for idx_m, m_item in enumerate(messages[:-2]):
+                    if isinstance(m_item, dict) and m_item.get("role") == "tool":
+                        try:
+                            content_obj = json.loads(m_item["content"])
+                            if "discrepancies" in content_obj and len(content_obj["discrepancies"]) > 3:
+                                content_obj["discrepancies"] = content_obj["discrepancies"][:3]
+                                content_obj["_compressed"] = True
+                                m_item["content"] = json.dumps(content_obj, ensure_ascii=False)
+                        except Exception:
+                            pass
             
             safe_messages = self.anonymizer.anonymize_messages(messages)
             

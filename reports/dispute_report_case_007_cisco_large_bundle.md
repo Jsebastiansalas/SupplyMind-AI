@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `case_007_cisco_large_bundle` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-10-09 11:49:40 UTC | **Nivel de Confianza:** 98.0%
+> **Fecha de Emisión:** 2026-10-10 02:08:36 UTC | **Nivel de Confianza:** 98.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO
@@ -30,9 +30,10 @@ Discrepancia mixta en expediente case_007_cisco_large_bundle: Faltante físico c
 6. Deducción aplicada en comprobante WIRE-TELCO-2026-99014: código DED-SHORTAGE, motivo 'Physical dock shortage 10x SKU-FIBER-TRANS', monto $4,000.00
 7. Deducción aplicada en comprobante WIRE-TELCO-2026-99014: código DED-DAMAGE, motivo 'Damaged goods 5x SKU-SFP-MODULE crushed', monto $1,500.00
 8. Deducción aplicada en comprobante WIRE-TELCO-2026-99014: código DED-UNAUTH-PENALTYArbitrary, motivo 'unannounced freight unloading penal', monto $14,000.00
-9. Respaldo contractual: Precios facturados deben ajustarse a la OC.
-10. Respaldo contractual: La 4.2 autoriza la deducción.
-11. Respaldo contractual: La 5.1 autoriza la deducción.
+9. Respaldo contractual: La 4.2 autoriza la deducción por faltantes físicos acreditados en remisión de entrega.
+10. Respaldo contractual: Precios facturados deben ajustarse a la OC según 3.1 ('Alineacion Estricta a Precios de la Orden de Compra').
+11. Respaldo contractual: La 5.1 ('Mercancia Averiada en Transporte o Descarga') autoriza deducir mercancía dañada constatada al momento de la descarga.
+12. Respaldo contractual: La 6.1 ('Prohibicion de Penalidades Unilaterales de Muelle') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.
 
 ---
 ## 4. DICTAMEN LEGAL Y CONTRACTUAL
@@ -41,9 +42,10 @@ Discrepancia mixta en expediente case_007_cisco_large_bundle: Faltante físico c
 - **Acción Contractual Sugerida:** Revisar evidencia y cláusulas RAG para determinar validez total.
 
 **Cláusulas Invocadas:**
-- **3.1 (Alineacion Estricta a Precios de la Orden de Compra)** [AUTORIZADA]: Precios facturados deben ajustarse a la OC.
-- **4.2 (Compensacion Automatica por Faltantes Fisicos Comprobados)** [AUTORIZADA]: La 4.2 autoriza la deducción.
-- **5.1 (Mercancia Averiada en Transporte o Descarga)** [AUTORIZADA]: La 5.1 autoriza la deducción.
+- **4.2 (Compensacion Automatica por Faltantes Fisicos Comprobados)** [AUTORIZADA]: La 4.2 autoriza la deducción por faltantes físicos acreditados en remisión de entrega.
+- **3.1 (Alineacion Estricta a Precios de la Orden de Compra)** [AUTORIZADA]: Precios facturados deben ajustarse a la OC según 3.1 ('Alineacion Estricta a Precios de la Orden de Compra').
+- **5.1 (Mercancia Averiada en Transporte o Descarga)** [AUTORIZADA]: La 5.1 ('Mercancia Averiada en Transporte o Descarga') autoriza deducir mercancía dañada constatada al momento de la descarga.
+- **6.1 (Prohibicion de Penalidades Unilaterales de Muelle)** [NO AUTORIZADA / OBJETABLE]: La 6.1 ('Prohibicion de Penalidades Unilaterales de Muelle') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.
 
 ---
 ## 5. PLAN DE ACCIÓN OPERATIVO Y COMERCIAL RECOMENDADO

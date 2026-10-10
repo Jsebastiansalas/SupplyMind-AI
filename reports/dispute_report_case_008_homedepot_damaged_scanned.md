@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `case_008_homedepot_damaged_scanned` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-10-09 11:50:24 UTC | **Nivel de Confianza:** 98.0%
+> **Fecha de Emisión:** 2026-10-10 03:47:05 UTC | **Nivel de Confianza:** 98.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO
@@ -25,7 +25,8 @@ Discrepancia mixta en expediente case_008_homedepot_damaged_scanned: Faltante f�
 1. Mercancía averiada en SKU-CERAMIC-60X60: 20 unidades valoradas en $4,200.00
 2. Deducción aplicada en comprobante WIRE-HD-2026-33910: código DED-DAMAGED-DOCK, motivo 'Retencion por 20 unidades averiadas en muelle', monto $4,200.00
 3. Deducción aplicada en comprobante WIRE-HD-2026-33910: código DED-UNILAT-DOCK-FEE, motivo 'Penalizacion administrativa descarga no programada', monto $4,000.00
-4. Respaldo contractual: Requiere notificación fotográfica según 5.1.
+4. Respaldo contractual: La 5.1 ('Politica de Mercancia Danada o Averiada en Muelle') autoriza deducir mercancía dañada constatada al momento de la descarga.
+5. Respaldo contractual: La 7.2 ('Improcedencia de Penalizaciones Unilaterales') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.
 
 ---
 ## 4. DICTAMEN LEGAL Y CONTRACTUAL
@@ -34,7 +35,8 @@ Discrepancia mixta en expediente case_008_homedepot_damaged_scanned: Faltante f�
 - **Acción Contractual Sugerida:** Revisar evidencia y cláusulas RAG para determinar validez total.
 
 **Cláusulas Invocadas:**
-- **5.1 (Politica de Mercancia Danada o Averiada en Muelle)** [NO AUTORIZADA / OBJETABLE]: Requiere notificación fotográfica según 5.1.
+- **5.1 (Politica de Mercancia Danada o Averiada en Muelle)** [AUTORIZADA]: La 5.1 ('Politica de Mercancia Danada o Averiada en Muelle') autoriza deducir mercancía dañada constatada al momento de la descarga.
+- **7.2 (Improcedencia de Penalizaciones Unilaterales)** [NO AUTORIZADA / OBJETABLE]: La 7.2 ('Improcedencia de Penalizaciones Unilaterales') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.
 
 ---
 ## 5. PLAN DE ACCIÓN OPERATIVO Y COMERCIAL RECOMENDADO

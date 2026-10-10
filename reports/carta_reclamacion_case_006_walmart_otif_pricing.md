@@ -1,6 +1,6 @@
 # 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
 **Ref: Expediente de Cartera case_006_walmart_otif_pricing / Factura INV-NDP-88301**  
-**Fecha:** 08 de October de 2026  
+**Fecha:** 09 de October de 2026  
 **De:** Departamento de Cartera y Asuntos Comerciales — NORDIC_DAIRY_LTD  
 **Para:** Gerencia de Cuentas por Pagar y Conciliación — MEGAMART_STORES_INC  
 
@@ -17,13 +17,7 @@ Aceptamos de plena conformidad la deducción por valor de **$4,500.00 USD**, deb
 
 #### 2. Deducciones Objetadas y Saldo Reclamable: **$3,500.00 USD**
 Rechazamos formalmente las deducciones adicionales aplicadas por un importe total de **$3,500.00 USD**, por carecer de soporte probatorio y contrariar los términos del contrato comercial **MSA-MMN-NDP-2026**:
-- **Causa Raíz:** Causa raíz mixta, con dos deducciones de naturaleza distinta sobre la factura de $64,500.00 (OC $60,000.00; pago recibido $56,500.00; diferencia total -$8,000.00).
-
-1) Diferencia de precio JUSTIFICADA por $4,500.00. SKU-WHEY-2KG (Whey Isolate Protein 2kg): 1,500 unidades facturadas y 1,500 recibidas; faltante físico $0.00 y avería $0.00. Precio unitario facturado $35.00 frente a precio pactado en OC $32.00 (diferencia unitaria $3.00; impacto $4,500.00). No hay adenda de incremento de precio. La deducción DED-PRICE-CORR del comprobante REM-MMN-10294 ("Price Variance Adjustment SKU-WHEY-2KG to PO", $4,500.00) coincide al centavo con el impacto de conciliación. La Cláusula 3.1 del contrato MSA-MMN-NDP-2026 ("Ajuste Estricto a Precios de Orden de Compra") autoriza expresamente ajustar lo facturado a la OC. Jerarquía: Nivel 2 (PO + CTR) prevalece sobre el precio de factura.
-
-2) Descuento de pronto pago INJUSTIFICADO por $3,500.00. Deducción DED-EARLY-PAY del mismo comprobante, motivo "Unauthorized Early Settlement Discount 5%", $3,500.00. No existe cláusula habilitante (el motor contractual solo amparó la Cláusula 3.1 de precio), ni remisión de entrega que respalde esta retención, ni pacto de pronto pago. El propio comprobante la califica de no autorizada. Regla de oro: deducción sin respaldo en remisión firmada ni cláusula contractual → INJUSTIFICADA y 100% reclamable. No se identificó penalización OTIF en el expediente; la disputa se resuelve por precio y descuento unilateral.
-
-Montos del motor: justificado $4,500.00; injustificado/reclamable $3,500.00. Confianza 0.93: coincidencia exacta de precio con cláusula expresa, y ausencia clara de amparo para el pronto pago.
+- **Causa Raíz:** Discrepancia mixta en expediente case_006_walmart_otif_pricing: Faltante físico comprobado de $4,500.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $3,500.00 USD sin sustento contractual ni documental.
 - **Fundamentación Contractual:** Evaluación algorítmica y semántica completada. Posible deducción de $3,500.00 requiere análisis final por el Agente.
 
 #### 3. Requerimiento de Pago

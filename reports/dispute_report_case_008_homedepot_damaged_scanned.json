@@ -9,7 +9,8 @@
     "Mercancía averiada en SKU-CERAMIC-60X60: 20 unidades valoradas en $4,200.00",
     "Deducción aplicada en comprobante WIRE-HD-2026-33910: código DED-DAMAGED-DOCK, motivo 'Retencion por 20 unidades averiadas en muelle', monto $4,200.00",
     "Deducción aplicada en comprobante WIRE-HD-2026-33910: código DED-UNILAT-DOCK-FEE, motivo 'Penalizacion administrativa descarga no programada', monto $4,000.00",
-    "Respaldo contractual: Requiere notificación fotográfica según 5.1."
+    "Respaldo contractual: La 5.1 ('Politica de Mercancia Danada o Averiada en Muelle') autoriza deducir mercancía dañada constatada al momento de la descarga.",
+    "Respaldo contractual: La 7.2 ('Improcedencia de Penalizaciones Unilaterales') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo."
   ],
   "justified_amount": "4200.00",
   "claimable_amount": "4000.00",

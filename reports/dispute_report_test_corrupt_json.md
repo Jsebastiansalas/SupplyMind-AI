@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
-> **Expediente:** `data\cases\test_corrupt_json` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-10-08 20:17:20 UTC | **Nivel de Confianza:** 0.0%
+> **Expediente:** `test_corrupt_json` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
+> **Fecha de Emisión:** 2026-10-10 03:45:54 UTC | **Nivel de Confianza:** 0.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO
@@ -22,7 +22,7 @@ TECHNICAL_ERROR: Datos corruptos o esquema inválido.
 ---
 ## 3. TRAZABILIDAD Y CADENA DE EVIDENCIAS DOCUMENTALES
 
-1. Trace técnico de Pydantic/Motor: Error al generar el reporte en la simulación.
+1. Trace técnico de Pydantic/Motor: Fallo en lectura de documentos: Error al procesar factura 'invoice.json' en 'test_corrupt_json': Expecting ',' delimiter: line 3 column 20 (char 46)
 
 ---
 ## 4. DICTAMEN LEGAL Y CONTRACTUAL
@@ -35,14 +35,6 @@ TECHNICAL_ERROR: Datos corruptos o esquema inválido.
 **Recomendación:**  
 Rechazar expediente. Los archivos JSON base carecen de integridad estructural y fallaron la validación de Esquemas (Pydantic). Verifique los datos de entrada.
 
----
-## 6. MÉTRICAS DE EJECUCIÓN Y EFICIENCIA (UNIT ECONOMICS)
-
-- **Tokens de Entrada:** 5,895
-- **Tokens de Salida:** 151
-- **Costo Estimado de Inferencia:** $0.01330 USD
-- **Tiempo de Resolución:** 14.16 s
-- **Gobernanza:** Motor determinístico en Python `Decimal` (Cero Alucinación Financiera).
 
 ---
 *Documento oficial generado autónomamente por SupplyMind AI para gestión de cartera, operaciones y auditoría B2B.*

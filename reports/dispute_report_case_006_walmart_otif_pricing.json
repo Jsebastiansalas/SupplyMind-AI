@@ -4,15 +4,16 @@
   "billed_amount": "64500.00",
   "received_amount": "56500.00",
   "difference": "-8000.00",
-  "root_cause": "Causa raíz mixta, con dos deducciones de naturaleza distinta sobre la factura de $64,500.00 (OC $60,000.00; pago recibido $56,500.00; diferencia total -$8,000.00).\n\n1) Diferencia de precio JUSTIFICADA por $4,500.00. SKU-WHEY-2KG (Whey Isolate Protein 2kg): 1,500 unidades facturadas y 1,500 recibidas; faltante físico $0.00 y avería $0.00. Precio unitario facturado $35.00 frente a precio pactado en OC $32.00 (diferencia unitaria $3.00; impacto $4,500.00). No hay adenda de incremento de precio. La deducción DED-PRICE-CORR del comprobante REM-MMN-10294 (\"Price Variance Adjustment SKU-WHEY-2KG to PO\", $4,500.00) coincide al centavo con el impacto de conciliación. La Cláusula 3.1 del contrato MSA-MMN-NDP-2026 (\"Ajuste Estricto a Precios de Orden de Compra\") autoriza expresamente ajustar lo facturado a la OC. Jerarquía: Nivel 2 (PO + CTR) prevalece sobre el precio de factura.\n\n2) Descuento de pronto pago INJUSTIFICADO por $3,500.00. Deducción DED-EARLY-PAY del mismo comprobante, motivo \"Unauthorized Early Settlement Discount 5%\", $3,500.00. No existe cláusula habilitante (el motor contractual solo amparó la Cláusula 3.1 de precio), ni remisión de entrega que respalde esta retención, ni pacto de pronto pago. El propio comprobante la califica de no autorizada. Regla de oro: deducción sin respaldo en remisión firmada ni cláusula contractual → INJUSTIFICADA y 100% reclamable. No se identificó penalización OTIF en el expediente; la disputa se resuelve por precio y descuento unilateral.\n\nMontos del motor: justificado $4,500.00; injustificado/reclamable $3,500.00. Confianza 0.93: coincidencia exacta de precio con cláusula expresa, y ausencia clara de amparo para el pronto pago.",
+  "root_cause": "Discrepancia mixta en expediente case_006_walmart_otif_pricing: Faltante físico comprobado de $4,500.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $3,500.00 USD sin sustento contractual ni documental.",
   "evidence": [
     "Discrepancia de precio en SKU-WHEY-2KG: facturado $35.00 vs acordado $32.00",
     "Deducción aplicada en comprobante REM-MMN-10294: código DED-PRICE-CORR, motivo 'Price Variance Adjustment SKU-WHEY-2KG to PO', monto $4,500.00",
     "Deducción aplicada en comprobante REM-MMN-10294: código DED-EARLY-PAY, motivo 'Unauthorized Early Settlement Discount 5%', monto $3,500.00",
-    "Respaldo contractual: Precios facturados deben ajustarse a la OC."
+    "Respaldo contractual: Precios facturados deben ajustarse a la OC según 3.1 ('Ajuste Estricto a Precios de Orden de Compra').",
+    "Respaldo contractual: La 7.2 ('Condiciones de Descuento por Pronto Pago') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo."
   ],
   "justified_amount": "4500.00",
   "claimable_amount": "3500.00",
   "confidence": 0.98,
-  "recommended_action": "Aceptar la deducción de precio de $4,500.00, emitir Nota de Crédito comercial por ese valor exacto (SKU-WHEY-2KG, $3.00/unidad x 1,500) y sanear la cuenta por cobrar contra la OC. En paralelo, objetar formalmente la deducción DED-EARLY-PAY de $3,500.00 e iniciar gestión de cobro del saldo reclamable, por tratarse de un descuento de pronto pago no pactado y sin cláusula habilitante. No escalar a cobro coactivo sobre el tramo de precio, donde el retailer tiene la razón contractual."
+  "recommended_action": "Aceptar deducción de $4,500.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $3,500.00 USD exigiendo su pago inmediato."
 }

@@ -42,9 +42,21 @@ CRITERIOS Y MATRIZ DE DECISIÓN COMERCIAL SENIOR:
    - Reservar la objeción formal y el reclamo de cobro exclusivamente para saldos sin respaldo probatorio.
 """
 
-def get_calibrated_system_prompt() -> str:
+from typing import Dict, Any, List, Optional
+
+def get_calibrated_system_prompt(kb_path: Optional[str] = None) -> str:
     """Genera el System Prompt de Grok enriquecido con los criterios de decisión calibrados."""
-    return f"""Eres SupplyMind AI, un analista digital senior de operaciones y conciliación de cadenas de suministro B2B.
+    precedents_text = ""
+    try:
+        from agent.planner.precedents import PrecedentRegistry
+        registry = PrecedentRegistry(kb_path=kb_path)
+        formatted = registry.format_precedents_for_prompt()
+        if formatted:
+            precedents_text = f"\n{formatted}\n"
+    except Exception:
+        precedents_text = ""
+
+    base_prompt = f"""Eres SupplyMind AI, un analista digital senior de operaciones y conciliación de cadenas de suministro B2B.
 Tu misión es resolver de forma autónoma, rigurosa y equitativa disputas comerciales entre proveedores y clientes corporativos (retailers).
 
 DIRECTRICES OPERATIVAS FUNDAMENTALES:
@@ -56,18 +68,31 @@ DIRECTRICES OPERATIVAS FUNDAMENTALES:
    - NUNCA calcules sumas, restas, subtotales o porcentajes en tu texto sin respaldo de las herramientas.
    - Todos los cálculos cuantitativos y de conciliación deben provenir de la herramienta determinística 'execute_reconciliation'.
 
-3. PROTOCOLO DE INVESTIGACIÓN:
-   a. Cargar y validar los documentos del expediente con 'read_dispute_documents'.
-   b. Ejecutar la conciliación física y financiera determinística con 'execute_reconciliation'.
-   c. Contrastar los hallazgos contra las cláusulas y acuerdos comerciales mediante 'evaluate_contract_terms'.
-   d. Sintetizar la evidencia y formalizar el informe con 'generate_final_report'.
+3. PROTOCOLO DE INVESTIGACIÓN Y EFICIENCIA EN LOTE (BATCH EXECUTION):
+   - Puedes invocar herramientas en lote (múltiples tool_calls en un solo turno) para optimizar el tiempo de respuesta:
+     * En el Turno 1: Puedes emitir en paralelo 'read_dispute_documents', 'execute_reconciliation' y 'evaluate_contract_terms'.
+     * En el Turno 2: Tras recibir la conciliación matemática y legal, invoca de inmediato 'generate_final_report' para sellar el veredicto.
+   - Si procedes paso a paso, hazlo de forma concisa sin turnos conversacionales vacíos.
 
 {EXPERT_RESOLUTION_CRITERIA}
 """
+    if precedents_text:
+        return base_prompt + precedents_text
+    return base_prompt
 
-def get_calibrated_chat_prompt() -> str:
+def get_calibrated_chat_prompt(kb_path: Optional[str] = None) -> str:
     """Genera el System Prompt interactivo enriquecido con los criterios de decisión."""
-    return f"""Eres SupplyMind AI, un analista digital senior de operaciones y conciliación de cadenas de suministro B2B en modo conversacional directo con el usuario.
+    precedents_text = ""
+    try:
+        from agent.planner.precedents import PrecedentRegistry
+        registry = PrecedentRegistry(kb_path=kb_path)
+        formatted = registry.format_precedents_for_prompt()
+        if formatted:
+            precedents_text = f"\n{formatted}\n"
+    except Exception:
+        precedents_text = ""
+
+    base_prompt = f"""Eres SupplyMind AI, un analista digital senior de operaciones y conciliación de cadenas de suministro B2B en modo conversacional directo con el usuario.
 Tu misión es responder preguntas, aclarar dudas, profundizar en hallazgos, explicar la causa raíz y justificar las decisiones de resolución de la disputa comercial con criterio experto.
 
 DIRECTRICES CONVERSACIONALES:
@@ -78,3 +103,6 @@ DIRECTRICES CONVERSACIONALES:
 
 {EXPERT_RESOLUTION_CRITERIA}
 """
+    if precedents_text:
+        return base_prompt + precedents_text
+    return base_prompt

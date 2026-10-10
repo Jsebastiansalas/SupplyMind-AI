@@ -1,0 +1,59 @@
+services:
+  # Servicio principal: Backend FastAPI + Frontend React 18 (SPA) unificado
+  supplymind:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: supplymind-ai
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - UVICORN_RELOAD=false
+      - RETO_KEY=${RETO_KEY:-}
+      - PLATICA_BASE_URL=${PLATICA_BASE_URL:-https://api.reto.pltk.mx/v1}
+      - MODEL_NAME=${MODEL_NAME:-grok-4.7}
+      - DATA_DIR=${DATA_DIR:-data/cases}
+      - DEFAULT_CURRENCY=${DEFAULT_CURRENCY:-USD}
+    volumes:
+      # Persistencia de logs de auditoría, reportes PDF/JSON generados y casos B2B
+      - ./logs:/app/logs
+      - ./reports:/app/reports
+      - ./data/cases:/app/data/cases
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  # Servicio auxiliar (opcional): Dashboard legacy en Streamlit
+  # Activar ejecutando: docker compose --profile legacy up
+  dashboard-legacy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: supplymind-streamlit
+    restart: unless-stopped
+    command: ["streamlit", "run", "dashboard.py", "--server.port=8501", "--server.address=0.0.0.0"]
+    ports:
+      - "8501:8501"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      - RETO_KEY=${RETO_KEY:-}
+      - PLATICA_BASE_URL=${PLATICA_BASE_URL:-https://api.reto.pltk.mx/v1}
+      - MODEL_NAME=${MODEL_NAME:-grok-4.7}
+      - DATA_DIR=${DATA_DIR:-data/cases}
+    volumes:
+      - ./logs:/app/logs
+      - ./reports:/app/reports
+      - ./data/cases:/app/data/cases
+    profiles:
+      - legacy

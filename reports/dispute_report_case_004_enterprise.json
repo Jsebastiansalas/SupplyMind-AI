@@ -1,0 +1,18 @@
+{
+  "case_id": "case_004_enterprise",
+  "currency": "USD",
+  "billed_amount": "50000.0",
+  "received_amount": "42500.0",
+  "difference": "-7500.0",
+  "root_cause": "Discrepancia mixta en expediente case_004_enterprise: Faltante físico comprobado de $5,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $2,500.00 USD sin sustento contractual ni documental.",
+  "evidence": [
+    "Mercancía averiada en SRV-X9: 1 unidades valoradas en $5,000.00",
+    "Deducción aplicada en comprobante PAY-ENT-001: código DED-DAMAGE-PENALTY, motivo 'Caja de servidor averiada. Penalidad 150% segun clausula 37', monto $7,500.00",
+    "Respaldo contractual: La CLÁUSULA 37 ('Política de Averías y Tolerancia Logística') autoriza deducir mercancía dañada constatada al momento de la descarga.",
+    "Respaldo contractual: La CLÁUSULA 37 ('Política de Averías y Tolerancia Logística') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo."
+  ],
+  "justified_amount": "5000.00",
+  "claimable_amount": "2500.00",
+  "confidence": 0.98,
+  "recommended_action": "Aceptar deducción de $5,000.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $2,500.00 USD exigiendo su pago inmediato."
+}

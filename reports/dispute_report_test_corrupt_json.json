@@ -1,12 +1,12 @@
 {
-  "case_id": "data\\cases\\test_corrupt_json",
+  "case_id": "test_corrupt_json",
   "currency": "USD",
   "billed_amount": "0.00",
   "received_amount": "0.00",
   "difference": "0.00",
   "root_cause": "TECHNICAL_ERROR: Datos corruptos o esquema inválido.",
   "evidence": [
-    "Trace técnico de Pydantic/Motor: Error al generar el reporte en la simulación."
+    "Trace técnico de Pydantic/Motor: Fallo en lectura de documentos: Error al procesar factura 'invoice.json' en 'test_corrupt_json': Expecting ',' delimiter: line 3 column 20 (char 46)"
   ],
   "justified_amount": "0.00",
   "claimable_amount": "0.00",

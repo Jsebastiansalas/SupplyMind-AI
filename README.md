@@ -141,17 +141,47 @@ platica/
 
 ## ⚙️ 6. Instalación y Puesta en Marcha
 
-### Requisitos Previos:
-- Python 3.10 o superior (validado en Python 3.14).
+### Opción A: Despliegue con Docker y Docker Compose (Recomendado) 🐳
 
-### 1. Clonar e instalar entorno virtual:
+El proyecto cuenta con un contenedor multi-stage optimizado (Node.js 20 para el build de React 18 + Python 3.11-slim para el backend FastAPI) que expone la plataforma completa en un único puerto:
+
+```bash
+# 1. Configurar variables de entorno (opcional si usas valores por defecto)
+cp .env.example .env
+
+# 2. Compilar y levantar la plataforma unificada (Backend FastAPI + React SPA):
+docker compose up --build -d
+
+# 3. Acceder a la plataforma en el navegador:
+# - Aplicación Web React:   http://localhost:8000
+# - Documentación Swagger:   http://localhost:8000/docs
+# - API Healthcheck:         http://localhost:8000/api/health
+```
+
+> 💡 **En Windows:** Puedes hacer doble clic en `start_docker.bat` o ejecutar `.\start_docker.ps1` para verificar el estado de Docker y levantar el sistema automáticamente.
+
+Para ver los logs en tiempo real o detener la plataforma:
+```bash
+docker compose logs -f
+docker compose down
+```
+
+---
+
+### Opción B: Ejecución Local en Entorno Virtual 💻
+
+#### Requisitos Previos:
+- Python 3.10 o superior (validado en Python 3.11 - 3.14).
+- Node.js 18+ (opcional, solo para compilar o modificar el frontend).
+
+#### 1. Instalar dependencias backend:
 ```bash
 py -m venv .venv
 .\.venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 2. Configurar credenciales del Reto Platica:
+#### 2. Configurar credenciales del Reto Platica:
 Copia la plantilla `.env.example` a `.env`:
 ```bash
 cp .env.example .env
@@ -162,6 +192,13 @@ RETO_KEY=pk_tu_llave_aqui
 PLATICA_BASE_URL=https://api.reto.pltk.mx/v1
 MODEL_NAME=grok-4.7
 DEFAULT_CURRENCY=USD
+```
+
+#### 3. Iniciar la plataforma unificada local:
+```bash
+# Lanzador automático de FastAPI + Frontend compilado:
+py run_api.py
+# o en Windows con doble clic en: start_app.bat
 ```
 
 ---
@@ -177,10 +214,11 @@ py scripts/evaluar_jurado.py
 
 ### Lo que este comando verifica automáticamente en ~3 segundos:
 1. **Entorno & Credenciales:** Conexión con Platica Gateway y modelo `grok-4.7`.
-2. **51 Pruebas Automatizadas:** 100% de éxito en la suite `pytest`.
+2. **162 Pruebas Automatizadas:** 100% de éxito en la suite `pytest` (modelos, OCR, RAG, tribunal colegiado y API REST).
 3. **Resolución de los 3 Casos B2B:** `case_001` ($9K), `case_002` ($54.2K) y `case_003` ($15K).
 4. **Entregables de Negocio Generados:** Informes ejecutivos y **Carta Formal de Reclamación** de $12,500 USD en [reports/](file:///c:/Users/USUARIO/Downloads/platica/reports/).
 5. **Unit Economics:** Demostración de costo real de inferencia (< $0.005 USD por expediente).
+
 
 ---
 

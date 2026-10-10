@@ -21,3 +21,8 @@ htmlcov/
 *.log
 logs/
 .hermes/
+.agents/
+
+# Node & Frontend
+node_modules/
+frontend/node_modules/

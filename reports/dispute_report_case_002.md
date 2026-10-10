@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `case_002` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-10-09 11:49:39 UTC | **Nivel de Confianza:** 98.0%
+> **Fecha de Emisión:** 2026-10-10 03:34:55 UTC | **Nivel de Confianza:** 98.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO
@@ -26,7 +26,8 @@ Discrepancia mixta en expediente case_002: Faltante físico comprobado de $4,000
 2. Deducción aplicada en comprobante PAY-9931: código DED-MISSING-PHYSICAL, motivo 'Deducción por 50 cajas faltantes PROD-102 s/ remisión DEL-12044', monto $4,000.00
 3. Deducción aplicada en comprobante PAY-9931: código DED-ALLEGED-DAMAGE, motivo 'Retención por supuesta avería interna PROD-103 no acreditada en muelle ni reportada en 48h', monto $6,500.00
 4. Deducción aplicada en comprobante PAY-9931: código DED-UNILATERAL-PENALTY, motivo 'Penalización administrativa unilateral no contemplada en contrato comercial', monto $6,000.00
-5. Respaldo contractual: La CLAUSE-4.2 autoriza la deducción.
+5. Respaldo contractual: La CLAUSE-4.2 autoriza la deducción por faltantes físicos acreditados en remisión de entrega.
+6. Respaldo contractual: La CLAUSE-7.3 ('Prohibición de Penalizaciones Unilaterales') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.
 
 ---
 ## 4. DICTAMEN LEGAL Y CONTRACTUAL
@@ -35,7 +36,8 @@ Discrepancia mixta en expediente case_002: Faltante físico comprobado de $4,000
 - **Acción Contractual Sugerida:** Revisar evidencia y cláusulas RAG para determinar validez total.
 
 **Cláusulas Invocadas:**
-- **CLAUSE-4.2 (Faltantes Físicos en Recepción)** [AUTORIZADA]: La CLAUSE-4.2 autoriza la deducción.
+- **CLAUSE-4.2 (Faltantes Físicos en Recepción)** [AUTORIZADA]: La CLAUSE-4.2 autoriza la deducción por faltantes físicos acreditados en remisión de entrega.
+- **CLAUSE-7.3 (Prohibición de Penalizaciones Unilaterales)** [NO AUTORIZADA / OBJETABLE]: La CLAUSE-7.3 ('Prohibición de Penalizaciones Unilaterales') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.
 
 ---
 ## 5. PLAN DE ACCIÓN OPERATIVO Y COMERCIAL RECOMENDADO

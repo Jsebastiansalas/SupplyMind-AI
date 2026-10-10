@@ -1,12 +1,12 @@
 {
-  "case_id": "data\\cases\\test_bad_schema",
+  "case_id": "test_bad_schema",
   "currency": "USD",
   "billed_amount": "0.00",
   "received_amount": "0.00",
   "difference": "0.00",
   "root_cause": "TECHNICAL_ERROR: Datos corruptos o esquema inválido.",
   "evidence": [
-    "Trace técnico de Pydantic/Motor: Error al generar el reporte en la simulación."
+    "Trace técnico de Pydantic/Motor: Fallo en lectura de documentos: Error al procesar factura 'invoice.json' en 'test_bad_schema': 4 validation errors for Invoice\nitems\n  List should have at least 1 item after validation, not 0 [type=too_short, input_value=[], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.13/v/too_short\nsubtotal\n  Input should be a valid decimal [type=decimal_parsing, input_value='CIEN DOLARES', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/"
   ],
   "justified_amount": "0.00",
   "claimable_amount": "0.00",

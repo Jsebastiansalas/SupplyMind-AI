@@ -14,9 +14,10 @@
     "Deducción aplicada en comprobante WIRE-TELCO-2026-99014: código DED-SHORTAGE, motivo 'Physical dock shortage 10x SKU-FIBER-TRANS', monto $4,000.00",
     "Deducción aplicada en comprobante WIRE-TELCO-2026-99014: código DED-DAMAGE, motivo 'Damaged goods 5x SKU-SFP-MODULE crushed', monto $1,500.00",
     "Deducción aplicada en comprobante WIRE-TELCO-2026-99014: código DED-UNAUTH-PENALTYArbitrary, motivo 'unannounced freight unloading penal', monto $14,000.00",
-    "Respaldo contractual: Precios facturados deben ajustarse a la OC.",
-    "Respaldo contractual: La 4.2 autoriza la deducción.",
-    "Respaldo contractual: La 5.1 autoriza la deducción."
+    "Respaldo contractual: La 4.2 autoriza la deducción por faltantes físicos acreditados en remisión de entrega.",
+    "Respaldo contractual: Precios facturados deben ajustarse a la OC según 3.1 ('Alineacion Estricta a Precios de la Orden de Compra').",
+    "Respaldo contractual: La 5.1 ('Mercancia Averiada en Transporte o Descarga') autoriza deducir mercancía dañada constatada al momento de la descarga.",
+    "Respaldo contractual: La 6.1 ('Prohibicion de Penalidades Unilaterales de Muelle') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo."
   ],
   "justified_amount": "13000.00",
   "claimable_amount": "14000.00",

@@ -134,6 +134,19 @@ class ToolExecutor:
                 )
                 self.state.reconciliation_summary = summary
                 
+                # Payload conciso optimizado para minimizar tokens en el historial ReAct
+                compact_discrepancies = [
+                    {
+                        "item_id": d.item_id,
+                        "desc": d.description,
+                        "missing_qty": d.missing_quantity,
+                        "damaged_qty": d.damaged_quantity,
+                        "price_diff": float(d.price_difference),
+                        "impact": float(d.total_impact)
+                    }
+                    for d in summary.discrepancies
+                ]
+                
                 result = {
                     "status": "success",
                     "billed_amount": float(summary.billed_amount),
@@ -145,14 +158,22 @@ class ToolExecutor:
                     "total_price_discrepancy_amount": float(summary.total_price_discrepancy_amount),
                     "justified_deductions": float(summary.justified_deductions_amount),
                     "unjustified_deductions": float(summary.unjustified_deductions_amount),
-                    "discrepancies": [d.model_dump(mode="json") for d in summary.discrepancies],
+                    "discrepancies": compact_discrepancies,
                     "evidence_trail": summary.evidence_trail
                 }
                 
             elif tool_name == "evaluate_contract_terms":
                 self.state.current_status = ProcessStatus.EVALUATING_CONTRACT
-                if not self.state.loaded_documents or not self.state.reconciliation_summary:
-                    raise ValueError("Se requiere ejecutar lectura y conciliación antes de evaluar contrato.")
+                if not self.state.loaded_documents:
+                    self.state.loaded_documents = load_case_documents(case_id)
+                if not self.state.reconciliation_summary:
+                    docs = self.state.loaded_documents
+                    self.state.reconciliation_summary = reconcile_dispute_data(
+                        invoice=docs["invoice"],
+                        purchase_order=docs["purchase_order"],
+                        delivery=docs["delivery"],
+                        payment=docs["payment"]
+                    )
                     
                 contract = self.state.loaded_documents["contract"]
                 evaluation = evaluate_contract_compliance(
@@ -172,8 +193,22 @@ class ToolExecutor:
                 
             elif tool_name == "generate_final_report":
                 self.state.current_status = ProcessStatus.SYNTHESIZING
-                if not self.state.reconciliation_summary or not self.state.contract_evaluation:
-                    raise ValueError("Se requiere conciliación y evaluación de contrato previas para generar reporte.")
+                if not self.state.loaded_documents:
+                    self.state.loaded_documents = load_case_documents(case_id)
+                if not self.state.reconciliation_summary:
+                    docs = self.state.loaded_documents
+                    self.state.reconciliation_summary = reconcile_dispute_data(
+                        invoice=docs["invoice"],
+                        purchase_order=docs["purchase_order"],
+                        delivery=docs["delivery"],
+                        payment=docs["payment"]
+                    )
+                if not self.state.contract_evaluation:
+                    contract = self.state.loaded_documents["contract"]
+                    self.state.contract_evaluation = evaluate_contract_compliance(
+                        contract=contract,
+                        summary=self.state.reconciliation_summary
+                    )
                     
                 root_cause = arguments.get("root_cause_explanation")
                 recommended_action = arguments.get("recommended_action")

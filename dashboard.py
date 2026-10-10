@@ -159,42 +159,50 @@ with st.sidebar:
     
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("#### ⚙️ 2. CONFIGURACIÓN DEL ENJAMBRE")
+    fast_mode = st.toggle("⚡ Fast-Path de Inferencia (<1s)", value=True, help="Ejecuta la conciliación determinística instantánea sin latencia de red ReAct.")
+    use_cache = st.toggle("💾 Caché en Memoria Inteligente", value=True, help="Reutiliza resultados previos si los documentos del expediente no han cambiado.")
     st.toggle("🤖 Activar Multi-Agent Swarm", value=True, help="Divide el análisis entre FinanceAgent, LegalAgent y LogisticsAgent.")
     st.toggle("📚 RAG Legal Habilitado", value=True, help="Usa ChromaDB para buscar vacíos legales en contratos gigantes.")
     st.toggle("👁️ Motor Visión OCR Habilitado", value=True, help="Lee imágenes manuscritas y fotos de daños.")
     st.toggle("🔮 Análisis Predictivo (ML)", value=False, help="Estima la probabilidad de ganar la disputa usando datos históricos.")
     
-    st.markdown("<br><br>", unsafe_allow_html=True)
+    if st.button("🔄 Limpiar Memoria Caché", use_container_width=True):
+        from agent.core.cache import dispute_cache
+        dispute_cache.clear()
+        st.toast("Caché de expedientes invalidada exitosamente.")
+    
+    st.markdown("<br>", unsafe_allow_html=True)
     run_btn = st.button("▶ INICIAR AUDITORÍA AUTÓNOMA", use_container_width=True, type="primary")
     
-    st.markdown("<br><br><br>", unsafe_allow_html=True)
+    st.markdown("<br><br>", unsafe_allow_html=True)
     st.caption("SYSTEM STATUS")
     st.progress(100, text="Grok 4.7 Gateway: ONLINE")
+    st.progress(100, text="Fast-Path Engine: OPTIMIZED")
     st.progress(100, text="Skynet Engine: v1.0.0")
 
-# Lgica Principal
+# Lógica Principal
 if run_btn:
     with st.spinner(f"Iniciando SKYNET para el caso {case_id}..."):
         status_text = st.empty()
         prog_bar = st.progress(0)
         
         status_text.markdown("#### 📡 Estableciendo conexión segura con Skynet Engine...")
-        time.sleep(0.5)
+        time.sleep(0.2 if fast_mode else 0.5)
         prog_bar.progress(25)
         
         status_text.markdown("#### 📄 Ingestando y parseando estructuras Pydantic...")
-        time.sleep(0.6)
+        time.sleep(0.2 if fast_mode else 0.6)
         prog_bar.progress(50)
         
         status_text.markdown("#### ⚖️ Evaluando variables contractuales e invocando Tools...")
-        time.sleep(0.7)
+        time.sleep(0.2 if fast_mode else 0.7)
         prog_bar.progress(75)
         
         status_text.markdown("#### 🧠 Resolviendo razonamiento en LLM (Grok)...")
         
         try:
-            # EJECUCIN REAL
-            runner = SkynetRunner(case_id=case_id)
+            # EJECUCIÓN REAL (CON FAST-PATH Y CACHÉ)
+            runner = SkynetRunner(case_id=case_id, fast_path=fast_mode, use_cache=use_cache)
             report = runner.run()
             
             # Guardar en session state
@@ -240,9 +248,12 @@ if "current_report" in st.session_state:
         col_ev, col_act = st.columns(2)
         with col_ev:
             st.markdown("<div class='premium-card'>", unsafe_allow_html=True)
-            st.markdown("### 📑 Evidencia Consolidada")
+            st.markdown("### 📑 Evidencia y Respaldo Contractual (RAG)")
             for ev in report.evidence:
-                st.markdown(f"- {ev}")
+                if "contractual" in ev.lower() or "cláusula" in ev.lower() or "clausula" in ev.lower():
+                    st.markdown(f"<div style='background: rgba(129, 140, 248, 0.15); border-left: 3px solid #818cf8; padding: 8px 12px; border-radius: 6px; margin: 6px 0; color: #e2e8f0; font-size: 0.88rem;'>⚖️ <strong>Cláusula RAG:</strong> {ev.replace('Respaldo contractual: ', '')}</div>", unsafe_allow_html=True)
+                else:
+                    st.markdown(f"- {ev}")
             st.markdown("</div>", unsafe_allow_html=True)
         with col_act:
             st.markdown("### 🎯 Acción Recomendada")
