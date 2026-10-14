@@ -68,13 +68,41 @@ def test_api_tribunal_evaluation():
 
 
 def test_api_chat():
-    """Valida el endpoint conversacional interactivo."""
+    """Valida el endpoint conversacional interactivo básico."""
     payload = {"message": "¿Cuál es la causa raíz de la discrepancia?"}
     response = client.post("/api/cases/case_001/chat", json=payload)
     assert response.status_code == 200
     data = response.json()
     assert "reply" in data
     assert len(data["reply"]) > 10
+
+
+def test_api_chat_judge_auditor_role():
+    """Valida el endpoint conversacional con rol de Jurado & Auditor."""
+    payload = {
+        "message": "¿Cómo se garantiza cero alucinación y qué evaluó el Tribunal Colegiado?",
+        "role": "judge_auditor"
+    }
+    response = client.post("/api/cases/case_002/chat", json=payload)
+    assert response.status_code == 200
+    data = response.json()
+    assert "reply" in data
+    assert "role" in data
+    assert data["role"] == "judge_auditor"
+    assert len(data.get("sources", [])) > 0
+
+
+def test_api_chat_product_breakdown():
+    """Valida la consulta de desglose producto por producto."""
+    payload = {
+        "message": "Desglósame producto por producto qué se facturó y qué se entregó",
+        "role": "senior_analyst"
+    }
+    response = client.post("/api/cases/case_002/chat", json=payload)
+    assert response.status_code == 200
+    data = response.json()
+    assert "reply" in data
+    assert "PROD-" in data["reply"] or "Facturado" in data["reply"] or "Desglose" in data["reply"]
 
 
 def test_api_export_email_draft():
