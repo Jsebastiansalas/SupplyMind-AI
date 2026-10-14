@@ -4,78 +4,52 @@
 
 @layer base {
   body {
-    background: radial-gradient(circle at 50% 0%, #0f172a 0%, #020617 75%);
+    background-color: #0c0d10;
+    color: #e5e7eb;
     min-height: 100vh;
     overflow-x: hidden;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   }
 }
 
-/* Glassmorphism Cards & Panels */
-.glass-card {
-  background: rgba(15, 23, 42, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+/* Institutional Sovereign Ledger Cards */
+.ledger-card {
+  background: #141519;
+  border: 1px solid #23252c;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.45);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
-.glass-card:hover {
-  border-color: rgba(56, 189, 248, 0.3);
-  box-shadow: 0 12px 35px -8px rgba(56, 189, 248, 0.15);
+.ledger-card:hover {
+  border-color: #353742;
 }
 
-.glass-panel {
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.ledger-panel {
+  background: #101114;
+  border: 1px solid #1e2026;
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - Discreet Graphite */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(2, 6, 23, 0.5);
+  background: #0c0d10;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.25);
-  border-radius: 9999px;
+  background: #282a33;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(56, 189, 248, 0.5);
+  background: #3e414f;
 }
 
-/* Neon Text Gradient */
-.gradient-text-cyan {
-  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gradient-text-emerald {
-  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gradient-text-amber {
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Subtle Shimmer Animation */
-@keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-.animate-shimmer {
-  animation: shimmer 2s infinite;
+/* Gold Accent Line / Highlight */
+.gold-accent-line {
+  background: linear-gradient(90deg, #d4af37 0%, rgba(212, 175, 55, 0.2) 100%);
 }

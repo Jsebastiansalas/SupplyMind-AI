@@ -43,11 +43,11 @@ export const apiClient = {
     return res.json();
   },
 
-  async sendChatMessage(caseId, message, history = []) {
+  async sendChatMessage(caseId, message, history = [], role = 'senior_analyst') {
     const res = await fetch(`${BASE_URL}/cases/${caseId}/chat`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message, history }),
+      body: JSON.stringify({ message, history, role }),
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return res.json();
