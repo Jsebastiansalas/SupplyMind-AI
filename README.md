@@ -4,6 +4,29 @@
 
 ---
 
+## 🎯 Entregable Semana 1 (S1) — Agent Challenge
+
+> **Pitch S1:**  
+> *"Nuestro agente busca resolver las disputas comerciales y deducciones arbitrarias en cadenas de suministro B2B. Le damos un expediente de documentos comerciales (factura, orden de compra, remisión física y contrato), utiliza **Grok 4.7** para auditar la jerarquía probatoria y conciliar con cero alucinación matemática, y obtenemos un dictamen formal con la causa raíz, el saldo recuperable y la acción comercial recomendada."*
+
+### ✅ Checklist Oficial Semana 1 (100% Cumplido):
+- [x] **Flujo End-to-End funcional:** Entrada de documentos ➡️ Razonamiento agéntico con Grok ➡️ Salida formal estructurada.
+- [x] **Conexión real con Grok:** Conectado a la API oficial de Platica Gateway (`https://api.reto.pltk.mx/v1`) con el modelo `grok-4.7` vía Tool Calling.
+- [x] **Entrada y Salida comprobable:** Ejecutable en CLI (`python main.py case_001`) y en Web UI (`http://localhost:8000`).
+- [x] **Repositorio público:** Código estructurado, probado y publicado en GitHub.
+- [x] **README explicativo:** Problema de negocio, arquitectura agéntica, separación determinística y guía de inicio rápido.
+
+### ⚡ Prueba Rápida del Flujo End-to-End (1 solo comando):
+```bash
+# Ejecutar el agente en vivo con Grok:
+python main.py case_001
+
+# O correr la suite automatizada del Jurado / Mentores:
+python scripts/evaluar_jurado.py
+```
+
+---
+
 ## 📌 1. El Problema
 
 En las cadenas de suministro B2B (fabricantes, distribuidores y grandes cadenas de retail), las entregas de mercancía generan continuamente **discrepancias financieras y operativas** entre:

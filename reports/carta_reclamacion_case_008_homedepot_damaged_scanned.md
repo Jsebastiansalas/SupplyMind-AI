@@ -1,6 +1,6 @@
 # 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
 **Ref: Expediente de Cartera case_008_homedepot_damaged_scanned / Factura INV-HD-2026-9041**  
-**Fecha:** 13 de October de 2026  
+**Fecha:** 16 de October de 2026  
 **De:** Departamento de Cartera y Asuntos Comerciales — CERAMICAS_DEL_NORTE_SA  
 **Para:** Gerencia de Cuentas por Pagar y Conciliación — HOME_DEPOT_MEXICO  
 

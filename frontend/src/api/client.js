@@ -65,6 +65,58 @@ export const apiClient = {
     return res.json();
   },
 
+  async simulateDispute(payload) {
+    const res = await fetch(`${BASE_URL}/sandbox/simulate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async getUnitEconomics() {
+    const res = await fetch(`${BASE_URL}/telemetry/unit-economics`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async uploadCase(formData) {
+    const res = await fetch(`${BASE_URL}/cases/upload`, {
+      method: 'POST',
+      body: formData,
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: 'Error al subir caso' }));
+      throw new Error(err.detail || `HTTP ${res.status}`);
+    }
+    return res.json();
+  },
+
+  async createGuidedCase(payload) {
+    const res = await fetch(`${BASE_URL}/cases/create-guided`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: 'Error al generar caso' }));
+      throw new Error(err.detail || `HTTP ${res.status}`);
+    }
+    return res.json();
+  },
+
+  async deleteCase(caseId) {
+    const res = await fetch(`${BASE_URL}/cases/${caseId}`, {
+      method: 'DELETE',
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: 'Error al eliminar caso' }));
+      throw new Error(err.detail || `HTTP ${res.status}`);
+    }
+    return res.json();
+  },
+
   getDocumentUrl(caseId, filename) {
     return `${BASE_URL}/cases/${caseId}/documents/${filename}`;
   },

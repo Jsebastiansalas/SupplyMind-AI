@@ -18,7 +18,109 @@ from rich.table import Table
 from agent.core.skynet_runner import SkynetRunner
 from config.settings import settings
 
+import json
+import shutil
+from typing import Optional
+
 console = Console(highlight=False)
+
+def prompt_add_case() -> Optional[str]:
+    """Flujo interactivo en consola para registrar o importar un nuevo caso."""
+    console.print(Panel(
+        "[bold cyan]SupplyMind AI — Centro de Registro de Nuevo Caso[/bold cyan]\n"
+        "[dim]Ingresa tus propios documentos comerciales o parametriza un caso para que el agente lo revise.[/dim]",
+        border_style="yellow"
+    ))
+    console.print("\n[bold white]¿Cómo deseas ingresar el caso?[/bold white]")
+    console.print("  [bold green][1][/bold green] Importar archivos desde una carpeta existente en tu equipo")
+    console.print("  [bold green][2][/bold green] Crear un caso guiado ingresando los montos y datos comerciales")
+    console.print("  [bold red][0][/bold red] Cancelar\n")
+    
+    try:
+        console.print("[bold yellow]Selecciona una opción [1-2, o 0 para cancelar]: [/bold yellow]", end="")
+        sub_choice = input().strip()
+    except (EOFError, KeyboardInterrupt):
+        return None
+
+    if sub_choice == "1":
+        console.print("\n[bold white]Ingresa la ruta de la carpeta con tus documentos (PDFs, JSONs, imágenes):[/bold white]")
+        console.print("[dim]Ejemplo: C:\\Users\\USUARIO\\Downloads\\mis_facturas[/dim]")
+        try:
+            folder_path_str = input("Ruta de la carpeta: ").strip().strip('"').strip("'")
+            src_folder = Path(folder_path_str)
+            if not src_folder.exists() or not src_folder.is_dir():
+                console.print(f"[bold red]Error: La ruta '{folder_path_str}' no existe o no es un directorio.[/bold red]\n")
+                return None
+            
+            case_name = input("Identificador para el caso (ej. case_mi_cliente): ").strip()
+            if not case_name:
+                case_name = f"case_{src_folder.name.lower()}"
+            if not case_name.startswith("case_"):
+                case_name = f"case_{case_name}"
+            
+            dest_dir = settings.DATA_DIR / case_name
+            dest_dir.mkdir(parents=True, exist_ok=True)
+            
+            count = 0
+            for item in src_folder.iterdir():
+                if item.is_file():
+                    shutil.copy2(item, dest_dir / item.name)
+                    count += 1
+            
+            meta = {
+                "case_id": case_name,
+                "display_name": case_name.replace("_", " ").title(),
+                "category": "Personalizado",
+                "description": f"Expediente importado desde '{src_folder.name}' con {count} documentos."
+            }
+            with open(dest_dir / "meta.json", "w", encoding="utf-8") as f:
+                json.dump(meta, f, indent=2, ensure_ascii=False)
+                
+            console.print(f"[bold green]✓ Caso registrado con éxito en '{dest_dir}' ({count} archivos adjuntados).[/bold green]\n")
+            return case_name
+        except Exception as e:
+            console.print(f"[bold red]Error al importar archivos: {e}[/bold red]\n")
+            return None
+
+    elif sub_choice == "2":
+        try:
+            console.print("\n[bold cyan]--- Parametrización Guiada de Disputa ---[/bold cyan]")
+            c_id = input("ID del caso [ej. case_mi_empresa]: ").strip() or "case_mi_empresa"
+            if not c_id.startswith("case_"):
+                c_id = f"case_{c_id}"
+            
+            billed_val = float(input("Monto Facturado en USD [ej. 10000]: ") or "10000")
+            paid_val = float(input("Monto Pagado en USD [ej. 8500]: ") or "8500")
+            missing_val = float(input("Faltante físico en remisión USD [ej. 1000]: ") or "1000")
+            unauth_val = float(input("Penalización/Deducción arbitraria USD [ej. 500]: ") or "500")
+            
+            from api.routes.cases import create_guided_case, GuidedCaseRequest, GuidedCaseItem
+            req = GuidedCaseRequest(
+                case_id=c_id,
+                display_name=c_id.replace("_", " ").title(),
+                category="Personalizado",
+                description=f"Caso generado con facturado ${billed_val:,.2f} y pagado ${paid_val:,.2f}",
+                items=[
+                    GuidedCaseItem(
+                        item_id="PROD-001",
+                        description="Lote de Mercancía General",
+                        ordered_quantity=100,
+                        delivered_quantity=90 if missing_val > 0 else 100,
+                        missing_quantity=10 if missing_val > 0 else 0,
+                        agreed_unit_price=billed_val / 100.0,
+                    )
+                ],
+                amount_paid=paid_val,
+                unauthorized_penalty=unauth_val,
+                unauthorized_penalty_reason="Retención unilateral no justificada en contrato"
+            )
+            create_guided_case(req)
+            console.print(f"[bold green]✓ Expediente '{c_id}' creado exitosamente con sus 5 documentos comerciales verificados.[/bold green]\n")
+            return c_id
+        except Exception as e:
+            console.print(f"[bold red]Error al parametrizar caso: {e}[/bold red]\n")
+            return None
+    return None
 
 def main():
     args = sys.argv[1:]
@@ -28,16 +130,18 @@ def main():
     is_ask = any(a.lower() in ["ask", "--ask", "-q", "pregunta"] for a in args)
     is_calibrate = any(a.lower() in ["calibrar", "--calibrar", "benchmark", "--benchmark", "train"] for a in args)
     is_evaluate = any(a.lower() in ["evaluar", "--evaluar", "demo", "--demo", "verify"] for a in args)
+    is_add_case = any(a.lower() in ["--add-case", "--nuevo-caso", "-n", "nuevo", "importar"] for a in args)
 
-    # 0. Modo Evaluación Integral para Jurados
-    if is_evaluate:
-        from scripts.evaluar_jurado import run_jury_evaluation
-        run_jury_evaluation()
-        return
-    
-    # Extraer case_id de argumentos si existe (default: case_001)
-    case_id = "case_001"
-    explicit_case = False
+    # 0. Modo Registro de Nuevo Caso directo por flag
+    if is_add_case:
+        created_id = prompt_add_case()
+        if not created_id:
+            return
+        case_id = created_id
+        explicit_case = True
+    else:
+        case_id = "case_001"
+        explicit_case = False
     for a in args:
         if Path(a).is_dir():
             # Si el argumento es un directorio existente (ej. ruta absoluta o relativa)
@@ -83,13 +187,14 @@ def main():
                 "  [bold green][7][/bold green] [bold white]case_006_walmart_otif_pricing[/bold white] : [bold cyan]PDF Real[/bold cyan] (Walmart OTIF y Sobreprecio)\n"
                 "  [bold green][8][/bold green] [bold white]case_007_cisco_large_bundle[/bold white] : [bold cyan]PDF Masivo Multi-Pág.[/bold cyan] (Cisco $125k, Nombres Arbitrarios y Clasificación Autónoma)\n"
                 "  [bold green][9][/bold green] [bold white]case_008_homedepot_damaged_scanned[/bold white] : [bold cyan]Visión OCR Multimodal[/bold cyan] (Home Depot $42k, Remisión Papel Escaneada con Sello de Muelle)\n"
+                "  [bold yellow][N][/bold yellow] [bold white]Poner / Importar Nuevo Caso[/bold white] : [bold yellow]Cargar tus propios documentos o crear caso guiado[/bold yellow]\n"
                 "  [bold red][0][/bold red] Salir\n",
                 title="[bold green]Menú de Selección de Caso[/bold green]",
                 border_style="cyan"
             )
             console.print(hub_panel)
             try:
-                console.print("[bold yellow]Ingresa una opción [1-9, o Enter para Caso 1]: [/bold yellow]", end="")
+                console.print("[bold yellow]Ingresa una opción [1-9, N para Nuevo, o Enter para Caso 1]: [/bold yellow]", end="")
                 choice = input().strip()
             except (EOFError, KeyboardInterrupt):
                 choice = "0"
@@ -97,6 +202,11 @@ def main():
             if choice == "0":
                 console.print("\n[dim]Sesión finalizada por el usuario.[/dim]\n")
                 return
+            elif choice.lower() in ["n", "nuevo", "importar", "add", "+"]:
+                created_id = prompt_add_case()
+                if not created_id:
+                    return
+                case_id = created_id
             elif choice in ["2", "case_002", "c2"]:
                 case_id = "case_002"
             elif choice in ["3", "case_003", "c3"]:

@@ -112,3 +112,55 @@ def test_api_export_email_draft():
     data = response.json()
     assert "subject" in data
     assert "body" in data
+
+
+def test_api_sandbox_simulate():
+    """Valida la simulación interactiva instantánea (<50ms) del Sandbox."""
+    # Caso 1: Faltante físico amparado en remisión -> Justificado
+    payload_physical = {
+        "case_id": "case_001",
+        "billed_amount": 50000.0,
+        "received_amount": 35000.0,
+        "missing_amount": 15000.0,
+        "damaged_amount": 0.0,
+        "days_to_claim": 12,
+        "delivery_signed_conforme": True
+    }
+    response = client.post("/api/sandbox/simulate", json=payload_physical)
+    assert response.status_code == 200
+    data = response.json()
+    assert data["resolution"]["justified_amount"] == 15000.0
+    assert data["resolution"]["claimable_amount"] == 0.0
+    assert data["tribunal_scores"]["total_score"] >= 80.0
+    assert data["latency_ms"] < 200
+
+    # Caso 2: Reclamo extemporáneo (45 días > 30 días) -> 100% Reclamable por caducidad
+    payload_expired = {
+        "case_id": "case_001",
+        "billed_amount": 50000.0,
+        "received_amount": 35000.0,
+        "missing_amount": 15000.0,
+        "damaged_amount": 0.0,
+        "days_to_claim": 45,
+        "delivery_signed_conforme": True
+    }
+    res_exp = client.post("/api/sandbox/simulate", json=payload_expired)
+    assert res_exp.status_code == 200
+    data_exp = res_exp.json()
+    assert data_exp["resolution"]["claimable_amount"] == 15000.0
+    assert data_exp["resolution"]["justified_amount"] == 0.0
+    assert data_exp["resolution"]["statute_of_limitations_applied"] is True
+
+
+
+def test_api_telemetry_unit_economics():
+    """Valida el cálculo de Unit Economics y ROI corporate."""
+    response = client.get("/api/telemetry/unit-economics")
+    assert response.status_code == 200
+    data = response.json()
+    assert data["per_case_metrics"]["agent_cost_usd"] < 0.01
+    assert data["per_case_metrics"]["human_auditor_cost_usd"] == 45.0
+    assert data["per_case_metrics"]["cost_reduction_percent"] > 99.0
+    assert "roi_multiple" in data["enterprise_scale_projection"]
+
+

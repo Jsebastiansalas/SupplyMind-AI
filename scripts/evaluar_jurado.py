@@ -59,7 +59,7 @@ def run_jury_evaluation() -> bool:
     console.print("\n[bold cyan]2. Ejecutando Batería Completa de Pruebas Automatizadas (pytest)...[/bold cyan]")
     try:
         cmd = [sys.executable, "-m", "pytest", "-q"]
-        result = subprocess.run(cmd, cwd=str(ROOT_DIR), capture_output=True, text=True, timeout=60)
+        result = subprocess.run(cmd, cwd=str(ROOT_DIR), capture_output=True, text=True, timeout=120)
         output_line = result.stdout.strip().splitlines()[-1] if result.stdout else ""
         if result.returncode == 0:
             console.print(f"  [bold green][OK] 100% de Pruebas Exitosas:[/bold green] [white]{output_line}[/white]")

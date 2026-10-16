@@ -5,7 +5,7 @@ from pathlib import Path
 from data.models import CommercialContract, ContractClause
 from tools.reconciliation_engine.engine import ReconciliationSummary, LineItemDiscrepancy
 from tools.contract_analyzer.rules import evaluate_contract_compliance, ClauseMatch, ContractEvaluationResult
-from tools.contract_analyzer.rag import ContractRAG, VectorContract
+from tools.contract_analyzer.rag import ContractRAG, VectorContract, chromadb
 
 CASE_004_DIR = Path("data/cases/case_004_enterprise")
 
@@ -169,6 +169,8 @@ def test_enterprise_rag_case_004_vector_contract():
     """
     if not CASE_004_DIR.exists() or not (CASE_004_DIR / "contract.md").exists():
         pytest.skip("case_004_enterprise no disponible")
+    if chromadb is None:
+        pytest.skip("ChromaDB no disponible en este entorno")
 
     rag = ContractRAG()
     vector_contract = rag.ingest_contract_markdown("case_004_enterprise", CASE_004_DIR / "contract.md")
@@ -203,6 +205,8 @@ def test_commercial_contract_rag_ingestion():
     Valida la capacidad de ContractRAG para ingerir modelos CommercialContract
     directamente en ChromaDB y realizar búsquedas ricas.
     """
+    if chromadb is None:
+        pytest.skip("ChromaDB no disponible en este entorno")
     rag = ContractRAG()
     contract = CommercialContract(
         contract_id="CTR-RAG-TEST-099",
