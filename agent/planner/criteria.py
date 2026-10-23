@@ -40,6 +40,13 @@ CRITERIOS Y MATRIZ DE DECISIÓN COMERCIAL SENIOR:
 4. ESTRATEGIA DE MITIGACIÓN DE RIESGO COMERCIAL (RELACIÓN PROVEEDOR-RETAILER):
    - Priorizar siempre soluciones comerciales constructivas (emisión de Notas de Crédito y saneamiento contable) sobre confrontaciones legales o cobros coactivos cuando la evidencia física demuestre que el comprador tiene la razón.
    - Reservar la objeción formal y el reclamo de cobro exclusivamente para saldos sin respaldo probatorio.
+
+5. TRATAMIENTO DE EXPEDIENTES MASIVOS Y DOCUMENTOS B2B GIGANTES (MULTI-SKU & MULTI-DOCK):
+   - Consolidación Exhaustiva Multi-SKU: En expedientes de alto volumen (20 a 100+ renglones), auditar individualmente cada SKU cruzando cantidad facturada, recibida y precio pactado en PO. Nunca generalizar discrepancias ni redondear centavos.
+   - Entregas Multi-Muelle y Tarimas: Cuando una remisión ampare decenas de tarimas, la prueba plena requiere el acta circunstanciada o firma de muelle especificando los SKUs y cantidades exactas recibidas de menos.
+   - Fiscalidad y Notas de Crédito (IVA 16%): Toda emisión de Nota de Crédito comercial debe acompañarse del cálculo riguroso de la base gravable y el traslado del 16% de IVA conforme al Art. 1° de la Ley del IVA y la norma contable NIF C-3.
+   - Nulidad de Pronto Pago Arbitrario: Todo descuento financiero unilateral por pronto pago no pactado expresamente por la tesorería del proveedor es improcedente y debe ser reclamado al 100% de inmediato.
+   - Invalidación de Penalidades EDI/ASN sin Adenda: Los cargos o multas por transmisión de avisos de embarque (ASN) o retrasos de muelle carecen de fuerza vinculante si no están respaldados por una adenda bilateral suscrita por ambas partes.
 """
 
 from typing import Dict, Any, List, Optional

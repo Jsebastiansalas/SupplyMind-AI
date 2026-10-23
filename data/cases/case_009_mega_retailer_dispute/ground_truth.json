@@ -1,0 +1,25 @@
+{
+  "case_id": "case_009_mega_retailer_dispute",
+  "category": "COMPOUND_MIXED",
+  "billed_amount": "385000.00",
+  "received_amount": "360000.00",
+  "difference": "-25000.00",
+  "expected_justified_amount": "12000.00",
+  "expected_claimable_amount": "13000.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "SKU-IND-010": "5000.00",
+    "SKU-IND-022": "3000.00",
+    "SKU-IND-035": "4000.00"
+  },
+  "claimable_breakdown": {
+    "DED-EARLY-SETTLE": "8500.00",
+    "DED-ASN-PENALTY": "4500.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-4.2",
+    "CLAUSE-7.2",
+    "CLAUSE-7.3"
+  ],
+  "recommended_commercial_action": "EMIT_CREDIT_NOTE_AND_RECOVERY_LETTER"
+}

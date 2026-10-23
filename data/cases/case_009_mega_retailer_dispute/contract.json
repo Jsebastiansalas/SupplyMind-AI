@@ -1,0 +1,51 @@
+{
+  "contract_id": "CTR-MASTER-GLOBAL-2026",
+  "vendor_id": "TECH-ENTERPRISE-SUPPLY-MX",
+  "customer_id": "RETAIL-GLOBAL-CORPORATION",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-3.1",
+      "title": "Ajuste Estricto a Precios de Orden de Compra",
+      "text": "Los precios unitarios acordados en la Orden de Compra formalmente aceptada regirán de manera irrevocable sobre cualquier catálogo previo.",
+      "policy": "PRICE_VARIANCE",
+      "tolerance_percentage": 0.0
+    },
+    {
+      "clause_id": "CLAUSE-4.2",
+      "title": "Deducción por Faltantes Físicos con Remisión Firmada",
+      "text": "El comprador queda expresamente facultado para retener o deducir del pago el valor de las unidades faltantes, siempre y cuando consten debidamente anotadas y circunstanciadas en la remisión de entrega firmada y sellada por el transportista al momento de la descarga.",
+      "policy": "SHORTAGE_TOLERANCE",
+      "tolerance_percentage": 0.0
+    },
+    {
+      "clause_id": "CLAUSE-5.1",
+      "title": "Ventana de Notificación de Averías y Daños",
+      "text": "Cualquier daño o avería no aparente deberá ser reportado por escrito con respaldo fotográfico fehaciente dentro de las 48 horas siguientes a la descarga en bodega.",
+      "policy": "DAMAGED_GOODS",
+      "tolerance_percentage": 0.0
+    },
+    {
+      "clause_id": "CLAUSE-7.2",
+      "title": "Condiciones de Descuento por Pronto Pago",
+      "text": "Los descuentos financieros por pronto pago requerirán autorización expresa previa y por escrito de la tesorería del proveedor. Las deducciones unilaterales por pronto pago son improcedentes y nulas.",
+      "policy": "EARLY_PAYMENT_TERMS",
+      "tolerance_percentage": 0.0
+    },
+    {
+      "clause_id": "CLAUSE-7.3",
+      "title": "Prohibición de Penalizaciones Unilaterales Operativas",
+      "text": "Queda estrictamente prohibida la imposición de multas, cargos por EDI, penalizaciones logísticas o cargos administrativos de forma unilateral sin un debido proceso de conciliación bilateral y acuerdo mutuo suscrito entre las partes.",
+      "policy": "UNILATERAL_PENALTIES",
+      "tolerance_percentage": 0.0
+    },
+    {
+      "clause_id": "CLAUSE-8.2",
+      "title": "Ventana de Reclamación y Caducidad Procesal (Notice Window)",
+      "text": "Toda controversia o deducción deberá notificarse formalmente dentro de los 30 días naturales posteriores a la entrega. Transcurrido dicho plazo, precluye el derecho de reclamo.",
+      "policy": "NOTICE_WINDOW",
+      "tolerance_percentage": 0.0
+    }
+  ]
+}

@@ -13,5 +13,6 @@
   "justified_amount": "800.00",
   "claimable_amount": "0.00",
   "confidence": 0.98,
-  "recommended_action": "Aceptar deducción de $800.00 USD en cuentas por cobrar y emitir Nota de Crédito comercial por dicho valor a favor del cliente para conciliar y cerrar la cuenta."
+  "recommended_action": "Aceptar deducción de $800.00 USD en cuentas por cobrar y emitir Nota de Crédito comercial por dicho valor a favor del cliente para conciliar y cerrar la cuenta.",
+  "concessions": []
 }

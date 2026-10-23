@@ -61,13 +61,19 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--budget",
         type=float,
-        default=1.00,
+        default=getattr(settings, "BUDGET_LIMIT_USD", 5.00),
         help="Presupuesto máximo asignado en USD para la sesión",
+    )
+    parser.add_argument(
+        "--elite",
+        action="store_true",
+        default=True,
+        help="Entrenar y evaluar exclusivamente la cartera de élite (2 casos más exigentes + 2 casos reales)",
     )
     parser.add_argument(
         "--cases",
         type=int,
-        default=2,
+        default=4,
         help="Número de casos adversariales a generar y entrenar",
     )
     parser.add_argument(
@@ -99,7 +105,12 @@ def parse_args() -> argparse.Namespace:
 
 def render_header(args: argparse.Namespace) -> None:
     mode_str = "[bold yellow]SIMULACIÓN DETERMINÍSTICA ($0.00 USD)[/bold yellow]" if args.simulate else "[bold green]LIVE API GROK 4.7 GATEWAY[/bold green]"
-    curr_str = "[bold magenta]CURRICULUM 5 NIVELES[/bold magenta]" if args.curriculum else f"[bold cyan]BATERÍA ADVERSARIAL ({args.cases} casos)[/bold cyan]"
+    if args.curriculum:
+        curr_str = "[bold magenta]CURRICULUM 6 NIVELES (ENTERPRISE DOCKET)[/bold magenta]"
+    elif args.elite:
+        curr_str = "[bold cyan]CARTERA ÉLITE (2 MÁS EXIGENTES + 2 REALES)[/bold cyan]"
+    else:
+        curr_str = f"[bold cyan]BATERÍA ADVERSARIAL ({args.cases} casos)[/bold cyan]"
 
     console.print(Panel(
         f"[bold white]SupplyMind AI — Multi-Agent Adversarial Training & Collegiate Calibration[/bold white]\n\n"
@@ -144,12 +155,76 @@ def run_training_session(args: argparse.Namespace) -> int:
 
     # Selección de casos a evaluar
     if args.curriculum:
-        console.print("\n[bold]Ejecutando recorrido curricular en 5 niveles progresivos...[/bold]\n")
+        console.print("\n[bold]Ejecutando recorrido curricular en 6 niveles progresivos (incluye Tier 6 Enterprise Mega Docket)...[/bold]\n")
         curriculum_res = trainer.train_full_curriculum(
             cases_per_tier=max(1, args.cases // 5 or 1),
             simulate=args.simulate,
         )
         evaluated_records = curriculum_res["results"]
+    elif args.elite:
+        console.print("\n[bold cyan]Evaluando y Calibrando los 4 Casos de Élite (2 Más Exigentes + 2 Reales)...[/bold cyan]\n")
+        from tools.document_reader.reader import load_case_documents
+        from agent.training.factory.ground_truth import GroundTruth, DiscrepancyCategory, CommercialActionType
+        from tools.reconciliation_engine.engine import reconcile_dispute_data
+
+        elite_targets = [
+            ("case_009_mega_retailer_dispute", "Exigente: 40 SKUs Mega Retailer ($385k)", DiscrepancyCategory.MIXED),
+            ("case_007_cisco_large_bundle", "Exigente: Cisco Large Infrastructure ($125k)", DiscrepancyCategory.MIXED),
+            ("case_005_amazon_shortage", "Real: Amazon Fulfillment Center ($48k)", DiscrepancyCategory.PHYSICAL_SHORTAGE),
+            ("case_006_walmart_otif_pricing", "Real: Walmart OTIF & Unit Price ($64.5k)", DiscrepancyCategory.PRICE_MISMATCH),
+        ]
+
+        for cid, typ_name, disc_cat in elite_targets:
+            case_docs = load_case_documents(cid)
+            gt_file = ROOT_DIR / "data" / "cases" / cid / "ground_truth.json"
+            if gt_file.exists():
+                with open(gt_file, "r", encoding="utf-8") as f:
+                    gt_json = json.load(f)
+                gt = GroundTruth(
+                    case_id=cid,
+                    category=disc_cat,
+                    difficulty_level=5,
+                    billed_amount=Decimal(str(gt_json["billed_amount"])),
+                    received_amount=Decimal(str(gt_json["received_amount"])),
+                    difference=Decimal(str(gt_json["difference"])),
+                    expected_justified_amount=Decimal(str(gt_json["expected_justified_amount"])),
+                    expected_claimable_amount=Decimal(str(gt_json["expected_claimable_amount"])),
+                    expected_primary_category=disc_cat,
+                    expected_commercial_action=(
+                        CommercialActionType.MIXED_RESOLUTION
+                        if "MIXED" in str(gt_json.get("category", "")).upper() or "RECOVERY" in str(gt_json.get("recommended_commercial_action", "")).upper()
+                        else CommercialActionType.CREDIT_NOTE
+                    ),
+                    expected_contract_validity=True,
+                )
+            else:
+                rec = reconcile_dispute_data(
+                    invoice=case_docs["invoice"],
+                    purchase_order=case_docs["purchase_order"],
+                    delivery=case_docs["delivery"],
+                    payment=case_docs["payment"],
+                )
+                gt = GroundTruth(
+                    case_id=cid,
+                    category=disc_cat,
+                    difficulty_level=5,
+                    billed_amount=rec.billed_amount,
+                    received_amount=rec.received_amount,
+                    difference=rec.difference,
+                    expected_justified_amount=rec.justified_deductions_amount,
+                    expected_claimable_amount=rec.unjustified_deductions_amount,
+                    expected_primary_category=disc_cat,
+                    expected_commercial_action=CommercialActionType.MIXED_RESOLUTION,
+                )
+
+            res = trainer.train_case(
+                case_id=cid,
+                case_docs=case_docs,
+                ground_truth=gt,
+                simulate=args.simulate,
+            )
+            res["typology"] = typ_name
+            evaluated_records.append(res)
     else:
         console.print(f"\n[bold]Generando y evaluando batería de {args.cases} casos de frontera...[/bold]\n")
         typologies = [

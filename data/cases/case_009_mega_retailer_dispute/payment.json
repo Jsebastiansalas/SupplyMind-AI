@@ -1,0 +1,24 @@
+{
+  "payment_id": "PAY-SETTLE-88190",
+  "invoice_reference": "INV-MEGA-2026-9001",
+  "payment_date": "2026-03-20",
+  "currency": "USD",
+  "amount_paid": 360000.0,
+  "deductions": [
+    {
+      "code": "DED-DOCK-SHORTAGE",
+      "amount": 12000.0,
+      "reason": "Dock Shortage: 20x SKU-IND-010, 15x SKU-IND-022, 10x SKU-IND-035"
+    },
+    {
+      "code": "DED-EARLY-SETTLE",
+      "amount": 8500.0,
+      "reason": "Unauthorized Early Settlement Discount 3% (No pactado)"
+    },
+    {
+      "code": "DED-ASN-PENALTY",
+      "amount": 4500.0,
+      "reason": "Unilateral EDI Inbound ASN Defect Fee (Sin adenda bilateral)"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "case_id": "case_007_cisco_large_bundle",
+  "category": "COMPOUND_MIXED",
+  "billed_amount": "125000.00",
+  "received_amount": "98000.00",
+  "difference": "-27000.00",
+  "expected_justified_amount": "13000.00",
+  "expected_claimable_amount": "14000.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "SKU-ROUTER-CORE": "7500.00",
+    "SKU-FIBER-TRANS": "4000.00",
+    "SKU-SFP-MODULE": "1500.00"
+  },
+  "claimable_breakdown": {
+    "DED-UNAUTH-PENALTY": "14000.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-3.1",
+    "CLAUSE-4.2",
+    "CLAUSE-5.1",
+    "CLAUSE-6.1"
+  ],
+  "recommended_commercial_action": "EMIT_CREDIT_NOTE_AND_RECOVERY_LETTER"
+}

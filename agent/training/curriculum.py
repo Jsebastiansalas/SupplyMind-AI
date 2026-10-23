@@ -107,18 +107,26 @@ class CurriculumManager:
             "key_adversarial_edge": "Mixed Resolution Split (Credit Note + Collection Letter)",
             "mastery_criteria": "Score >= 90.0 (Resolución dividida con exactitud de centavo)",
         },
+        {
+            "tier": 6,
+            "name": "Tier 6: Enterprise Mega Docket Multi-SKU & Compound Resolution",
+            "typology": "enterprise_mega_bundle",
+            "complexity": "Expediente masivo de alta cuantía (12-25 SKUs): múltiples faltantes en muelle con acta, retenciones no pactadas EDI/ASN y pronto pago arbitrario",
+            "key_adversarial_edge": "Massive Multi-SKU Docket Reconciliation & Bifurcated Resolution",
+            "mastery_criteria": "Score >= 90.0 (Auditoría exhaustiva línea a línea y veredicto colegiado unánime)",
+        },
     ]
 
     def __init__(self, synthesizer: Optional[AdversarialCaseSynthesizer] = None):
         self.synthesizer = synthesizer or AdversarialCaseSynthesizer()
 
     def get_available_tiers(self) -> List[Dict[str, Any]]:
-        """Retorna la lista de los 5 niveles curriculares progresivos."""
+        """Retorna la lista de los niveles curriculares progresivos."""
         return list(self.TIER_DEFINITIONS)
 
     def get_tier_info(self, tier: int) -> Dict[str, Any]:
-        """Retorna los metadatos de un nivel específico (1-5)."""
-        idx = max(1, min(5, int(tier))) - 1
+        """Retorna los metadatos de un nivel específico (1-6)."""
+        idx = max(1, min(len(self.TIER_DEFINITIONS), int(tier))) - 1
         return dict(self.TIER_DEFINITIONS[idx])
 
     def get_cases_for_tier(
@@ -130,7 +138,7 @@ class CurriculumManager:
         Genera casos sintéticos correspondientes a la complejidad del nivel solicitado
         utilizando AdversarialCaseSynthesizer.
         """
-        tier_clamped = max(1, min(5, int(tier)))
+        tier_clamped = max(1, min(len(self.TIER_DEFINITIONS), int(tier)))
         tier_meta = self.get_tier_info(tier_clamped)
         typology = tier_meta["typology"]
 
@@ -140,7 +148,7 @@ class CurriculumManager:
             docs, gt = self.synthesizer.generate_case(
                 case_id=case_id,
                 typology=typology,
-                difficulty_level=tier_clamped,
+                difficulty_level=min(5, tier_clamped),
             )
             cases.append(CurriculumCase(case_id=case_id, case_docs=docs, ground_truth=gt, tier=tier_clamped))
 

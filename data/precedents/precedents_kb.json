@@ -1,1 +1,37 @@
-[]
+[
+  {
+    "case_id": "case_009_mega_retailer_dispute",
+    "dispute_type": "COMPOUND_MIXED_MULTI_SKU",
+    "ruling": "Aceptar deducción por faltante físico en 3 SKUs amparado en acta circunstanciada ($12,000.00 USD) emitiendo Nota de Crédito con IVA 16% ($1,920.00 USD); rechazar deducciones unilaterales de pronto pago ($8,500.00 USD) y penalización EDI ($4,500.00 USD) exigiendo pago inmediato de $13,000.00 USD.",
+    "directive": "En expedientes masivos multi-SKU (>20 ítems), auditar cada línea individualmente, separar estrictamente el faltante con remisión circunstanciada de las deducciones financieras y operativas unilaterales, y desglosar la base gravable con 16% de IVA.",
+    "timestamp": "2026-10-22T22:55:00.000000+00:00"
+  },
+  {
+    "case_id": "PREC-UNILATERAL-PENALTY-002",
+    "dispute_type": "UNILATERAL_PENALTY",
+    "ruling": "Toda penalización o cargo por retraso de EDI/ASN no sustentada en adenda bilateral firmada es nula de pleno derecho bajo la Cláusula 7.3 y el Art. 78 del Código de Comercio.",
+    "directive": "Exigir el reembolso íntegro de deducciones operativas impuestas unilateralmente por el retailer.",
+    "timestamp": "2026-10-22T22:55:00.000000+00:00"
+  },
+  {
+    "case_id": "PREC-NOTICE-WINDOW-003",
+    "dispute_type": "EXTEMPORANEOUS_NOTICE",
+    "ruling": "Toda deducción o reclamo por avería o faltante formulado después de la ventana perentoria pactada (30 días naturales s/ Cláusula 8.2) es extemporáneo y carece de validez jurídica.",
+    "directive": "Aplicar preclusión temporal y exigir el cobro coactivo inmediato del saldo retenido fuera de plazo.",
+    "timestamp": "2026-10-22T22:55:00.000000+00:00"
+  },
+  {
+    "case_id": "PREC-ENTERPRISE-BUNDLE-004",
+    "dispute_type": "ENTERPRISE_MULTI_PAGE_BUNDLE",
+    "ruling": "En expedientes consolidados de múltiples páginas (facturas CFDI, órdenes de compra, remisiones multi-muelle y contratos marco), la auditoría debe dividir y vincular cada ítem con su orden de compra pactada y su acuse de recibo de muelle específico.",
+    "directive": "Desglosar la conciliación por muelle y línea documental sin truncamiento de tokens ni generalización de discrepancias.",
+    "timestamp": "2026-10-23T20:45:00.000000+00:00"
+  },
+  {
+    "case_id": "PREC-SPLIT-RESOLUTION-005",
+    "dispute_type": "SPLIT_COMMERCIAL_RESOLUTION",
+    "ruling": "Cuando concurran faltantes físicos comprobados con retenciones unilaterales indebidas, se emitirá de forma simultánea una Nota de Crédito por el saldo amparado y una Carta de Reclamación con requerimiento formal de cobro por el saldo indebido.",
+    "directive": "Bifurcar la respuesta comercial: sanear cartera en lo justificado y exigir reintegro inmediato en lo improcedente sin dilaciones.",
+    "timestamp": "2026-10-23T20:45:00.000000+00:00"
+  }
+]

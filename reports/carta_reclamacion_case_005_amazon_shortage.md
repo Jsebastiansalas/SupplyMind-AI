@@ -1,36 +1,32 @@
-# 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
-**Ref: Expediente de Cartera case_005_amazon_shortage / Factura INV-PAC-2026-4402**  
-**Fecha:** 16 de October de 2026  
-**De:** Departamento de Cartera y Asuntos Comerciales — PACIFIC_TECH_CORP  
-**Para:** Gerencia de Cuentas por Pagar y Conciliación — AMAZON_RETAIL_LLC  
+# CARTA FORMAL DE RECLAMACIÓN Y CONCILIACIÓN COMERCIAL
+**Ref: Expediente de Cartera case_005_amazon_shortage**  
+**Fecha:** 23 de October de 2026  
+**Autorización:** Dirección de Crédito y Cobranza / Human-in-the-Loop  
 
 ---
 
-### Estimados señores de AMAZON_RETAIL_LLC:
+### Estimado Departamento de Cuentas por Pagar:
 
-Por medio de la presente, acusamos recibo del comprobante de liquidación y pago **REM-AMZ-99120** por valor de **$40,500.00 USD**, aplicado contra nuestra factura comercial **INV-PAC-2026-4402** emitida por **$48,000.00 USD**.
+Acusamos recibo de la liquidación bancaria de la factura correspondiente al expediente **`case_005_amazon_shortage`**, por un importe facturado de **$48,000.00 USD** y un monto recibido de **$40,500.00 USD**, registrando una retención neta de **$7,500.00 USD**.
 
-Habiendo realizado la auditoría técnica y contractual correspondiente, les comunicamos que existe una diferencia no conciliada de **$7,500.00 USD**, respecto de la cual fijamos nuestra posición formal:
+Tras la auditoría técnica y la instrucción de la dirección comercial, comunicamos la resolución ejecutiva de la partida:
 
-#### 1. Deducciones Aceptadas y Justificadas: **$5,000.00 USD**
-Aceptamos de plena conformidad la deducción por valor de **$5,000.00 USD**, debidamente amparada en las constancias físicas de entrega del documento **BOL-POD-77319** y conforme a lo pactado contractualmente. Para sanear este importe, estaremos emitiendo a su favor la respectiva **Nota de Crédito comercial**.
+1. **Partidas Aceptadas para Nota de Crédito ($6,250.00 USD):**  
+   Emitiremos de forma inmediata la **Nota de Crédito comercial por $6,250.00 USD**, la cual ampara las deducciones operativas legítimas y las concesiones comerciales autorizadas de común acuerdo para preservar la continuidad de la relación de suministro.
 
-#### 2. Deducciones Objetadas y Saldo Reclamable: **$2,500.00 USD**
-Rechazamos formalmente las deducciones adicionales aplicadas por un importe total de **$2,500.00 USD**, por carecer de soporte probatorio y contrariar los términos del contrato comercial **MSA-AMZ-PAC-2026**:
-- **Causa Raíz:** Discrepancia mixta en expediente case_005_amazon_shortage: Faltante físico comprobado de $5,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $2,500.00 USD sin sustento contractual ni documental.
-- **Fundamentación Contractual:** Evaluación algorítmica y semántica completada. Posible deducción de $2,500.00 requiere análisis final por el Agente.
+2. **Saldo Exigible e Incondicional de Cartera ($1,250.00 USD):**  
+   Rechazamos formalmente las restantes retenciones que carecen de soporte documental y legal. Solicitamos la transferencia complementaria por el importe de **$1,250.00 USD** en un plazo perentorio de 10 días hábiles.
 
-#### 3. Requerimiento de Pago
-En virtud de lo anterior, solicitamos comedidamente realizar la programación y transferencia del saldo retenido injustificadamente por valor de:
+### 🤝 ACUERDO COMERCIAL Y CONCESIÓN MUTUA (HUMAN-IN-THE-LOOP)
+- **Folio de Concesión:** `CONCESS-CASE_005_AMAZON_SHORTAGE-1792793259`
+- **Importe Concedido:** **$1,250.00 USD**
+- **Fundamento Operativo:** Ajuste estratégico de PENALIDAD_EDI_ASN ordenado por operador Human-in-the-Loop
+- **Saldo Original en Litigio:** `$2,500.00 USD`
+- **Saldo Neto Exigible:** **`$1,250.00 USD`**
 
-### 👉 **MONTO TOTAL A REINTEGRAR: $2,500.00 USD**
+**Acción Recomendada:**  
+Resolución Comercial Ajustada con Human-in-the-Loop: Emitir Nota de Crédito global por $6,250.00 USD (incluyendo $5,000.00 USD de faltante físico comprobado y $1,250.00 USD de concesión comercial acordada para preservar la relación de cuenta). Exigir el pago bancario inmediato del saldo neto reclamable de $1,250.00 USD.
 
-Agradecemos que dicho pago se haga efectivo dentro de los siguientes **quince (15) días hábiles** a la recepción de la presente comunicación, o en su defecto, coordinar una mesa técnica de conciliación con nuestro equipo de cartera.
-
-Anexamos a la presente el informe técnico pormenorizado y las copias de la remisión y contrato.
-
-Atentamente,
-
-**ÁREA DE CONCILIACIÓN DE CARTERA Y DISPUTAS COMERCIALES**  
-*PACIFIC_TECH_CORP*  
-*Trazabilidad auditable respaldada por SupplyMind AI*
+Atentamente,  
+**Dirección General de Cuentas por Cobrar y Conciliación Arbitral**  
+*SupplyMind AI Enterprise Platform*

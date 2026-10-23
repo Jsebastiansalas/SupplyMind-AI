@@ -11,5 +11,6 @@
   "justified_amount": "0.00",
   "claimable_amount": "0.00",
   "confidence": 0.0,
-  "recommended_action": "Rechazar expediente. Los archivos JSON base carecen de integridad estructural y fallaron la validación de Esquemas (Pydantic). Verifique los datos de entrada."
+  "recommended_action": "Rechazar expediente. Los archivos JSON base carecen de integridad estructural y fallaron la validación de Esquemas (Pydantic). Verifique los datos de entrada.",
+  "concessions": []
 }

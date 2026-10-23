@@ -1,0 +1,21 @@
+{
+  "case_id": "case_006_walmart_otif_pricing",
+  "category": "COMPOUND_MIXED",
+  "billed_amount": "64500.00",
+  "received_amount": "56500.00",
+  "difference": "-8000.00",
+  "expected_justified_amount": "4500.00",
+  "expected_claimable_amount": "3500.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "SKU-WHEY-2KG": "4500.00"
+  },
+  "claimable_breakdown": {
+    "DED-EARLY-PAY": "3500.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-3.1",
+    "CLAUSE-7.2"
+  ],
+  "recommended_commercial_action": "EMIT_CREDIT_NOTE_AND_RECOVERY_LETTER"
+}

@@ -191,6 +191,26 @@ class GroundTruth(BaseModel):
             data["expected_justified_amount"] = Decimal(str(data["justified_deductions_amount"]))
         if "claimable_deductions_amount" in data and "expected_claimable_amount" not in data:
             data["expected_claimable_amount"] = Decimal(str(data["claimable_deductions_amount"]))
+
+        if "deductions" not in data or not data["deductions"]:
+            just = Decimal(str(data.get("expected_justified_amount", "0.00")))
+            claim = Decimal(str(data.get("expected_claimable_amount", "0.00")))
+            ded_list = []
+            if just > Decimal("0.00"):
+                ded_list.append({
+                    "code": "DED-JUSTIFIED",
+                    "amount": just,
+                    "reason": "Deducción amparada contractualmente",
+                    "is_justified": True,
+                })
+            if claim > Decimal("0.00"):
+                ded_list.append({
+                    "code": "DED-CLAIMABLE",
+                    "amount": claim,
+                    "reason": "Deducción unilateral no pactada",
+                    "is_justified": False,
+                })
+            data["deductions"] = ded_list
             
         return data
 

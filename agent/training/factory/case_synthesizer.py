@@ -47,6 +47,7 @@ class AdversarialCaseSynthesizer:
         "compound_mixed",
         "tolerance_window",
         "price_precedence",
+        "enterprise_mega_bundle",
     ]
 
     def __init__(
@@ -75,12 +76,16 @@ class AdversarialCaseSynthesizer:
                 return "tolerance_window"
             if t_lower in ["6", "price_precedence", "expired_quote", "price_variance", "quote_vs_po"]:
                 return "price_precedence"
+            if t_lower in ["7", "enterprise_mega_bundle", "mega", "enterprise", "extensive", "multi_sku_extensive"]:
+                return "enterprise_mega_bundle"
             for known in self.TYPOLOGY_NAMES:
                 if known in t_lower:
                     return known
 
         # Si no se especificó tipología, derivar determinísticamente del case_id
         c_lower = case_id.lower()
+        if "mega" in c_lower or "extensive" in c_lower or "t6" in c_lower or "enterprise" in c_lower:
+            return "enterprise_mega_bundle"
         if "unsigned" in c_lower or "pod" in c_lower:
             return "unsigned_pod"
         if "damage" in c_lower or "extemp" in c_lower:
@@ -117,6 +122,7 @@ class AdversarialCaseSynthesizer:
             "compound_mixed": self._generate_compound_mixed_case,
             "tolerance_window": self._generate_tolerance_window_case,
             "price_precedence": self._generate_price_precedence_case,
+            "enterprise_mega_bundle": self._generate_enterprise_extensive_case,
         }
 
         generator_fn = dispatch_map.get(resolved_typology, self._generate_unsigned_pod_case)
@@ -925,6 +931,177 @@ class AdversarialCaseSynthesizer:
                 "(Cláusula 3.1); deducción válidamente aplicada que amerita Nota de Crédito."
             ),
             scenario_tags=["price_variance", "po_precedence", "credit_note_issued"],
+        )
+
+        documents = {
+            "invoice": invoice,
+            "purchase_order": po,
+            "delivery": delivery,
+            "payment": payment,
+            "contract": contract,
+        }
+        return documents, gt
+
+    def _generate_enterprise_extensive_case(
+        self, case_id: str, difficulty_level: int = 5
+    ) -> Tuple[Dict[str, Any], GroundTruth]:
+        """
+        Tipología 7 / Tier 6: Expediente Masivo Multi-SKU de Alta Cuantía (Enterprise Extensive Docket).
+        Sintetiza un expediente corporativo complejo con 12 SKUs industriales y tecnológicos,
+        facturación de $185,400.00 USD, con múltiples faltantes físicos amparados por remisión
+        firmada con sello ($5,100.00), cargos unilaterales por transmisión extemporánea de ASN ($1,200.00)
+        y descuento financiero de pronto pago no pactado ($3,700.00). Retención total: $10,000.00 USD.
+        Requiere resolución bifurcada: Nota de Crédito por $5,100.00 USD (con desglose de IVA)
+        y Carta de Cobranza por $4,900.00 USD.
+        Invariantes matemáticos de centavo:
+          expected_justified_amount ($5,100.00) + expected_claimable_amount ($4,900.00) == total_deductions ($10,000.00) == billed_amount ($185,400.00) - received_amount ($175,400.00).
+        """
+        raw_items = [
+            ("SKU-SRV-001", "Servidor Rack 2U Enterprise Dual Xeon 64C", 10, Decimal("4500.00")),     # 45,000
+            ("SKU-NET-002", "Switch Top-of-Rack 48x25G + 6x100G", 8, Decimal("2800.00")),             # 22,400
+            ("SKU-STR-003", "Cabina Almacenamiento All-Flash 24-Bay NVMe", 4, Decimal("6500.00")),     # 26,000
+            ("SKU-PWR-004", "Modulo UPS Online Modular 10kVA", 6, Decimal("1900.00")),                 # 11,400
+            ("SKU-CAB-005", "Gabinete Servidor 42U Blindado", 12, Decimal("750.00")),                  # 9,000
+            ("SKU-SSD-006", "Disco NVMe Enterprise PCIe 7.68TB", 40, Decimal("350.00")),               # 14,000 (Faltante 10 uds = $3,500.00)
+            ("SKU-RAM-007", "Modulo RAM DDR5 64GB 5600MHz ECC", 80, Decimal("180.00")),               # 14,400
+            ("SKU-OPT-008", "Transceptor Optico 100G QSFP28 LR4", 30, Decimal("320.00")),              # 9,600  (Faltante 5 uds = $1,600.00)
+            ("SKU-SEC-009", "Firewall Perimetral NGFW 40Gbps", 2, Decimal("8200.00")),                 # 16,400
+            ("SKU-PDU-010", "PDU Monitoreable Trifasica 32A Zero-U", 20, Decimal("450.00")),           # 9,000
+            ("SKU-KVM-011", "Conmutador Digital IP-KVM 16 Puertos", 5, Decimal("1100.00")),           # 5,500
+            ("SKU-CBL-012", "Troncal Fibra Optica MPO-12 OM4 50m", 30, Decimal("90.00")),             # 2,700
+        ]
+
+        shortages = {
+            "SKU-SSD-006": 10,  # 10 x $350.00 = $3,500.00
+            "SKU-OPT-008": 5,   # 5 x $320.00 = $1,600.00
+        }
+
+        po_ref = f"PO-{case_id.upper()}"
+        inv_ref = f"INV-{case_id.upper()}"
+        del_ref = f"DEL-{case_id.upper()}"
+        pay_ref = f"PAY-{case_id.upper()}"
+        ctr_ref = "CTR-GLOBAL-ENTERPRISE-2026"
+
+        po_items = []
+        inv_items = []
+        gt_lines = []
+        billed_amount = Decimal("0.00")
+
+        for sku, desc, qty, price in raw_items:
+            line_total = Decimal(qty) * price
+            billed_amount += line_total
+            po_items.append(PurchaseOrderItem(
+                item_id=sku,
+                description=desc,
+                ordered_quantity=qty,
+                agreed_unit_price=price,
+                total_price=line_total,
+            ))
+            inv_items.append(InvoiceItem(
+                item_id=sku,
+                description=desc,
+                quantity=qty,
+                unit_price=price,
+                total_price=line_total,
+            ))
+            miss = shortages.get(sku, 0)
+            gt_lines.append(GroundTruthLineItem(
+                item_id=sku,
+                description=desc,
+                invoiced_qty=qty,
+                received_qty=qty - miss,
+                missing_qty=miss,
+                damaged_qty=0,
+                invoiced_price=price,
+                agreed_price=price,
+            ))
+
+        justified_shortage = Decimal("5100.00")  # $3,500 + $1,600
+        fee_asn = Decimal("1200.00")
+        fee_early_discount = Decimal("3700.00")
+        unilateral_charges = fee_asn + fee_early_discount  # $4,900.00
+        total_deductions = justified_shortage + unilateral_charges  # $10,000.00
+        amount_paid = billed_amount - total_deductions  # $175,400.00
+
+        po = PurchaseOrder(
+            po_id=po_ref,
+            vendor_id="VEN-ENTERPRISE-GLOBAL",
+            customer_id="CUST-MEGA-RETAIL",
+            order_date="2026-08-01",
+            currency="USD",
+            items=po_items,
+            total_amount=billed_amount,
+        )
+
+        invoice = Invoice(
+            invoice_id=inv_ref,
+            vendor_id="VEN-ENTERPRISE-GLOBAL",
+            customer_id="CUST-MEGA-RETAIL",
+            po_reference=po_ref,
+            issue_date="2026-08-05",
+            currency="USD",
+            items=inv_items,
+            subtotal=billed_amount,
+            tax=Decimal("0.00"),
+            total_amount=billed_amount,
+        )
+
+        delivery = self.carrier.build_discrepant_delivery_note(
+            delivery_id=del_ref,
+            po_reference=po_ref,
+            po_items=po.items,
+            shortages=shortages,
+            signed=True,
+            discrepancy_reported=True,
+        )
+
+        ded1, ded1_gt = self.retailer.create_shortage_deduction(
+            amount=justified_shortage,
+            reference_doc=del_ref,
+            is_pod_signed=True,
+            units_missing=15,
+            sku="SKU-SSD-006, SKU-OPT-008",
+        )
+        ded2, ded2_gt = self.retailer.create_administrative_fee_deduction(
+            code="DED-LATE-ASN",
+            amount=fee_asn,
+            reason="Penalización administrativa unilateral por transmisión extemporánea de archivo EDI ASN",
+        )
+        ded3, ded3_gt = self.retailer.create_administrative_fee_deduction(
+            code="DED-UNILATERAL-DISCOUNT",
+            amount=fee_early_discount,
+            reason="Descuento financiero de pronto pago aplicado unilateralmente sin autorización de tesorería",
+        )
+
+        payment = self.retailer.build_payment_receipt(
+            payment_id=pay_ref,
+            invoice_reference=inv_ref,
+            invoice_total=billed_amount,
+            deductions=[ded1, ded2, ded3],
+        )
+
+        contract = self.lawyer.generate_standard_contract(contract_id=ctr_ref)
+
+        gt = GroundTruth(
+            case_id=case_id,
+            difficulty_level=min(5, max(1, difficulty_level)),
+            category=DiscrepancyCategory.MIXED,
+            expected_action_type=CommercialActionType.MIXED_RESOLUTION,
+            billed_amount=billed_amount,
+            received_amount=amount_paid,
+            difference=amount_paid - billed_amount,
+            expected_justified_amount=justified_shortage,
+            expected_claimable_amount=unilateral_charges,
+            line_items=gt_lines,
+            deductions=[ded1_gt, ded2_gt, ded3_gt],
+            required_evidence_citations=[inv_ref, del_ref, pay_ref, ctr_ref],
+            required_clause_citations=["CLAUSE-4.2", "CLAUSE-7.3"],
+            evidence_hierarchy_rule_applied=(
+                "Resolución bifurcada obligatoria en expediente masivo multi-SKU: aceptación de deducción justificada ($5,100.00 USD) "
+                "por faltante en remisión firmada con sello (Cláusula 4.2) emitiendo Nota de Crédito, y reclamación formal íntegra ($4,900.00 USD) "
+                "por penalidad EDI y descuento financiero unilateral indebido (Cláusula 7.3)."
+            ),
+            scenario_tags=["enterprise_mega", "multi_sku_extensive", "compound_mixed", "split_resolution"],
         )
 
         documents = {

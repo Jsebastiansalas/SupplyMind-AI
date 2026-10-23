@@ -5,6 +5,8 @@ from tools.document_reader.reader import load_case_documents
 from tools.reconciliation_engine.engine import reconcile_dispute_data
 from tools.contract_analyzer.rules import evaluate_contract_compliance
 from tools.report_generator.generator import build_dispute_report
+from tools.sku_matcher import perform_sku_level_matching
+from tools.notice_window_auditor import audit_notice_window
 
 # Especificación formal JSON-Schema para SKYNET y Grok
 TOOL_DEFINITIONS = [
@@ -81,6 +83,44 @@ TOOL_DEFINITIONS = [
                     }
                 },
                 "required": ["case_id", "root_cause_explanation", "recommended_action"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "audit_notice_window",
+            "description": "Audita la validez temporal del reclamo contra la cláusula de plazos de notificación (Notice Window, típicamente 30 días). Si el comprador notificó fuera de plazo, el reclamo es extemporáneo y nulo de pleno derecho s/ Art. 1043 del Código de Comercio.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "case_id": {
+                        "type": "string",
+                        "description": "Identificador del caso."
+                    },
+                    "notice_window_days": {
+                        "type": "integer",
+                        "description": "Plazo límite pactado en días naturales (por defecto 30)."
+                    }
+                },
+                "required": ["case_id"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "match_skus_and_calculate_tax",
+            "description": "Ejecuta el cotejo matemático determinístico línea a línea por cada SKU individual entre Factura, Remisión y Orden de Compra, calculando faltantes, averías, variaciones de precio y la base gravable con IVA al 16% para emitir la Nota de Crédito correspondiente.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "case_id": {
+                        "type": "string",
+                        "description": "Identificador del caso."
+                    }
+                },
+                "required": ["case_id"]
             }
         }
     }
@@ -228,6 +268,45 @@ class ToolExecutor:
                     "status": "success",
                     "report": report.model_dump(mode="json")
                 }
+
+            elif tool_name == "audit_notice_window":
+                if not self.state.loaded_documents:
+                    self.state.loaded_documents = load_case_documents(case_id)
+                docs = self.state.loaded_documents
+                deliv_dict = docs["delivery"].model_dump() if hasattr(docs["delivery"], "model_dump") else docs["delivery"].__dict__
+                pay_dict = docs["payment"].model_dump() if hasattr(docs["payment"], "model_dump") else docs["payment"].__dict__
+                contract_dict = docs["contract"].model_dump() if hasattr(docs["contract"], "model_dump") else docs["contract"].__dict__
+
+                limit_days = arguments.get("notice_window_days", 30)
+                notice_audit = audit_notice_window(
+                    delivery_data=deliv_dict,
+                    payment_data=pay_dict,
+                    contract_data=contract_dict,
+                    default_limit_days=limit_days
+                )
+                result = {
+                    "status": "success",
+                    "notice_audit": notice_audit.model_dump()
+                }
+
+            elif tool_name == "match_skus_and_calculate_tax":
+                if not self.state.loaded_documents:
+                    self.state.loaded_documents = load_case_documents(case_id)
+                docs = self.state.loaded_documents
+                inv_dict = docs["invoice"].model_dump() if hasattr(docs["invoice"], "model_dump") else docs["invoice"].__dict__
+                deliv_dict = docs["delivery"].model_dump() if hasattr(docs["delivery"], "model_dump") else docs["delivery"].__dict__
+                po_dict = docs["purchase_order"].model_dump() if hasattr(docs["purchase_order"], "model_dump") else docs["purchase_order"].__dict__
+
+                sku_res = perform_sku_level_matching(
+                    invoice_data=inv_dict,
+                    delivery_data=deliv_dict,
+                    po_data=po_dict
+                )
+                result = {
+                    "status": "success",
+                    "sku_matching": sku_res.model_dump()
+                }
+
             else:
                 result = {"status": "error", "message": f"Herramienta desconocida: {tool_name}"}
 

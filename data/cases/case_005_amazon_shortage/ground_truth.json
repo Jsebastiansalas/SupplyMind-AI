@@ -1,0 +1,22 @@
+{
+  "case_id": "case_005_amazon_shortage",
+  "category": "COMPOUND_MIXED",
+  "billed_amount": "48000.00",
+  "received_amount": "40500.00",
+  "difference": "-7500.00",
+  "expected_justified_amount": "5000.00",
+  "expected_claimable_amount": "2500.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "SKU-NVME-4TB": "5000.00"
+  },
+  "claimable_breakdown": {
+    "DED-ASN-PENALTY": "2500.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-4.1",
+    "CLAUSE-5.3",
+    "CLAUSE-7.3"
+  ],
+  "recommended_commercial_action": "EMIT_CREDIT_NOTE_AND_RECOVERY_LETTER"
+}

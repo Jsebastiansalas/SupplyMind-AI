@@ -1,0 +1,23 @@
+{
+  "case_id": "case_009_mega_retailer_dispute",
+  "currency": "USD",
+  "billed_amount": "385000.0",
+  "received_amount": "360000.0",
+  "difference": "-25000.0",
+  "root_cause": "Discrepancia mixta en expediente case_009_mega_retailer_dispute: Faltante físico comprobado de $12,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $13,000.00 USD sin sustento contractual ni documental.",
+  "evidence": [
+    "Faltante físico comprobado en SKU-IND-010 (Industrial Grade PCIe Gen5 4TB SSD): 20 unidades faltantes s/ remisión DEL-MULTI-DOCK-7701 valoradas en $5,000.00",
+    "Faltante físico comprobado en SKU-IND-022 (Industrial Touch Panel PC 21.5-inch): 15 unidades faltantes s/ remisión DEL-MULTI-DOCK-7701 valoradas en $3,000.00",
+    "Faltante físico comprobado en SKU-IND-035 (Heavy Duty Rugged Ethernet Switch): 10 unidades faltantes s/ remisión DEL-MULTI-DOCK-7701 valoradas en $4,000.00",
+    "Deducción aplicada en comprobante PAY-SETTLE-88190: código DED-DOCK-SHORTAGE, motivo 'Dock Shortage: 20x SKU-IND-010, 15x SKU-IND-022, 10x SKU-IND-035', monto $12,000.00",
+    "Deducción aplicada en comprobante PAY-SETTLE-88190: código DED-EARLY-SETTLE, motivo 'Unauthorized Early Settlement Discount 3% (No pactado)', monto $8,500.00",
+    "Deducción aplicada en comprobante PAY-SETTLE-88190: código DED-ASN-PENALTY, motivo 'Unilateral EDI Inbound ASN Defect Fee (Sin adenda bilateral)', monto $4,500.00",
+    "Respaldo contractual: La CLAUSE-4.2 autoriza la deducción por faltantes físicos acreditados en remisión de entrega.",
+    "Respaldo contractual: La CLAUSE-7.3 ('Prohibición de Penalizaciones Unilaterales Operativas') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo."
+  ],
+  "justified_amount": "12000.00",
+  "claimable_amount": "13000.00",
+  "confidence": 0.98,
+  "recommended_action": "Aceptar deducción de $12,000.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $13,000.00 USD exigiendo su pago inmediato.",
+  "concessions": []
+}

@@ -15,5 +15,6 @@
   "justified_amount": "4500.00",
   "claimable_amount": "3500.00",
   "confidence": 0.98,
-  "recommended_action": "Aceptar deducción de $4,500.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $3,500.00 USD exigiendo su pago inmediato."
+  "recommended_action": "Aceptar deducción de $4,500.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $3,500.00 USD exigiendo su pago inmediato.",
+  "concessions": []
 }

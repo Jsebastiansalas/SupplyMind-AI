@@ -1,0 +1,331 @@
+{
+  "delivery_id": "DEL-MULTI-DOCK-7701",
+  "po_reference": "PO-GLOBAL-88001",
+  "delivery_date": "2026-03-05",
+  "warehouse_location": "CDI-MACRO-HUB-NORTE",
+  "received_by": "CARLOS_MENDOZA_PATIO",
+  "signed": true,
+  "discrepancy_reported": true,
+  "items": [
+    {
+      "item_id": "SKU-SRV-001",
+      "quantity_delivered": 10,
+      "quantity_received": 10,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-SRV-002",
+      "quantity_delivered": 8,
+      "quantity_received": 8,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-NET-003",
+      "quantity_delivered": 6,
+      "quantity_received": 6,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-NET-004",
+      "quantity_delivered": 12,
+      "quantity_received": 12,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-PWR-005",
+      "quantity_delivered": 10,
+      "quantity_received": 10,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-SEC-006",
+      "quantity_delivered": 4,
+      "quantity_received": 4,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-CAB-007",
+      "quantity_delivered": 15,
+      "quantity_received": 15,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-PDU-008",
+      "quantity_delivered": 30,
+      "quantity_received": 30,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-OPT-009",
+      "quantity_delivered": 40,
+      "quantity_received": 40,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-IND-010",
+      "quantity_delivered": 60,
+      "quantity_received": 40,
+      "missing_quantity": 20,
+      "damaged_quantity": 0,
+      "notes": "Faltante físico en muelle (20 u.) constatado en recepción"
+    },
+    {
+      "item_id": "SKU-RAM-011",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-CPU-012",
+      "quantity_delivered": 15,
+      "quantity_received": 15,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-KVM-013",
+      "quantity_delivered": 8,
+      "quantity_received": 8,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-SFP-014",
+      "quantity_delivered": 80,
+      "quantity_received": 80,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-FBR-015",
+      "quantity_delivered": 50,
+      "quantity_received": 50,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-FBR-016",
+      "quantity_delivered": 120,
+      "quantity_received": 120,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-BAT-017",
+      "quantity_delivered": 12,
+      "quantity_received": 12,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-FAN-018",
+      "quantity_delivered": 40,
+      "quantity_received": 40,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-PSU-019",
+      "quantity_delivered": 30,
+      "quantity_received": 30,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-NIC-020",
+      "quantity_delivered": 35,
+      "quantity_received": 35,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-NIC-021",
+      "quantity_delivered": 25,
+      "quantity_received": 25,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-IND-022",
+      "quantity_delivered": 30,
+      "quantity_received": 15,
+      "missing_quantity": 15,
+      "damaged_quantity": 0,
+      "notes": "Faltante físico en muelle (15 u.) constatado en recepción"
+    },
+    {
+      "item_id": "SKU-SEN-023",
+      "quantity_delivered": 50,
+      "quantity_received": 50,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-RMT-024",
+      "quantity_delivered": 20,
+      "quantity_received": 20,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-BRK-025",
+      "quantity_delivered": 40,
+      "quantity_received": 40,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-CBL-026",
+      "quantity_delivered": 25,
+      "quantity_received": 25,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-MGR-027",
+      "quantity_delivered": 50,
+      "quantity_received": 50,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-BLK-028",
+      "quantity_delivered": 30,
+      "quantity_received": 30,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-KEY-029",
+      "quantity_delivered": 20,
+      "quantity_received": 20,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-SMK-030",
+      "quantity_delivered": 10,
+      "quantity_received": 10,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-LED-031",
+      "quantity_delivered": 40,
+      "quantity_received": 40,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-ANT-032",
+      "quantity_delivered": 60,
+      "quantity_received": 60,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-ROU-033",
+      "quantity_delivered": 12,
+      "quantity_received": 12,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-MOD-034",
+      "quantity_delivered": 15,
+      "quantity_received": 15,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-IND-035",
+      "quantity_delivered": 25,
+      "quantity_received": 15,
+      "missing_quantity": 10,
+      "damaged_quantity": 0,
+      "notes": "Faltante físico en muelle (10 u.) constatado en recepción"
+    },
+    {
+      "item_id": "SKU-CON-036",
+      "quantity_delivered": 6,
+      "quantity_received": 6,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-SFP-037",
+      "quantity_delivered": 60,
+      "quantity_received": 60,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-GEL-038",
+      "quantity_delivered": 50,
+      "quantity_received": 50,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-CLP-039",
+      "quantity_delivered": 80,
+      "quantity_received": 80,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    },
+    {
+      "item_id": "SKU-CLN-040",
+      "quantity_delivered": 60,
+      "quantity_received": 60,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recepción completa conforme"
+    }
+  ]
+}

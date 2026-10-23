@@ -106,3 +106,73 @@ class TestReportGenerator:
         assert "DISPUTE ANALYSIS REPORT" in display_str
         assert "$9,000.00 USD" in display_str
         assert "$-800.00 USD" in display_str
+
+
+class TestToolExecutorNewTools:
+    def test_execute_audit_notice_window_tool(self):
+        from agent.core.state import DisputeState
+        from agent.memory.audit_logger import AuditLogger
+        from agent.tools.registry import ToolExecutor
+
+        state = DisputeState(case_id="case_001", objective="Auditar disputa case_001")
+        logger = AuditLogger("test_notice_tool")
+        executor = ToolExecutor(state=state, audit_logger=logger)
+
+        res = executor.execute_tool("audit_notice_window", {"case_id": "case_001", "notice_window_days": 30})
+        assert res["status"] == "success"
+        assert "notice_audit" in res
+        assert "is_timely" in res["notice_audit"]
+
+    def test_execute_match_skus_and_calculate_tax_tool(self):
+        from agent.core.state import DisputeState
+        from agent.memory.audit_logger import AuditLogger
+        from agent.tools.registry import ToolExecutor
+
+        state = DisputeState(case_id="case_001", objective="Auditar disputa case_001")
+        logger = AuditLogger("test_sku_tax_tool")
+        executor = ToolExecutor(state=state, audit_logger=logger)
+
+        res = executor.execute_tool("match_skus_and_calculate_tax", {"case_id": "case_001"})
+        assert res["status"] == "success"
+        assert "sku_matching" in res
+        assert "total_skus_audited" in res["sku_matching"]
+        assert "credit_note_recommended_vat" in res["sku_matching"]
+
+    def test_tool_executor_self_healing_prerequisite(self):
+        """Valida US-2.1.2: Si execute_reconciliation se llama sin cargar documentos antes, auto-sana cargándolos."""
+        from agent.core.state import DisputeState
+        from agent.memory.audit_logger import AuditLogger
+        from agent.tools.registry import ToolExecutor
+
+        state = DisputeState(case_id="case_001", objective="Prueba auto-sanacion")
+        assert not state.loaded_documents
+        logger = AuditLogger("test_self_healing")
+        executor = ToolExecutor(state=state, audit_logger=logger)
+
+        res = executor.execute_tool("execute_reconciliation", {"case_id": "case_001"})
+        assert res["status"] == "success"
+        assert state.loaded_documents is not None
+        assert state.reconciliation_summary is not None
+        assert res["billed_amount"] == 9000.0
+
+    def test_tool_executor_graceful_error_handling(self):
+        """Valida US-2.1.2: Herramientas desconocidas o errores de archivo no crashean y retornan status error."""
+        from agent.core.state import DisputeState, ProcessStatus
+        from agent.memory.audit_logger import AuditLogger
+        from agent.tools.registry import ToolExecutor
+
+        state = DisputeState(case_id="case_001", objective="Prueba errores")
+        logger = AuditLogger("test_errors")
+        executor = ToolExecutor(state=state, audit_logger=logger)
+
+        # 1. Herramienta desconocida
+        res_unk = executor.execute_tool("herramienta_fantasma", {})
+        assert res_unk["status"] == "error"
+        assert "desconocida" in res_unk["message"].lower()
+
+        # 2. Caso inexistente
+        res_fail = executor.execute_tool("read_dispute_documents", {"case_id": "caso_inexistente_999"})
+        assert res_fail["status"] == "error"
+        assert state.current_status == ProcessStatus.FAILED
+
+

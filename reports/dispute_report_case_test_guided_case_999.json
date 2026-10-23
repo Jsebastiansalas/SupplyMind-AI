@@ -1,0 +1,20 @@
+{
+  "case_id": "case_test_guided_case_999",
+  "currency": "USD",
+  "billed_amount": "5000.0",
+  "received_amount": "4300.0",
+  "difference": "-700.0",
+  "root_cause": "Discrepancia mixta en expediente case_test_guided_case_999: Faltante físico comprobado de $500.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $200.00 USD sin sustento contractual ni documental.",
+  "evidence": [
+    "Faltante físico comprobado en ITEM-01 (Caja de prueba): 10 unidades faltantes s/ remisión DEL-TEST_G valoradas en $500.00",
+    "Deducción aplicada en comprobante PAY-TEST_G: código DED-FALTANTE, motivo 'Deducción por faltante físico en recepción s/ remisión DEL-TEST_G', monto $500.00",
+    "Deducción aplicada en comprobante PAY-TEST_G: código DED-PENALTY, motivo 'Penalización no estipulada', monto $200.00",
+    "Respaldo contractual: La CLAUSE-4.2 autoriza la deducción por faltantes físicos acreditados en remisión de entrega.",
+    "Respaldo contractual: La CLAUSE-8.2 ('Ventana de Notificación y Pago') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo."
+  ],
+  "justified_amount": "500.00",
+  "claimable_amount": "200.00",
+  "confidence": 0.98,
+  "recommended_action": "Aceptar deducción de $500.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $200.00 USD exigiendo su pago inmediato.",
+  "concessions": []
+}

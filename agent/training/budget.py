@@ -22,6 +22,8 @@ class BudgetExceededException(Exception):
         self.message = message
 
 
+from config.settings import settings
+
 class BudgetTracker:
     """
     Rastreador de consumo económico y de tokens.
@@ -31,10 +33,13 @@ class BudgetTracker:
 
     def __init__(
         self,
-        budget_limit_usd: float = 1.00,
+        budget_limit_usd: Optional[float] = None,
         raise_on_exceeded: bool = False,
     ):
-        self.budget_limit_usd: float = float(budget_limit_usd)
+        if budget_limit_usd is None:
+            self.budget_limit_usd = float(getattr(settings, "BUDGET_LIMIT_USD", 5.00))
+        else:
+            self.budget_limit_usd = float(budget_limit_usd)
         self.raise_on_exceeded: bool = raise_on_exceeded
         self.total_spent_usd: float = 0.0
         self.total_tokens_in: int = 0

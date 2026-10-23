@@ -1,0 +1,293 @@
+{
+  "invoice_id": "INV-MEGA-2026-9001",
+  "vendor_id": "TECH-ENTERPRISE-SUPPLY-MX",
+  "customer_id": "RETAIL-GLOBAL-CORPORATION",
+  "po_reference": "PO-GLOBAL-88001",
+  "issue_date": "2026-03-01",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-SRV-001",
+      "description": "Enterprise Rack Server Dual Xeon 64C",
+      "quantity": 10,
+      "unit_price": 2150.0,
+      "total_price": 21500.0
+    },
+    {
+      "item_id": "SKU-SRV-002",
+      "description": "Storage Array 24-Bay SAS 12G 2U",
+      "quantity": 8,
+      "unit_price": 3200.0,
+      "total_price": 25600.0
+    },
+    {
+      "item_id": "SKU-NET-003",
+      "description": "Core Switch 48-Port 100GbE QSFP28",
+      "quantity": 6,
+      "unit_price": 5000.0,
+      "total_price": 30000.0
+    },
+    {
+      "item_id": "SKU-NET-004",
+      "description": "ToR Switch 48-Port 25GbE SFP28",
+      "quantity": 12,
+      "unit_price": 1800.0,
+      "total_price": 21600.0
+    },
+    {
+      "item_id": "SKU-PWR-005",
+      "description": "Online UPS 10kVA Modular 3U",
+      "quantity": 10,
+      "unit_price": 2200.0,
+      "total_price": 22000.0
+    },
+    {
+      "item_id": "SKU-SEC-006",
+      "description": "Next-Gen Firewall Appliance 40Gbps",
+      "quantity": 4,
+      "unit_price": 6500.0,
+      "total_price": 26000.0
+    },
+    {
+      "item_id": "SKU-CAB-007",
+      "description": "Server Cabinet 42U 800x1200mm",
+      "quantity": 15,
+      "unit_price": 800.0,
+      "total_price": 12000.0
+    },
+    {
+      "item_id": "SKU-PDU-008",
+      "description": "Managed PDU 32A 3-Phase Zero-U",
+      "quantity": 30,
+      "unit_price": 450.0,
+      "total_price": 13500.0
+    },
+    {
+      "item_id": "SKU-OPT-009",
+      "description": "Transceiver 100G QSFP28 LR4 10km",
+      "quantity": 40,
+      "unit_price": 350.0,
+      "total_price": 14000.0
+    },
+    {
+      "item_id": "SKU-IND-010",
+      "description": "Industrial Grade PCIe Gen5 4TB SSD",
+      "quantity": 60,
+      "unit_price": 250.0,
+      "total_price": 15000.0
+    },
+    {
+      "item_id": "SKU-RAM-011",
+      "description": "DDR5 ECC Reg 64GB 5600MHz Module",
+      "quantity": 100,
+      "unit_price": 180.0,
+      "total_price": 18000.0
+    },
+    {
+      "item_id": "SKU-CPU-012",
+      "description": "Server Processor 32-Core 2.8GHz",
+      "quantity": 15,
+      "unit_price": 1200.0,
+      "total_price": 18000.0
+    },
+    {
+      "item_id": "SKU-KVM-013",
+      "description": "IP-KVM Switch 16-Port with DVI/USB",
+      "quantity": 8,
+      "unit_price": 950.0,
+      "total_price": 7600.0
+    },
+    {
+      "item_id": "SKU-SFP-014",
+      "description": "Transceiver 25G SFP28 SR 100m",
+      "quantity": 80,
+      "unit_price": 75.0,
+      "total_price": 6000.0
+    },
+    {
+      "item_id": "SKU-FBR-015",
+      "description": "MPO-12 Trunk Cable OM4 30m",
+      "quantity": 50,
+      "unit_price": 90.0,
+      "total_price": 4500.0
+    },
+    {
+      "item_id": "SKU-FBR-016",
+      "description": "LC-LC Duplex Patch Cord 5m",
+      "quantity": 120,
+      "unit_price": 15.0,
+      "total_price": 1800.0
+    },
+    {
+      "item_id": "SKU-BAT-017",
+      "description": "Replacement Battery Pack for 10kVA UPS",
+      "quantity": 12,
+      "unit_price": 600.0,
+      "total_price": 7200.0
+    },
+    {
+      "item_id": "SKU-FAN-018",
+      "description": "Hot-Swap Fan Module for Chassis",
+      "quantity": 40,
+      "unit_price": 110.0,
+      "total_price": 4400.0
+    },
+    {
+      "item_id": "SKU-PSU-019",
+      "description": "Redundant Titanium PSU 1600W",
+      "quantity": 30,
+      "unit_price": 280.0,
+      "total_price": 8400.0
+    },
+    {
+      "item_id": "SKU-NIC-020",
+      "description": "Dual-Port 25GbE PCIe Adapter",
+      "quantity": 35,
+      "unit_price": 320.0,
+      "total_price": 11200.0
+    },
+    {
+      "item_id": "SKU-NIC-021",
+      "description": "Quad-Port 10GBASE-T Network Card",
+      "quantity": 25,
+      "unit_price": 240.0,
+      "total_price": 6000.0
+    },
+    {
+      "item_id": "SKU-IND-022",
+      "description": "Industrial Touch Panel PC 21.5-inch",
+      "quantity": 30,
+      "unit_price": 200.0,
+      "total_price": 6000.0
+    },
+    {
+      "item_id": "SKU-SEN-023",
+      "description": "Environmental Temp/Humidity Sensor",
+      "quantity": 50,
+      "unit_price": 80.0,
+      "total_price": 4000.0
+    },
+    {
+      "item_id": "SKU-RMT-024",
+      "description": "Remote Power Control Gateway",
+      "quantity": 20,
+      "unit_price": 310.0,
+      "total_price": 6200.0
+    },
+    {
+      "item_id": "SKU-BRK-025",
+      "description": "Mounting Bracket Rail Kit 2U",
+      "quantity": 40,
+      "unit_price": 65.0,
+      "total_price": 2600.0
+    },
+    {
+      "item_id": "SKU-CBL-026",
+      "description": "Cat6A Shielded Patch Cable 2m 100-Pack",
+      "quantity": 25,
+      "unit_price": 180.0,
+      "total_price": 4500.0
+    },
+    {
+      "item_id": "SKU-MGR-027",
+      "description": "Horizontal Cable Manager 1U",
+      "quantity": 50,
+      "unit_price": 40.0,
+      "total_price": 2000.0
+    },
+    {
+      "item_id": "SKU-BLK-028",
+      "description": "Toolless Blanking Panel 1U 10-Pack",
+      "quantity": 30,
+      "unit_price": 50.0,
+      "total_price": 1500.0
+    },
+    {
+      "item_id": "SKU-KEY-029",
+      "description": "Smart Rack Electronic Lock Handle",
+      "quantity": 20,
+      "unit_price": 220.0,
+      "total_price": 4400.0
+    },
+    {
+      "item_id": "SKU-SMK-030",
+      "description": "Early Smoke Detection Aspiration Sensor",
+      "quantity": 10,
+      "unit_price": 850.0,
+      "total_price": 8500.0
+    },
+    {
+      "item_id": "SKU-LED-031",
+      "description": "Rack Internal LED Lighting Bar",
+      "quantity": 40,
+      "unit_price": 45.0,
+      "total_price": 1800.0
+    },
+    {
+      "item_id": "SKU-ANT-032",
+      "description": "External Dual-Band Antenna Omni",
+      "quantity": 60,
+      "unit_price": 35.0,
+      "total_price": 2100.0
+    },
+    {
+      "item_id": "SKU-ROU-033",
+      "description": "Branch Office Edge SD-WAN Router",
+      "quantity": 12,
+      "unit_price": 1100.0,
+      "total_price": 13200.0
+    },
+    {
+      "item_id": "SKU-MOD-034",
+      "description": "Cellular 5G Backup Module",
+      "quantity": 15,
+      "unit_price": 450.0,
+      "total_price": 6750.0
+    },
+    {
+      "item_id": "SKU-IND-035",
+      "description": "Heavy Duty Rugged Ethernet Switch",
+      "quantity": 25,
+      "unit_price": 400.0,
+      "total_price": 10000.0
+    },
+    {
+      "item_id": "SKU-CON-036",
+      "description": "Serial Console Server 16-Port",
+      "quantity": 6,
+      "unit_price": 1400.0,
+      "total_price": 8400.0
+    },
+    {
+      "item_id": "SKU-SFP-037",
+      "description": "Transceiver 10G SFP+ RJ45 30m",
+      "quantity": 60,
+      "unit_price": 65.0,
+      "total_price": 3900.0
+    },
+    {
+      "item_id": "SKU-GEL-038",
+      "description": "Thermal Compound High-Density 20g",
+      "quantity": 50,
+      "unit_price": 25.0,
+      "total_price": 1250.0
+    },
+    {
+      "item_id": "SKU-CLP-039",
+      "description": "Velcro Cable Tie Roll 25m",
+      "quantity": 80,
+      "unit_price": 15.0,
+      "total_price": 1200.0
+    },
+    {
+      "item_id": "SKU-CLN-040",
+      "description": "Fiber Optic Cleaning Click Pen Kit",
+      "quantity": 60,
+      "unit_price": 40.0,
+      "total_price": 2400.0
+    }
+  ],
+  "subtotal": 385000.0,
+  "tax": 0.0,
+  "total_amount": 385000.0
+}

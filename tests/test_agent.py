@@ -5,12 +5,14 @@ from agent.core.state import DisputeState, ProcessStatus
 from agent.tools.registry import TOOL_DEFINITIONS, ToolExecutor
 
 def test_skynet_tool_definitions_schema():
-    assert len(TOOL_DEFINITIONS) == 4
+    assert len(TOOL_DEFINITIONS) >= 6
     names = [t["function"]["name"] for t in TOOL_DEFINITIONS]
     assert "read_dispute_documents" in names
     assert "execute_reconciliation" in names
     assert "evaluate_contract_terms" in names
     assert "generate_final_report" in names
+    assert "audit_notice_window" in names
+    assert "match_skus_and_calculate_tax" in names
 
 def test_audit_logger_records_and_persists():
     logger = AuditLogger("test_case_audit")
