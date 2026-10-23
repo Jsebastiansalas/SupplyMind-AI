@@ -14,5 +14,6 @@
   "claimable_amount": "0.00",
   "confidence": 0.98,
   "recommended_action": "Aceptar deducción de $3,000.00 USD aplicada por el cliente en cuentas por cobrar, emitir Nota de Crédito comercial por ajuste de tarifa y actualizar maestro de precios en el ERP del proveedor.",
-  "concessions": []
+  "concessions": [],
+  "active_scenario": null
 }

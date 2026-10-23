@@ -12,14 +12,16 @@ import {
   Layers,
   FileCheck2,
   Printer,
-  AlertTriangle
+  AlertTriangle,
+  Handshake
 } from 'lucide-react';
 
 export default function FinancialPanel({ 
   report, 
   activeSubTab: externalSubTab, 
   onSubTabChange, 
-  onOpenOfficialDossier 
+  onOpenOfficialDossier,
+  onApplyScenario
 }) {
   const [localSubTab, setLocalSubTab] = useState('summary');
   const activeSubTab = externalSubTab || localSubTab;
@@ -202,6 +204,18 @@ export default function FinancialPanel({
             <span>Resumen & Fundamento Legal</span>
           </button>
 
+          <button
+            onClick={() => setActiveSubTab('negotiation')}
+            className={`btn-tactile px-3 py-1.5 rounded text-xs font-mono font-medium transition-colors flex items-center gap-1.5 ${
+              activeSubTab === 'negotiation'
+                ? 'bg-[#171822] text-[#eed98d] border border-[#d4af37]/60 shadow-tactile font-bold'
+                : 'text-zinc-400 hover:text-white hover:bg-[#121319]'
+            }`}
+          >
+            <Handshake className="w-3.5 h-3.5 text-[#d4af37]" />
+            <span>🤝 Negociación B2B (3 Escenarios)</span>
+          </button>
+
           {skuMatching && (
             <button
               onClick={() => setActiveSubTab('sku')}
@@ -290,6 +304,166 @@ export default function FinancialPanel({
                 <span className="text-[#eed98d] font-bold">
                   {isClaimable ? 'Objeción con Copia de Remisión Sellada' : 'Aceptación y Nota de Crédito'}
                 </span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* SUB-TAB: NEGOCIACIÓN B2B Y 3 ESCENARIOS */}
+        {activeSubTab === 'negotiation' && (
+          <div className="space-y-4">
+            <div className="p-4 rounded-xl bg-[#121319] border border-[#232533] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div>
+                <div className="flex items-center space-x-2">
+                  <Handshake className="w-4 h-4 text-[#d4af37]" />
+                  <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-white">
+                    Matriz de Negociación B2B Bilateral (Fase 2)
+                  </h3>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#1f1d14] border border-[#d4af37]/50 text-[#eed98d]">
+                    Multi-Táctico
+                  </span>
+                </div>
+                <p className="text-xs text-zinc-400 mt-1">
+                  Contrapropuestas determinísticas con cálculo estricto en Decimal, estimación de fricción y contraprestaciones del comprador.
+                </p>
+              </div>
+
+              {report.active_scenario && (
+                <div className="px-3 py-1.5 rounded-lg bg-emerald-950/40 border border-emerald-500/50 text-emerald-300 text-xs font-mono flex items-center space-x-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span>Escenario Activo: <strong>{report.active_scenario}</strong></span>
+                </div>
+              )}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* ESCENARIO 1: AGRESIVO */}
+              <div className="p-4 rounded-xl bg-[#0f1015] border border-[#262836] hover:border-sky-500/50 transition-all flex flex-col justify-between space-y-4">
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-sky-950/60 text-sky-400 border border-sky-800/50">
+                      LEGAL STRICT
+                    </span>
+                    <span className="text-[10px] font-mono text-rose-400">Riesgo Alto 🔴</span>
+                  </div>
+                  <h4 className="text-sm font-bold text-white mt-2">1. Cobro Contractual Íntegro</h4>
+                  <p className="text-[11px] text-zinc-400 mt-1 leading-relaxed">
+                    Exigencia extrajudicial del 100% del saldo retenido bajo amparo estricto de cláusulas contractuales.
+                  </p>
+
+                  <div className="mt-4 p-3 rounded-lg bg-[#14151e] border border-[#1e202c] space-y-2 font-mono text-xs">
+                    <div className="flex justify-between">
+                      <span className="text-zinc-500">Cobro en Efectivo:</span>
+                      <span className="text-sky-300 font-bold">${formatCurrency(claimable + (report.concessions?.[0]?.concession_amount ? Number(report.concessions[0].concession_amount) : 0))}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-zinc-500">Nota de Crédito:</span>
+                      <span className="text-zinc-300">${formatCurrency(justified - (report.concessions?.[0]?.concession_amount ? Number(report.concessions[0].concession_amount) : 0))}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-zinc-500">Recuperación:</span>
+                      <span className="text-emerald-400 font-bold">100%</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-zinc-500">Plazo Esperado:</span>
+                      <span className="text-zinc-300">25 días</span>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => onApplyScenario && onApplyScenario('AGGRESSIVE')}
+                  className="w-full btn-tactile py-2 rounded-lg bg-[#181a24] hover:bg-sky-950/60 border border-[#2a2d3e] hover:border-sky-500/60 text-xs font-mono text-sky-300 font-semibold transition-all"
+                >
+                  ⚡ Aplicar Cobro Íntegro
+                </button>
+              </div>
+
+              {/* ESCENARIO 2: EQUILIBRADO (RECOMENDADO) */}
+              <div className="p-4 rounded-xl bg-[#0f1015] border-2 border-[#d4af37]/60 shadow-[0_0_20px_rgba(212,175,55,0.12)] flex flex-col justify-between space-y-4 relative">
+                <div className="absolute -top-2.5 right-3 px-2 py-0.5 rounded bg-[#d4af37] text-black font-mono text-[9px] font-bold tracking-wider uppercase">
+                  ⭐ Recomendado
+                </div>
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-400 border border-emerald-800/50">
+                      WIN-WIN RECÍPROCO
+                    </span>
+                    <span className="text-[10px] font-mono text-amber-400">Riesgo Medio 🟡</span>
+                  </div>
+                  <h4 className="text-sm font-bold text-white mt-2">2. Conciliación Táctica</h4>
+                  <p className="text-[11px] text-zinc-400 mt-1 leading-relaxed">
+                    Concesión del 50% de la penalidad condicionada a pago inmediato en 5 días y exención de multas en siguientes pedidos.
+                  </p>
+
+                  <div className="mt-4 p-3 rounded-lg bg-[#14151e] border border-[#1e202c] space-y-2 font-mono text-xs">
+                    <div className="flex justify-between">
+                      <span className="text-zinc-500">Cobro en Efectivo:</span>
+                      <span className="text-emerald-300 font-bold">50% Saldo Neto</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-zinc-500">Nota de Crédito:</span>
+                      <span className="text-[#eed98d] font-bold">50% Concesión</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-zinc-500">Reciprocidad Exigida:</span>
+                      <span className="text-zinc-300">2 POs sin multas</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-zinc-500">Plazo Esperado:</span>
+                      <span className="text-emerald-400 font-bold">7 días</span>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => onApplyScenario && onApplyScenario('BALANCED')}
+                  className="w-full btn-tactile py-2 rounded-lg bg-[#242013] hover:bg-[#332b17] border border-[#d4af37] text-xs font-mono text-[#eed98d] font-bold transition-all shadow-tactile"
+                >
+                  🤝 Aplicar Conciliación Táctica
+                </button>
+              </div>
+
+              {/* ESCENARIO 3: CONSERVADOR */}
+              <div className="p-4 rounded-xl bg-[#0f1015] border border-[#262836] hover:border-purple-500/50 transition-all flex flex-col justify-between space-y-4">
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-purple-950/60 text-purple-400 border border-purple-800/50">
+                      TIER-1 RETENTION
+                    </span>
+                    <span className="text-[10px] font-mono text-emerald-400">Riesgo Bajo 🟢</span>
+                  </div>
+                  <h4 className="text-sm font-bold text-white mt-2">3. Conservación Estratégica</h4>
+                  <p className="text-[11px] text-zinc-400 mt-1 leading-relaxed">
+                    Absorción total de la retención vía Nota de Crédito blindando la cuenta a cambio de compromiso de volumen anual +15%.
+                  </p>
+
+                  <div className="mt-4 p-3 rounded-lg bg-[#14151e] border border-[#1e202c] space-y-2 font-mono text-xs">
+                    <div className="flex justify-between">
+                      <span className="text-zinc-500">Cobro en Efectivo:</span>
+                      <span className="text-zinc-400">$0.00</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-zinc-500">Nota de Crédito:</span>
+                      <span className="text-purple-300 font-bold">100% Saldo</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-zinc-500">Contraprestación:</span>
+                      <span className="text-zinc-300">+15% Volumen Q</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-zinc-500">Plazo Esperado:</span>
+                      <span className="text-emerald-400 font-bold">2 días</span>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => onApplyScenario && onApplyScenario('CONSERVATIVE')}
+                  className="w-full btn-tactile py-2 rounded-lg bg-[#181a24] hover:bg-purple-950/60 border border-[#2a2d3e] hover:border-purple-500/60 text-xs font-mono text-purple-300 font-semibold transition-all"
+                >
+                  🛡️ Aplicar Conservación
+                </button>
               </div>
             </div>
           </div>

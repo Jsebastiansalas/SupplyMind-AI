@@ -159,6 +159,7 @@ class DisputeAnalysisReport(_Base):
     confidence: float = Field(ge=0.0, le=1.0, validation_alias=AliasChoices("confidence", "confidence_score"))
     recommended_action: str         # Acción recomendada
     concessions: List[CommercialConcession] = Field(default_factory=list)  # Auditoría Human-in-the-Loop
+    active_scenario: Optional[str] = Field(default=None)  # Escenario activo: "AGGRESSIVE", "BALANCED", "CONSERVATIVE"
 
     def formatted_display(self) -> str:
         """Formatea el reporte con la estructura solicitada para el reto."""
@@ -179,3 +180,38 @@ class DisputeAnalysisReport(_Base):
             f"Acción recomendada: {self.recommended_action}\n"
             "===================================================="
         )
+
+
+# ==========================================
+# 7. Modelos de Negociación B2B Multi-Ruta (Fase 2)
+# ==========================================
+class NegotiationScenario(BaseModel):
+    """Escenario individual de contrapropuesta y negociación comercial."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    scenario_id: str                          # "AGGRESSIVE", "BALANCED", "CONSERVATIVE"
+    title: str                                # Título descriptivo
+    strategy_summary: str                     # Resumen ejecutivo de la táctica
+    justified_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    claimable_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    concession_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    recovery_rate_pct: float = Field(default=100.0, ge=0.0, le=100.0)
+    friction_risk: str = "MEDIO"              # "ALTO", "MEDIO", "BAJO"
+    expected_timeline_days: int = 15          # Plazo proyectado de resolución
+    counterparty_concession_requested: str    # Contraprestación comercial exigida al cliente
+    tactical_action: str                      # Acción operativa a seguir
+    formal_memo: str                          # Minuta/comunicado formal para el cliente
+
+
+class NegotiationPlan(BaseModel):
+    """Plan integral de negociación bilateral con 3 escenarios comparativos."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    case_id: str
+    account_name: str = "Cliente B2B"
+    account_tier: str = "TIER_1_STRATEGIC"    # "TIER_1_STRATEGIC", "TIER_2_REGULAR"
+    recommended_scenario: str = "BALANCED"
+    total_dispute_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    scenarios: List[NegotiationScenario] = Field(default_factory=list)
+    generated_at: str = ""
+

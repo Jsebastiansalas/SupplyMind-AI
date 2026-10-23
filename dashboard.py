@@ -215,7 +215,7 @@ if "current_report" in st.session_state:
     report = st.session_state.current_report
     
     st.markdown(f"<h2>📊 RESULTADOS: {Path(report.case_id).name.upper()}</h2>", unsafe_allow_html=True)
-    tab1, tab2, tab_pdf, tab3, tab4, tab5 = st.tabs(["💵 PANEL FINANCIERO", "⚖️ VEREDICTO LEGAL", "📑 EXPEDIENTE PDF", "📋 TRAZABILIDAD (AUDIT)", "💬 TERMINAL INTERACTIVA", "📤 EXPORTAR Y COMUNICAR"])
+    tab1, tab_neg, tab2, tab_pdf, tab3, tab4, tab5 = st.tabs(["💵 PANEL FINANCIERO", "🤝 NEGOCIACIÓN B2B", "⚖️ VEREDICTO LEGAL", "📑 EXPEDIENTE PDF", "📋 TRAZABILIDAD (AUDIT)", "💬 TERMINAL INTERACTIVA", "📤 EXPORTAR Y COMUNICAR"])
     
     with tab1:
         m1, m2, m3, m4 = st.columns(4)
@@ -238,7 +238,42 @@ if "current_report" in st.session_state:
             st.markdown("### 🔍 Causa Raíz Detectada")
             st.write(report.root_cause)
             st.markdown("</div>", unsafe_allow_html=True)
-            
+
+    with tab_neg:
+        from agent.core.negotiation_engine import NegotiationEngine
+        plan = NegotiationEngine.build_negotiation_plan(report.case_id)
+        st.markdown(f"### 🤝 Propuesta Multi-Táctica de Negociación B2B")
+        st.caption(f"Cuenta: **{plan.account_name}** | Clasificación: **{plan.account_tier}** | Recomendación Algorítmica: **Escenario {plan.recommended_scenario}**")
+
+        sc_cols = st.columns(3)
+        for idx, sc in enumerate(plan.scenarios):
+            with sc_cols[idx]:
+                border = "#38bdf8" if sc.scenario_id == "AGGRESSIVE" else ("#10b981" if sc.scenario_id == "BALANCED" else "#818cf8")
+                rec_badge = " ⭐ RECOMENDADO" if sc.scenario_id == plan.recommended_scenario else ""
+                st.markdown(f"""
+                <div class='premium-card' style='border-top: 3px solid {border}; min-height: 250px;'>
+                    <h4 style='color: {border}; margin: 0 0 6px 0; font-size: 1rem;'>{sc.title}{rec_badge}</h4>
+                    <p style='color: #94a3b8; font-size: 0.82rem;'>{sc.strategy_summary}</p>
+                    <hr style='border-color: rgba(255,255,255,0.08); margin: 8px 0;'>
+                    <p style='margin: 3px 0; font-size: 0.85rem;'>💵 <strong>Cobro Efectivo:</strong> <span style='color: #38bdf8; font-weight:bold;'>${sc.claimable_amount:,.2f} USD</span> ({sc.recovery_rate_pct:.0f}%)</p>
+                    <p style='margin: 3px 0; font-size: 0.85rem;'>📑 <strong>Nota de Crédito:</strong> <span style='color: #f59e0b; font-weight:bold;'>${sc.justified_amount:,.2f} USD</span></p>
+                    <p style='margin: 3px 0; font-size: 0.85rem;'>⏱️ <strong>Plazo Estimado:</strong> {sc.expected_timeline_days} días</p>
+                    <p style='margin: 3px 0; font-size: 0.85rem;'>⚠️ <strong>Riesgo Fricción:</strong> <code>{sc.friction_risk}</code></p>
+                </div>
+                """, unsafe_allow_html=True)
+                if st.button(f"🚀 Aplicar {sc.scenario_id}", key=f"btn_scen_{sc.scenario_id}", use_container_width=True):
+                    updated = NegotiationEngine.apply_scenario(report.case_id, sc.scenario_id, operator_name="Operador Streamlit")
+                    st.session_state.current_report = updated
+                    st.toast(f"✅ Escenario {sc.scenario_id} aplicado y saldos recalculados.", icon="🤝")
+                    st.rerun()
+
+        minutes_path = Path("reports") / f"minuta_acuerdo_{report.case_id}.md"
+        if minutes_path.exists():
+            st.markdown("<br>", unsafe_allow_html=True)
+            with st.expander("📄 Ver Minuta de Conciliación y Convenio Extrajudicial Generado", expanded=False):
+                with open(minutes_path, "r", encoding="utf-8") as mf:
+                    st.markdown(mf.read())
+
     with tab2:
         col_ev, col_act = st.columns(2)
         with col_ev:
@@ -392,6 +427,21 @@ if "current_report" in st.session_state:
                 st.session_state.messages.append({"role": "assistant", "content": bot_reply})
                 st.toast("⚡ Recálculo Human-in-the-Loop aplicado con éxito.", icon="⚖️")
                 st.rerun()
+
+            # 1.1 Detección de consultas o selección de negociación B2B (Fase 2)
+            from agent.core.negotiation_engine import parse_negotiation_query, NegotiationEngine, format_negotiation_plan_reply
+            neg_query = parse_negotiation_query(prompt)
+            if neg_query:
+                if neg_query["action"] == "apply":
+                    updated_report = NegotiationEngine.apply_scenario(report.case_id, neg_query["scenario_id"], operator_name="Operador Streamlit")
+                    st.session_state.current_report = updated_report
+                    st.session_state.messages.append({"role": "assistant", "content": f"### 🤝 Escenario de Negociación `{neg_query['scenario_id']}` Aplicado con Éxito\n\nSe ha recalculado el balance de cartera y emitido la **Minuta de Conciliación Extrajudicial** en `reports/minuta_acuerdo_{report.case_id}.md`."})
+                    st.toast(f"✅ Escenario {neg_query['scenario_id']} aplicado.", icon="🤝")
+                    st.rerun()
+                elif neg_query["action"] == "show_scenarios":
+                    plan = NegotiationEngine.build_negotiation_plan(report.case_id)
+                    st.session_state.messages.append({"role": "assistant", "content": format_negotiation_plan_reply(plan)})
+                    st.rerun()
             
             # Conexión directa a OpenAI/Grok Gateway
             from openai import OpenAI

@@ -502,6 +502,7 @@ function Workspace() {
                   activeSubTab={financialSubTab}
                   onSubTabChange={setFinancialSubTab}
                   onOpenOfficialDossier={() => setShowDossierModal(true)}
+                  onApplyScenario={(scenarioId) => handleSendMessage(`Aplica el escenario ${scenarioId.toLowerCase()}`, 'commercial_negotiator')}
                 />
               )}
 

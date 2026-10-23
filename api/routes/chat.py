@@ -20,6 +20,11 @@ from agent.core.concession_engine import (
     parse_concession_intent,
     format_concession_reply,
 )
+from agent.core.negotiation_engine import (
+    NegotiationEngine,
+    parse_negotiation_query,
+    format_negotiation_plan_reply,
+)
 
 ROOT_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -484,6 +489,47 @@ def chat_with_agent(case_id: str, request: ChatRequest):
             "concession_applied": True,
             "is_reset": concession_intent.is_reset
         }
+
+    # 0.1 Interceptar consultas o directivas de negociación B2B multitáctica (Fase 2)
+    neg_query = parse_negotiation_query(prompt)
+    if neg_query:
+        role = request.role or "commercial_negotiator"
+        if neg_query["action"] == "apply":
+            scen_id = neg_query["scenario_id"]
+            recalculated = NegotiationEngine.apply_scenario(
+                case_id=case_id,
+                scenario_id=scen_id,
+                operator_name=f"Operador ({role})"
+            )
+            intent = ConcessionIntent(is_concession=True, is_reset=(scen_id == "AGGRESSIVE"))
+            table_summary = format_concession_reply(recalculated, intent)
+            reply_text = (
+                f"### 🤝 Escenario de Negociación B2B `{scen_id}` Aplicado con Éxito\n\n"
+                f"Se ha formalizado la estrategia de contrapropuesta y redactado la **Minuta de Conciliación Extrajudicial** "
+                f"en `reports/minuta_acuerdo_{case_id}.md`.\n\n"
+                f"{table_summary}"
+            )
+            return {
+                "reply": reply_text,
+                "mode": "negotiation_scenario",
+                "model": "SupplyMind B2B Multi-Tactical Negotiation Engine",
+                "role": role,
+                "sources": [f"Estrategia de Negociación B2B ({scen_id})", "Minuta de Conciliación Bilateral"],
+                "recalculated_report": _decimal_to_float(recalculated.model_dump(mode="python")),
+                "scenario_applied": scen_id,
+                "concession_applied": True
+            }
+        elif neg_query["action"] == "show_scenarios":
+            plan = NegotiationEngine.build_negotiation_plan(case_id)
+            reply_text = format_negotiation_plan_reply(plan)
+            return {
+                "reply": reply_text,
+                "mode": "negotiation_options",
+                "model": "SupplyMind B2B Multi-Tactical Negotiation Engine",
+                "role": role,
+                "sources": [f"Matriz de Tolerancia de Cuenta {plan.account_name} ({plan.account_tier})"],
+                "negotiation_plan": _decimal_to_float(plan.model_dump(mode="python"))
+            }
 
     # 1. Extraer contexto integral 360° del caso
     ctx = _extract_case_full_context(case_id)

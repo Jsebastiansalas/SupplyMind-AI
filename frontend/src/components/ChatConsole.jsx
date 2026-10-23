@@ -300,6 +300,12 @@ export default function ChatConsole({
       { text: "Condona el 100% de la penalidad operativa para cerrar el expediente de mutuo acuerdo", badge: "100% Concesión" },
       { text: "Absorbe $1,000 USD de la deducción disputada y exige el cobro del saldo restante", badge: "$1,000 Concesión" },
       { text: "Deshacer concesión y restaurar auditoría contractual original estricta", badge: "Reset Original" },
+    ],
+    negociacion: [
+      { text: "¿Qué escenarios de contrapropuesta y negociación B2B sugieres para este caso?", badge: "3 Escenarios" },
+      { text: "Aplica el escenario equilibrado: concesión del 50% con reciprocidad comercial", badge: "⭐ Equilibrado" },
+      { text: "Aplica el escenario agresivo: cobro del 100% contractual con apercibimiento legal", badge: "⚖️ Agresivo" },
+      { text: "Aplica el escenario conservador: 100% nota de crédito a cambio de volumen preferente", badge: "🤝 Conservador" },
     ]
   };
 
@@ -576,6 +582,7 @@ export default function ChatConsole({
           <div className="flex items-center space-x-1 font-mono">
             {[
               { id: 'jurado', label: 'Jurados' },
+              { id: 'negociacion', label: '🤝 Negociación B2B' },
               { id: 'hitl', label: '⚡ Concesión Human' },
               { id: 'cliente', label: 'Clientes' },
               { id: 'legal', label: 'Legal' },
