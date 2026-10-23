@@ -135,15 +135,10 @@ with st.sidebar:
     case_option = st.selectbox(
         "Seleccione un Expediente Batch:",
         [
-            "case_008_homedepot_damaged_scanned (Real OCR: Home Depot Scanned POD Damaged Goods)",
-            "case_007_cisco_large_bundle (Real Large PDF: Cisco $125k Infrastructure)",
-            "case_005_amazon_shortage (Real PDF: Amazon Shortage Claim)",
-            "case_006_walmart_otif_pricing (Real PDF: Walmart OTIF Price Dispute)",
-            "case_004_enterprise (RAG+OCR)",
-            "case_001 (Basic Missing Item)",
-            "case_002 (Complex Deduction)",
-            "case_003 (Pricing Discrepancy)",
-            "test_dynamic_case (Dynamic Eval)"
+            "case_009_mega_retailer_dispute (Exigente: 40 SKUs Mega Retailer $385k)",
+            "case_007_cisco_large_bundle (Exigente: Cisco Large Infrastructure $125k)",
+            "case_005_amazon_shortage (Real: Amazon Fulfillment Center Shortage & ASN)",
+            "case_006_walmart_otif_pricing (Real: Walmart OTIF Price Dispute & Penalty)",
         ]
     )
     case_id = case_option.split(" ")[0]
@@ -344,14 +339,59 @@ if "current_report" in st.session_state:
             st.chat_message("assistant").write(f"Soy SKYNET. He completado el análisis del caso. ¿Qué deseas saber?")
             for msg in st.session_state.messages:
                 st.chat_message(msg["role"]).write(msg["content"])
+
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("##### ⚡ Directivas Human-in-the-Loop (Recálculo Dinámico en Vivo)")
+        col_c1, col_c2, col_c3 = st.columns(3)
+        with col_c1:
+            if st.button("🤝 Conceder 50% Penalidad", use_container_width=True):
+                from agent.core.concession_engine import parse_concession_intent, ConcessionEngine, format_concession_reply
+                intent = parse_concession_intent("Acepta el 50% de la penalidad para cuidar la cuenta")
+                updated = ConcessionEngine.apply_concession(report.case_id, intent, operator_name="Operador Streamlit")
+                st.session_state.current_report = updated
+                st.session_state.messages.append({"role": "user", "content": "Acepta el 50% de la penalidad para cuidar la relación de cuenta"})
+                st.session_state.messages.append({"role": "assistant", "content": format_concession_reply(updated, intent)})
+                st.toast("⚡ Concesión del 50% aplicada y saldos recalculados.", icon="⚖️")
+                st.rerun()
+        with col_c2:
+            if st.button("📦 Condonar 100% Penalidad", use_container_width=True):
+                from agent.core.concession_engine import parse_concession_intent, ConcessionEngine, format_concession_reply
+                intent = parse_concession_intent("Condona el 100% de la penalidad operativa")
+                updated = ConcessionEngine.apply_concession(report.case_id, intent, operator_name="Operador Streamlit")
+                st.session_state.current_report = updated
+                st.session_state.messages.append({"role": "user", "content": "Condona el 100% de la penalidad operativa para cerrar expediente"})
+                st.session_state.messages.append({"role": "assistant", "content": format_concession_reply(updated, intent)})
+                st.toast("⚡ Condonación total aplicada y partida cerrada.", icon="✅")
+                st.rerun()
+        with col_c3:
+            if st.button("🔄 Restaurar Términos Puros", use_container_width=True):
+                from agent.core.concession_engine import parse_concession_intent, ConcessionEngine, format_concession_reply
+                intent = parse_concession_intent("Restaurar auditoría original")
+                updated = ConcessionEngine.apply_concession(report.case_id, intent, operator_name="Operador Streamlit")
+                st.session_state.current_report = updated
+                st.session_state.messages.append({"role": "user", "content": "Restaurar auditoría contractual original estricta"})
+                st.session_state.messages.append({"role": "assistant", "content": format_concession_reply(updated, intent)})
+                st.toast("🔄 Auditoría restablecida a términos contractuales estrictos.", icon="ℹ️")
+                st.rerun()
                 
         # Chat Input FUERA DEL CONTENEDOR PERO DENTRO DEL TAB (Para que se dibuje abajo)
         col_input1, col_input2 = st.columns([10, 1])
         with col_input1:
-            prompt = st.chat_input("Escribe tu pregunta al agente aquí...")
+            prompt = st.chat_input("Escribe tu pregunta o directiva de ajuste (ej: 'Acepta 50% de penalidad')...")
             
         if prompt:
             st.session_state.messages.append({"role": "user", "content": prompt})
+
+            # 1. Detección Human-in-the-Loop de concesiones
+            from agent.core.concession_engine import parse_concession_intent, ConcessionEngine, format_concession_reply
+            intent = parse_concession_intent(prompt)
+            if intent:
+                updated_report = ConcessionEngine.apply_concession(report.case_id, intent, operator_name="Operador Streamlit")
+                st.session_state.current_report = updated_report
+                bot_reply = format_concession_reply(updated_report, intent)
+                st.session_state.messages.append({"role": "assistant", "content": bot_reply})
+                st.toast("⚡ Recálculo Human-in-the-Loop aplicado con éxito.", icon="⚖️")
+                st.rerun()
             
             # Conexión directa a OpenAI/Grok Gateway
             from openai import OpenAI

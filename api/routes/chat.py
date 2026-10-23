@@ -4,6 +4,7 @@ Endpoint conversacional enterprise conectado con Grok 4.7 y motor determinístic
 Capaz de responder a cualquier duda técnica de jurados o comercial de clientes.
 """
 
+import json
 from decimal import Decimal
 from pathlib import Path
 from typing import Dict, Any, List, Optional
@@ -13,8 +14,27 @@ from pydantic import BaseModel, Field
 from config.settings import settings
 from agent.core.skynet_runner import SkynetRunner
 from data.models import DisputeAnalysisReport
+from agent.core.concession_engine import (
+    ConcessionEngine,
+    ConcessionIntent,
+    parse_concession_intent,
+    format_concession_reply,
+)
+
+ROOT_DIR = Path(__file__).resolve().parent.parent.parent
 
 router = APIRouter(prefix="/cases", tags=["Chat con Agente"])
+
+
+def _decimal_to_float(obj: Any) -> Any:
+    """Convierte recursivamente Decimals a floats para serialización JSON segura."""
+    if isinstance(obj, Decimal):
+        return float(obj)
+    if isinstance(obj, dict):
+        return {k: _decimal_to_float(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [_decimal_to_float(item) for item in obj]
+    return obj
 
 
 class ChatMessage(BaseModel):
@@ -26,6 +46,14 @@ class ChatRequest(BaseModel):
     message: str = Field(..., description="Pregunta del usuario")
     history: List[ChatMessage] = Field(default_factory=list, description="Historial previo")
     role: str = Field(default="senior_analyst", description="Perspectiva o rol: senior_analyst, judge_auditor, legal_counsel, commercial_negotiator")
+
+
+class ConcessionRequest(BaseModel):
+    percentage: Optional[float] = Field(default=None, description="Porcentaje de penalización a conceder (ej. 50.0)")
+    fixed_amount: Optional[float] = Field(default=None, description="Monto fijo en USD a conceder")
+    concept: str = Field(default="PENALIZACION", description="Concepto comercial")
+    reason: str = Field(default="Acuerdo comercial para preservar la cuenta", description="Motivo")
+    is_reset: bool = Field(default=False, description="Revertir a original")
 
 
 def _extract_case_full_context(case_id: str) -> Dict[str, Any]:
@@ -436,6 +464,27 @@ def chat_with_agent(case_id: str, request: ChatRequest):
     if not prompt:
         raise HTTPException(status_code=400, detail="El mensaje no puede estar vacío.")
 
+    # 0. Interceptar directivas Human-in-the-Loop de concesión comercial o recálculo dinámico
+    concession_intent = parse_concession_intent(prompt)
+    if concession_intent:
+        role = request.role or "senior_analyst"
+        recalculated = ConcessionEngine.apply_concession(
+            case_id=case_id,
+            intent=concession_intent,
+            operator_name=f"Operador ({role})"
+        )
+        reply_text = format_concession_reply(recalculated, concession_intent)
+        return {
+            "reply": reply_text,
+            "mode": "human_in_the_loop",
+            "model": "SupplyMind Human-in-the-Loop Recalculator",
+            "role": role,
+            "sources": ["Instrucción Directa de Operador Comercial Human-in-the-Loop"],
+            "recalculated_report": _decimal_to_float(recalculated.model_dump(mode="python")),
+            "concession_applied": True,
+            "is_reset": concession_intent.is_reset
+        }
+
     # 1. Extraer contexto integral 360° del caso
     ctx = _extract_case_full_context(case_id)
     role = request.role or "senior_analyst"
@@ -479,4 +528,61 @@ def chat_with_agent(case_id: str, request: ChatRequest):
         "model": "SupplyMind Deterministic Engine",
         "role": role,
         "sources": ctx.get("sources", [])
+    }
+
+
+@router.post("/{case_id}/concession")
+def apply_concession_endpoint(case_id: str, request: ConcessionRequest):
+    """
+    Aplica paramétricamente una concesión comercial Human-in-the-Loop y recalcula saldos al instante.
+    """
+    case_path = Path("data/cases") / case_id
+    if not case_path.exists():
+        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+
+    intent = ConcessionIntent(
+        is_concession=True,
+        is_reset=request.is_reset,
+        percentage=Decimal(str(request.percentage)) if request.percentage is not None else None,
+        fixed_amount=Decimal(str(request.fixed_amount)) if request.fixed_amount is not None else None,
+        target_concept=request.concept,
+        reason=request.reason
+    )
+    updated_report = ConcessionEngine.apply_concession(case_id, intent)
+    reply_text = format_concession_reply(updated_report, intent)
+    return {
+        "status": "success",
+        "report": _decimal_to_float(updated_report.model_dump(mode="python")),
+        "reply": reply_text,
+        "concessions": _decimal_to_float([c.model_dump(mode="python") for c in updated_report.concessions])
+    }
+
+
+@router.get("/{case_id}/concessions")
+def get_concessions_endpoint(case_id: str):
+    """
+    Retorna el historial de concesiones comerciales activas aplicadas sobre el expediente.
+    """
+    case_path = Path("data/cases") / case_id
+    if not case_path.exists():
+        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+
+    # Cargar reporte activo de caché o archivo
+    json_path = ROOT_DIR / "reports" / f"dispute_report_{case_id}.json"
+    if json_path.exists():
+        try:
+            with open(json_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            rep = DisputeAnalysisReport.model_validate(data)
+            return {
+                "case_id": case_id,
+                "concessions": _decimal_to_float([c.model_dump(mode="python") for c in rep.concessions])
+            }
+        except Exception:
+            pass
+            
+    base = ConcessionEngine.get_or_create_base_report(case_id)
+    return {
+        "case_id": case_id,
+        "concessions": _decimal_to_float([c.model_dump(mode="python") for c in base.concessions])
     }

@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 
 // ==============================================================================
-// 1. Renderizador Markdown Enriquecido (Tablas, Citas, Listas, Badges Neón)
+// 1. Renderizador Markdown Enriquecido (Tablas, Citas, Listas, Tokens Institucionales)
 // ==============================================================================
 function formatInlineText(text) {
   if (!text) return text;
@@ -31,16 +31,16 @@ function formatInlineText(text) {
   return codeParts.map((part, pIdx) => {
     if (part.startsWith('`') && part.endsWith('`')) {
       const codeContent = part.slice(1, -1);
-      // Destacar identificadores documentales con estilo badge neón
+      // Destacar identificadores documentales con estilo institucional sobrio
       if (/^(DEL-|INV-|PAY-|CLAUSE-|PO-|PROD-|DED-)/i.test(codeContent)) {
         return (
-          <span key={pIdx} className="inline-block px-1.5 py-0.5 mx-0.5 rounded font-mono text-[11px] font-semibold bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 shadow-sm shadow-cyan-900/30">
+          <span key={pIdx} className="inline-block px-1.5 py-0.5 mx-0.5 rounded font-mono text-[10px] font-semibold bg-[#171822] border border-[#282a3c] text-[#eed98d] shadow-tactile">
             {codeContent}
           </span>
         );
       }
       return (
-        <code key={pIdx} className="px-1.5 py-0.5 rounded font-mono text-[11px] bg-slate-800 text-indigo-300 border border-slate-700">
+        <code key={pIdx} className="px-1.5 py-0.5 rounded font-mono text-[11px] bg-[#14151b] text-zinc-300 border border-[#222430]">
           {codeContent}
         </code>
       );
@@ -50,14 +50,14 @@ function formatInlineText(text) {
     const boldParts = part.split(/(\*\*[^*]+\*\*)/g);
     return boldParts.map((bPart, bIdx) => {
       if (bPart.startsWith('**') && bPart.endsWith('**')) {
-        return <strong key={bIdx} className="font-bold text-white">{bPart.slice(2, -2)}</strong>;
+        return <strong key={bIdx} className="font-bold text-white tracking-tight">{bPart.slice(2, -2)}</strong>;
       }
       
       // Procesar *cursiva*
       const italicParts = bPart.split(/(\*[^*]+\*)/g);
       return italicParts.map((iPart, iIdx) => {
         if (iPart.startsWith('*') && iPart.endsWith('*') && !iPart.startsWith('**')) {
-          return <em key={iIdx} className="italic text-slate-300">{iPart.slice(1, -1)}</em>;
+          return <em key={iIdx} className="italic text-zinc-400">{iPart.slice(1, -1)}</em>;
         }
         return iPart;
       });
@@ -101,22 +101,22 @@ function RichMarkdownMessage({ content }) {
         );
 
         elements.push(
-          <div key={`table-${i}`} className="my-3 overflow-x-auto rounded-xl border border-slate-800 bg-slate-950/70 shadow-inner">
-            <table className="w-full text-left text-xs border-collapse">
+          <div key={`table-${i}`} className="my-3 overflow-x-auto rounded border border-[#1e202a] bg-[#0c0d11] shadow-subtle">
+            <table className="w-full text-left text-xs border-collapse font-mono tabular-nums">
               <thead>
-                <tr className="border-b border-slate-800 bg-cyan-950/40 text-cyan-300 font-mono">
+                <tr className="border-b border-[#1e202a] bg-[#121319] text-zinc-300">
                   {headers.map((h, hIdx) => (
-                    <th key={hIdx} className="p-2.5 font-bold whitespace-nowrap">
+                    <th key={hIdx} className="p-2.5 font-bold uppercase text-[10px] tracking-wider whitespace-nowrap">
                       {formatInlineText(h)}
                     </th>
                   ))}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60 font-sans">
+              <tbody className="divide-y divide-[#181922] font-sans">
                 {dataRows.map((row, rIdx) => (
-                  <tr key={rIdx} className="hover:bg-slate-900/60 transition-colors odd:bg-slate-900/20">
+                  <tr key={rIdx} className="audit-row transition-colors">
                     {row.map((cell, cIdx) => (
-                      <td key={cIdx} className="p-2.5 text-slate-200">
+                      <td key={cIdx} className="p-2.5 text-zinc-200">
                         {formatInlineText(cell)}
                       </td>
                     ))}
@@ -294,6 +294,12 @@ export default function ChatConsole({
       { text: "Redáctame un correo formal para el departamento de compras objetando el pago", badge: "Correo B2B" },
       { text: "¿Qué monto debemos reconocer mediante Nota de Crédito comercial?", badge: "Nota Crédito" },
       { text: "Prepara una carta de requerimiento de pago con plazo de 15 días hábiles", badge: "Requerimiento" },
+    ],
+    hitl: [
+      { text: "Acepta el 50% de la penalidad ASN para cuidar la relación comercial y concilia el resto", badge: "50% Concesión" },
+      { text: "Condona el 100% de la penalidad operativa para cerrar el expediente de mutuo acuerdo", badge: "100% Concesión" },
+      { text: "Absorbe $1,000 USD de la deducción disputada y exige el cobro del saldo restante", badge: "$1,000 Concesión" },
+      { text: "Deshacer concesión y restaurar auditoría contractual original estricta", badge: "Reset Original" },
     ]
   };
 
@@ -353,8 +359,8 @@ export default function ChatConsole({
   const CurrentRoleIcon = currentRoleObj.icon;
 
   const containerClasses = isFullScreen 
-    ? "fixed inset-4 md:inset-8 z-50 glass-card rounded-2xl flex flex-col shadow-2xl border border-cyan-500/40 bg-slate-950/95 backdrop-blur-2xl"
-    : "glass-card rounded-2xl flex flex-col h-[650px] overflow-hidden";
+    ? "fixed inset-4 md:inset-8 z-50 bg-[#0c0d11] rounded-lg flex flex-col shadow-modal border border-[#2b2e3e]"
+    : "bg-[#0e0f14] border border-[#1b1c24] rounded-lg flex flex-col h-[650px] overflow-hidden shadow-elevated";
 
   return (
     <div className={containerClasses}>
@@ -362,30 +368,30 @@ export default function ChatConsole({
       {/* ================================================================== */}
       {/* 1. Header de la Consola con Selector de Rol & Controles           */}
       {/* ================================================================== */}
-      <div className="p-3.5 border-b border-slate-800/80 bg-slate-950/80 flex flex-wrap items-center justify-between gap-3 flex-shrink-0">
+      <div className="p-3 border-b border-[#1b1c24] bg-[#101116] flex flex-wrap items-center justify-between gap-3 flex-shrink-0 select-none">
         
         {/* Lado Izquierdo: Título y Selector de Rol */}
         <div className="flex items-center space-x-3">
-          <div className="p-1.5 rounded-lg bg-cyan-950/60 border border-cyan-800/50 text-cyan-400">
+          <div className="p-1.5 rounded bg-[#15161f] border border-[#242738] text-[#d4af37]">
             <Terminal className="w-4 h-4" />
           </div>
           <div>
             <div className="flex items-center space-x-2">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-white">
-                Terminal Grok 4.7
+              <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-zinc-100">
+                Consola Arbitral Grok 4.7
               </h3>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-800 text-cyan-300 border border-slate-700">
+              <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-[#15161f] text-zinc-300 border border-[#222432]">
                 {caseId}
               </span>
             </div>
-            <p className="text-[10px] text-slate-400">
-              Modo activo: <strong className="text-slate-200">{currentRoleObj.label}</strong>
+            <p className="text-[10px] text-zinc-400 font-mono">
+              Perspectiva: <strong className="text-zinc-200">{currentRoleObj.label}</strong>
             </p>
           </div>
         </div>
 
         {/* Centro: Selector de Roles */}
-        <div className="flex items-center bg-slate-900/90 p-1 rounded-xl border border-slate-800 space-x-1">
+        <div className="flex items-center bg-[#0a0b0e] p-0.5 rounded border border-[#1a1c24] space-x-0.5">
           {roles.map((r) => {
             const Icon = r.icon;
             const isSelected = selectedRole === r.id;
@@ -394,13 +400,13 @@ export default function ChatConsole({
                 key={r.id}
                 onClick={() => setSelectedRole(r.id)}
                 title={r.description}
-                className={`flex items-center space-x-1.5 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-all ${
+                className={`btn-tactile flex items-center space-x-1.5 px-2.5 py-1 rounded text-[10px] font-mono font-medium transition-all ${
                   isSelected 
-                    ? 'bg-slate-800 text-cyan-300 border border-cyan-500/40 shadow-sm' 
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+                    ? 'bg-[#181924] text-[#eed98d] border border-[#2b2e3e] shadow-tactile' 
+                    : 'text-zinc-400 hover:text-zinc-200 hover:bg-[#12131a]'
                 }`}
               >
-                <Icon className={`w-3 h-3 ${isSelected ? 'text-cyan-400' : 'text-slate-500'}`} />
+                <Icon className={`w-3 h-3 ${isSelected ? 'text-[#d4af37]' : 'text-zinc-500'}`} />
                 <span className="hidden sm:inline">{r.short}</span>
               </button>
             );
@@ -408,17 +414,17 @@ export default function ChatConsole({
         </div>
 
         {/* Lado Derecho: Badges y Botones de Acción */}
-        <div className="flex items-center space-x-1.5">
-          <div className="flex items-center space-x-1 px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-300 border border-emerald-800/40 text-[10px] font-mono">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>Grok Online</span>
+        <div className="flex items-center space-x-1.5 font-mono">
+          <div className="flex items-center space-x-1.5 px-2 py-0.5 rounded bg-[#101913] text-emerald-400 border border-emerald-900/50 text-[10px]">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span>Motor Activo</span>
           </div>
 
           {/* Descargar Transcripción */}
           {messages.length > 0 && (
             <button
               onClick={handleDownloadTranscript}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-cyan-300 hover:bg-slate-800 transition-colors"
+              className="btn-tactile p-1.5 rounded text-zinc-400 hover:text-white hover:bg-[#181922] transition-colors"
               title="Descargar conversación (.md)"
             >
               <Download className="w-3.5 h-3.5" />
@@ -428,7 +434,7 @@ export default function ChatConsole({
           {/* Maximizar / Restaurar Pantalla Completa */}
           <button
             onClick={() => setIsFullScreen(!isFullScreen)}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-cyan-300 hover:bg-slate-800 transition-colors"
+            className="btn-tactile p-1.5 rounded text-zinc-400 hover:text-white hover:bg-[#181922] transition-colors"
             title={isFullScreen ? "Restaurar tamaño normal" : "Pantalla completa"}
           >
             {isFullScreen ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
@@ -438,7 +444,7 @@ export default function ChatConsole({
           {onClearChat && (
             <button
               onClick={onClearChat}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-slate-800 transition-colors"
+              className="btn-tactile p-1.5 rounded text-zinc-400 hover:text-rose-400 hover:bg-[#181922] transition-colors"
               title="Limpiar conversación"
             >
               <Trash2 className="w-3.5 h-3.5" />
@@ -450,26 +456,26 @@ export default function ChatConsole({
       {/* ================================================================== */}
       {/* 2. Área de Mensajes con Scroll                                    */}
       {/* ================================================================== */}
-      <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4">
+      <div className="flex-1 overflow-y-auto p-4 space-y-3.5">
         
         {/* Mensaje de Bienvenida Contextual */}
         <div className="flex items-start space-x-3">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-cyan-600/30 to-indigo-600/30 border border-cyan-500/40 flex items-center justify-center text-cyan-300 flex-shrink-0 shadow-sm">
-            <Bot className="w-4 h-4" />
+          <div className="w-7 h-7 rounded bg-[#161720] border border-[#252838] flex items-center justify-center text-[#d4af37] flex-shrink-0 shadow-tactile text-xs font-mono font-bold select-none">
+            SM
           </div>
-          <div className="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 text-xs text-slate-200 leading-relaxed max-w-3xl shadow-sm">
-            <div className="flex items-center justify-between border-b border-slate-800/80 pb-2 mb-2">
-              <span className="font-bold text-cyan-300 flex items-center space-x-1.5">
-                <CurrentRoleIcon className="w-3.5 h-3.5" />
-                <span>SupplyMind AI — {currentRoleObj.label}</span>
+          <div className="p-3.5 rounded-lg bg-[#111218] border border-[#1b1c24] text-xs text-zinc-200 leading-relaxed max-w-3xl shadow-subtle">
+            <div className="flex items-center justify-between border-b border-[#1b1c24] pb-2 mb-2 font-mono">
+              <span className="font-bold text-[#eed98d] flex items-center space-x-1.5">
+                <CurrentRoleIcon className="w-3.5 h-3.5 text-[#d4af37]" />
+                <span>SupplyMind — {currentRoleObj.label}</span>
               </span>
-              <span className="text-[10px] font-mono text-slate-400">Expediente {caseId}</span>
+              <span className="text-[10px] text-zinc-500">Expediente {caseId}</span>
             </div>
-            <p className="text-slate-300 leading-relaxed mb-2">
-              He cargado el expediente completo: <strong>facturas, remisiones firmadas, comprobantes de pago, contrato comercial y dictamen del Tribunal Colegiado</strong>.
+            <p className="text-zinc-300 leading-relaxed mb-1.5 font-sans">
+              Expediente integrado en memoria: <strong>facturas CFDI, remisiones firmadas, comprobantes de pago SPEI, contrato comercial y dictamen pericial colegiado</strong>.
             </p>
-            <p className="text-slate-400 text-[11px]">
-              Tanto clientes como jurados pueden hacerme cualquier pregunta sobre <strong>desglose producto a producto</strong>, <strong>cálculo matemático exacto en Decimal</strong>, <strong>amparo de cláusulas contractuales</strong> o solicitar la <strong>redacción de cartas de objeción</strong>.
+            <p className="text-zinc-400 text-[11px] font-sans">
+              Disponible para consultas de <strong>desglose producto a producto</strong>, <strong>cálculo determinístico en Python Decimal</strong>, <strong>amparo de cláusulas contractuales</strong> o <strong>redacción de cartas de objeción</strong>.
             </p>
           </div>
         </div>
@@ -483,30 +489,30 @@ export default function ChatConsole({
               className={`flex items-start space-x-3 ${isUser ? 'flex-row-reverse space-x-reverse' : ''}`}
             >
               {/* Avatar */}
-              <div className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm ${
+              <div className={`w-7 h-7 rounded flex items-center justify-center flex-shrink-0 shadow-tactile text-xs font-mono font-bold select-none ${
                 isUser 
-                  ? 'bg-indigo-600/30 border border-indigo-500/40 text-indigo-300' 
-                  : 'bg-gradient-to-br from-cyan-600/30 to-indigo-600/30 border border-cyan-500/40 text-cyan-300'
+                  ? 'bg-[#181926] border border-[#282a3e] text-indigo-300' 
+                  : 'bg-[#161720] border border-[#252838] text-[#d4af37]'
               }`}>
-                {isUser ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
+                {isUser ? <User className="w-3.5 h-3.5" /> : 'SM'}
               </div>
 
               {/* Burbuja de Contenido */}
-              <div className={`p-4 rounded-2xl border text-xs leading-relaxed max-w-3xl shadow-sm ${
+              <div className={`p-3.5 rounded-lg border text-xs leading-relaxed max-w-3xl shadow-subtle ${
                 isUser 
-                  ? 'bg-indigo-950/40 border-indigo-800/50 text-indigo-100 rounded-tr-none' 
-                  : 'bg-slate-900/90 border-slate-800 text-slate-200 rounded-tl-none'
+                  ? 'bg-[#151624] border-[#25283e] text-zinc-100' 
+                  : 'bg-[#111218] border-[#1b1c24] text-zinc-200'
               }`}>
                 
                 {/* Header del Mensaje */}
-                <div className="flex items-center justify-between border-b border-slate-800/60 pb-1.5 mb-2">
-                  <span className={`font-mono text-[10px] font-bold ${isUser ? 'text-indigo-300' : 'text-cyan-400'}`}>
-                    {isUser ? 'TÚ (CONSULTA)' : 'SUPPLYMIND AI'}
+                <div className="flex items-center justify-between border-b border-[#1b1c24] pb-1.5 mb-2 font-mono">
+                  <span className={`text-[10px] font-bold ${isUser ? 'text-indigo-300' : 'text-[#eed98d]'}`}>
+                    {isUser ? 'CONSULTA USUARIO' : 'SUPPLYMIND AI'}
                   </span>
                   {!isUser && (
                     <button
                       onClick={() => handleCopyMessage(msg.content, index)}
-                      className="flex items-center space-x-1 text-[10px] text-slate-400 hover:text-cyan-300 transition-colors"
+                      className="btn-tactile flex items-center space-x-1 text-[10px] text-zinc-400 hover:text-white transition-colors"
                       title="Copiar texto de la respuesta"
                     >
                       {copiedIndex === index ? (
@@ -526,7 +532,7 @@ export default function ChatConsole({
 
                 {/* Contenido Renderizado */}
                 {isUser ? (
-                  <p className="whitespace-pre-wrap">{msg.content}</p>
+                  <p className="whitespace-pre-wrap font-sans">{msg.content}</p>
                 ) : (
                   <RichMarkdownMessage content={msg.content} />
                 )}
@@ -538,14 +544,12 @@ export default function ChatConsole({
         {/* Indicador de Pensamiento */}
         {isThinking && (
           <div className="flex items-start space-x-3">
-            <div className="w-8 h-8 rounded-xl bg-cyan-600/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400 flex-shrink-0 animate-pulse">
-              <Bot className="w-4 h-4" />
+            <div className="w-7 h-7 rounded bg-[#161720] border border-[#252838] flex items-center justify-center text-[#d4af37] flex-shrink-0 text-xs font-mono font-bold">
+              SM
             </div>
-            <div className="p-3.5 rounded-2xl bg-slate-900/90 border border-slate-800 text-xs text-slate-300 flex items-center space-x-2.5">
-              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-bounce"></span>
-              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-bounce [animation-delay:0.2s]"></span>
-              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-bounce [animation-delay:0.4s]"></span>
-              <span className="font-mono text-cyan-300 text-[11px]">
+            <div className="p-3 rounded-lg bg-[#111218] border border-[#1b1c24] text-xs text-zinc-300 flex items-center space-x-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#d4af37] animate-pulse"></span>
+              <span className="font-mono text-[#eed98d] text-[11px]">
                 Grok 4.7 analizando expediente con precisión Decimal...
               </span>
             </div>
@@ -558,31 +562,32 @@ export default function ChatConsole({
       {/* ================================================================== */}
       {/* 3. Barra de Sugerencias Segmentadas por Audiencia                  */}
       {/* ================================================================== */}
-      <div className="px-4 py-2.5 bg-slate-950/70 border-t border-slate-800/60 flex flex-col gap-2 flex-shrink-0">
+      <div className="px-3.5 py-2 bg-[#0a0b0e] border-t border-[#1b1c24] flex flex-col gap-1.5 flex-shrink-0 select-none">
         
         {/* Selector de Pestaña de Sugerencias */}
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <Lightbulb className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
-            <span className="text-[10px] text-slate-400 uppercase font-mono font-bold tracking-wider">
-              Dudas Frecuentes:
+            <Lightbulb className="w-3.5 h-3.5 text-[#d4af37] flex-shrink-0" />
+            <span className="text-[10px] text-zinc-400 uppercase font-mono font-bold tracking-wider">
+              Consultas Rápidas:
             </span>
           </div>
 
-          <div className="flex items-center space-x-1">
+          <div className="flex items-center space-x-1 font-mono">
             {[
-              { id: 'jurado', label: '👔 Jurados' },
-              { id: 'cliente', label: '💼 Clientes' },
-              { id: 'legal', label: '⚖️ Legal' },
-              { id: 'borradores', label: '✉️ Borradores' },
+              { id: 'jurado', label: 'Jurados' },
+              { id: 'hitl', label: '⚡ Concesión Human' },
+              { id: 'cliente', label: 'Clientes' },
+              { id: 'legal', label: 'Legal' },
+              { id: 'borradores', label: 'Borradores' },
             ].map(tab => (
               <button
                 key={tab.id}
                 onClick={() => setPromptCategory(tab.id)}
-                className={`text-[10px] px-2 py-0.5 rounded-md transition-colors ${
+                className={`btn-tactile text-[10px] px-2 py-0.5 rounded transition-colors ${
                   promptCategory === tab.id
-                    ? 'bg-slate-800 text-cyan-300 font-bold border border-slate-700'
-                    : 'text-slate-400 hover:text-slate-200'
+                    ? 'bg-[#181a24] text-[#eed98d] font-bold border border-[#272a39]'
+                    : 'text-zinc-500 hover:text-zinc-300'
                 }`}
               >
                 {tab.label}
@@ -592,15 +597,15 @@ export default function ChatConsole({
         </div>
 
         {/* Chips de Preguntas de la Categoría Seleccionada */}
-        <div className="flex items-center space-x-2 overflow-x-auto pb-1 scrollbar-thin">
+        <div className="flex items-center space-x-2 overflow-x-auto pb-0.5">
           {categorizedPrompts[promptCategory]?.map((p, i) => (
             <button
               key={i}
               onClick={() => handleQuickPrompt(p.text)}
               disabled={isThinking}
-              className="group text-[11px] px-3 py-1.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-800 hover:border-cyan-500/40 text-slate-300 hover:text-cyan-200 whitespace-nowrap transition-all shadow-sm flex items-center space-x-1.5 flex-shrink-0 disabled:opacity-50"
+              className="btn-tactile text-[11px] px-2.5 py-1 rounded bg-[#111218] hover:bg-[#161822] border border-[#1e202a] hover:border-[#2f3244] text-zinc-300 hover:text-white whitespace-nowrap transition-all shadow-subtle flex items-center space-x-1.5 flex-shrink-0 disabled:opacity-50"
             >
-              <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-slate-800 group-hover:bg-cyan-950/80 group-hover:text-cyan-300 text-slate-400 transition-colors">
+              <span className="text-[9px] font-mono px-1 py-0.2 rounded bg-[#171822] text-[#eed98d]">
                 {p.badge}
               </span>
               <span>{p.text}</span>
@@ -612,7 +617,7 @@ export default function ChatConsole({
       {/* ================================================================== */}
       {/* 4. Formulario de Entrada con Atajos de Teclado                    */}
       {/* ================================================================== */}
-      <form onSubmit={handleSubmit} className="p-3 border-t border-slate-800/80 bg-slate-950/90 flex items-center space-x-2 flex-shrink-0">
+      <form onSubmit={handleSubmit} className="p-3 border-t border-[#1b1c24] bg-[#0c0d11] flex items-center space-x-2 flex-shrink-0">
         <div className="relative flex-1">
           <input
             ref={inputRef}
@@ -620,11 +625,11 @@ export default function ChatConsole({
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder={`Hazle una consulta técnica o comercial a Grok sobre ${caseId}...`}
+            placeholder={`Hazle una consulta técnica o pericial a Grok sobre ${caseId}...`}
             disabled={isThinking}
-            className="w-full bg-slate-900 border border-slate-800 rounded-xl pl-4 pr-10 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500/50 transition-colors disabled:opacity-50"
+            className="w-full bg-[#111218] border border-[#1e2029] focus:border-[#d4af37]/60 rounded pl-3.5 pr-10 py-2 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none transition-colors disabled:opacity-50 font-mono"
           />
-          <span className="absolute right-3 top-2.5 text-[10px] font-mono text-slate-600 hidden sm:inline">
+          <span className="absolute right-3 top-2 text-[10px] font-mono text-zinc-600 hidden sm:inline select-none">
             Enter ↵
           </span>
         </div>
@@ -632,10 +637,10 @@ export default function ChatConsole({
         <button
           type="submit"
           disabled={!inputText.trim() || isThinking}
-          className="p-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 text-white hover:brightness-110 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-md shadow-cyan-500/20 flex items-center justify-center flex-shrink-0"
+          className="btn-tactile px-3 py-2 rounded bg-[#1f1d14] hover:bg-[#282518] border border-[#d4af37]/60 text-[#eed98d] hover:text-white disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-subtle flex items-center justify-center flex-shrink-0"
           title="Enviar consulta"
         >
-          <Send className="w-4 h-4" />
+          <Send className="w-3.5 h-3.5" />
         </button>
       </form>
 

@@ -127,6 +127,22 @@ class CommercialContract(_Base):
     clauses: List[ContractClause] = Field(min_length=1)
 
 
+class CommercialConcession(BaseModel):
+    """Registro auditable de una concesión comercial autorizada por Human-in-the-Loop."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    concession_id: str
+    applied_at: str
+    operator: str = "Human-in-the-Loop Operator"
+    concession_type: str = "COMMERCIAL_DISCOUNT"  # "PERCENTAGE_PENALTY", "FIXED_AMOUNT", "FULL_WAIVER"
+    target: str = "DISPUTED_PENALTY"              # "PENALTY_ASN", "EARLY_PAYMENT", "DAMAGED_GOODS", "GENERAL"
+    original_claimable: Decimal = Field(default=Decimal("0.00"), ge=0)
+    concession_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    new_claimable: Decimal = Field(default=Decimal("0.00"), ge=0)
+    new_justified: Decimal = Field(default=Decimal("0.00"), ge=0)
+    reason: str = "Instrucción de operador para salvaguardar la relación comercial"
+
+
 # ==========================================
 # 6. Salida: Dispute Analysis Report
 # ==========================================
@@ -142,6 +158,7 @@ class DisputeAnalysisReport(_Base):
     claimable_amount: Decimal = Field(ge=0)       # Monto reclamable
     confidence: float = Field(ge=0.0, le=1.0, validation_alias=AliasChoices("confidence", "confidence_score"))
     recommended_action: str         # Acción recomendada
+    concessions: List[CommercialConcession] = Field(default_factory=list)  # Auditoría Human-in-the-Loop
 
     def formatted_display(self) -> str:
         """Formatea el reporte con la estructura solicitada para el reto."""

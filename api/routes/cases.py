@@ -77,30 +77,46 @@ class GuidedCaseRequest(BaseModel):
     contract_tolerance: float = Field(default=0.0, ge=0)
 
 
+# Cartera de élite activa (2 más exigentes + 2 reales)
+ELITE_CASE_IDS = [
+    "case_009_mega_retailer_dispute",  # Exigente 1: 40 SKUs ($385k)
+    "case_007_cisco_large_bundle",     # Exigente 2: Cisco Infrastructure ($125k)
+    "case_005_amazon_shortage",        # Real 1: Amazon Logistics ($48k)
+    "case_006_walmart_otif_pricing",   # Real 2: Walmart OTIF ($64.5k)
+]
+
 # Metadatos amigables para casos conocidos
 CASE_META_MAP = {
+    "case_009_mega_retailer_dispute": ("Caso 009 — Mega Retailer 40 SKUs (Exigente)", "Exigente Multi-SKU", "Expediente corporativo masivo de $385,000 USD con 40 SKUs, faltante en muelle y multas no pactadas."),
+    "case_007_cisco_large_bundle": ("Caso 007 — Cisco Bundle $125k (Exigente)", "Exigente PDF Masivo", "Infraestructura corporativa de alta cuantía con documentos fiscales CFDI y remisión de Dallas."),
+    "case_005_amazon_shortage": ("Caso 005 — Amazon Faltante Real (Real)", "Real Empresarial", "Expediente nativo de Amazon con 5 PDFs vectoriales y deducción por faltante."),
+    "case_006_walmart_otif_pricing": ("Caso 006 — Walmart OTIF & Pricing (Real)", "Real Empresarial", "Penalizaciones por entrega a destiempo y discrepancia de precios."),
     "case_001": ("Caso 001 — Faltante Físico Básico", "Básico", "Faltante físico de $800 USD en PROD-002, 100% justificado en remisión DEL-9912."),
     "case_002": ("Caso 002 — Disputa Compleja Alta Cuantía", "Complejo", "Discrepancia de $16,500 USD: $12,500 reclamables por avería no probada y multa ilegal."),
     "case_003": ("Caso 003 — Discrepancia de Precio Unitario", "Precios", "Sobreprecio de $3,000 USD en factura vs PO pactada, Cláusula 3.1 inalterabilidad."),
     "case_004_enterprise": ("Caso 004 — Enterprise RAG & OCR", "Multimodal", "Expediente con contrato en Markdown y remisión escaneada."),
-    "case_005_amazon_shortage": ("Caso 005 — Amazon Faltante Real (PDFs)", "Empresarial PDF", "Expediente nativo de Amazon con 5 PDFs vectoriales y deducción por faltante."),
-    "case_006_walmart_otif_pricing": ("Caso 006 — Walmart OTIF & Pricing (PDFs)", "Empresarial PDF", "Penalizaciones por entrega a destiempo y discrepancia de precios."),
-    "case_007_cisco_large_bundle": ("Caso 007 — Cisco Bundle $125k (PDFs Masivos)", "Empresarial PDF", "Infraestructura corporativa con documentos fiscales CFDI y remisión de Dallas."),
     "case_008_homedepot_damaged_scanned": ("Caso 008 — Home Depot Avería (OCR Escaneado)", "Visión OCR", "Remisión física escaneada con anotaciones manuscritas de patio y fotos de daños."),
-    "test_corrupt_json": ("Prueba de Resiliencia — JSON Corrupto", "Pruebas de Estrés", "Expediente sintético con sintaxis JSON rota para validar la tolerancia a fallos del motor."),
-    "test_bad_schema": ("Prueba de Resiliencia — Esquema Inválido", "Pruebas de Estrés", "Expediente con estructura y tipos de datos incompatibles para validar la verificación estricta de esquemas Pydantic."),
 }
 
 
 @router.get("", response_model=List[CaseSummary])
-def list_cases():
-    """Lista todos los expedientes de disputa disponibles clasificados por tipología."""
+def list_cases(elite_only: bool = Query(False, description="Filtrar exclusivamente la cartera élite de 4 casos")):
+    """Lista los expedientes de disputa disponibles priorizando la cartera activa de élite al inicio."""
     if not CASES_DIR.exists():
         return []
 
     summaries = []
+    
+    if elite_only:
+        target_dirs = [CASES_DIR / cid for cid in ELITE_CASE_IDS if (CASES_DIR / cid).exists()]
+    else:
+        # Priorizar siempre los 4 casos de élite al inicio del catálogo
+        all_dirs = [p for p in sorted(CASES_DIR.iterdir()) if p.is_dir()]
+        elite_set = set(ELITE_CASE_IDS)
+        target_dirs = [CASES_DIR / cid for cid in ELITE_CASE_IDS if (CASES_DIR / cid).exists()]
+        target_dirs += [p for p in all_dirs if p.name not in elite_set]
 
-    for path in sorted(CASES_DIR.iterdir()):
+    for path in target_dirs:
         if not path.is_dir() or path.name.startswith("."):
             continue
 
