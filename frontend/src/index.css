@@ -4,52 +4,103 @@
 
 @layer base {
   body {
-    background-color: #0c0d10;
-    color: #e5e7eb;
+    background-color: #0a0b0e;
+    color: #e2e4ec;
     min-height: 100vh;
     overflow-x: hidden;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Force Tabular Numbers across all numeric and mono elements */
+  .tabular-nums,
+  .font-mono,
+  table,
+  input[type="number"],
+  .number-cell {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
   }
 }
 
-/* Institutional Sovereign Ledger Cards */
+/* Institutional Sovereign & Linear-grade Cards */
 .ledger-card {
-  background: #141519;
-  border: 1px solid #23252c;
-  border-radius: 12px;
+  background: #111217;
+  border: 1px solid #1e2029;
+  border-radius: 10px;
   box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.45);
-  transition: border-color 0.15s ease, background-color 0.15s ease;
+  transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.1s ease;
 }
 
 .ledger-card:hover {
-  border-color: #353742;
+  border-color: #2b2e3c;
 }
 
 .ledger-panel {
-  background: #101114;
-  border: 1px solid #1e2026;
+  background: #0e0f14;
+  border: 1px solid #1a1c24;
 }
 
-/* Custom Scrollbar - Discreet Graphite */
+/* Emil Kowalski Tactile Button Physics */
+.btn-tactile {
+  transition: transform 0.08s ease, filter 0.12s ease, background-color 0.12s ease, border-color 0.12s ease;
+}
+
+.btn-tactile:active {
+  transform: scale(0.982);
+}
+
+/* Subtle Zebra Audit Rows */
+.audit-row:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.012);
+}
+
+.audit-row:hover {
+  background-color: rgba(255, 255, 255, 0.035);
+}
+
+/* Discreet Graphite Scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0c0d10;
+  background: #0a0b0e;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #282a33;
-  border-radius: 4px;
+  background: #222530;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3e414f;
+  background: #34384a;
 }
 
-/* Gold Accent Line / Highlight */
+/* Gold Accent Line / Forensic Stamp */
 .gold-accent-line {
-  background: linear-gradient(90deg, #d4af37 0%, rgba(212, 175, 55, 0.2) 100%);
+  background: linear-gradient(90deg, #d4af37 0%, rgba(212, 175, 55, 0.15) 100%);
 }
+
+/* Clean Print Rules */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+  }
+  .print\:hidden {
+    display: none !important;
+  }
+  .print\:block {
+    display: block !important;
+  }
+  .ledger-card {
+    border: 1px solid #d1d5db !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+  }
+}
+

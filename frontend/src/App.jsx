@@ -103,7 +103,7 @@ function Workspace() {
         setHealth(hData);
         setCases(cList);
         if (cList.length > 0) {
-          const defaultCase = cList.find(c => c.case_id === 'case_001') || cList[0];
+          const defaultCase = cList.find(c => c.case_id === 'case_009_mega_retailer_dispute') || cList[0];
           setSelectedCaseId(defaultCase.case_id);
         }
       } catch (err) {
@@ -111,6 +111,32 @@ function Workspace() {
       }
     }
     initData();
+  }, []);
+
+  // Atajos de teclado profesionales (Linear-grade keyboard navigation)
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (['INPUT', 'TEXTAREA'].includes(e.target?.tagName) || e.target?.isContentEditable) {
+        return;
+      }
+      if (e.key === '1') {
+        setActiveTab('financial');
+        setForceShowSummary(false);
+      } else if (e.key === '2') {
+        setActiveTab('evidence');
+        setForceShowSummary(false);
+      } else if (e.key === '3') {
+        setActiveTab('tribunal');
+        setForceShowSummary(false);
+      } else if (e.key === '4') {
+        setActiveTab('chat');
+        setForceShowSummary(false);
+      } else if (e.key === 'b' || e.key === 'B') {
+        setIsSidebarOpen(prev => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   // 2. Al cambiar el caso seleccionado, cargar metadatos SIN conciliar en automático
@@ -186,6 +212,15 @@ function Workspace() {
         sources: res.sources,
       };
       setChatMessages(prev => [...prev, botMsg]);
+
+      // Si el motor Human-in-the-Loop recalculó los saldos en vivo, actualizar toda la UI
+      if (res.recalculated_report) {
+        setReport(res.recalculated_report);
+        setSolvedReports(prev => ({
+          ...prev,
+          [selectedCaseId]: res.recalculated_report
+        }));
+      }
     } catch (err) {
       const errorMsg = { role: 'assistant', content: `Error de conexión: ${err.message}` };
       setChatMessages(prev => [...prev, errorMsg]);
@@ -251,14 +286,14 @@ function Workspace() {
           )}
 
           {/* Minimalist Executive Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#1c1d24] pb-3.5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#1b1c24] pb-3 select-none">
             
             {/* Left: Case Info & Status */}
             <div className="flex items-center space-x-3">
               <button
                 onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                className="p-1.5 rounded-md bg-[#13141a] hover:bg-[#1a1c24] border border-[#20222a] text-zinc-400 hover:text-white transition-colors"
-                title={isSidebarOpen ? "Ocultar panel lateral" : "Mostrar expedientes"}
+                className="btn-tactile p-1.5 rounded bg-[#111218] hover:bg-[#161822] border border-[#1e2029] text-zinc-400 hover:text-white transition-colors"
+                title={isSidebarOpen ? "Ocultar panel lateral (B)" : "Mostrar expedientes (B)"}
               >
                 {isSidebarOpen ? (
                   <PanelLeftClose className="w-4 h-4 text-[#d4af37]" />
@@ -269,19 +304,19 @@ function Workspace() {
 
               <div>
                 <div className="flex items-center space-x-2">
-                  <h2 className="text-base font-bold text-white tracking-tight">
+                  <h2 className="text-sm font-bold text-white tracking-tight font-mono">
                     {activeCaseTitle}
                   </h2>
-                  <span className="text-[10px] px-2 py-0.5 rounded bg-[#171820] text-zinc-400 font-mono border border-[#20222a]">
+                  <span className="text-[9px] px-1.5 py-0.2 rounded bg-[#14151e] text-zinc-400 font-mono border border-[#20222e]">
                     {selectedCaseObj?.category || 'B2B'}
                   </span>
                   {report ? (
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-300 font-mono font-medium border border-emerald-500/30 flex items-center space-x-1">
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-950/40 text-emerald-300 font-mono font-medium border border-emerald-800/40 flex items-center space-x-1">
                       <CheckCircle2 className="w-3 h-3 text-emerald-400" />
                       <span>Conciliado</span>
                     </span>
                   ) : (
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-amber-950/60 text-amber-300 font-mono font-medium border border-amber-500/30 flex items-center space-x-1">
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-amber-950/40 text-amber-300 font-mono font-medium border border-amber-800/40 flex items-center space-x-1">
                       <Clock className="w-3 h-3 text-amber-400" />
                       <span>Pendiente</span>
                     </span>
@@ -293,59 +328,63 @@ function Workspace() {
             {/* Right: Actions, Tabs & Minimal Tools Menu */}
             <div className="flex items-center space-x-2">
               
-              {/* If Solved: Show Tabs */}
+              {/* If Solved: Show Tabs with Keyboard Hint Badges */}
               {report && !forceShowSummary && (
-                <div className="flex items-center gap-1 p-0.5 rounded-lg bg-[#121317] border border-[#1f2029]">
+                <div className="flex items-center gap-1 p-0.5 rounded bg-[#0f1015] border border-[#1a1c24]">
                   <button
                     onClick={() => setActiveTab('financial')}
-                    className={`px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors ${
+                    className={`btn-tactile px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors flex items-center space-x-1.5 ${
                       activeTab === 'financial'
-                        ? 'bg-[#1e202b] text-white shadow-sm'
-                        : 'text-zinc-400 hover:text-white'
+                        ? 'bg-[#181a24] text-white border border-[#272a39] shadow-tactile'
+                        : 'text-zinc-400 hover:text-white hover:bg-[#12131a]'
                     }`}
                   >
-                    Hoja Contable
+                    <span>Hoja Contable</span>
+                    <span className="text-[9px] px-1 py-0.2 rounded bg-[#101117] text-zinc-500 font-mono hidden md:inline">1</span>
                   </button>
 
                   <button
                     onClick={() => setActiveTab('evidence')}
-                    className={`px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors ${
+                    className={`btn-tactile px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors flex items-center space-x-1.5 ${
                       activeTab === 'evidence'
-                        ? 'bg-[#1e202b] text-white shadow-sm'
-                        : 'text-zinc-400 hover:text-white'
+                        ? 'bg-[#181a24] text-white border border-[#272a39] shadow-tactile'
+                        : 'text-zinc-400 hover:text-white hover:bg-[#12131a]'
                     }`}
                   >
-                    Expediente ({caseDetails?.files_count || 0})
+                    <span>Expediente ({caseDetails?.files_count || 0})</span>
+                    <span className="text-[9px] px-1 py-0.2 rounded bg-[#101117] text-zinc-500 font-mono hidden md:inline">2</span>
                   </button>
 
                   <button
                     onClick={() => setActiveTab('tribunal')}
-                    className={`px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors ${
+                    className={`btn-tactile px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors flex items-center space-x-1.5 ${
                       activeTab === 'tribunal'
-                        ? 'bg-[#1e202b] text-white shadow-sm'
-                        : 'text-zinc-400 hover:text-white'
+                        ? 'bg-[#181a24] text-white border border-[#272a39] shadow-tactile'
+                        : 'text-zinc-400 hover:text-white hover:bg-[#12131a]'
                     }`}
                   >
-                    Tribunal
+                    <span>Tribunal</span>
+                    <span className="text-[9px] px-1 py-0.2 rounded bg-[#101117] text-zinc-500 font-mono hidden md:inline">3</span>
                   </button>
 
                   <button
                     onClick={() => setActiveTab('chat')}
-                    className={`px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors ${
+                    className={`btn-tactile px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors flex items-center space-x-1.5 ${
                       activeTab === 'chat'
-                        ? 'bg-[#1e202b] text-white shadow-sm'
-                        : 'text-zinc-400 hover:text-white'
+                        ? 'bg-[#181a24] text-white border border-[#272a39] shadow-tactile'
+                        : 'text-zinc-400 hover:text-white hover:bg-[#12131a]'
                     }`}
                   >
-                    Chat Grok
+                    <span>Chat Grok</span>
+                    <span className="text-[9px] px-1 py-0.2 rounded bg-[#101117] text-zinc-500 font-mono hidden md:inline">4</span>
                   </button>
 
                   <button
                     onClick={() => setActiveTab('export')}
-                    className={`px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors ${
+                    className={`btn-tactile px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors ${
                       activeTab === 'export'
-                        ? 'bg-[#1e202b] text-white shadow-sm'
-                        : 'text-zinc-400 hover:text-white'
+                        ? 'bg-[#181a24] text-white border border-[#272a39] shadow-tactile'
+                        : 'text-zinc-400 hover:text-white hover:bg-[#12131a]'
                     }`}
                   >
                     Exportar
@@ -357,7 +396,7 @@ function Workspace() {
               {report && (
                 <button
                   onClick={() => setForceShowSummary(!forceShowSummary)}
-                  className="px-2.5 py-1 rounded-md bg-[#14151b] hover:bg-[#1a1c24] border border-[#20222a] text-zinc-300 hover:text-white text-xs font-mono transition-colors flex items-center space-x-1.5"
+                  className="btn-tactile px-2.5 py-1 rounded bg-[#111218] hover:bg-[#161822] border border-[#1e2029] text-zinc-300 hover:text-white text-xs font-mono transition-colors flex items-center space-x-1.5"
                   title="Alternar entre resumen y reporte detallado"
                 >
                   <Eye className="w-3.5 h-3.5 text-[#d4af37]" />
@@ -369,7 +408,7 @@ function Workspace() {
               <button
                 onClick={handleRunAudit}
                 disabled={isAnalyzing}
-                className="px-3 py-1 rounded-md bg-[#242116] hover:bg-[#2e2a1b] border border-[#d4af37]/60 hover:border-[#d4af37] text-[#eed98d] hover:text-white text-xs font-mono font-bold uppercase tracking-wider transition-all flex items-center space-x-1.5 shadow-sm disabled:opacity-50"
+                className="btn-tactile px-3 py-1.5 rounded bg-[#1f1d14] hover:bg-[#282518] border border-[#d4af37]/60 hover:border-[#d4af37] text-[#eed98d] hover:text-white text-xs font-mono font-bold uppercase tracking-wider transition-all flex items-center space-x-1.5 shadow-tactile disabled:opacity-50"
               >
                 {report ? (
                   <>
@@ -388,20 +427,20 @@ function Workspace() {
               <div className="relative">
                 <button
                   onClick={() => setShowToolsMenu(!showToolsMenu)}
-                  className="p-1.5 rounded-md bg-[#13141a] hover:bg-[#1a1c24] border border-[#20222a] text-zinc-400 hover:text-zinc-200 transition-colors"
+                  className="btn-tactile p-1.5 rounded bg-[#111218] hover:bg-[#161822] border border-[#1e2029] text-zinc-400 hover:text-zinc-200 transition-colors"
                   title="Herramientas adicionales"
                 >
                   <Wrench className="w-3.5 h-3.5 text-[#d4af37]" />
                 </button>
 
                 {showToolsMenu && (
-                  <div className="absolute right-0 mt-2 w-56 rounded-lg bg-[#14151a] border border-[#242633] shadow-2xl p-1 z-50 animate-in fade-in duration-100 font-mono text-xs">
+                  <div className="absolute right-0 mt-2 w-56 rounded-lg bg-[#0e0f14] border border-[#222432] shadow-modal p-1 z-50 animate-in fade-in duration-100 font-mono text-xs">
                     <button
                       onClick={() => {
                         setShowToolsMenu(false);
                         setShowSandboxModal(true);
                       }}
-                      className="w-full text-left px-3 py-2 rounded hover:bg-[#1e202b] text-zinc-300 hover:text-white flex items-center space-x-2"
+                      className="btn-tactile w-full text-left px-3 py-2 rounded hover:bg-[#181a24] text-zinc-300 hover:text-white flex items-center space-x-2"
                     >
                       <Sliders className="w-3.5 h-3.5 text-[#d4af37]" />
                       <span>Simulador Sandbox</span>
@@ -412,7 +451,7 @@ function Workspace() {
                         setShowToolsMenu(false);
                         setShowDossierModal(true);
                       }}
-                      className="w-full text-left px-3 py-2 rounded hover:bg-[#1e202b] text-zinc-300 hover:text-white flex items-center space-x-2"
+                      className="btn-tactile w-full text-left px-3 py-2 rounded hover:bg-[#181a24] text-zinc-300 hover:text-white flex items-center space-x-2"
                     >
                       <Printer className="w-3.5 h-3.5 text-[#d4af37]" />
                       <span>Dictamen Oficial PDF</span>
@@ -423,7 +462,7 @@ function Workspace() {
                         setShowToolsMenu(false);
                         setShowEconomicsModal(true);
                       }}
-                      className="w-full text-left px-3 py-2 rounded hover:bg-[#1e202b] text-zinc-300 hover:text-white flex items-center space-x-2"
+                      className="btn-tactile w-full text-left px-3 py-2 rounded hover:bg-[#181a24] text-zinc-300 hover:text-white flex items-center space-x-2"
                     >
                       <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
                       <span>Unit Economics & ROI</span>
@@ -435,7 +474,7 @@ function Workspace() {
                         setShowPitchMode(true);
                         setPitchStepIndex(0);
                       }}
-                      className="w-full text-left px-3 py-2 rounded hover:bg-[#1e202b] text-[#eed98d] hover:text-white flex items-center space-x-2 border-t border-[#1f2029] mt-0.5 pt-1.5"
+                      className="btn-tactile w-full text-left px-3 py-2 rounded hover:bg-[#181a24] text-[#eed98d] hover:text-white flex items-center space-x-2 border-t border-[#1a1c24] mt-0.5 pt-1.5"
                     >
                       <Sparkles className="w-3.5 h-3.5 text-[#d4af37]" />
                       <span>Modo Jurado Guiado</span>

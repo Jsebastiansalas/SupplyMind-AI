@@ -81,7 +81,7 @@ Certificado por Tribunal Colegiado (Score: ${tribunal.total_score || 98.5}/100)
           <div className="flex items-center space-x-2">
             <button
               onClick={handleCopyText}
-              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-md bg-[#1a1b22] hover:bg-[#232530] border border-[#2d303d] text-xs text-zinc-300 transition-colors"
+              className="btn-tactile flex items-center space-x-1.5 px-3 py-1.5 rounded bg-[#181922] hover:bg-[#20222e] border border-[#262836] text-xs text-zinc-300 transition-colors shadow-tactile font-mono"
             >
               {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-zinc-400" />}
               <span>{copied ? 'Copiado' : 'Copiar Texto'}</span>
@@ -89,15 +89,15 @@ Certificado por Tribunal Colegiado (Score: ${tribunal.total_score || 98.5}/100)
 
             <button
               onClick={handlePrint}
-              className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-md bg-[#d4af37] hover:bg-[#c49f2e] text-black font-semibold text-xs transition-all shadow-sm"
+              className="btn-tactile flex items-center space-x-1.5 px-3.5 py-1.5 rounded bg-[#d4af37] hover:bg-[#c49f2e] text-black font-semibold text-xs font-mono transition-all shadow-subtle"
             >
               <Printer className="w-3.5 h-3.5 text-black" />
-              <span>Imprimir / Descargar PDF</span>
+              <span>Imprimir / PDF</span>
             </button>
 
             <button
               onClick={onClose}
-              className="p-1.5 rounded-md hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors ml-1"
+              className="btn-tactile p-1.5 rounded hover:bg-[#20222e] text-zinc-400 hover:text-white transition-colors ml-1"
             >
               <X className="w-4 h-4" />
             </button>

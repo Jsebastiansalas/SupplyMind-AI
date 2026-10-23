@@ -156,11 +156,11 @@ export default function SignInView({ health }) {
             {/* Persona 1: Jurado VIP */}
             <button
               onClick={() => loginAsPersona('judge')}
-              className="w-full text-left p-3 rounded-md bg-[#14151b] hover:bg-[#191a22] border border-[#232530] hover:border-[#d4af37]/50 transition-all flex items-center justify-between group"
+              className="btn-tactile w-full text-left p-3 rounded bg-[#13141a] hover:bg-[#181922] border border-[#20222c] hover:border-[#d4af37]/60 transition-all flex items-center justify-between group shadow-subtle"
             >
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 rounded-md bg-[#221f14] border border-[#d4af37]/30 flex items-center justify-center text-sm flex-shrink-0">
-                  {personas.judge.avatar}
+                <div className="w-8 h-8 rounded bg-[#1f1d14] border border-[#d4af37]/40 flex items-center justify-center font-mono font-bold text-xs text-[#eed98d] flex-shrink-0 select-none">
+                  JUR
                 </div>
                 <div>
                   <div className="text-xs font-semibold text-zinc-200 group-hover:text-white transition-colors flex items-center space-x-2">
@@ -169,7 +169,7 @@ export default function SignInView({ health }) {
                       VIP
                     </span>
                   </div>
-                  <p className="text-[11px] text-zinc-500 mt-0.5 leading-snug">
+                  <p className="text-[11px] text-zinc-400 mt-0.5 leading-snug">
                     Auditoría metodológica, cero alucinación, veredicto del Tribunal Colegiado (100 pts).
                   </p>
                 </div>
@@ -180,11 +180,11 @@ export default function SignInView({ health }) {
             {/* Persona 2: CFO */}
             <button
               onClick={() => loginAsPersona('cfo')}
-              className="w-full text-left p-3 rounded-md bg-[#14151b] hover:bg-[#191a22] border border-[#232530] hover:border-[#d4af37]/50 transition-all flex items-center justify-between group"
+              className="btn-tactile w-full text-left p-3 rounded bg-[#13141a] hover:bg-[#181922] border border-[#20222c] hover:border-[#d4af37]/60 transition-all flex items-center justify-between group shadow-subtle"
             >
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 rounded-md bg-[#181920] border border-[#282a35] flex items-center justify-center text-sm flex-shrink-0">
-                  {personas.cfo.avatar}
+                <div className="w-8 h-8 rounded bg-[#161722] border border-[#26283b] flex items-center justify-center font-mono font-bold text-xs text-zinc-300 flex-shrink-0 select-none">
+                  CFO
                 </div>
                 <div>
                   <div className="text-xs font-semibold text-zinc-200 group-hover:text-white transition-colors flex items-center space-x-2">
@@ -193,7 +193,7 @@ export default function SignInView({ health }) {
                       CFO
                     </span>
                   </div>
-                  <p className="text-[11px] text-zinc-500 mt-0.5 leading-snug">
+                  <p className="text-[11px] text-zinc-400 mt-0.5 leading-snug">
                     Cuadratura en Decimal, conciliación de subtotales y emisión de Notas de Crédito.
                   </p>
                 </div>
@@ -204,11 +204,11 @@ export default function SignInView({ health }) {
             {/* Persona 3: Legal Counsel */}
             <button
               onClick={() => loginAsPersona('legal')}
-              className="w-full text-left p-3 rounded-md bg-[#14151b] hover:bg-[#191a22] border border-[#232530] hover:border-[#d4af37]/50 transition-all flex items-center justify-between group"
+              className="btn-tactile w-full text-left p-3 rounded bg-[#13141a] hover:bg-[#181922] border border-[#20222c] hover:border-[#d4af37]/60 transition-all flex items-center justify-between group shadow-subtle"
             >
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 rounded-md bg-[#181920] border border-[#282a35] flex items-center justify-center text-sm flex-shrink-0">
-                  {personas.legal.avatar}
+                <div className="w-8 h-8 rounded bg-[#171828] border border-indigo-900/50 flex items-center justify-center font-mono font-bold text-xs text-indigo-300 flex-shrink-0 select-none">
+                  JUR
                 </div>
                 <div>
                   <div className="text-xs font-semibold text-zinc-200 group-hover:text-white transition-colors flex items-center space-x-2">
@@ -217,7 +217,7 @@ export default function SignInView({ health }) {
                       LEGAL
                     </span>
                   </div>
-                  <p className="text-[11px] text-zinc-500 mt-0.5 leading-snug">
+                  <p className="text-[11px] text-zinc-400 mt-0.5 leading-snug">
                     Jerarquía probatoria (remisión &gt; factura), cláusulas contractuales y nulidad de penalizaciones.
                   </p>
                 </div>
@@ -228,11 +228,11 @@ export default function SignInView({ health }) {
             {/* Persona 4: COO */}
             <button
               onClick={() => loginAsPersona('coo')}
-              className="w-full text-left p-3 rounded-md bg-[#14151b] hover:bg-[#191a22] border border-[#232530] hover:border-[#d4af37]/50 transition-all flex items-center justify-between group"
+              className="btn-tactile w-full text-left p-3 rounded bg-[#13141a] hover:bg-[#181922] border border-[#20222c] hover:border-[#d4af37]/60 transition-all flex items-center justify-between group shadow-subtle"
             >
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 rounded-md bg-[#181920] border border-[#282a35] flex items-center justify-center text-sm flex-shrink-0">
-                  {personas.coo.avatar}
+                <div className="w-8 h-8 rounded bg-[#121c17] border border-emerald-900/50 flex items-center justify-center font-mono font-bold text-xs text-emerald-300 flex-shrink-0 select-none">
+                  OPS
                 </div>
                 <div>
                   <div className="text-xs font-semibold text-zinc-200 group-hover:text-white transition-colors flex items-center space-x-2">
@@ -241,7 +241,7 @@ export default function SignInView({ health }) {
                       COO
                     </span>
                   </div>
-                  <p className="text-[11px] text-zinc-500 mt-0.5 leading-snug">
+                  <p className="text-[11px] text-zinc-400 mt-0.5 leading-snug">
                     Entregas en muelle, sellos de transportista y resolución operativa comercial.
                   </p>
                 </div>

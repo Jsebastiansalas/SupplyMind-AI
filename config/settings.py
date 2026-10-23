@@ -20,8 +20,9 @@ class Settings:
     DATA_DIR: Path = ROOT_DIR / os.getenv("DATA_DIR", "data/cases")
     LOGS_DIR: Path = ROOT_DIR / "logs"
     
-    # Configuración de negocio
+    # Configuración de negocio y presupuesto
     DEFAULT_CURRENCY: str = os.getenv("DEFAULT_CURRENCY", "USD")
+    BUDGET_LIMIT_USD: float = float(os.getenv("BUDGET_LIMIT_USD", "5.00"))
     
     @property
     def is_live_api_ready(self) -> bool:

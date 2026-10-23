@@ -33,48 +33,54 @@ export default function TribunalScoreboard({ tribunalData }) {
   return (
     <div className="space-y-6">
       
-      {/* Top Banner: Global Mastery Verdict */}
-      <div className={`p-6 rounded-2xl border relative overflow-hidden transition-all ${
+      {/* Top Banner: Global Collegiate Docket Verdict */}
+      <div className={`p-5 rounded-lg border relative overflow-hidden shadow-subtle ${
         passed
-          ? 'bg-gradient-to-r from-emerald-950/40 via-slate-900 to-cyan-950/40 border-emerald-500/40 shadow-xl shadow-emerald-500/10'
-          : 'bg-gradient-to-r from-amber-950/40 via-slate-900 to-slate-950 border-amber-500/40'
+          ? 'bg-[#101117] border-[#1e202b]'
+          : 'bg-[#141011] border-[#2d1b1e]'
       }`}>
+        <div className={`absolute top-0 left-0 right-0 h-[2px] ${
+          passed ? 'bg-[#d4af37]' : 'bg-amber-500'
+        }`} />
+
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex items-center space-x-4">
-            <div className={`w-14 h-14 rounded-2xl flex items-center justify-center font-black text-2xl shadow-lg ${
+            <div className={`w-11 h-11 rounded flex items-center justify-center font-bold text-lg shadow-tactile ${
               passed
-                ? 'bg-gradient-to-br from-emerald-400 to-teal-600 text-slate-950 shadow-emerald-500/30'
-                : 'bg-amber-500 text-slate-950 shadow-amber-500/30'
+                ? 'bg-[#1c1a12] text-[#d4af37] border border-[#d4af37]/40'
+                : 'bg-[#211a12] text-amber-400 border border-amber-600/40'
             }`}>
-              <Award className="w-8 h-8" />
+              <Award className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center space-x-2">
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                  Dictamen del Tribunal Colegiado (LLM-as-a-Judge)
+                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-zinc-400">
+                  Dictamen del Tribunal Colegiado Arbitral (LLM-as-a-Judge)
                 </span>
-                <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase font-mono ${
-                  passed ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' : 'bg-amber-500/20 text-amber-300'
+                <span className={`text-[10px] px-2 py-0.5 rounded font-mono font-bold uppercase border ${
+                  passed 
+                    ? 'bg-emerald-950/50 text-emerald-300 border-emerald-800/50' 
+                    : 'bg-amber-950/50 text-amber-300 border-amber-800/50'
                 }`}>
                   {passed ? 'MAESTRÍA CERTIFICADA' : 'REQUIERE CALIBRACIÓN'}
                 </span>
               </div>
-              <h2 className="text-2xl font-black text-white tracking-tight mt-0.5">
-                Veredicto Integral: {total.toFixed(1)} / 100.0 Puntos
+              <h2 className="text-xl font-bold font-mono text-white tracking-tight mt-0.5 tabular-nums">
+                Veredicto Integral: {total.toFixed(1)} / 100.0 Pts
               </h2>
-              <p className="text-xs text-slate-400 mt-0.5">
-                Evaluación ciega colegiada bajo el Hito S3 con tolerancia cero a alucinaciones.
+              <p className="text-[11px] text-zinc-400 mt-0.5 font-sans">
+                Evaluación colegiada bajo estándares de tolerancia cero a alucinaciones.
               </p>
             </div>
           </div>
 
-          <div className="flex items-center space-x-6 border-t md:border-t-0 md:border-l border-slate-800 pt-3 md:pt-0 md:pl-6">
+          <div className="flex items-center space-x-6 border-t md:border-t-0 md:border-l border-[#1f212c] pt-3 md:pt-0 md:pl-6 select-none">
             <div className="text-center">
-              <span className="text-[10px] text-slate-400 uppercase font-mono">Umbral</span>
-              <div className="text-sm font-bold text-slate-300 font-mono">≥ 90.0 pts</div>
+              <span className="text-[10px] text-zinc-500 uppercase font-mono">Umbral Exigido</span>
+              <div className="text-sm font-bold text-zinc-200 font-mono tabular-nums">≥ 90.0 pts</div>
             </div>
             <div className="text-center">
-              <span className="text-[10px] text-slate-400 uppercase font-mono">Estado</span>
+              <span className="text-[10px] text-zinc-500 uppercase font-mono">Estatus Jurídico</span>
               <div className={`text-sm font-bold font-mono ${passed ? 'text-emerald-400' : 'text-amber-400'}`}>
                 {passed ? 'APROBADO' : 'OBSERVADO'}
               </div>
@@ -84,83 +90,83 @@ export default function TribunalScoreboard({ tribunalData }) {
       </div>
 
       {/* 3 Judges Scoreboard Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         
         {/* Judge 1: CFO (40 pts) */}
-        <div className="glass-card p-5 rounded-2xl flex flex-col justify-between">
+        <div className="bg-[#101116] border border-[#1b1c24] rounded-lg p-4 flex flex-col justify-between shadow-subtle">
           <div>
             <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center space-x-2 text-cyan-400">
+              <div className="flex items-center space-x-2 text-[#d4af37]">
                 <DollarSign className="w-4 h-4" />
-                <h3 className="text-xs font-bold uppercase tracking-wide text-white">
+                <h3 className="text-xs font-mono font-bold uppercase tracking-wide text-zinc-100">
                   Juez Financiero / CFO
                 </h3>
               </div>
-              <span className="font-mono text-xs font-bold text-cyan-300 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-800/40">
+              <span className="font-mono text-xs font-bold text-[#eed98d] bg-[#1a1811] px-2 py-0.5 rounded border border-[#d4af37]/30 tabular-nums">
                 {(cfo.score || 40.0).toFixed(1)} / 40.0 pts
               </span>
             </div>
 
             {/* Score Bar */}
-            <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden mb-4">
+            <div className="w-full h-1.5 bg-[#171822] rounded-full overflow-hidden mb-3">
               <div 
-                className="h-full bg-cyan-400 rounded-full transition-all duration-500"
-                style={{ width: `${((cfo.score || 40.0) / 40.0) * 100}%` }}
+                className="h-full bg-[#d4af37] rounded-full transition-all duration-300"
+                style={{ width: `${Math.min(100, ((cfo.score || 40.0) / 40.0) * 100)}%` }}
               />
             </div>
 
-            <p className="text-xs text-slate-300 mb-3 font-medium">
-              Auditoría Cuantitativa y Cero Alucinación Decimal:
+            <p className="text-[11px] text-zinc-300 mb-2.5 font-medium font-sans">
+              Exactitud Aritmética & Cero Alucinación Decimal:
             </p>
 
-            <ul className="space-y-2 text-[11px] text-slate-400">
+            <ul className="space-y-1.5 text-[11px] text-zinc-400 font-sans">
               {(cfo.observations || [
-                "Facturado y recibido coinciden al centavo con comprobantes.",
+                "Facturado y recibido concilian al centavo con CFDI y bancos.",
                 "Diferencia neta computada con precisión aritmética Decimal.",
-                "Desglose justificado vs reclamable matemáticamente balanceado."
+                "Desglose justificado vs reclamable matemáticamente cuadrado."
               ]).slice(0, 3).map((obs, i) => (
                 <li key={i} className="flex items-start space-x-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#d4af37] flex-shrink-0 mt-0.5" />
                   <span>{obs}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-slate-800/60 text-[10px] text-slate-500 flex justify-between font-mono">
-            <span>Rol: Chief Financial Officer</span>
-            <span className="text-cyan-400">40 Pts Máx</span>
+          <div className="mt-4 pt-2.5 border-t border-[#181922] text-[10px] text-zinc-500 flex justify-between font-mono">
+            <span>Dimensión: Cuantitativa</span>
+            <span className="text-zinc-400">40 Pts Máx</span>
           </div>
         </div>
 
         {/* Judge 2: Legal Counsel (30 pts) */}
-        <div className="glass-card p-5 rounded-2xl flex flex-col justify-between">
+        <div className="bg-[#101116] border border-[#1b1c24] rounded-lg p-4 flex flex-col justify-between shadow-subtle">
           <div>
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center space-x-2 text-indigo-400">
                 <Scale className="w-4 h-4" />
-                <h3 className="text-xs font-bold uppercase tracking-wide text-white">
+                <h3 className="text-xs font-mono font-bold uppercase tracking-wide text-zinc-100">
                   Juez Jurídico / Counsel
                 </h3>
               </div>
-              <span className="font-mono text-xs font-bold text-indigo-300 bg-indigo-950/60 px-2 py-0.5 rounded border border-indigo-800/40">
+              <span className="font-mono text-xs font-bold text-indigo-300 bg-[#161726] px-2 py-0.5 rounded border border-indigo-800/40 tabular-nums">
                 {(legal.score || 30.0).toFixed(1)} / 30.0 pts
               </span>
             </div>
 
             {/* Score Bar */}
-            <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden mb-4">
+            <div className="w-full h-1.5 bg-[#171822] rounded-full overflow-hidden mb-3">
               <div 
-                className="h-full bg-indigo-400 rounded-full transition-all duration-500"
-                style={{ width: `${((legal.score || 30.0) / 30.0) * 100}%` }}
+                className="h-full bg-indigo-400 rounded-full transition-all duration-300"
+                style={{ width: `${Math.min(100, ((legal.score || 30.0) / 30.0) * 100)}%` }}
               />
             </div>
 
-            <p className="text-xs text-slate-300 mb-3 font-medium">
+            <p className="text-[11px] text-zinc-300 mb-2.5 font-medium font-sans">
               Jerarquía Probatoria y Validez Contractual:
             </p>
 
-            <ul className="space-y-2 text-[11px] text-slate-400">
+            <ul className="space-y-1.5 text-[11px] text-zinc-400 font-sans">
               {(legal.observations || [
                 "Remisión firmada con constancia física reconocida como Nivel 1.",
                 "Cláusula marco aplicable citada textualmente.",
@@ -174,40 +180,40 @@ export default function TribunalScoreboard({ tribunalData }) {
             </ul>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-slate-800/60 text-[10px] text-slate-500 flex justify-between font-mono">
-            <span>Rol: Chief Legal Officer</span>
-            <span className="text-indigo-400">30 Pts Máx</span>
+          <div className="mt-4 pt-2.5 border-t border-[#181922] text-[10px] text-zinc-500 flex justify-between font-mono">
+            <span>Dimensión: Contractual</span>
+            <span className="text-zinc-400">30 Pts Máx</span>
           </div>
         </div>
 
         {/* Judge 3: VP Operations (30 pts) */}
-        <div className="glass-card p-5 rounded-2xl flex flex-col justify-between">
+        <div className="bg-[#101116] border border-[#1b1c24] rounded-lg p-4 flex flex-col justify-between shadow-subtle">
           <div>
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center space-x-2 text-emerald-400">
                 <Briefcase className="w-4 h-4" />
-                <h3 className="text-xs font-bold uppercase tracking-wide text-white">
+                <h3 className="text-xs font-mono font-bold uppercase tracking-wide text-zinc-100">
                   Juez Operativo / VP Supply
                 </h3>
               </div>
-              <span className="font-mono text-xs font-bold text-emerald-300 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/40">
+              <span className="font-mono text-xs font-bold text-emerald-300 bg-[#121c17] px-2 py-0.5 rounded border border-emerald-800/40 tabular-nums">
                 {(ops.score || 30.0).toFixed(1)} / 30.0 pts
               </span>
             </div>
 
             {/* Score Bar */}
-            <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden mb-4">
+            <div className="w-full h-1.5 bg-[#171822] rounded-full overflow-hidden mb-3">
               <div 
-                className="h-full bg-emerald-400 rounded-full transition-all duration-500"
-                style={{ width: `${((ops.score || 30.0) / 30.0) * 100}%` }}
+                className="h-full bg-emerald-400 rounded-full transition-all duration-300"
+                style={{ width: `${Math.min(100, ((ops.score || 30.0) / 30.0) * 100)}%` }}
               />
             </div>
 
-            <p className="text-xs text-slate-300 mb-3 font-medium">
+            <p className="text-[11px] text-zinc-300 mb-2.5 font-medium font-sans">
               Estrategia Comercial y Mitigación de Conflicto:
             </p>
 
-            <ul className="space-y-2 text-[11px] text-slate-400">
+            <ul className="space-y-1.5 text-[11px] text-zinc-400 font-sans">
               {(ops.observations || [
                 "Recomendación proporcional de Nota de Crédito comercial.",
                 "Preservación de la cuenta de cliente sin litigio coactivo.",
@@ -221,23 +227,23 @@ export default function TribunalScoreboard({ tribunalData }) {
             </ul>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-slate-800/60 text-[10px] text-slate-500 flex justify-between font-mono">
-            <span>Rol: VP Supply Chain</span>
-            <span className="text-emerald-400">30 Pts Máx</span>
+          <div className="mt-4 pt-2.5 border-t border-[#181922] text-[10px] text-zinc-500 flex justify-between font-mono">
+            <span>Dimensión: Operativa</span>
+            <span className="text-zinc-400">30 Pts Máx</span>
           </div>
         </div>
 
       </div>
 
       {/* Precedent KB & Calibration Directives */}
-      <div className="glass-card p-5 rounded-2xl">
-        <div className="flex items-center space-x-2 text-white mb-3">
-          <BookOpen className="w-4 h-4 text-cyan-400" />
-          <h3 className="text-xs font-bold uppercase tracking-wider">
-            Directrices de Calibración y Precedente Incorporado a la Memoria
+      <div className="bg-[#0e0f14] border border-[#1b1c24] rounded-lg p-4 shadow-subtle">
+        <div className="flex items-center space-x-2 text-zinc-200 mb-2.5">
+          <BookOpen className="w-4 h-4 text-[#d4af37]" />
+          <h3 className="text-xs font-mono font-bold uppercase tracking-wider">
+            Directrices de Calibración & Precedente en Memoria
           </h3>
         </div>
-        <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-300 leading-relaxed font-mono">
+        <div className="p-3 rounded bg-[#090a0d] border border-[#171820] text-xs text-zinc-300 leading-relaxed font-mono">
           {tribunalData.precedent_summary || (
             "Criterio Senior plenamente calibrado: Remisión firmada prevalece sobre deducción unilateral. Nota de crédito obligatoria ante faltante documentado."
           )}

@@ -16,21 +16,21 @@ import {
 export const PITCH_STEPS = [
   {
     step: 1,
-    title: "1. La Deducción Oculta & Balance Aritmético",
+    title: "1. Ingesta de Datos Reales (Amazon 5 PDFs — 15 Pts)",
     tab: "financial",
     subtab: "summary",
     icon: Layers,
-    description: "Los retailers retienen fondos de manera opaca. SupplyMind AI calcula instantáneamente con precisión Decimal (cero alucinación) la ecuación: Facturado — Cobrado = Reclamable.",
-    highlight: "Observa la franja contable superior con la causa raíz identificada de inmediato.",
+    description: "Carga de 5 PDFs auténticos de Amazon Vendor Central (Caso 005). El agente decide invocar autónomamente read_dispute_documents y execute_reconciliation con precisión Decimal IEEE 754-free.",
+    highlight: "Observa la franja contable superior con la causa raíz identificada de inmediato sobre datos reales.",
     cta: null
   },
   {
     step: 2,
-    title: "2. Auditoría de Caducidad (Notice Window - Cláusula 8.2)",
+    title: "2. Auditoría de Caducidad Contractual (Notice Window 30 Días)",
     tab: "financial",
     subtab: "summary",
     icon: Clock,
-    description: "La trampa más común: el comprador deduce dinero fuera de plazo. Si el reclamo supera los 30 días naturales, la deducción queda extemporánea y nula de pleno derecho.",
+    description: "Invocación de evaluate_contract_terms contra base vectorial ChromaDB. Si el reclamo del retailer supera los 30 días, la retención queda extemporánea y nula s/ Art. 1043 Código de Comercio.",
     highlight: "Observa la tarjeta de Caducidad Contractual que precluye reclamos vencidos.",
     cta: null
   },
@@ -40,18 +40,18 @@ export const PITCH_STEPS = [
     tab: "financial",
     subtab: "sku_matching",
     icon: Scale,
-    description: "Auditoría determinística renglón por renglón. Compara cantidades recibidas en remisión vs facturadas, detecta discrepancias de precio unitario y calcula la Nota de Crédito con IVA al 16%.",
+    description: "Invocación de match_skus_and_calculate_tax. Renglón por renglón compara cantidades recibidas vs facturadas, detecta discrepancias de precio unitario y calcula la Nota de Crédito con IVA 16%.",
     highlight: "Cambia a la pestaña 'Auditoría SKU por SKU & IVA 16%' para ver el desglose unitario.",
     cta: null
   },
   {
     step: 4,
-    title: "4. Tribunal Colegiado (100 Pts) & Sandbox en Vivo",
+    title: "4. Resiliencia ante Fallos (¿Qué hace cuando algo falla?)",
     tab: "tribunal",
     subtab: null,
     icon: Award,
-    description: "Un jurado evaluador con tres magistrados (CFO 40pts, Jurídico 30pts, Operaciones 30pts) califica la resolución. Además, puedes alterar cualquier variable en vivo con el Simulador.",
-    highlight: "Prueba el Sandbox interactivo con respuesta determinística en menos de 50 ms.",
+    description: "Auto-sanación de prerrequisitos y manejo de excepciones. Ante datos corruptos o esquemas rotos (test_corrupt_json), el agente no crashea, registra en AuditLogger y emite reporte controlado.",
+    highlight: "Prueba el Sandbox interactivo en vivo con respuesta determinística en menos de 50 ms.",
     cta: "open_sandbox"
   },
   {
@@ -60,7 +60,7 @@ export const PITCH_STEPS = [
     tab: "financial",
     subtab: "digital_cert",
     icon: FileCheck,
-    description: "Un entregable formal bancario con sello SHA-256, QR criptográfico, póliza NIF C-3 y firmas del tribunal, listo para imprimir en PDF y entregar al SAT o a la Dirección General.",
+    description: "Generación de informe forense con sello SHA-256, QR criptográfico, póliza NIF C-3 y firmas del tribunal, listo para imprimir en PDF. Reduce el costo de $45.00 a $0.0028 USD (16,070x ROI).",
     highlight: "Abre el Dictamen Pericial Oficial listo para imprimir o enviar a la junta directiva.",
     cta: "open_dossier"
   }
