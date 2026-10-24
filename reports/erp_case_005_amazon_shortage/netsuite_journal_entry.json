@@ -1,0 +1,45 @@
+{
+  "external_id": "JE-CASE_005_AMAZON_SHORTAGE",
+  "lines": [
+    {
+      "line_number": 1,
+      "account_code": "410500",
+      "account_name": "Descuentos y Bonificaciones sobre Ventas",
+      "debit": "4310.34",
+      "credit": "0.00",
+      "cost_center": "CC_SALES",
+      "tax_code": "V1",
+      "memo": "Nota de Crédito Comercial Subtotal s/ case_005_amazon_shortage"
+    },
+    {
+      "line_number": 2,
+      "account_code": "210800",
+      "account_name": "IVA Trasladado por Cancelar (16%)",
+      "debit": "689.66",
+      "credit": "0.00",
+      "cost_center": null,
+      "tax_code": "V1",
+      "memo": "IVA 16% cancelado s/ Nota de Crédito case_005_amazon_shortage"
+    },
+    {
+      "line_number": 3,
+      "account_code": "120090",
+      "account_name": "Deudores en Disputa / Saldo Reclamable",
+      "debit": "2500.00",
+      "credit": "0.00",
+      "cost_center": "CC_LEGAL",
+      "tax_code": null,
+      "memo": "Saldo en Reclamación Legal / Cobranza B2B s/ case_005_amazon_shortage"
+    },
+    {
+      "line_number": 4,
+      "account_code": "120000",
+      "account_name": "Clientes / Cuentas por Cobrar B2B",
+      "debit": "0.00",
+      "credit": "7500.00",
+      "cost_center": "CC_FINANCE",
+      "tax_code": null,
+      "memo": "Saneamiento integral de retención bancaria s/ case_005_amazon_shortage"
+    }
+  ]
+}

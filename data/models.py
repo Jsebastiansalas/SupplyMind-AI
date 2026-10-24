@@ -10,7 +10,7 @@ Decisiones de diseño:
   campos espurios o maliciosos.
 """
 from decimal import Decimal
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 from pydantic import BaseModel, ConfigDict, Field, AliasChoices
 
 
@@ -214,4 +214,38 @@ class NegotiationPlan(BaseModel):
     total_dispute_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
     scenarios: List[NegotiationScenario] = Field(default_factory=list)
     generated_at: str = ""
+
+
+# ==========================================
+# 8. Modelos de Integración ERP y Fiscal CFDI 4.0 (Fase 3)
+# ==========================================
+class ErpPostingLine(BaseModel):
+    """Línea individual de asiento contable de partida doble."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    line_number: int
+    account_code: str
+    account_name: str
+    debit: Decimal = Field(default=Decimal("0.00"), ge=0)
+    credit: Decimal = Field(default=Decimal("0.00"), ge=0)
+    cost_center: Optional[str] = None
+    tax_code: Optional[str] = None
+    memo: str = ""
+
+
+class ErpExportPackage(BaseModel):
+    """Paquete integral de exportación para sistemas ERP (SAP / NetSuite) y fiscal (CFDI 4.0)."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    case_id: str
+    total_discrepancy: Decimal = Field(default=Decimal("0.00"), ge=0)
+    credit_memo_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    claimable_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    accounting_standard: str = "NIF C-3 / US GAAP"
+    sap_bapi: Dict[str, Any] = Field(default_factory=dict)
+    netsuite_journal_lines: List[Dict[str, Any]] = Field(default_factory=list)
+    cfdi_uuid: str = ""
+    cfdi_xml: str = ""
+    generated_at: str = ""
+
 

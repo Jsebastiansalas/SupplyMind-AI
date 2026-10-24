@@ -254,6 +254,18 @@ export default function FinancialPanel({
             <span>Certificado Digital NIF C-3</span>
           </button>
 
+          <button
+            onClick={() => setActiveSubTab('erp')}
+            className={`btn-tactile px-3 py-1.5 rounded text-xs font-mono font-medium transition-colors flex items-center gap-1.5 ${
+              activeSubTab === 'erp'
+                ? 'bg-[#171822] text-[#eed98d] border border-[#d4af37]/60 shadow-tactile font-bold'
+                : 'text-zinc-400 hover:text-white hover:bg-[#121319]'
+            }`}
+          >
+            <FileCheck2 className="w-3.5 h-3.5 text-[#d4af37]" />
+            <span>🏦 Pólizas ERP & CFDI 4.0</span>
+          </button>
+
           {onOpenOfficialDossier && (
             <button
               onClick={onOpenOfficialDossier}
@@ -651,6 +663,123 @@ export default function FinancialPanel({
               >
                 {copiedHash ? <Check className="w-3.5 h-3.5 text-[#d4af37]" /> : <Copy className="w-3.5 h-3.5" />}
               </button>
+            </div>
+          </div>
+        )}
+
+        {/* SUB-TAB 5: INTEGRACIÓN ERP Y TIMBRADO FISCAL CFDI 4.0 */}
+        {activeSubTab === 'erp' && (
+          <div className="space-y-4">
+            <div className="p-4 rounded-xl bg-[#121319] border border-[#232533] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div>
+                <div className="flex items-center space-x-2">
+                  <FileCheck2 className="w-4 h-4 text-[#d4af37]" />
+                  <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-white">
+                    Integración Contable ERP & Timbrado CFDI 4.0 (Fase 3)
+                  </h3>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950/60 border border-emerald-500/50 text-emerald-300 font-bold">
+                    ERP Ready
+                  </span>
+                </div>
+                <p className="text-xs text-zinc-400 mt-1">
+                  Pólizas de diario para SAP S/4HANA (BAPI / IDoc), Oracle NetSuite y XML CFDI 4.0 (Tipo E).
+                </p>
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <a
+                  href={`/api/cases/${report.case_id}/erp/sap`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-tactile px-3 py-1.5 rounded bg-[#181a24] hover:bg-[#202330] border border-[#2a2d3e] text-xs font-mono text-sky-300 font-semibold transition-all flex items-center space-x-1"
+                >
+                  <span>📥 SAP BAPI</span>
+                </a>
+                <a
+                  href={`/api/cases/${report.case_id}/erp/netsuite`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-tactile px-3 py-1.5 rounded bg-[#181a24] hover:bg-[#202330] border border-[#2a2d3e] text-xs font-mono text-purple-300 font-semibold transition-all flex items-center space-x-1"
+                >
+                  <span>📥 NetSuite CSV</span>
+                </a>
+                <a
+                  href={`/api/cases/${report.case_id}/erp/cfdi`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-tactile px-3 py-1.5 rounded bg-[#242013] hover:bg-[#332b17] border border-[#d4af37] text-xs font-mono text-[#eed98d] font-bold transition-all flex items-center space-x-1 shadow-tactile"
+                >
+                  <span>📥 CFDI 4.0 XML</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Asiento Contable NIF C-3 */}
+            <div className="bg-[#101116] border border-[#1b1c24] rounded-lg overflow-hidden shadow-subtle">
+              <div className="p-3.5 border-b border-[#1b1c24] bg-[#12131a] flex justify-between items-center">
+                <span className="text-xs font-mono font-bold text-white uppercase tracking-wider">
+                  Asiento Contable de Saneamiento (NIF C-3 / US GAAP)
+                </span>
+                <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-800/40">
+                  Cuadre de Partida Doble: $0.00 Diferencia
+                </span>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-xs font-mono tabular-nums">
+                  <thead>
+                    <tr className="border-b border-[#1b1c24] text-zinc-500 text-[10px] uppercase bg-[#0d0e13]">
+                      <th className="py-2.5 px-4 font-semibold">Línea</th>
+                      <th className="py-2.5 px-4 font-semibold">Cuenta Contable</th>
+                      <th className="py-2.5 px-4 font-semibold">Concepto / Glosa</th>
+                      <th className="py-2.5 px-4 font-semibold text-right">Cargo (Debit USD)</th>
+                      <th className="py-2.5 px-4 font-semibold text-right">Abono (Credit USD)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#181922] text-zinc-300">
+                    <tr className="audit-row transition-colors">
+                      <td className="py-2.5 px-4">1</td>
+                      <td className="py-2.5 px-4 text-sky-400 font-bold">410500</td>
+                      <td className="py-2.5 px-4 text-zinc-200">Descuentos y Bonificaciones sobre Ventas (Nota de Crédito Base)</td>
+                      <td className="py-2.5 px-4 text-right text-emerald-400 font-bold">${formatCurrency(justified > 0 ? (justified / 1.16) : 0)}</td>
+                      <td className="py-2.5 px-4 text-right text-zinc-500">$0.00</td>
+                    </tr>
+                    <tr className="audit-row transition-colors">
+                      <td className="py-2.5 px-4">2</td>
+                      <td className="py-2.5 px-4 text-sky-400 font-bold">210800</td>
+                      <td className="py-2.5 px-4 text-zinc-200">IVA Trasladado por Cancelar (16% Nota de Crédito)</td>
+                      <td className="py-2.5 px-4 text-right text-emerald-400 font-bold">${formatCurrency(justified > 0 ? (justified - (justified / 1.16)) : 0)}</td>
+                      <td className="py-2.5 px-4 text-right text-zinc-500">$0.00</td>
+                    </tr>
+                    <tr className="audit-row transition-colors">
+                      <td className="py-2.5 px-4">3</td>
+                      <td className="py-2.5 px-4 text-sky-400 font-bold">120090</td>
+                      <td className="py-2.5 px-4 text-zinc-200">Deudores en Disputa / Saldo Reclamable en Cobranza Legal</td>
+                      <td className="py-2.5 px-4 text-right text-[#eed98d] font-bold">${formatCurrency(claimable)}</td>
+                      <td className="py-2.5 px-4 text-right text-zinc-500">$0.00</td>
+                    </tr>
+                    <tr className="audit-row transition-colors">
+                      <td className="py-2.5 px-4">4</td>
+                      <td className="py-2.5 px-4 text-amber-400 font-bold">120000</td>
+                      <td className="py-2.5 px-4 text-zinc-200">Clientes / Cuentas por Cobrar B2B (Cancelación de Partida Retenida)</td>
+                      <td className="py-2.5 px-4 text-right text-zinc-500">$0.00</td>
+                      <td className="py-2.5 px-4 text-right text-rose-400 font-bold">${formatCurrency(totalDeduction)}</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr className="bg-[#121319] border-t border-[#1e2029] text-white">
+                      <td className="py-3 px-4 font-bold" colSpan={3}>
+                        TOTALES DE BALANCE (PARTIDA DOBLE BALANCES EQUAL)
+                      </td>
+                      <td className="py-3 px-4 text-right font-mono text-sm font-bold text-emerald-400">
+                        ${formatCurrency(totalDeduction)}
+                      </td>
+                      <td className="py-3 px-4 text-right font-mono text-sm font-bold text-rose-400">
+                        ${formatCurrency(totalDeduction)}
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
             </div>
           </div>
         )}

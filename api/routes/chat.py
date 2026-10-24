@@ -420,6 +420,31 @@ Para el expediente **`{case_id}`**:
 **Acción Operativa Inmediata:**  
 {report.recommended_action}"""
 
+    # 6.1 Pólizas Contables ERP y Fiscal CFDI 4.0 (Fase 3)
+    if any(k in p for k in ["poliza", "póliza", "erp", "sap", "netsuite", "cfdi", "sat", "asiento", "contable", "nif", "journal"]):
+        from agent.core.erp_engine import ErpEngine, get_case_fiscal_profile
+        lines = ErpEngine.build_erp_posting_lines(report)
+        fiscal_profile = get_case_fiscal_profile(case_id)
+        rows = ""
+        for l in lines:
+            rows += f"| {l.line_number} | `{l.account_code}` | {l.account_name} | `${l.debit:,.2f}` | `${l.credit:,.2f}` |\n"
+        return f"""### 🏦 Póliza Contable de Saneamiento y Timbrado Fiscal (NIF C-3 / CFDI 4.0)
+
+**Expediente:** `{case_id}` | **Contraparte:** {fiscal_profile['receptor']['nombre']} (RFC: `{fiscal_profile['receptor']['rfc']}`)  
+
+| Línea | Cuenta Contable | Concepto | Cargo (Debit USD) | Abono (Credit USD) |
+| :---: | :--- | :--- | :---: | :---: |
+{rows}
+
+---
+
+#### 📋 Especificaciones de Integración ERP:
+1. **SAP S/4HANA (BAPI `BAPI_ACC_DOCUMENT_POST`):** Documento clase `DG` generado con partida doble balanceada al centavo.
+2. **Oracle NetSuite (Journal Entry):** Asiento de diario exportable en CSV y JSON.
+3. **CFDI 4.0 (SAT Anexo 20):** Nota de Crédito tipo `E` (Egreso) vinculada al UUID con clave de relación `01` y concepto SAT `84111506`.
+
+*(Puedes descargar los archivos en formato SAP, NetSuite y XML directamente desde la pestaña de Exportación o mediante la API `/api/cases/{case_id}/erp/export`).*"""
+
     # 7. Remisión, entrega y muelle
     if any(k in p for k in ["remision", "remisión", "entrega", "muelle", "bodega", "patio", "firma", "sello"]):
         if delivery:

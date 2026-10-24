@@ -1,0 +1,5 @@
+ExternalID,Date,Subsidiary,Currency,Memo,Line,Account,Debit,Credit,Entity,Department,Class
+"JE-CASE_005_AMAZON_SHORTAGE","24/10/2026",1,"USD","Nota de Crédito Comercial Subtotal s/ case_005_amazon_shortage",1,"410500 Descuentos y Bonificaciones sobre Ventas",4310.34,0.00,"AMAZON FULFILLMENT SERVICES LLC DE MEXICO","Finance","B2B SCM"
+"JE-CASE_005_AMAZON_SHORTAGE","24/10/2026",1,"USD","IVA 16% cancelado s/ Nota de Crédito case_005_amazon_shortage",2,"210800 IVA Trasladado por Cancelar (16%)",689.66,0.00,"AMAZON FULFILLMENT SERVICES LLC DE MEXICO","Finance","B2B SCM"
+"JE-CASE_005_AMAZON_SHORTAGE","24/10/2026",1,"USD","Saldo en Reclamación Legal / Cobranza B2B s/ case_005_amazon_shortage",3,"120090 Deudores en Disputa / Saldo Reclamable",2500.00,0.00,"AMAZON FULFILLMENT SERVICES LLC DE MEXICO","Finance","B2B SCM"
+"JE-CASE_005_AMAZON_SHORTAGE","24/10/2026",1,"USD","Saneamiento integral de retención bancaria s/ case_005_amazon_shortage",4,"120000 Clientes / Cuentas por Cobrar B2B",0.00,7500.00,"AMAZON FULFILLMENT SERVICES LLC DE MEXICO","Finance","B2B SCM"

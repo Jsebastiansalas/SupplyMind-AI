@@ -1,6 +1,6 @@
 # CARTA FORMAL DE RECLAMACIÓN Y CONCILIACIÓN COMERCIAL
 **Ref: Expediente de Cartera case_002**  
-**Fecha:** 23 de October de 2026  
+**Fecha:** 24 de October de 2026  
 **Autorización:** Dirección de Crédito y Cobranza / Human-in-the-Loop  
 
 ---

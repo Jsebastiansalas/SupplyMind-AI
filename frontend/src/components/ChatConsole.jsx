@@ -306,6 +306,12 @@ export default function ChatConsole({
       { text: "Aplica el escenario equilibrado: concesión del 50% con reciprocidad comercial", badge: "⭐ Equilibrado" },
       { text: "Aplica el escenario agresivo: cobro del 100% contractual con apercibimiento legal", badge: "⚖️ Agresivo" },
       { text: "Aplica el escenario conservador: 100% nota de crédito a cambio de volumen preferente", badge: "🤝 Conservador" },
+    ],
+    erp: [
+      { text: "Muéstrame el asiento contable de diario bajo NIF C-3 para este expediente", badge: "Póliza Diario" },
+      { text: "¿Cómo se estructura la BAPI BAPI_ACC_DOCUMENT_POST para SAP S/4HANA?", badge: "SAP BAPI" },
+      { text: "Genera los datos de timbrado de la Nota de Crédito CFDI 4.0 (Tipo E)", badge: "CFDI 4.0" },
+      { text: "Exporta la póliza para el importador Journal Entry de Oracle NetSuite", badge: "NetSuite CSV" },
     ]
   };
 
@@ -583,6 +589,7 @@ export default function ChatConsole({
             {[
               { id: 'jurado', label: 'Jurados' },
               { id: 'negociacion', label: '🤝 Negociación B2B' },
+              { id: 'erp', label: '🏦 ERP & CFDI' },
               { id: 'hitl', label: '⚡ Concesión Human' },
               { id: 'cliente', label: 'Clientes' },
               { id: 'legal', label: 'Legal' },

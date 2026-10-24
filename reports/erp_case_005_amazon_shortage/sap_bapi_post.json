@@ -1,0 +1,67 @@
+{
+  "DOCUMENTHEADER": {
+    "BUS_ACT": "RFBU",
+    "USERNAME": "SUPPLYMIND",
+    "HEADER_TXT": "Disputa case_005_amazon_shortage",
+    "COMP_CODE": "1000",
+    "DOC_DATE": "20261024",
+    "PSTNG_DATE": "20261024",
+    "FIS_PERIOD": "10",
+    "DOC_TYPE": "DG",
+    "REF_DOC_NO": "INV-CASE_005_AMAZON_"
+  },
+  "ACCOUNTGL": [
+    {
+      "ITEMNO_ACC": 1,
+      "GL_ACCOUNT": "0000410500",
+      "ITEM_TEXT": "Nota de Crédito Comercial Subtotal s/ case_005_ama",
+      "COSTCENTER": "CC_SALES",
+      "TAX_CODE": "V1"
+    },
+    {
+      "ITEMNO_ACC": 2,
+      "GL_ACCOUNT": "0000210800",
+      "ITEM_TEXT": "IVA 16% cancelado s/ Nota de Crédito case_005_amaz",
+      "COSTCENTER": "CC_GEN",
+      "TAX_CODE": "V1"
+    },
+    {
+      "ITEMNO_ACC": 3,
+      "GL_ACCOUNT": "0000120090",
+      "ITEM_TEXT": "Saldo en Reclamación Legal / Cobranza B2B s/ case_",
+      "COSTCENTER": "CC_LEGAL",
+      "TAX_CODE": ""
+    }
+  ],
+  "ACCOUNTRECEIVABLE": [
+    {
+      "ITEMNO_ACC": 4,
+      "CUSTOMER": "0001002540",
+      "GL_ACCOUNT": "120000",
+      "ITEM_TEXT": "Saneamiento integral de retención bancaria s/ case"
+    }
+  ],
+  "ACCOUNTPAYABLE": [],
+  "CURRENCYAMOUNT": [
+    {
+      "ITEMNO_ACC": 1,
+      "CURRENCY": "USD",
+      "AMT_DOCCUR": 4310.34
+    },
+    {
+      "ITEMNO_ACC": 2,
+      "CURRENCY": "USD",
+      "AMT_DOCCUR": 689.66
+    },
+    {
+      "ITEMNO_ACC": 3,
+      "CURRENCY": "USD",
+      "AMT_DOCCUR": 2500.0
+    },
+    {
+      "ITEMNO_ACC": 4,
+      "CURRENCY": "USD",
+      "AMT_DOCCUR": -7500.0
+    }
+  ]
+}

@@ -513,6 +513,43 @@ Veredicto Final (Acción Recomendada): {report.recommended_action}
                     )
                 st.markdown("</div>", unsafe_allow_html=True)
                 
+            st.markdown("<br>", unsafe_allow_html=True)
+            st.markdown("### 🏦 Exportación Contable ERP & Timbrado Fiscal (Fase 3)")
+            st.caption("Pólizas de diario bajo NIF C-3 listas para importar a SAP, NetSuite y XML CFDI 4.0 (Tipo E - Egreso).")
+
+            from agent.core.erp_engine import ErpEngine, get_case_fiscal_profile
+            lines = ErpEngine.build_erp_posting_lines(report)
+            fiscal_profile = get_case_fiscal_profile(report.case_id)
+            sap_bapi = ErpEngine.generate_sap_bapi_payload(report.case_id, report, lines)
+            netsuite_csv = ErpEngine.generate_netsuite_csv(report.case_id, report, lines)
+            cfdi_xml = ErpEngine.generate_cfdi_40_xml(report.case_id, report, fiscal_profile)
+
+            c_erp1, c_erp2, c_erp3 = st.columns(3)
+            with c_erp1:
+                st.download_button(
+                    label="📥 Póliza SAP (BAPI JSON)",
+                    data=json.dumps(sap_bapi, indent=2, ensure_ascii=False),
+                    file_name=f"sap_bapi_acc_{Path(report.case_id).name}.json",
+                    mime="application/json",
+                    use_container_width=True
+                )
+            with c_erp2:
+                st.download_button(
+                    label="📥 Journal NetSuite (CSV)",
+                    data=netsuite_csv,
+                    file_name=f"netsuite_journal_{Path(report.case_id).name}.csv",
+                    mime="text/csv",
+                    use_container_width=True
+                )
+            with c_erp3:
+                st.download_button(
+                    label="📥 CFDI 4.0 XML (Tipo E)",
+                    data=cfdi_xml,
+                    file_name=f"cfdi_40_nota_credito_{Path(report.case_id).name}.xml",
+                    mime="application/xml",
+                    use_container_width=True
+                )
+                
         except Exception as e:
             st.error(f"Error al cargar módulo de comunicación: {e}")
 
