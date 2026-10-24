@@ -19,7 +19,8 @@ import {
   ListChecks,
   CheckSquare,
   Square,
-  ArrowRightLeft
+  ArrowRightLeft,
+  Lock
 } from 'lucide-react';
 
 export default function FinancialPanel({ 
@@ -81,12 +82,13 @@ export default function FinancialPanel({
   const skuMatching = report.sku_matching || null;
   const noticeWindow = report.notice_window_audit || null;
   const healthAudit = report.health_audit || null;
+  const financialProof = report.financial_proof || null;
 
   const isClaimable = claimable > 0;
   const isTechnicalError = confidence === 0 || (report.root_cause && report.root_cause.includes("TECHNICAL_ERROR"));
   const totalDeduction = Math.abs(diff);
 
-  const auditChecksum = `SM-AUDIT-${Math.abs(Math.round(billed * 100)).toString(16)}-${Math.abs(Math.round(claimable * 100)).toString(16)}-${Math.abs(Math.round(justified * 100)).toString(16)}`.toUpperCase();
+  const auditChecksum = financialProof?.proof_hash || `SM-AUDIT-${Math.abs(Math.round(billed * 100)).toString(16)}-${Math.abs(Math.round(claimable * 100)).toString(16)}-${Math.abs(Math.round(justified * 100)).toString(16)}`.toUpperCase();
 
   const handleCopyHash = () => {
     navigator.clipboard?.writeText(auditChecksum);
@@ -211,6 +213,25 @@ export default function FinancialPanel({
                       [{healthAudit.repaired_issues.length} {healthAudit.repaired_issues.length === 1 ? 'auto-fix' : 'auto-fixes'}]
                     </span>
                   )}
+                </span>
+              )}
+              {financialProof && (
+                <span 
+                  className={`text-[10px] font-mono px-2 py-0.5 rounded border flex items-center space-x-1.5 ${
+                    financialProof.audit_status === 'MATHEMATICALLY_PROVEN'
+                      ? 'bg-emerald-950/40 text-emerald-300 border-emerald-500/30'
+                      : financialProof.audit_status === 'HALLUCINATION_INTERCEPTED'
+                      ? 'bg-amber-950/40 text-amber-300 border-amber-500/30'
+                      : 'bg-rose-950/40 text-rose-300 border-rose-500/30'
+                  }`}
+                  title={`Prueba ZKP: ${financialProof.proof_hash} | Conservación: ${financialProof.invariant_conservation_ok ? 'OK' : 'Error'} | Deducciones: ${financialProof.invariant_deductions_ok ? 'OK' : 'Error'}`}
+                >
+                  <Lock className="w-3 h-3 text-[#d4af37]" />
+                  <span className="font-bold">
+                    {financialProof.audit_status === 'MATHEMATICALLY_PROVEN' && '0% Alucinación (ZKP Invarianza OK)'}
+                    {financialProof.audit_status === 'HALLUCINATION_INTERCEPTED' && 'Alucinación Interceptada'}
+                    {financialProof.audit_status === 'ARITHMETIC_MISMATCH' && 'Incoherencia Aritmética'}
+                  </span>
                 </span>
               )}
             </div>

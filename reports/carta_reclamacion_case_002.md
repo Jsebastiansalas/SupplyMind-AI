@@ -1,25 +1,36 @@
-# CARTA FORMAL DE RECLAMACIÓN Y CONCILIACIÓN COMERCIAL
-**Ref: Expediente de Cartera case_002**  
+# 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
+**Ref: Expediente de Cartera case_002 / Factura INV-88301**  
 **Fecha:** 24 de October de 2026  
-**Autorización:** Dirección de Crédito y Cobranza / Human-in-the-Loop  
+**De:** Departamento de Cartera y Asuntos Comerciales — VEN-001  
+**Para:** Gerencia de Cuentas por Pagar y Conciliación — CUST-RETAIL-202  
 
 ---
 
-### Estimado Departamento de Cuentas por Pagar:
+### Estimados señores de CUST-RETAIL-202:
 
-Acusamos recibo de la liquidación bancaria de la factura correspondiente al expediente **`case_002`**, por un importe facturado de **$54,200.00 USD** y un monto recibido de **$37,700.00 USD**, registrando una retención neta de **$16,500.00 USD**.
+Por medio de la presente, acusamos recibo del comprobante de liquidación y pago **PAY-9931** por valor de **$37,700.00 USD**, aplicado contra nuestra factura comercial **INV-88301** emitida por **$54,200.00 USD**.
 
-Tras la auditoría técnica y la instrucción de la dirección comercial, comunicamos la resolución ejecutiva de la partida:
+Habiendo realizado la auditoría técnica y contractual correspondiente, les comunicamos que existe una diferencia no conciliada de **$16,500.00 USD**, respecto de la cual fijamos nuestra posición formal:
 
-1. **Partidas Aceptadas para Nota de Crédito ($4,000.00 USD):**  
-   Emitiremos de forma inmediata la **Nota de Crédito comercial por $4,000.00 USD**, la cual ampara las deducciones operativas legítimas y las concesiones comerciales autorizadas de común acuerdo para preservar la continuidad de la relación de suministro.
+#### 1. Deducciones Aceptadas y Justificadas: **$4,000.00 USD**
+Aceptamos de plena conformidad la deducción por valor de **$4,000.00 USD**, debidamente amparada en las constancias físicas de entrega del documento **DEL-12044** y conforme a lo pactado contractualmente. Para sanear este importe, estaremos emitiendo a su favor la respectiva **Nota de Crédito comercial**.
 
-2. **Saldo Exigible e Incondicional de Cartera ($12,500.00 USD):**  
-   Rechazamos formalmente las restantes retenciones que carecen de soporte documental y legal. Solicitamos la transferencia complementaria por el importe de **$12,500.00 USD** en un plazo perentorio de 10 días hábiles.
+#### 2. Deducciones Objetadas y Saldo Reclamable: **$12,500.00 USD**
+Rechazamos formalmente las deducciones adicionales aplicadas por un importe total de **$12,500.00 USD**, por carecer de soporte probatorio y contrariar los términos del contrato comercial **CTR-MEGAMARKET-2026**:
+- **Causa Raíz:** Discrepancia mixta en expediente case_002: Faltante físico comprobado de $4,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $12,500.00 USD sin sustento contractual ni documental.
+- **Fundamentación Contractual:** Evaluación algorítmica y semántica completada. Posible deducción de $12,500.00 requiere análisis final por el Agente.
 
-**Acción Recomendada:**  
-Aceptar deducción de $4,000.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $12,500.00 USD exigiendo su pago inmediato.
+#### 3. Requerimiento de Pago
+En virtud de lo anterior, solicitamos comedidamente realizar la programación y transferencia del saldo retenido injustificadamente por valor de:
 
-Atentamente,  
-**Dirección General de Cuentas por Cobrar y Conciliación Arbitral**  
-*SupplyMind AI Enterprise Platform*
+### 👉 **MONTO TOTAL A REINTEGRAR: $12,500.00 USD**
+
+Agradecemos que dicho pago se haga efectivo dentro de los siguientes **quince (15) días hábiles** a la recepción de la presente comunicación, o en su defecto, coordinar una mesa técnica de conciliación con nuestro equipo de cartera.
+
+Anexamos a la presente el informe técnico pormenorizado y las copias de la remisión y contrato.
+
+Atentamente,
+
+**ÁREA DE CONCILIACIÓN DE CARTERA Y DISPUTAS COMERCIALES**  
+*VEN-001*  
+*Trazabilidad auditable respaldada por SupplyMind AI*

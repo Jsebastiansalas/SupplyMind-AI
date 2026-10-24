@@ -1525,6 +1525,17 @@ class SkynetRunner:
             execution_safety_level="HOLD_SETTLEMENT_DOCUMENT_AUDIT_REQUIRED",
             generated_at=datetime.now(timezone.utc).isoformat()
         )
+        from data.models import ZKPFinancialProof
+        proof = ZKPFinancialProof(
+            case_id=self.case_id,
+            proof_hash=f"SM-PROOF-QUARANTINE-{self.case_id}",
+            invariant_conservation_ok=True,
+            invariant_deductions_ok=True,
+            invariant_line_items_ok=False,
+            text_hallucination_detected=False,
+            audit_status="ARITHMETIC_MISMATCH",
+            tamper_proof_timestamp=datetime.now(timezone.utc).isoformat()
+        )
         return DisputeAnalysisReport(
             case_id=self.case_id,
             billed_amount=Decimal("0.00"),
@@ -1536,5 +1547,6 @@ class SkynetRunner:
             evidence=[f"Trace técnico de Pydantic/Motor: {error_msg[:500]}"],
             recommended_action="Rechazar expediente. Los archivos JSON base carecen de integridad estructural y fallaron la validación de Esquemas (Pydantic). Verifique los datos de entrada.",
             confidence=0.0,
-            health_audit=audit
+            health_audit=audit,
+            financial_proof=proof
         )

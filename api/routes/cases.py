@@ -302,6 +302,31 @@ def get_case_document_health(case_id: str, allow_imputation: bool = True):
         raise HTTPException(status_code=500, detail=f"Error al auditar salud de documentos: {str(e)}")
 
 
+@router.get("/{case_id}/proof")
+def get_case_financial_proof(case_id: str):
+    """
+    Obtiene la prueba criptográfica e invarianza matemática determinística (ZKP)
+    para verificar que no existe ninguna alucinación financiera en el caso.
+    """
+    case_path = CASES_DIR / case_id
+    if not case_path.exists() or not case_path.is_dir():
+        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+
+    try:
+        runner = SkynetRunner(case_id=case_id, fast_path=True, use_cache=True)
+        report = runner.run()
+        if not report or not report.financial_proof:
+            raise HTTPException(status_code=422, detail="No se pudo generar prueba de invarianza para este caso.")
+        
+        proof_obj = report.financial_proof
+        proof_dict = proof_obj.model_dump() if hasattr(proof_obj, "model_dump") else proof_obj
+        return _decimal_to_float(proof_dict)
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al verificar prueba ZKP: {str(e)}")
+
+
 @router.get("/{case_id}/tribunal")
 def get_case_tribunal_scores(case_id: str):
     """Obtiene la evaluación del tribunal colegiado para el caso."""

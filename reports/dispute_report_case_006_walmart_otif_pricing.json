@@ -35,6 +35,24 @@
     "documents_missing": [],
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
-    "generated_at": "2026-10-24T21:41:08.859729+00:00"
+    "generated_at": "2026-10-24T22:03:51.039364+00:00"
+  },
+  "financial_proof": {
+    "case_id": "case_006_walmart_otif_pricing",
+    "proof_hash": "SM-PROOF-SHA256-FB7712E941FBA731",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$4,500.00 USD (Validado)",
+      "$3,500.00 USD (Validado)",
+      "$4,500.00 USD (Validado)",
+      "$3,500.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-10-24T22:03:51.042965+00:00"
   }
 }

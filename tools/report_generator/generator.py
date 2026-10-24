@@ -52,4 +52,8 @@ def build_dispute_report(
         recommended_action=action,
         health_audit=health_audit
     )
+
+    # Auditoría ZKP e invariantes de cero alucinación (Pilar 2)
+    from agent.guardrails.arithmetic_verifier import ZKPFinancialAuditor
+    report = ZKPFinancialAuditor.audit_and_enforce(report, reconciliation)
     return report

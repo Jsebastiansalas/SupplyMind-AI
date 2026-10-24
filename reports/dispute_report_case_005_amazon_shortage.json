@@ -35,6 +35,24 @@
     "documents_missing": [],
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
-    "generated_at": "2026-10-24T21:41:08.768768+00:00"
+    "generated_at": "2026-10-24T22:03:50.986361+00:00"
+  },
+  "financial_proof": {
+    "case_id": "case_005_amazon_shortage",
+    "proof_hash": "SM-PROOF-SHA256-4C8CAA5D69EA5D70",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$5,000.00 USD (Validado)",
+      "$2,500.00 USD (Validado)",
+      "$5,000.00 USD (Validado)",
+      "$2,500.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-10-24T22:03:50.990047+00:00"
   }
 }

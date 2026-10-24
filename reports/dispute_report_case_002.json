@@ -18,5 +18,42 @@
   "confidence": 0.98,
   "recommended_action": "Aceptar deducción de $4,000.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $12,500.00 USD exigiendo su pago inmediato.",
   "concessions": [],
-  "active_scenario": null
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "case_002",
+    "health_score": 100.0,
+    "status": "PRISTINE",
+    "is_healthy": true,
+    "repaired_issues": [],
+    "imputed_documents": [],
+    "documents_present": [
+      "invoice",
+      "purchase_order",
+      "delivery",
+      "payment",
+      "contract"
+    ],
+    "documents_missing": [],
+    "schema_warnings": [],
+    "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
+    "generated_at": "2026-10-24T22:03:50.861695+00:00"
+  },
+  "financial_proof": {
+    "case_id": "case_002",
+    "proof_hash": "SM-PROOF-SHA256-6131126744D4E1EB",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$4,000.00 USD (Validado)",
+      "$12,500.00 USD (Validado)",
+      "$4,000.00 USD (Validado)",
+      "$12,500.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-10-24T22:03:50.866083+00:00"
+  }
 }

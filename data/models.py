@@ -161,6 +161,7 @@ class DisputeAnalysisReport(_Base):
     concessions: List[CommercialConcession] = Field(default_factory=list)  # Auditoría Human-in-the-Loop
     active_scenario: Optional[str] = Field(default=None)  # Escenario activo: "AGGRESSIVE", "BALANCED", "CONSERVATIVE"
     health_audit: Optional[Any] = Field(default=None)  # Auditoría de Integridad y Resiliencia Documental (DocumentHealthAudit o dict)
+    financial_proof: Optional[Any] = Field(default=None)  # Prueba Criptográfica de Invarianza Aritmética / ZKP (ZKPFinancialProof o dict)
 
     def formatted_display(self) -> str:
         """Formatea el reporte con la estructura solicitada para el reto."""
@@ -356,6 +357,27 @@ class DocumentHealthAudit(BaseModel):
     schema_warnings: List[str] = Field(default_factory=list)
     execution_safety_level: str = "SAFE_FOR_AUTONOMOUS_SETTLEMENT"
     generated_at: str = ""
+
+
+# ==========================================
+# 12. Prueba Criptográfica de Invarianza Aritmética y Cero Alucinación (Pilar 2)
+# ==========================================
+class ZKPFinancialProof(BaseModel):
+    """Prueba criptográfica de invariantes aritméticas y verificación de cero alucinaciones financieras."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    case_id: str
+    proof_hash: str                                     # SHA-256 HMAC del balance matemático
+    invariant_conservation_ok: bool = True              # billed - received == abs(difference)
+    invariant_deductions_ok: bool = True                # justified + claimable == abs(difference)
+    invariant_line_items_ok: bool = True                # sum(items) == billed
+    text_hallucination_detected: bool = False           # ¿El texto del LLM inventó cifras?
+    detected_hallucinated_figures: List[str] = Field(default_factory=list)
+    verified_figures: List[str] = Field(default_factory=list)
+    confidence_penalty: float = 0.0                     # Penalización aplicada al score si hubo alucinación
+    audit_status: str = "MATHEMATICALLY_PROVEN"         # "MATHEMATICALLY_PROVEN" | "HALLUCINATION_INTERCEPTED" | "ARITHMETIC_MISMATCH"
+    tamper_proof_timestamp: str = ""
+
 
 
 

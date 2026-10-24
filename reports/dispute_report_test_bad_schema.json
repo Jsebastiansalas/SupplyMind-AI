@@ -29,6 +29,19 @@
       "Fallo en lectura de documentos: Expediente 'test_bad_schema' en cuarentena documental (salud: 0.0%): Archivos corruptos o faltantes críticos."
     ],
     "execution_safety_level": "HOLD_SETTLEMENT_DOCUMENT_AUDIT_REQUIRED",
-    "generated_at": "2026-10-24T21:41:51.400853+00:00"
+    "generated_at": "2026-10-24T22:04:34.705580+00:00"
+  },
+  "financial_proof": {
+    "case_id": "test_bad_schema",
+    "proof_hash": "SM-PROOF-QUARANTINE-test_bad_schema",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": false,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [],
+    "confidence_penalty": 0.0,
+    "audit_status": "ARITHMETIC_MISMATCH",
+    "tamper_proof_timestamp": "2026-10-24T22:04:34.705634+00:00"
   }
 }

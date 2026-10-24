@@ -33,6 +33,22 @@
     "documents_missing": [],
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
-    "generated_at": "2026-10-24T21:42:03.268794+00:00"
+    "generated_at": "2026-10-24T22:03:50.925144+00:00"
+  },
+  "financial_proof": {
+    "case_id": "case_001",
+    "proof_hash": "SM-PROOF-SHA256-7BB1F4CF0E45C4D0",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$800.00 USD (Validado)",
+      "$800.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-10-24T22:03:50.930267+00:00"
   }
 }
