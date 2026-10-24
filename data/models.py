@@ -249,3 +249,92 @@ class ErpExportPackage(BaseModel):
     generated_at: str = ""
 
 
+# ==========================================
+# 9. Modelos de Motor Cambiario FX & Incoterms 2020 (Fase 4 - Pilar 5)
+# ==========================================
+class IncotermRiskRule(BaseModel):
+    """Regla formal de transferencia de riesgo legal según ICC Incoterms 2020."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    incoterm_code: str                          # "FOB", "FCA", "DDP", "DAP", "CIF", "CIP", "EXW"
+    name: str                                   # Ej: "Free on Board (Franco a Bordo)"
+    transfer_point: str                         # "ORIGEN_PUERTO", "DESTINO_CEDIS", "ORIGEN_CARRIER", etc.
+    transit_risk_party: str                     # "BUYER" / "SELLER"
+    insurance_obligation: str                   # "BUYER" / "SELLER" / "NONE"
+    legal_basis: str                            # Cita normativa ICC Incoterms 2020 (ej. "ICC Incoterms 2020 Regla FOB Art. A4/B4")
+    legal_verdict: str                          # "IMPROCEDENTE_POR_INCOTERM", "PROCEDENTE_EN_DESTINO", "REQUERIDO_RECLAMO_ASEGURADORA"
+    recommendation: str                         # Directriz de arbitraje para el proveedor
+
+
+class FxAuditReport(BaseModel):
+    """Auditoría matemática determinística que aísla la varianza cambiaria del conflicto comercial."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    case_id: str
+    invoice_currency: str = "USD"
+    payment_currency: str = "MXN"
+    billed_amount_invoice_curr: Decimal = Field(default=Decimal("0.00"))
+    invoice_fx_rate: Decimal = Field(default=Decimal("1.0000"), gt=0)
+    payment_fx_rate: Decimal = Field(default=Decimal("1.0000"), gt=0)
+    received_amount_payment_curr: Decimal = Field(default=Decimal("0.00"))
+    received_amount_invoice_curr: Decimal = Field(default=Decimal("0.00"))
+    total_nominal_discrepancy: Decimal = Field(default=Decimal("0.00"))
+    fx_variance_amount: Decimal = Field(default=Decimal("0.00"))
+    fx_impact_type: str = "NEUTRAL"             # "PÉRDIDA CAMBIARIA (FX LOSS)", "GANANCIA CAMBIARIA (FX GAIN)", "NEUTRAL"
+    commercial_deduction_amount: Decimal = Field(default=Decimal("0.00"))
+    effective_claimable_amount: Decimal = Field(default=Decimal("0.00"))
+    math_invariant_verified: bool = True        # total_nominal == fx_variance + commercial_deduction
+    incoterm: str = "FOB"
+    incoterm_rule: Optional[IncotermRiskRule] = None
+    incoterm_verdict: str = "IMPROCEDENTE_POR_INCOTERM"
+    incoterm_legal_basis: str = ""
+    generated_at: str = ""
+
+
+# ==========================================
+# 10. Modelos de Perfilador de Fugas de Retailers (Fase 4 - Pilar 3)
+# ==========================================
+class RetailerDeductionPattern(BaseModel):
+    """Patrón sistemático o abusivo de deducciones identificado en un retailer."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    pattern_id: str
+    name: str
+    frequency_pct: float = Field(ge=0.0, le=100.0)
+    impact_severity: str = "ALTA"               # "CRITICA", "ALTA", "MEDIA", "BAJA"
+    abusive_mechanism: str
+    counter_strategy: str
+
+
+class PreDispatchCheckItem(BaseModel):
+    """Ítem interactivo del checklist preventivo pre-despacho para mitigar retenciones."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    check_id: str
+    title: str
+    description: str
+    mandatory: bool = True
+    risk_mitigated: str
+    verified: bool = False
+
+
+class RetailerLeakageProfile(BaseModel):
+    """Perfil longitudinal de comportamiento, fugas y mitigación de un gran comprador comercial."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    retailer_id: str
+    retailer_name: str
+    risk_tier: str = "MEDIO"                    # "PREDATORIO", "ALTO", "MEDIO", "BAJO"
+    win_rate_pct: float = Field(default=0.0, ge=0.0, le=100.0)
+    recovery_ratio_pct: float = Field(default=0.0, ge=0.0, le=100.0)
+    total_disputed_volume: Decimal = Field(default=Decimal("0.00"), ge=0)
+    total_recovered_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    top_deduction_reasons: List[str] = Field(default_factory=list)
+    systematic_patterns: List[RetailerDeductionPattern] = Field(default_factory=list)
+    pre_dispatch_checklist: List[PreDispatchCheckItem] = Field(default_factory=list)
+    recommended_incoterm: str = "FOB"
+    average_dispute_days: int = 15
+    cedis_alert_summary: Optional[str] = None
+
+
+

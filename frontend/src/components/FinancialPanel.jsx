@@ -13,7 +13,13 @@ import {
   FileCheck2,
   Printer,
   AlertTriangle,
-  Handshake
+  Handshake,
+  Globe,
+  ShieldAlert,
+  ListChecks,
+  CheckSquare,
+  Square,
+  ArrowRightLeft
 } from 'lucide-react';
 
 export default function FinancialPanel({ 
@@ -30,6 +36,25 @@ export default function FinancialPanel({
     setLocalSubTab(tab);
   };
   const [copiedHash, setCopiedHash] = useState(false);
+
+  // Estados interactivos para Motor Cambiario FX & Incoterms 2020 (Pilar 5)
+  const [selectedIncoterm, setSelectedIncoterm] = useState('FOB');
+  const [invoiceFxRate, setInvoiceFxRate] = useState(18.50);
+  const [paymentFxRate, setPaymentFxRate] = useState(17.85);
+  const [targetCurrency, setTargetCurrency] = useState('MXN');
+
+  // Estados interactivos para Perfilador de Fugas de Retailers & Checklist (Pilar 3)
+  const defaultRetailer = report?.case_id?.includes('005') || report?.case_id?.includes('amazon') ? 'AMAZON'
+    : (report?.case_id?.includes('006') || report?.case_id?.includes('walmart') ? 'WALMART'
+    : (report?.case_id?.includes('007') || report?.case_id?.includes('cisco') ? 'CISCO'
+    : (report?.case_id?.includes('008') || report?.case_id?.includes('homedepot') ? 'HOMEDEPOT' : 'MEGA_RETAILER')));
+  
+  const [selectedRetailer, setSelectedRetailer] = useState(defaultRetailer);
+  const [checklistCompleted, setChecklistCompleted] = useState({});
+
+  const toggleChecklistItem = (id) => {
+    setChecklistCompleted(prev => ({ ...prev, [id]: !prev[id] }));
+  };
 
   if (!report) {
     return (
@@ -264,6 +289,30 @@ export default function FinancialPanel({
           >
             <FileCheck2 className="w-3.5 h-3.5 text-[#d4af37]" />
             <span>🏦 Pólizas ERP & CFDI 4.0</span>
+          </button>
+
+          <button
+            onClick={() => setActiveSubTab('fx_incoterms')}
+            className={`btn-tactile px-3 py-1.5 rounded text-xs font-mono font-medium transition-colors flex items-center gap-1.5 ${
+              activeSubTab === 'fx_incoterms'
+                ? 'bg-[#171822] text-[#eed98d] border border-[#d4af37]/60 shadow-tactile font-bold'
+                : 'text-zinc-400 hover:text-white hover:bg-[#121319]'
+            }`}
+          >
+            <Globe className="w-3.5 h-3.5 text-[#d4af37]" />
+            <span>🌐 FX & Incoterms 2020</span>
+          </button>
+
+          <button
+            onClick={() => setActiveSubTab('retailer_leakage')}
+            className={`btn-tactile px-3 py-1.5 rounded text-xs font-mono font-medium transition-colors flex items-center gap-1.5 ${
+              activeSubTab === 'retailer_leakage'
+                ? 'bg-[#171822] text-[#eed98d] border border-[#d4af37]/60 shadow-tactile font-bold'
+                : 'text-zinc-400 hover:text-white hover:bg-[#121319]'
+            }`}
+          >
+            <ShieldAlert className="w-3.5 h-3.5 text-[#d4af37]" />
+            <span>🛡️ Fugas Retailers & Checklist</span>
           </button>
 
           {onOpenOfficialDossier && (
@@ -783,6 +832,554 @@ export default function FinancialPanel({
             </div>
           </div>
         )}
+
+        {/* SUB-TAB: MOTOR CAMBIARIO FX & INCOTERMS 2020 (Pilar 5) */}
+        {activeSubTab === 'fx_incoterms' && (() => {
+          const rateInv = Number(invoiceFxRate) || 18.50;
+          const ratePay = Number(paymentFxRate) || 17.85;
+          const billedMxn = billed * rateInv;
+          const receivedMxn = received * ratePay;
+          const totalNominalDiffMxn = billedMxn - receivedMxn;
+          const fxVarianceMxn = billed * (rateInv - ratePay);
+          const commercialDeductionMxn = totalDeduction * ratePay;
+          const isFxLoss = fxVarianceMxn > 0;
+
+          const incotermData = {
+            FOB: {
+              name: 'Free on Board (Franco a Bordo)',
+              point: 'Bordo del buque / Terminal de carga en origen',
+              riskParty: 'BUYER (Retailer / Comprador)',
+              verdict: 'IMPROCEDENTE_POR_INCOTERM',
+              verdictColor: 'text-emerald-400 bg-emerald-950/40 border-emerald-800/40',
+              basis: 'ICC Incoterms 2020 Regla FOB Art. A4/B4 y A10/B10. Riesgo de tránsito y muelle asumido por el comprador en origen.',
+              rec: 'Exigir el 100% del pago. El comprador asumió el riesgo de tránsito; las deducciones por daño o faltante en su CEDIS son improcedentes.'
+            },
+            FCA: {
+              name: 'Free Carrier (Franco Porteador)',
+              point: 'Entrega al transportista designado por el comprador en origen',
+              riskParty: 'BUYER (Retailer / Comprador)',
+              verdict: 'IMPROCEDENTE_POR_INCOTERM',
+              verdictColor: 'text-emerald-400 bg-emerald-950/40 border-emerald-800/40',
+              basis: 'ICC Incoterms 2020 Regla FCA Art. A4/B4. Mercancía entregada al porteador del comprador.',
+              rec: 'El retailer debe reclamar la merma a su propia línea de transporte, no retener contra el proveedor.'
+            },
+            DDP: {
+              name: 'Delivered Duty Paid (Entregada Derechos Pagados)',
+              point: 'Muelle de descarga en CEDIS del comprador (destino)',
+              riskParty: 'SELLER (Proveedor)',
+              verdict: 'PROCEDENTE_EN_DESTINO',
+              verdictColor: 'text-rose-400 bg-rose-950/40 border-rose-800/40',
+              basis: 'ICC Incoterms 2020 Regla DDP Art. A4/B4. El vendedor soporta los riesgos hasta la entrega en destino.',
+              rec: 'La merma física debidamente documentada en el muelle de descarga es deducible según contrato.'
+            },
+            DAP: {
+              name: 'Delivered at Place (Entregada en Lugar)',
+              point: 'Puesta a disposición en el vehículo de llegada sin descargar',
+              riskParty: 'SELLER (Proveedor)',
+              verdict: 'PROCEDENTE_EN_DESTINO',
+              verdictColor: 'text-rose-400 bg-rose-950/40 border-rose-800/40',
+              basis: 'ICC Incoterms 2020 Regla DAP Art. A4/B4. Vendedor responsable hasta punto acordado en destino.',
+              rec: 'Riesgo del vendedor hasta la llegada al CEDIS del comprador.'
+            },
+            CIF: {
+              name: 'Cost, Insurance and Freight (Coste, Seguro y Flete)',
+              point: 'A bordo del buque en origen con póliza de seguro marítimo',
+              riskParty: 'BUYER (Respaldado por póliza contratada por vendedor)',
+              verdict: 'REQUERIDO_RECLAMO_ASEGURADORA',
+              verdictColor: 'text-amber-400 bg-amber-950/40 border-amber-800/40',
+              basis: 'ICC Incoterms 2020 Regla CIF Art. A5/B5. Mercancía asegurada bajo póliza marítima transferible.',
+              rec: 'El comprador no puede retener la factura; debe activar formalmente la póliza de seguro marítimo con el endoso del certificado.'
+            },
+            CIP: {
+              name: 'Carriage and Insurance Paid to (Transporte y Seguro Pagados)',
+              point: 'Custodia del primer porteador con cobertura Todo Riesgo Cláusula A',
+              riskParty: 'BUYER (Respaldado por seguro Todo Riesgo)',
+              verdict: 'REQUERIDO_RECLAMO_ASEGURADORA',
+              verdictColor: 'text-amber-400 bg-amber-950/40 border-amber-800/40',
+              basis: 'ICC Incoterms 2020 Regla CIP Art. A5/B5. Cobertura obligatoria Institute Cargo Clauses (A).',
+              rec: 'Reclamo directo a la aseguradora con el certificado de seguro Cláusula A provisto al despacho.'
+            },
+            EXW: {
+              name: 'Ex Works (En Fábrica)',
+              point: 'Fábrica / Almacén del proveedor',
+              riskParty: 'BUYER (Retailer / Comprador)',
+              verdict: 'IMPROCEDENTE_POR_INCOTERM',
+              verdictColor: 'text-emerald-400 bg-emerald-950/40 border-emerald-800/40',
+              basis: 'ICC Incoterms 2020 Regla EXW Art. A4/B4. Cumplimiento al poner la carga en instalaciones del vendedor.',
+              rec: 'Toda pérdida posterior a la recolección en planta es riesgo exclusivo del comprador.'
+            }
+          };
+
+          const curInco = incotermData[selectedIncoterm] || incotermData.FOB;
+
+          return (
+            <div className="space-y-4">
+              {/* Barra de parámetros de simulación */}
+              <div className="bg-[#121317] border border-[#23242c] rounded-xl p-4 flex flex-wrap items-center justify-between gap-4">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="text-xs font-mono text-zinc-400 font-semibold uppercase tracking-wider flex items-center gap-1.5">
+                    <Globe className="w-3.5 h-3.5 text-[#d4af37]" />
+                    Parámetros Transfronterizos:
+                  </span>
+                  
+                  <div className="flex items-center space-x-1.5 bg-[#0e0f13] border border-[#1e2029] rounded px-2.5 py-1">
+                    <span className="text-[10px] font-mono text-zinc-500 uppercase">Incoterm ICC:</span>
+                    <select
+                      value={selectedIncoterm}
+                      onChange={(e) => setSelectedIncoterm(e.target.value)}
+                      className="bg-transparent text-xs font-mono font-bold text-[#eed98d] focus:outline-none cursor-pointer"
+                    >
+                      <option value="FOB" className="bg-[#121317] text-white">FOB (Puerto Origen)</option>
+                      <option value="FCA" className="bg-[#121317] text-white">FCA (Carrier Origen)</option>
+                      <option value="DDP" className="bg-[#121317] text-white">DDP (Muelle Destino)</option>
+                      <option value="DAP" className="bg-[#121317] text-white">DAP (Destino s/ Descargar)</option>
+                      <option value="CIF" className="bg-[#121317] text-white">CIF (Seguro Marítimo)</option>
+                      <option value="CIP" className="bg-[#121317] text-white">CIP (Seguro Todo Riesgo)</option>
+                      <option value="EXW" className="bg-[#121317] text-white">EXW (En Fábrica)</option>
+                    </select>
+                  </div>
+
+                  <div className="flex items-center space-x-1.5 bg-[#0e0f13] border border-[#1e2029] rounded px-2.5 py-1">
+                    <span className="text-[10px] font-mono text-zinc-500 uppercase">Tasa Emisión:</span>
+                    <input
+                      type="number"
+                      step="0.01"
+                      value={invoiceFxRate}
+                      onChange={(e) => setInvoiceFxRate(e.target.value)}
+                      className="w-16 bg-transparent text-xs font-mono font-bold text-white focus:outline-none"
+                    />
+                    <span className="text-[10px] font-mono text-zinc-500">{targetCurrency}</span>
+                  </div>
+
+                  <div className="flex items-center space-x-1.5 bg-[#0e0f13] border border-[#1e2029] rounded px-2.5 py-1">
+                    <span className="text-[10px] font-mono text-zinc-500 uppercase">Tasa Liquidación:</span>
+                    <input
+                      type="number"
+                      step="0.01"
+                      value={paymentFxRate}
+                      onChange={(e) => setPaymentFxRate(e.target.value)}
+                      className="w-16 bg-transparent text-xs font-mono font-bold text-white focus:outline-none"
+                    />
+                    <span className="text-[10px] font-mono text-zinc-500">{targetCurrency}</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/40 px-2.5 py-1 rounded border border-emerald-800/40 flex items-center gap-1 font-semibold">
+                    <Check className="w-3 h-3" /> Invariante Cuadrado en Decimal
+                  </span>
+                </div>
+              </div>
+
+              {/* Grid de 4 tarjetas de aislamiento analítico */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5">
+                <div className="bg-[#121317] border border-[#1f2029] rounded-xl p-4 space-y-1">
+                  <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider block">
+                    1. Diferencia Nominal Bruta
+                  </span>
+                  <div className="text-xl font-bold font-mono text-white tabular-nums">
+                    ${formatCurrency(totalNominalDiffMxn)} {targetCurrency}
+                  </div>
+                  <span className="text-[10px] font-mono text-zinc-400 block pt-1">
+                    Facturado: ${formatCurrency(billedMxn)} | Recibido: ${formatCurrency(receivedMxn)}
+                  </span>
+                </div>
+
+                <div className="bg-[#121317] border border-[#1f2029] rounded-xl p-4 space-y-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider">
+                      2. Varianza Cambiaria FX
+                    </span>
+                    <span className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border ${
+                      isFxLoss ? 'text-amber-400 bg-amber-950/40 border-amber-800/40' : 'text-emerald-400 bg-emerald-950/40 border-emerald-800/40'
+                    }`}>
+                      {isFxLoss ? 'PÉRDIDA FX' : 'GANANCIA FX'}
+                    </span>
+                  </div>
+                  <div className={`text-xl font-bold font-mono tabular-nums ${isFxLoss ? 'text-amber-400' : 'text-emerald-400'}`}>
+                    ${formatCurrency(Math.abs(fxVarianceMxn))} {targetCurrency}
+                  </div>
+                  <span className="text-[10px] font-mono text-zinc-400 block pt-1">
+                    Variación macro DOF: Δ {(rateInv - ratePay).toFixed(4)} por USD
+                  </span>
+                </div>
+
+                <div className="bg-[#121317] border border-[#1f2029] rounded-xl p-4 space-y-1">
+                  <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider block">
+                    3. Deducción Comercial Neta
+                  </span>
+                  <div className="text-xl font-bold font-mono text-rose-400 tabular-nums">
+                    ${formatCurrency(commercialDeductionMxn)} {targetCurrency}
+                  </div>
+                  <span className="text-[10px] font-mono text-zinc-400 block pt-1">
+                    Equivalente: ${formatCurrency(totalDeduction)} USD base disputa
+                  </span>
+                </div>
+
+                <div className="bg-[#121317] border border-[#2b2512] rounded-xl p-4 space-y-1 bg-gradient-to-br from-[#121317] to-[#18160d]">
+                  <span className="text-[10px] font-mono text-[#eed98d] uppercase tracking-wider block">
+                    4. Saldo Exigible s/ Incoterm
+                  </span>
+                  <div className="text-xl font-bold font-mono text-[#eed98d] tabular-nums">
+                    ${formatCurrency(curInco.verdict === 'IMPROCEDENTE_POR_INCOTERM' ? totalDeduction : claimable)} USD
+                  </div>
+                  <span className="text-[10px] font-mono text-zinc-400 block pt-1">
+                    {curInco.verdict === 'IMPROCEDENTE_POR_INCOTERM' ? '100% Exigible (Riesgo Comprador)' : 'Sujeto a conciliación física'}
+                  </span>
+                </div>
+              </div>
+
+              {/* Dictamen Pericial Legal Incoterms 2020 */}
+              <div className="bg-[#121317] border border-[#23242c] rounded-xl p-5 space-y-4">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#1b1c24] pb-3">
+                  <div className="flex items-center space-x-2">
+                    <Scale className="w-4 h-4 text-[#d4af37]" />
+                    <h3 className="text-xs font-mono font-bold text-white uppercase tracking-wider">
+                      Dictamen Jurídico de Transferencia de Riesgo (ICC Incoterms 2020)
+                    </h3>
+                  </div>
+                  <span className={`text-[11px] font-mono font-bold px-2.5 py-1 rounded border ${curInco.verdictColor}`}>
+                    {curInco.verdict}
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
+                  <div className="p-3.5 rounded-lg bg-[#0e0f13] border border-[#1b1c24] space-y-2">
+                    <div className="text-[10px] font-mono text-zinc-500 uppercase">Cláusula Contractual & Punto Crítico</div>
+                    <div className="text-white font-medium">{curInco.name}</div>
+                    <div className="text-zinc-400 text-[11px] flex items-center gap-1.5">
+                      <span className="text-[#eed98d]">Punto de entrega:</span> {curInco.point}
+                    </div>
+                    <div className="text-zinc-400 text-[11px] flex items-center gap-1.5">
+                      <span className="text-[#eed98d]">Riesgo en transporte:</span> {curInco.riskParty}
+                    </div>
+                  </div>
+
+                  <div className="p-3.5 rounded-lg bg-[#0e0f13] border border-[#1b1c24] space-y-2">
+                    <div className="text-[10px] font-mono text-zinc-500 uppercase">Fundamento Normativo ICC & Recomendación</div>
+                    <div className="text-zinc-300 italic text-[11px]">{curInco.basis}</div>
+                    <div className="text-emerald-400 text-[11px] font-medium pt-1 border-t border-[#181a22]">
+                      💡 {curInco.rec}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
+
+        {/* SUB-TAB: PERFILADOR DE FUGAS DE RETAILERS & CHECKLIST PRE-DESPACHO (Pilar 3) */}
+        {activeSubTab === 'retailer_leakage' && (() => {
+          const RETAILER_METRICS = {
+            AMAZON: {
+              name: 'Amazon Fulfillment Services (CUST-RETAIL-AMZN)',
+              tier: 'ALTO',
+              tierClass: 'text-amber-400 bg-amber-950/40 border-amber-800/40',
+              winRate: 92.4,
+              recoveryRatio: 88.5,
+              volume: 248500.00,
+              recovered: 219922.50,
+              incoterm: 'FCA',
+              leadTimeDays: 18,
+              cedisAlert: 'Dallas FC (DFW) y Ontario FC reportan faltante 4x superior a media nacional en SKUs de alta tecnología (NVMe, GPUs).',
+              patterns: [
+                {
+                  id: 'PAT-AMZ-01',
+                  title: 'Penalización Automatizada ASN EDI 856',
+                  freq: 88.0,
+                  sev: 'CRITICA',
+                  mech: 'Algoritmo interno retiene 5% del valor de la orden si el ASN EDI 856 sufre latencia > 15 min, ignorando el acuse EDI 997 válido.',
+                  counter: 'Anexar bitácora de transmisión UTC del gateway EDI y exigir anulación bajo Cláusula 5.3.'
+                },
+                {
+                  id: 'PAT-AMZ-02',
+                  title: 'Mermas Sistemáticas en Muelle Dallas FC',
+                  freq: 74.5,
+                  sev: 'ALTA',
+                  mech: 'Descarga y despaletizado automático genera declaraciones de faltantes no refrendadas en carta porte del transportista.',
+                  counter: 'Aplicar precintos de seguridad C-TPAT numerados con registro fotográfico en origen.'
+                }
+              ],
+              checklist: [
+                { id: 'chk_amz_1', title: 'Emisión y Acuse 997 de ASN EDI 856 (Mínimo 4h Previas)', desc: 'Transmitir ASN a Vendor Central y resguardar confirmación 997 con 4h de antelación.', mandatory: true, risk: 'Penalización DED-ASN-PENALTY ($2,500.00 USD)' },
+                { id: 'chk_amz_2', title: 'Registro Fotográfico de Precinto C-TPAT en Muelle', desc: 'Capturar 4 fotos con estampa de tiempo: tarima, flejes, precinto y remolque cerrado.', mandatory: true, risk: 'Faltante físico en muelle de Dallas FC' },
+                { id: 'chk_amz_3', title: 'Verificación Grado A en Códigos GS1-128', desc: 'Escanear con lector óptico verificado cada etiqueta máster asegurando contraste > 85%.', mandatory: true, risk: 'Multas de etiquetado y reempaque' },
+                { id: 'chk_amz_4', title: 'Carta Porte con Firma del Transportista y Horario', desc: 'Firma autógrafa del chofer y folio de remisión con estampa de salida.', mandatory: true, risk: 'Transferencia de riesgo legal FCA / FOB' }
+              ]
+            },
+            WALMART: {
+              name: 'Walmart Inc. & Retail Link (CUST-RETAIL-WMT)',
+              tier: 'PREDATORIO',
+              tierClass: 'text-rose-400 bg-rose-950/40 border-rose-800/40',
+              winRate: 89.1,
+              recoveryRatio: 84.7,
+              volume: 342000.00,
+              recovered: 289674.00,
+              incoterm: 'FOB',
+              leadTimeDays: 21,
+              cedisAlert: '85% de las órdenes entregadas en la última semana del mes sufren deducción extemporánea de pronto pago en Retail Link.',
+              patterns: [
+                {
+                  id: 'PAT-WMT-01',
+                  title: 'Deducción Extemporánea de Pronto Pago (Fin de Mes)',
+                  freq: 85.0,
+                  sev: 'CRITICA',
+                  mech: 'Walmart retiene 2% de pronto pago en liquidaciones a día 35 alegando fecha de corte de lote bancario interno.',
+                  counter: 'Invocar caducidad formal a las 23:59 del día 10 natural según Cláusula 7.2.'
+                },
+                {
+                  id: 'PAT-WMT-02',
+                  title: 'Penalización OTIF por Congestión en Caseta',
+                  freq: 68.2,
+                  sev: 'ALTA',
+                  mech: 'Multa de 3% por entrega tardía generada por fila de camiones en patio del CEDIS atribuible a Walmart.',
+                  counter: 'Sellar Gate-In Time en carta porte al arribo a caseta para blindar ventana OTIF.'
+                }
+              ],
+              checklist: [
+                { id: 'chk_wmt_1', title: 'Sellado de Cita en Ventana OTIF Retail Link', desc: 'Grapar comprobante de cita Retail Link a carta porte con margen de 60 min.', mandatory: true, risk: 'Multa del 3% por incumplimiento OTIF' },
+                { id: 'chk_wmt_2', title: 'Leyenda Anti-Extemporánea de Pronto Pago en Remisión', desc: 'Establecer expresamente que el 2% caduca el día 10 natural tras emisión.', mandatory: true, risk: 'Deducción indebida DED-EARLY-PAY ($3,500.00 USD)' },
+                { id: 'chk_wmt_3', title: 'Auditoría de Tarimas Azules CHEP Grado A', desc: 'Verificar tarimas sin tablones rotos ni clavos salientes.', mandatory: true, risk: 'Rechazo en muelle de descarga' }
+              ]
+            },
+            CISCO: {
+              name: 'Cisco Systems Global Supply (CUST-RETAIL-CSCO)',
+              tier: 'MEDIO',
+              tierClass: 'text-amber-300 bg-amber-950/30 border-amber-700/40',
+              winRate: 95.0,
+              recoveryRatio: 93.2,
+              volume: 185000.00,
+              recovered: 172420.00,
+              incoterm: 'CIP',
+              leadTimeDays: 12,
+              cedisAlert: 'Retenciones por prorrateo de descuentos de volumen y kits de licencias SmartNet.',
+              patterns: [
+                {
+                  id: 'PAT-CSC-01',
+                  title: 'Deducción de Margen por Desglose de Bundles',
+                  freq: 45.0,
+                  sev: 'MEDIA',
+                  mech: 'Intento de re-facturación individual de equipos para aplicar descuentos escalonados.',
+                  counter: 'Exhibir anexo de cotización cerrada con SKU único de bundle indivisible.'
+                }
+              ],
+              checklist: [
+                { id: 'chk_csc_1', title: 'Validación de SKU Bundle en PO vs Factura', desc: 'Garantizar coincidencia exacta del identificador de kit en orden y factura.', mandatory: true, risk: 'Deducciones por desglose de componentes' },
+                { id: 'chk_csc_2', title: 'Anexo de Activación de Licencias SmartNet', desc: 'Vincular certificado digital de soporte al comprobante de entrega.', mandatory: false, risk: 'Retenciones de garantía técnica' }
+              ]
+            },
+            HOMEDEPOT: {
+              name: 'The Home Depot Supply Chain (CUST-RETAIL-HD)',
+              tier: 'MEDIO',
+              tierClass: 'text-sky-400 bg-sky-950/40 border-sky-800/40',
+              winRate: 91.5,
+              recoveryRatio: 87.0,
+              volume: 138000.00,
+              recovered: 120060.00,
+              incoterm: 'FOB',
+              leadTimeDays: 15,
+              cedisAlert: 'Rechazos cosméticos en cajas de cartón por rozaduras menores durante el transporte.',
+              patterns: [
+                {
+                  id: 'PAT-HD-01',
+                  title: 'Rechazo por Daño Cosmético de Empaque',
+                  freq: 60.0,
+                  sev: 'MEDIA',
+                  mech: 'Deducción íntegra de producto por deformación de caja de cartón exterior con contenido íntegro.',
+                  counter: 'Protocolo de inspección conjunta: daño de caja no autoriza merma de producto apto.'
+                }
+              ],
+              checklist: [
+                { id: 'chk_hd_1', title: 'Instalación de Esquineros de Cartón Rígido', desc: 'Reforzar las 4 aristas de cada tarima antes de flejar.', mandatory: true, risk: 'Daños cosméticos por tensión de flejes' },
+                { id: 'chk_hd_2', title: 'Certificación Cero Overhang (Sin Salientes)', desc: 'Verificar que ninguna caja sobresalga de la base de 48x40 pulgadas.', mandatory: true, risk: 'Rechazo en muelle cross-dock' }
+              ]
+            },
+            MEGA_RETAILER: {
+              name: 'Mega Retailer Global Corp (CUST-RETAIL-MEGA)',
+              tier: 'ALTO',
+              tierClass: 'text-rose-400 bg-rose-950/40 border-rose-800/40',
+              winRate: 94.8,
+              recoveryRatio: 91.0,
+              volume: 520000.00,
+              recovered: 473200.00,
+              incoterm: 'FOB',
+              leadTimeDays: 25,
+              cedisAlert: 'Retenciones precautorias globales en facturas con más de 30 SKUs simultáneos.',
+              patterns: [
+                {
+                  id: 'PAT-MEG-01',
+                  title: 'Retención Cautelar por Auditoría Masiva Multi-SKU',
+                  freq: 91.0,
+                  sev: 'CRITICA',
+                  mech: 'Bloqueo del 15% del valor total de órdenes multi-línea durante 45 días sin notificar discrepancias.',
+                  counter: 'Generar matriz digital 3-Way Match con firma de transportista por línea de SKU.'
+                }
+              ],
+              checklist: [
+                { id: 'chk_meg_1', title: 'Packing List Digital Indexado por Tarima', desc: 'Generar archivo detallando qué SKUs específicos van en cada tarima física.', mandatory: true, risk: 'Retención cautelar de auditoría masiva' },
+                { id: 'chk_meg_2', title: 'Validación Pre-Despacho SKU por SKU con RFID', desc: 'Escanear 100% de bultos para certificar conteo matemático.', mandatory: true, risk: 'Discrepancias de conteo en CEDIS' }
+              ]
+            }
+          };
+
+          const activeRet = RETAILER_METRICS[selectedRetailer] || RETAILER_METRICS.WALMART;
+
+          return (
+            <div className="space-y-4">
+              {/* Barra de selección de Retailer */}
+              <div className="flex flex-wrap items-center gap-1.5 border-b border-[#1b1c24] pb-2">
+                {Object.keys(RETAILER_METRICS).map((rKey) => (
+                  <button
+                    key={rKey}
+                    onClick={() => setSelectedRetailer(rKey)}
+                    className={`btn-tactile px-3 py-1.5 rounded text-xs font-mono font-medium transition-colors flex items-center gap-1.5 ${
+                      selectedRetailer === rKey
+                        ? 'bg-[#1b1c26] text-[#eed98d] border border-[#d4af37]/60 font-bold shadow-tactile'
+                        : 'text-zinc-400 hover:text-white hover:bg-[#121319]'
+                    }`}
+                  >
+                    <span>{rKey === 'MEGA_RETAILER' ? 'MEGA RETAILER' : rKey}</span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Banner de KPIs del Retailer */}
+              <div className="bg-[#121317] border border-[#23242c] rounded-xl p-5 space-y-4">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <h3 className="text-sm font-bold text-white font-mono flex items-center gap-2">
+                      <ShieldAlert className="w-4 h-4 text-[#d4af37]" />
+                      {activeRet.name}
+                    </h3>
+                    <p className="text-xs text-zinc-400 mt-0.5 font-sans">
+                      Perfil longitudinal minado sobre casos reales de auditoría B2B.
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] font-mono text-zinc-500 uppercase">Clasificación de Riesgo:</span>
+                    <span className={`text-xs font-mono font-bold px-2.5 py-1 rounded border ${activeRet.tierClass}`}>
+                      {activeRet.tier}
+                    </span>
+                  </div>
+                </div>
+
+                {activeRet.cedisAlert && (
+                  <div className="p-3 rounded-lg bg-[#1f1911] border border-amber-800/40 text-xs text-amber-200 flex items-start gap-2">
+                    <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <span className="font-semibold font-mono text-[10px] uppercase block text-amber-300">Alerta de Fuga en CEDIS:</span>
+                      {activeRet.cedisAlert}
+                    </div>
+                  </div>
+                )}
+
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                  <div className="bg-[#0e0f13] border border-[#1b1c24] rounded-lg p-3">
+                    <span className="text-[10px] font-mono text-zinc-500 uppercase block">Win Rate Histórico</span>
+                    <div className="text-lg font-bold font-mono text-emerald-400 tabular-nums">{activeRet.winRate}%</div>
+                  </div>
+                  <div className="bg-[#0e0f13] border border-[#1b1c24] rounded-lg p-3">
+                    <span className="text-[10px] font-mono text-zinc-500 uppercase block">Tasa de Recuperación</span>
+                    <div className="text-lg font-bold font-mono text-[#eed98d] tabular-nums">{activeRet.recoveryRatio}%</div>
+                  </div>
+                  <div className="bg-[#0e0f13] border border-[#1b1c24] rounded-lg p-3">
+                    <span className="text-[10px] font-mono text-zinc-500 uppercase block">Volumen Auditado</span>
+                    <div className="text-lg font-bold font-mono text-white tabular-nums">${formatCurrency(activeRet.volume)}</div>
+                  </div>
+                  <div className="bg-[#0e0f13] border border-[#1b1c24] rounded-lg p-3">
+                    <span className="text-[10px] font-mono text-zinc-500 uppercase block">Incoterm Blindado</span>
+                    <div className="text-lg font-bold font-mono text-sky-400">{activeRet.incoterm} 2020</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Patrones Sistemáticos Abusivos */}
+              <div className="bg-[#121317] border border-[#23242c] rounded-xl p-5 space-y-3">
+                <div className="flex items-center space-x-2 text-zinc-300">
+                  <AlertTriangle className="w-4 h-4 text-rose-400" />
+                  <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-white">
+                    Patrones Sistemáticos & Deducciones Abusivas Detectadas
+                  </h4>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 pt-1">
+                  {activeRet.patterns.map((pat) => (
+                    <div key={pat.id} className="p-4 rounded-lg bg-[#0e0f13] border border-[#1e2029] space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-semibold text-white font-mono">{pat.title}</span>
+                        <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-rose-950/40 text-rose-300 border border-rose-800/40">
+                          {pat.freq}% Frecuencia
+                        </span>
+                      </div>
+                      <p className="text-xs text-zinc-400 leading-relaxed font-sans">{pat.mech}</p>
+                      <div className="text-[11px] text-emerald-400 pt-2 border-t border-[#181a22] font-sans">
+                        🛡️ <span className="font-semibold font-mono">Contra-Estrategia:</span> {pat.counter}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Checklist Preventivo Pre-Despacho Interactivo */}
+              <div className="bg-[#121317] border border-[#23242c] rounded-xl p-5 space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2 text-zinc-300">
+                    <ListChecks className="w-4 h-4 text-[#d4af37]" />
+                    <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-white">
+                      Checklist Operacional Pre-Despacho (Escudo Preventivo de Fugas)
+                    </h4>
+                  </div>
+                  <span className="text-[10px] font-mono text-zinc-400">
+                    {Object.values(checklistCompleted).filter(Boolean).length} de {activeRet.checklist.length} verificados
+                  </span>
+                </div>
+
+                <div className="space-y-2.5 pt-1">
+                  {activeRet.checklist.map((item) => {
+                    const isDone = checklistCompleted[item.id] || false;
+                    return (
+                      <div
+                        key={item.id}
+                        onClick={() => toggleChecklistItem(item.id)}
+                        className={`p-3.5 rounded-lg border transition-all cursor-pointer flex items-start gap-3 select-none ${
+                          isDone
+                            ? 'bg-[#101914] border-emerald-800/50'
+                            : 'bg-[#0e0f13] border-[#1e2029] hover:border-[#2b2e3e]'
+                        }`}
+                      >
+                        <button className="mt-0.5 text-zinc-400 flex-shrink-0">
+                          {isDone ? (
+                            <CheckSquare className="w-4 h-4 text-emerald-400" />
+                          ) : (
+                            <Square className="w-4 h-4 text-zinc-600" />
+                          )}
+                        </button>
+                        <div className="flex-1 space-y-1">
+                          <div className="flex items-center justify-between">
+                            <span className={`text-xs font-semibold font-mono ${isDone ? 'text-emerald-300 line-through' : 'text-white'}`}>
+                              {item.title}
+                            </span>
+                            <span className={`text-[9px] font-mono px-2 py-0.5 rounded border ${
+                              item.mandatory
+                                ? 'bg-rose-950/40 text-rose-300 border-rose-800/40'
+                                : 'bg-amber-950/40 text-amber-300 border-amber-800/40'
+                            }`}>
+                              {item.mandatory ? 'MANDATORIO' : 'RECOMENDADO'}
+                            </span>
+                          </div>
+                          <p className="text-xs text-zinc-400 font-sans leading-relaxed">{item.desc}</p>
+                          <div className="text-[10px] font-mono text-[#eed98d] pt-1">
+                            🎯 Mitiga riesgo de: <span className="text-zinc-300">{item.risk}</span>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          );
+        })()}
 
       </div>
 

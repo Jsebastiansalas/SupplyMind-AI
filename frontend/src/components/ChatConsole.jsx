@@ -312,6 +312,18 @@ export default function ChatConsole({
       { text: "¿Cómo se estructura la BAPI BAPI_ACC_DOCUMENT_POST para SAP S/4HANA?", badge: "SAP BAPI" },
       { text: "Genera los datos de timbrado de la Nota de Crédito CFDI 4.0 (Tipo E)", badge: "CFDI 4.0" },
       { text: "Exporta la póliza para el importador Journal Entry de Oracle NetSuite", badge: "NetSuite CSV" },
+    ],
+    fx: [
+      { text: "Aísla la varianza cambiaria FX y dictamina transferencia de riesgo bajo Incoterm FOB", badge: "🌐 FX & FOB" },
+      { text: "¿Qué parte de la deducción es fluctuación cambiaria DOF vs controversia comercial?", badge: "🔬 FX vs Comercial" },
+      { text: "Evalúa el veredicto legal ICC Incoterms 2020 para regla DDP en destino", badge: "📜 Incoterm DDP" },
+      { text: "Simula el impacto transfronterizo liquidando en pesos MXN con tasa DOF", badge: "💱 Simulación MXN" },
+    ],
+    fugas: [
+      { text: "¿Cuál es el perfil de fugas y win rate histórico para este comprador?", badge: "🛡️ Perfil Retailer" },
+      { text: "¿Qué patrones abusivos aplica este retailer y cómo contrarrestarlos?", badge: "🚨 Patrones Abusivos" },
+      { text: "Genera el checklist operacional preventivo pre-despacho para este cliente", badge: "✅ Checklist Pre-Despacho" },
+      { text: "¿Existe alerta de mermas focalizadas en CEDIS como Dallas FC de Amazon?", badge: "⚠️ Alerta CEDIS" },
     ]
   };
 
@@ -588,12 +600,13 @@ export default function ChatConsole({
           <div className="flex items-center space-x-1 font-mono">
             {[
               { id: 'jurado', label: 'Jurados' },
-              { id: 'negociacion', label: '🤝 Negociación B2B' },
+              { id: 'fx', label: '🌐 FX & Incoterms' },
+              { id: 'fugas', label: '🛡️ Fugas Retailers' },
+              { id: 'negociacion', label: '🤝 Negociación' },
               { id: 'erp', label: '🏦 ERP & CFDI' },
-              { id: 'hitl', label: '⚡ Concesión Human' },
+              { id: 'hitl', label: '⚡ Concesión' },
               { id: 'cliente', label: 'Clientes' },
               { id: 'legal', label: 'Legal' },
-              { id: 'borradores', label: 'Borradores' },
             ].map(tab => (
               <button
                 key={tab.id}

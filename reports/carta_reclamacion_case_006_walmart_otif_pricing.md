@@ -18,7 +18,7 @@ Tras la auditoría técnica y la instrucción de la dirección comercial, comuni
    Rechazamos formalmente las restantes retenciones que carecen de soporte documental y legal. Solicitamos la transferencia complementaria por el importe de **$1,750.00 USD** en un plazo perentorio de 10 días hábiles.
 
 ### 🤝 ACUERDO COMERCIAL Y CONCESIÓN MUTUA (HUMAN-IN-THE-LOOP)
-- **Folio de Concesión:** `CONCESS-CASE_006_WALMART_OTIF_PRICING-1792802069`
+- **Folio de Concesión:** `CONCESS-CASE_006_WALMART_OTIF_PRICING-1792859746`
 - **Importe Concedido:** **$1,750.00 USD**
 - **Fundamento Operativo:** Adopción de Escenario Equilibrado (Win-Win): Concesión del 50% condicionada a reciprocidad comercial
 - **Saldo Original en Litigio:** `$3,500.00 USD`

@@ -11,7 +11,7 @@
     "Deducción aplicada en comprobante REM-MMN-10294: código DED-EARLY-PAY, motivo 'Unauthorized Early Settlement Discount 5%', monto $3,500.00",
     "Respaldo contractual: Precios facturados deben ajustarse a la OC según 3.1 ('Ajuste Estricto a Precios de Orden de Compra').",
     "Respaldo contractual: La 7.2 ('Condiciones de Descuento por Pronto Pago') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.",
-    "Autorización Human-in-the-Loop: Concesión de $1,750.00 USD (Adopción de Escenario Equilibrado (Win-Win): Concesión del 50% condicionada a reciprocidad comercial) s/ ID CONCESS-CASE_006_WALMART_OTIF_PRICING-1792802069"
+    "Autorización Human-in-the-Loop: Concesión de $1,750.00 USD (Adopción de Escenario Equilibrado (Win-Win): Concesión del 50% condicionada a reciprocidad comercial) s/ ID CONCESS-CASE_006_WALMART_OTIF_PRICING-1792859746"
   ],
   "justified_amount": "6250.00",
   "claimable_amount": "1750.00",
@@ -19,8 +19,8 @@
   "recommended_action": "Resolución Comercial Ajustada con Human-in-the-Loop: Emitir Nota de Crédito global por $6,250.00 USD (incluyendo $4,500.00 USD de faltante físico comprobado y $1,750.00 USD de concesión comercial acordada para preservar la relación de cuenta). Exigir el pago bancario inmediato del saldo neto reclamable de $1,750.00 USD.",
   "concessions": [
     {
-      "concession_id": "CONCESS-CASE_006_WALMART_OTIF_PRICING-1792802069",
-      "applied_at": "2026-10-24 00:34:29 UTC",
+      "concession_id": "CONCESS-CASE_006_WALMART_OTIF_PRICING-1792859746",
+      "applied_at": "2026-10-24 16:35:46 UTC",
       "operator": "Lic. Roberto González (VP Finanzas)",
       "concession_type": "PERCENTAGE_PENALTY",
       "target": "CONCILIACION_TACTICA_50",

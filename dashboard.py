@@ -215,7 +215,17 @@ if "current_report" in st.session_state:
     report = st.session_state.current_report
     
     st.markdown(f"<h2>📊 RESULTADOS: {Path(report.case_id).name.upper()}</h2>", unsafe_allow_html=True)
-    tab1, tab_neg, tab2, tab_pdf, tab3, tab4, tab5 = st.tabs(["💵 PANEL FINANCIERO", "🤝 NEGOCIACIÓN B2B", "⚖️ VEREDICTO LEGAL", "📑 EXPEDIENTE PDF", "📋 TRAZABILIDAD (AUDIT)", "💬 TERMINAL INTERACTIVA", "📤 EXPORTAR Y COMUNICAR"])
+    tab1, tab_neg, tab_fx, tab_fugas, tab2, tab_pdf, tab3, tab4, tab5 = st.tabs([
+        "💵 PANEL FINANCIERO", 
+        "🤝 NEGOCIACIÓN B2B", 
+        "🌐 FX & INCOTERMS", 
+        "🛡️ FUGAS RETAILERS", 
+        "⚖️ VEREDICTO LEGAL", 
+        "📑 EXPEDIENTE PDF", 
+        "📋 TRAZABILIDAD (AUDIT)", 
+        "💬 TERMINAL INTERACTIVA", 
+        "📤 EXPORTAR Y COMUNICAR"
+    ])
     
     with tab1:
         m1, m2, m3, m4 = st.columns(4)
@@ -273,6 +283,74 @@ if "current_report" in st.session_state:
             with st.expander("📄 Ver Minuta de Conciliación y Convenio Extrajudicial Generado", expanded=False):
                 with open(minutes_path, "r", encoding="utf-8") as mf:
                     st.markdown(mf.read())
+
+    with tab_fx:
+        from agent.core.fx_and_leakage_engine import FxAndIncotermsEngine, INCOTERM_RULES_REGISTRY
+        st.markdown("### 🌐 Motor Cambiario FX Transfronterizo & Incoterms 2020 (Pilar 5)")
+        st.caption("Aislamiento determinístico de fluctuación cambiaria DOF vs deducción comercial operativa.")
+
+        col_p1, col_p2, col_p3 = st.columns(3)
+        with col_p1:
+            inco_sel = st.selectbox("Incoterm ICC 2020 Pactado:", list(INCOTERM_RULES_REGISTRY.keys()), index=0)
+        with col_p2:
+            inv_rate_input = st.number_input("Tasa DOF Emisión Factura (MXN/USD):", min_value=1.0, max_value=50.0, value=18.50, step=0.05)
+        with col_p3:
+            pay_rate_input = st.number_input("Tasa Liquidación Pago Bancario (MXN/USD):", min_value=1.0, max_value=50.0, value=17.85, step=0.05)
+
+        fx_audit = FxAndIncotermsEngine.audit_cross_border_fx(
+            case_id=report.case_id,
+            invoice_rate=Decimal(str(inv_rate_input)),
+            payment_rate=Decimal(str(pay_rate_input)),
+            target_currency="MXN",
+            incoterm_code=inco_sel
+        )
+
+        f1, f2, f3, f4 = st.columns(4)
+        f1.metric("Diferencia Total Nominal", f"${fx_audit.total_nominal_discrepancy:,.2f} MXN")
+        f2.metric("Varianza FX Cambiaria", f"${fx_audit.fx_variance_amount:,.2f} MXN", delta=fx_audit.fx_impact_type)
+        f3.metric("Deducción Comercial", f"${fx_audit.commercial_deduction_amount:,.2f} MXN")
+        f4.metric("Saldo Exigible s/ Incoterm", f"${fx_audit.effective_claimable_amount:,.2f} USD")
+
+        st.markdown(f"""
+        <div class='premium-card' style='border-left: 4px solid #10b981; margin-top: 12px;'>
+            <h4 style='color: #10b981; margin: 0;'>⚖️ Dictamen Pericial Legal Incoterms 2020 ({fx_audit.incoterm}): {fx_audit.incoterm_verdict}</h4>
+            <p style='color: #e2e8f0; font-size: 0.88rem; margin: 8px 0;'><strong>Fundamento Normativo:</strong> {fx_audit.incoterm_legal_basis}</p>
+            <p style='color: #94a3b8; font-size: 0.85rem; margin: 4px 0;'><strong>Punto de Transferencia:</strong> {fx_audit.incoterm_rule.transfer_point} | <strong>Riesgo en Tránsito:</strong> {fx_audit.incoterm_rule.transit_risk_party}</p>
+            <p style='color: #38bdf8; font-size: 0.85rem; margin: 4px 0;'>💡 <strong>Directriz de Arbitraje:</strong> {fx_audit.incoterm_rule.recommendation}</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with tab_fugas:
+        from agent.core.fx_and_leakage_engine import RetailerLeakageProfiler
+        profile = RetailerLeakageProfiler.profile_from_case(report.case_id)
+        st.markdown(f"### 🛡️ Perfilador de Fugas de Retailers & Checklist Pre-Despacho (Pilar 3)")
+        st.caption(f"Inteligencia predictiva sobre deducciones abusivas para: **{profile.retailer_name}**")
+
+        kf1, kf2, kf3, kf4 = st.columns(4)
+        kf1.metric("Win Rate Histórico", f"{profile.win_rate_pct:.1f}%")
+        kf2.metric("Tasa de Recuperación", f"{profile.recovery_ratio_pct:.1f}%")
+        kf3.metric("Riesgo de Cuenta", profile.risk_tier)
+        kf4.metric("Incoterm Blindado", f"{profile.recommended_incoterm} 2020")
+
+        if profile.cedis_alert_summary:
+            st.warning(f"⚠️ **Alerta CEDIS Focalizada:** {profile.cedis_alert_summary}")
+
+        st.markdown("#### 🚨 Patrones Sistemáticos Abusivos Detectados")
+        pat_cols = st.columns(len(profile.systematic_patterns) if profile.systematic_patterns else 1)
+        for p_idx, pat in enumerate(profile.systematic_patterns):
+            with pat_cols[p_idx % len(pat_cols)]:
+                st.markdown(f"""
+                <div class='premium-card' style='border-top: 3px solid #ef4444; margin-bottom: 12px;'>
+                    <h5 style='color: #f87171; margin: 0;'>{pat.name}</h5>
+                    <p style='font-size: 0.75rem; color: #a5b4fc; margin: 2px 0;'>Frecuencia: {pat.frequency_pct:.1f}% | Severidad: {pat.impact_severity}</p>
+                    <p style='color: #94a3b8; font-size: 0.8rem; margin: 6px 0;'>{pat.abusive_mechanism}</p>
+                    <p style='color: #10b981; font-size: 0.8rem; margin: 4px 0;'>🛡️ <strong>Contra-Estrategia:</strong> {pat.counter_strategy}</p>
+                </div>
+                """, unsafe_allow_html=True)
+
+        st.markdown("#### ✅ Checklist Preventivo Pre-Despacho")
+        for chk in profile.pre_dispatch_checklist:
+            st.checkbox(f"**{chk.title}** ({'🔴 Mandatorio' if chk.mandatory else '🟡 Recomendado'}) — {chk.description} [Mitiga: {chk.risk_mitigated}]", key=f"chk_st_{chk.check_id}")
 
     with tab2:
         col_ev, col_act = st.columns(2)

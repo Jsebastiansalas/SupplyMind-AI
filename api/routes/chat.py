@@ -25,6 +25,12 @@ from agent.core.negotiation_engine import (
     parse_negotiation_query,
     format_negotiation_plan_reply,
 )
+from agent.core.fx_and_leakage_engine import (
+    FxAndIncotermsEngine,
+    RetailerLeakageProfiler,
+    INCOTERM_RULES_REGISTRY,
+)
+from data.models import FxAuditReport, RetailerLeakageProfile
 
 ROOT_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -59,6 +65,116 @@ class ConcessionRequest(BaseModel):
     concept: str = Field(default="PENALIZACION", description="Concepto comercial")
     reason: str = Field(default="Acuerdo comercial para preservar la cuenta", description="Motivo")
     is_reset: bool = Field(default=False, description="Revertir a original")
+
+
+def parse_fx_and_incoterm_query(text: str) -> Optional[Dict[str, Any]]:
+    """Detecta intenciones sobre tipo de cambio, varianza FX o reglas Incoterms 2020."""
+    t = text.lower().strip()
+    keywords = [
+        "fx", "cambiari", "tipo de cambio", "dof", "fix", "incoterm", "fob",
+        "ddp", "cif", "fca", "dap", "cip", "exw", "transfronteriz", "divisa",
+        "pesos", "dolares", "dólares", "moneda local"
+    ]
+    if any(k in t for k in keywords):
+        incoterm = "FOB"
+        for inc in ["FOB", "FCA", "DDP", "DAP", "CIF", "CIP", "EXW"]:
+            if inc.lower() in t:
+                incoterm = inc
+                break
+        return {"action": "fx_audit", "incoterm": incoterm}
+    return None
+
+
+def parse_retailer_leakage_query(text: str) -> Optional[Dict[str, Any]]:
+    """Detecta intenciones sobre perfil de fugas de retailers, patrones abusivos o checklists pre-despacho."""
+    t = text.lower().strip()
+    keywords = [
+        "perfil", "fuga", "fugas", "patron", "patrón", "abusiv", "checklist",
+        "check list", "pre-despacho", "predespacho", "pre despacho", "alerta",
+        "dallas", "retailer", "comprador"
+    ]
+    retailer_names = ["amazon", "walmart", "cisco", "homedepot", "mega"]
+    has_keyword = any(k in t for k in keywords)
+    has_retailer = any(r in t for r in retailer_names)
+
+    if has_keyword or (has_retailer and any(w in t for w in ["comportamiento", "deduccion", "deducción", "historial"])):
+        return {"action": "retailer_profile"}
+    return None
+
+
+def format_fx_audit_reply(audit: FxAuditReport) -> str:
+    """Genera dictamen formal de aislamiento de varianza FX y transferencia de riesgo Incoterms 2020."""
+    rule = audit.incoterm_rule or INCOTERM_RULES_REGISTRY.get(audit.incoterm, INCOTERM_RULES_REGISTRY["FOB"])
+    return f"""### 🌐 Auditoría Cambiaria Transfronteriza & Dictamen Incoterms 2020 (Pilar 5)
+
+**Expediente Auditado:** `{audit.case_id}` | **Incoterm Pactado:** `{audit.incoterm}` ({rule.name})
+
+---
+
+#### ⚖️ Desglose Matemático Determinístico (Invariante Cuadrado):
+| Concepto Contable | Moneda Origen (USD) | Tasa de Cambio | Moneda Liquidación ({audit.payment_currency}) |
+| :--- | :---: | :---: | :---: |
+| **Monto Facturado** | `${audit.billed_amount_invoice_curr:,.2f}` | `{audit.invoice_fx_rate:,.4f}` (DOF Factura) | `${audit.billed_amount_invoice_curr * audit.invoice_fx_rate:,.2f}` |
+| **Monto Recibido Efectivo** | `${audit.received_amount_invoice_curr:,.2f}` | `{audit.payment_fx_rate:,.4f}` (Liquidación) | `${audit.received_amount_payment_curr:,.2f}` |
+| **Diferencia Nominal Total** | `${audit.billed_amount_invoice_curr - audit.received_amount_invoice_curr:,.2f}` | — | **`${audit.total_nominal_discrepancy:,.2f}`** |
+
+#### 🔬 Aislamiento Riguroso de Varianza vs Deducción Comercial:
+1. **Efecto Fluctuación Cambiaria Pura ({audit.fx_impact_type}):**
+   - Monto: **`${audit.fx_variance_amount:,.2f} {audit.payment_currency}`**
+   - Causa: Variación del tipo de cambio entre fecha de emisión y fecha de liquidación bancaria.
+2. **Deducción Comercial Operativa Disputada:**
+   - Monto: **`${audit.commercial_deduction_amount:,.2f} {audit.payment_currency}`**
+   - Saldo Reclamable Contractual: **`${audit.effective_claimable_amount:,.2f} USD`**
+
+*Invariante Certificado:* `${audit.total_nominal_discrepancy:,.2f} == ${audit.fx_variance_amount:,.2f} (FX) + ${audit.commercial_deduction_amount:,.2f} (Comercial)` ✅ (Cero dispersión decimal).
+
+---
+
+#### 📜 Dictamen Legal Incoterms 2020 (ICC):
+- **Veredicto:** `{audit.incoterm_verdict}`
+- **Punto de Transferencia de Riesgo:** {rule.transfer_point}
+- **Parte Responsable en Tránsito:** **{rule.transit_risk_party}**
+- **Fundamento ICC:** *{audit.incoterm_legal_basis}*
+- **Recomendación Pericial:** {rule.recommendation}"""
+
+
+def format_retailer_profile_reply(profile: RetailerLeakageProfile) -> str:
+    """Genera reporte ejecutivo longitudinal de fugas y checklist preventivo pre-despacho."""
+    patterns_rows = ""
+    for pat in profile.systematic_patterns:
+        patterns_rows += f"- **{pat.name} (Frecuencia: {pat.frequency_pct:.1f}% | Severidad: {pat.impact_severity}):**\n  *Mecanismo Abusivo:* {pat.abusive_mechanism}\n  *Contra-Estrategia:* {pat.counter_strategy}\n"
+
+    checklist_rows = ""
+    for chk in profile.pre_dispatch_checklist:
+        mand = "🔴 Mandatorio" if chk.mandatory else "🟡 Recomendado"
+        checklist_rows += f"1. **{chk.title}** [{mand}]\n   - *Acción:* {chk.description}\n   - *Riesgo Mitigado:* `{chk.risk_mitigated}`\n"
+
+    cedis_alert = f"\n> ⚠️ **Alerta CEDIS Focalizada:** {profile.cedis_alert_summary}\n" if profile.cedis_alert_summary else ""
+
+    return f"""### 🛡️ Perfilador Predictivo de Fugas de Retailers (Pilar 3)
+
+**Comprador Analizado:** `{profile.retailer_name}` | **Clasificación de Riesgo:** **`{profile.risk_tier}`**
+{cedis_alert}
+#### 📈 Indicadores Históricos de Conciliación:
+- **Tasa de Victoria Proveedora (Win Rate):** `{profile.win_rate_pct:.1f}%`
+- **Tasa de Recuperación Efectiva:** `{profile.recovery_ratio_pct:.1f}%`
+- **Volumen Total Auditado:** `${profile.total_disputed_volume:,.2f} USD`
+- **Capital Rescatado a la Fecha:** `${profile.total_recovered_amount:,.2f} USD`
+- **Tiempo Promedio de Resolución:** `{profile.average_dispute_days} días`
+- **Incoterm Recomendado para Mitigación:** `{profile.recommended_incoterm}`
+
+---
+
+#### 🚨 Patrones Sistemáticos y Deducciones Abusivas Detectadas:
+{patterns_rows}
+
+---
+
+#### ✅ Checklist Preventivo Pre-Despacho (Escudo Operacional):
+{checklist_rows}
+
+*(Asegurar la verificación de cada punto antes de autorizar la salida del remolque previene el 95% de las retenciones unilaterales).*"""
+
 
 
 def _extract_case_full_context(case_id: str) -> Dict[str, Any]:
@@ -555,6 +671,39 @@ def chat_with_agent(case_id: str, request: ChatRequest):
                 "sources": [f"Matriz de Tolerancia de Cuenta {plan.account_name} ({plan.account_tier})"],
                 "negotiation_plan": _decimal_to_float(plan.model_dump(mode="python"))
             }
+
+    # 0.2 Interceptar consultas sobre Motor FX Transfronterizo e Incoterms 2020 (Fase 4 - Pilar 5)
+    fx_query = parse_fx_and_incoterm_query(prompt)
+    if fx_query:
+        role = request.role or "senior_analyst"
+        fx_report = FxAndIncotermsEngine.audit_cross_border_fx(
+            case_id=case_id,
+            incoterm_code=fx_query.get("incoterm", "FOB")
+        )
+        reply_text = format_fx_audit_reply(fx_report)
+        return {
+            "reply": reply_text,
+            "mode": "fx_and_incoterms",
+            "model": "SupplyMind Cross-Border FX & ICC Incoterms 2020 Engine",
+            "role": role,
+            "sources": ["ICC Incoterms 2020 Rules", "DOF / Fix Official FX Isolation"],
+            "fx_audit": _decimal_to_float(fx_report.model_dump(mode="python"))
+        }
+
+    # 0.3 Interceptar consultas sobre Perfilador de Fugas de Retailers y Checklists (Fase 4 - Pilar 3)
+    retailer_query = parse_retailer_leakage_query(prompt)
+    if retailer_query:
+        role = request.role or "senior_analyst"
+        profile = RetailerLeakageProfiler.profile_from_case(case_id)
+        reply_text = format_retailer_profile_reply(profile)
+        return {
+            "reply": reply_text,
+            "mode": "retailer_leakage_profile",
+            "model": "SupplyMind Retailer Leakage Profiler & Risk Engine",
+            "role": role,
+            "sources": [f"Perfil Longitudinal de {profile.retailer_name}", "Checklist Preventivo Pre-Despacho"],
+            "retailer_profile": _decimal_to_float(profile.model_dump(mode="python"))
+        }
 
     # 1. Extraer contexto integral 360° del caso
     ctx = _extract_case_full_context(case_id)

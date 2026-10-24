@@ -1,6 +1,6 @@
 # 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
 **Ref: Expediente de Cartera case_007_cisco_large_bundle / Factura INV-CISCO-CORP-99214**  
-**Fecha:** 23 de October de 2026  
+**Fecha:** 24 de October de 2026  
 **De:** Departamento de Cartera y Asuntos Comerciales — CISCO_SYSTEMS_GLOBAL  
 **Para:** Gerencia de Cuentas por Pagar y Conciliación — TELCO_ENTERPRISE_NETWORK  
 

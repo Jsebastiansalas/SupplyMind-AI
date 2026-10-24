@@ -18,7 +18,7 @@ Tras la auditoría técnica y la instrucción de la dirección comercial, comuni
    Rechazamos formalmente las restantes retenciones que carecen de soporte documental y legal. Solicitamos la transferencia complementaria por el importe de **$1,250.00 USD** en un plazo perentorio de 10 días hábiles.
 
 ### 🤝 ACUERDO COMERCIAL Y CONCESIÓN MUTUA (HUMAN-IN-THE-LOOP)
-- **Folio de Concesión:** `CONCESS-CASE_005_AMAZON_SHORTAGE-1792802069`
+- **Folio de Concesión:** `CONCESS-CASE_005_AMAZON_SHORTAGE-1792859747`
 - **Importe Concedido:** **$1,250.00 USD**
 - **Fundamento Operativo:** Adopción de Escenario Equilibrado (Win-Win): Concesión del 50% condicionada a reciprocidad comercial
 - **Saldo Original en Litigio:** `$2,500.00 USD`

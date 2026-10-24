@@ -1,6 +1,6 @@
 # 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
 **Ref: Expediente de Cartera case_test_guided_case_999 / Factura INV-TEST_G-101**  
-**Fecha:** 23 de October de 2026  
+**Fecha:** 24 de October de 2026  
 **De:** Departamento de Cartera y Asuntos Comerciales — VEN-TEST  
 **Para:** Gerencia de Cuentas por Pagar y Conciliación — CUST-TEST  
 

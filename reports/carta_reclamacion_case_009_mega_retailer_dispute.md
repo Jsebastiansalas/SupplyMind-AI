@@ -1,6 +1,6 @@
 # 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
 **Ref: Expediente de Cartera case_009_mega_retailer_dispute / Factura INV-MEGA-2026-9001**  
-**Fecha:** 23 de October de 2026  
+**Fecha:** 24 de October de 2026  
 **De:** Departamento de Cartera y Asuntos Comerciales — TECH-ENTERPRISE-SUPPLY-MX  
 **Para:** Gerencia de Cuentas por Pagar y Conciliación — RETAIL-GLOBAL-CORPORATION  
 
