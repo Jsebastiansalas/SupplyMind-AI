@@ -160,6 +160,7 @@ class DisputeAnalysisReport(_Base):
     recommended_action: str         # Acción recomendada
     concessions: List[CommercialConcession] = Field(default_factory=list)  # Auditoría Human-in-the-Loop
     active_scenario: Optional[str] = Field(default=None)  # Escenario activo: "AGGRESSIVE", "BALANCED", "CONSERVATIVE"
+    health_audit: Optional[Any] = Field(default=None)  # Auditoría de Integridad y Resiliencia Documental (DocumentHealthAudit o dict)
 
     def formatted_display(self) -> str:
         """Formatea el reporte con la estructura solicitada para el reto."""
@@ -335,6 +336,27 @@ class RetailerLeakageProfile(BaseModel):
     recommended_incoterm: str = "FOB"
     average_dispute_days: int = 15
     cedis_alert_summary: Optional[str] = None
+
+
+# ==========================================
+# 11. Auditoría de Integridad y Resiliencia Documental (Pilar 1)
+# ==========================================
+class DocumentHealthAudit(BaseModel):
+    """Auditoría de integridad estructural, autocuración y salud de los documentos del caso."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    case_id: str
+    health_score: float = Field(default=100.0, ge=0.0, le=100.0)
+    status: str = "PRISTINE"                    # "PRISTINE" (100%), "AUTO_REPAIRED" (80-99%), "DEGRADED" (50-79%), "QUARANTINE" (<50%)
+    is_healthy: bool = True
+    repaired_issues: List[str] = Field(default_factory=list)
+    imputed_documents: List[str] = Field(default_factory=list)
+    documents_present: List[str] = Field(default_factory=list)
+    documents_missing: List[str] = Field(default_factory=list)
+    schema_warnings: List[str] = Field(default_factory=list)
+    execution_safety_level: str = "SAFE_FOR_AUTONOMOUS_SETTLEMENT"
+    generated_at: str = ""
+
 
 
 

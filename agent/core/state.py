@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Dict, Any, Optional
 from pydantic import BaseModel, Field, ConfigDict
-from data.models import DisputeAnalysisReport
+from data.models import DisputeAnalysisReport, DocumentHealthAudit
 from tools.reconciliation_engine.engine import ReconciliationSummary
 from tools.contract_analyzer.rules import ContractEvaluationResult
 
@@ -24,6 +24,7 @@ class DisputeState(BaseModel):
     
     # Memoria viva del proceso
     loaded_documents: Dict[str, Any] = Field(default_factory=dict)
+    health_audit: Optional[DocumentHealthAudit] = None
     reconciliation_summary: Optional[ReconciliationSummary] = None
     contract_evaluation: Optional[ContractEvaluationResult] = None
     final_report: Optional[DisputeAnalysisReport] = None

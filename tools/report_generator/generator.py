@@ -1,5 +1,5 @@
 from typing import Optional
-from data.models import DisputeAnalysisReport
+from data.models import DisputeAnalysisReport, DocumentHealthAudit
 from tools.reconciliation_engine.engine import ReconciliationSummary
 from tools.contract_analyzer.rules import ContractEvaluationResult
 
@@ -9,7 +9,8 @@ def build_dispute_report(
     contract_evaluation: ContractEvaluationResult,
     root_cause_explanation: Optional[str] = None,
     recommended_action: Optional[str] = None,
-    confidence: float = 0.98
+    confidence: float = 0.98,
+    health_audit: Optional[DocumentHealthAudit] = None
 ) -> DisputeAnalysisReport:
     """
     Construye y valida el modelo estricto de DisputeAnalysisReport combinando
@@ -48,6 +49,7 @@ def build_dispute_report(
         justified_amount=reconciliation.justified_deductions_amount,
         claimable_amount=reconciliation.unjustified_deductions_amount,
         confidence=confidence,
-        recommended_action=action
+        recommended_action=action,
+        health_audit=health_audit
     )
     return report

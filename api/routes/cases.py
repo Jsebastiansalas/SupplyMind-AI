@@ -284,6 +284,24 @@ def analyze_case(case_id: str, request: AnalyzeRequest = AnalyzeRequest()):
         raise HTTPException(status_code=500, detail=f"Error en resolución del agente: {str(e)}")
 
 
+@router.get("/{case_id}/health")
+def get_case_document_health(case_id: str, allow_imputation: bool = True):
+    """
+    Evalúa la integridad física y sintáctica de los documentos del caso,
+    generando una auditoría de salud (DocumentHealthAudit) con score de 0 a 100.
+    """
+    case_path = CASES_DIR / case_id
+    if not case_path.exists() or not case_path.is_dir():
+        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+
+    try:
+        from tools.document_reader.reader import load_case_documents_with_health
+        _, health_audit = load_case_documents_with_health(case_id, allow_imputation=allow_imputation)
+        return health_audit.model_dump()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al auditar salud de documentos: {str(e)}")
+
+
 @router.get("/{case_id}/tribunal")
 def get_case_tribunal_scores(case_id: str):
     """Obtiene la evaluación del tribunal colegiado para el caso."""

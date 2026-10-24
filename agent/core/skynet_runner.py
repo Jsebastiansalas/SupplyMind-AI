@@ -113,6 +113,10 @@ class SkynetRunner:
             report = self._generate_error_report(err_msg)
             self.state.final_report = report
 
+        # Vincular auditoría de salud documental si está presente en el estado
+        if report and report.health_audit is None and getattr(self.state, "health_audit", None):
+            report.health_audit = self.state.health_audit
+
         self.state.execution_time_seconds = round(time.time() - start_time, 2)
         
         # Almacenar en caché para acelerar consultas subsecuentes
@@ -1506,6 +1510,21 @@ class SkynetRunner:
     def _generate_error_report(self, error_msg: str) -> DisputeAnalysisReport:
         """Genera un reporte de fallo técnico para el jurado si el caso está completamente roto."""
         from decimal import Decimal
+        from datetime import datetime, timezone
+        from data.models import DocumentHealthAudit
+        audit = DocumentHealthAudit(
+            case_id=self.case_id,
+            health_score=0.0,
+            status="QUARANTINE",
+            is_healthy=False,
+            repaired_issues=[],
+            imputed_documents=[],
+            documents_present=[],
+            documents_missing=["unrecoverable_corrupt_files"],
+            schema_warnings=[error_msg[:300]],
+            execution_safety_level="HOLD_SETTLEMENT_DOCUMENT_AUDIT_REQUIRED",
+            generated_at=datetime.now(timezone.utc).isoformat()
+        )
         return DisputeAnalysisReport(
             case_id=self.case_id,
             billed_amount=Decimal("0.00"),
@@ -1516,5 +1535,6 @@ class SkynetRunner:
             root_cause="TECHNICAL_ERROR: Datos corruptos o esquema inválido.",
             evidence=[f"Trace técnico de Pydantic/Motor: {error_msg[:500]}"],
             recommended_action="Rechazar expediente. Los archivos JSON base carecen de integridad estructural y fallaron la validación de Esquemas (Pydantic). Verifique los datos de entrada.",
-            confidence=0.0
+            confidence=0.0,
+            health_audit=audit
         )

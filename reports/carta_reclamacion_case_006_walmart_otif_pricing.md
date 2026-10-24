@@ -1,32 +1,36 @@
-# CARTA FORMAL DE RECLAMACIÓN Y CONCILIACIÓN COMERCIAL
-**Ref: Expediente de Cartera case_006_walmart_otif_pricing**  
+# 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
+**Ref: Expediente de Cartera case_006_walmart_otif_pricing / Factura INV-NDP-88301**  
 **Fecha:** 24 de October de 2026  
-**Autorización:** Dirección de Crédito y Cobranza / Human-in-the-Loop  
+**De:** Departamento de Cartera y Asuntos Comerciales — NORDIC_DAIRY_LTD  
+**Para:** Gerencia de Cuentas por Pagar y Conciliación — MEGAMART_STORES_INC  
 
 ---
 
-### Estimado Departamento de Cuentas por Pagar:
+### Estimados señores de MEGAMART_STORES_INC:
 
-Acusamos recibo de la liquidación bancaria de la factura correspondiente al expediente **`case_006_walmart_otif_pricing`**, por un importe facturado de **$64,500.00 USD** y un monto recibido de **$56,500.00 USD**, registrando una retención neta de **$8,000.00 USD**.
+Por medio de la presente, acusamos recibo del comprobante de liquidación y pago **REM-MMN-10294** por valor de **$56,500.00 USD**, aplicado contra nuestra factura comercial **INV-NDP-88301** emitida por **$64,500.00 USD**.
 
-Tras la auditoría técnica y la instrucción de la dirección comercial, comunicamos la resolución ejecutiva de la partida:
+Habiendo realizado la auditoría técnica y contractual correspondiente, les comunicamos que existe una diferencia no conciliada de **$8,000.00 USD**, respecto de la cual fijamos nuestra posición formal:
 
-1. **Partidas Aceptadas para Nota de Crédito ($6,250.00 USD):**  
-   Emitiremos de forma inmediata la **Nota de Crédito comercial por $6,250.00 USD**, la cual ampara las deducciones operativas legítimas y las concesiones comerciales autorizadas de común acuerdo para preservar la continuidad de la relación de suministro.
+#### 1. Deducciones Aceptadas y Justificadas: **$4,500.00 USD**
+Aceptamos de plena conformidad la deducción por valor de **$4,500.00 USD**, debidamente amparada en las constancias físicas de entrega del documento **REC-MMN-33019** y conforme a lo pactado contractualmente. Para sanear este importe, estaremos emitiendo a su favor la respectiva **Nota de Crédito comercial**.
 
-2. **Saldo Exigible e Incondicional de Cartera ($1,750.00 USD):**  
-   Rechazamos formalmente las restantes retenciones que carecen de soporte documental y legal. Solicitamos la transferencia complementaria por el importe de **$1,750.00 USD** en un plazo perentorio de 10 días hábiles.
+#### 2. Deducciones Objetadas y Saldo Reclamable: **$3,500.00 USD**
+Rechazamos formalmente las deducciones adicionales aplicadas por un importe total de **$3,500.00 USD**, por carecer de soporte probatorio y contrariar los términos del contrato comercial **MSA-MMN-NDP-2026**:
+- **Causa Raíz:** Discrepancia mixta en expediente case_006_walmart_otif_pricing: Faltante físico comprobado de $4,500.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $3,500.00 USD sin sustento contractual ni documental.
+- **Fundamentación Contractual:** Evaluación algorítmica y semántica completada. Posible deducción de $3,500.00 requiere análisis final por el Agente.
 
-### 🤝 ACUERDO COMERCIAL Y CONCESIÓN MUTUA (HUMAN-IN-THE-LOOP)
-- **Folio de Concesión:** `CONCESS-CASE_006_WALMART_OTIF_PRICING-1792859746`
-- **Importe Concedido:** **$1,750.00 USD**
-- **Fundamento Operativo:** Adopción de Escenario Equilibrado (Win-Win): Concesión del 50% condicionada a reciprocidad comercial
-- **Saldo Original en Litigio:** `$3,500.00 USD`
-- **Saldo Neto Exigible:** **`$1,750.00 USD`**
+#### 3. Requerimiento de Pago
+En virtud de lo anterior, solicitamos comedidamente realizar la programación y transferencia del saldo retenido injustificadamente por valor de:
 
-**Acción Recomendada:**  
-Resolución Comercial Ajustada con Human-in-the-Loop: Emitir Nota de Crédito global por $6,250.00 USD (incluyendo $4,500.00 USD de faltante físico comprobado y $1,750.00 USD de concesión comercial acordada para preservar la relación de cuenta). Exigir el pago bancario inmediato del saldo neto reclamable de $1,750.00 USD.
+### 👉 **MONTO TOTAL A REINTEGRAR: $3,500.00 USD**
 
-Atentamente,  
-**Dirección General de Cuentas por Cobrar y Conciliación Arbitral**  
-*SupplyMind AI Enterprise Platform*
+Agradecemos que dicho pago se haga efectivo dentro de los siguientes **quince (15) días hábiles** a la recepción de la presente comunicación, o en su defecto, coordinar una mesa técnica de conciliación con nuestro equipo de cartera.
+
+Anexamos a la presente el informe técnico pormenorizado y las copias de la remisión y contrato.
+
+Atentamente,
+
+**ÁREA DE CONCILIACIÓN DE CARTERA Y DISPUTAS COMERCIALES**  
+*NORDIC_DAIRY_LTD*  
+*Trazabilidad auditable respaldada por SupplyMind AI*

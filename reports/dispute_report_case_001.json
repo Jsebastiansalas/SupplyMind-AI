@@ -15,5 +15,24 @@
   "confidence": 0.98,
   "recommended_action": "Aceptar deducción de $800.00 USD en cuentas por cobrar y emitir Nota de Crédito comercial por dicho valor a favor del cliente para conciliar y cerrar la cuenta.",
   "concessions": [],
-  "active_scenario": null
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "case_001",
+    "health_score": 100.0,
+    "status": "PRISTINE",
+    "is_healthy": true,
+    "repaired_issues": [],
+    "imputed_documents": [],
+    "documents_present": [
+      "invoice",
+      "purchase_order",
+      "delivery",
+      "payment",
+      "contract"
+    ],
+    "documents_missing": [],
+    "schema_warnings": [],
+    "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
+    "generated_at": "2026-10-24T21:42:03.268794+00:00"
+  }
 }

@@ -234,9 +234,12 @@ class DocumentClassifier:
         if all_standard_found and len(mapped_documents) == 5:
             return mapped_documents
             
-        # 2. Si no están los 5 nombres estándar, clasificar exhaustivamente cada archivo
-        mapped_documents.clear()
-        all_candidates = pdf_files + json_files + image_files
+        # 2. Si no están los 5 nombres estándar, clasificar exhaustivamente los archivos restantes
+        already_mapped_paths = set(mapped_documents.values())
+        all_candidates = [
+            f for f in (pdf_files + json_files + image_files) 
+            if f not in already_mapped_paths and f.name not in ["meta.json", "ground_truth.json"] and not f.name.startswith(".")
+        ]
         
         scored_candidates: List[Tuple[Path, str, float]] = []
         for candidate in all_candidates:
@@ -245,9 +248,14 @@ class DocumentClassifier:
                 scored_candidates.append((candidate, doc_type, conf))
             elif candidate.suffix.lower() == ".json":
                 try:
-                    with open(candidate, "r", encoding="utf-8") as f:
+                    with open(candidate, "r", encoding="utf-8", errors="replace") as f:
                         data_text = f.read()
                     scores = cls.score_document(data_text)
+                    if not any(scores.values()) or max(scores.values()) == 0:
+                        stem = candidate.stem.lower()
+                        for role in ["invoice", "purchase_order", "delivery", "payment", "contract"]:
+                            if role in stem or (role == "payment" and "pago" in stem) or (role == "delivery" and "remision" in stem):
+                                scores[role] = 10.0
                     best_type = max(scores, key=scores.get) if any(scores.values()) else "unknown"
                     scored_candidates.append((candidate, best_type, 0.95))
                 except Exception:
@@ -264,8 +272,10 @@ class DocumentClassifier:
                 except Exception:
                     scored_candidates.append((candidate, "delivery", 0.85))
                     
-        # Asignar el mejor candidato para cada rol
+        # Asignar el mejor candidato para cada rol faltante
         for role in ["invoice", "purchase_order", "delivery", "payment", "contract"]:
+            if role in mapped_documents:
+                continue
             matches = [c for c in scored_candidates if c[1] == role]
             if matches:
                 # Elegir el de mayor confianza

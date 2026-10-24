@@ -1,7 +1,7 @@
 from typing import Dict, Any, List
 from agent.core.state import DisputeState, ProcessStatus
 from agent.memory.audit_logger import AuditLogger
-from tools.document_reader.reader import load_case_documents
+from tools.document_reader.reader import load_case_documents, load_case_documents_with_health
 from tools.reconciliation_engine.engine import reconcile_dispute_data
 from tools.contract_analyzer.rules import evaluate_contract_compliance
 from tools.report_generator.generator import build_dispute_report
@@ -145,8 +145,16 @@ class ToolExecutor:
         try:
             if tool_name == "read_dispute_documents":
                 self.state.current_status = ProcessStatus.READING_DOCUMENTS
-                docs = load_case_documents(case_id)
+                docs, health_audit = load_case_documents_with_health(case_id)
                 self.state.loaded_documents = docs
+                self.state.health_audit = health_audit
+                
+                if health_audit.status == "QUARANTINE" or not health_audit.is_healthy or len(docs) < 5:
+                    from tools.document_reader.reader import DocumentReaderError
+                    raise DocumentReaderError(
+                        f"Expediente '{case_id}' en cuarentena documental (salud: {health_audit.health_score}%): "
+                        f"Archivos corruptos o faltantes críticos."
+                    )
                 
                 result = {
                     "status": "success",
@@ -155,7 +163,10 @@ class ToolExecutor:
                     "po_total": float(docs["purchase_order"].total_amount),
                     "delivery_items": len(docs["delivery"].items),
                     "payment_received": float(docs["payment"].amount_paid),
-                    "deductions_count": len(docs["payment"].deductions)
+                    "deductions_count": len(docs["payment"].deductions),
+                    "health_score": health_audit.health_score,
+                    "health_status": health_audit.status,
+                    "execution_safety_level": health_audit.execution_safety_level
                 }
                 
             elif tool_name == "execute_reconciliation":
@@ -259,7 +270,8 @@ class ToolExecutor:
                     contract_evaluation=self.state.contract_evaluation,
                     root_cause_explanation=root_cause,
                     recommended_action=recommended_action,
-                    confidence=0.98
+                    confidence=0.98,
+                    health_audit=self.state.health_audit
                 )
                 self.state.final_report = report
                 self.state.current_status = ProcessStatus.COMPLETED

@@ -45,8 +45,16 @@ def load_case_documents(case_id: str) -> Dict[str, Any]:
         inv_file = mapped["invoice"]
         try:
             if inv_file.suffix.lower() == ".json":
-                with open(inv_file, "r", encoding="utf-8") as f:
-                    documents["invoice"] = Invoice.model_validate(json.load(f))
+                with open(inv_file, "r", encoding="utf-8", errors="replace") as f:
+                    raw_content = f.read()
+                try:
+                    documents["invoice"] = Invoice.model_validate(json.load(inv_file.open("r", encoding="utf-8")))
+                except Exception:
+                    # Activación de autocuración sintáctica y de esquema
+                    from agent.ingestion.resilient_parser import repair_json_string, normalize_schema_dict
+                    raw_dict, _ = repair_json_string(raw_content)
+                    norm_dict, _ = normalize_schema_dict(raw_dict, "invoice")
+                    documents["invoice"] = Invoice.model_validate(norm_dict)
             elif inv_file.suffix.lower() == ".pdf":
                 documents["invoice"] = PDFCaseParser.parse_invoice(inv_file)
         except Exception as e:
@@ -59,8 +67,15 @@ def load_case_documents(case_id: str) -> Dict[str, Any]:
         po_file = mapped["purchase_order"]
         try:
             if po_file.suffix.lower() == ".json":
-                with open(po_file, "r", encoding="utf-8") as f:
-                    documents["purchase_order"] = PurchaseOrder.model_validate(json.load(f))
+                with open(po_file, "r", encoding="utf-8", errors="replace") as f:
+                    raw_content = f.read()
+                try:
+                    documents["purchase_order"] = PurchaseOrder.model_validate(json.load(po_file.open("r", encoding="utf-8")))
+                except Exception:
+                    from agent.ingestion.resilient_parser import repair_json_string, normalize_schema_dict
+                    raw_dict, _ = repair_json_string(raw_content)
+                    norm_dict, _ = normalize_schema_dict(raw_dict, "purchase_order")
+                    documents["purchase_order"] = PurchaseOrder.model_validate(norm_dict)
             elif po_file.suffix.lower() == ".pdf":
                 documents["purchase_order"] = PDFCaseParser.parse_purchase_order(po_file)
         except Exception as e:
@@ -73,8 +88,15 @@ def load_case_documents(case_id: str) -> Dict[str, Any]:
         pay_file = mapped["payment"]
         try:
             if pay_file.suffix.lower() == ".json":
-                with open(pay_file, "r", encoding="utf-8") as f:
-                    documents["payment"] = PaymentReceipt.model_validate(json.load(f))
+                with open(pay_file, "r", encoding="utf-8", errors="replace") as f:
+                    raw_content = f.read()
+                try:
+                    documents["payment"] = PaymentReceipt.model_validate(json.load(pay_file.open("r", encoding="utf-8")))
+                except Exception:
+                    from agent.ingestion.resilient_parser import repair_json_string, normalize_schema_dict
+                    raw_dict, _ = repair_json_string(raw_content)
+                    norm_dict, _ = normalize_schema_dict(raw_dict, "payment")
+                    documents["payment"] = PaymentReceipt.model_validate(norm_dict)
             elif pay_file.suffix.lower() == ".pdf":
                 documents["payment"] = PDFCaseParser.parse_payment_receipt(pay_file)
         except Exception as e:
@@ -87,8 +109,15 @@ def load_case_documents(case_id: str) -> Dict[str, Any]:
         con_file = mapped["contract"]
         try:
             if con_file.suffix.lower() == ".json":
-                with open(con_file, "r", encoding="utf-8") as f:
-                    documents["contract"] = CommercialContract.model_validate(json.load(f))
+                with open(con_file, "r", encoding="utf-8", errors="replace") as f:
+                    raw_content = f.read()
+                try:
+                    documents["contract"] = CommercialContract.model_validate(json.load(con_file.open("r", encoding="utf-8")))
+                except Exception:
+                    from agent.ingestion.resilient_parser import repair_json_string, normalize_schema_dict
+                    raw_dict, _ = repair_json_string(raw_content)
+                    norm_dict, _ = normalize_schema_dict(raw_dict, "contract")
+                    documents["contract"] = CommercialContract.model_validate(norm_dict)
             elif con_file.suffix.lower() == ".pdf":
                 documents["contract"] = PDFCaseParser.parse_contract(con_file)
             elif con_file.suffix.lower() == ".md":
@@ -105,8 +134,15 @@ def load_case_documents(case_id: str) -> Dict[str, Any]:
         del_file = mapped["delivery"]
         try:
             if del_file.suffix.lower() == ".json":
-                with open(del_file, "r", encoding="utf-8") as f:
-                    documents["delivery"] = DeliveryNote.model_validate(json.load(f))
+                with open(del_file, "r", encoding="utf-8", errors="replace") as f:
+                    raw_content = f.read()
+                try:
+                    documents["delivery"] = DeliveryNote.model_validate(json.load(del_file.open("r", encoding="utf-8")))
+                except Exception:
+                    from agent.ingestion.resilient_parser import repair_json_string, normalize_schema_dict
+                    raw_dict, _ = repair_json_string(raw_content)
+                    norm_dict, _ = normalize_schema_dict(raw_dict, "delivery")
+                    documents["delivery"] = DeliveryNote.model_validate(norm_dict)
             elif del_file.suffix.lower() == ".pdf":
                 documents["delivery"] = PDFCaseParser.parse_delivery_note(del_file)
             elif del_file.suffix.lower() in [".png", ".jpg", ".jpeg", ".webp"]:
@@ -119,3 +155,12 @@ def load_case_documents(case_id: str) -> Dict[str, Any]:
         raise DocumentReaderError(f"Falta el documento requerido de Remisión (delivery) en el expediente '{case_id}'")
 
     return documents
+
+
+def load_case_documents_with_health(case_id: str, allow_imputation: bool = True):
+    """
+    Carga resiliente integral que retorna los 5 documentos comerciales tipados
+    junto con la auditoría de salud e integridad documental (DocumentHealthAudit).
+    """
+    from agent.ingestion.resilient_parser import ResilientDocumentLoader
+    return ResilientDocumentLoader.load_case_resilient(case_id, allow_imputation=allow_imputation)

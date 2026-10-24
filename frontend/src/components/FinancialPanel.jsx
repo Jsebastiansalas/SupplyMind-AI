@@ -80,6 +80,7 @@ export default function FinancialPanel({
 
   const skuMatching = report.sku_matching || null;
   const noticeWindow = report.notice_window_audit || null;
+  const healthAudit = report.health_audit || null;
 
   const isClaimable = claimable > 0;
   const isTechnicalError = confidence === 0 || (report.root_cause && report.root_cause.includes("TECHNICAL_ERROR"));
@@ -179,6 +180,37 @@ export default function FinancialPanel({
                   noticeWindow.is_timely ? 'bg-[#15161d] text-zinc-400 border-[#222430]' : 'bg-rose-950 text-rose-300 border-rose-900'
                 }`}>
                   {noticeWindow.status_label}
+                </span>
+              )}
+              {healthAudit && (
+                <span 
+                  className={`text-[10px] font-mono px-2 py-0.5 rounded border flex items-center space-x-1.5 ${
+                    healthAudit.status === 'PRISTINE' 
+                      ? 'bg-emerald-950/60 text-emerald-300 border-emerald-500/40' 
+                      : healthAudit.status === 'AUTO_REPAIRED' 
+                      ? 'bg-amber-950/60 text-amber-300 border-amber-500/40'
+                      : healthAudit.status === 'DEGRADED'
+                      ? 'bg-orange-950/60 text-orange-300 border-orange-500/40'
+                      : 'bg-rose-950/60 text-rose-300 border-rose-500/40'
+                  }`}
+                  title={`Salud: ${healthAudit.health_score}/100 | Reparaciones: ${healthAudit.repaired_issues?.length || 0} | Imputaciones: ${healthAudit.imputed_documents?.length || 0}`}
+                >
+                  <span className={`w-1.5 h-1.5 rounded-full ${
+                    healthAudit.status === 'PRISTINE' ? 'bg-emerald-400' :
+                    healthAudit.status === 'AUTO_REPAIRED' ? 'bg-amber-400' :
+                    healthAudit.status === 'DEGRADED' ? 'bg-orange-400' : 'bg-rose-400'
+                  }`} />
+                  <span className="font-bold">
+                    {healthAudit.status === 'PRISTINE' && 'Íntegro (100%)'}
+                    {healthAudit.status === 'AUTO_REPAIRED' && `Auto-Reparado (${healthAudit.health_score}%)`}
+                    {healthAudit.status === 'DEGRADED' && `Parcial / Imputado (${healthAudit.health_score}%)`}
+                    {healthAudit.status === 'QUARANTINE' && `Cuarentena (${healthAudit.health_score}%)`}
+                  </span>
+                  {healthAudit.repaired_issues?.length > 0 && (
+                    <span className="text-[9px] opacity-75 font-mono">
+                      [{healthAudit.repaired_issues.length} {healthAudit.repaired_issues.length === 1 ? 'auto-fix' : 'auto-fixes'}]
+                    </span>
+                  )}
                 </span>
               )}
             </div>
