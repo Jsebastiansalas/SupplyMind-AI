@@ -327,6 +327,31 @@ def get_case_financial_proof(case_id: str):
         raise HTTPException(status_code=500, detail=f"Error al verificar prueba ZKP: {str(e)}")
 
 
+@router.get("/{case_id}/evidence-manifest")
+def get_case_evidence_manifest(case_id: str):
+    """
+    Obtiene el manifiesto de anclaje fáctico estricto (Pilar 3: Evidence Binding & Zero Uncited Claims)
+    con el detalle de cada puntero probatorio acreditado y partidas cautelares.
+    """
+    case_path = CASES_DIR / case_id
+    if not case_path.exists() or not case_path.is_dir():
+        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+
+    try:
+        runner = SkynetRunner(case_id=case_id, fast_path=True, use_cache=True)
+        report = runner.run()
+        if not report or not report.evidence_manifest:
+            raise HTTPException(status_code=422, detail="No se pudo compilar manifiesto de evidencia para este caso.")
+        
+        manifest_obj = report.evidence_manifest
+        manifest_dict = manifest_obj.model_dump() if hasattr(manifest_obj, "model_dump") else manifest_obj
+        return _decimal_to_float(manifest_dict)
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al compilar manifiesto de anclaje probatorio: {str(e)}")
+
+
 @router.get("/{case_id}/tribunal")
 def get_case_tribunal_scores(case_id: str):
     """Obtiene la evaluación del tribunal colegiado para el caso."""

@@ -271,7 +271,8 @@ class ToolExecutor:
                     root_cause_explanation=root_cause,
                     recommended_action=recommended_action,
                     confidence=0.98,
-                    health_audit=self.state.health_audit
+                    health_audit=self.state.health_audit,
+                    loaded_documents=self.state.loaded_documents
                 )
                 self.state.final_report = report
                 self.state.current_status = ProcessStatus.COMPLETED

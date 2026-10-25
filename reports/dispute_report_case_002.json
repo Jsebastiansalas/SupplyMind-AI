@@ -11,7 +11,13 @@
     "Deducción aplicada en comprobante PAY-9931: código DED-ALLEGED-DAMAGE, motivo 'Retención por supuesta avería interna PROD-103 no acreditada en muelle ni reportada en 48h', monto $6,500.00",
     "Deducción aplicada en comprobante PAY-9931: código DED-UNILATERAL-PENALTY, motivo 'Penalización administrativa unilateral no contemplada en contrato comercial', monto $6,000.00",
     "Respaldo contractual: La CLAUSE-4.2 autoriza la deducción por faltantes físicos acreditados en remisión de entrega.",
-    "Respaldo contractual: La CLAUSE-7.3 ('Prohibición de Penalizaciones Unilaterales') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo."
+    "Respaldo contractual: La CLAUSE-7.3 ('Prohibición de Penalizaciones Unilaterales') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.",
+    "[Factura INV-88301 §Total $54,200.00 USD]",
+    "[Comprobante PAY-9931 §Liquidación $37,700.00 USD]",
+    "[Contrato CTR-MEGAMARKET-2026 §Cláusula CLAUSE-4.2 'Faltantes Físicos en Recepción' | Deducción DED-MISSING-PHYSICAL $4,000.00]",
+    "[Contrato CTR-MEGAMARKET-2026 §Cláusula CLAUSE-4.2 'Faltantes Físicos en Recepción' | Deducción DED-ALLEGED-DAMAGE $6,500.00]",
+    "[Contrato CTR-MEGAMARKET-2026 §Cláusula CLAUSE-4.2 'Faltantes Físicos en Recepción' | Deducción DED-UNILATERAL-PENALTY $6,000.00]",
+    "[Remisión DEL-12044 §SKU PROD-102 | Faltante: 50 uds | $4,000.00]"
   ],
   "justified_amount": "4000.00",
   "claimable_amount": "12500.00",
@@ -36,11 +42,11 @@
     "documents_missing": [],
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
-    "generated_at": "2026-10-24T22:03:50.861695+00:00"
+    "generated_at": "2026-10-25T00:50:05.424628+00:00"
   },
   "financial_proof": {
     "case_id": "case_002",
-    "proof_hash": "SM-PROOF-SHA256-6131126744D4E1EB",
+    "proof_hash": "SM-PROOF-SHA256-66BEE3E48A45FA11",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -54,6 +60,93 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-24T22:03:50.866083+00:00"
+    "tamper_proof_timestamp": "2026-10-25T00:50:05.428331+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "case_002",
+    "total_claims_audited": 6,
+    "backed_claims_count": 6,
+    "unbacked_claims_count": 0,
+    "total_backed_amount": "112400.00",
+    "total_unbacked_amount": "0.00",
+    "backing_ratio_pct": 100.0,
+    "evidence_pointers": [
+      {
+        "pointer_id": "PTR-INV-INV-88301-TOTAL",
+        "doc_type": "INVOICE",
+        "doc_id": "INV-88301",
+        "field_ref": "total_amount",
+        "item_sku": null,
+        "amount": "54200.0",
+        "citation_tag": "[Factura INV-88301 §Total $54,200.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Factura comercial fiscalmente válida por $54,200.00 USD."
+      },
+      {
+        "pointer_id": "PTR-PAY-PAY-9931-AMOUNT",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-9931",
+        "field_ref": "amount_paid",
+        "item_sku": null,
+        "amount": "37700.0",
+        "citation_tag": "[Comprobante PAY-9931 §Liquidación $37,700.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $37,700.00."
+      },
+      {
+        "pointer_id": "PTR-DED-DED-MISSING-PHYSICAL-1",
+        "doc_type": "CONTRACT",
+        "doc_id": "CTR-MEGAMARKET-2026",
+        "field_ref": "clause_CLAUSE-4.2",
+        "item_sku": null,
+        "amount": "4000.0",
+        "citation_tag": "[Contrato CTR-MEGAMARKET-2026 §Cláusula CLAUSE-4.2 'Faltantes Físicos en Recepción' | Deducción DED-MISSING-PHYSICAL $4,000.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Deducción 'DED-MISSING-PHYSICAL' normada por la cláusula CLAUSE-4.2 de CTR-MEGAMARKET-2026."
+      },
+      {
+        "pointer_id": "PTR-DED-DED-ALLEGED-DAMAGE-2",
+        "doc_type": "CONTRACT",
+        "doc_id": "CTR-MEGAMARKET-2026",
+        "field_ref": "clause_CLAUSE-4.2",
+        "item_sku": null,
+        "amount": "6500.0",
+        "citation_tag": "[Contrato CTR-MEGAMARKET-2026 §Cláusula CLAUSE-4.2 'Faltantes Físicos en Recepción' | Deducción DED-ALLEGED-DAMAGE $6,500.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Deducción 'DED-ALLEGED-DAMAGE' normada por la cláusula CLAUSE-4.2 de CTR-MEGAMARKET-2026."
+      },
+      {
+        "pointer_id": "PTR-DED-DED-UNILATERAL-PENALTY-3",
+        "doc_type": "CONTRACT",
+        "doc_id": "CTR-MEGAMARKET-2026",
+        "field_ref": "clause_CLAUSE-4.2",
+        "item_sku": null,
+        "amount": "6000.0",
+        "citation_tag": "[Contrato CTR-MEGAMARKET-2026 §Cláusula CLAUSE-4.2 'Faltantes Físicos en Recepción' | Deducción DED-UNILATERAL-PENALTY $6,000.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Deducción 'DED-UNILATERAL-PENALTY' normada por la cláusula CLAUSE-4.2 de CTR-MEGAMARKET-2026."
+      },
+      {
+        "pointer_id": "PTR-DEL-DEL-12044-PROD-102-SHORT",
+        "doc_type": "DELIVERY",
+        "doc_id": "DEL-12044",
+        "field_ref": "missing_quantity",
+        "item_sku": "PROD-102",
+        "amount": "4000.0",
+        "citation_tag": "[Remisión DEL-12044 §SKU PROD-102 | Faltante: 50 uds | $4,000.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Faltante físico de 50 unidades registrado en remisión DEL-12044 (Firma POD: Sí)."
+      }
+    ],
+    "cautelar_items": [],
+    "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
+    "confidence_penalty": 0.0,
+    "generated_at": "2026-10-25T00:50:05Z"
   }
 }

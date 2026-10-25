@@ -39,6 +39,39 @@ def generate_markdown_report(report: DisputeAnalysisReport, state: Optional[Disp
     for idx, e in enumerate(report.evidence, start=1):
         lines.append(f"{idx}. {e}")
         
+    # Sección Pilar 3: Anclaje Fáctico Estricto y Certificación de Evidencias (Zero Uncited Claims)
+    manifest = report.evidence_manifest
+    if manifest:
+        mf = manifest if isinstance(manifest, dict) else manifest.model_dump(mode="python")
+        verdict = mf.get("binding_verdict", "N/A")
+        ratio = mf.get("backing_ratio_pct", 100.0)
+        cautelar = mf.get("cautelar_items", [])
+        pointers = mf.get("evidence_pointers", [])
+
+        lines.append("\n---")
+        lines.append("## 3.1. CERTIFICACIÓN DE ANCLAJE FÁCTICO (PILAR 3 - ZERO UNCITED CLAIMS)\n")
+        lines.append(f"- **Veredicto Probatorio:** `{verdict}`")
+        lines.append(f"- **Ratio de Respaldo Fáctico:** **{ratio:.1f}%** ({mf.get('backed_claims_count', 0)} acreditadas vs {mf.get('unbacked_claims_count', 0)} cautelares)")
+        lines.append(f"- **Total Respaldado:** ${Decimal(str(mf.get('total_backed_amount', 0))):,.2f} {report.currency}")
+
+        if cautelar:
+            lines.append("\n> ⚠️ **PARTIDAS CAUTELARES DETECTADAS (Requieren soporte físico de muelle/contrato):**")
+            for c in cautelar:
+                lines.append(f"> - {c}")
+
+        if pointers:
+            lines.append("\n| ID Puntero | Documento | SKU / Concepto | Monto | Estatus Probatorio |")
+            lines.append("| :--- | :--- | :---: | :---: | :--- |")
+            for p in pointers:
+                p_dict = p if isinstance(p, dict) else (p.model_dump(mode="python") if hasattr(p, "model_dump") else {})
+                ptr_id = p_dict.get("pointer_id", "PTR")
+                doc_t = p_dict.get("doc_type", "DOC")
+                sku_val = p_dict.get("item_sku") or p_dict.get("field_ref", "-")
+                amt_val = Decimal(str(p_dict.get("amount", 0)))
+                st_val = p_dict.get("status", "ACREDITADO")
+                st_badge = "✅ ACREDITADO" if st_val == "ACREDITADO" else "⚠️ CAUTELAR NO ACREDITADA"
+                lines.append(f"| `{ptr_id}` | {doc_t} | `{sku_val}` | ${amt_val:,.2f} | {st_badge} |")
+
     lines.append("\n---")
     lines.append("## 4. DICTAMEN LEGAL Y CONTRACTUAL\n")
     if ev:

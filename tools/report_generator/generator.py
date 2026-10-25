@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Dict, Any
 from data.models import DisputeAnalysisReport, DocumentHealthAudit
 from tools.reconciliation_engine.engine import ReconciliationSummary
 from tools.contract_analyzer.rules import ContractEvaluationResult
@@ -10,11 +10,13 @@ def build_dispute_report(
     root_cause_explanation: Optional[str] = None,
     recommended_action: Optional[str] = None,
     confidence: float = 0.98,
-    health_audit: Optional[DocumentHealthAudit] = None
+    health_audit: Optional[DocumentHealthAudit] = None,
+    loaded_documents: Optional[Dict[str, Any]] = None,
 ) -> DisputeAnalysisReport:
     """
     Construye y valida el modelo estricto de DisputeAnalysisReport combinando
-    la precisión determinística de los cálculos con la evaluación contractual.
+    la precisión determinística de los cálculos con la evaluación contractual
+    y el anclaje fáctico probatorio de cero alucinaciones.
     """
     # 1. Determinar causa raíz
     if root_cause_explanation:
@@ -56,4 +58,14 @@ def build_dispute_report(
     # Auditoría ZKP e invariantes de cero alucinación (Pilar 2)
     from agent.guardrails.arithmetic_verifier import ZKPFinancialAuditor
     report = ZKPFinancialAuditor.audit_and_enforce(report, reconciliation)
+
+    # Anclaje fáctico estricto y certificación probatoria Zero Uncited Claims (Pilar 3)
+    from agent.guardrails.evidence_binder import StrictEvidenceBinder
+    report = StrictEvidenceBinder.audit_and_bind(
+        report=report,
+        reconciliation=reconciliation,
+        loaded_documents=loaded_documents,
+        contract_evaluation=contract_evaluation
+    )
+
     return report

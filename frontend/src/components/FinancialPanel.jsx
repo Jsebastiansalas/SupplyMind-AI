@@ -20,7 +20,8 @@ import {
   CheckSquare,
   Square,
   ArrowRightLeft,
-  Lock
+  Lock,
+  Link2
 } from 'lucide-react';
 
 export default function FinancialPanel({ 
@@ -83,6 +84,7 @@ export default function FinancialPanel({
   const noticeWindow = report.notice_window_audit || null;
   const healthAudit = report.health_audit || null;
   const financialProof = report.financial_proof || null;
+  const evidenceManifest = report.evidence_manifest || null;
 
   const isClaimable = claimable > 0;
   const isTechnicalError = confidence === 0 || (report.root_cause && report.root_cause.includes("TECHNICAL_ERROR"));
@@ -231,6 +233,23 @@ export default function FinancialPanel({
                     {financialProof.audit_status === 'MATHEMATICALLY_PROVEN' && '0% Alucinación (ZKP Invarianza OK)'}
                     {financialProof.audit_status === 'HALLUCINATION_INTERCEPTED' && 'Alucinación Interceptada'}
                     {financialProof.audit_status === 'ARITHMETIC_MISMATCH' && 'Incoherencia Aritmética'}
+                  </span>
+                </span>
+              )}
+              {evidenceManifest && (
+                <span 
+                  className={`text-[10px] font-mono px-2 py-0.5 rounded border flex items-center space-x-1.5 ${
+                    evidenceManifest.binding_verdict === 'FULL_EVIDENCE_BINDING_VERIFIED'
+                      ? 'bg-indigo-950/40 text-indigo-300 border-indigo-500/30'
+                      : 'bg-amber-950/40 text-amber-300 border-amber-500/30'
+                  }`}
+                  title={`Anclaje Fáctico: ${evidenceManifest.backing_ratio_pct}% | ${evidenceManifest.backed_claims_count} acreditados vs ${evidenceManifest.unbacked_claims_count} cautelares`}
+                >
+                  <Link2 className="w-3 h-3 text-[#d4af37]" />
+                  <span className="font-bold">
+                    {evidenceManifest.binding_verdict === 'FULL_EVIDENCE_BINDING_VERIFIED'
+                      ? 'Anclaje Fáctico (100% OK)'
+                      : `Partidas Cautelares (${evidenceManifest.cautelar_items?.length || 0})`}
                   </span>
                 </span>
               )}

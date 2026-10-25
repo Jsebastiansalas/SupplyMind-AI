@@ -162,6 +162,7 @@ class DisputeAnalysisReport(_Base):
     active_scenario: Optional[str] = Field(default=None)  # Escenario activo: "AGGRESSIVE", "BALANCED", "CONSERVATIVE"
     health_audit: Optional[Any] = Field(default=None)  # Auditoría de Integridad y Resiliencia Documental (DocumentHealthAudit o dict)
     financial_proof: Optional[Any] = Field(default=None)  # Prueba Criptográfica de Invarianza Aritmética / ZKP (ZKPFinancialProof o dict)
+    evidence_manifest: Optional[Any] = Field(default=None)  # Manifiesto de Anclaje Fáctico y Cero Reclamaciones sin Cita (Pilar 3)
 
     def formatted_display(self) -> str:
         """Formatea el reporte con la estructura solicitada para el reto."""
@@ -377,6 +378,43 @@ class ZKPFinancialProof(BaseModel):
     confidence_penalty: float = 0.0                     # Penalización aplicada al score si hubo alucinación
     audit_status: str = "MATHEMATICALLY_PROVEN"         # "MATHEMATICALLY_PROVEN" | "HALLUCINATION_INTERCEPTED" | "ARITHMETIC_MISMATCH"
     tamper_proof_timestamp: str = ""
+
+
+# ==========================================
+# 13. Anclaje Fáctico Estricto y Certificación Probatoria (Pilar 3)
+# ==========================================
+class EvidencePointer(BaseModel):
+    """Puntero auditable a una evidencia fáctica concreta (Factura, POD, Remisión, PO o Contrato)."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    pointer_id: str                                     # ej: "PTR-INV-001-TOTAL", "PTR-DEL-001-SKU-01"
+    doc_type: str                                       # "INVOICE", "DELIVERY", "PURCHASE_ORDER", "PAYMENT", "CONTRACT"
+    doc_id: str                                         # ej: "INV-2024-001"
+    field_ref: str                                      # ej: "total_amount", "missing_quantity", "asn_penalty_clause"
+    item_sku: Optional[str] = None                      # ej: "SKU-PROD-01"
+    amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    citation_tag: str                                   # ej: "[Factura INV-001 §Total $12,500.00 USD]"
+    is_backed_by_physical_proof: bool = True            # ¿Tiene soporte físico verificable (firma, sello, POD)?
+    status: str = "ACREDITADO"                          # "ACREDITADO" | "CAUTELAR_NO_ACREDITADA"
+    detail: Optional[str] = None                        # Explicación del soporte documental
+
+
+class EvidenceBindingManifest(BaseModel):
+    """Manifiesto de gobernanza que certifica el anclaje fáctico estricto del 100% de cifras reclamadas."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    case_id: str
+    total_claims_audited: int = 0
+    backed_claims_count: int = 0
+    unbacked_claims_count: int = 0
+    total_backed_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    total_unbacked_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    backing_ratio_pct: float = Field(default=100.0, ge=0.0, le=100.0)
+    evidence_pointers: List[EvidencePointer] = Field(default_factory=list)
+    cautelar_items: List[str] = Field(default_factory=list)
+    binding_verdict: str = "FULL_EVIDENCE_BINDING_VERIFIED"  # "FULL_EVIDENCE_BINDING_VERIFIED" | "CAUTIONARY_ITEMS_DETECTED" | "CRITICAL_UNBACKED_DEFICIT"
+    confidence_penalty: float = 0.0
+    generated_at: str = ""
 
 
 
