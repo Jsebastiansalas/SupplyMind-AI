@@ -30,7 +30,7 @@
     ],
     "execution_safety_level": "HOLD_SETTLEMENT_DOCUMENT_AUDIT_REQUIRED",
     "quarantine_docket": null,
-    "generated_at": "2026-10-25T15:53:04.583605+00:00"
+    "generated_at": "2026-10-25T16:23:31.075832+00:00"
   },
   "financial_proof": {
     "case_id": "test_corrupt_json",
@@ -43,7 +43,7 @@
     "verified_figures": [],
     "confidence_penalty": 0.0,
     "audit_status": "ARITHMETIC_MISMATCH",
-    "tamper_proof_timestamp": "2026-10-25T15:53:04.583655+00:00"
+    "tamper_proof_timestamp": "2026-10-25T16:23:31.075913+00:00"
   },
   "evidence_manifest": {
     "case_id": "test_corrupt_json",
@@ -59,7 +59,24 @@
     ],
     "binding_verdict": "CRITICAL_UNBACKED_DEFICIT",
     "confidence_penalty": 1.0,
-    "generated_at": "2026-10-25T15:53:04.583685+00:00"
+    "generated_at": "2026-10-25T16:23:31.075964+00:00"
   },
-  "quarantine_docket": null
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "test_corrupt_json",
+    "currency": "USD",
+    "billed_amount": "0.00",
+    "received_amount": "0.00",
+    "difference": "0.00",
+    "justified_amount": "0.00",
+    "claimable_amount": "0.00",
+    "health_status": "QUARANTINE",
+    "health_score": 0.0,
+    "zkp_proof_hash": "SM-PROOF-QUARANTINE-test_corrupt_json",
+    "zkp_status": "ARITHMETIC_MISMATCH",
+    "is_quarantined": true,
+    "evidence_backing_ratio": 0.0,
+    "anchored_at": "2026-10-25T16:23:31.076104+00:00"
+  },
+  "watchdog_metrics": null
 }

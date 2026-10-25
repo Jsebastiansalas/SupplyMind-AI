@@ -164,6 +164,8 @@ class DisputeAnalysisReport(_Base):
     financial_proof: Optional[Any] = Field(default=None)  # Prueba Criptográfica de Invarianza Aritmética / ZKP (ZKPFinancialProof o dict)
     evidence_manifest: Optional[Any] = Field(default=None)  # Manifiesto de Anclaje Fáctico y Cero Reclamaciones sin Cita (Pilar 3)
     quarantine_docket: Optional[Any] = Field(default=None)  # Expediente pericial de Cuarentena Forense y Bloqueo de Liquidación (Pilar 4)
+    session_anchor: Optional[Any] = Field(default=None)  # Ancla de Estado Inmutable contra manipulación conversacional (Pilar 5)
+    watchdog_metrics: Optional[Any] = Field(default=None)  # Métricas operativas del vigilante ReAct contra bucles infinitos (Pilar 5)
 
     def formatted_display(self) -> str:
         """Formatea el reporte con la estructura solicitada para el reto."""
@@ -436,6 +438,51 @@ class ForensicQuarantineDocket(BaseModel):
     quarantine_timestamp: str = ""
     release_conditions: List[str] = Field(default_factory=list)
     operator_override_permitted: bool = False
+
+
+# ==========================================
+# 15. Ancla de Estado Inmutable y Watchdog ReAct (Pilar 5)
+# ==========================================
+class SessionStateAnchor(BaseModel):
+    """Ancla de estado inmutable para sesiones de chat y resolución multi-turno contra pérdida de contexto."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    case_id: str
+    currency: str = "USD"
+    billed_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    received_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    difference: Decimal = Decimal("0.00")
+    justified_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    claimable_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    health_status: str = "PRISTINE"
+    health_score: float = 100.0
+    zkp_proof_hash: str = ""
+    zkp_status: str = "MATHEMATICALLY_PROVEN"
+    is_quarantined: bool = False
+    evidence_backing_ratio: float = 100.0
+    anchored_at: str = ""
+
+    def formatted_anchor_header(self) -> str:
+        """Genera el bloque inmutable de anclaje para inyección en el prompt."""
+        quarantine_tag = "🚨 EN CUARENTENA" if self.is_quarantined else "NORMAL"
+        return (
+            f"[INMUTABLE_CASE_ANCHOR | Caso: {self.case_id} | Facturado: ${self.billed_amount:,.2f} {self.currency} | "
+            f"Recibido: ${self.received_amount:,.2f} {self.currency} | Diferencia: ${self.difference:,.2f} {self.currency} | "
+            f"Justificado: ${self.justified_amount:,.2f} {self.currency} | Reclamable: ${self.claimable_amount:,.2f} {self.currency} | "
+            f"ZKP: {self.zkp_status} ({self.zkp_proof_hash[:16] if self.zkp_proof_hash else 'OK'}) | "
+            f"Salud: {self.health_status} ({self.health_score}%) | Estado: {quarantine_tag}]"
+        )
+
+
+class WatchdogMetrics(BaseModel):
+    """Métricas operativas del vigilante ReAct contra bucles infinitos y llamadas duplicadas."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    total_tool_calls: int = 0
+    unique_tool_calls: int = 0
+    deduplicated_calls_count: int = 0
+    circuit_breaker_triggered: bool = False
+    warnings: List[str] = Field(default_factory=list)
 
 
 

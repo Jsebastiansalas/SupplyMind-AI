@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Dict, Any, Optional
 from pydantic import BaseModel, Field, ConfigDict
-from data.models import DisputeAnalysisReport, DocumentHealthAudit
+from data.models import DisputeAnalysisReport, DocumentHealthAudit, WatchdogMetrics
 from tools.reconciliation_engine.engine import ReconciliationSummary
 from tools.contract_analyzer.rules import ContractEvaluationResult
 
@@ -37,3 +37,4 @@ class DisputeState(BaseModel):
     tokens_out: int = 0
     estimated_cost_usd: float = 0.0
     execution_time_seconds: float = 0.0
+    watchdog_metrics: Optional[WatchdogMetrics] = None

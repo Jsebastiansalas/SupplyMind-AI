@@ -117,6 +117,17 @@ class SkynetRunner:
         if report and report.health_audit is None and getattr(self.state, "health_audit", None):
             report.health_audit = self.state.health_audit
 
+        # Vincular ancla inmutable y métricas de watchdog (Pilar 5)
+        if report:
+            try:
+                from agent.guardrails.session_watchdog import SessionAnchorManager
+                if getattr(report, "session_anchor", None) is None:
+                    report.session_anchor = SessionAnchorManager.build_session_anchor(self.case_id, report=report)
+                if getattr(report, "watchdog_metrics", None) is None and getattr(self.state, "watchdog_metrics", None):
+                    report.watchdog_metrics = self.state.watchdog_metrics
+            except Exception:
+                pass
+
         self.state.execution_time_seconds = round(time.time() - start_time, 2)
         
         # Almacenar en caché para acelerar consultas subsecuentes
@@ -212,11 +223,15 @@ class SkynetRunner:
     def _run_live_skynet(self) -> DisputeAnalysisReport:
         """Bucle ReAct contra el gateway oficial de Platica Grok con optimización de latencia."""
         from openai import OpenAI
+        from agent.guardrails.session_watchdog import ReActExecutionWatchdog
+
         client = OpenAI(
             base_url=settings.PLATICA_BASE_URL,
             api_key=settings.RETO_KEY
         )
         
+        watchdog = ReActExecutionWatchdog(max_step_budget=12, max_duplicate_calls=2)
+
         messages = [
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": self.objective}
@@ -285,7 +300,13 @@ class SkynetRunner:
                         console.print(f"[bold yellow]-> Invocando herramienta:[/bold yellow] [magenta]{fn_name}[/magenta] con [dim]{fn_args}[/dim]")
                     except Exception:
                         pass
-                    tool_result = self.tool_executor.execute_tool(fn_name, fn_args)
+                    
+                    allowed, circuit_res = watchdog.record_and_evaluate(fn_name, fn_args)
+                    if not allowed:
+                        console.print(f"[bold red][WATCHDOG RECT CIRCUIT BREAKER][/bold red] Bloqueando llamada a {fn_name}: {circuit_res.get('message')}")
+                        tool_result = circuit_res
+                    else:
+                        tool_result = self.tool_executor.execute_tool(fn_name, fn_args)
                 except json.JSONDecodeError as e:
                     console.print(f"[bold red][AVISO RESILIENCIA][/bold red] Fallo al parsear JSON de la herramienta {fn_name}: {e}")
                     tool_result = {"error": f"JSONDecodeError: {str(e)}. Por favor corrige tus argumentos (asegura comillas válidas) e intenta nuevamente."}
@@ -302,6 +323,10 @@ class SkynetRunner:
             if self.state.final_report:
                 break
                 
+        self.state.watchdog_metrics = watchdog.metrics
+        if self.state.final_report:
+            self.state.final_report.watchdog_metrics = watchdog.metrics
+
         if not self.state.final_report:
             raise RuntimeError("El agente no completó la generación del informe final.")
             
@@ -312,21 +337,27 @@ class SkynetRunner:
         Bucle ReAct determinístico para desarrollo, CI y pruebas locales.
         Emula la secuencia de razonamiento y llamadas a herramientas de SKYNET.
         """
+        from agent.guardrails.session_watchdog import ReActExecutionWatchdog
+        watchdog = ReActExecutionWatchdog()
+
         # Turno 1: Inspeccionar expediente
         console.print("[cyan][Pensamiento SKYNET][/cyan]: Para analizar la disputa, primero debo inspeccionar los documentos comerciales disponibles en el expediente.")
         console.print(f"[bold yellow]-> SKYNET Tool Call:[/bold yellow] [magenta]read_dispute_documents[/magenta](case_id='{self.case_id}')")
+        watchdog.record_and_evaluate("read_dispute_documents", {"case_id": self.case_id})
         self.tool_executor.execute_tool("read_dispute_documents", {"case_id": self.case_id})
         time.sleep(0.1)
         
         # Turno 2: Conciliación física y matemática
         console.print("[cyan][Pensamiento SKYNET][/cyan]: Documentos cargados correctamente. Procedo a ejecutar la conciliación matemática determinística.")
         console.print(f"[bold yellow]-> SKYNET Tool Call:[/bold yellow] [magenta]execute_reconciliation[/magenta](case_id='{self.case_id}')")
+        watchdog.record_and_evaluate("execute_reconciliation", {"case_id": self.case_id})
         self.tool_executor.execute_tool("execute_reconciliation", {"case_id": self.case_id})
         time.sleep(0.1)
         
         # Turno 3: Análisis contractual
         console.print(f"[cyan][Pensamiento SKYNET][/cyan]: Conciliación procesada para {self.case_id}. Verifico respaldo contractual de las deducciones.")
         console.print(f"[bold yellow]-> SKYNET Tool Call:[/bold yellow] [magenta]evaluate_contract_terms[/magenta](case_id='{self.case_id}')")
+        watchdog.record_and_evaluate("evaluate_contract_terms", {"case_id": self.case_id})
         self.tool_executor.execute_tool("evaluate_contract_terms", {"case_id": self.case_id})
         time.sleep(0.1)
         
@@ -366,15 +397,18 @@ class SkynetRunner:
                     f"por dicho valor a favor del cliente para conciliar y cerrar la cuenta."
                 )
 
-        self.tool_executor.execute_tool(
-            "generate_final_report",
-            {
-                "case_id": self.case_id,
-                "root_cause_explanation": root_cause,
-                "recommended_action": action
-            }
-        )
+        rep_args = {
+            "case_id": self.case_id,
+            "root_cause_explanation": root_cause,
+            "recommended_action": action
+        }
+        watchdog.record_and_evaluate("generate_final_report", rep_args)
+        self.tool_executor.execute_tool("generate_final_report", rep_args)
         
+        self.state.watchdog_metrics = watchdog.metrics
+        if self.state.final_report:
+            self.state.final_report.watchdog_metrics = watchdog.metrics
+
         if not self.state.final_report:
             raise RuntimeError("Error al generar el reporte en la simulación.")
             

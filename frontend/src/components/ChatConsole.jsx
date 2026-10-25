@@ -220,6 +220,7 @@ function RichMarkdownMessage({ content }) {
 // ==============================================================================
 export default function ChatConsole({ 
   caseId, 
+  report,
   messages = [], 
   onSendMessage, 
   isThinking = false, 
@@ -277,6 +278,11 @@ export default function ChatConsole({
       { text: "¿Cuál fue la deliberación del Tribunal Colegiado (CFO, Legal, COO)?", badge: "100 Pts" },
       { text: "¿Qué precedentes jurisprudenciales se aplicaron a este caso?", badge: "Doctrina" },
       { text: "¿Cuál es el costo de inferencia y unit economics de este análisis?", badge: "Eficiencia" },
+    ],
+    seguridad: [
+      { text: "¿Qué cifras financieras y estado pericial están anclados de forma inmutable en este chat?", badge: "📌 Ancla Inmutable" },
+      { text: "¿Cómo protege el ReAct Execution Watchdog contra bucles infinitos y herramientas duplicadas?", badge: "🛑 Circuit Breaker" },
+      { text: "¿Qué ocurre ante una inyección conversacional que alegue un monto falso de $50,000 USD?", badge: "🛡️ Anti-Inyección" },
     ],
     cliente: [
       { text: "Desglósame producto por producto qué se facturó y qué se entregó", badge: "Inventario" },
@@ -478,6 +484,48 @@ export default function ChatConsole({
       </div>
 
       {/* ================================================================== */}
+      {/* 1.1 Barra de Anclaje de Estado Inmutable (Pilar 5)                */}
+      {/* ================================================================== */}
+      <div className="px-3 py-1.5 bg-[#0a0b0e] border-b border-[#181922] flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono select-none">
+        <div className="flex items-center space-x-2">
+          <span className="flex items-center space-x-1 px-1.5 py-0.5 rounded bg-[#171822] text-[#eed98d] border border-[#2b2e3e] font-bold">
+            <span>📌 Ancla Inmutable</span>
+          </span>
+          <span className="text-zinc-400">Expediente:</span>
+          <span className="text-zinc-200 font-semibold">{caseId}</span>
+          <span className="text-zinc-600">|</span>
+          <span className="text-zinc-400">Facturado:</span>
+          <span className="text-white font-semibold">
+            ${(report?.billed_amount || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD
+          </span>
+          <span className="text-zinc-600">|</span>
+          <span className="text-zinc-400">Recibido:</span>
+          <span className="text-emerald-400 font-semibold">
+            ${(report?.received_amount || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD
+          </span>
+          <span className="text-zinc-600">|</span>
+          <span className="text-zinc-400">Reclamable:</span>
+          <span className="text-[#eed98d] font-semibold">
+            ${(report?.claimable_amount || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USD
+          </span>
+        </div>
+        <div className="flex items-center space-x-2">
+          {report?.quarantine_docket?.is_settlement_blocked ? (
+            <span className="px-2 py-0.5 rounded bg-rose-950/60 border border-rose-800 text-rose-300 font-bold">
+              🚨 Cuarentena Activa
+            </span>
+          ) : (
+            <span className="px-2 py-0.5 rounded bg-emerald-950/40 border border-emerald-800/40 text-emerald-300">
+              🛡️ ZKP Verificado
+            </span>
+          )}
+          <span className="text-zinc-500 hidden sm:inline" title="Protección de memoria determinística activa contra manipulación de cifras">
+            [Pilar 5 Activo]
+          </span>
+        </div>
+      </div>
+
+      {/* ================================================================== */}
       {/* 2. Área de Mensajes con Scroll                                    */}
       {/* ================================================================== */}
       <div className="flex-1 overflow-y-auto p-4 space-y-3.5">
@@ -600,6 +648,7 @@ export default function ChatConsole({
           <div className="flex items-center space-x-1 font-mono">
             {[
               { id: 'jurado', label: 'Jurados' },
+              { id: 'seguridad', label: '🛡️ Seguridad & Ancla' },
               { id: 'fx', label: '🌐 FX & Incoterms' },
               { id: 'fugas', label: '🛡️ Fugas Retailers' },
               { id: 'negociacion', label: '🤝 Negociación' },

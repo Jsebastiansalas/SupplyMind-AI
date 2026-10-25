@@ -284,6 +284,7 @@ def _extract_case_full_context(case_id: str) -> Dict[str, Any]:
 def _build_system_prompt_for_role(case_id: str, ctx: Dict[str, Any], role: str) -> str:
     """Construye un System Prompt ultra-específico con toda la data del expediente y el rol activo."""
     report = ctx["report"]
+    anchor_hdr = ctx.get("anchor_header", "")
 
     # Formatear tabla de productos
     items_txt = ""
@@ -361,7 +362,7 @@ Directrices:
 
     inst = role_instructions.get(role, role_instructions["senior_analyst"])
 
-    return f"""Eres SupplyMind AI Enterprise, el agente de conciliación autónoma de cadenas de suministro B2B.
+    core_system_prompt = f"""Eres SupplyMind AI Enterprise, el agente de conciliación autónoma de cadenas de suministro B2B.
 Estás auditando el expediente '{case_id}'.
 
 {inst}
@@ -384,6 +385,10 @@ REGLAS DE RESPUESTA:
 - Usa Markdown limpio: negritas para montos y cláusulas, viñetas para listas, y tablas cuando se soliciten desgloses comparativos.
 - NUNCA inventes cifras que no figuren en los datos verificados.
 - Responde siempre en español profesional."""
+
+    if anchor_hdr:
+        return f"{anchor_hdr}\n\n{core_system_prompt}"
+    return core_system_prompt
 
 
 def _deterministic_chat_response(case_id: str, prompt: str, role: str, ctx: Dict[str, Any]) -> str:
@@ -709,6 +714,11 @@ def chat_with_agent(case_id: str, request: ChatRequest):
     ctx = _extract_case_full_context(case_id)
     role = request.role or "senior_analyst"
 
+    from agent.guardrails.session_watchdog import SessionAnchorManager
+    session_anchor = SessionAnchorManager.build_session_anchor(case_id, report=ctx.get("report"))
+    ctx["anchor_header"] = session_anchor.formatted_anchor_header()
+    is_adversarial, adv_preface = SessionAnchorManager.inspect_and_correct_adversarial_query(prompt, session_anchor)
+
     # 2. Intentar llamar a Grok 4.7 si la llave de API está configurada
     if settings.is_live_api_ready:
         try:
@@ -729,12 +739,15 @@ def chat_with_agent(case_id: str, request: ChatRequest):
                 max_tokens=600,
             )
             bot_reply = response.choices[0].message.content
+            if is_adversarial and adv_preface:
+                bot_reply = f"{adv_preface}\n\n{bot_reply}"
             return {
                 "reply": bot_reply,
                 "mode": "live",
                 "model": settings.MODEL_NAME,
                 "role": role,
-                "sources": ctx.get("sources", [])
+                "sources": ctx.get("sources", []),
+                "session_anchor": _decimal_to_float(session_anchor.model_dump(mode="python"))
             }
         except Exception:
             # Conmutación resiliente transparente al motor determinístico
@@ -742,12 +755,15 @@ def chat_with_agent(case_id: str, request: ChatRequest):
 
     # 3. Motor Determinístico Local Enriquecido
     deterministic_reply = _deterministic_chat_response(case_id, prompt, role, ctx)
+    if is_adversarial and adv_preface:
+        deterministic_reply = f"{adv_preface}\n\n{deterministic_reply}"
     return {
         "reply": deterministic_reply,
         "mode": "deterministic",
         "model": "SupplyMind Deterministic Engine",
         "role": role,
-        "sources": ctx.get("sources", [])
+        "sources": ctx.get("sources", []),
+        "session_anchor": _decimal_to_float(session_anchor.model_dump(mode="python"))
     }
 
 

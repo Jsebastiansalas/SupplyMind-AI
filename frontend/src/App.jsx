@@ -524,6 +524,7 @@ function Workspace() {
               {activeTab === 'chat' && (
                 <ChatConsole 
                   caseId={selectedCaseId}
+                  report={report}
                   messages={chatMessages}
                   onSendMessage={handleSendMessage}
                   isThinking={isChatThinking}

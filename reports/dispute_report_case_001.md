@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `case_001` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-10-25 15:53:04 UTC | **Nivel de Confianza:** 98.0%
+> **Fecha de Emisión:** 2026-10-25 16:24:03 UTC | **Nivel de Confianza:** 83.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO
@@ -17,7 +17,7 @@
 ## 2. DETERMINACIÓN DE LA CAUSA RAÍZ
 
 **Diagnóstico:**  
-Faltante físico en entrega valorado en $800.00 USD, constatado en remisión de entrega firmada con sello de recepción en bodega.
+Faltante físico justificado de 10 unidades del SKU PROD-002 (Caja Café Gourmet Tostado 24x500g). La factura ampara 50 unidades a $80.00 (subtotal de línea $4,000.00) y la remisión DEL-9912 acredita recepción de 40 unidades (quantity_short = 10), con impacto de $800.00. PROD-001 (100 unidades a $50.00) está conciliado al 100%. No hay avería ni discrepancia de precio frente a la PO. El comprobante PAY-7710 aplica una sola deducción DED-MISSING-ITEM por $800.00, coincidente al centavo con el faltante. La CLAUSE-4.2 autoriza la deducción por faltante físico acreditado en remisión. La notificación es oportuna: entrega 2026-09-03, pago 2026-09-30, 27 días naturales, dentro de la ventana de 30 días de la CLAUSE-8.2. No concurren pronto pago unilateral, penalización EDI/ASN ni cargos sin adenda. Base gravable del faltante $800.00; IVA 16% $128.00; total de Nota de Crédito $928.00. Facturado $9,000.00; recibido/pagado $8,200.00; diferencia $800.00. Deducción justificada $800.00; reclamable $0.00.
 
 ---
 ## 3. TRAZABILIDAD Y CADENA DE EVIDENCIAS DOCUMENTALES
@@ -57,8 +57,16 @@ Faltante físico en entrega valorado en $800.00 USD, constatado en remisión de 
 ## 5. PLAN DE ACCIÓN OPERATIVO Y COMERCIAL RECOMENDADO
 
 **Recomendación:**  
-Aceptar deducción de $800.00 USD en cuentas por cobrar y emitir Nota de Crédito comercial por dicho valor a favor del cliente para conciliar y cerrar la cuenta.
+Aceptar la deducción de $800.00 en cartera y emitir Nota de Crédito comercial por base gravable $800.00 más IVA 16% $128.00 (total $928.00) para sanear la cuenta por cobrar del SKU PROD-002. Notificar a logística/despacho para auditar el control de carga en muelle asociado a DEL-9912. No iniciar objeción ni cobro coactivo: el saldo retenido está plenamente respaldado.
 
+---
+## 6. MÉTRICAS DE EJECUCIÓN Y EFICIENCIA (UNIT ECONOMICS)
+
+- **Tokens de Entrada:** 14,732
+- **Tokens de Salida:** 597
+- **Costo Estimado de Inferencia:** $0.03543 USD
+- **Tiempo de Resolución:** 17.92 s
+- **Gobernanza:** Motor determinístico en Python `Decimal` (Cero Alucinación Financiera).
 
 ---
 *Documento oficial generado autónomamente por SupplyMind AI para gestión de cartera, operaciones y auditoría B2B.*
