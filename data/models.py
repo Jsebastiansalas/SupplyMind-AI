@@ -163,6 +163,7 @@ class DisputeAnalysisReport(_Base):
     health_audit: Optional[Any] = Field(default=None)  # Auditoría de Integridad y Resiliencia Documental (DocumentHealthAudit o dict)
     financial_proof: Optional[Any] = Field(default=None)  # Prueba Criptográfica de Invarianza Aritmética / ZKP (ZKPFinancialProof o dict)
     evidence_manifest: Optional[Any] = Field(default=None)  # Manifiesto de Anclaje Fáctico y Cero Reclamaciones sin Cita (Pilar 3)
+    quarantine_docket: Optional[Any] = Field(default=None)  # Expediente pericial de Cuarentena Forense y Bloqueo de Liquidación (Pilar 4)
 
     def formatted_display(self) -> str:
         """Formatea el reporte con la estructura solicitada para el reto."""
@@ -357,6 +358,7 @@ class DocumentHealthAudit(BaseModel):
     documents_missing: List[str] = Field(default_factory=list)
     schema_warnings: List[str] = Field(default_factory=list)
     execution_safety_level: str = "SAFE_FOR_AUTONOMOUS_SETTLEMENT"
+    quarantine_docket: Optional[Any] = Field(default=None)  # Expediente de Aislamiento Forense si status == 'QUARANTINE'
     generated_at: str = ""
 
 
@@ -415,6 +417,25 @@ class EvidenceBindingManifest(BaseModel):
     binding_verdict: str = "FULL_EVIDENCE_BINDING_VERIFIED"  # "FULL_EVIDENCE_BINDING_VERIFIED" | "CAUTIONARY_ITEMS_DETECTED" | "CRITICAL_UNBACKED_DEFICIT"
     confidence_penalty: float = 0.0
     generated_at: str = ""
+
+
+# ==========================================
+# 14. Protocolo Forense de Cuarentena Documental (Pilar 4)
+# ==========================================
+class ForensicQuarantineDocket(BaseModel):
+    """Expediente de aislamiento forense para casos con inconsistencias críticas o datos irreparables."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    quarantine_id: str                                  # ej: "FRQ-CASE-001-ISOLATION"
+    case_id: str
+    severity: str = "CRITICAL_CONTAMINATION"             # "CRITICAL_CONTAMINATION" | "UNRECOVERABLE_SYNTAX" | "ANACHRONISM_RISK" | "SEVERE_DOCUMENT_DEFICIT"
+    is_settlement_blocked: bool = True                  # Bloqueo estricto de notas de crédito y acuerdos vinculantes
+    blocking_reasons: List[str] = Field(default_factory=list)
+    violated_invariants: List[str] = Field(default_factory=list)
+    remediation_steps: List[str] = Field(default_factory=list)
+    quarantine_timestamp: str = ""
+    release_conditions: List[str] = Field(default_factory=list)
+    operator_override_permitted: bool = False
 
 
 

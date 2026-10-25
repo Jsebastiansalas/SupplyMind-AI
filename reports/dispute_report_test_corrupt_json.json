@@ -29,7 +29,8 @@
       "Fallo en lectura de documentos: Expediente 'test_corrupt_json' en cuarentena documental (salud: 0.0%): Archivos corruptos o faltantes críticos."
     ],
     "execution_safety_level": "HOLD_SETTLEMENT_DOCUMENT_AUDIT_REQUIRED",
-    "generated_at": "2026-10-24T22:04:34.692520+00:00"
+    "quarantine_docket": null,
+    "generated_at": "2026-10-25T15:53:04.583605+00:00"
   },
   "financial_proof": {
     "case_id": "test_corrupt_json",
@@ -42,6 +43,23 @@
     "verified_figures": [],
     "confidence_penalty": 0.0,
     "audit_status": "ARITHMETIC_MISMATCH",
-    "tamper_proof_timestamp": "2026-10-24T22:04:34.692592+00:00"
-  }
+    "tamper_proof_timestamp": "2026-10-25T15:53:04.583655+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "test_corrupt_json",
+    "total_claims_audited": 0,
+    "backed_claims_count": 0,
+    "unbacked_claims_count": 0,
+    "total_backed_amount": "0.00",
+    "total_unbacked_amount": "0.00",
+    "backing_ratio_pct": 0.0,
+    "evidence_pointers": [],
+    "cautelar_items": [
+      "Expediente en cuarentena: Archivos base no recuperables o esquema inválido."
+    ],
+    "binding_verdict": "CRITICAL_UNBACKED_DEFICIT",
+    "confidence_penalty": 1.0,
+    "generated_at": "2026-10-25T15:53:04.583685+00:00"
+  },
+  "quarantine_docket": null
 }

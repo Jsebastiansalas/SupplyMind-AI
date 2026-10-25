@@ -352,6 +352,46 @@ def get_case_evidence_manifest(case_id: str):
         raise HTTPException(status_code=500, detail=f"Error al compilar manifiesto de anclaje probatorio: {str(e)}")
 
 
+@router.get("/{case_id}/quarantine-docket")
+def get_case_quarantine_docket(case_id: str):
+    """
+    Obtiene el expediente pericial de cuarentena forense (Pilar 4: Quarantine Protocol).
+    Si el caso presenta inconsistencias críticas, retorna el detalle de bloqueos y remediación.
+    """
+    case_path = CASES_DIR / case_id
+    if not case_path.exists() or not case_path.is_dir():
+        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+
+    try:
+        runner = SkynetRunner(case_id=case_id, fast_path=True, use_cache=True)
+        report = runner.run()
+
+        docket = None
+        if report and report.quarantine_docket:
+            docket = report.quarantine_docket
+        elif getattr(runner.state, "health_audit", None) and runner.state.health_audit.quarantine_docket:
+            docket = runner.state.health_audit.quarantine_docket
+
+        if docket:
+            docket_dict = docket.model_dump() if hasattr(docket, "model_dump") else docket
+            return {
+                "status": "QUARANTINED",
+                "is_settlement_blocked": True,
+                "docket": _decimal_to_float(docket_dict)
+            }
+        else:
+            return {
+                "status": "NOT_QUARANTINED",
+                "is_settlement_blocked": False,
+                "case_id": case_id,
+                "message": "El expediente cuenta con integridad admisible y no requiere aislamiento forense."
+            }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al auditar cuarentena forense: {str(e)}")
+
+
 @router.get("/{case_id}/tribunal")
 def get_case_tribunal_scores(case_id: str):
     """Obtiene la evaluación del tribunal colegiado para el caso."""

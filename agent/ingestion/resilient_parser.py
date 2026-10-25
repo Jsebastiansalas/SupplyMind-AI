@@ -799,4 +799,8 @@ class ResilientDocumentLoader:
             generated_at=datetime.now(timezone.utc).isoformat()
         )
 
+        # Protocolo Forense de Cuarentena y Semáforo Progresivo (Pilar 4)
+        from agent.guardrails.quarantine_manager import QuarantineManager
+        audit, _ = QuarantineManager.evaluate_quarantine(case_id, documents, audit)
+
         return documents, audit

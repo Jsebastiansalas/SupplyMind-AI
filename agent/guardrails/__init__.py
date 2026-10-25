@@ -6,6 +6,7 @@ from .arithmetic_verifier import (
     verify_zkp_proof_token
 )
 from .evidence_binder import StrictEvidenceBinder
+from .quarantine_manager import QuarantineManager
 
 __all__ = [
     "ZKPFinancialAuditor",
@@ -14,4 +15,5 @@ __all__ = [
     "generate_zkp_proof_token",
     "verify_zkp_proof_token",
     "StrictEvidenceBinder",
+    "QuarantineManager",
 ]

@@ -37,11 +37,12 @@
     "documents_missing": [],
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
-    "generated_at": "2026-10-25T00:50:05.525447+00:00"
+    "quarantine_docket": null,
+    "generated_at": "2026-10-25T15:53:04.530512+00:00"
   },
   "financial_proof": {
     "case_id": "case_001",
-    "proof_hash": "SM-PROOF-SHA256-5DDB9DD6ECE67527",
+    "proof_hash": "SM-PROOF-SHA256-BD12A83AC4561C18",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -53,7 +54,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-25T00:50:05.529247+00:00"
+    "tamper_proof_timestamp": "2026-10-25T15:53:04.535957+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_001",
@@ -116,6 +117,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-10-25T00:50:05Z"
-  }
+    "generated_at": "2026-10-25T15:53:04Z"
+  },
+  "quarantine_docket": null
 }

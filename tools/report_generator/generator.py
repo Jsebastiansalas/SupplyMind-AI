@@ -18,6 +18,14 @@ def build_dispute_report(
     la precisión determinística de los cálculos con la evaluación contractual
     y el anclaje fáctico probatorio de cero alucinaciones.
     """
+    # Auto-resolución de documentos si no fueron suministrados explícitamente
+    if loaded_documents is None and case_id:
+        try:
+            from tools.document_reader.reader import load_case_documents
+            loaded_documents = load_case_documents(case_id)
+        except Exception:
+            pass
+
     # 1. Determinar causa raíz
     if root_cause_explanation:
         cause = root_cause_explanation
@@ -66,6 +74,13 @@ def build_dispute_report(
         reconciliation=reconciliation,
         loaded_documents=loaded_documents,
         contract_evaluation=contract_evaluation
+    )
+
+    # Protocolo de Cuarentena Forense y Bloqueo de Liquidación (Pilar 4)
+    from agent.guardrails.quarantine_manager import QuarantineManager
+    report = QuarantineManager.enforce_quarantine_on_report(
+        report=report,
+        health_audit=health_audit
     )
 
     return report

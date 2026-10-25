@@ -85,9 +85,11 @@ export default function FinancialPanel({
   const healthAudit = report.health_audit || null;
   const financialProof = report.financial_proof || null;
   const evidenceManifest = report.evidence_manifest || null;
+  const quarantineDocket = report.quarantine_docket || healthAudit?.quarantine_docket || null;
+  const isQuarantined = healthAudit?.status === 'QUARANTINE' || !!quarantineDocket;
 
   const isClaimable = claimable > 0;
-  const isTechnicalError = confidence === 0 || (report.root_cause && report.root_cause.includes("TECHNICAL_ERROR"));
+  const isTechnicalError = isQuarantined || confidence === 0 || (report.root_cause && report.root_cause.includes("TECHNICAL_ERROR"));
   const totalDeduction = Math.abs(diff);
 
   const auditChecksum = financialProof?.proof_hash || `SM-AUDIT-${Math.abs(Math.round(billed * 100)).toString(16)}-${Math.abs(Math.round(claimable * 100)).toString(16)}-${Math.abs(Math.round(justified * 100)).toString(16)}`.toUpperCase();
@@ -284,6 +286,55 @@ export default function FinancialPanel({
           </div>
         </div>
       </div>
+
+      {/* 2.1. PROTOCOLO FORENSE DE CUARENTENA Y BLOQUEO DE LIQUIDACIÓN (PILAR 4) */}
+      {isQuarantined && (
+        <div className="p-4 rounded-lg bg-rose-950/30 border border-rose-500/50 shadow-elevated space-y-3">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-rose-900/50 pb-2.5">
+            <div className="flex items-center space-x-2 text-rose-400">
+              <ShieldAlert className="w-5 h-5 text-rose-400 flex-shrink-0" />
+              <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-white">
+                🚨 Protocolo Forense de Cuarentena Activado (Pilar 4)
+              </h3>
+            </div>
+            <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded bg-rose-900/60 text-rose-200 border border-rose-700/60 flex items-center gap-1.5">
+              <Lock className="w-3.5 h-3.5 text-rose-300" />
+              LIQUIDACIÓN Y NOTAS DE CRÉDITO BLOQUEADAS
+            </span>
+          </div>
+
+          <div className="text-xs text-rose-200/90 leading-relaxed font-sans">
+            Este expediente presenta inconsistencias críticas de integridad o déficit documental.
+            Para proteger la soberanía financiera de la empresa, el agente ha bloqueado la emisión de acuerdos vinculantes o notas de crédito.
+          </div>
+
+          {quarantineDocket?.blocking_reasons?.length > 0 && (
+            <div className="space-y-1.5 bg-[#0e0f14]/80 p-3 rounded border border-rose-900/40">
+              <span className="text-[10px] font-mono text-rose-300 uppercase tracking-wider block font-bold">
+                Causales de Aislamiento Preventivo:
+              </span>
+              <ul className="text-[11px] text-zinc-300 space-y-1 pl-4 list-disc font-sans">
+                {quarantineDocket.blocking_reasons.map((r, idx) => (
+                  <li key={idx} className="leading-snug text-rose-100">{r}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {quarantineDocket?.remediation_steps?.length > 0 && (
+            <div className="space-y-1.5 bg-[#0e0f14]/80 p-3 rounded border border-zinc-800">
+              <span className="text-[10px] font-mono text-[#d4af37] uppercase tracking-wider block font-bold">
+                Guía de Remediación para el Operador:
+              </span>
+              <ul className="text-[11px] text-zinc-300 space-y-1 pl-4 list-decimal font-sans">
+                {quarantineDocket.remediation_steps.map((step, idx) => (
+                  <li key={idx} className="leading-snug">{step}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* 3. SUB-VIEWS SEGMENTED TABS (Institutional Precision) */}
       <div className="space-y-4">
