@@ -175,8 +175,8 @@ def main():
     if is_interactive:
         if not explicit_case:
             hub_panel = Panel(
-                "[bold cyan]SupplyMind AI - Centro de Control Interactivo Multi-Caso[/bold cyan]\n"
-                "[dim]Reto Agente Platica.mx x Campuslands - Hito S1 (Semana 1)[/dim]\n\n"
+                "[bold cyan]SupplyMind AI — Centro de Control Interactivo Multi-Caso[/bold cyan]\n"
+                "[dim]Reto Agente Platica.mx x Campuslands — Hito S2 (Semana 2: Enterprise & 5-Pillar Shield)[/dim]\n\n"
                 "[bold white]Selecciona el expediente con el que deseas interactuar:[/bold white]\n\n"
                 "  [bold green][1][/bold green] [bold white]case_001[/bold white] : Básico (Faltante Físico de $800 USD)\n"
                 "  [bold green][2][/bold green] [bold white]case_002[/bold white] : Complejo Alta Cuantía ($54.2k facturados, $12,500 reclamables)\n"
