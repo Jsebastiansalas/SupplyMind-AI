@@ -1,0 +1,20 @@
+{
+  "invoice_id": "INV-CASE_034-5841",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-CHEDRAUI_MX",
+  "po_reference": "PO-CASE_034-F69E",
+  "issue_date": "2026-08-28",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-RICE-10KG",
+      "description": "Saco Arroz Grano Extra Blanco 10kg",
+      "quantity": 1000,
+      "unit_price": "14.00",
+      "total_price": "14000.00"
+    }
+  ],
+  "subtotal": "14000.00",
+  "tax": "0.00",
+  "total_amount": "14000.00"
+}

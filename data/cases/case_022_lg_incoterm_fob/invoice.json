@@ -1,0 +1,20 @@
+{
+  "invoice_id": "INV-CASE_022-13F1",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-LG_MX",
+  "po_reference": "PO-CASE_022-CFB1",
+  "issue_date": "2026-08-28",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-REFRIG-FRENCH",
+      "description": "Refrigerador French Door Inverter 22 Pies Cúbicos",
+      "quantity": 100,
+      "unit_price": "850.00",
+      "total_price": "85000.00"
+    }
+  ],
+  "subtotal": "85000.00",
+  "tax": "0.00",
+  "total_amount": "85000.00"
+}

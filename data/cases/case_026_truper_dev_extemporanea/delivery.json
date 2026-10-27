@@ -1,0 +1,19 @@
+{
+  "delivery_id": "DEL-CASE_026-C37E",
+  "po_reference": "PO-CASE_026-45A8",
+  "delivery_date": "2026-09-02",
+  "received_by": "Ing. Cuauhtémoc Sánchez (Superintendente Macrocentro)",
+  "warehouse_location": "Macrocentro Truper Jilotepec Muelle 50",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-GENERATOR-4KW",
+      "quantity_delivered": 150,
+      "quantity_received": 150,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Entregado y recibido a entera satisfacción en Macrocentro Truper Jilotepec"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "payment_id": "PAY-CASE_012-080C",
+  "invoice_reference": "INV-CASE_012-8F70",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "49556.00",
+  "deductions": [
+    {
+      "code": "COLGADO-SERVICIOS",
+      "reason": "Costo de habilitado y colgado justificado en 740 prendas sin gancho reglamentario",
+      "amount": "7400.00",
+      "reference_doc": "DEL-CASE_012-E27A"
+    },
+    {
+      "code": "PENALIZACION-EXCESIVA",
+      "reason": "Multa punitiva unilateral que excede el tope contractual del 10% del lote",
+      "amount": "11000.00",
+      "reference_doc": "DEL-CASE_012-E27A"
+    }
+  ]
+}

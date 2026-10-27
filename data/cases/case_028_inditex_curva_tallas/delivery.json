@@ -1,0 +1,19 @@
+{
+  "delivery_id": "DEL-CASE_028-B3A5",
+  "po_reference": "PO-CASE_028-C061",
+  "delivery_date": "2026-09-02",
+  "received_by": "Lic. Íñigo De la Concha (Gerente de Inbound Fast Fashion)",
+  "warehouse_location": "CEDIS Logístico Inditex Tlalnepantla Muelle 8",
+  "signed": true,
+  "discrepancy_reported": true,
+  "items": [
+    {
+      "item_id": "SKU-BLAZER-LINEN",
+      "quantity_delivered": 1000,
+      "quantity_received": 784,
+      "missing_quantity": 216,
+      "damaged_quantity": 0,
+      "notes": "Faltante físico en muelle: 216 unidades ausentes. Anotado en remisión."
+    }
+  ]
+}

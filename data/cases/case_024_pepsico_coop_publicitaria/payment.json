@@ -1,0 +1,15 @@
+{
+  "payment_id": "PAY-CASE_024-8164",
+  "invoice_reference": "INV-CASE_024-4919",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "36392.00",
+  "deductions": [
+    {
+      "code": "COOP-PUB-UNILATERAL",
+      "reason": "Cargo de cooperación publicitaria o folleto mensual sin pauta pactada",
+      "amount": "13600.00",
+      "reference_doc": "DEL-CASE_024-5181"
+    }
+  ]
+}

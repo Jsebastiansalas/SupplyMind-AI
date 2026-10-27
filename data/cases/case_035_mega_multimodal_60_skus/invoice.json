@@ -1,0 +1,433 @@
+{
+  "invoice_id": "INV-CASE_035-35C5",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-AMAZON_MX",
+  "po_reference": "PO-CASE_035-AD93",
+  "issue_date": "2026-08-28",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-MULTI-001",
+      "description": "Componente Industrial Multimodal Grado 1",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-002",
+      "description": "Componente Industrial Multimodal Grado 2",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-003",
+      "description": "Componente Industrial Multimodal Grado 3",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-004",
+      "description": "Componente Industrial Multimodal Grado 4",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-005",
+      "description": "Componente Industrial Multimodal Grado 5",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-006",
+      "description": "Componente Industrial Multimodal Grado 6",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-007",
+      "description": "Componente Industrial Multimodal Grado 7",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-008",
+      "description": "Componente Industrial Multimodal Grado 8",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-009",
+      "description": "Componente Industrial Multimodal Grado 9",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-010",
+      "description": "Componente Industrial Multimodal Grado 10",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-011",
+      "description": "Componente Industrial Multimodal Grado 11",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-012",
+      "description": "Componente Industrial Multimodal Grado 12",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-013",
+      "description": "Componente Industrial Multimodal Grado 13",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-014",
+      "description": "Componente Industrial Multimodal Grado 14",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-015",
+      "description": "Componente Industrial Multimodal Grado 15",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-016",
+      "description": "Componente Industrial Multimodal Grado 16",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-017",
+      "description": "Componente Industrial Multimodal Grado 17",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-018",
+      "description": "Componente Industrial Multimodal Grado 18",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-019",
+      "description": "Componente Industrial Multimodal Grado 19",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-020",
+      "description": "Componente Industrial Multimodal Grado 20",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-021",
+      "description": "Componente Industrial Multimodal Grado 21",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-022",
+      "description": "Componente Industrial Multimodal Grado 22",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-023",
+      "description": "Componente Industrial Multimodal Grado 23",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-024",
+      "description": "Componente Industrial Multimodal Grado 24",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-025",
+      "description": "Componente Industrial Multimodal Grado 25",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-026",
+      "description": "Componente Industrial Multimodal Grado 26",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-027",
+      "description": "Componente Industrial Multimodal Grado 27",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-028",
+      "description": "Componente Industrial Multimodal Grado 28",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-029",
+      "description": "Componente Industrial Multimodal Grado 29",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-030",
+      "description": "Componente Industrial Multimodal Grado 30",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-031",
+      "description": "Componente Industrial Multimodal Grado 31",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-032",
+      "description": "Componente Industrial Multimodal Grado 32",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-033",
+      "description": "Componente Industrial Multimodal Grado 33",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-034",
+      "description": "Componente Industrial Multimodal Grado 34",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-035",
+      "description": "Componente Industrial Multimodal Grado 35",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-036",
+      "description": "Componente Industrial Multimodal Grado 36",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-037",
+      "description": "Componente Industrial Multimodal Grado 37",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-038",
+      "description": "Componente Industrial Multimodal Grado 38",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-039",
+      "description": "Componente Industrial Multimodal Grado 39",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-040",
+      "description": "Componente Industrial Multimodal Grado 40",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-041",
+      "description": "Componente Industrial Multimodal Grado 41",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-042",
+      "description": "Componente Industrial Multimodal Grado 42",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-043",
+      "description": "Componente Industrial Multimodal Grado 43",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-044",
+      "description": "Componente Industrial Multimodal Grado 44",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-045",
+      "description": "Componente Industrial Multimodal Grado 45",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-046",
+      "description": "Componente Industrial Multimodal Grado 46",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-047",
+      "description": "Componente Industrial Multimodal Grado 47",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-048",
+      "description": "Componente Industrial Multimodal Grado 48",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-049",
+      "description": "Componente Industrial Multimodal Grado 49",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-050",
+      "description": "Componente Industrial Multimodal Grado 50",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-051",
+      "description": "Componente Industrial Multimodal Grado 51",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-052",
+      "description": "Componente Industrial Multimodal Grado 52",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-053",
+      "description": "Componente Industrial Multimodal Grado 53",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-054",
+      "description": "Componente Industrial Multimodal Grado 54",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-055",
+      "description": "Componente Industrial Multimodal Grado 55",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-056",
+      "description": "Componente Industrial Multimodal Grado 56",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-057",
+      "description": "Componente Industrial Multimodal Grado 57",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-058",
+      "description": "Componente Industrial Multimodal Grado 58",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-059",
+      "description": "Componente Industrial Multimodal Grado 59",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    },
+    {
+      "item_id": "SKU-MULTI-060",
+      "description": "Componente Industrial Multimodal Grado 60",
+      "quantity": 100,
+      "unit_price": "20.00",
+      "total_price": "2000.00"
+    }
+  ],
+  "subtotal": "120000.00",
+  "tax": "0.00",
+  "total_amount": "120000.00"
+}

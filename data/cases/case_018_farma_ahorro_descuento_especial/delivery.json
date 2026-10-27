@@ -1,0 +1,27 @@
+{
+  "delivery_id": "DEL-CASE_018-837C",
+  "po_reference": "PO-CASE_018-9A33",
+  "delivery_date": "2026-09-02",
+  "received_by": "Lic. Claudia Mendoza (Gerente de Compras y Cuentas por Pagar)",
+  "warehouse_location": "CEDIS Farmacias del Ahorro Lerma Muelle 8",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-ANALGESIC-500MG",
+      "quantity_delivered": 6000,
+      "quantity_received": 6000,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en CEDIS Lerma Muelle 8"
+    },
+    {
+      "item_id": "SKU-FIRST-AID-KIT",
+      "quantity_delivered": 777,
+      "quantity_received": 777,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Verificación sanitaria correcta"
+    }
+  ]
+}

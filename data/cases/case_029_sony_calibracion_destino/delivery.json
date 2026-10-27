@@ -1,0 +1,19 @@
+{
+  "delivery_id": "DEL-CASE_029-CC04",
+  "po_reference": "PO-CASE_029-F654",
+  "delivery_date": "2026-09-02",
+  "received_by": "Ing. Carlos Shiguetomi (Jefe de Aseguramiento de Calidad)",
+  "warehouse_location": "CEDIS Sony Santa Fe Muelle 2",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-CAM-CINEMA-4K",
+      "quantity_delivered": 20,
+      "quantity_received": 20,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Equipos recibidos con sellos de seguridad y certificados de calibración ISO de origen"
+    }
+  ]
+}

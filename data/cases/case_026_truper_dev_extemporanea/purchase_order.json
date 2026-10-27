@@ -1,0 +1,17 @@
+{
+  "po_id": "PO-CASE_026-45A8",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-TRUPER_MX",
+  "order_date": "2026-08-20",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-GENERATOR-4KW",
+      "description": "Generador a Gasolina 4000W 4 Tiempos",
+      "ordered_quantity": 150,
+      "agreed_unit_price": "380.00",
+      "total_price": "57000.00"
+    }
+  ],
+  "total_amount": "57000.00"
+}

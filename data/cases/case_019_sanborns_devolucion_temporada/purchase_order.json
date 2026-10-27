@@ -1,0 +1,17 @@
+{
+  "po_id": "PO-CASE_019-724B",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-SANBORNS_MX",
+  "order_date": "2026-08-20",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-CHOCOLATE-TIN-300G",
+      "description": "Lata Chocolates Suizos Surtidos 300g Edición Especial",
+      "ordered_quantity": 2000,
+      "agreed_unit_price": "12.50",
+      "total_price": "25000.00"
+    }
+  ],
+  "total_amount": "25000.00"
+}

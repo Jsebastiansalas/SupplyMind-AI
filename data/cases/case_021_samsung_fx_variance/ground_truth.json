@@ -1,0 +1,45 @@
+{
+  "case_id": "case_021_samsung_fx_variance",
+  "category": "PRICE_MISMATCH",
+  "buyer_id": "SAMSUNG_MX",
+  "buyer_name": "Samsung Electronics México",
+  "industry": "Electrónica de Consumo & Displays",
+  "currency": "USD",
+  "billed_amount": "95000.00",
+  "received_amount": "50000.00",
+  "difference": "-45000.00",
+  "expected_justified_amount": "30000.00",
+  "expected_claimable_amount": "15000.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "AJUSTE-COMERCIAL-PROMO": "30000.00"
+  },
+  "claimable_breakdown": {
+    "FX-VARIANCE-UNILAT": "15000.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-3.1",
+    "CLAUSE-6.5"
+  ],
+  "recommended_commercial_action": "EMIT_CREDIT_NOTE_AND_RECOVERY_LETTER",
+  "deductions": [
+    {
+      "code": "AJUSTE-COMERCIAL-PROMO",
+      "amount": "30000.00",
+      "reason": "Descuento acordado de promoción Buen Fin amparado por Addendum firmado",
+      "is_justified": true,
+      "governing_clause_id": "CLAUSE-3.1",
+      "factual_basis": "Descuento acordado de promoción Buen Fin amparado por Addendum firmado",
+      "remedy_action": "ACCEPT_AND_CREDIT"
+    },
+    {
+      "code": "FX-VARIANCE-UNILAT",
+      "amount": "15000.00",
+      "reason": "Varianza cambiaria unilateral aplicando tipo de cambio FIX DOF de fecha no autorizada",
+      "is_justified": false,
+      "governing_clause_id": "CLAUSE-6.5",
+      "factual_basis": "Varianza cambiaria unilateral aplicando tipo de cambio FIX DOF de fecha no autorizada",
+      "remedy_action": "REJECT_AND_CLAIM"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "payment_id": "PAY-CASE_021-DFD9",
+  "invoice_reference": "INV-CASE_021-CFD7",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "50000.00",
+  "deductions": [
+    {
+      "code": "AJUSTE-COMERCIAL-PROMO",
+      "reason": "Descuento acordado de promoción Buen Fin amparado por Addendum firmado",
+      "amount": "30000.00",
+      "reference_doc": "DEL-CASE_021-075B"
+    },
+    {
+      "code": "FX-VARIANCE-UNILAT",
+      "reason": "Varianza cambiaria unilateral aplicando tipo de cambio FIX DOF de fecha no autorizada",
+      "amount": "15000.00",
+      "reference_doc": "DEL-CASE_021-075B"
+    }
+  ]
+}

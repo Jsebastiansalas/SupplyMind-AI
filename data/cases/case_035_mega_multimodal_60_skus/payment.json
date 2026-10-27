@@ -1,0 +1,21 @@
+{
+  "payment_id": "PAY-CASE_035-3C9A",
+  "invoice_reference": "INV-CASE_035-35C5",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "0.00",
+  "deductions": [
+    {
+      "code": "REBATE-ANUAL-CONVENIDO",
+      "reason": "Bonificación anual pactada por volumen sobre los 60 SKUs del contrato marco",
+      "amount": "85000.00",
+      "reference_doc": "DEL-CASE_035-2BA8"
+    },
+    {
+      "code": "RETENCION-UNILATERAL-EDI",
+      "reason": "Penalización unilateral por supuesto retardo en transmisión ASN consolidado",
+      "amount": "35000.00",
+      "reference_doc": "DEL-CASE_035-2BA8"
+    }
+  ]
+}

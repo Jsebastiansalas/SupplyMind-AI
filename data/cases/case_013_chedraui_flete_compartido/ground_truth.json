@@ -1,0 +1,44 @@
+{
+  "case_id": "case_013_chedraui_flete_compartido",
+  "category": "MIXED",
+  "buyer_id": "CHEDRAUI_MX",
+  "buyer_name": "Grupo Comercial Chedraui",
+  "industry": "Autoservicio & Retail",
+  "currency": "USD",
+  "billed_amount": "41999.00",
+  "received_amount": "35899.00",
+  "difference": "-6100.00",
+  "expected_justified_amount": "2300.00",
+  "expected_claimable_amount": "3800.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "MANIOBRA-MUELLE": "2300.00"
+  },
+  "claimable_breakdown": {
+    "FLETE-COMPARTIDO": "3800.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-9.3"
+  ],
+  "recommended_commercial_action": "EMIT_CREDIT_NOTE_AND_RECOVERY_LETTER",
+  "deductions": [
+    {
+      "code": "MANIOBRA-MUELLE",
+      "amount": "2300.00",
+      "reason": "Cuota de descarga y emplayado en muelle justificada por falta de chofer",
+      "is_justified": true,
+      "governing_clause_id": "CLAUSE-9.3",
+      "factual_basis": "Cuota de descarga y emplayado en muelle justificada por falta de chofer",
+      "remedy_action": "ACCEPT_AND_CREDIT"
+    },
+    {
+      "code": "FLETE-COMPARTIDO",
+      "amount": "3800.00",
+      "reason": "Cargo de flete backhaul no contratado bajo término de entrega DDP",
+      "is_justified": false,
+      "governing_clause_id": "CLAUSE-9.3",
+      "factual_basis": "Cargo de flete backhaul no contratado bajo término de entrega DDP",
+      "remedy_action": "REJECT_AND_CLAIM"
+    }
+  ]
+}

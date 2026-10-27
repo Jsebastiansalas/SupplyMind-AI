@@ -1,0 +1,15 @@
+{
+  "payment_id": "PAY-CASE_033-3766",
+  "invoice_reference": "INV-CASE_033-B6A8",
+  "payment_date": "2026-05-10",
+  "currency": "USD",
+  "amount_paid": "15000.00",
+  "deductions": [
+    {
+      "code": "DED-ANACHRONIC",
+      "reason": "Deducción con fecha de liquidación anacrónica e imposible",
+      "amount": "3500.00",
+      "reference_doc": "DEL-CASE_033-5D3C"
+    }
+  ]
+}

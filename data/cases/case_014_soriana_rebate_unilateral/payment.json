@@ -1,0 +1,15 @@
+{
+  "payment_id": "PAY-CASE_014-E6CC",
+  "invoice_reference": "INV-CASE_014-1AE8",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "45196.00",
+  "deductions": [
+    {
+      "code": "REBATE-UNILATERAL",
+      "reason": "Rebate retroactivo de volumen retenido sin minuta de conciliación trimestral",
+      "amount": "9800.00",
+      "reference_doc": "DEL-CASE_014-CEC5"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "contract_id": "CTR-AMAZON_MX-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-AMAZON_MX",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-3.1",
+      "title": "Precios y Aceptación de Purchase Orders",
+      "text": "Los precios unitarios acordados en la Orden de Compra EDI 850 son vinculantes y no admiten recargos unilaterales.",
+      "policy": "STRICT_MATCH",
+      "tolerance_percentage": "0.00"
+    },
+    {
+      "clause_id": "CLAUSE-4.1",
+      "title": "Recepción en Muelle y Faltantes",
+      "text": "Toda discrepancia física de unidades debe constar en remisión con firma y sello oficial del jefe de muelle. Deducciones desatendidas sin acta circunstanciada quedan prohibidas.",
+      "policy": "SIGNED_DISCREPANCY_REQUIRED",
+      "tolerance_percentage": "0.00"
+    },
+    {
+      "clause_id": "CLAUSE-5.3",
+      "title": "Transmisión Electrónica ASN EDI 856",
+      "text": "El proveedor debe transmitir el ASN previo al arribo de la unidad. Si el ASN fue transmitido y cuenta con acuse EDI 997 exitoso, la penalización queda sin efecto.",
+      "policy": "EDI_997_CANCELLATION_RULE",
+      "tolerance_percentage": "0.00"
+    },
+    {
+      "clause_id": "CLAUSE-7.3",
+      "title": "Especificaciones de Etiquetado y Códigos de Barras",
+      "text": "Los bultos deben cumplir el estándar GS1-128. En caso de falla, Amazon podrá reetiquetar con cargo justificado de hasta $1,500.00 previo aviso.",
+      "policy": "CONDITIONAL_FEE",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "case_id": "case_001",
+  "category": "PHYSICAL_SHORTAGE",
+  "buyer_id": "RETAIL_GENERAL",
+  "buyer_name": "Retail General Corp",
+  "industry": "Consumo Masivo",
+  "currency": "USD",
+  "billed_amount": "9000.00",
+  "received_amount": "8200.00",
+  "difference": "-800.00",
+  "expected_justified_amount": "800.00",
+  "expected_claimable_amount": "0.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "PROD-002": "800.00"
+  },
+  "claimable_breakdown": {},
+  "required_clause_citations": [
+    "CLAUSE-4.2"
+  ],
+  "recommended_commercial_action": "ACCEPT_AND_CREDIT"
+}

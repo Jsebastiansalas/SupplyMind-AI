@@ -1,0 +1,16 @@
+{
+  "contract_id": "CTR-TRUPER_MX-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-TRUPER_MX",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-4.5",
+      "title": "Plazos Perentorios para Devoluciones Comerciales",
+      "text": "Toda devolución comercial por excedente de inventario o falta de rotación debe solicitarse por escrito dentro de los primeros 15 días posteriores a la entrega. Transcurrido dicho plazo, la venta se considera irrevocable.",
+      "policy": "NON_RETURNABLE_AFTER_15D",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

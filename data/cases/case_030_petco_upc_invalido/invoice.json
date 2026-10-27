@@ -1,0 +1,20 @@
+{
+  "invoice_id": "INV-CASE_030-7B67",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-PETCO_MX",
+  "po_reference": "PO-CASE_030-6091",
+  "issue_date": "2026-08-28",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-DOG-FOOD-15KG",
+      "description": "Alimento Súper Premium Salmón y Camote Perro Adulto 15kg",
+      "quantity": 500,
+      "unit_price": "58.00",
+      "total_price": "29000.00"
+    }
+  ],
+  "subtotal": "29000.00",
+  "tax": "0.00",
+  "total_amount": "29000.00"
+}

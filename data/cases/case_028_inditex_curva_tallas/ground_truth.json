@@ -1,0 +1,44 @@
+{
+  "case_id": "case_028_inditex_curva_tallas",
+  "category": "MIXED",
+  "buyer_id": "INDITEX_MX",
+  "buyer_name": "Inditex / Zara México",
+  "industry": "Moda Fast-Fashion",
+  "currency": "USD",
+  "billed_amount": "65000.00",
+  "received_amount": "42700.00",
+  "difference": "-22300.00",
+  "expected_justified_amount": "14000.00",
+  "expected_claimable_amount": "8300.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "DEMERITO-CURVA-TALLAS": "14000.00"
+  },
+  "claimable_breakdown": {
+    "PENALIZACION-NO-PACTADA": "8300.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-4.7"
+  ],
+  "recommended_commercial_action": "EMIT_CREDIT_NOTE_AND_RECOVERY_LETTER",
+  "deductions": [
+    {
+      "code": "DEMERITO-CURVA-TALLAS",
+      "amount": "14000.00",
+      "reason": "Demérito comercial justificado del 30% en piezas enviadas fuera de la matriz autorizada",
+      "is_justified": true,
+      "governing_clause_id": "CLAUSE-4.7",
+      "factual_basis": "Demérito comercial justificado del 30% en piezas enviadas fuera de la matriz autorizada",
+      "remedy_action": "ACCEPT_AND_CREDIT"
+    },
+    {
+      "code": "PENALIZACION-NO-PACTADA",
+      "amount": "8300.00",
+      "reason": "Cargo punitivo unilateral no contemplado en el contrato marco de confección",
+      "is_justified": false,
+      "governing_clause_id": "CLAUSE-4.7",
+      "factual_basis": "Cargo punitivo unilateral no contemplado en el contrato marco de confección",
+      "remedy_action": "REJECT_AND_CLAIM"
+    }
+  ]
+}

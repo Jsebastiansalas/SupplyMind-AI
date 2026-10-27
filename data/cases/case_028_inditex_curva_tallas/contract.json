@@ -1,0 +1,16 @@
+{
+  "contract_id": "CTR-INDITEX_MX-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-INDITEX_MX",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-4.7",
+      "title": "Exactitud de Matriz de Tallas y Distribución por Tienda",
+      "text": "La curva de tallas y colores debe respetarse al 100%. Las piezas enviadas fuera de la matriz solicitada podrán devolverse o aplicarse un demérito del 30% sobre el precio de factura.",
+      "policy": "EXACT_SIZE_CURVE_REQUIRED",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

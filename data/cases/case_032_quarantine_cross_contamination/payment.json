@@ -1,0 +1,15 @@
+{
+  "payment_id": "PAY-CASE_032-9993",
+  "invoice_reference": "INV-CASE_032-D907",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "5000.00",
+  "deductions": [
+    {
+      "code": "DED-CROSS-CONTAMINATION",
+      "reason": "Retención por expediente contaminado con documentos de otro corporativo",
+      "amount": "4000.00",
+      "reference_doc": "DEL-CASE_032-3D71"
+    }
+  ]
+}

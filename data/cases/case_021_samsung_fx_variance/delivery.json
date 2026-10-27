@@ -1,0 +1,19 @@
+{
+  "delivery_id": "DEL-CASE_021-075B",
+  "po_reference": "PO-CASE_021-A41F",
+  "delivery_date": "2026-09-02",
+  "received_by": "Ing. Jin Woo Park (SCM Director)",
+  "warehouse_location": "CEDIS Tepotzotlán Electronics Muelle 16",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-OLED-65-4K",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibido de conformidad en CEDIS Tepotzotlán"
+    }
+  ]
+}

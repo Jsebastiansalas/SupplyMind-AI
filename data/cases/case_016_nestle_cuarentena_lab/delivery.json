@@ -1,0 +1,27 @@
+{
+  "delivery_id": "DEL-CASE_016-9C21",
+  "po_reference": "PO-CASE_016-19BA",
+  "delivery_date": "2026-09-02",
+  "received_by": "Ing. Héctor Salavarría (Director de Calidad y Copacking)",
+  "warehouse_location": "CEDIS Nacional Nestlé Tultitlán Muelle 9",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-COCOA-POWDER-25KG",
+      "quantity_delivered": 500,
+      "quantity_received": 500,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibido en CEDIS Nacional Nestlé Tultitlán Muelle 9"
+    },
+    {
+      "item_id": "SKU-CEREAL-FLAKES-10KG",
+      "quantity_delivered": 333,
+      "quantity_received": 333,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Ingresado a silo de manufactura"
+    }
+  ]
+}

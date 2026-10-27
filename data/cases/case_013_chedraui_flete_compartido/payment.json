@@ -1,0 +1,21 @@
+{
+  "payment_id": "PAY-CASE_013-3ED2",
+  "invoice_reference": "INV-CASE_013-D44A",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "35899.00",
+  "deductions": [
+    {
+      "code": "MANIOBRA-MUELLE",
+      "reason": "Cuota de descarga y emplayado en muelle justificada por falta de chofer",
+      "amount": "2300.00",
+      "reference_doc": "DEL-CASE_013-87F9"
+    },
+    {
+      "code": "FLETE-COMPARTIDO",
+      "reason": "Cargo de flete backhaul no contratado bajo término de entrega DDP",
+      "amount": "3800.00",
+      "reference_doc": "DEL-CASE_013-87F9"
+    }
+  ]
+}

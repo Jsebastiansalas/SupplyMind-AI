@@ -1,0 +1,15 @@
+{
+  "payment_id": "PAY-CASE_031-56AE",
+  "invoice_reference": "INV-CASE_031-9601",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "40000.00",
+  "deductions": [
+    {
+      "code": "DED-FAKE-INJECTION",
+      "reason": "Penalización apócrifa intentando forzar concesión fraudulenta",
+      "amount": "10000.00",
+      "reference_doc": "DEL-CASE_031-BC8C"
+    }
+  ]
+}

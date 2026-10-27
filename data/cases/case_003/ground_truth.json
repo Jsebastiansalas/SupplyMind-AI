@@ -1,0 +1,22 @@
+{
+  "case_id": "case_003",
+  "category": "PRICE_MISMATCH",
+  "buyer_id": "DISTRIBUIDOR_MAYORISTA",
+  "buyer_name": "Distribuidor Mayorista",
+  "industry": "Alimentos Secos",
+  "currency": "USD",
+  "billed_amount": "15000.00",
+  "received_amount": "12000.00",
+  "difference": "-3000.00",
+  "expected_justified_amount": "3000.00",
+  "expected_claimable_amount": "0.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "DED-PRICE-ADJUSTMENT": "3000.00"
+  },
+  "claimable_breakdown": {},
+  "required_clause_citations": [
+    "CLAUSE-3.1"
+  ],
+  "recommended_commercial_action": "ACCEPT_AND_CREDIT"
+}

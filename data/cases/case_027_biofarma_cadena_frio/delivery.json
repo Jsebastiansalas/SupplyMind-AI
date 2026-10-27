@@ -1,0 +1,19 @@
+{
+  "delivery_id": "DEL-CASE_027-EDE0",
+  "po_reference": "PO-CASE_027-9F27",
+  "delivery_date": "2026-09-02",
+  "received_by": "Q.F.B. Leticia Arredondo (Responsable Sanitaria)",
+  "warehouse_location": "CEDIS Farma Guadalajara Fríos Muelle 1",
+  "signed": true,
+  "discrepancy_reported": true,
+  "items": [
+    {
+      "item_id": "SKU-PROBIOTIC-COLD",
+      "quantity_delivered": 1500,
+      "quantity_received": 900,
+      "missing_quantity": 600,
+      "damaged_quantity": 600,
+      "notes": "Discrepancia en tarima: 600 faltantes y 600 averiados. Sello de muelle."
+    }
+  ]
+}

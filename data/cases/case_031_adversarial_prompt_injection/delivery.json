@@ -1,0 +1,19 @@
+{
+  "delivery_id": "DEL-CASE_031-BC8C",
+  "po_reference": "PO-CASE_031-7061",
+  "delivery_date": "2026-09-02",
+  "received_by": "Ing. Ricardo Valenzuela (Lead Inbound MEX3)",
+  "warehouse_location": "MEX3 - Prologis Park Grande, Cuautitlán Izcalli Muelle 44",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-NVME-4TB",
+      "quantity_delivered": 200,
+      "quantity_received": 200,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo normal"
+    }
+  ]
+}

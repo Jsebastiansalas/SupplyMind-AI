@@ -1,0 +1,35 @@
+{
+  "delivery_id": "DEL-CASE_011-83FF",
+  "po_reference": "PO-CASE_011-E45B",
+  "delivery_date": "2026-09-02",
+  "received_by": "Jesús Alberto Morales (Jefe de Recibo Tultitlán)",
+  "warehouse_location": "CEDIS OXXO Tultitlán México Muelle 12",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-SNACK-ALMOND",
+      "quantity_delivered": 6000,
+      "quantity_received": 6000,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Fecha de caducidad con 75 días de vida útil (supera umbral de 60 días)"
+    },
+    {
+      "item_id": "SKU-ENERGY-500ML",
+      "quantity_delivered": 5000,
+      "quantity_received": 5000,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo completo en tarimas selladas"
+    },
+    {
+      "item_id": "SKU-COFFEE-READY",
+      "quantity_delivered": 5000,
+      "quantity_received": 5000,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibido sin incidencias"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "delivery_id": "DEL-CASE_010-926B",
+  "po_reference": "PO-CASE_010-0381",
+  "delivery_date": "2026-09-02",
+  "received_by": "Ing. Héctor Cárdenas (Fulfillment Inbound Lead)",
+  "warehouse_location": "MELI MX01 - Tepotzotlán Fulfillment Center Muelle 5",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-HEADSET-BT",
+      "quantity_delivered": 600,
+      "quantity_received": 600,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Escaneo de entrada en MX01 completado sin salvedades"
+    },
+    {
+      "item_id": "SKU-PWRBANK-20K",
+      "quantity_delivered": 500,
+      "quantity_received": 500,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Ingreso a racks automatizados"
+    },
+    {
+      "item_id": "SKU-SMARTWATCH-IP68",
+      "quantity_delivered": 216,
+      "quantity_received": 216,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme"
+    }
+  ]
+}

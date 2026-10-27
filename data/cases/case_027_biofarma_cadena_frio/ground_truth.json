@@ -1,0 +1,33 @@
+{
+  "case_id": "case_027_biofarma_cadena_frio",
+  "category": "DAMAGED_GOODS",
+  "buyer_id": "BIOFARMA_MX",
+  "buyer_name": "Biofarma Labs",
+  "industry": "Farmacéutica & Suplementos",
+  "currency": "USD",
+  "billed_amount": "42000.00",
+  "received_amount": "25200.00",
+  "difference": "-16800.00",
+  "expected_justified_amount": "16800.00",
+  "expected_claimable_amount": "0.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "RECALL-TEMP-BREAK": "16800.00"
+  },
+  "claimable_breakdown": {},
+  "required_clause_citations": [
+    "CLAUSE-3.2"
+  ],
+  "recommended_commercial_action": "ACCEPT_AND_CREDIT",
+  "deductions": [
+    {
+      "code": "RECALL-TEMP-BREAK",
+      "amount": "16800.00",
+      "reason": "Rechazo justificado y destrucción sanitaria por excursión térmica comprobada en termógrafo",
+      "is_justified": true,
+      "governing_clause_id": "CLAUSE-3.2",
+      "factual_basis": "Rechazo justificado y destrucción sanitaria por excursión térmica comprobada en termógrafo",
+      "remedy_action": "ACCEPT_AND_CREDIT"
+    }
+  ]
+}

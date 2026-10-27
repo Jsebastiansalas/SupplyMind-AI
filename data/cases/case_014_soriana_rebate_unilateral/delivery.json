@@ -1,0 +1,27 @@
+{
+  "delivery_id": "DEL-CASE_014-CEC5",
+  "po_reference": "PO-CASE_014-6642",
+  "delivery_date": "2026-09-02",
+  "received_by": "C.P. Esteban Zambrano (Auditor de Cuentas por Cobrar)",
+  "warehouse_location": "CEDIS Soriana Cuautitlán Secos Muelle 10",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-DETERGENT-5L",
+      "quantity_delivered": 3000,
+      "quantity_received": 3000,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibido conforme en CEDIS Cuautitlán Secos"
+    },
+    {
+      "item_id": "SKU-CLEANER-FLR",
+      "quantity_delivered": 4270,
+      "quantity_received": 4270,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo a entera satisfacción"
+    }
+  ]
+}

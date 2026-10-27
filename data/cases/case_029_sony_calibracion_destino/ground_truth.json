@@ -1,0 +1,44 @@
+{
+  "case_id": "case_029_sony_calibracion_destino",
+  "category": "MIXED",
+  "buyer_id": "SONY_MX",
+  "buyer_name": "Sony México",
+  "industry": "Electrónica Profesional & Dispositivos",
+  "currency": "USD",
+  "billed_amount": "76000.00",
+  "received_amount": "38000.00",
+  "difference": "-38000.00",
+  "expected_justified_amount": "14000.00",
+  "expected_claimable_amount": "24000.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "SEGURO-TRASLADO-JUST": "14000.00"
+  },
+  "claimable_breakdown": {
+    "RET-CALIBRACION": "24000.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-7.8"
+  ],
+  "recommended_commercial_action": "EMIT_CREDIT_NOTE_AND_RECOVERY_LETTER",
+  "deductions": [
+    {
+      "code": "SEGURO-TRASLADO-JUST",
+      "amount": "14000.00",
+      "reason": "Prima de seguro de tránsito especializado de alto valor debidamente convenida",
+      "is_justified": true,
+      "governing_clause_id": "CLAUSE-7.8",
+      "factual_basis": "Prima de seguro de tránsito especializado de alto valor debidamente convenida",
+      "remedy_action": "ACCEPT_AND_CREDIT"
+    },
+    {
+      "code": "RET-CALIBRACION",
+      "amount": "24000.00",
+      "reason": "Retención indebida por re-calibración en destino cuando se entregó certificado de origen",
+      "is_justified": false,
+      "governing_clause_id": "CLAUSE-7.8",
+      "factual_basis": "Retención indebida por re-calibración en destino cuando se entregó certificado de origen",
+      "remedy_action": "REJECT_AND_CLAIM"
+    }
+  ]
+}

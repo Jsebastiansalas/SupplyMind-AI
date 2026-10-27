@@ -1,0 +1,45 @@
+{
+  "case_id": "case_035_mega_multimodal_60_skus",
+  "category": "MIXED",
+  "buyer_id": "AMAZON_MX",
+  "buyer_name": "Amazon México",
+  "industry": "E-Commerce & Cloud Logistics",
+  "currency": "USD",
+  "billed_amount": "120000.00",
+  "received_amount": "0.00",
+  "difference": "-120000.00",
+  "expected_justified_amount": "85000.00",
+  "expected_claimable_amount": "35000.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "REBATE-ANUAL-CONVENIDO": "85000.00"
+  },
+  "claimable_breakdown": {
+    "RETENCION-UNILATERAL-EDI": "35000.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-3.1",
+    "CLAUSE-5.3"
+  ],
+  "recommended_commercial_action": "EMIT_CREDIT_NOTE_AND_RECOVERY_LETTER",
+  "deductions": [
+    {
+      "code": "REBATE-ANUAL-CONVENIDO",
+      "amount": "85000.00",
+      "reason": "Bonificación anual pactada por volumen sobre los 60 SKUs del contrato marco",
+      "is_justified": true,
+      "governing_clause_id": "CLAUSE-3.1",
+      "factual_basis": "Bonificación anual pactada por volumen sobre los 60 SKUs del contrato marco",
+      "remedy_action": "ACCEPT_AND_CREDIT"
+    },
+    {
+      "code": "RETENCION-UNILATERAL-EDI",
+      "amount": "35000.00",
+      "reason": "Penalización unilateral por supuesto retardo en transmisión ASN consolidado",
+      "is_justified": false,
+      "governing_clause_id": "CLAUSE-5.3",
+      "factual_basis": "Penalización unilateral por supuesto retardo en transmisión ASN consolidado",
+      "remedy_action": "REJECT_AND_CLAIM"
+    }
+  ]
+}

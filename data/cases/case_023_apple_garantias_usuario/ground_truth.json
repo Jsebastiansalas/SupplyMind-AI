@@ -1,0 +1,44 @@
+{
+  "case_id": "case_023_apple_garantias_usuario",
+  "category": "MIXED",
+  "buyer_id": "APPLE_MX",
+  "buyer_name": "Apple Retail México",
+  "industry": "Tecnología Premium",
+  "currency": "USD",
+  "billed_amount": "98000.00",
+  "received_amount": "46000.00",
+  "difference": "-52000.00",
+  "expected_justified_amount": "18000.00",
+  "expected_claimable_amount": "34000.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "RMA-DICTAMEN-LAB": "18000.00"
+  },
+  "claimable_breakdown": {
+    "RET-GARANTIAS-DEFECT": "34000.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-9.1"
+  ],
+  "recommended_commercial_action": "EMIT_CREDIT_NOTE_AND_RECOVERY_LETTER",
+  "deductions": [
+    {
+      "code": "RMA-DICTAMEN-LAB",
+      "amount": "18000.00",
+      "reason": "Devolución respaldada por dictamen técnico de laboratorio por defecto de manufactura en 18 unidades",
+      "is_justified": true,
+      "governing_clause_id": "CLAUSE-9.1",
+      "factual_basis": "Devolución respaldada por dictamen técnico de laboratorio por defecto de manufactura en 18 unidades",
+      "remedy_action": "ACCEPT_AND_CREDIT"
+    },
+    {
+      "code": "RET-GARANTIAS-DEFECT",
+      "amount": "34000.00",
+      "reason": "Retención monetaria unilateral por devoluciones de clientes en tienda sin peritaje técnico de fábrica",
+      "is_justified": false,
+      "governing_clause_id": "CLAUSE-9.1",
+      "factual_basis": "Retención monetaria unilateral por devoluciones de clientes en tienda sin peritaje técnico de fábrica",
+      "remedy_action": "REJECT_AND_CLAIM"
+    }
+  ]
+}

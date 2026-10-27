@@ -1,0 +1,24 @@
+{
+  "case_id": "case_004_enterprise",
+  "category": "COMPOUND_MIXED",
+  "buyer_id": "ENTERPRISE_B2B",
+  "buyer_name": "Mega Cloud Retail Corp",
+  "industry": "Infraestructura IT",
+  "currency": "USD",
+  "billed_amount": "50000.00",
+  "received_amount": "42500.00",
+  "difference": "-7500.00",
+  "expected_justified_amount": "5000.00",
+  "expected_claimable_amount": "2500.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "SRV-X9-DAMAGE": "5000.00"
+  },
+  "claimable_breakdown": {
+    "DED-EXCESS-PENALTY": "2500.00"
+  },
+  "required_clause_citations": [
+    "Clausula-37"
+  ],
+  "recommended_commercial_action": "EMIT_CREDIT_NOTE_AND_RECOVERY_LETTER"
+}

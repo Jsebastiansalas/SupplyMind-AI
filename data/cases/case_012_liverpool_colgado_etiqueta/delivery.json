@@ -1,0 +1,35 @@
+{
+  "delivery_id": "DEL-CASE_012-E27A",
+  "po_reference": "PO-CASE_012-0F99",
+  "delivery_date": "2026-09-02",
+  "received_by": "Lic. Fernando Montes (Director de Operaciones PLAN)",
+  "warehouse_location": "PLAN - Plataforma Logística Arco Norte Muelle 35",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-SHIRT-OXFORD",
+      "quantity_delivered": 800,
+      "quantity_received": 800,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Entregado en ganchos estándar"
+    },
+    {
+      "item_id": "SKU-JEANS-SLIM",
+      "quantity_delivered": 600,
+      "quantity_received": 600,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Alarma de seguridad verificada"
+    },
+    {
+      "item_id": "SKU-JACKET-WIND",
+      "quantity_delivered": 217,
+      "quantity_received": 217,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme"
+    }
+  ]
+}

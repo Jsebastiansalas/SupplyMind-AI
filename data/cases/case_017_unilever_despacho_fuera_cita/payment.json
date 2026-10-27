@@ -1,0 +1,21 @@
+{
+  "payment_id": "PAY-CASE_017-296D",
+  "invoice_reference": "INV-CASE_017-8F57",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "38478.00",
+  "deductions": [
+    {
+      "code": "MANIOBRA-ESPECIAL",
+      "reason": "Cargo por desestiba y reacomodo de tarimas desalineadas con firma de transportista",
+      "amount": "6000.00",
+      "reference_doc": "DEL-CASE_017-DF8B"
+    },
+    {
+      "code": "OTIF-DESPACHO-TARDIO",
+      "reason": "Penalización improcedente por retraso imputable a fuerza mayor comprobada",
+      "amount": "5500.00",
+      "reference_doc": "DEL-CASE_017-DF8B"
+    }
+  ]
+}

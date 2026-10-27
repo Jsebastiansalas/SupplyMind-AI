@@ -1,0 +1,17 @@
+{
+  "payment_id": "PAY-CASE_034-BD88",
+  "invoice_reference": "INV-CASE_034-5841",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "11500.00",
+  "deductions": [
+    // trailing comma injected for test
+
+    {
+      "code": "DED-PRICE-CORRUPT",
+      "reason": "Deducción de precio de compraventa",
+      "amount": "2500.00",
+      "reference_doc": "DEL-CASE_034-FB56"
+    },
+  ]
+}

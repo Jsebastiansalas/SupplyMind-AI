@@ -1,0 +1,30 @@
+{
+  "contract_id": "CTR-WALMART_MX-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-WALMART_MX",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-3.1",
+      "title": "Firmeza de Precios de Orden de Compra",
+      "text": "Los precios unitarios acordados en la orden de compra son inmodificables salvo convenio firmado por la Dirección Comercial.",
+      "policy": "STRICT_PRICE",
+      "tolerance_percentage": "0.00"
+    },
+    {
+      "clause_id": "CLAUSE-4.2",
+      "title": "Inspección Física y Finiquito en Muelle",
+      "text": "La recepción física en muelle constituye prueba plena de la cantidad recibida. Reclamaciones posteriores por faltantes sin acta de despaletizado conjunto son improcedentes.",
+      "policy": "DOCK_RECEIPT_FINAL",
+      "tolerance_percentage": "0.00"
+    },
+    {
+      "clause_id": "CLAUSE-7.2",
+      "title": "Ventana y Condiciones de Pronto Pago",
+      "text": "El descuento por pronto pago del 2% es aplicable EXCLUSIVAMENTE si la liquidación bancaria se ejecuta dentro de los primeros 15 días naturales posteriores al timbrado.",
+      "policy": "EARLY_PAYMENT_WINDOW_15D",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

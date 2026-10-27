@@ -1,0 +1,16 @@
+{
+  "contract_id": "CTR-APPLE_MX-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-APPLE_MX",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-9.1",
+      "title": "Garantías de Consumo y Devoluciones de Clientes",
+      "text": "Las retenciones por garantía exigen la devolución física de la unidad para dictamen del laboratorio autorizado dentro de 30 días naturales. Sin peritaje no procede deducción económica.",
+      "policy": "LAB_DIAGNOSTIC_REQUIRED",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "delivery_id": "DEL-CASE_019-A276",
+  "po_reference": "PO-CASE_019-724B",
+  "delivery_date": "2026-09-02",
+  "received_by": "Ing. Manuel Palacios (Auditor General de Tiendas)",
+  "warehouse_location": "CEDIS Sanborns Vallejo Muelle 4",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-CHOCOLATE-TIN-300G",
+      "quantity_delivered": 2000,
+      "quantity_received": 2000,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibido de conformidad en CEDIS Sanborns Vallejo Muelle 4"
+    }
+  ]
+}

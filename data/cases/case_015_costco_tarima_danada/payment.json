@@ -1,0 +1,21 @@
+{
+  "payment_id": "PAY-CASE_015-AAC0",
+  "invoice_reference": "INV-CASE_015-D7F7",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "50792.00",
+  "deductions": [
+    {
+      "code": "MERMA-AVARIA-FISICA",
+      "reason": "Deducción por 513 piezas dañadas en tarima amparadas en remisión con acta de merma",
+      "amount": "10000.00",
+      "reference_doc": "DEL-CASE_015-A6B6"
+    },
+    {
+      "code": "PALLET-DAMAGE",
+      "reason": "Cargo por reposición de tarima cuando el flete fue contratado por Costco (responsabilidad de transportista)",
+      "amount": "4200.00",
+      "reference_doc": "DEL-CASE_015-A6B6"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "payment_id": "PAY-CASE_022-4DC1",
+  "invoice_reference": "INV-CASE_022-13F1",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "57000.00",
+  "deductions": [
+    {
+      "code": "INCOTERM-FOB-LOSS",
+      "reason": "Deducción unilateral por siniestro marítimo cuando el riesgo se transfirió a bordo en puerto de origen",
+      "amount": "28000.00",
+      "reference_doc": "DEL-CASE_022-E915"
+    }
+  ]
+}

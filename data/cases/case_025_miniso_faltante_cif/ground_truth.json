@@ -1,0 +1,44 @@
+{
+  "case_id": "case_025_miniso_faltante_cif",
+  "category": "MIXED",
+  "buyer_id": "MINISO_MX",
+  "buyer_name": "Miniso México",
+  "industry": "Retail Variedades & Novedades",
+  "currency": "USD",
+  "billed_amount": "35000.00",
+  "received_amount": "27200.00",
+  "difference": "-7800.00",
+  "expected_justified_amount": "5000.00",
+  "expected_claimable_amount": "2800.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "DESESTIBA-CONTENEDOR": "5000.00"
+  },
+  "claimable_breakdown": {
+    "FALTANTE-MARITIMO-CIF": "2800.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-3.6"
+  ],
+  "recommended_commercial_action": "EMIT_CREDIT_NOTE_AND_RECOVERY_LETTER",
+  "deductions": [
+    {
+      "code": "DESESTIBA-CONTENEDOR",
+      "amount": "5000.00",
+      "reason": "Servicio de desestiba y paletizado acordado por carga suelta en contenedor",
+      "is_justified": true,
+      "governing_clause_id": "CLAUSE-3.6",
+      "factual_basis": "Servicio de desestiba y paletizado acordado por carga suelta en contenedor",
+      "remedy_action": "ACCEPT_AND_CREDIT"
+    },
+    {
+      "code": "FALTANTE-MARITIMO-CIF",
+      "amount": "2800.00",
+      "reason": "Deducción indebida por faltante cuando el contenedor arribó con precinto C-TPAT intacto",
+      "is_justified": false,
+      "governing_clause_id": "CLAUSE-3.6",
+      "factual_basis": "Deducción indebida por faltante cuando el contenedor arribó con precinto C-TPAT intacto",
+      "remedy_action": "REJECT_AND_CLAIM"
+    }
+  ]
+}

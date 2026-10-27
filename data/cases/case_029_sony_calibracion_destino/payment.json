@@ -1,0 +1,21 @@
+{
+  "payment_id": "PAY-CASE_029-4926",
+  "invoice_reference": "INV-CASE_029-B1CC",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "38000.00",
+  "deductions": [
+    {
+      "code": "SEGURO-TRASLADO-JUST",
+      "reason": "Prima de seguro de tránsito especializado de alto valor debidamente convenida",
+      "amount": "14000.00",
+      "reference_doc": "DEL-CASE_029-CC04"
+    },
+    {
+      "code": "RET-CALIBRACION",
+      "reason": "Retención indebida por re-calibración en destino cuando se entregó certificado de origen",
+      "amount": "24000.00",
+      "reference_doc": "DEL-CASE_029-CC04"
+    }
+  ]
+}

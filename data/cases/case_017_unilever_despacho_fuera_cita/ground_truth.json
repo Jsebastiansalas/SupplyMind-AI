@@ -1,0 +1,44 @@
+{
+  "case_id": "case_017_unilever_despacho_fuera_cita",
+  "category": "MIXED",
+  "buyer_id": "UNILEVER_MX",
+  "buyer_name": "Unilever México",
+  "industry": "Cuidado Personal & Belleza",
+  "currency": "USD",
+  "billed_amount": "49978.00",
+  "received_amount": "38478.00",
+  "difference": "-11500.00",
+  "expected_justified_amount": "6000.00",
+  "expected_claimable_amount": "5500.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "MANIOBRA-ESPECIAL": "6000.00"
+  },
+  "claimable_breakdown": {
+    "OTIF-DESPACHO-TARDIO": "5500.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-4.8"
+  ],
+  "recommended_commercial_action": "EMIT_CREDIT_NOTE_AND_RECOVERY_LETTER",
+  "deductions": [
+    {
+      "code": "MANIOBRA-ESPECIAL",
+      "amount": "6000.00",
+      "reason": "Cargo por desestiba y reacomodo de tarimas desalineadas con firma de transportista",
+      "is_justified": true,
+      "governing_clause_id": "CLAUSE-4.8",
+      "factual_basis": "Cargo por desestiba y reacomodo de tarimas desalineadas con firma de transportista",
+      "remedy_action": "ACCEPT_AND_CREDIT"
+    },
+    {
+      "code": "OTIF-DESPACHO-TARDIO",
+      "amount": "5500.00",
+      "reason": "Penalización improcedente por retraso imputable a fuerza mayor comprobada",
+      "is_justified": false,
+      "governing_clause_id": "CLAUSE-4.8",
+      "factual_basis": "Penalización improcedente por retraso imputable a fuerza mayor comprobada",
+      "remedy_action": "REJECT_AND_CLAIM"
+    }
+  ]
+}

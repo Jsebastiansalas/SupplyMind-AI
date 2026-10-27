@@ -1,0 +1,44 @@
+{
+  "case_id": "case_016_nestle_cuarentena_lab",
+  "category": "MIXED",
+  "buyer_id": "NESTLE_MX",
+  "buyer_name": "Nestlé Alimentos & Bebidas",
+  "industry": "Alimentos & Consumo Masivo",
+  "currency": "USD",
+  "billed_amount": "74985.00",
+  "received_amount": "53985.00",
+  "difference": "-21000.00",
+  "expected_justified_amount": "14000.00",
+  "expected_claimable_amount": "7000.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "CUARENTENA-LAB": "14000.00"
+  },
+  "claimable_breakdown": {
+    "PENALIZACION-PARO-LINEA": "7000.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-6.3"
+  ],
+  "recommended_commercial_action": "EMIT_CREDIT_NOTE_AND_RECOVERY_LETTER",
+  "deductions": [
+    {
+      "code": "CUARENTENA-LAB",
+      "amount": "14000.00",
+      "reason": "Retención justificada por lote con recuento microbiológico fuera de rango en laboratorio",
+      "is_justified": true,
+      "governing_clause_id": "CLAUSE-6.3",
+      "factual_basis": "Retención justificada por lote con recuento microbiológico fuera de rango en laboratorio",
+      "remedy_action": "ACCEPT_AND_CREDIT"
+    },
+    {
+      "code": "PENALIZACION-PARO-LINEA",
+      "amount": "7000.00",
+      "reason": "Penalización unilateral por paro de línea excluida expresamente por contrato",
+      "is_justified": false,
+      "governing_clause_id": "CLAUSE-6.3",
+      "factual_basis": "Penalización unilateral por paro de línea excluida expresamente por contrato",
+      "remedy_action": "REJECT_AND_CLAIM"
+    }
+  ]
+}

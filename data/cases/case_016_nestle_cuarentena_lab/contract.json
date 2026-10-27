@@ -1,0 +1,16 @@
+{
+  "contract_id": "CTR-NESTLE_MX-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-NESTLE_MX",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-6.3",
+      "title": "Protocolos Sanitarios y Exclusión de Daños Indirectos",
+      "text": "Los lotes no conformes en laboratorio serán objeto de nota de crédito por su valor facturado. Queda expresamente excluida cualquier indemnización por lucro cesante o paro de línea.",
+      "policy": "EXCLUSION_CONSEQUENTIAL_DAMAGES",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

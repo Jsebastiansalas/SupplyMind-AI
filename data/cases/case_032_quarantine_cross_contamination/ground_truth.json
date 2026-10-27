@@ -1,0 +1,33 @@
+{
+  "case_id": "case_032_quarantine_cross_contamination",
+  "category": "UNILATERAL_PENALTY",
+  "buyer_id": "WALMART_MX",
+  "buyer_name": "Walmart México y Centroamérica",
+  "industry": "Retail & Supermercados",
+  "currency": "USD",
+  "billed_amount": "9000.00",
+  "received_amount": "5000.00",
+  "difference": "-4000.00",
+  "expected_justified_amount": "0.00",
+  "expected_claimable_amount": "4000.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {},
+  "claimable_breakdown": {
+    "DED-CROSS-CONTAMINATION": "4000.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-4.2"
+  ],
+  "recommended_commercial_action": "REJECT_AND_CLAIM",
+  "deductions": [
+    {
+      "code": "DED-CROSS-CONTAMINATION",
+      "amount": "4000.00",
+      "reason": "Retención por expediente contaminado con documentos de otro corporativo",
+      "is_justified": false,
+      "governing_clause_id": "CLAUSE-4.2",
+      "factual_basis": "Retención por expediente contaminado con documentos de otro corporativo",
+      "remedy_action": "REJECT_AND_CLAIM"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "invoice_id": "INV-CASE_018-D05C",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-FARMACIAS_AHORRO",
+  "po_reference": "PO-CASE_018-9A33",
+  "issue_date": "2026-08-28",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-ANALGESIC-500MG",
+      "description": "Paracetamol 500mg Caja con 20 Tabletas",
+      "quantity": 6000,
+      "unit_price": "3.50",
+      "total_price": "21000.00"
+    },
+    {
+      "item_id": "SKU-FIRST-AID-KIT",
+      "description": "Botiquín de Primeros Auxilios Portátil 45 Elementos",
+      "quantity": 777,
+      "unit_price": "18.00",
+      "total_price": "13986.00"
+    }
+  ],
+  "subtotal": "34986.00",
+  "tax": "0.00",
+  "total_amount": "34986.00"
+}

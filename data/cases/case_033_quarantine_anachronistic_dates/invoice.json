@@ -1,0 +1,20 @@
+{
+  "invoice_id": "INV-CASE_033-B6A8",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-WALMART_MX",
+  "po_reference": "PO-CASE_033-F98E",
+  "issue_date": "2026-09-15",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-BAR-OAT-24PK",
+      "description": "Caja Barras Avena Integral con Chía 24x40g",
+      "quantity": 1000,
+      "unit_price": "18.50",
+      "total_price": "18500.00"
+    }
+  ],
+  "subtotal": "18500.00",
+  "tax": "0.00",
+  "total_amount": "18500.00"
+}

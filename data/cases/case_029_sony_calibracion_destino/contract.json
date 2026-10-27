@@ -1,0 +1,16 @@
+{
+  "contract_id": "CTR-SONY_MX-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-SONY_MX",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-7.8",
+      "title": "Certificados de Calibración de Origen",
+      "text": "Los equipos de grado profesional o médico acompañados de certificado de calibración individual de fábrica serán recibidos sin costo adicional de re-calibración en muelle.",
+      "policy": "FACTORY_CALIBRATION_RECOGNIZED",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

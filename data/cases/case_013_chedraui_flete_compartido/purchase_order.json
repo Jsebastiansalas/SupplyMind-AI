@@ -1,0 +1,31 @@
+{
+  "po_id": "PO-CASE_013-46A1",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-CHEDRAUI_MX",
+  "order_date": "2026-08-20",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-RICE-10KG",
+      "description": "Saco Arroz Grano Extra Blanco 10kg",
+      "ordered_quantity": 1500,
+      "agreed_unit_price": "14.00",
+      "total_price": "21000.00"
+    },
+    {
+      "item_id": "SKU-BEANS-900G",
+      "description": "Bolsa Frijol Negro San Luis 900g",
+      "ordered_quantity": 5000,
+      "agreed_unit_price": "1.80",
+      "total_price": "9000.00"
+    },
+    {
+      "item_id": "SKU-SUGAR-5KG",
+      "description": "Bolsa Azúcar Estándar Caña 5kg",
+      "ordered_quantity": 1846,
+      "agreed_unit_price": "6.50",
+      "total_price": "11999.00"
+    }
+  ],
+  "total_amount": "41999.00"
+}

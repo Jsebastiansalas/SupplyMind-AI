@@ -1,0 +1,24 @@
+{
+  "po_id": "PO-CASE_017-D75E",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-UNILEVER_MX",
+  "order_date": "2026-08-20",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-SHAMPOO-BOT-400ML",
+      "description": "Botella Shampoo Reparación Intensiva 400ml Caja 24pz",
+      "ordered_quantity": 700,
+      "agreed_unit_price": "48.00",
+      "total_price": "33600.00"
+    },
+    {
+      "item_id": "SKU-SOAP-BAR-3PK",
+      "description": "Jabón Humectante Barra 3x135g Caja 36pz",
+      "ordered_quantity": 431,
+      "agreed_unit_price": "38.00",
+      "total_price": "16378.00"
+    }
+  ],
+  "total_amount": "49978.00"
+}

@@ -1,0 +1,491 @@
+{
+  "delivery_id": "DEL-CASE_035-2BA8",
+  "po_reference": "PO-CASE_035-AD93",
+  "delivery_date": "2026-09-02",
+  "received_by": "Ing. Ricardo Valenzuela (Lead Inbound MEX3)",
+  "warehouse_location": "MEX3 - Prologis Park Grande, Cuautitlán Izcalli Muelle 44",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-MULTI-001",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-002",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-003",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-004",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-005",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-006",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-007",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-008",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-009",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-010",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-011",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-012",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-013",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-014",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-015",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-016",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-017",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-018",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-019",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-020",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-021",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-022",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-023",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-024",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-025",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-026",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-027",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-028",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-029",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-030",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-031",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-032",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-033",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-034",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-035",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-036",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-037",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-038",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-039",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-040",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-041",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-042",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-043",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-044",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-045",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-046",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-047",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-048",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-049",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-050",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-051",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-052",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-053",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-054",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-055",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-056",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-057",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-058",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-059",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    },
+    {
+      "item_id": "SKU-MULTI-060",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme en centro logístico multimodal"
+    }
+  ]
+}

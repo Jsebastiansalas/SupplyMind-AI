@@ -1,0 +1,31 @@
+{
+  "po_id": "PO-CASE_012-0F99",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-LIVERPOOL_MX",
+  "order_date": "2026-08-20",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-SHIRT-OXFORD",
+      "description": "Camisa Casual Manga Larga Oxford Algodón",
+      "ordered_quantity": 800,
+      "agreed_unit_price": "35.00",
+      "total_price": "28000.00"
+    },
+    {
+      "item_id": "SKU-JEANS-SLIM",
+      "description": "Pantalón Denim Jeans Corte Slim Fit",
+      "ordered_quantity": 600,
+      "agreed_unit_price": "42.00",
+      "total_price": "25200.00"
+    },
+    {
+      "item_id": "SKU-JACKET-WIND",
+      "description": "Chamarra Rompevientos Térmica Impermeable",
+      "ordered_quantity": 217,
+      "agreed_unit_price": "68.00",
+      "total_price": "14756.00"
+    }
+  ],
+  "total_amount": "67956.00"
+}

@@ -1,0 +1,21 @@
+{
+  "payment_id": "PAY-CASE_030-F5C7",
+  "invoice_reference": "INV-CASE_030-7B67",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "23100.00",
+  "deductions": [
+    {
+      "code": "MANIOBRA-REPALETIZADO",
+      "reason": "Costo comprobado de maniobra por tarima desfasada en descarga",
+      "amount": "3000.00",
+      "reference_doc": "DEL-CASE_030-6A97"
+    },
+    {
+      "code": "LABELING-UPC-BARCODE",
+      "reason": "Multa indebida por código UPC cuando el embalaje secundario tenía código ITF-14 legible",
+      "amount": "2900.00",
+      "reference_doc": "DEL-CASE_030-6A97"
+    }
+  ]
+}

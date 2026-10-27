@@ -1,0 +1,20 @@
+{
+  "invoice_id": "INV-CASE_023-0456",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-APPLE_MX",
+  "po_reference": "PO-CASE_023-7520",
+  "issue_date": "2026-08-28",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-PHONE-PRO-256",
+      "description": "Smartphone Pro 256GB Titanio Natural",
+      "quantity": 100,
+      "unit_price": "980.00",
+      "total_price": "98000.00"
+    }
+  ],
+  "subtotal": "98000.00",
+  "tax": "0.00",
+  "total_amount": "98000.00"
+}

@@ -1,0 +1,33 @@
+{
+  "case_id": "case_034_resilient_corrupted_json",
+  "category": "PRICE_MISMATCH",
+  "buyer_id": "CHEDRAUI_MX",
+  "buyer_name": "Grupo Comercial Chedraui",
+  "industry": "Autoservicio & Retail",
+  "currency": "USD",
+  "billed_amount": "14000.00",
+  "received_amount": "11500.00",
+  "difference": "-2500.00",
+  "expected_justified_amount": "2500.00",
+  "expected_claimable_amount": "0.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "DED-PRICE-CORRUPT": "2500.00"
+  },
+  "claimable_breakdown": {},
+  "required_clause_citations": [
+    "CLAUSE-9.3"
+  ],
+  "recommended_commercial_action": "ACCEPT_AND_CREDIT",
+  "deductions": [
+    {
+      "code": "DED-PRICE-CORRUPT",
+      "amount": "2500.00",
+      "reason": "Deducción de precio de compraventa",
+      "is_justified": true,
+      "governing_clause_id": "CLAUSE-9.3",
+      "factual_basis": "Deducción de precio de compraventa",
+      "remedy_action": "ACCEPT_AND_CREDIT"
+    }
+  ]
+}

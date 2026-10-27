@@ -1,0 +1,16 @@
+{
+  "contract_id": "CTR-LIVERPOOL_MX-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-LIVERPOOL_MX",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-5.2",
+      "title": "Condiciones de Entrega Textil y Colgado",
+      "text": "Toda penalización por etiquetado o gancho debe acompañarse de fotografías del lote y limitarse al costo real comprobado de habilitado, no pudiendo exceder el 10% del lote.",
+      "policy": "CAP_FEE_10PCT",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

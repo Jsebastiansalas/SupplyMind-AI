@@ -1,0 +1,33 @@
+{
+  "case_id": "case_014_soriana_rebate_unilateral",
+  "category": "UNILATERAL_PENALTY",
+  "buyer_id": "SORIANA_MX",
+  "buyer_name": "Tiendas Soriana",
+  "industry": "Autoservicio & Hipermercados",
+  "currency": "USD",
+  "billed_amount": "54996.00",
+  "received_amount": "45196.00",
+  "difference": "-9800.00",
+  "expected_justified_amount": "0.00",
+  "expected_claimable_amount": "9800.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {},
+  "claimable_breakdown": {
+    "REBATE-UNILATERAL": "9800.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-11.2"
+  ],
+  "recommended_commercial_action": "REJECT_AND_CLAIM",
+  "deductions": [
+    {
+      "code": "REBATE-UNILATERAL",
+      "amount": "9800.00",
+      "reason": "Rebate retroactivo de volumen retenido sin minuta de conciliación trimestral",
+      "is_justified": false,
+      "governing_clause_id": "CLAUSE-11.2",
+      "factual_basis": "Rebate retroactivo de volumen retenido sin minuta de conciliación trimestral",
+      "remedy_action": "REJECT_AND_CLAIM"
+    }
+  ]
+}

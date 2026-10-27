@@ -1,0 +1,20 @@
+{
+  "invoice_id": "INV-CASE_029-B1CC",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-SONY_MX",
+  "po_reference": "PO-CASE_029-F654",
+  "issue_date": "2026-08-28",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-CAM-CINEMA-4K",
+      "description": "Cámara de Cine Digital 4K Sensor Full-Frame",
+      "quantity": 20,
+      "unit_price": "3800.00",
+      "total_price": "76000.00"
+    }
+  ],
+  "subtotal": "76000.00",
+  "tax": "0.00",
+  "total_amount": "76000.00"
+}

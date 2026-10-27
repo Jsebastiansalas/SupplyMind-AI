@@ -1,0 +1,15 @@
+{
+  "payment_id": "PAY-CASE_011-E39A",
+  "invoice_reference": "INV-CASE_011-EFE5",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "28800.00",
+  "deductions": [
+    {
+      "code": "CADUCIDAD-CORTA",
+      "reason": "Deducción unilateral por vida útil inferior a 90 días no estipulada en contrato",
+      "amount": "3200.00",
+      "reference_doc": "DEL-CASE_011-83FF"
+    }
+  ]
+}

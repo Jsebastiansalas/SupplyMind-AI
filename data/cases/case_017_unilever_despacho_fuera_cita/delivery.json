@@ -1,0 +1,27 @@
+{
+  "delivery_id": "DEL-CASE_017-DF8B",
+  "po_reference": "PO-CASE_017-D75E",
+  "delivery_date": "2026-09-02",
+  "received_by": "Ing. Gerardo Villaseñor (Supply Chain Operations Lead)",
+  "warehouse_location": "CEDIS Lerma Estado de México Muelle 11",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-SHAMPOO-BOT-400ML",
+      "quantity_delivered": 700,
+      "quantity_received": 700,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibido en CEDIS Lerma Muelle 11"
+    },
+    {
+      "item_id": "SKU-SOAP-BAR-3PK",
+      "quantity_delivered": 431,
+      "quantity_received": 431,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo a entera satisfacción"
+    }
+  ]
+}

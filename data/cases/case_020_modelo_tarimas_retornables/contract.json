@@ -1,0 +1,16 @@
+{
+  "contract_id": "CTR-GRUPO_MODELO-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-GRUPO_MODELO",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-8.6",
+      "title": "Gestión de Envases Retornables y Tarimas de Intercambio",
+      "text": "Las tarimas CHEP y envases retornables se liquidarán contra vale físico o electrónico de intercambio. Los daños ocasionados en descarga por personal del comprador serán absorbidos por este.",
+      "policy": "BUYER_UNLOADING_LIABILITY",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

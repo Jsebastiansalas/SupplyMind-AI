@@ -1,0 +1,23 @@
+{
+  "contract_id": "CTR-MERCADOLIBRE_MX-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-MERCADOLIBRE_MX",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-5.1",
+      "title": "Custodia en Red de Fulfillment Envíos Full",
+      "text": "Una vez ingresada la mercancía al centro de fulfillment primario con escaneo de entrada, el riesgo de extravío en transferencias internas es 100% de Mercado Libre.",
+      "policy": "BUYER_CUSTODY_RISK",
+      "tolerance_percentage": "0.00"
+    },
+    {
+      "clause_id": "CLAUSE-6.2",
+      "title": "Condiciones de Paletizado y Dimensiones",
+      "text": "Las tarimas deben medir máximo 1.60m de altura incluyendo tarima estándar de madera tratada.",
+      "policy": "DIMENSIONAL_COMPLIANCE",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

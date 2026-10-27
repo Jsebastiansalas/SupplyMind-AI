@@ -1,0 +1,24 @@
+{
+  "po_id": "PO-CASE_015-32C8",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-COSTCO_MX",
+  "order_date": "2026-08-20",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-CASHEW-1.1KG",
+      "description": "Nuez de la India Tostada con Sal 1.13kg",
+      "ordered_quantity": 2000,
+      "agreed_unit_price": "19.50",
+      "total_price": "39000.00"
+    },
+    {
+      "item_id": "SKU-MAPLE-SYRUP-1L",
+      "description": "Jarabe Puro de Maple Grado A 1L",
+      "ordered_quantity": 1444,
+      "agreed_unit_price": "18.00",
+      "total_price": "25992.00"
+    }
+  ],
+  "total_amount": "64992.00"
+}

@@ -1,0 +1,16 @@
+{
+  "contract_id": "CTR-SANBORNS_MX-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-SANBORNS_MX",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-7.1",
+      "title": "Condiciones de Liquidación de Temporada",
+      "text": "Las mercancías adquiridas bajo esquema de temporada deberán liquidarse o solicitarse su devolución dentro de los 30 días posteriores al cierre de la temporada.",
+      "policy": "STRICT_30D_SEASONAL_RETURN",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "case_id": "case_020_modelo_tarimas_retornables",
+  "category": "MIXED",
+  "buyer_id": "GRUPO_MODELO",
+  "buyer_name": "Grupo Modelo / AB InBev",
+  "industry": "Bebidas & Consumo Masivo",
+  "currency": "USD",
+  "billed_amount": "79990.00",
+  "received_amount": "47990.00",
+  "difference": "-32000.00",
+  "expected_justified_amount": "14000.00",
+  "expected_claimable_amount": "18000.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "FALTANTE-TARIMAS-CHEP": "14000.00"
+  },
+  "claimable_breakdown": {
+    "RETENCION-ENVASES-UNILAT": "18000.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-8.6"
+  ],
+  "recommended_commercial_action": "EMIT_CREDIT_NOTE_AND_RECOVERY_LETTER",
+  "deductions": [
+    {
+      "code": "FALTANTE-TARIMAS-CHEP",
+      "amount": "14000.00",
+      "reason": "Faltante legítimo de 280 tarimas CHEP sin vale de intercambio electrónico",
+      "is_justified": true,
+      "governing_clause_id": "CLAUSE-8.6",
+      "factual_basis": "Faltante legítimo de 280 tarimas CHEP sin vale de intercambio electrónico",
+      "remedy_action": "ACCEPT_AND_CREDIT"
+    },
+    {
+      "code": "RETENCION-ENVASES-UNILAT",
+      "amount": "18000.00",
+      "reason": "Retención improcedente por rotura de envase ocasionada por personal de descarga del comprador",
+      "is_justified": false,
+      "governing_clause_id": "CLAUSE-8.6",
+      "factual_basis": "Retención improcedente por rotura de envase ocasionada por personal de descarga del comprador",
+      "remedy_action": "REJECT_AND_CLAIM"
+    }
+  ]
+}

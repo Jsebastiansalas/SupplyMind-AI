@@ -1,0 +1,33 @@
+{
+  "case_id": "case_024_pepsico_coop_publicitaria",
+  "category": "UNILATERAL_PENALTY",
+  "buyer_id": "PEPSICO_MX",
+  "buyer_name": "PepsiCo Alimentos México",
+  "industry": "Snacks & Alimentos Procesados",
+  "currency": "USD",
+  "billed_amount": "49992.00",
+  "received_amount": "36392.00",
+  "difference": "-13600.00",
+  "expected_justified_amount": "0.00",
+  "expected_claimable_amount": "13600.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {},
+  "claimable_breakdown": {
+    "COOP-PUB-UNILATERAL": "13600.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-10.4"
+  ],
+  "recommended_commercial_action": "REJECT_AND_CLAIM",
+  "deductions": [
+    {
+      "code": "COOP-PUB-UNILATERAL",
+      "amount": "13600.00",
+      "reason": "Cargo de cooperación publicitaria o folleto mensual sin pauta pactada",
+      "is_justified": false,
+      "governing_clause_id": "CLAUSE-10.4",
+      "factual_basis": "Cargo de cooperación publicitaria o folleto mensual sin pauta pactada",
+      "remedy_action": "REJECT_AND_CLAIM"
+    }
+  ]
+}

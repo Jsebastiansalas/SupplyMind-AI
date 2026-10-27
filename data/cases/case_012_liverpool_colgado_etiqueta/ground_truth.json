@@ -1,0 +1,44 @@
+{
+  "case_id": "case_012_liverpool_colgado_etiqueta",
+  "category": "MIXED",
+  "buyer_id": "LIVERPOOL_MX",
+  "buyer_name": "Liverpool Departamental",
+  "industry": "Tiendas Departamentales & Moda",
+  "currency": "USD",
+  "billed_amount": "67956.00",
+  "received_amount": "49556.00",
+  "difference": "-18400.00",
+  "expected_justified_amount": "7400.00",
+  "expected_claimable_amount": "11000.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "COLGADO-SERVICIOS": "7400.00"
+  },
+  "claimable_breakdown": {
+    "PENALIZACION-EXCESIVA": "11000.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-5.2"
+  ],
+  "recommended_commercial_action": "EMIT_CREDIT_NOTE_AND_RECOVERY_LETTER",
+  "deductions": [
+    {
+      "code": "COLGADO-SERVICIOS",
+      "amount": "7400.00",
+      "reason": "Costo de habilitado y colgado justificado en 740 prendas sin gancho reglamentario",
+      "is_justified": true,
+      "governing_clause_id": "CLAUSE-5.2",
+      "factual_basis": "Costo de habilitado y colgado justificado en 740 prendas sin gancho reglamentario",
+      "remedy_action": "ACCEPT_AND_CREDIT"
+    },
+    {
+      "code": "PENALIZACION-EXCESIVA",
+      "amount": "11000.00",
+      "reason": "Multa punitiva unilateral que excede el tope contractual del 10% del lote",
+      "is_justified": false,
+      "governing_clause_id": "CLAUSE-5.2",
+      "factual_basis": "Multa punitiva unilateral que excede el tope contractual del 10% del lote",
+      "remedy_action": "REJECT_AND_CLAIM"
+    }
+  ]
+}

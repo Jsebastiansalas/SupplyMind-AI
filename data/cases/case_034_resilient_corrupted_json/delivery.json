@@ -1,0 +1,19 @@
+{
+  "delivery_id": "DEL-CASE_034-FB56",
+  "po_reference": "PO-CASE_034-F69E",
+  "delivery_date": "2026-09-02",
+  "received_by": "Ing. Gerardo Peñaloza (Jefe de Recibo Chalco)",
+  "warehouse_location": "CEDIS Chedraui Chalco Oriente Muelle 14",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-RICE-10KG",
+      "quantity_delivered": 1000,
+      "quantity_received": 1000,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibido completo en muelle"
+    }
+  ]
+}

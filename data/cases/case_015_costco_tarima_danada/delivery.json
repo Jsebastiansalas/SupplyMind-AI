@@ -1,0 +1,27 @@
+{
+  "delivery_id": "DEL-CASE_015-A6B6",
+  "po_reference": "PO-CASE_015-32C8",
+  "delivery_date": "2026-09-02",
+  "received_by": "Ing. Gustavo Alatorre (Gerente de Operaciones Tepeji)",
+  "warehouse_location": "CEDIS Central Costco Tepeji del Río Muelle 2",
+  "signed": true,
+  "discrepancy_reported": true,
+  "items": [
+    {
+      "item_id": "SKU-CASHEW-1.1KG",
+      "quantity_delivered": 2000,
+      "quantity_received": 1487,
+      "missing_quantity": 513,
+      "damaged_quantity": 513,
+      "notes": "Discrepancia en tarima: 513 faltantes y 513 averiados. Sello de muelle."
+    },
+    {
+      "item_id": "SKU-MAPLE-SYRUP-1L",
+      "quantity_delivered": 1444,
+      "quantity_received": 1444,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "case_id": "case_022_lg_incoterm_fob",
+  "category": "UNILATERAL_PENALTY",
+  "buyer_id": "LG_MX",
+  "buyer_name": "LG Electronics México",
+  "industry": "Línea Blanca & Electrodomésticos",
+  "currency": "USD",
+  "billed_amount": "85000.00",
+  "received_amount": "57000.00",
+  "difference": "-28000.00",
+  "expected_justified_amount": "0.00",
+  "expected_claimable_amount": "28000.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {},
+  "claimable_breakdown": {
+    "INCOTERM-FOB-LOSS": "28000.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-2.1"
+  ],
+  "recommended_commercial_action": "REJECT_AND_CLAIM",
+  "deductions": [
+    {
+      "code": "INCOTERM-FOB-LOSS",
+      "amount": "28000.00",
+      "reason": "Deducción unilateral por siniestro marítimo cuando el riesgo se transfirió a bordo en puerto de origen",
+      "is_justified": false,
+      "governing_clause_id": "CLAUSE-2.1",
+      "factual_basis": "Deducción unilateral por siniestro marítimo cuando el riesgo se transfirió a bordo en puerto de origen",
+      "remedy_action": "REJECT_AND_CLAIM"
+    }
+  ]
+}

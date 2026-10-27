@@ -1,0 +1,20 @@
+{
+  "invoice_id": "INV-CASE_027-E3E5",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-BIOFARMA_MX",
+  "po_reference": "PO-CASE_027-9F27",
+  "issue_date": "2026-08-28",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-PROBIOTIC-COLD",
+      "description": "Probiótico Multicepas Refrigerado 60 Cápsulas",
+      "quantity": 1500,
+      "unit_price": "28.00",
+      "total_price": "42000.00"
+    }
+  ],
+  "subtotal": "42000.00",
+  "tax": "0.00",
+  "total_amount": "42000.00"
+}

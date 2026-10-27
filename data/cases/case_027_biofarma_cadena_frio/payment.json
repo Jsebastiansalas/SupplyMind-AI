@@ -1,0 +1,15 @@
+{
+  "payment_id": "PAY-CASE_027-3C3D",
+  "invoice_reference": "INV-CASE_027-E3E5",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "25200.00",
+  "deductions": [
+    {
+      "code": "RECALL-TEMP-BREAK",
+      "reason": "Rechazo justificado y destrucción sanitaria por excursión térmica comprobada en termógrafo",
+      "amount": "16800.00",
+      "reference_doc": "DEL-CASE_027-EDE0"
+    }
+  ]
+}

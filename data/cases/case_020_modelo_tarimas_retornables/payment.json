@@ -1,0 +1,21 @@
+{
+  "payment_id": "PAY-CASE_020-3BDB",
+  "invoice_reference": "INV-CASE_020-45DB",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "47990.00",
+  "deductions": [
+    {
+      "code": "FALTANTE-TARIMAS-CHEP",
+      "reason": "Faltante legítimo de 280 tarimas CHEP sin vale de intercambio electrónico",
+      "amount": "14000.00",
+      "reference_doc": "DEL-CASE_020-A052"
+    },
+    {
+      "code": "RETENCION-ENVASES-UNILAT",
+      "reason": "Retención improcedente por rotura de envase ocasionada por personal de descarga del comprador",
+      "amount": "18000.00",
+      "reference_doc": "DEL-CASE_020-A052"
+    }
+  ]
+}

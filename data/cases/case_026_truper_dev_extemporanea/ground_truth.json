@@ -1,0 +1,33 @@
+{
+  "case_id": "case_026_truper_dev_extemporanea",
+  "category": "EXTEMPORANEOUS_CLAIM",
+  "buyer_id": "TRUPER_MX",
+  "buyer_name": "Truper Herramientas",
+  "industry": "Ferretería & Herramientas",
+  "currency": "USD",
+  "billed_amount": "57000.00",
+  "received_amount": "37500.00",
+  "difference": "-19500.00",
+  "expected_justified_amount": "0.00",
+  "expected_claimable_amount": "19500.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {},
+  "claimable_breakdown": {
+    "DEV-EXTEMPORANEA": "19500.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-4.5"
+  ],
+  "recommended_commercial_action": "REJECT_AND_CLAIM",
+  "deductions": [
+    {
+      "code": "DEV-EXTEMPORANEA",
+      "amount": "19500.00",
+      "reason": "Devolución comercial extemporánea a los 90 días por falta de rotación en mostrador",
+      "is_justified": false,
+      "governing_clause_id": "CLAUSE-4.5",
+      "factual_basis": "Devolución comercial extemporánea a los 90 días por falta de rotación en mostrador",
+      "remedy_action": "REJECT_AND_CLAIM"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "invoice_id": "INV-CASE_014-1AE8",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-SORIANA_MX",
+  "po_reference": "PO-CASE_014-6642",
+  "issue_date": "2026-08-28",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-DETERGENT-5L",
+      "description": "Detergente Líquido Ropa Biodegradable 5L",
+      "quantity": 3000,
+      "unit_price": "11.50",
+      "total_price": "34500.00"
+    },
+    {
+      "item_id": "SKU-CLEANER-FLR",
+      "description": "Limpiador Multiusos Lavanda 5L",
+      "quantity": 4270,
+      "unit_price": "4.80",
+      "total_price": "20496.00"
+    }
+  ],
+  "subtotal": "54996.00",
+  "tax": "0.00",
+  "total_amount": "54996.00"
+}

@@ -1,0 +1,33 @@
+{
+  "case_id": "case_010_mercadolibre_crossdock",
+  "category": "UNILATERAL_PENALTY",
+  "buyer_id": "MERCADOLIBRE_MX",
+  "buyer_name": "Mercado Libre México",
+  "industry": "Marketplace & Envíos Full",
+  "currency": "USD",
+  "billed_amount": "53960.00",
+  "received_amount": "48560.00",
+  "difference": "-5400.00",
+  "expected_justified_amount": "0.00",
+  "expected_claimable_amount": "5400.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {},
+  "claimable_breakdown": {
+    "CROSSDOCK-MISROUTING": "5400.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-5.1"
+  ],
+  "recommended_commercial_action": "REJECT_AND_CLAIM",
+  "deductions": [
+    {
+      "code": "CROSSDOCK-MISROUTING",
+      "amount": "5400.00",
+      "reason": "Cargo por extravío de bultos en transferencia interna entre centros MX01 y MX02",
+      "is_justified": false,
+      "governing_clause_id": "CLAUSE-5.1",
+      "factual_basis": "Cargo por extravío de bultos en transferencia interna entre centros MX01 y MX02",
+      "remedy_action": "REJECT_AND_CLAIM"
+    }
+  ]
+}

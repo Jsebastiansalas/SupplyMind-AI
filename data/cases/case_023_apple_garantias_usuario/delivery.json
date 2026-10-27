@@ -1,0 +1,19 @@
+{
+  "delivery_id": "DEL-CASE_023-E2F5",
+  "po_reference": "PO-CASE_023-7520",
+  "delivery_date": "2026-09-02",
+  "received_by": "Lic. Sebastián Garza (Operations & Security Manager)",
+  "warehouse_location": "CEDIS Central Apple Santa Fe Muelle 3",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-PHONE-PRO-256",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Dispositivos recibidos en almacén central con sellos de seguridad intactos"
+    }
+  ]
+}

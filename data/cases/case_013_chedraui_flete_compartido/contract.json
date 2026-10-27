@@ -1,0 +1,16 @@
+{
+  "contract_id": "CTR-CHEDRAUI_MX-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-CHEDRAUI_MX",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-9.3",
+      "title": "Incoterm y Gastos de Transporte",
+      "text": "Bajo condición DDP (Delivered Duty Paid), el proveedor asume el transporte hasta el muelle acordado. Chedraui no podrá cobrar tarifas por fletes propios salvo convenio expreso.",
+      "policy": "INCOTERM_DDP_STRICT",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "delivery_id": "DEL-CASE_013-87F9",
+  "po_reference": "PO-CASE_013-46A1",
+  "delivery_date": "2026-09-02",
+  "received_by": "Ing. Gerardo Peñaloza (Jefe de Recibo Chalco)",
+  "warehouse_location": "CEDIS Chedraui Chalco Oriente Muelle 14",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-RICE-10KG",
+      "quantity_delivered": 1500,
+      "quantity_received": 1500,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Tarimas completas con fleje de seguridad"
+    },
+    {
+      "item_id": "SKU-BEANS-900G",
+      "quantity_delivered": 5000,
+      "quantity_received": 5000,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo a granel en CEDIS Chalco"
+    },
+    {
+      "item_id": "SKU-SUGAR-5KG",
+      "quantity_delivered": 1846,
+      "quantity_received": 1846,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibido conforme"
+    }
+  ]
+}

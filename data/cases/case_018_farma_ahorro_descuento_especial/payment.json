@@ -1,0 +1,21 @@
+{
+  "payment_id": "PAY-CASE_018-D17A",
+  "invoice_reference": "INV-CASE_018-D05C",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "26086.00",
+  "deductions": [
+    {
+      "code": "BONIFICACION-CATALOGO",
+      "reason": "Aportación convenida por publicación en guía médica anual",
+      "amount": "4000.00",
+      "reference_doc": "DEL-CASE_018-837C"
+    },
+    {
+      "code": "DESCUENTO-ESPECIAL-ERR",
+      "reason": "Deducción unilateral de 8% cuando la tasa pactada contractualmente era de 3%",
+      "amount": "4900.00",
+      "reference_doc": "DEL-CASE_018-837C"
+    }
+  ]
+}

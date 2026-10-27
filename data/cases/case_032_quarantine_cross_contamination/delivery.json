@@ -1,0 +1,19 @@
+{
+  "delivery_id": "DEL-CASE_032-3D71",
+  "po_reference": "PO-CASE_032-0929",
+  "delivery_date": "2026-09-02",
+  "received_by": "Lic. Ramón Salgado (Jefe de Muelle Soriana)",
+  "warehouse_location": "CEDIS Soriana Cuautitlán Muelle 10 (ERROR DE EXPEDIENTE)",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-WHEY-2KG",
+      "quantity_delivered": 200,
+      "quantity_received": 200,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "ADVERTENCIA: Remisión con sello de receptor ajeno: 'TIENDAS SORIANA S.A. DE C.V.'"
+    }
+  ]
+}

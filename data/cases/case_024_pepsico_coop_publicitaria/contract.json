@@ -1,0 +1,16 @@
+{
+  "contract_id": "CTR-PEPSICO_MX-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-PEPSICO_MX",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-10.4",
+      "title": "Gastos de Publicidad Compartida y Promociones",
+      "text": "Toda participación en campañas publicitarias o promociones especiales requerirá la firma de un convenio específico con presupuesto detallado previo a su ejecución.",
+      "policy": "EXPLICIT_MARKETING_ADDENDUM_REQUIRED",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

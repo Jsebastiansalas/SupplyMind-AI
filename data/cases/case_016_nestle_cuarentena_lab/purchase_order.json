@@ -1,0 +1,24 @@
+{
+  "po_id": "PO-CASE_016-19BA",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-NESTLE_MX",
+  "order_date": "2026-08-20",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-COCOA-POWDER-25KG",
+      "description": "Saco Cocoa en Polvo Alcalinizada 25kg Grado Industrial",
+      "ordered_quantity": 500,
+      "agreed_unit_price": "120.00",
+      "total_price": "60000.00"
+    },
+    {
+      "item_id": "SKU-CEREAL-FLAKES-10KG",
+      "description": "Hojuelas de Maíz Fortificadas Base Copacker 10kg",
+      "ordered_quantity": 333,
+      "agreed_unit_price": "45.00",
+      "total_price": "14985.00"
+    }
+  ],
+  "total_amount": "74985.00"
+}

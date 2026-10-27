@@ -1,0 +1,21 @@
+{
+  "payment_id": "PAY-CASE_028-7D9F",
+  "invoice_reference": "INV-CASE_028-F2E6",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "42700.00",
+  "deductions": [
+    {
+      "code": "DEMERITO-CURVA-TALLAS",
+      "reason": "Demérito comercial justificado del 30% en piezas enviadas fuera de la matriz autorizada",
+      "amount": "14000.00",
+      "reference_doc": "DEL-CASE_028-B3A5"
+    },
+    {
+      "code": "PENALIZACION-NO-PACTADA",
+      "reason": "Cargo punitivo unilateral no contemplado en el contrato marco de confección",
+      "amount": "8300.00",
+      "reference_doc": "DEL-CASE_028-B3A5"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "contract_id": "CTR-PETCO_MX-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-PETCO_MX",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-4.6",
+      "title": "Legibilidad de Código UPC en Saco y Caja Máster",
+      "text": "El código de barras UPC o ITF-14 debe tener un grado de verificación ANSI mínimo de 'B'. Cargos por reetiquetado sólo aplican si ambos códigos resultan inoperantes.",
+      "policy": "ANSI_B_CODE_VERIFICATION",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

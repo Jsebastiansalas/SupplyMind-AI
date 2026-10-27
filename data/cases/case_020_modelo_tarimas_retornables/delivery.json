@@ -1,0 +1,27 @@
+{
+  "delivery_id": "DEL-CASE_020-A052",
+  "po_reference": "PO-CASE_020-5EF2",
+  "delivery_date": "2026-09-02",
+  "received_by": "Ing. Braulio Echeverría (Gerente de Logística Inversa)",
+  "warehouse_location": "CEDIS Central Modelo Calzada México-Tacuba Muelle 20",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-BEER-LITE-24PK",
+      "quantity_delivered": 3500,
+      "quantity_received": 3500,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Descarga realizada en CEDIS Central Modelo Muelle 20"
+    },
+    {
+      "item_id": "SKU-WATER-SPARK-12PK",
+      "quantity_delivered": 1270,
+      "quantity_received": 1270,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme"
+    }
+  ]
+}

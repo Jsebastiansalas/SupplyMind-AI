@@ -1,0 +1,27 @@
+{
+  "delivery_id": "DEL-CASE_024-5181",
+  "po_reference": "PO-CASE_024-08E9",
+  "delivery_date": "2026-09-02",
+  "received_by": "Lic. Fernando Solís (Auditor Comercial Corporativo)",
+  "warehouse_location": "CEDIS PepsiCo Alimentos Tlalnepantla Muelle 15",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-POTATO-CHIPS-150G",
+      "quantity_delivered": 1000,
+      "quantity_received": 1000,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibido de conformidad en CEDIS PepsiCo Tlalnepantla Muelle 15"
+    },
+    {
+      "item_id": "SKU-TORTILLA-CHIPS-200G",
+      "quantity_delivered": 692,
+      "quantity_received": 692,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo a entera satisfacción"
+    }
+  ]
+}

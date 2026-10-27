@@ -1,0 +1,16 @@
+{
+  "contract_id": "CTR-LG_MX-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-LG_MX",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-2.1",
+      "title": "Transmisión del Riesgo y Flete Marítimo (FOB)",
+      "text": "Bajo término FOB Puerto de Origen, los riesgos de pérdida o daño se transmiten al comprador en el momento en que las mercancías sobrepasan la borda del buque. Reclamaciones por siniestros en mar deben tramitarse ante la póliza de seguro del comprador.",
+      "policy": "INCOTERM_FOB_RISK_TRANSFER",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

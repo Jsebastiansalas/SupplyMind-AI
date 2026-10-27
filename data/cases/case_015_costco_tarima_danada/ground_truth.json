@@ -1,0 +1,44 @@
+{
+  "case_id": "case_015_costco_tarima_danada",
+  "category": "MIXED",
+  "buyer_id": "COSTCO_MX",
+  "buyer_name": "Costco Wholesale México",
+  "industry": "Club de Precios",
+  "currency": "USD",
+  "billed_amount": "64992.00",
+  "received_amount": "50792.00",
+  "difference": "-14200.00",
+  "expected_justified_amount": "10000.00",
+  "expected_claimable_amount": "4200.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "MERMA-AVARIA-FISICA": "10000.00"
+  },
+  "claimable_breakdown": {
+    "PALLET-DAMAGE": "4200.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-3.4"
+  ],
+  "recommended_commercial_action": "EMIT_CREDIT_NOTE_AND_RECOVERY_LETTER",
+  "deductions": [
+    {
+      "code": "MERMA-AVARIA-FISICA",
+      "amount": "10000.00",
+      "reason": "Deducción por 513 piezas dañadas en tarima amparadas en remisión con acta de merma",
+      "is_justified": true,
+      "governing_clause_id": "CLAUSE-3.4",
+      "factual_basis": "Deducción por 513 piezas dañadas en tarima amparadas en remisión con acta de merma",
+      "remedy_action": "ACCEPT_AND_CREDIT"
+    },
+    {
+      "code": "PALLET-DAMAGE",
+      "amount": "4200.00",
+      "reason": "Cargo por reposición de tarima cuando el flete fue contratado por Costco (responsabilidad de transportista)",
+      "is_justified": false,
+      "governing_clause_id": "CLAUSE-3.4",
+      "factual_basis": "Cargo por reposición de tarima cuando el flete fue contratado por Costco (responsabilidad de transportista)",
+      "remedy_action": "REJECT_AND_CLAIM"
+    }
+  ]
+}

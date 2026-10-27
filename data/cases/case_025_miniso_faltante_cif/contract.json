@@ -1,0 +1,16 @@
+{
+  "contract_id": "CTR-MINISO_MX-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-MINISO_MX",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-3.6",
+      "title": "Recepción de Contenedores Marítimos FCL / CIF",
+      "text": "Para contenedores recibidos con precinto aduanal intacto verificado en presencia de inspector, el proveedor no responderá por faltantes internos salvo peritaje aduanero de origen.",
+      "policy": "SEAL_INTACT_EXONERATION",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

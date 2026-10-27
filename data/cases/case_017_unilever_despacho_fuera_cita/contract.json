@@ -1,0 +1,16 @@
+{
+  "contract_id": "CTR-UNILEVER_MX-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-UNILEVER_MX",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-4.8",
+      "title": "Ventana de Recepción OTIF y Fuerza Mayor",
+      "text": "Las demoras atribuibles a caso fortuito o causas de fuerza mayor debidamente acreditadas en menos de 24 horas no generarán penalización por retraso.",
+      "policy": "FORCE_MAJEURE_EXEMPTION",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

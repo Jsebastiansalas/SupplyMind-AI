@@ -1,0 +1,15 @@
+{
+  "payment_id": "PAY-CASE_026-5452",
+  "invoice_reference": "INV-CASE_026-E099",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "37500.00",
+  "deductions": [
+    {
+      "code": "DEV-EXTEMPORANEA",
+      "reason": "Devolución comercial extemporánea a los 90 días por falta de rotación en mostrador",
+      "amount": "19500.00",
+      "reference_doc": "DEL-CASE_026-C37E"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "invoice_id": "INV-CASE_025-5F7E",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-MINISO_MX",
+  "po_reference": "PO-CASE_025-B545",
+  "issue_date": "2026-08-28",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-STORAGE-ORGANIZER",
+      "description": "Caja Organizadora Plegable con Tapa Tela Gris",
+      "quantity": 2500,
+      "unit_price": "14.00",
+      "total_price": "35000.00"
+    }
+  ],
+  "subtotal": "35000.00",
+  "tax": "0.00",
+  "total_amount": "35000.00"
+}

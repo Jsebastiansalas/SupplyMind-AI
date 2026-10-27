@@ -1,0 +1,20 @@
+{
+  "invoice_id": "INV-CASE_032-D907",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-WALMART_MX",
+  "po_reference": "PO-CASE_032-0929",
+  "issue_date": "2026-08-28",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-WHEY-2KG",
+      "description": "Proteína Whey Isolate Vainilla 2kg",
+      "quantity": 200,
+      "unit_price": "45.00",
+      "total_price": "9000.00"
+    }
+  ],
+  "subtotal": "9000.00",
+  "tax": "0.00",
+  "total_amount": "9000.00"
+}

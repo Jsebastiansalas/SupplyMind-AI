@@ -1,0 +1,16 @@
+{
+  "contract_id": "CTR-BIOFARMA_MX-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-BIOFARMA_MX",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-3.2",
+      "title": "Cadena de Frío y Cumplimiento NOM-059-SSA1",
+      "text": "Los biológicos e insumos sensibles deben mantenerse entre 2°C y 8°C ininterrumpidamente. Si el datalogger registra excursión térmica mayor a 2 horas, el comprador rechazará el lote al 100% por norma sanitaria.",
+      "policy": "STRICT_COLD_CHAIN_MANDATORY",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

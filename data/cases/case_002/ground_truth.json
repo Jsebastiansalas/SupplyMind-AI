@@ -1,0 +1,26 @@
+{
+  "case_id": "case_002",
+  "category": "COMPOUND_MIXED",
+  "buyer_id": "LIVERPOOL_MX",
+  "buyer_name": "Cadena Departamental",
+  "industry": "Ropa y Calzado",
+  "currency": "USD",
+  "billed_amount": "54200.00",
+  "received_amount": "37700.00",
+  "difference": "-16500.00",
+  "expected_justified_amount": "4000.00",
+  "expected_claimable_amount": "12500.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "DED-MISSING-PHYSICAL": "4000.00"
+  },
+  "claimable_breakdown": {
+    "DED-ALLEGED-DAMAGE": "6500.00",
+    "DED-UNILATERAL-PENALTY": "6000.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-4.1",
+    "CLAUSE-5.1"
+  ],
+  "recommended_commercial_action": "EMIT_CREDIT_NOTE_AND_RECOVERY_LETTER"
+}

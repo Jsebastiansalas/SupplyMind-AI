@@ -1,0 +1,19 @@
+{
+  "delivery_id": "DEL-CASE_033-5D3C",
+  "po_reference": "PO-CASE_033-F98E",
+  "delivery_date": "2026-09-02",
+  "received_by": "Lic. Roberto Galindo (Gerente de Inbound SMO)",
+  "warehouse_location": "CEDIS San Martín Obispo Secos Muelle 18",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-BAR-OAT-24PK",
+      "quantity_delivered": 1000,
+      "quantity_received": 1000,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Recibo conforme"
+    }
+  ]
+}

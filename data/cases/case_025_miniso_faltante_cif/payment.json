@@ -1,0 +1,21 @@
+{
+  "payment_id": "PAY-CASE_025-E3BA",
+  "invoice_reference": "INV-CASE_025-5F7E",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "27200.00",
+  "deductions": [
+    {
+      "code": "DESESTIBA-CONTENEDOR",
+      "reason": "Servicio de desestiba y paletizado acordado por carga suelta en contenedor",
+      "amount": "5000.00",
+      "reference_doc": "DEL-CASE_025-BEE4"
+    },
+    {
+      "code": "FALTANTE-MARITIMO-CIF",
+      "reason": "Deducción indebida por faltante cuando el contenedor arribó con precinto C-TPAT intacto",
+      "amount": "2800.00",
+      "reference_doc": "DEL-CASE_025-BEE4"
+    }
+  ]
+}

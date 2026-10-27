@@ -1,0 +1,19 @@
+{
+  "delivery_id": "DEL-CASE_025-BEE4",
+  "po_reference": "PO-CASE_025-B545",
+  "delivery_date": "2026-09-02",
+  "received_by": "Lic. Diana Karen Rosas (Jefa de Operaciones Inbound)",
+  "warehouse_location": "CEDIS Miniso Tepotzotlán Muelle 14",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-STORAGE-ORGANIZER",
+      "quantity_delivered": 2500,
+      "quantity_received": 2500,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Descarga de contenedor marítimo FCL en CEDIS Miniso Tepotzotlán Muelle 14"
+    }
+  ]
+}

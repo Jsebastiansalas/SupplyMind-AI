@@ -1,0 +1,44 @@
+{
+  "case_id": "case_030_petco_upc_invalido",
+  "category": "MIXED",
+  "buyer_id": "PETCO_MX",
+  "buyer_name": "Petco México",
+  "industry": "Retail Mascotas",
+  "currency": "USD",
+  "billed_amount": "29000.00",
+  "received_amount": "23100.00",
+  "difference": "-5900.00",
+  "expected_justified_amount": "3000.00",
+  "expected_claimable_amount": "2900.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "MANIOBRA-REPALETIZADO": "3000.00"
+  },
+  "claimable_breakdown": {
+    "LABELING-UPC-BARCODE": "2900.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-4.6"
+  ],
+  "recommended_commercial_action": "EMIT_CREDIT_NOTE_AND_RECOVERY_LETTER",
+  "deductions": [
+    {
+      "code": "MANIOBRA-REPALETIZADO",
+      "amount": "3000.00",
+      "reason": "Costo comprobado de maniobra por tarima desfasada en descarga",
+      "is_justified": true,
+      "governing_clause_id": "CLAUSE-4.6",
+      "factual_basis": "Costo comprobado de maniobra por tarima desfasada en descarga",
+      "remedy_action": "ACCEPT_AND_CREDIT"
+    },
+    {
+      "code": "LABELING-UPC-BARCODE",
+      "amount": "2900.00",
+      "reason": "Multa indebida por código UPC cuando el embalaje secundario tenía código ITF-14 legible",
+      "is_justified": false,
+      "governing_clause_id": "CLAUSE-4.6",
+      "factual_basis": "Multa indebida por código UPC cuando el embalaje secundario tenía código ITF-14 legible",
+      "remedy_action": "REJECT_AND_CLAIM"
+    }
+  ]
+}

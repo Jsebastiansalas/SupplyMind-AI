@@ -1,0 +1,16 @@
+{
+  "contract_id": "CTR-SORIANA_MX-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-SORIANA_MX",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-11.2",
+      "title": "Bonificaciones por Volumen y Rebates",
+      "text": "Los rebates comerciales exigen conciliación trimestral de ventas selladas. Queda prohibida su retención unilateral sin minuta contable firmada por ambas partes.",
+      "policy": "MUTUAL_RECONCILIATION_REQUIRED",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

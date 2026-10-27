@@ -1,0 +1,15 @@
+{
+  "payment_id": "PAY-CASE_010-343D",
+  "invoice_reference": "INV-CASE_010-23FC",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "48560.00",
+  "deductions": [
+    {
+      "code": "CROSSDOCK-MISROUTING",
+      "reason": "Cargo por extravío de bultos en transferencia interna entre centros MX01 y MX02",
+      "amount": "5400.00",
+      "reference_doc": "DEL-CASE_010-926B"
+    }
+  ]
+}

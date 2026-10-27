@@ -1,0 +1,16 @@
+{
+  "contract_id": "CTR-COSTCO_MX-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-COSTCO_MX",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-3.4",
+      "title": "Norma Técnica de Embalaje en Tarima de Madera",
+      "text": "Toda mercancía debe entregarse en tarima nueva sellada HT NOM-144. Si el daño ocurre bajo flete contratado por Costco, el cargo será asumido por la línea fletera.",
+      "policy": "CARRIER_LIABILITY_RULE",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

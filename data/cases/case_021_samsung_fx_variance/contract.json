@@ -1,0 +1,16 @@
+{
+  "contract_id": "CTR-SAMSUNG_MX-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-SAMSUNG_MX",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-6.5",
+      "title": "Régimen Cambiario y Liquidación de Divisas",
+      "text": "Para obligaciones pactadas en dólares estadounidenses (USD) pagaderas en moneda nacional, se aplicará el tipo de cambio FIX publicado en el DOF el día hábil inmediato anterior al pago.",
+      "policy": "CFF_ART_20_STRICT_FX",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

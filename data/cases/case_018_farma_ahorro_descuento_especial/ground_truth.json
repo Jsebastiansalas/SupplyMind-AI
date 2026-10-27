@@ -1,0 +1,44 @@
+{
+  "case_id": "case_018_farma_ahorro_descuento_especial",
+  "category": "PRICE_MISMATCH",
+  "buyer_id": "FARMACIAS_AHORRO",
+  "buyer_name": "Farmacias del Ahorro",
+  "industry": "Sector Farmacéutico & Retail Salud",
+  "currency": "USD",
+  "billed_amount": "34986.00",
+  "received_amount": "26086.00",
+  "difference": "-8900.00",
+  "expected_justified_amount": "4000.00",
+  "expected_claimable_amount": "4900.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "BONIFICACION-CATALOGO": "4000.00"
+  },
+  "claimable_breakdown": {
+    "DESCUENTO-ESPECIAL-ERR": "4900.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-5.5"
+  ],
+  "recommended_commercial_action": "EMIT_CREDIT_NOTE_AND_RECOVERY_LETTER",
+  "deductions": [
+    {
+      "code": "BONIFICACION-CATALOGO",
+      "amount": "4000.00",
+      "reason": "Aportación convenida por publicación en guía médica anual",
+      "is_justified": true,
+      "governing_clause_id": "CLAUSE-5.5",
+      "factual_basis": "Aportación convenida por publicación en guía médica anual",
+      "remedy_action": "ACCEPT_AND_CREDIT"
+    },
+    {
+      "code": "DESCUENTO-ESPECIAL-ERR",
+      "amount": "4900.00",
+      "reason": "Deducción unilateral de 8% cuando la tasa pactada contractualmente era de 3%",
+      "is_justified": false,
+      "governing_clause_id": "CLAUSE-5.5",
+      "factual_basis": "Deducción unilateral de 8% cuando la tasa pactada contractualmente era de 3%",
+      "remedy_action": "REJECT_AND_CLAIM"
+    }
+  ]
+}

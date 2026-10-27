@@ -1,0 +1,19 @@
+{
+  "delivery_id": "DEL-CASE_030-6A97",
+  "po_reference": "PO-CASE_030-6091",
+  "delivery_date": "2026-09-02",
+  "received_by": "Lic. Mónica Arrieta (Jefa de Recepción Petco)",
+  "warehouse_location": "CEDIS Petco Cuautitlán Muelle 5",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-DOG-FOOD-15KG",
+      "quantity_delivered": 500,
+      "quantity_received": 500,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Sacos paletizados en CEDIS Cuautitlán Muelle 5"
+    }
+  ]
+}

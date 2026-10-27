@@ -1,0 +1,19 @@
+{
+  "delivery_id": "DEL-CASE_022-E915",
+  "po_reference": "PO-CASE_022-CFB1",
+  "delivery_date": "2026-09-02",
+  "received_by": "Ing. Alfonso Villalobos (Jefe de Logística Inbound)",
+  "warehouse_location": "CEDIS LG Apodaca Nuevo León Muelle 5",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-REFRIG-FRENCH",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Transferencia de riesgo en puerto de Manzanillo conforme a Incoterms 2020 FOB"
+    }
+  ]
+}

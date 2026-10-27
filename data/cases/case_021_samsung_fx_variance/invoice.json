@@ -1,0 +1,20 @@
+{
+  "invoice_id": "INV-CASE_021-CFD7",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-SAMSUNG_MX",
+  "po_reference": "PO-CASE_021-A41F",
+  "issue_date": "2026-08-28",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-OLED-65-4K",
+      "description": "Pantalla OLED 65 Pulgadas Smart TV 4K 120Hz",
+      "quantity": 100,
+      "unit_price": "950.00",
+      "total_price": "95000.00"
+    }
+  ],
+  "subtotal": "95000.00",
+  "tax": "0.00",
+  "total_amount": "95000.00"
+}

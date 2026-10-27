@@ -1,0 +1,24 @@
+{
+  "po_id": "PO-CASE_024-08E9",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-PEPSICO_MX",
+  "order_date": "2026-08-20",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-POTATO-CHIPS-150G",
+      "description": "Caja Papas Fritas Clásicas Sal de Mar 24 Bolsas 150g",
+      "ordered_quantity": 1000,
+      "agreed_unit_price": "32.00",
+      "total_price": "32000.00"
+    },
+    {
+      "item_id": "SKU-TORTILLA-CHIPS-200G",
+      "description": "Caja Totopos de Maíz Horneados 20 Bolsas 200g",
+      "ordered_quantity": 692,
+      "agreed_unit_price": "26.00",
+      "total_price": "17992.00"
+    }
+  ],
+  "total_amount": "49992.00"
+}

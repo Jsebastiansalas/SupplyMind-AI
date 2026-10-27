@@ -1,0 +1,23 @@
+{
+  "contract_id": "CTR-OXXO_FEMSA-2026",
+  "vendor_id": "VEN-001",
+  "customer_id": "CUST-OXXO_FEMSA",
+  "valid_from": "2026-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-4.4",
+      "title": "Vida de Anaquel Mínima (Caducidad)",
+      "text": "Los productos de consumo perecedero o procesado deberán ingresar a CEDIS con un mínimo del 50% o al menos 60 días de vida útil remanente respecto a la fecha de caducidad.",
+      "policy": "SHELF_LIFE_60D",
+      "tolerance_percentage": "0.00"
+    },
+    {
+      "clause_id": "CLAUSE-8.1",
+      "title": "Cargos de Cooperación y Promoción",
+      "text": "Ninguna deducción por concepto de mercadeo o espacio en tienda será válida sin un convenio firmado previamente por el Director de Ventas.",
+      "policy": "EXPLICIT_AGREEMENT_REQUIRED",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

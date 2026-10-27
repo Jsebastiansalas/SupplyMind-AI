@@ -1,0 +1,21 @@
+{
+  "payment_id": "PAY-CASE_023-1637",
+  "invoice_reference": "INV-CASE_023-0456",
+  "payment_date": "2026-09-25",
+  "currency": "USD",
+  "amount_paid": "46000.00",
+  "deductions": [
+    {
+      "code": "RMA-DICTAMEN-LAB",
+      "reason": "Devolución respaldada por dictamen técnico de laboratorio por defecto de manufactura en 18 unidades",
+      "amount": "18000.00",
+      "reference_doc": "DEL-CASE_023-E2F5"
+    },
+    {
+      "code": "RET-GARANTIAS-DEFECT",
+      "reason": "Retención monetaria unilateral por devoluciones de clientes en tienda sin peritaje técnico de fábrica",
+      "amount": "34000.00",
+      "reference_doc": "DEL-CASE_023-E2F5"
+    }
+  ]
+}
