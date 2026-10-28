@@ -81,6 +81,20 @@ export const apiClient = {
     return res.json();
   },
 
+  async getBenchmarkReport() {
+    const res = await fetch(`${BASE_URL}/telemetry/benchmark`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async runBenchmark() {
+    const res = await fetch(`${BASE_URL}/telemetry/benchmark/run`, {
+      method: 'POST',
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
   async uploadCase(formData) {
     const res = await fetch(`${BASE_URL}/cases/upload`, {
       method: 'POST',

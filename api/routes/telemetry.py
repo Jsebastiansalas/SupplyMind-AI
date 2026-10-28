@@ -5,7 +5,11 @@ Provee datos cuantificables de rentabilidad e impacto de negocio para evaluació
 """
 
 from typing import Dict, Any
-from fastapi import APIRouter
+from pathlib import Path
+import json
+from fastapi import APIRouter, HTTPException
+
+from tools.telemetry.cost_tracker import generate_full_unit_economics_report
 
 router = APIRouter(prefix="/telemetry", tags=["Telemetría & Unit Economics"])
 
@@ -14,31 +18,42 @@ router = APIRouter(prefix="/telemetry", tags=["Telemetría & Unit Economics"])
 def get_unit_economics() -> Dict[str, Any]:
     """
     Retorna métricas de ROI y unit economics comparativos entre SupplyMind AI y analistas humanos.
+    Lee el artefacto oficial generado por el motor de telemetría.
     """
-    return {
-        "status": "online",
-        "currency": "USD",
-        "per_case_metrics": {
-            "agent_cost_usd": 0.0028,
-            "human_auditor_cost_usd": 45.00,
-            "cost_reduction_percent": 99.99,
-            "agent_resolution_time_seconds": 0.18,
-            "human_resolution_time_hours": 36.0,
-            "speed_multiplier": 720000,
-        },
-        "enterprise_scale_projection": {
-            "volume_annual_cases": 12000,
-            "human_annual_spend_usd": 540000.00,
-            "agent_annual_spend_usd": 33.60,
-            "net_annual_savings_usd": 539966.40,
-            "roi_multiple": "16,070x",
-            "recovery_acceleration_days": 28,
-        },
-        "quality_and_compliance": {
-            "arithmetic_precision": "Decimal (IEEE 754 Float-Free)",
-            "hallucination_rate_percent": 0.0,
-            "contractual_citation_accuracy_percent": 100.0,
-            "test_suite_coverage": "162+ Tests Green",
-            "statute_of_limitations_compliance": "100% Automated Notice Window Check",
-        }
-    }
+    json_path = Path("reports/unit_economics_cost_report.json")
+    if json_path.exists():
+        try:
+            with open(json_path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            pass
+
+    # Generación dinámica si no existe el archivo
+    report = generate_full_unit_economics_report(total_benchmark_cases=35)
+    return report.model_dump(mode="json")
+
+
+@router.get("/benchmark")
+def get_benchmark_report() -> Dict[str, Any]:
+    """
+    Retorna los resultados periciales del Benchmark Suite de los 35 Casos B2B.
+    """
+    json_path = Path("reports/benchmark_suite_35_cases_report.json")
+    if not json_path.exists():
+        raise HTTPException(
+            status_code=404,
+            detail="El reporte del benchmark de 35 casos no se ha generado aún. Ejecute scripts/benchmark_30_cases.py"
+        )
+    with open(json_path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+@router.post("/benchmark/run")
+def trigger_benchmark() -> Dict[str, Any]:
+    """
+    Dispara la ejecución del benchmark de 35 casos y retorna el resumen pericial actualizado.
+    """
+    from scripts.benchmark_30_cases import run_35_cases_benchmark
+    summary = run_35_cases_benchmark(verbose=False)
+    return summary
+

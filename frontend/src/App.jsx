@@ -14,6 +14,7 @@ import OfficialAuditReportModal from './components/OfficialAuditReportModal';
 import PitchWalkthrough, { PITCH_STEPS } from './components/PitchWalkthrough';
 import CreateCaseModal from './components/CreateCaseModal';
 import CaseSummaryView from './components/CaseSummaryView';
+import BenchmarkView from './components/BenchmarkView';
 import { apiClient } from './api/client';
 import { 
   DollarSign, 
@@ -34,7 +35,8 @@ import {
   Wrench,
   Eye,
   CheckCircle2,
-  Clock
+  Clock,
+  Trophy
 } from 'lucide-react';
 
 function Workspace() {
@@ -380,6 +382,19 @@ function Workspace() {
                   </button>
 
                   <button
+                    onClick={() => setActiveTab('benchmark')}
+                    className={`btn-tactile px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors flex items-center space-x-1.5 ${
+                      activeTab === 'benchmark'
+                        ? 'bg-[#242116] text-[#eed98d] border border-[#d4af37]/60 shadow-tactile font-bold'
+                        : 'text-zinc-400 hover:text-white hover:bg-[#12131a]'
+                    }`}
+                  >
+                    <Trophy className="w-3.5 h-3.5 text-[#d4af37]" />
+                    <span>Benchmark (35)</span>
+                    <span className="text-[9px] px-1 py-0.2 rounded bg-emerald-950 text-emerald-300 font-mono hidden md:inline">100%</span>
+                  </button>
+
+                  <button
                     onClick={() => setActiveTab('export')}
                     className={`btn-tactile px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors ${
                       activeTab === 'export'
@@ -391,6 +406,20 @@ function Workspace() {
                   </button>
                 </div>
               )}
+
+              {/* Dedicated Benchmark 35 Button */}
+              <button
+                onClick={() => setActiveTab(activeTab === 'benchmark' ? 'financial' : 'benchmark')}
+                className={`btn-tactile px-2.5 py-1.5 rounded bg-[#111218] hover:bg-[#161822] border text-xs font-mono font-bold transition-all flex items-center space-x-1.5 shadow-tactile ${
+                  activeTab === 'benchmark'
+                    ? 'bg-[#242116] border-[#d4af37] text-[#eed98d]'
+                    : 'border-[#222432] text-zinc-300 hover:text-white'
+                }`}
+                title="Suite de Benchmark de 35 Casos y Unit Economics"
+              >
+                <Trophy className="w-3.5 h-3.5 text-[#d4af37]" />
+                <span className="hidden sm:inline">Benchmark 35</span>
+              </button>
 
               {/* Toggle Summary vs Details Button */}
               {report && (
@@ -460,6 +489,17 @@ function Workspace() {
                     <button
                       onClick={() => {
                         setShowToolsMenu(false);
+                        setActiveTab('benchmark');
+                      }}
+                      className="btn-tactile w-full text-left px-3 py-2 rounded hover:bg-[#181a24] text-zinc-300 hover:text-white flex items-center space-x-2"
+                    >
+                      <Trophy className="w-3.5 h-3.5 text-[#d4af37]" />
+                      <span>Benchmark Suite (35 Casos)</span>
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        setShowToolsMenu(false);
                         setShowEconomicsModal(true);
                       }}
                       className="btn-tactile w-full text-left px-3 py-2 rounded hover:bg-[#181a24] text-zinc-300 hover:text-white flex items-center space-x-2"
@@ -487,8 +527,15 @@ function Workspace() {
 
           </div>
 
-          {/* Active View: Summary when not resolved or when toggled */}
-          {(!report || forceShowSummary) ? (
+          {/* Active View: Benchmark View OR Summary when not resolved OR Full Financial Workspace */}
+          {activeTab === 'benchmark' ? (
+            <BenchmarkView 
+              onSelectCase={(cId) => {
+                setSelectedCaseId(cId);
+                setActiveTab('financial');
+              }}
+            />
+          ) : (!report || forceShowSummary) ? (
             <CaseSummaryView 
               caseDetails={caseDetails} 
               onRunAudit={handleRunAudit} 
