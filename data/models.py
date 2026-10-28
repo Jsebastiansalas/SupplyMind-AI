@@ -169,6 +169,7 @@ class DisputeAnalysisReport(_Base):
     watchdog_metrics: Optional[Any] = Field(default=None)  # Métricas operativas del vigilante ReAct contra bucles infinitos (Pilar 5)
     adversarial_verdict: Optional[Any] = Field(default=None)  # Debate Dialéctico Multi-Agente (Pilar 3)
     recovery_prediction: Optional[Any] = Field(default=None)  # Motor Predictivo de Cobro & Simulación (Pilar 4)
+    sanity_gate_audit: Optional[Any] = Field(default=None)  # Filtro de Sanidad Cuádruple & Anti-Puntos Ciegos (Semana 4)
 
     def formatted_display(self) -> str:
         """Formatea el reporte con la estructura solicitada para el reto."""

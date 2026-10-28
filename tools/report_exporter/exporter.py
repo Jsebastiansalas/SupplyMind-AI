@@ -100,6 +100,21 @@ def generate_markdown_report(report: DisputeAnalysisReport, state: Optional[Disp
             for obj in adv_verdict.sustained_objections:
                 lines.append(f"> - ⚖️ {obj}")
 
+    # Semana 4: Sanity Gate de Cuádruple Auditoría & Anti-Puntos Ciegos
+    sanity = getattr(report, "sanity_gate_audit", None)
+    if sanity:
+        lines.append("\n---")
+        lines.append("## 4.2 SANITY GATE DE CUÁDRUPLE AUDITORÍA (SEMANA 4)\n")
+        lines.append(f"- **Índice de Irrefutabilidad Probatoria:** `{sanity.irrefutability_grade}`")
+        lines.append(f"- **Invarianza Aritmética Cuadrada:** {'✅ APROBADA ($0.00 MAE)' if sanity.arithmetic_invariant_passed else '⚠️ AJUSTADA DETERMINÍSTICAMENTE'}")
+        lines.append(f"- **Prelación Jerárquica Contractual:** {'✅ BLINDADA (Art. 88 CCom)' if sanity.precedence_hierarchy_passed else '⚠️ CONFLICTO'}")
+        lines.append(f"- **Ventana Perentoria de Notificación:** {'✅ EN PLAZO' if sanity.notice_window_passed else f'🚨 EXTEMPORÁNEA ({sanity.notice_window_days_elapsed}d > {sanity.notice_window_days_allowed}d LÍMITE)'}")
+        lines.append(f"- **Doble Imposición o Acumulación Abusiva:** {'🚨 DETECTADA Y NEUTRALIZADA' if sanity.double_penalty_detected else '✅ NEGATIVA (Sin duplicidad)'}")
+        if sanity.audit_notes:
+            lines.append("\n**Notas de la Auditoría Cuádruple:**")
+            for n in sanity.audit_notes:
+                lines.append(f"> - 🛡️ {n}")
+
     lines.append("\n---")
     lines.append("## 5. PLAN DE ACCIÓN OPERATIVO Y COMERCIAL RECOMENDADO\n")
     lines.append(f"**Recomendación:**  \n{report.recommended_action}\n")

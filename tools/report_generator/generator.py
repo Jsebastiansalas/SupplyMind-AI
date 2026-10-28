@@ -83,6 +83,16 @@ def build_dispute_report(
         health_audit=health_audit
     )
 
+    # Sanity Gate de Cuádruple Auditoría & Anti-Puntos Ciegos (Semana 4 - Sprint 4.1)
+    try:
+        from agent.guardrails.sanity_gate import SanityGateEngine
+        SanityGateEngine.audit_and_reinforce_case(
+            report=report,
+            docs=loaded_documents or {}
+        )
+    except Exception:
+        pass
+
     # Debate Dialéctico Multi-Agente (Pilar 3)
     try:
         from agent.courtroom.adversarial_engine import AdversarialCourtroomEngine

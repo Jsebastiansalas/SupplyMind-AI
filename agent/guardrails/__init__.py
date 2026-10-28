@@ -8,6 +8,7 @@ from .arithmetic_verifier import (
 from .evidence_binder import StrictEvidenceBinder
 from .quarantine_manager import QuarantineManager
 from .session_watchdog import SessionAnchorManager, ReActExecutionWatchdog
+from .sanity_gate import SanityGateEngine, SanityGateAuditResult
 
 __all__ = [
     "ZKPFinancialAuditor",
@@ -19,4 +20,6 @@ __all__ = [
     "QuarantineManager",
     "SessionAnchorManager",
     "ReActExecutionWatchdog",
+    "SanityGateEngine",
+    "SanityGateAuditResult",
 ]
