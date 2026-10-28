@@ -1,0 +1,15 @@
+{
+  "invoice_number": "CFDI-LIV-3901",
+  "customer_id": "LIVERPOOL_MX",
+  "buyer": "El Puerto de Liverpool",
+  "items": [
+    {
+      "item_id": "SKU-MODA-39",
+      "description": "Lote Vestidos Noche",
+      "quantity": 850,
+      "unit_price": 100.0,
+      "total": 85000.0
+    }
+  ],
+  "total_amount": 85000.0
+}

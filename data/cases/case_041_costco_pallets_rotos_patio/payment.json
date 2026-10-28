@@ -1,0 +1,12 @@
+{
+  "payment_id": "PAY-OS_PATIO",
+  "payment_date": "2026-09-30",
+  "amount_paid": 61500.0,
+  "deductions": [
+    {
+      "code": "DED-UNAUTHORIZED",
+      "reason": "Deducción no acordada",
+      "amount": 3500.0
+    }
+  ]
+}

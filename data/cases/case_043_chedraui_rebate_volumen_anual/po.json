@@ -1,0 +1,14 @@
+{
+  "po_number": "PO-EN_ANUAL",
+  "buyer": "Grupo Comercial Chedraui",
+  "items": [
+    {
+      "item_id": "SKU-nual",
+      "description": "Mercancía Industrial case_043_chedraui_rebate_volumen_anual",
+      "quantity": 720,
+      "unit_price": 100.0
+    }
+  ],
+  "total_amount": 72000.0,
+  "customer_id": "CHEDRAUI_MX"
+}

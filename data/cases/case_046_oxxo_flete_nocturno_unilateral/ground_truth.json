@@ -1,0 +1,14 @@
+{
+  "case_id": "case_046_oxxo_flete_nocturno_unilateral",
+  "category": "ADVANCED_CRUCIBLE",
+  "buyer_id": "OXXO_MX",
+  "buyer_name": "Cadena Comercial OXXO",
+  "industry": "Conveniencia",
+  "currency": "USD",
+  "billed_amount": "18000.00",
+  "received_amount": "15600.00",
+  "difference": "-2400.00",
+  "expected_justified_amount": "0.00",
+  "expected_claimable_amount": "2400.00",
+  "expected_confidence": 0.95
+}

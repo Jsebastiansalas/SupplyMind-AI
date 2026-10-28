@@ -1,0 +1,14 @@
+{
+  "case_id": "case_044_home_depot_multa_etiquetado_gs1",
+  "category": "ADVANCED_CRUCIBLE",
+  "buyer_id": "HOMEDEPOT_MX",
+  "buyer_name": "The Home Depot México",
+  "industry": "Ferretería",
+  "currency": "USD",
+  "billed_amount": "28000.00",
+  "received_amount": "25200.00",
+  "difference": "-2800.00",
+  "expected_justified_amount": "0.00",
+  "expected_claimable_amount": "2800.00",
+  "expected_confidence": 0.95
+}

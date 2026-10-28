@@ -1,0 +1,12 @@
+{
+  "payment_id": "PAY-EDUCTION",
+  "payment_date": "2026-09-30",
+  "amount_paid": 82000.0,
+  "deductions": [
+    {
+      "code": "DED-UNAUTHORIZED",
+      "reason": "Deducción no acordada",
+      "amount": 13000.0
+    }
+  ]
+}

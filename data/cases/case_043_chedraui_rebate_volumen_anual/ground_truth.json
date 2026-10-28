@@ -1,0 +1,14 @@
+{
+  "case_id": "case_043_chedraui_rebate_volumen_anual",
+  "category": "ADVANCED_CRUCIBLE",
+  "buyer_id": "CHEDRAUI_MX",
+  "buyer_name": "Grupo Comercial Chedraui",
+  "industry": "Autoservicio",
+  "currency": "USD",
+  "billed_amount": "72000.00",
+  "received_amount": "64000.00",
+  "difference": "-8000.00",
+  "expected_justified_amount": "0.00",
+  "expected_claimable_amount": "8000.00",
+  "expected_confidence": 0.95
+}

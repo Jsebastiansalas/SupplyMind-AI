@@ -1,0 +1,12 @@
+{
+  "payment_id": "PAY-SOR-4001",
+  "payment_date": "2026-09-28",
+  "amount_paid": 38500.0,
+  "deductions": [
+    {
+      "code": "DED-MERMA-ESTIMADA",
+      "reason": "Retención por merma estadística no comprobada",
+      "amount": 5500.0
+    }
+  ]
+}

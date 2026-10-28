@@ -1,0 +1,15 @@
+{
+  "invoice_number": "CFDI-OR_75PCT",
+  "customer_id": "FARMA_AHORRO",
+  "buyer": "Farmacias del Ahorro",
+  "items": [
+    {
+      "item_id": "SKU-5pct",
+      "description": "Mercancía Industrial case_042_farma_caducidad_menor_75pct",
+      "quantity": 320,
+      "unit_price": 100.0,
+      "total": 32000.0
+    }
+  ],
+  "total_amount": 32000.0
+}

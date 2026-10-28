@@ -1,0 +1,14 @@
+{
+  "po_number": "PO-LIV-3901",
+  "buyer": "El Puerto de Liverpool",
+  "items": [
+    {
+      "item_id": "SKU-MODA-39",
+      "description": "Lote Vestidos Noche",
+      "quantity": 850,
+      "unit_price": 100.0
+    }
+  ],
+  "total_amount": 85000.0,
+  "customer_id": "LIVERPOOL_MX"
+}

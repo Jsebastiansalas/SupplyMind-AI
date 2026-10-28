@@ -1,0 +1,14 @@
+{
+  "case_id": "case_040_soriana_merma_operativa_no_pactada",
+  "category": "UNILATERAL_CHARGE",
+  "buyer_id": "SORIANA_MX",
+  "buyer_name": "Organización Soriana",
+  "industry": "Supermercados",
+  "currency": "USD",
+  "billed_amount": "44000.00",
+  "received_amount": "38500.00",
+  "difference": "-5500.00",
+  "expected_justified_amount": "0.00",
+  "expected_claimable_amount": "5500.00",
+  "expected_confidence": 0.95
+}

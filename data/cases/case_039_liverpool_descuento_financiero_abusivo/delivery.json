@@ -1,0 +1,16 @@
+{
+  "delivery_id": "REM-LIV-3901",
+  "delivery_date": "2026-08-01",
+  "signed": true,
+  "discrepancy_reported": false,
+  "items": [
+    {
+      "item_id": "SKU-DEFAULT",
+      "quantity_delivered": 100,
+      "quantity_received": 100,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Entrega completa sin novedades"
+    }
+  ]
+}

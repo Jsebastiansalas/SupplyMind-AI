@@ -346,7 +346,7 @@ def normalize_schema_dict(raw_data: Dict[str, Any], doc_type: str) -> Tuple[Dict
         signed = bool(_get_first(["signed", "firmado", "firmada", "signed_by_recipient"], True))
         discrepancy = bool(_get_first(["discrepancy_reported", "discrepancia", "faltante_reportado"], False))
 
-        raw_items = _get_first(["items", "line_items", "partidas", "productos", "articulos", "lineas"], [])
+        raw_items = _get_first(["items", "items_delivered", "line_items", "partidas", "productos", "articulos", "lineas"], [])
         norm_items = []
 
         for idx, it in enumerate(raw_items, 1):
@@ -367,8 +367,8 @@ def normalize_schema_dict(raw_data: Dict[str, Any], doc_type: str) -> Tuple[Dict
 
             # Deducir faltante si no viene explícito
             missing_def = max(0, q_del - q_rec)
-            missing = int(it.get("missing_quantity") or it.get("missing_qty") or it.get("faltante") or it.get("missing") or missing_def)
-            damaged = int(it.get("damaged_quantity") or it.get("damaged_qty") or it.get("dañado") or it.get("danado") or it.get("damaged") or 0)
+            missing = int(it.get("missing_quantity") or it.get("quantity_missing") or it.get("missing_qty") or it.get("faltante") or it.get("missing") or missing_def)
+            damaged = int(it.get("damaged_quantity") or it.get("quantity_damaged") or it.get("damaged_qty") or it.get("dañado") or it.get("danado") or it.get("damaged") or 0)
             notes = it.get("notes") or it.get("notas") or None
 
             norm_items.append({

@@ -1,0 +1,15 @@
+{
+  "invoice_number": "CFDI-OS_PATIO",
+  "customer_id": "COSTCO_MX",
+  "buyer": "Costco Wholesale",
+  "items": [
+    {
+      "item_id": "SKU-atio",
+      "description": "Mercancía Industrial case_041_costco_pallets_rotos_patio",
+      "quantity": 650,
+      "unit_price": 100.0,
+      "total": 65000.0
+    }
+  ],
+  "total_amount": 65000.0
+}

@@ -1,0 +1,14 @@
+{
+  "po_number": "PO-SOR-4001",
+  "buyer": "Organización Soriana",
+  "items": [
+    {
+      "item_id": "SKU-ALIM-40",
+      "description": "Aceite Vegetal Comestible",
+      "quantity": 2200,
+      "unit_price": 20.0
+    }
+  ],
+  "total_amount": 44000.0,
+  "customer_id": "SORIANA_MX"
+}

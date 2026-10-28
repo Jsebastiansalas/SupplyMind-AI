@@ -1,0 +1,14 @@
+{
+  "case_id": "case_037_walmart_doble_penalizacion_otif",
+  "category": "COMPOUND_MIXED",
+  "buyer_id": "WALMART_MEXICO",
+  "buyer_name": "Nueva Walmart de México",
+  "industry": "Supermercados",
+  "currency": "USD",
+  "billed_amount": "50000.00",
+  "received_amount": "42500.00",
+  "difference": "-7500.00",
+  "expected_justified_amount": "3000.00",
+  "expected_claimable_amount": "4500.00",
+  "expected_confidence": 0.95
+}

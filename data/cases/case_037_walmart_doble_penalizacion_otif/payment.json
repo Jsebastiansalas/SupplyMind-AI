@@ -1,0 +1,17 @@
+{
+  "payment_id": "PAY-WMT-3701",
+  "payment_date": "2026-09-25",
+  "amount_paid": 42500.0,
+  "deductions": [
+    {
+      "code": "DED-SHORTAGE",
+      "reason": "Faltante físico en muelle de 60 unidades",
+      "amount": 3000.0
+    },
+    {
+      "code": "DED-OTIF-FILL",
+      "reason": "Penalización OTIF Fill-Rate por entrega inferior al 95%",
+      "amount": 4500.0
+    }
+  ]
+}

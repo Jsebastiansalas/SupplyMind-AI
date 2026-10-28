@@ -1,0 +1,2 @@
+# CONTRATO MARCO ORGANIZACIÓN SORIANA 2026
+**Cláusula 7.4 (Mermas y Devoluciones):** Toda merma exigible requiere la suscripción de un Acta Circunstanciada en presencia del representante del proveedor dentro de los 5 días de recepción. Quedan prohibidas las deducciones estimadas.

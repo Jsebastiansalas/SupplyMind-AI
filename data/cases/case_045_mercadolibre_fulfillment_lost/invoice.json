@@ -1,0 +1,15 @@
+{
+  "invoice_number": "CFDI-ENT_LOST",
+  "customer_id": "MERCADOLIBRE_MX",
+  "buyer": "Mercado Libre Envíos Full",
+  "items": [
+    {
+      "item_id": "SKU-lost",
+      "description": "Mercancía Industrial case_045_mercadolibre_fulfillment_lost",
+      "quantity": 195,
+      "unit_price": 100.0,
+      "total": 19500.0
+    }
+  ],
+  "total_amount": 19500.0
+}

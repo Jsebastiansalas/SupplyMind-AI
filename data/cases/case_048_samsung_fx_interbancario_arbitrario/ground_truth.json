@@ -1,0 +1,14 @@
+{
+  "case_id": "case_048_samsung_fx_interbancario_arbitrario",
+  "category": "ADVANCED_CRUCIBLE",
+  "buyer_id": "SAMSUNG_MX",
+  "buyer_name": "Samsung Electronics México",
+  "industry": "Electrónica",
+  "currency": "USD",
+  "billed_amount": "60000.00",
+  "received_amount": "52000.00",
+  "difference": "-8000.00",
+  "expected_justified_amount": "0.00",
+  "expected_claimable_amount": "8000.00",
+  "expected_confidence": 0.95
+}

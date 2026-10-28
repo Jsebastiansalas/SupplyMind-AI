@@ -1,0 +1,15 @@
+{
+  "invoice_number": "CFDI-AMZ-3801",
+  "customer_id": "AMAZON_MEXICO",
+  "buyer": "Amazon México",
+  "items": [
+    {
+      "item_id": "SKU-ELEC-38",
+      "description": "Audífonos Bluetooth Pro",
+      "quantity": 760,
+      "unit_price": 50.0,
+      "total": 38000.0
+    }
+  ],
+  "total_amount": 38000.0
+}

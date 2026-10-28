@@ -1,0 +1,23 @@
+{
+  "delivery_id": "REM-RETAILER",
+  "delivery_date": "2026-09-15",
+  "signed": true,
+  "discrepancy_reported": true,
+  "items_delivered": [
+    {
+      "item_id": "SKU-iler",
+      "quantity_received": 1350,
+      "quantity_missing": 150
+    }
+  ],
+  "items": [
+    {
+      "item_id": "SKU-iler",
+      "quantity_delivered": 1500,
+      "quantity_received": 1350,
+      "missing_quantity": 150,
+      "damaged_quantity": 0,
+      "notes": "Remisión de entrega en muelle"
+    }
+  ]
+}

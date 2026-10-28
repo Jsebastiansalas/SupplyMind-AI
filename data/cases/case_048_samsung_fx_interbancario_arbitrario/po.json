@@ -1,0 +1,14 @@
+{
+  "po_number": "PO-BITRARIO",
+  "buyer": "Samsung Electronics México",
+  "items": [
+    {
+      "item_id": "SKU-ario",
+      "description": "Mercancía Industrial case_048_samsung_fx_interbancario_arbitrario",
+      "quantity": 600,
+      "unit_price": 100.0
+    }
+  ],
+  "total_amount": 60000.0,
+  "customer_id": "SAMSUNG_MX"
+}

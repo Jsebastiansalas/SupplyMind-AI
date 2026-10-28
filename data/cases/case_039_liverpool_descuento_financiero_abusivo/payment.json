@@ -1,0 +1,12 @@
+{
+  "payment_id": "PAY-LIV-3901",
+  "payment_date": "2026-09-18",
+  "amount_paid": 80750.0,
+  "deductions": [
+    {
+      "code": "DED-EARLY-PAY-5PCT",
+      "reason": "Descuento financiero de pronto pago 5%",
+      "amount": 4250.0
+    }
+  ]
+}

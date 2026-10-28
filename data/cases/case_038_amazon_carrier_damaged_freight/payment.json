@@ -1,0 +1,12 @@
+{
+  "payment_id": "PAY-AMZ-3801",
+  "payment_date": "2026-09-30",
+  "amount_paid": 31800.0,
+  "deductions": [
+    {
+      "code": "DED-DAMAGE-IN-TRANSIT",
+      "reason": "Cajas aplastadas en tránsito vehicular",
+      "amount": 6200.0
+    }
+  ]
+}

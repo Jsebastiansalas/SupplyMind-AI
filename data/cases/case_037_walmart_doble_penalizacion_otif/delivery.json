@@ -1,0 +1,23 @@
+{
+  "delivery_id": "REM-WMT-3701",
+  "delivery_date": "2026-09-10",
+  "signed": true,
+  "discrepancy_reported": true,
+  "items_delivered": [
+    {
+      "item_id": "SKU-WMT-01",
+      "quantity_received": 940,
+      "quantity_missing": 60
+    }
+  ],
+  "items": [
+    {
+      "item_id": "SKU-WMT-01",
+      "quantity_delivered": 1000,
+      "quantity_received": 940,
+      "missing_quantity": 60,
+      "damaged_quantity": 0,
+      "notes": "Remisión de entrega en muelle"
+    }
+  ]
+}

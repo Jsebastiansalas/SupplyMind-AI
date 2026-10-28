@@ -213,11 +213,11 @@ class DocumentClassifier:
         
         # 1. Si los nombres convencionales ya existen, asignarlos directamente
         standard_keys = {
-            "invoice": ["invoice.pdf", "invoice.json"],
-            "purchase_order": ["purchase_order.pdf", "purchase_order.json"],
-            "delivery": ["delivery.pdf", "delivery.json", "delivery.png", "delivery.jpg", "delivery.jpeg"],
-            "payment": ["payment.pdf", "payment.json"],
-            "contract": ["contract.pdf", "contract.json", "contract.md"]
+            "invoice": ["invoice.pdf", "invoice.json", "factura.pdf", "factura.json", "cfdi.xml", "cfdi.json"],
+            "purchase_order": ["purchase_order.pdf", "purchase_order.json", "po.json", "po.pdf", "oc.json", "oc.pdf", "orden_compra.json", "orden_compra.pdf"],
+            "delivery": ["delivery.pdf", "delivery.json", "delivery.png", "delivery.jpg", "delivery.jpeg", "remision.pdf", "remision.json", "pod.pdf", "pod.png"],
+            "payment": ["payment.pdf", "payment.json", "pago.pdf", "pago.json"],
+            "contract": ["contract.pdf", "contract.json", "contract.md", "contrato.pdf", "contrato.json", "contrato.md"]
         }
         all_standard_found = True
         for key, possible_names in standard_keys.items():
@@ -254,7 +254,11 @@ class DocumentClassifier:
                     if not any(scores.values()) or max(scores.values()) == 0:
                         stem = candidate.stem.lower()
                         for role in ["invoice", "purchase_order", "delivery", "payment", "contract"]:
-                            if role in stem or (role == "payment" and "pago" in stem) or (role == "delivery" and "remision" in stem):
+                            if (role in stem or 
+                                (role == "payment" and "pago" in stem) or 
+                                (role == "delivery" and ("remision" in stem or "pod" in stem)) or
+                                (role == "purchase_order" and stem in ["po", "oc", "orden_compra"]) or
+                                (role == "invoice" and stem in ["factura", "cfdi"])):
                                 scores[role] = 10.0
                     best_type = max(scores, key=scores.get) if any(scores.values()) else "unknown"
                     scored_candidates.append((candidate, best_type, 0.95))

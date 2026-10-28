@@ -1,0 +1,14 @@
+{
+  "po_number": "PO-RETAILER",
+  "buyer": "Grupo Industrial Altex",
+  "items": [
+    {
+      "item_id": "SKU-iler",
+      "description": "Mercancía Industrial case_050_mega_conglomerado_cross_retailer",
+      "quantity": 1500,
+      "unit_price": 100.0
+    }
+  ],
+  "total_amount": 150000.0,
+  "customer_id": "CONGLOMERADO_MX"
+}

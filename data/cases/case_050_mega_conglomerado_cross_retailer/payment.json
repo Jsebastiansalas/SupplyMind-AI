@@ -1,0 +1,17 @@
+{
+  "payment_id": "PAY-RETAILER",
+  "payment_date": "2026-09-30",
+  "amount_paid": 115000.0,
+  "deductions": [
+    {
+      "code": "DED-JUSTIFIED",
+      "reason": "Faltante físico comprobado",
+      "amount": 15000.0
+    },
+    {
+      "code": "DED-UNAUTHORIZED",
+      "reason": "Deducción no acordada",
+      "amount": 20000.0
+    }
+  ]
+}

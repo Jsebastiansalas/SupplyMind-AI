@@ -1,0 +1,14 @@
+{
+  "case_id": "case_041_costco_pallets_rotos_patio",
+  "category": "ADVANCED_CRUCIBLE",
+  "buyer_id": "COSTCO_MX",
+  "buyer_name": "Costco Wholesale",
+  "industry": "Club de Precios",
+  "currency": "USD",
+  "billed_amount": "65000.00",
+  "received_amount": "61500.00",
+  "difference": "-3500.00",
+  "expected_justified_amount": "0.00",
+  "expected_claimable_amount": "3500.00",
+  "expected_confidence": 0.95
+}

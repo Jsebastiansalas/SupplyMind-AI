@@ -1,0 +1,14 @@
+{
+  "po_number": "PO-OR_75PCT",
+  "buyer": "Farmacias del Ahorro",
+  "items": [
+    {
+      "item_id": "SKU-5pct",
+      "description": "Mercancía Industrial case_042_farma_caducidad_menor_75pct",
+      "quantity": 320,
+      "unit_price": 100.0
+    }
+  ],
+  "total_amount": 32000.0,
+  "customer_id": "FARMA_AHORRO"
+}

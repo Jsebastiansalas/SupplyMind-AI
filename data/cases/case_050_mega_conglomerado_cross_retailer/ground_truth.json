@@ -1,0 +1,14 @@
+{
+  "case_id": "case_050_mega_conglomerado_cross_retailer",
+  "category": "ADVANCED_CRUCIBLE",
+  "buyer_id": "CONGLOMERADO_MX",
+  "buyer_name": "Grupo Industrial Altex",
+  "industry": "Holding B2B",
+  "currency": "USD",
+  "billed_amount": "150000.00",
+  "received_amount": "115000.00",
+  "difference": "-35000.00",
+  "expected_justified_amount": "15000.00",
+  "expected_claimable_amount": "20000.00",
+  "expected_confidence": 0.95
+}

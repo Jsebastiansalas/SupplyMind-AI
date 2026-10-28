@@ -1,0 +1,14 @@
+{
+  "case_id": "case_047_cisco_hardware_warranty_deduction",
+  "category": "ADVANCED_CRUCIBLE",
+  "buyer_id": "CISCO_MX",
+  "buyer_name": "Cisco Systems México",
+  "industry": "Tecnología",
+  "currency": "USD",
+  "billed_amount": "95000.00",
+  "received_amount": "82000.00",
+  "difference": "-13000.00",
+  "expected_justified_amount": "0.00",
+  "expected_claimable_amount": "13000.00",
+  "expected_confidence": 0.95
+}

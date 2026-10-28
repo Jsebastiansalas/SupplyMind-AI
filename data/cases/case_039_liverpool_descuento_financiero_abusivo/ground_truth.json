@@ -1,0 +1,14 @@
+{
+  "case_id": "case_039_liverpool_descuento_financiero_abusivo",
+  "category": "EARLY_PAYMENT_DISPUTE",
+  "buyer_id": "LIVERPOOL_MX",
+  "buyer_name": "El Puerto de Liverpool",
+  "industry": "Departamental",
+  "currency": "USD",
+  "billed_amount": "85000.00",
+  "received_amount": "80750.00",
+  "difference": "-4250.00",
+  "expected_justified_amount": "0.00",
+  "expected_claimable_amount": "4250.00",
+  "expected_confidence": 0.98
+}

@@ -1,0 +1,15 @@
+{
+  "invoice_number": "CFDI-EDUCTION",
+  "customer_id": "CISCO_MX",
+  "buyer": "Cisco Systems México",
+  "items": [
+    {
+      "item_id": "SKU-tion",
+      "description": "Mercancía Industrial case_047_cisco_hardware_warranty_deduction",
+      "quantity": 950,
+      "unit_price": 100.0,
+      "total": 95000.0
+    }
+  ],
+  "total_amount": 95000.0
+}

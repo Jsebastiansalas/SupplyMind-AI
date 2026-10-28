@@ -1,0 +1,14 @@
+{
+  "case_id": "case_045_mercadolibre_fulfillment_lost",
+  "category": "ADVANCED_CRUCIBLE",
+  "buyer_id": "MERCADOLIBRE_MX",
+  "buyer_name": "Mercado Libre Envíos Full",
+  "industry": "Marketplace",
+  "currency": "USD",
+  "billed_amount": "19500.00",
+  "received_amount": "14500.00",
+  "difference": "-5000.00",
+  "expected_justified_amount": "0.00",
+  "expected_claimable_amount": "5000.00",
+  "expected_confidence": 0.95
+}

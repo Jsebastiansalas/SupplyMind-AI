@@ -1,0 +1,14 @@
+{
+  "po_number": "PO-AMZ-3801",
+  "buyer": "Amazon México",
+  "items": [
+    {
+      "item_id": "SKU-ELEC-38",
+      "description": "Audífonos Bluetooth Pro",
+      "quantity": 760,
+      "unit_price": 50.0
+    }
+  ],
+  "total_amount": 38000.0,
+  "customer_id": "AMAZON_MEXICO"
+}

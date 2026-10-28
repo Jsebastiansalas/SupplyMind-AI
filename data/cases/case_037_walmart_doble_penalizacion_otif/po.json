@@ -1,0 +1,14 @@
+{
+  "po_number": "PO-WMT-3701",
+  "buyer": "Nueva Walmart de México",
+  "items": [
+    {
+      "item_id": "SKU-WMT-01",
+      "description": "Detergente Líquido 5L",
+      "quantity": 1000,
+      "unit_price": 50.0
+    }
+  ],
+  "total_amount": 50000.0,
+  "customer_id": "WALMART_MEXICO"
+}
