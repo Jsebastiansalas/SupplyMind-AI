@@ -121,18 +121,20 @@ Convertir a **SupplyMind AI** en el sistema pericial más potente del mercado co
 
 ## 🗓️ Hoja de Ruta de Implementación (Fases de Desarrollo)
 
-### Fase 1: Ingesta Jerárquica Masiva (Sprints 4.1 y 4.2)
-- [ ] Implementar `hierarchical_segmenter.py` para parseo de documentos de 50+ a 200+ páginas.
-- [ ] Desarrollar motor `batch_map_reduce.py` para conciliación de lotes masivos de 2,000 partidas en CPU local.
-- [ ] Construir prueba de estrés con expediente sintético de 100 páginas y 1,000 SKUs (`tests/test_massive_dossier.py`).
+### Fase 1: Ingesta Jerárquica Masiva (Sprints 4.1 y 4.2) — ✅ COMPLETADA (Commit `fe4774c`)
+- [x] Implementar `hierarchical_segmenter.py` para parseo de documentos de 50+ a 200+ páginas.
+- [x] Desarrollar motor `batch_map_reduce.py` para conciliación de lotes masivos de 1,000+ partidas en CPU local con Merkle tree SHA-256.
+- [x] Construir prueba de estrés con expediente sintético de 80 páginas y 1,000 SKUs (`tests/test_massive_dossier.py` — 5/5 PASSED).
 
-### Fase 2: Red de Memoria & Historial de Precedentes (Sprints 4.3 y 4.4)
-- [ ] Diseñar el modelo de datos `RetailerPrecedentProfile` y repositorio JSON/SQLite.
-- [ ] Implementar pipeline de aprendizaje: tras resolver un caso, el dictamen se archiva automáticamente como antecedente.
-- [ ] Inyectar citas de precedentes en cartas de reclamación (`reports/carta_reclamacion_*.md`).
-- [ ] Crear suite de pruebas de memoria y recall de precedentes (`tests/test_precedent_network.py`).
+### Fase 2: Red de Memoria & Historial de Precedentes (Sprints 4.3 y 4.4) — ✅ COMPLETADA (Commit `24c5be9`)
+- [x] Diseñar el modelo de datos `RetailerPrecedentProfile` y repositorio dual SQLite/JSON (`agent/memory/precedent_graph.py`).
+- [x] Implementar pipeline de aprendizaje: tras resolver un caso, el dictamen se archiva automáticamente como antecedente vinculante.
+- [x] Inyectar citas de precedentes en cartas de reclamación (`reports/carta_reclamacion_*.md` y `exporter.py`).
+- [x] Crear suite de pruebas de memoria y recall de precedentes (`tests/test_precedent_network.py` — 6/6 PASSED).
 
-### Fase 3: Debate Dialéctico & Motor Predictivo (Sprint 4.5)
-- [ ] Integrar el sub-agente Auditor vs Defensor en el runner de Skynet.
-- [ ] Implementar algoritmo predictivo de probabilidad de cobro (`recovery_probability_pct`).
-- [ ] Exponer métricas de precedentes y scoring predictivo en la interfaz React Obsidian Glass.
+### Fase 3: Debate Dialéctico & Motor Predictivo (Sprint 4.5) — ✅ COMPLETADA (Commit `c65adaf`)
+- [x] Integrar el debate dialéctico multi-agente Auditor vs Defensor vs Magistrado (`agent/courtroom/adversarial_engine.py`).
+- [x] Implementar algoritmo predictivo de probabilidad de cobro y 3 escenarios financieros (`agent/predictive/recovery_scorer.py`).
+- [x] Enriquecer reporte formal de disputa con Secciones 4.1 (Debate Dialéctico) y 5.1 (Scoring Predictivo).
+- [x] Exponer rutas API REST (`/api/cases/{case_id}/adversarial-courtroom`, `/api/cases/{case_id}/recovery-prediction`).
+- [x] Validar con suite de pruebas `tests/test_adversarial_courtroom.py` (6/6 PASSED, 17/17 total).
