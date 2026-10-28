@@ -1,0 +1,128 @@
+{
+  "case_id": "case_011_oxxo_caducidad_corta",
+  "currency": "USD",
+  "billed_amount": "32000.00",
+  "received_amount": "28800.00",
+  "difference": "-3200.00",
+  "root_cause": "Discrepancia mixta en expediente case_011_oxxo_caducidad_corta: Faltante físico comprobado de $0.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $3,200.00 USD sin sustento contractual ni documental.",
+  "evidence": [
+    "Deducción aplicada en comprobante PAY-CASE_011-E39A: código CADUCIDAD-CORTA, motivo 'Deducción unilateral por vida útil inferior a 90 días no estipulada en contrato', monto $3,200.00",
+    "[Factura INV-CASE_011-EFE5 §Total $32,000.00 USD]",
+    "[Comprobante PAY-CASE_011-E39A §Liquidación $28,800.00 USD]"
+  ],
+  "justified_amount": "0.00",
+  "claimable_amount": "3200.00",
+  "confidence": 0.88,
+  "recommended_action": "Aceptar deducción de $0.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $3,200.00 USD exigiendo su pago inmediato.",
+  "concessions": [],
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "case_011_oxxo_caducidad_corta",
+    "health_score": 100.0,
+    "status": "PRISTINE",
+    "is_healthy": true,
+    "repaired_issues": [],
+    "imputed_documents": [],
+    "documents_present": [
+      "invoice",
+      "purchase_order",
+      "delivery",
+      "payment",
+      "contract"
+    ],
+    "documents_missing": [],
+    "schema_warnings": [],
+    "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
+    "quarantine_docket": null,
+    "generated_at": "2026-10-28T13:09:10.628043+00:00"
+  },
+  "financial_proof": {
+    "case_id": "case_011_oxxo_caducidad_corta",
+    "proof_hash": "SM-PROOF-SHA256-CE57297D3D929B44",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$0.00 USD (Validado)",
+      "$3,200.00 USD (Validado)",
+      "$0.00 USD (Validado)",
+      "$3,200.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-10-28T13:09:10.634279+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "case_011_oxxo_caducidad_corta",
+    "total_claims_audited": 3,
+    "backed_claims_count": 2,
+    "unbacked_claims_count": 1,
+    "total_backed_amount": "60800.00",
+    "total_unbacked_amount": "3200.00",
+    "backing_ratio_pct": 95.0,
+    "evidence_pointers": [
+      {
+        "pointer_id": "PTR-INV-INV-CASE_011-EFE5-TOTAL",
+        "doc_type": "INVOICE",
+        "doc_id": "INV-CASE_011-EFE5",
+        "field_ref": "total_amount",
+        "item_sku": null,
+        "amount": "32000.00",
+        "citation_tag": "[Factura INV-CASE_011-EFE5 §Total $32,000.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Factura comercial fiscalmente válida por $32,000.00 USD."
+      },
+      {
+        "pointer_id": "PTR-PAY-PAY-CASE_011-E39A-AMOUNT",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_011-E39A",
+        "field_ref": "amount_paid",
+        "item_sku": null,
+        "amount": "28800.00",
+        "citation_tag": "[Comprobante PAY-CASE_011-E39A §Liquidación $28,800.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $28,800.00."
+      },
+      {
+        "pointer_id": "PTR-DED-CADUCIDAD-CORTA-1-UNBACKED",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_011-E39A",
+        "field_ref": "deduction_CADUCIDAD-CORTA",
+        "item_sku": null,
+        "amount": "3200.00",
+        "citation_tag": "[Comprobante PAY-CASE_011-E39A §Deducción Unilateral CADUCIDAD-CORTA | $3,200.00 SIN CLÁUSULA EN CTR-OXXO_FEMSA-2026]",
+        "is_backed_by_physical_proof": false,
+        "status": "CAUTELAR_NO_ACREDITADA",
+        "detail": "El retailer retuvo $3,200.00 bajo el código 'CADUCIDAD-CORTA', pero el contrato CTR-OXXO_FEMSA-2026 no contiene cláusula habilitante."
+      }
+    ],
+    "cautelar_items": [
+      "Deducción CADUCIDAD-CORTA ($3,200.00): Sin cláusula contractual que autorice retención."
+    ],
+    "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
+    "confidence_penalty": 0.1,
+    "generated_at": "2026-10-28T13:09:10Z"
+  },
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "case_011_oxxo_caducidad_corta",
+    "currency": "USD",
+    "billed_amount": "32000.00",
+    "received_amount": "28800.00",
+    "difference": "-3200.00",
+    "justified_amount": "0.00",
+    "claimable_amount": "3200.00",
+    "health_status": "PRISTINE",
+    "health_score": 100.0,
+    "zkp_proof_hash": "SM-PROOF-SHA256-CE57297D3D929B44",
+    "zkp_status": "MATHEMATICALLY_PROVEN",
+    "is_quarantined": false,
+    "evidence_backing_ratio": 95.0,
+    "anchored_at": "2026-10-28T13:09:10.637411+00:00"
+  },
+  "watchdog_metrics": null
+}

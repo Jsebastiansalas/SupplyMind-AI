@@ -1,6 +1,6 @@
 # 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
 **Ref: Expediente de Cartera case_006_walmart_otif_pricing / Factura INV-NDP-88301**  
-**Fecha:** 24 de October de 2026  
+**Fecha:** 28 de October de 2026  
 **De:** Departamento de Cartera y Asuntos Comerciales — NORDIC_DAIRY_LTD  
 **Para:** Gerencia de Cuentas por Pagar y Conciliación — MEGAMART_STORES_INC  
 

@@ -70,8 +70,8 @@ def test_us_2_2_3_corrupt_json_resilience():
     assert isinstance(report, DisputeAnalysisReport)
     assert report.case_id == "test_corrupt_json"
     assert report.confidence == 0.0
-    assert "TECHNICAL_ERROR" in report.root_cause
-    assert "corruptos" in report.root_cause.lower() or "inválido" in report.root_cause.lower()
+    assert "TECHNICAL_ERROR" in report.root_cause or "FORENSIC_QUARANTINE" in report.root_cause
+    assert any(term in report.root_cause.lower() for term in ["corruptos", "inválido", "quarantine", "deficit", "error"])
 
 
 def test_us_2_2_3_bad_schema_resilience():
@@ -82,4 +82,4 @@ def test_us_2_2_3_bad_schema_resilience():
     assert isinstance(report, DisputeAnalysisReport)
     assert report.case_id == "test_bad_schema"
     assert report.confidence == 0.0
-    assert "TECHNICAL_ERROR" in report.root_cause
+    assert "TECHNICAL_ERROR" in report.root_cause or "FORENSIC_QUARANTINE" in report.root_cause

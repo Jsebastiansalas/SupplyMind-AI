@@ -125,6 +125,7 @@ class CommercialContract(_Base):
     valid_from: str
     valid_to: str
     clauses: List[ContractClause] = Field(min_length=1)
+    raw_content: Optional[str] = None
 
 
 class CommercialConcession(BaseModel):

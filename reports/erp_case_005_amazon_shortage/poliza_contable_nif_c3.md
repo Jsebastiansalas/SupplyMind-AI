@@ -1,5 +1,5 @@
 # PÓLIZA CONTABLE DE SANEAMIENTO Y REGULARIZACIÓN FISCAL
-**Expediente:** `case_005_amazon_shortage` | **Norma:** NIF C-3 / US GAAP | **Fecha:** 2026-10-24 16:35:06 UTC  
+**Expediente:** `case_005_amazon_shortage` | **Norma:** NIF C-3 / US GAAP | **Fecha:** 2026-10-28 13:00:04 UTC  
 **Contraparte:** AMAZON FULFILLMENT SERVICES LLC DE MEXICO (RFC: `AMA120401BB2`)  
 
 ---

@@ -47,7 +47,9 @@ def run_35_cases_benchmark(cases_dir: Path = Path("data/cases"), verbose: bool =
     Ejecuta el benchmark exhaustivo sobre los 35 casos tipológicos comerciales.
     """
     start_total_time = time.time()
-    cases = sorted([d for d in cases_dir.iterdir() if d.is_dir() and d.name.startswith("case_")], key=lambda x: x.name)
+    all_cases = sorted([d for d in cases_dir.iterdir() if d.is_dir() and d.name.startswith("case_")], key=lambda x: x.name)
+    # Seleccionar los 35 casos oficiales del benchmark pericial (case_001 a case_035)
+    cases = [c for c in all_cases if c.name <= "case_035_walmart_unilateral_edi_charge"][:35]
 
     if verbose:
         console.print(Panel(

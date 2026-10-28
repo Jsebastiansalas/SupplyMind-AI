@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `case_006_walmart_otif_pricing` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-10-24 22:03:51 UTC | **Nivel de Confianza:** 98.0%
+> **Fecha de Emisión:** 2026-10-28 13:09:11 UTC | **Nivel de Confianza:** 98.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO
@@ -27,6 +27,26 @@ Discrepancia mixta en expediente case_006_walmart_otif_pricing: Faltante físico
 3. Deducción aplicada en comprobante REM-MMN-10294: código DED-EARLY-PAY, motivo 'Unauthorized Early Settlement Discount 5%', monto $3,500.00
 4. Respaldo contractual: Precios facturados deben ajustarse a la OC según 3.1 ('Ajuste Estricto a Precios de Orden de Compra').
 5. Respaldo contractual: La 7.2 ('Condiciones de Descuento por Pronto Pago') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.
+6. [Factura INV-NDP-88301 §Total $64,500.00 USD]
+7. [Comprobante REM-MMN-10294 §Liquidación $56,500.00 USD]
+8. [Contrato MSA-MMN-NDP-2026 §Cláusula 7.2 'Condiciones de Descuento por Pronto Pago' | Deducción DED-PRICE-CORR $4,500.00]
+9. [Contrato MSA-MMN-NDP-2026 §Cláusula 7.2 'Condiciones de Descuento por Pronto Pago' | Deducción DED-EARLY-PAY $3,500.00]
+10. [PO PO-MMN-77102 vs Factura INV-NDP-88301 §SKU SKU-WHEY-2KG | Varianza Precio: $3.00/ud]
+
+---
+## 3.1. CERTIFICACIÓN DE ANCLAJE FÁCTICO (PILAR 3 - ZERO UNCITED CLAIMS)
+
+- **Veredicto Probatorio:** `FULL_EVIDENCE_BINDING_VERIFIED`
+- **Ratio de Respaldo Fáctico:** **100.0%** (5 acreditadas vs 0 cautelares)
+- **Total Respaldado:** $133,500.00 USD
+
+| ID Puntero | Documento | SKU / Concepto | Monto | Estatus Probatorio |
+| :--- | :--- | :---: | :---: | :--- |
+| `PTR-INV-INV-NDP-88301-TOTAL` | INVOICE | `total_amount` | $64,500.00 | ✅ ACREDITADO |
+| `PTR-PAY-REM-MMN-10294-AMOUNT` | PAYMENT | `amount_paid` | $56,500.00 | ✅ ACREDITADO |
+| `PTR-DED-DED-PRICE-CORR-1` | CONTRACT | `clause_7.2` | $4,500.00 | ✅ ACREDITADO |
+| `PTR-DED-DED-EARLY-PAY-2` | CONTRACT | `clause_7.2` | $3,500.00 | ✅ ACREDITADO |
+| `PTR-PO-PO-MMN-77102-SKU-WHEY-2KG-PRICE` | PURCHASE_ORDER | `SKU-WHEY-2KG` | $4,500.00 | ✅ ACREDITADO |
 
 ---
 ## 4. DICTAMEN LEGAL Y CONTRACTUAL

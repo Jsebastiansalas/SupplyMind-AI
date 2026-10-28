@@ -1,6 +1,6 @@
 # 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
 **Ref: Expediente de Cartera case_004_enterprise / Factura INV-ENT-001**  
-**Fecha:** 09 de October de 2026  
+**Fecha:** 28 de October de 2026  
 **De:** Departamento de Cartera y Asuntos Comerciales — GTS-999  
 **Para:** Gerencia de Cuentas por Pagar y Conciliación — MCR-111  
 
@@ -16,7 +16,7 @@ Habiendo realizado la auditoría técnica y contractual correspondiente, les com
 Aceptamos de plena conformidad la deducción por valor de **$5,000.00 USD**, debidamente amparada en las constancias físicas de entrega del documento **DEL-ENT-999** y conforme a lo pactado contractualmente. Para sanear este importe, estaremos emitiendo a su favor la respectiva **Nota de Crédito comercial**.
 
 #### 2. Deducciones Objetadas y Saldo Reclamable: **$2,500.00 USD**
-Rechazamos formalmente las deducciones adicionales aplicadas por un importe total de **$2,500.00 USD**, por carecer de soporte probatorio y contrariar los términos del contrato comercial **case_004_enterprise**:
+Rechazamos formalmente las deducciones adicionales aplicadas por un importe total de **$2,500.00 USD**, por carecer de soporte probatorio y contrariar los términos del contrato comercial **contract**:
 - **Causa Raíz:** Discrepancia mixta en expediente case_004_enterprise: Faltante físico comprobado de $5,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $2,500.00 USD sin sustento contractual ni documental.
 - **Fundamentación Contractual:** Evaluación algorítmica y semántica completada. Posible deducción de $2,500.00 requiere análisis final por el Agente.
 

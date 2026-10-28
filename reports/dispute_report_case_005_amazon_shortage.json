@@ -10,7 +10,12 @@
     "Deducción aplicada en comprobante REM-AMZ-99120: código DED-SHRT-20, motivo 'Dock Shortage - 20x SKU-NVME-4TB en muelle', monto $5,000.00",
     "Deducción aplicada en comprobante REM-AMZ-99120: código DED-ASN-PENALTY, motivo 'Late Inbound EDI ASN Defect Fee (No autorizad', monto $2,500.00",
     "Respaldo contractual: La 4.1 autoriza la deducción por faltantes físicos acreditados en remisión de entrega.",
-    "Respaldo contractual: La 5.3 ('Penalidades Operativas y Transmision ASN') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo."
+    "Respaldo contractual: La 5.3 ('Penalidades Operativas y Transmision ASN') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.",
+    "[Factura INV-PAC-2026-4402 §Total $48,000.00 USD]",
+    "[Comprobante REM-AMZ-99120 §Liquidación $40,500.00 USD]",
+    "[Contrato MSA-AMZ-PAC-2026 §Cláusula 4.1 'Ajuste por Faltantes Fisicos en Muelle' | Deducción DED-SHRT-20 $5,000.00]",
+    "[Contrato MSA-AMZ-PAC-2026 §Cláusula 4.1 'Ajuste por Faltantes Fisicos en Muelle' | Deducción DED-ASN-PENALTY $2,500.00]",
+    "[Remisión BOL-POD-77319 §SKU SKU-NVME-4TB | Faltante: 20 uds | $5,000.00]"
   ],
   "justified_amount": "5000.00",
   "claimable_amount": "2500.00",
@@ -35,11 +40,12 @@
     "documents_missing": [],
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
-    "generated_at": "2026-10-24T22:03:50.986361+00:00"
+    "quarantine_docket": null,
+    "generated_at": "2026-10-28T13:09:11.372546+00:00"
   },
   "financial_proof": {
     "case_id": "case_005_amazon_shortage",
-    "proof_hash": "SM-PROOF-SHA256-4C8CAA5D69EA5D70",
+    "proof_hash": "SM-PROOF-SHA256-24BCBF60530FE33F",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -53,6 +59,99 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-24T22:03:50.990047+00:00"
-  }
+    "tamper_proof_timestamp": "2026-10-28T13:09:11.380948+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "case_005_amazon_shortage",
+    "total_claims_audited": 5,
+    "backed_claims_count": 5,
+    "unbacked_claims_count": 0,
+    "total_backed_amount": "101000.00",
+    "total_unbacked_amount": "0.00",
+    "backing_ratio_pct": 100.0,
+    "evidence_pointers": [
+      {
+        "pointer_id": "PTR-INV-INV-PAC-2026-4402-TOTAL",
+        "doc_type": "INVOICE",
+        "doc_id": "INV-PAC-2026-4402",
+        "field_ref": "total_amount",
+        "item_sku": null,
+        "amount": "48000.00",
+        "citation_tag": "[Factura INV-PAC-2026-4402 §Total $48,000.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Factura comercial fiscalmente válida por $48,000.00 USD."
+      },
+      {
+        "pointer_id": "PTR-PAY-REM-AMZ-99120-AMOUNT",
+        "doc_type": "PAYMENT",
+        "doc_id": "REM-AMZ-99120",
+        "field_ref": "amount_paid",
+        "item_sku": null,
+        "amount": "40500.00",
+        "citation_tag": "[Comprobante REM-AMZ-99120 §Liquidación $40,500.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $40,500.00."
+      },
+      {
+        "pointer_id": "PTR-DED-DED-SHRT-20-1",
+        "doc_type": "CONTRACT",
+        "doc_id": "MSA-AMZ-PAC-2026",
+        "field_ref": "clause_4.1",
+        "item_sku": null,
+        "amount": "5000.00",
+        "citation_tag": "[Contrato MSA-AMZ-PAC-2026 §Cláusula 4.1 'Ajuste por Faltantes Fisicos en Muelle' | Deducción DED-SHRT-20 $5,000.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Deducción 'DED-SHRT-20' normada por la cláusula 4.1 de MSA-AMZ-PAC-2026."
+      },
+      {
+        "pointer_id": "PTR-DED-DED-ASN-PENALTY-2",
+        "doc_type": "CONTRACT",
+        "doc_id": "MSA-AMZ-PAC-2026",
+        "field_ref": "clause_4.1",
+        "item_sku": null,
+        "amount": "2500.00",
+        "citation_tag": "[Contrato MSA-AMZ-PAC-2026 §Cláusula 4.1 'Ajuste por Faltantes Fisicos en Muelle' | Deducción DED-ASN-PENALTY $2,500.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Deducción 'DED-ASN-PENALTY' normada por la cláusula 4.1 de MSA-AMZ-PAC-2026."
+      },
+      {
+        "pointer_id": "PTR-DEL-BOL-POD-77319-SKU-NVME-4TB-SHORT",
+        "doc_type": "DELIVERY",
+        "doc_id": "BOL-POD-77319",
+        "field_ref": "missing_quantity",
+        "item_sku": "SKU-NVME-4TB",
+        "amount": "5000.00",
+        "citation_tag": "[Remisión BOL-POD-77319 §SKU SKU-NVME-4TB | Faltante: 20 uds | $5,000.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Faltante físico de 20 unidades registrado en remisión BOL-POD-77319 (Firma POD: Sí)."
+      }
+    ],
+    "cautelar_items": [],
+    "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
+    "confidence_penalty": 0.0,
+    "generated_at": "2026-10-28T13:09:11Z"
+  },
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "case_005_amazon_shortage",
+    "currency": "USD",
+    "billed_amount": "48000.00",
+    "received_amount": "40500.00",
+    "difference": "-7500.00",
+    "justified_amount": "5000.00",
+    "claimable_amount": "2500.00",
+    "health_status": "PRISTINE",
+    "health_score": 100.0,
+    "zkp_proof_hash": "SM-PROOF-SHA256-24BCBF60530FE33F",
+    "zkp_status": "MATHEMATICALLY_PROVEN",
+    "is_quarantined": false,
+    "evidence_backing_ratio": 100.0,
+    "anchored_at": "2026-10-28T13:09:11.382014+00:00"
+  },
+  "watchdog_metrics": null
 }

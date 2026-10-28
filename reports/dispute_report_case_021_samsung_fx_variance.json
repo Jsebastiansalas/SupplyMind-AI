@@ -1,0 +1,142 @@
+{
+  "case_id": "case_021_samsung_fx_variance",
+  "currency": "USD",
+  "billed_amount": "95000.00",
+  "received_amount": "50000.00",
+  "difference": "-45000.00",
+  "root_cause": "Discrepancia mixta en expediente case_021_samsung_fx_variance: Faltante físico comprobado de $30,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $15,000.00 USD sin sustento contractual ni documental.",
+  "evidence": [
+    "Deducción aplicada en comprobante PAY-CASE_021-DFD9: código AJUSTE-COMERCIAL-PROMO, motivo 'Descuento acordado de promoción Buen Fin amparado por Addendum firmado', monto $30,000.00",
+    "Deducción aplicada en comprobante PAY-CASE_021-DFD9: código FX-VARIANCE-UNILAT, motivo 'Varianza cambiaria unilateral aplicando tipo de cambio FIX DOF de fecha no autorizada', monto $15,000.00",
+    "[Factura INV-CASE_021-CFD7 §Total $95,000.00 USD]",
+    "[Comprobante PAY-CASE_021-DFD9 §Liquidación $50,000.00 USD]"
+  ],
+  "justified_amount": "30000.00",
+  "claimable_amount": "15000.00",
+  "confidence": 0.75,
+  "recommended_action": "Aceptar deducción de $30,000.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $15,000.00 USD exigiendo su pago inmediato.",
+  "concessions": [],
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "case_021_samsung_fx_variance",
+    "health_score": 100.0,
+    "status": "PRISTINE",
+    "is_healthy": true,
+    "repaired_issues": [],
+    "imputed_documents": [],
+    "documents_present": [
+      "invoice",
+      "purchase_order",
+      "delivery",
+      "payment",
+      "contract"
+    ],
+    "documents_missing": [],
+    "schema_warnings": [],
+    "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
+    "quarantine_docket": null,
+    "generated_at": "2026-10-28T13:09:10.849192+00:00"
+  },
+  "financial_proof": {
+    "case_id": "case_021_samsung_fx_variance",
+    "proof_hash": "SM-PROOF-SHA256-423089D6588089D4",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$30,000.00 USD (Validado)",
+      "$15,000.00 USD (Validado)",
+      "$30,000.00 USD (Validado)",
+      "$15,000.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-10-28T13:09:10.856817+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "case_021_samsung_fx_variance",
+    "total_claims_audited": 4,
+    "backed_claims_count": 2,
+    "unbacked_claims_count": 2,
+    "total_backed_amount": "145000.00",
+    "total_unbacked_amount": "45000.00",
+    "backing_ratio_pct": 76.32,
+    "evidence_pointers": [
+      {
+        "pointer_id": "PTR-INV-INV-CASE_021-CFD7-TOTAL",
+        "doc_type": "INVOICE",
+        "doc_id": "INV-CASE_021-CFD7",
+        "field_ref": "total_amount",
+        "item_sku": null,
+        "amount": "95000.00",
+        "citation_tag": "[Factura INV-CASE_021-CFD7 §Total $95,000.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Factura comercial fiscalmente válida por $95,000.00 USD."
+      },
+      {
+        "pointer_id": "PTR-PAY-PAY-CASE_021-DFD9-AMOUNT",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_021-DFD9",
+        "field_ref": "amount_paid",
+        "item_sku": null,
+        "amount": "50000.00",
+        "citation_tag": "[Comprobante PAY-CASE_021-DFD9 §Liquidación $50,000.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $50,000.00."
+      },
+      {
+        "pointer_id": "PTR-DED-AJUSTE-COMERCIAL-PROMO-1-UNBACKED",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_021-DFD9",
+        "field_ref": "deduction_AJUSTE-COMERCIAL-PROMO",
+        "item_sku": null,
+        "amount": "30000.00",
+        "citation_tag": "[Comprobante PAY-CASE_021-DFD9 §Deducción Unilateral AJUSTE-COMERCIAL-PROMO | $30,000.00 SIN CLÁUSULA EN CTR-SAMSUNG_MX-2026]",
+        "is_backed_by_physical_proof": false,
+        "status": "CAUTELAR_NO_ACREDITADA",
+        "detail": "El retailer retuvo $30,000.00 bajo el código 'AJUSTE-COMERCIAL-PROMO', pero el contrato CTR-SAMSUNG_MX-2026 no contiene cláusula habilitante."
+      },
+      {
+        "pointer_id": "PTR-DED-FX-VARIANCE-UNILAT-2-UNBACKED",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_021-DFD9",
+        "field_ref": "deduction_FX-VARIANCE-UNILAT",
+        "item_sku": null,
+        "amount": "15000.00",
+        "citation_tag": "[Comprobante PAY-CASE_021-DFD9 §Deducción Unilateral FX-VARIANCE-UNILAT | $15,000.00 SIN CLÁUSULA EN CTR-SAMSUNG_MX-2026]",
+        "is_backed_by_physical_proof": false,
+        "status": "CAUTELAR_NO_ACREDITADA",
+        "detail": "El retailer retuvo $15,000.00 bajo el código 'FX-VARIANCE-UNILAT', pero el contrato CTR-SAMSUNG_MX-2026 no contiene cláusula habilitante."
+      }
+    ],
+    "cautelar_items": [
+      "Deducción AJUSTE-COMERCIAL-PROMO ($30,000.00): Sin cláusula contractual que autorice retención.",
+      "Deducción FX-VARIANCE-UNILAT ($15,000.00): Sin cláusula contractual que autorice retención."
+    ],
+    "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
+    "confidence_penalty": 0.23,
+    "generated_at": "2026-10-28T13:09:10Z"
+  },
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "case_021_samsung_fx_variance",
+    "currency": "USD",
+    "billed_amount": "95000.00",
+    "received_amount": "50000.00",
+    "difference": "-45000.00",
+    "justified_amount": "30000.00",
+    "claimable_amount": "15000.00",
+    "health_status": "PRISTINE",
+    "health_score": 100.0,
+    "zkp_proof_hash": "SM-PROOF-SHA256-423089D6588089D4",
+    "zkp_status": "MATHEMATICALLY_PROVEN",
+    "is_quarantined": false,
+    "evidence_backing_ratio": 76.32,
+    "anchored_at": "2026-10-28T13:09:10.858493+00:00"
+  },
+  "watchdog_metrics": null
+}

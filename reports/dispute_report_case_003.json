@@ -8,12 +8,133 @@
   "evidence": [
     "Discrepancia de precio en PROD-301: facturado $150.0 vs acordado $120.0",
     "Deducción aplicada en comprobante PAY-4401: código DED-PRICE-ADJUSTMENT, motivo 'Deducción por sobreprecio facturado ($150.00/u vs $120.00/u acordado en PO-55100) en 100 unidades PROD-301', monto $3,000.00",
-    "Respaldo contractual: Precios facturados deben ajustarse a la OC según CLAUSE-3.1 ('Inalterabilidad de Precios Unitarios Acordados')."
+    "Respaldo contractual: Precios facturados deben ajustarse a la OC según CLAUSE-3.1 ('Inalterabilidad de Precios Unitarios Acordados').",
+    "[Factura INV-99402 §Total $15,000.00 USD]",
+    "[Comprobante PAY-4401 §Liquidación $12,000.00 USD]",
+    "[Contrato CTR-SUPERTIENDAS-2026 §Cláusula CLAUSE-4.2 'Faltantes Físicos en Recepción' | Deducción DED-PRICE-ADJUSTMENT $3,000.00]",
+    "[PO PO-55100 vs Factura INV-99402 §SKU PROD-301 | Varianza Precio: $30.00/ud]"
   ],
   "justified_amount": "3000.00",
   "claimable_amount": "0.00",
   "confidence": 0.98,
   "recommended_action": "Aceptar deducción de $3,000.00 USD aplicada por el cliente en cuentas por cobrar, emitir Nota de Crédito comercial por ajuste de tarifa y actualizar maestro de precios en el ERP del proveedor.",
   "concessions": [],
-  "active_scenario": null
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "case_003",
+    "health_score": 100.0,
+    "status": "PRISTINE",
+    "is_healthy": true,
+    "repaired_issues": [],
+    "imputed_documents": [],
+    "documents_present": [
+      "invoice",
+      "purchase_order",
+      "delivery",
+      "payment",
+      "contract"
+    ],
+    "documents_missing": [],
+    "schema_warnings": [],
+    "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
+    "quarantine_docket": null,
+    "generated_at": "2026-10-28T13:08:17.949945+00:00"
+  },
+  "financial_proof": {
+    "case_id": "case_003",
+    "proof_hash": "SM-PROOF-SHA256-AA542A541C11520A",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$3,000.00 USD (Validado)",
+      "$3,000.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-10-28T13:08:17.953261+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "case_003",
+    "total_claims_audited": 4,
+    "backed_claims_count": 4,
+    "unbacked_claims_count": 0,
+    "total_backed_amount": "33000.00",
+    "total_unbacked_amount": "0.00",
+    "backing_ratio_pct": 100.0,
+    "evidence_pointers": [
+      {
+        "pointer_id": "PTR-INV-INV-99402-TOTAL",
+        "doc_type": "INVOICE",
+        "doc_id": "INV-99402",
+        "field_ref": "total_amount",
+        "item_sku": null,
+        "amount": "15000.0",
+        "citation_tag": "[Factura INV-99402 §Total $15,000.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Factura comercial fiscalmente válida por $15,000.00 USD."
+      },
+      {
+        "pointer_id": "PTR-PAY-PAY-4401-AMOUNT",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-4401",
+        "field_ref": "amount_paid",
+        "item_sku": null,
+        "amount": "12000.0",
+        "citation_tag": "[Comprobante PAY-4401 §Liquidación $12,000.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $12,000.00."
+      },
+      {
+        "pointer_id": "PTR-DED-DED-PRICE-ADJUSTMENT-1",
+        "doc_type": "CONTRACT",
+        "doc_id": "CTR-SUPERTIENDAS-2026",
+        "field_ref": "clause_CLAUSE-4.2",
+        "item_sku": null,
+        "amount": "3000.0",
+        "citation_tag": "[Contrato CTR-SUPERTIENDAS-2026 §Cláusula CLAUSE-4.2 'Faltantes Físicos en Recepción' | Deducción DED-PRICE-ADJUSTMENT $3,000.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Deducción 'DED-PRICE-ADJUSTMENT' normada por la cláusula CLAUSE-4.2 de CTR-SUPERTIENDAS-2026."
+      },
+      {
+        "pointer_id": "PTR-PO-PO-55100-PROD-301-PRICE",
+        "doc_type": "PURCHASE_ORDER",
+        "doc_id": "PO-55100",
+        "field_ref": "agreed_unit_price",
+        "item_sku": "PROD-301",
+        "amount": "3000.0",
+        "citation_tag": "[PO PO-55100 vs Factura INV-99402 §SKU PROD-301 | Varianza Precio: $30.00/ud]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Discrepancia entre precio pactado en PO (120.0) y facturado (150.0)."
+      }
+    ],
+    "cautelar_items": [],
+    "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
+    "confidence_penalty": 0.0,
+    "generated_at": "2026-10-28T13:08:17Z"
+  },
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "case_003",
+    "currency": "USD",
+    "billed_amount": "15000.0",
+    "received_amount": "12000.0",
+    "difference": "-3000.0",
+    "justified_amount": "3000.00",
+    "claimable_amount": "0.00",
+    "health_status": "PRISTINE",
+    "health_score": 100.0,
+    "zkp_proof_hash": "SM-PROOF-SHA256-AA542A541C11520A",
+    "zkp_status": "MATHEMATICALLY_PROVEN",
+    "is_quarantined": false,
+    "evidence_backing_ratio": 100.0,
+    "anchored_at": "2026-10-28T13:08:17.954686+00:00"
+  },
+  "watchdog_metrics": null
 }

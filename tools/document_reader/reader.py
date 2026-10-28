@@ -164,3 +164,70 @@ def load_case_documents_with_health(case_id: str, allow_imputation: bool = True)
     """
     from agent.ingestion.resilient_parser import ResilientDocumentLoader
     return ResilientDocumentLoader.load_case_resilient(case_id, allow_imputation=allow_imputation)
+
+
+def load_massive_case_hierarchical(case_id: str) -> Dict[str, Any]:
+    """
+    Cargador pericial jerárquico para expedientes masivos y extensos (Fase 1).
+    Detecta automáticamente contratos de más de 50 páginas y facturas de cientos de SKUs,
+    generando la jerarquía estructural, el cotejo Map-Reduce y la firma sintética compacta.
+    """
+    from tools.document_reader.hierarchical_segmenter import HierarchicalDocumentSegmenter
+    from tools.reconciliation_engine.batch_map_reduce import MassiveBatchReconciliationEngine
+    from tools.document_reader.synthetic_fingerprint import SyntheticFingerprintGenerator
+
+    # 1. Cargar documentos tipados
+    docs = load_case_documents(case_id)
+    inv: Invoice = docs["invoice"]
+    po: PurchaseOrder = docs["purchase_order"]
+    deliv: DeliveryNote = docs["delivery"]
+    pay: PaymentReceipt = docs["payment"]
+    contract = docs.get("contract")
+
+    # 2. Segmentación Jerárquica del Contrato si existe texto
+    hierarchy = None
+    contract_text = ""
+    if contract:
+        if hasattr(contract, "clauses") and contract.clauses:
+            contract_text = "\n\n".join([f"CLÁUSULA {c.clause_id}: {c.text}" for c in contract.clauses])
+        elif hasattr(contract, "raw_content") and contract.raw_content:
+            contract_text = contract.raw_content
+        elif isinstance(contract, str):
+            contract_text = contract
+
+        if contract_text:
+            hierarchy = HierarchicalDocumentSegmenter.segment_text(
+                raw_text=contract_text,
+                document_name=f"contrato_{case_id}",
+                total_pages=max(1, len(contract_text.split()) // 350)
+            )
+
+    # 3. Conciliación Map-Reduce en Sub-Lotes
+    manifest = MassiveBatchReconciliationEngine.map_reduce_reconcile(
+        invoice=inv,
+        purchase_order=po,
+        delivery=deliv,
+        payment=pay,
+        batch_size=50
+    )
+
+    # 4. Generación de la Firma Sintética de Alta Densidad
+    fingerprint = SyntheticFingerprintGenerator.generate(
+        case_id=case_id,
+        invoice=inv,
+        payment=pay,
+        rec_summary=manifest.summary,
+        hierarchy=hierarchy,
+        manifest=manifest
+    )
+
+    is_massive = len(inv.items) >= 50 or (hierarchy and hierarchy.total_pages >= 20)
+
+    return {
+        "documents": docs,
+        "hierarchy": hierarchy,
+        "manifest": manifest,
+        "fingerprint": fingerprint,
+        "is_massive_scale": is_massive,
+        "summary": manifest.summary
+    }

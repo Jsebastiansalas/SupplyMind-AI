@@ -4,14 +4,14 @@
   "billed_amount": "0.00",
   "received_amount": "0.00",
   "difference": "0.00",
-  "root_cause": "TECHNICAL_ERROR: Datos corruptos o esquema inválido.",
+  "root_cause": "FORENSIC_QUARANTINE: SEVERE_DOCUMENT_DEFICIT",
   "evidence": [
-    "Trace técnico de Pydantic/Motor: Fallo en lectura de documentos: Expediente 'test_corrupt_json' en cuarentena documental (salud: 0.0%): Archivos corruptos o faltantes críticos."
+    "Violación de Invariante: DOCUMENT_HEALTH_FLOOR_VIOLATED"
   ],
   "justified_amount": "0.00",
   "claimable_amount": "0.00",
   "confidence": 0.0,
-  "recommended_action": "Rechazar expediente. Los archivos JSON base carecen de integridad estructural y fallaron la validación de Esquemas (Pydantic). Verifique los datos de entrada.",
+  "recommended_action": "🚨 PROTOCOLO FORENSE ACTIVADO: Expediente en CUARENTENA PREVENTIVA. La emisión de Notas de Crédito comerciales y acuerdos vinculantes ha sido BLOQUEADA. Motivo principal: Salud documental deficiente (0.0%): Inconsistencia estructural o ausencia de documentos esenciales para el 3-way match.. Requiere intervención y subsanación documental por el operador antes de proceder.",
   "concessions": [],
   "active_scenario": null,
   "health_audit": {
@@ -19,18 +19,45 @@
     "health_score": 0.0,
     "status": "QUARANTINE",
     "is_healthy": false,
-    "repaired_issues": [],
+    "repaired_issues": [
+      "[invoice.json] Auto-cerradas 1 llaves y 0 corchetes desbalanceados"
+    ],
     "imputed_documents": [],
-    "documents_present": [],
+    "documents_present": [
+      "invoice"
+    ],
     "documents_missing": [
-      "unrecoverable_corrupt_files"
+      "purchase_order",
+      "payment",
+      "contract",
+      "delivery"
     ],
     "schema_warnings": [
-      "Fallo en lectura de documentos: Expediente 'test_corrupt_json' en cuarentena documental (salud: 0.0%): Archivos corruptos o faltantes críticos."
+      "[invoice.json] Factura sin partidas explícitas: sintetizada partida genérica a partir del total"
     ],
-    "execution_safety_level": "HOLD_SETTLEMENT_DOCUMENT_AUDIT_REQUIRED",
-    "quarantine_docket": null,
-    "generated_at": "2026-10-25T16:23:31.075832+00:00"
+    "execution_safety_level": "QUARANTINE_ISOLATION_SETTLEMENT_BLOCKED",
+    "quarantine_docket": {
+      "quarantine_id": "FRQ-TEST_CORRUPT_JSON-095AAA8F",
+      "case_id": "test_corrupt_json",
+      "severity": "SEVERE_DOCUMENT_DEFICIT",
+      "is_settlement_blocked": true,
+      "blocking_reasons": [
+        "Salud documental deficiente (0.0%): Inconsistencia estructural o ausencia de documentos esenciales para el 3-way match."
+      ],
+      "violated_invariants": [
+        "DOCUMENT_HEALTH_FLOOR_VIOLATED"
+      ],
+      "remediation_steps": [
+        "Cargar los documentos faltantes identificados: purchase_order, payment, contract, delivery.",
+        "Revisar advertencias de esquemas corruptos en los archivos brutos."
+      ],
+      "quarantine_timestamp": "2026-10-28T13:09:53.356933+00:00",
+      "release_conditions": [
+        "Completar el expediente con al menos 3 documentos primarios válidos."
+      ],
+      "operator_override_permitted": true
+    },
+    "generated_at": "2026-10-28T13:09:53.356604+00:00"
   },
   "financial_proof": {
     "case_id": "test_corrupt_json",
@@ -43,7 +70,7 @@
     "verified_figures": [],
     "confidence_penalty": 0.0,
     "audit_status": "ARITHMETIC_MISMATCH",
-    "tamper_proof_timestamp": "2026-10-25T16:23:31.075913+00:00"
+    "tamper_proof_timestamp": "2026-10-28T13:09:53.358582+00:00"
   },
   "evidence_manifest": {
     "case_id": "test_corrupt_json",
@@ -55,13 +82,33 @@
     "backing_ratio_pct": 0.0,
     "evidence_pointers": [],
     "cautelar_items": [
-      "Expediente en cuarentena: Archivos base no recuperables o esquema inválido."
+      "Expediente en cuarentena: Bloqueo cautelar de liquidación activado."
     ],
     "binding_verdict": "CRITICAL_UNBACKED_DEFICIT",
     "confidence_penalty": 1.0,
-    "generated_at": "2026-10-25T16:23:31.075964+00:00"
+    "generated_at": "2026-10-28T13:09:53.358661+00:00"
   },
-  "quarantine_docket": null,
+  "quarantine_docket": {
+    "quarantine_id": "FRQ-TEST_CORRUPT_JSON-095AAA8F",
+    "case_id": "test_corrupt_json",
+    "severity": "SEVERE_DOCUMENT_DEFICIT",
+    "is_settlement_blocked": true,
+    "blocking_reasons": [
+      "Salud documental deficiente (0.0%): Inconsistencia estructural o ausencia de documentos esenciales para el 3-way match."
+    ],
+    "violated_invariants": [
+      "DOCUMENT_HEALTH_FLOOR_VIOLATED"
+    ],
+    "remediation_steps": [
+      "Cargar los documentos faltantes identificados: purchase_order, payment, contract, delivery.",
+      "Revisar advertencias de esquemas corruptos en los archivos brutos."
+    ],
+    "quarantine_timestamp": "2026-10-28T13:09:53.356933+00:00",
+    "release_conditions": [
+      "Completar el expediente con al menos 3 documentos primarios válidos."
+    ],
+    "operator_override_permitted": true
+  },
   "session_anchor": {
     "case_id": "test_corrupt_json",
     "currency": "USD",
@@ -76,7 +123,7 @@
     "zkp_status": "ARITHMETIC_MISMATCH",
     "is_quarantined": true,
     "evidence_backing_ratio": 0.0,
-    "anchored_at": "2026-10-25T16:23:31.076104+00:00"
+    "anchored_at": "2026-10-28T13:09:53.358879+00:00"
   },
   "watchdog_metrics": null
 }

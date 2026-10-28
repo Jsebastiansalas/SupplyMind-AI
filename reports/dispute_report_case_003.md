@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `case_003` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-10-24 16:35:45 UTC | **Nivel de Confianza:** 98.0%
+> **Fecha de Emisión:** 2026-10-28 13:08:17 UTC | **Nivel de Confianza:** 98.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO
@@ -25,6 +25,24 @@ Discrepancia de precio unitario en factura de $3,000.00 USD respecto al precio p
 1. Discrepancia de precio en PROD-301: facturado $150.0 vs acordado $120.0
 2. Deducción aplicada en comprobante PAY-4401: código DED-PRICE-ADJUSTMENT, motivo 'Deducción por sobreprecio facturado ($150.00/u vs $120.00/u acordado en PO-55100) en 100 unidades PROD-301', monto $3,000.00
 3. Respaldo contractual: Precios facturados deben ajustarse a la OC según CLAUSE-3.1 ('Inalterabilidad de Precios Unitarios Acordados').
+4. [Factura INV-99402 §Total $15,000.00 USD]
+5. [Comprobante PAY-4401 §Liquidación $12,000.00 USD]
+6. [Contrato CTR-SUPERTIENDAS-2026 §Cláusula CLAUSE-4.2 'Faltantes Físicos en Recepción' | Deducción DED-PRICE-ADJUSTMENT $3,000.00]
+7. [PO PO-55100 vs Factura INV-99402 §SKU PROD-301 | Varianza Precio: $30.00/ud]
+
+---
+## 3.1. CERTIFICACIÓN DE ANCLAJE FÁCTICO (PILAR 3 - ZERO UNCITED CLAIMS)
+
+- **Veredicto Probatorio:** `FULL_EVIDENCE_BINDING_VERIFIED`
+- **Ratio de Respaldo Fáctico:** **100.0%** (4 acreditadas vs 0 cautelares)
+- **Total Respaldado:** $33,000.00 USD
+
+| ID Puntero | Documento | SKU / Concepto | Monto | Estatus Probatorio |
+| :--- | :--- | :---: | :---: | :--- |
+| `PTR-INV-INV-99402-TOTAL` | INVOICE | `total_amount` | $15,000.00 | ✅ ACREDITADO |
+| `PTR-PAY-PAY-4401-AMOUNT` | PAYMENT | `amount_paid` | $12,000.00 | ✅ ACREDITADO |
+| `PTR-DED-DED-PRICE-ADJUSTMENT-1` | CONTRACT | `clause_CLAUSE-4.2` | $3,000.00 | ✅ ACREDITADO |
+| `PTR-PO-PO-55100-PROD-301-PRICE` | PURCHASE_ORDER | `PROD-301` | $3,000.00 | ✅ ACREDITADO |
 
 ---
 ## 4. DICTAMEN LEGAL Y CONTRACTUAL

@@ -1,0 +1,170 @@
+{
+  "case_id": "case_015_costco_tarima_danada",
+  "currency": "USD",
+  "billed_amount": "64992.00",
+  "received_amount": "50792.00",
+  "difference": "-14200.00",
+  "root_cause": "Discrepancia mixta en expediente case_015_costco_tarima_danada: Faltante físico comprobado de $10,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $4,200.00 USD sin sustento contractual ni documental.",
+  "evidence": [
+    "Faltante físico comprobado en SKU-CASHEW-1.1KG (Nuez de la India Tostada con Sal 1.13kg): 513 unidades faltantes s/ remisión DEL-CASE_015-A6B6 valoradas en $10,003.50",
+    "Mercancía averiada en SKU-CASHEW-1.1KG: 513 unidades valoradas en $10,003.50",
+    "Deducción aplicada en comprobante PAY-CASE_015-AAC0: código MERMA-AVARIA-FISICA, motivo 'Deducción por 513 piezas dañadas en tarima amparadas en remisión con acta de merma', monto $10,000.00",
+    "Deducción aplicada en comprobante PAY-CASE_015-AAC0: código PALLET-DAMAGE, motivo 'Cargo por reposición de tarima cuando el flete fue contratado por Costco (responsabilidad de transportista)', monto $4,200.00",
+    "[Factura INV-CASE_015-D7F7 §Total $64,992.00 USD]",
+    "[Comprobante PAY-CASE_015-AAC0 §Liquidación $50,792.00 USD]",
+    "[Remisión DEL-CASE_015-A6B6 §SKU SKU-CASHEW-1.1KG | Faltante: 513 uds | $10,003.50]",
+    "[Remisión DEL-CASE_015-A6B6 §SKU SKU-CASHEW-1.1KG | Avería: 513 uds | $10,003.50]"
+  ],
+  "justified_amount": "10000.00",
+  "claimable_amount": "4200.00",
+  "confidence": 0.79,
+  "recommended_action": "Aceptar deducción de $10,000.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $4,200.00 USD exigiendo su pago inmediato.",
+  "concessions": [],
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "case_015_costco_tarima_danada",
+    "health_score": 100.0,
+    "status": "PRISTINE",
+    "is_healthy": true,
+    "repaired_issues": [],
+    "imputed_documents": [],
+    "documents_present": [
+      "invoice",
+      "purchase_order",
+      "delivery",
+      "payment",
+      "contract"
+    ],
+    "documents_missing": [],
+    "schema_warnings": [],
+    "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
+    "quarantine_docket": null,
+    "generated_at": "2026-10-28T13:09:10.729248+00:00"
+  },
+  "financial_proof": {
+    "case_id": "case_015_costco_tarima_danada",
+    "proof_hash": "SM-PROOF-SHA256-3233BB0C55FF533B",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$10,000.00 USD (Validado)",
+      "$4,200.00 USD (Validado)",
+      "$10,000.00 USD (Validado)",
+      "$4,200.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-10-28T13:09:10.733660+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "case_015_costco_tarima_danada",
+    "total_claims_audited": 6,
+    "backed_claims_count": 4,
+    "unbacked_claims_count": 2,
+    "total_backed_amount": "135791.00",
+    "total_unbacked_amount": "14200.00",
+    "backing_ratio_pct": 90.53,
+    "evidence_pointers": [
+      {
+        "pointer_id": "PTR-INV-INV-CASE_015-D7F7-TOTAL",
+        "doc_type": "INVOICE",
+        "doc_id": "INV-CASE_015-D7F7",
+        "field_ref": "total_amount",
+        "item_sku": null,
+        "amount": "64992.00",
+        "citation_tag": "[Factura INV-CASE_015-D7F7 §Total $64,992.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Factura comercial fiscalmente válida por $64,992.00 USD."
+      },
+      {
+        "pointer_id": "PTR-PAY-PAY-CASE_015-AAC0-AMOUNT",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_015-AAC0",
+        "field_ref": "amount_paid",
+        "item_sku": null,
+        "amount": "50792.00",
+        "citation_tag": "[Comprobante PAY-CASE_015-AAC0 §Liquidación $50,792.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $50,792.00."
+      },
+      {
+        "pointer_id": "PTR-DED-MERMA-AVARIA-FISICA-1-UNBACKED",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_015-AAC0",
+        "field_ref": "deduction_MERMA-AVARIA-FISICA",
+        "item_sku": null,
+        "amount": "10000.00",
+        "citation_tag": "[Comprobante PAY-CASE_015-AAC0 §Deducción Unilateral MERMA-AVARIA-FISICA | $10,000.00 SIN CLÁUSULA EN CTR-COSTCO_MX-2026]",
+        "is_backed_by_physical_proof": false,
+        "status": "CAUTELAR_NO_ACREDITADA",
+        "detail": "El retailer retuvo $10,000.00 bajo el código 'MERMA-AVARIA-FISICA', pero el contrato CTR-COSTCO_MX-2026 no contiene cláusula habilitante."
+      },
+      {
+        "pointer_id": "PTR-DED-PALLET-DAMAGE-2-UNBACKED",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_015-AAC0",
+        "field_ref": "deduction_PALLET-DAMAGE",
+        "item_sku": null,
+        "amount": "4200.00",
+        "citation_tag": "[Comprobante PAY-CASE_015-AAC0 §Deducción Unilateral PALLET-DAMAGE | $4,200.00 SIN CLÁUSULA EN CTR-COSTCO_MX-2026]",
+        "is_backed_by_physical_proof": false,
+        "status": "CAUTELAR_NO_ACREDITADA",
+        "detail": "El retailer retuvo $4,200.00 bajo el código 'PALLET-DAMAGE', pero el contrato CTR-COSTCO_MX-2026 no contiene cláusula habilitante."
+      },
+      {
+        "pointer_id": "PTR-DEL-DEL-CASE_015-A6B6-SKU-CASHEW-1.1KG-SHORT",
+        "doc_type": "DELIVERY",
+        "doc_id": "DEL-CASE_015-A6B6",
+        "field_ref": "missing_quantity",
+        "item_sku": "SKU-CASHEW-1.1KG",
+        "amount": "10003.50",
+        "citation_tag": "[Remisión DEL-CASE_015-A6B6 §SKU SKU-CASHEW-1.1KG | Faltante: 513 uds | $10,003.50]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Faltante físico de 513 unidades registrado en remisión DEL-CASE_015-A6B6 (Firma POD: Sí)."
+      },
+      {
+        "pointer_id": "PTR-DEL-DEL-CASE_015-A6B6-SKU-CASHEW-1.1KG-DAMAGED",
+        "doc_type": "DELIVERY",
+        "doc_id": "DEL-CASE_015-A6B6",
+        "field_ref": "damaged_quantity",
+        "item_sku": "SKU-CASHEW-1.1KG",
+        "amount": "10003.50",
+        "citation_tag": "[Remisión DEL-CASE_015-A6B6 §SKU SKU-CASHEW-1.1KG | Avería: 513 uds | $10,003.50]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Mercancía averiada (513 unidades) en remisión DEL-CASE_015-A6B6."
+      }
+    ],
+    "cautelar_items": [
+      "Deducción MERMA-AVARIA-FISICA ($10,000.00): Sin cláusula contractual que autorice retención.",
+      "Deducción PALLET-DAMAGE ($4,200.00): Sin cláusula contractual que autorice retención."
+    ],
+    "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
+    "confidence_penalty": 0.19,
+    "generated_at": "2026-10-28T13:09:10Z"
+  },
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "case_015_costco_tarima_danada",
+    "currency": "USD",
+    "billed_amount": "64992.00",
+    "received_amount": "50792.00",
+    "difference": "-14200.00",
+    "justified_amount": "10000.00",
+    "claimable_amount": "4200.00",
+    "health_status": "PRISTINE",
+    "health_score": 100.0,
+    "zkp_proof_hash": "SM-PROOF-SHA256-3233BB0C55FF533B",
+    "zkp_status": "MATHEMATICALLY_PROVEN",
+    "is_quarantined": false,
+    "evidence_backing_ratio": 90.53,
+    "anchored_at": "2026-10-28T13:09:10.735365+00:00"
+  },
+  "watchdog_metrics": null
+}

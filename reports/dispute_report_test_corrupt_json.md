@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `test_corrupt_json` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-10-25 16:23:31 UTC | **Nivel de Confianza:** 0.0%
+> **Fecha de Emisión:** 2026-10-28 13:09:53 UTC | **Nivel de Confianza:** 0.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO
@@ -17,12 +17,12 @@
 ## 2. DETERMINACIÓN DE LA CAUSA RAÍZ
 
 **Diagnóstico:**  
-TECHNICAL_ERROR: Datos corruptos o esquema inválido.
+FORENSIC_QUARANTINE: SEVERE_DOCUMENT_DEFICIT
 
 ---
 ## 3. TRAZABILIDAD Y CADENA DE EVIDENCIAS DOCUMENTALES
 
-1. Trace técnico de Pydantic/Motor: Fallo en lectura de documentos: Expediente 'test_corrupt_json' en cuarentena documental (salud: 0.0%): Archivos corruptos o faltantes críticos.
+1. Violación de Invariante: DOCUMENT_HEALTH_FLOOR_VIOLATED
 
 ---
 ## 3.1. CERTIFICACIÓN DE ANCLAJE FÁCTICO (PILAR 3 - ZERO UNCITED CLAIMS)
@@ -32,7 +32,7 @@ TECHNICAL_ERROR: Datos corruptos o esquema inválido.
 - **Total Respaldado:** $0.00 USD
 
 > ⚠️ **PARTIDAS CAUTELARES DETECTADAS (Requieren soporte físico de muelle/contrato):**
-> - Expediente en cuarentena: Archivos base no recuperables o esquema inválido.
+> - Expediente en cuarentena: Bloqueo cautelar de liquidación activado.
 
 ---
 ## 4. DICTAMEN LEGAL Y CONTRACTUAL
@@ -43,7 +43,7 @@ TECHNICAL_ERROR: Datos corruptos o esquema inválido.
 ## 5. PLAN DE ACCIÓN OPERATIVO Y COMERCIAL RECOMENDADO
 
 **Recomendación:**  
-Rechazar expediente. Los archivos JSON base carecen de integridad estructural y fallaron la validación de Esquemas (Pydantic). Verifique los datos de entrada.
+🚨 PROTOCOLO FORENSE ACTIVADO: Expediente en CUARENTENA PREVENTIVA. La emisión de Notas de Crédito comerciales y acuerdos vinculantes ha sido BLOQUEADA. Motivo principal: Salud documental deficiente (0.0%): Inconsistencia estructural o ausencia de documentos esenciales para el 3-way match.. Requiere intervención y subsanación documental por el operador antes de proceder.
 
 
 ---

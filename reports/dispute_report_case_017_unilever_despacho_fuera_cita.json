@@ -1,0 +1,142 @@
+{
+  "case_id": "case_017_unilever_despacho_fuera_cita",
+  "currency": "USD",
+  "billed_amount": "49978.00",
+  "received_amount": "38478.00",
+  "difference": "-11500.00",
+  "root_cause": "Discrepancia mixta en expediente case_017_unilever_despacho_fuera_cita: Faltante físico comprobado de $6,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $5,500.00 USD sin sustento contractual ni documental.",
+  "evidence": [
+    "Deducción aplicada en comprobante PAY-CASE_017-296D: código MANIOBRA-ESPECIAL, motivo 'Cargo por desestiba y reacomodo de tarimas desalineadas con firma de transportista', monto $6,000.00",
+    "Deducción aplicada en comprobante PAY-CASE_017-296D: código OTIF-DESPACHO-TARDIO, motivo 'Penalización improcedente por retraso imputable a fuerza mayor comprobada', monto $5,500.00",
+    "Respaldo contractual: La CLAUSE-4.8 ('Ventana de Recepción OTIF y Fuerza Mayor') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.",
+    "[Factura INV-CASE_017-8F57 §Total $49,978.00 USD]",
+    "[Comprobante PAY-CASE_017-296D §Liquidación $38,478.00 USD]",
+    "[Contrato CTR-UNILEVER_MX-2026 §Cláusula CLAUSE-4.8 'Ventana de Recepción OTIF y Fuerza Mayor' | Deducción MANIOBRA-ESPECIAL $6,000.00]",
+    "[Contrato CTR-UNILEVER_MX-2026 §Cláusula CLAUSE-4.8 'Ventana de Recepción OTIF y Fuerza Mayor' | Deducción OTIF-DESPACHO-TARDIO $5,500.00]"
+  ],
+  "justified_amount": "6000.00",
+  "claimable_amount": "5500.00",
+  "confidence": 0.98,
+  "recommended_action": "Aceptar deducción de $6,000.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $5,500.00 USD exigiendo su pago inmediato.",
+  "concessions": [],
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "case_017_unilever_despacho_fuera_cita",
+    "health_score": 100.0,
+    "status": "PRISTINE",
+    "is_healthy": true,
+    "repaired_issues": [],
+    "imputed_documents": [],
+    "documents_present": [
+      "invoice",
+      "purchase_order",
+      "delivery",
+      "payment",
+      "contract"
+    ],
+    "documents_missing": [],
+    "schema_warnings": [],
+    "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
+    "quarantine_docket": null,
+    "generated_at": "2026-10-28T13:09:10.766999+00:00"
+  },
+  "financial_proof": {
+    "case_id": "case_017_unilever_despacho_fuera_cita",
+    "proof_hash": "SM-PROOF-SHA256-5CA2D0F168ABE94E",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$6,000.00 USD (Validado)",
+      "$5,500.00 USD (Validado)",
+      "$6,000.00 USD (Validado)",
+      "$5,500.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-10-28T13:09:10.773474+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "case_017_unilever_despacho_fuera_cita",
+    "total_claims_audited": 4,
+    "backed_claims_count": 4,
+    "unbacked_claims_count": 0,
+    "total_backed_amount": "99956.00",
+    "total_unbacked_amount": "0.00",
+    "backing_ratio_pct": 100.0,
+    "evidence_pointers": [
+      {
+        "pointer_id": "PTR-INV-INV-CASE_017-8F57-TOTAL",
+        "doc_type": "INVOICE",
+        "doc_id": "INV-CASE_017-8F57",
+        "field_ref": "total_amount",
+        "item_sku": null,
+        "amount": "49978.00",
+        "citation_tag": "[Factura INV-CASE_017-8F57 §Total $49,978.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Factura comercial fiscalmente válida por $49,978.00 USD."
+      },
+      {
+        "pointer_id": "PTR-PAY-PAY-CASE_017-296D-AMOUNT",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_017-296D",
+        "field_ref": "amount_paid",
+        "item_sku": null,
+        "amount": "38478.00",
+        "citation_tag": "[Comprobante PAY-CASE_017-296D §Liquidación $38,478.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $38,478.00."
+      },
+      {
+        "pointer_id": "PTR-DED-MANIOBRA-ESPECIAL-1",
+        "doc_type": "CONTRACT",
+        "doc_id": "CTR-UNILEVER_MX-2026",
+        "field_ref": "clause_CLAUSE-4.8",
+        "item_sku": null,
+        "amount": "6000.00",
+        "citation_tag": "[Contrato CTR-UNILEVER_MX-2026 §Cláusula CLAUSE-4.8 'Ventana de Recepción OTIF y Fuerza Mayor' | Deducción MANIOBRA-ESPECIAL $6,000.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Deducción 'MANIOBRA-ESPECIAL' normada por la cláusula CLAUSE-4.8 de CTR-UNILEVER_MX-2026."
+      },
+      {
+        "pointer_id": "PTR-DED-OTIF-DESPACHO-TARDIO-2",
+        "doc_type": "CONTRACT",
+        "doc_id": "CTR-UNILEVER_MX-2026",
+        "field_ref": "clause_CLAUSE-4.8",
+        "item_sku": null,
+        "amount": "5500.00",
+        "citation_tag": "[Contrato CTR-UNILEVER_MX-2026 §Cláusula CLAUSE-4.8 'Ventana de Recepción OTIF y Fuerza Mayor' | Deducción OTIF-DESPACHO-TARDIO $5,500.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Deducción 'OTIF-DESPACHO-TARDIO' normada por la cláusula CLAUSE-4.8 de CTR-UNILEVER_MX-2026."
+      }
+    ],
+    "cautelar_items": [],
+    "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
+    "confidence_penalty": 0.0,
+    "generated_at": "2026-10-28T13:09:10Z"
+  },
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "case_017_unilever_despacho_fuera_cita",
+    "currency": "USD",
+    "billed_amount": "49978.00",
+    "received_amount": "38478.00",
+    "difference": "-11500.00",
+    "justified_amount": "6000.00",
+    "claimable_amount": "5500.00",
+    "health_status": "PRISTINE",
+    "health_score": 100.0,
+    "zkp_proof_hash": "SM-PROOF-SHA256-5CA2D0F168ABE94E",
+    "zkp_status": "MATHEMATICALLY_PROVEN",
+    "is_quarantined": false,
+    "evidence_backing_ratio": 100.0,
+    "anchored_at": "2026-10-28T13:09:10.775023+00:00"
+  },
+  "watchdog_metrics": null
+}

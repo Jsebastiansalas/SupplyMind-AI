@@ -38,3 +38,8 @@ class DisputeState(BaseModel):
     estimated_cost_usd: float = 0.0
     execution_time_seconds: float = 0.0
     watchdog_metrics: Optional[WatchdogMetrics] = None
+
+    # Ingesta Masiva Jerárquica y Map-Reduce (Fase 1)
+    is_massive_scale: bool = False
+    hierarchical_manifest: Optional[Any] = None
+    synthetic_fingerprint: Optional[Any] = None

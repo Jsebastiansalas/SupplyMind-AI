@@ -1,0 +1,118 @@
+{
+  "case_id": "case_032_quarantine_cross_contamination",
+  "currency": "USD",
+  "billed_amount": "0.00",
+  "received_amount": "0.00",
+  "difference": "0.00",
+  "root_cause": "FORENSIC_QUARANTINE: CRITICAL_CONTAMINATION",
+  "evidence": [
+    "Violación de Invariante: CROSS_ENTITY_CUSTOMER_INVARIANT_VIOLATED"
+  ],
+  "justified_amount": "0.00",
+  "claimable_amount": "0.00",
+  "confidence": 0.0,
+  "recommended_action": "🚨 PROTOCOLO FORENSE ACTIVADO: Expediente en CUARENTENA PREVENTIVA. La emisión de Notas de Crédito comerciales y acuerdos vinculantes ha sido BLOQUEADA. Motivo principal: Contaminación cruzada de muelle: Factura emitida a 'CUST-WALMART_MX' (WALMART), pero entrega consignada en CEDIS de 'SORIANA' (CEDIS Soriana Cuautitlán Muelle 10 (ERROR DE EXPEDIENTE)).. Requiere intervención y subsanación documental por el operador antes de proceder.",
+  "concessions": [],
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "case_032_quarantine_cross_contamination",
+    "health_score": 45.0,
+    "status": "QUARANTINE",
+    "is_healthy": false,
+    "repaired_issues": [],
+    "imputed_documents": [],
+    "documents_present": [
+      "invoice",
+      "purchase_order",
+      "delivery",
+      "payment",
+      "contract"
+    ],
+    "documents_missing": [],
+    "schema_warnings": [],
+    "execution_safety_level": "QUARANTINE_ISOLATION_SETTLEMENT_BLOCKED",
+    "quarantine_docket": {
+      "quarantine_id": "FRQ-CASE_032_QUARANTINE_CROSS_CONTAMINATION-01EFCA72",
+      "case_id": "case_032_quarantine_cross_contamination",
+      "severity": "CRITICAL_CONTAMINATION",
+      "is_settlement_blocked": true,
+      "blocking_reasons": [
+        "Contaminación cruzada de muelle: Factura emitida a 'CUST-WALMART_MX' (WALMART), pero entrega consignada en CEDIS de 'SORIANA' (CEDIS Soriana Cuautitlán Muelle 10 (ERROR DE EXPEDIENTE))."
+      ],
+      "violated_invariants": [
+        "CROSS_ENTITY_CUSTOMER_INVARIANT_VIOLATED"
+      ],
+      "remediation_steps": [
+        "Comprobar si el despacho fue desviado o si se adjuntó por error la remisión de 'SORIANA'."
+      ],
+      "quarantine_timestamp": "2026-10-28T13:09:11.170453+00:00",
+      "release_conditions": [],
+      "operator_override_permitted": false
+    },
+    "generated_at": "2026-10-28T13:09:11.170258+00:00"
+  },
+  "financial_proof": {
+    "case_id": "case_032_quarantine_cross_contamination",
+    "proof_hash": "SM-PROOF-QUARANTINE-case_032_quarantine_cross_contamination",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": false,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [],
+    "confidence_penalty": 0.0,
+    "audit_status": "ARITHMETIC_MISMATCH",
+    "tamper_proof_timestamp": "2026-10-28T13:09:11.171071+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "case_032_quarantine_cross_contamination",
+    "total_claims_audited": 0,
+    "backed_claims_count": 0,
+    "unbacked_claims_count": 0,
+    "total_backed_amount": "0.00",
+    "total_unbacked_amount": "0.00",
+    "backing_ratio_pct": 0.0,
+    "evidence_pointers": [],
+    "cautelar_items": [
+      "Expediente en cuarentena: Bloqueo cautelar de liquidación activado."
+    ],
+    "binding_verdict": "CRITICAL_UNBACKED_DEFICIT",
+    "confidence_penalty": 1.0,
+    "generated_at": "2026-10-28T13:09:11.171253+00:00"
+  },
+  "quarantine_docket": {
+    "quarantine_id": "FRQ-CASE_032_QUARANTINE_CROSS_CONTAMINATION-01EFCA72",
+    "case_id": "case_032_quarantine_cross_contamination",
+    "severity": "CRITICAL_CONTAMINATION",
+    "is_settlement_blocked": true,
+    "blocking_reasons": [
+      "Contaminación cruzada de muelle: Factura emitida a 'CUST-WALMART_MX' (WALMART), pero entrega consignada en CEDIS de 'SORIANA' (CEDIS Soriana Cuautitlán Muelle 10 (ERROR DE EXPEDIENTE))."
+    ],
+    "violated_invariants": [
+      "CROSS_ENTITY_CUSTOMER_INVARIANT_VIOLATED"
+    ],
+    "remediation_steps": [
+      "Comprobar si el despacho fue desviado o si se adjuntó por error la remisión de 'SORIANA'."
+    ],
+    "quarantine_timestamp": "2026-10-28T13:09:11.170453+00:00",
+    "release_conditions": [],
+    "operator_override_permitted": false
+  },
+  "session_anchor": {
+    "case_id": "case_032_quarantine_cross_contamination",
+    "currency": "USD",
+    "billed_amount": "0.00",
+    "received_amount": "0.00",
+    "difference": "0.00",
+    "justified_amount": "0.00",
+    "claimable_amount": "0.00",
+    "health_status": "QUARANTINE",
+    "health_score": 45.0,
+    "zkp_proof_hash": "SM-PROOF-QUARANTINE-case_032_quarantine_cross_contamination",
+    "zkp_status": "ARITHMETIC_MISMATCH",
+    "is_quarantined": true,
+    "evidence_backing_ratio": 0.0,
+    "anchored_at": "2026-10-28T13:09:11.171403+00:00"
+  },
+  "watchdog_metrics": null
+}

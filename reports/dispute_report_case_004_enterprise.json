@@ -8,11 +8,136 @@
   "evidence": [
     "Mercancía averiada en SRV-X9: 1 unidades valoradas en $5,000.00",
     "Deducción aplicada en comprobante PAY-ENT-001: código DED-DAMAGE-PENALTY, motivo 'Caja de servidor averiada. Penalidad 150% segun clausula 37', monto $7,500.00",
-    "Respaldo contractual: La CLÁUSULA 37 ('Política de Averías y Tolerancia Logística') autoriza deducir mercancía dañada constatada al momento de la descarga.",
-    "Respaldo contractual: La CLÁUSULA 37 ('Política de Averías y Tolerancia Logística') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo."
+    "[Factura INV-ENT-001 §Total $50,000.00 USD]",
+    "[Comprobante PAY-ENT-001 §Liquidación $42,500.00 USD]",
+    "[Contrato contract §Cláusula CLAUSE-STD-01 'Condición General de Recepción y Pago' | Deducción DED-DAMAGE-PENALTY $7,500.00]",
+    "[Remisión DEL-ENT-999 §SKU SRV-X9 | Avería: 1 uds | $5,000.00]"
   ],
   "justified_amount": "5000.00",
   "claimable_amount": "2500.00",
   "confidence": 0.98,
-  "recommended_action": "Aceptar deducción de $5,000.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $2,500.00 USD exigiendo su pago inmediato."
+  "recommended_action": "Aceptar deducción de $5,000.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $2,500.00 USD exigiendo su pago inmediato.",
+  "concessions": [],
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "case_004_enterprise",
+    "health_score": 85.0,
+    "status": "AUTO_REPAIRED",
+    "is_healthy": true,
+    "repaired_issues": [
+      "[contract.md] Error de lectura primaria: Se requiere instalar chromadb: pip install chromadb. Activando autocuración profunda."
+    ],
+    "imputed_documents": [],
+    "documents_present": [
+      "invoice",
+      "purchase_order",
+      "delivery",
+      "payment",
+      "contract"
+    ],
+    "documents_missing": [],
+    "schema_warnings": [],
+    "execution_safety_level": "SAFE_WITH_TRACEABILITY",
+    "quarantine_docket": null,
+    "generated_at": "2026-10-28T13:08:29.841471+00:00"
+  },
+  "financial_proof": {
+    "case_id": "case_004_enterprise",
+    "proof_hash": "SM-PROOF-SHA256-137257BE9CB2D8A5",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$5,000.00 USD (Validado)",
+      "$2,500.00 USD (Validado)",
+      "$5,000.00 USD (Validado)",
+      "$2,500.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-10-28T13:08:29.845783+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "case_004_enterprise",
+    "total_claims_audited": 4,
+    "backed_claims_count": 4,
+    "unbacked_claims_count": 0,
+    "total_backed_amount": "105000.00",
+    "total_unbacked_amount": "0.00",
+    "backing_ratio_pct": 100.0,
+    "evidence_pointers": [
+      {
+        "pointer_id": "PTR-INV-INV-ENT-001-TOTAL",
+        "doc_type": "INVOICE",
+        "doc_id": "INV-ENT-001",
+        "field_ref": "total_amount",
+        "item_sku": null,
+        "amount": "50000.0",
+        "citation_tag": "[Factura INV-ENT-001 §Total $50,000.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Factura comercial fiscalmente válida por $50,000.00 USD."
+      },
+      {
+        "pointer_id": "PTR-PAY-PAY-ENT-001-AMOUNT",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-ENT-001",
+        "field_ref": "amount_paid",
+        "item_sku": null,
+        "amount": "42500.0",
+        "citation_tag": "[Comprobante PAY-ENT-001 §Liquidación $42,500.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $42,500.00."
+      },
+      {
+        "pointer_id": "PTR-DED-DED-DAMAGE-PENALTY-1",
+        "doc_type": "CONTRACT",
+        "doc_id": "contract",
+        "field_ref": "clause_CLAUSE-STD-01",
+        "item_sku": null,
+        "amount": "7500.0",
+        "citation_tag": "[Contrato contract §Cláusula CLAUSE-STD-01 'Condición General de Recepción y Pago' | Deducción DED-DAMAGE-PENALTY $7,500.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Deducción 'DED-DAMAGE-PENALTY' normada por la cláusula CLAUSE-STD-01 de contract."
+      },
+      {
+        "pointer_id": "PTR-DEL-DEL-ENT-999-SRV-X9-DAMAGED",
+        "doc_type": "DELIVERY",
+        "doc_id": "DEL-ENT-999",
+        "field_ref": "damaged_quantity",
+        "item_sku": "SRV-X9",
+        "amount": "5000.0",
+        "citation_tag": "[Remisión DEL-ENT-999 §SKU SRV-X9 | Avería: 1 uds | $5,000.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Mercancía averiada (1 unidades) en remisión DEL-ENT-999."
+      }
+    ],
+    "cautelar_items": [],
+    "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
+    "confidence_penalty": 0.0,
+    "generated_at": "2026-10-28T13:08:29Z"
+  },
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "case_004_enterprise",
+    "currency": "USD",
+    "billed_amount": "50000.0",
+    "received_amount": "42500.0",
+    "difference": "-7500.0",
+    "justified_amount": "5000.00",
+    "claimable_amount": "2500.00",
+    "health_status": "AUTO_REPAIRED",
+    "health_score": 85.0,
+    "zkp_proof_hash": "SM-PROOF-SHA256-137257BE9CB2D8A5",
+    "zkp_status": "MATHEMATICALLY_PROVEN",
+    "is_quarantined": false,
+    "evidence_backing_ratio": 100.0,
+    "anchored_at": "2026-10-28T13:08:29.847176+00:00"
+  },
+  "watchdog_metrics": null
 }

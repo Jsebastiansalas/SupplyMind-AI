@@ -156,17 +156,23 @@ class ToolExecutor:
                         f"Archivos corruptos o faltantes críticos."
                     )
                 
+                invoice_items_count = len(docs["invoice"].items)
+                if invoice_items_count >= 50:
+                    self.state.is_massive_scale = True
+
                 result = {
                     "status": "success",
                     "documents_found": list(docs.keys()),
                     "invoice_total": float(docs["invoice"].total_amount),
                     "po_total": float(docs["purchase_order"].total_amount),
+                    "invoice_items_count": invoice_items_count,
                     "delivery_items": len(docs["delivery"].items),
                     "payment_received": float(docs["payment"].amount_paid),
                     "deductions_count": len(docs["payment"].deductions),
                     "health_score": health_audit.health_score,
                     "health_status": health_audit.status,
-                    "execution_safety_level": health_audit.execution_safety_level
+                    "execution_safety_level": health_audit.execution_safety_level,
+                    "is_massive_scale": self.state.is_massive_scale
                 }
                 
             elif tool_name == "execute_reconciliation":
@@ -177,41 +183,87 @@ class ToolExecutor:
                 else:
                     docs = self.state.loaded_documents
                     
-                summary = reconcile_dispute_data(
-                    invoice=docs["invoice"],
-                    purchase_order=docs["purchase_order"],
-                    delivery=docs["delivery"],
-                    payment=docs["payment"]
-                )
-                self.state.reconciliation_summary = summary
-                
-                # Payload conciso optimizado para minimizar tokens en el historial ReAct
-                compact_discrepancies = [
-                    {
-                        "item_id": d.item_id,
-                        "desc": d.description,
-                        "missing_qty": d.missing_quantity,
-                        "damaged_qty": d.damaged_quantity,
-                        "price_diff": float(d.price_difference),
-                        "impact": float(d.total_impact)
+                invoice_items_count = len(docs["invoice"].items)
+                if invoice_items_count >= 50 or self.state.is_massive_scale:
+                    from tools.reconciliation_engine.batch_map_reduce import MassiveBatchReconciliationEngine
+                    manifest = MassiveBatchReconciliationEngine.map_reduce_reconcile(
+                        invoice=docs["invoice"],
+                        purchase_order=docs["purchase_order"],
+                        delivery=docs["delivery"],
+                        payment=docs["payment"],
+                        batch_size=50
+                    )
+                    self.state.hierarchical_manifest = manifest
+                    summary = manifest.summary
+                    self.state.reconciliation_summary = summary
+                    
+                    compact_discrepancies = [
+                        {
+                            "item_id": d.item_id,
+                            "desc": d.description,
+                            "missing_qty": d.missing_quantity,
+                            "damaged_qty": d.damaged_quantity,
+                            "price_diff": float(d.price_difference),
+                            "impact": float(d.total_impact)
+                        }
+                        for d in summary.discrepancies[:25]
+                    ]
+                    
+                    result = {
+                        "status": "success",
+                        "is_massive_scale": True,
+                        "total_skus_processed": manifest.total_skus_processed,
+                        "total_batches_count": manifest.total_batches_count,
+                        "merkle_root_hash": manifest.merkle_root_hash,
+                        "invariant_conserved": manifest.invariant_conserved,
+                        "billed_amount": float(summary.billed_amount),
+                        "received_amount": float(summary.received_amount),
+                        "difference": float(summary.difference),
+                        "primary_discrepancy_type": summary.primary_discrepancy_type,
+                        "total_missing_amount": float(summary.total_missing_amount),
+                        "total_damaged_amount": float(summary.total_damaged_amount),
+                        "total_price_discrepancy_amount": float(summary.total_price_discrepancy_amount),
+                        "justified_deductions": float(summary.justified_deductions_amount),
+                        "unjustified_deductions": float(summary.unjustified_deductions_amount),
+                        "discrepancies_count": len(summary.discrepancies),
+                        "discrepancies": compact_discrepancies,
+                        "evidence_trail": summary.evidence_trail
                     }
-                    for d in summary.discrepancies
-                ]
-                
-                result = {
-                    "status": "success",
-                    "billed_amount": float(summary.billed_amount),
-                    "received_amount": float(summary.received_amount),
-                    "difference": float(summary.difference),
-                    "primary_discrepancy_type": summary.primary_discrepancy_type,
-                    "total_missing_amount": float(summary.total_missing_amount),
-                    "total_damaged_amount": float(summary.total_damaged_amount),
-                    "total_price_discrepancy_amount": float(summary.total_price_discrepancy_amount),
-                    "justified_deductions": float(summary.justified_deductions_amount),
-                    "unjustified_deductions": float(summary.unjustified_deductions_amount),
-                    "discrepancies": compact_discrepancies,
-                    "evidence_trail": summary.evidence_trail
-                }
+                else:
+                    summary = reconcile_dispute_data(
+                        invoice=docs["invoice"],
+                        purchase_order=docs["purchase_order"],
+                        delivery=docs["delivery"],
+                        payment=docs["payment"]
+                    )
+                    self.state.reconciliation_summary = summary
+                    
+                    compact_discrepancies = [
+                        {
+                            "item_id": d.item_id,
+                            "desc": d.description,
+                            "missing_qty": d.missing_quantity,
+                            "damaged_qty": d.damaged_quantity,
+                            "price_diff": float(d.price_difference),
+                            "impact": float(d.total_impact)
+                        }
+                        for d in summary.discrepancies
+                    ]
+                    
+                    result = {
+                        "status": "success",
+                        "billed_amount": float(summary.billed_amount),
+                        "received_amount": float(summary.received_amount),
+                        "difference": float(summary.difference),
+                        "primary_discrepancy_type": summary.primary_discrepancy_type,
+                        "total_missing_amount": float(summary.total_missing_amount),
+                        "total_damaged_amount": float(summary.total_damaged_amount),
+                        "total_price_discrepancy_amount": float(summary.total_price_discrepancy_amount),
+                        "justified_deductions": float(summary.justified_deductions_amount),
+                        "unjustified_deductions": float(summary.unjustified_deductions_amount),
+                        "discrepancies": compact_discrepancies,
+                        "evidence_trail": summary.evidence_trail
+                    }
                 
             elif tool_name == "evaluate_contract_terms":
                 self.state.current_status = ProcessStatus.EVALUATING_CONTRACT
@@ -241,6 +293,24 @@ class ToolExecutor:
                     "recommended_contract_action": evaluation.recommended_contract_action,
                     "matches": [m.model_dump() for m in evaluation.matches]
                 }
+                
+                # Si el contrato es extenso o jerárquico, enriquecer con cláusulas indexadas BM25
+                contract_text = getattr(contract, "raw_content", "") or ""
+                if not contract_text and hasattr(contract, "clauses") and contract.clauses:
+                    contract_text = "\n\n".join([f"CLÁUSULA {c.clause_id}: {c.text}" for c in contract.clauses])
+                if len(contract_text.split()) > 300:
+                    try:
+                        from tools.document_reader.hierarchical_segmenter import HierarchicalDocumentSegmenter
+                        hierarchy = HierarchicalDocumentSegmenter.segment_text(contract_text, document_name=f"contrato_{case_id}")
+                        query_term = self.state.reconciliation_summary.primary_discrepancy_type or "penalizacion"
+                        top_clauses = HierarchicalDocumentSegmenter.query_relevant_clauses(hierarchy, query=query_term, top_k=3)
+                        result["indexed_hierarchical_clauses"] = [
+                            {"title": c.title, "clause_id": c.clause_id, "excerpt": c.content[:200]}
+                            for c in top_clauses
+                        ]
+                    except Exception:
+                        pass
+
                 
             elif tool_name == "generate_final_report":
                 self.state.current_status = ProcessStatus.SYNTHESIZING

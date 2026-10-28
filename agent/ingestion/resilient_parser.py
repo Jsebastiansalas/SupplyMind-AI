@@ -484,13 +484,16 @@ def normalize_schema_dict(raw_data: Dict[str, Any], doc_type: str) -> Tuple[Dict
                 "tolerance_percentage": Decimal("0.00")
             })
 
+        raw_content = _get_first(["raw_content", "raw_text", "markdown", "content", "texto_completo"], None)
+
         return {
             "contract_id": str(con_id),
             "vendor_id": str(vendor_id),
             "customer_id": str(customer_id),
             "valid_from": str(valid_from),
             "valid_to": str(valid_to),
-            "clauses": norm_clauses
+            "clauses": norm_clauses,
+            "raw_content": raw_content
         }, warnings
 
     return d, warnings

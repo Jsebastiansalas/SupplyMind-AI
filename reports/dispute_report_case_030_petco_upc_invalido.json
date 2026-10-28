@@ -1,0 +1,142 @@
+{
+  "case_id": "case_030_petco_upc_invalido",
+  "currency": "USD",
+  "billed_amount": "29000.00",
+  "received_amount": "23100.00",
+  "difference": "-5900.00",
+  "root_cause": "Discrepancia mixta en expediente case_030_petco_upc_invalido: Faltante físico comprobado de $3,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $2,900.00 USD sin sustento contractual ni documental.",
+  "evidence": [
+    "Deducción aplicada en comprobante PAY-CASE_030-F5C7: código MANIOBRA-REPALETIZADO, motivo 'Costo comprobado de maniobra por tarima desfasada en descarga', monto $3,000.00",
+    "Deducción aplicada en comprobante PAY-CASE_030-F5C7: código LABELING-UPC-BARCODE, motivo 'Multa indebida por código UPC cuando el embalaje secundario tenía código ITF-14 legible', monto $2,900.00",
+    "[Factura INV-CASE_030-7B67 §Total $29,000.00 USD]",
+    "[Comprobante PAY-CASE_030-F5C7 §Liquidación $23,100.00 USD]"
+  ],
+  "justified_amount": "3000.00",
+  "claimable_amount": "2900.00",
+  "confidence": 0.79,
+  "recommended_action": "Aceptar deducción de $3,000.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $2,900.00 USD exigiendo su pago inmediato.",
+  "concessions": [],
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "case_030_petco_upc_invalido",
+    "health_score": 100.0,
+    "status": "PRISTINE",
+    "is_healthy": true,
+    "repaired_issues": [],
+    "imputed_documents": [],
+    "documents_present": [
+      "invoice",
+      "purchase_order",
+      "delivery",
+      "payment",
+      "contract"
+    ],
+    "documents_missing": [],
+    "schema_warnings": [],
+    "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
+    "quarantine_docket": null,
+    "generated_at": "2026-10-28T13:09:11.133967+00:00"
+  },
+  "financial_proof": {
+    "case_id": "case_030_petco_upc_invalido",
+    "proof_hash": "SM-PROOF-SHA256-BCA71AF3CD3B5990",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$3,000.00 USD (Validado)",
+      "$2,900.00 USD (Validado)",
+      "$3,000.00 USD (Validado)",
+      "$2,900.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-10-28T13:09:11.140666+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "case_030_petco_upc_invalido",
+    "total_claims_audited": 4,
+    "backed_claims_count": 2,
+    "unbacked_claims_count": 2,
+    "total_backed_amount": "52100.00",
+    "total_unbacked_amount": "5900.00",
+    "backing_ratio_pct": 89.83,
+    "evidence_pointers": [
+      {
+        "pointer_id": "PTR-INV-INV-CASE_030-7B67-TOTAL",
+        "doc_type": "INVOICE",
+        "doc_id": "INV-CASE_030-7B67",
+        "field_ref": "total_amount",
+        "item_sku": null,
+        "amount": "29000.00",
+        "citation_tag": "[Factura INV-CASE_030-7B67 §Total $29,000.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Factura comercial fiscalmente válida por $29,000.00 USD."
+      },
+      {
+        "pointer_id": "PTR-PAY-PAY-CASE_030-F5C7-AMOUNT",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_030-F5C7",
+        "field_ref": "amount_paid",
+        "item_sku": null,
+        "amount": "23100.00",
+        "citation_tag": "[Comprobante PAY-CASE_030-F5C7 §Liquidación $23,100.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $23,100.00."
+      },
+      {
+        "pointer_id": "PTR-DED-MANIOBRA-REPALETIZADO-1-UNBACKED",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_030-F5C7",
+        "field_ref": "deduction_MANIOBRA-REPALETIZADO",
+        "item_sku": null,
+        "amount": "3000.00",
+        "citation_tag": "[Comprobante PAY-CASE_030-F5C7 §Deducción Unilateral MANIOBRA-REPALETIZADO | $3,000.00 SIN CLÁUSULA EN CTR-PETCO_MX-2026]",
+        "is_backed_by_physical_proof": false,
+        "status": "CAUTELAR_NO_ACREDITADA",
+        "detail": "El retailer retuvo $3,000.00 bajo el código 'MANIOBRA-REPALETIZADO', pero el contrato CTR-PETCO_MX-2026 no contiene cláusula habilitante."
+      },
+      {
+        "pointer_id": "PTR-DED-LABELING-UPC-BARCODE-2-UNBACKED",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_030-F5C7",
+        "field_ref": "deduction_LABELING-UPC-BARCODE",
+        "item_sku": null,
+        "amount": "2900.00",
+        "citation_tag": "[Comprobante PAY-CASE_030-F5C7 §Deducción Unilateral LABELING-UPC-BARCODE | $2,900.00 SIN CLÁUSULA EN CTR-PETCO_MX-2026]",
+        "is_backed_by_physical_proof": false,
+        "status": "CAUTELAR_NO_ACREDITADA",
+        "detail": "El retailer retuvo $2,900.00 bajo el código 'LABELING-UPC-BARCODE', pero el contrato CTR-PETCO_MX-2026 no contiene cláusula habilitante."
+      }
+    ],
+    "cautelar_items": [
+      "Deducción MANIOBRA-REPALETIZADO ($3,000.00): Sin cláusula contractual que autorice retención.",
+      "Deducción LABELING-UPC-BARCODE ($2,900.00): Sin cláusula contractual que autorice retención."
+    ],
+    "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
+    "confidence_penalty": 0.19,
+    "generated_at": "2026-10-28T13:09:11Z"
+  },
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "case_030_petco_upc_invalido",
+    "currency": "USD",
+    "billed_amount": "29000.00",
+    "received_amount": "23100.00",
+    "difference": "-5900.00",
+    "justified_amount": "3000.00",
+    "claimable_amount": "2900.00",
+    "health_status": "PRISTINE",
+    "health_score": 100.0,
+    "zkp_proof_hash": "SM-PROOF-SHA256-BCA71AF3CD3B5990",
+    "zkp_status": "MATHEMATICALLY_PROVEN",
+    "is_quarantined": false,
+    "evidence_backing_ratio": 89.83,
+    "anchored_at": "2026-10-28T13:09:11.141964+00:00"
+  },
+  "watchdog_metrics": null
+}

@@ -1,0 +1,21 @@
+{
+  "payment_id": "PAY-MASSIVE-FIN-7710",
+  "invoice_reference": "INV-MASSIVE-1000-01",
+  "payment_date": "2026-10-02",
+  "currency": "USD",
+  "amount_paid": 2516135.0,
+  "deductions": [
+    {
+      "code": "DED-SHORTAGE-SIGNED",
+      "reason": "Deducción de unidades faltantes acreditadas en remisión DEL-MASSIVE-LOG-8812 (5 SKUs)",
+      "amount": 2190.0,
+      "reference_doc": "DEL-MASSIVE-LOG-8812"
+    },
+    {
+      "code": "DED-ASN-UNILATERAL-PENALTY",
+      "reason": "Penalización por supuesta omisión en transmisión EDI ASN previa",
+      "amount": 5000.0,
+      "reference_doc": "SLA-INTERNAL-MEMO-2026"
+    }
+  ]
+}

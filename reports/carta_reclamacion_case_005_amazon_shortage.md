@@ -1,6 +1,6 @@
 # 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
 **Ref: Expediente de Cartera case_005_amazon_shortage / Factura INV-PAC-2026-4402**  
-**Fecha:** 24 de October de 2026  
+**Fecha:** 28 de October de 2026  
 **De:** Departamento de Cartera y Asuntos Comerciales — PACIFIC_TECH_CORP  
 **Para:** Gerencia de Cuentas por Pagar y Conciliación — AMAZON_RETAIL_LLC  
 

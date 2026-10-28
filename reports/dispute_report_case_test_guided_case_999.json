@@ -10,12 +10,148 @@
     "Deducción aplicada en comprobante PAY-TEST_G: código DED-FALTANTE, motivo 'Deducción por faltante físico en recepción s/ remisión DEL-TEST_G', monto $500.00",
     "Deducción aplicada en comprobante PAY-TEST_G: código DED-PENALTY, motivo 'Penalización no estipulada', monto $200.00",
     "Respaldo contractual: La CLAUSE-4.2 autoriza la deducción por faltantes físicos acreditados en remisión de entrega.",
-    "Respaldo contractual: La CLAUSE-8.2 ('Ventana de Notificación y Pago') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo."
+    "Respaldo contractual: La CLAUSE-8.2 ('Ventana de Notificación y Pago') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.",
+    "[Factura INV-TEST_G-101 §Total $5,000.00 USD]",
+    "[Comprobante PAY-TEST_G §Liquidación $4,300.00 USD]",
+    "[Contrato CTR-TEST_G-2026 §Cláusula CLAUSE-4.2 'Faltantes Físicos' | Deducción DED-FALTANTE $500.00]",
+    "[Contrato CTR-TEST_G-2026 §Cláusula CLAUSE-4.2 'Faltantes Físicos' | Deducción DED-PENALTY $200.00]",
+    "[Remisión DEL-TEST_G §SKU ITEM-01 | Faltante: 10 uds | $500.00]"
   ],
   "justified_amount": "500.00",
   "claimable_amount": "200.00",
   "confidence": 0.98,
   "recommended_action": "Aceptar deducción de $500.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $200.00 USD exigiendo su pago inmediato.",
   "concessions": [],
-  "active_scenario": null
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "case_test_guided_case_999",
+    "health_score": 100.0,
+    "status": "PRISTINE",
+    "is_healthy": true,
+    "repaired_issues": [],
+    "imputed_documents": [],
+    "documents_present": [
+      "invoice",
+      "purchase_order",
+      "delivery",
+      "payment",
+      "contract"
+    ],
+    "documents_missing": [],
+    "schema_warnings": [],
+    "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
+    "quarantine_docket": null,
+    "generated_at": "2026-10-28T13:00:03.053419+00:00"
+  },
+  "financial_proof": {
+    "case_id": "case_test_guided_case_999",
+    "proof_hash": "SM-PROOF-SHA256-C23FB96ED19E8053",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$500.00 USD (Validado)",
+      "$200.00 USD (Validado)",
+      "$500.00 USD (Validado)",
+      "$200.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-10-28T13:00:03.060682+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "case_test_guided_case_999",
+    "total_claims_audited": 5,
+    "backed_claims_count": 5,
+    "unbacked_claims_count": 0,
+    "total_backed_amount": "10500.00",
+    "total_unbacked_amount": "0.00",
+    "backing_ratio_pct": 100.0,
+    "evidence_pointers": [
+      {
+        "pointer_id": "PTR-INV-INV-TEST_G-101-TOTAL",
+        "doc_type": "INVOICE",
+        "doc_id": "INV-TEST_G-101",
+        "field_ref": "total_amount",
+        "item_sku": null,
+        "amount": "5000.0",
+        "citation_tag": "[Factura INV-TEST_G-101 §Total $5,000.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Factura comercial fiscalmente válida por $5,000.00 USD."
+      },
+      {
+        "pointer_id": "PTR-PAY-PAY-TEST_G-AMOUNT",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-TEST_G",
+        "field_ref": "amount_paid",
+        "item_sku": null,
+        "amount": "4300.0",
+        "citation_tag": "[Comprobante PAY-TEST_G §Liquidación $4,300.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $4,300.00."
+      },
+      {
+        "pointer_id": "PTR-DED-DED-FALTANTE-1",
+        "doc_type": "CONTRACT",
+        "doc_id": "CTR-TEST_G-2026",
+        "field_ref": "clause_CLAUSE-4.2",
+        "item_sku": null,
+        "amount": "500.0",
+        "citation_tag": "[Contrato CTR-TEST_G-2026 §Cláusula CLAUSE-4.2 'Faltantes Físicos' | Deducción DED-FALTANTE $500.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Deducción 'DED-FALTANTE' normada por la cláusula CLAUSE-4.2 de CTR-TEST_G-2026."
+      },
+      {
+        "pointer_id": "PTR-DED-DED-PENALTY-2",
+        "doc_type": "CONTRACT",
+        "doc_id": "CTR-TEST_G-2026",
+        "field_ref": "clause_CLAUSE-4.2",
+        "item_sku": null,
+        "amount": "200.0",
+        "citation_tag": "[Contrato CTR-TEST_G-2026 §Cláusula CLAUSE-4.2 'Faltantes Físicos' | Deducción DED-PENALTY $200.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Deducción 'DED-PENALTY' normada por la cláusula CLAUSE-4.2 de CTR-TEST_G-2026."
+      },
+      {
+        "pointer_id": "PTR-DEL-DEL-TEST_G-ITEM-01-SHORT",
+        "doc_type": "DELIVERY",
+        "doc_id": "DEL-TEST_G",
+        "field_ref": "missing_quantity",
+        "item_sku": "ITEM-01",
+        "amount": "500.0",
+        "citation_tag": "[Remisión DEL-TEST_G §SKU ITEM-01 | Faltante: 10 uds | $500.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Faltante físico de 10 unidades registrado en remisión DEL-TEST_G (Firma POD: Sí)."
+      }
+    ],
+    "cautelar_items": [],
+    "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
+    "confidence_penalty": 0.0,
+    "generated_at": "2026-10-28T13:00:03Z"
+  },
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "case_test_guided_case_999",
+    "currency": "USD",
+    "billed_amount": "5000.0",
+    "received_amount": "4300.0",
+    "difference": "-700.0",
+    "justified_amount": "500.00",
+    "claimable_amount": "200.00",
+    "health_status": "PRISTINE",
+    "health_score": 100.0,
+    "zkp_proof_hash": "SM-PROOF-SHA256-C23FB96ED19E8053",
+    "zkp_status": "MATHEMATICALLY_PROVEN",
+    "is_quarantined": false,
+    "evidence_backing_ratio": 100.0,
+    "anchored_at": "2026-10-28T13:00:03.066530+00:00"
+  },
+  "watchdog_metrics": null
 }

@@ -43,11 +43,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-25T16:23:30.904894+00:00"
+    "generated_at": "2026-10-28T13:08:17.935435+00:00"
   },
   "financial_proof": {
     "case_id": "case_002",
-    "proof_hash": "SM-PROOF-SHA256-6F45A21F9A5517AC",
+    "proof_hash": "SM-PROOF-SHA256-14D194B8951AB222",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -61,7 +61,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-25T16:23:30.909529+00:00"
+    "tamper_proof_timestamp": "2026-10-28T13:08:17.940393+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_002",
@@ -148,7 +148,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-10-25T16:23:30Z"
+    "generated_at": "2026-10-28T13:08:17Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -161,11 +161,11 @@
     "claimable_amount": "12500.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-6F45A21F9A5517AC",
+    "zkp_proof_hash": "SM-PROOF-SHA256-14D194B8951AB222",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-10-25T16:23:30.910782+00:00"
+    "anchored_at": "2026-10-28T13:08:17.941572+00:00"
   },
   "watchdog_metrics": null
 }

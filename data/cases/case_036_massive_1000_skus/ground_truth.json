@@ -1,0 +1,30 @@
+{
+  "case_id": "case_036_massive_1000_skus",
+  "category": "MASSIVE_MULTI_SKU_DISPUTE",
+  "buyer_id": "MEGA_RETAIL_CORP",
+  "buyer_name": "Mega Retail Corporation Logistics",
+  "industry": "Componentes Industriales y Automatización",
+  "currency": "USD",
+  "total_skus": 1000,
+  "billed_amount": "2523325.00",
+  "received_amount": "2516135.00",
+  "difference": "-7190.00",
+  "expected_justified_amount": "2190.00",
+  "expected_claimable_amount": "5000.00",
+  "expected_confidence": 0.99,
+  "justified_breakdown": {
+    "SKU-IND-0010": "300.00",
+    "SKU-IND-0050": "480.00",
+    "SKU-IND-0200": "250.00",
+    "SKU-IND-0500": "380.00",
+    "SKU-IND-0950": "780.00"
+  },
+  "claimable_breakdown": {
+    "DED-ASN-UNILATERAL-PENALTY": "5000.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-4.2",
+    "CLAUSE-9.3"
+  ],
+  "recommended_commercial_action": "PARTIAL_CREDIT_AND_DISPUTE_UNILATERAL"
+}

@@ -1,0 +1,129 @@
+{
+  "case_id": "case_034_resilient_corrupted_json",
+  "currency": "USD",
+  "billed_amount": "14000.00",
+  "received_amount": "11500.00",
+  "difference": "-2500.00",
+  "root_cause": "Faltante físico en entrega valorado en $2,500.00 USD, constatado en remisión de entrega firmada con sello de recepción en bodega.",
+  "evidence": [
+    "Deducción aplicada en comprobante PAY-CASE_034-BD88: código DED-PRICE-CORRUPT, motivo 'Deducción de precio de compraventa', monto $2,500.00",
+    "[Factura INV-CASE_034-5841 §Total $14,000.00 USD]",
+    "[Comprobante PAY-CASE_034-BD88 §Liquidación $11,500.00 USD]"
+  ],
+  "justified_amount": "2500.00",
+  "claimable_amount": "0.00",
+  "confidence": 0.87,
+  "recommended_action": "Aceptar deducción de $2,500.00 USD en cuentas por cobrar y emitir Nota de Crédito comercial por dicho valor a favor del cliente para conciliar y cerrar la cuenta.",
+  "concessions": [],
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "case_034_resilient_corrupted_json",
+    "health_score": 95.0,
+    "status": "AUTO_REPAIRED",
+    "is_healthy": true,
+    "repaired_issues": [
+      "[payment.json] Eliminados comentarios de estilo C/JS no permitidos en JSON estándar",
+      "[payment.json] Corregidas comas sobrantes (trailing commas) antes de cierre"
+    ],
+    "imputed_documents": [],
+    "documents_present": [
+      "invoice",
+      "purchase_order",
+      "delivery",
+      "payment",
+      "contract"
+    ],
+    "documents_missing": [],
+    "schema_warnings": [],
+    "execution_safety_level": "SAFE_WITH_TRACEABILITY",
+    "quarantine_docket": null,
+    "generated_at": "2026-10-28T13:09:11.207047+00:00"
+  },
+  "financial_proof": {
+    "case_id": "case_034_resilient_corrupted_json",
+    "proof_hash": "SM-PROOF-SHA256-D1023F028CAFA1BD",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$2,500.00 USD (Validado)",
+      "$2,500.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-10-28T13:09:11.210982+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "case_034_resilient_corrupted_json",
+    "total_claims_audited": 3,
+    "backed_claims_count": 2,
+    "unbacked_claims_count": 1,
+    "total_backed_amount": "25500.00",
+    "total_unbacked_amount": "2500.00",
+    "backing_ratio_pct": 91.07,
+    "evidence_pointers": [
+      {
+        "pointer_id": "PTR-INV-INV-CASE_034-5841-TOTAL",
+        "doc_type": "INVOICE",
+        "doc_id": "INV-CASE_034-5841",
+        "field_ref": "total_amount",
+        "item_sku": null,
+        "amount": "14000.00",
+        "citation_tag": "[Factura INV-CASE_034-5841 §Total $14,000.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Factura comercial fiscalmente válida por $14,000.00 USD."
+      },
+      {
+        "pointer_id": "PTR-PAY-PAY-CASE_034-BD88-AMOUNT",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_034-BD88",
+        "field_ref": "amount_paid",
+        "item_sku": null,
+        "amount": "11500.00",
+        "citation_tag": "[Comprobante PAY-CASE_034-BD88 §Liquidación $11,500.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $11,500.00."
+      },
+      {
+        "pointer_id": "PTR-DED-DED-PRICE-CORRUPT-1-UNBACKED",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_034-BD88",
+        "field_ref": "deduction_DED-PRICE-CORRUPT",
+        "item_sku": null,
+        "amount": "2500.00",
+        "citation_tag": "[Comprobante PAY-CASE_034-BD88 §Deducción Unilateral DED-PRICE-CORRUPT | $2,500.00 SIN CLÁUSULA EN CTR-CHEDRAUI_MX-2026]",
+        "is_backed_by_physical_proof": false,
+        "status": "CAUTELAR_NO_ACREDITADA",
+        "detail": "El retailer retuvo $2,500.00 bajo el código 'DED-PRICE-CORRUPT', pero el contrato CTR-CHEDRAUI_MX-2026 no contiene cláusula habilitante."
+      }
+    ],
+    "cautelar_items": [
+      "Deducción DED-PRICE-CORRUPT ($2,500.00): Sin cláusula contractual que autorice retención."
+    ],
+    "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
+    "confidence_penalty": 0.11,
+    "generated_at": "2026-10-28T13:09:11Z"
+  },
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "case_034_resilient_corrupted_json",
+    "currency": "USD",
+    "billed_amount": "14000.00",
+    "received_amount": "11500.00",
+    "difference": "-2500.00",
+    "justified_amount": "2500.00",
+    "claimable_amount": "0.00",
+    "health_status": "AUTO_REPAIRED",
+    "health_score": 95.0,
+    "zkp_proof_hash": "SM-PROOF-SHA256-D1023F028CAFA1BD",
+    "zkp_status": "MATHEMATICALLY_PROVEN",
+    "is_quarantined": false,
+    "evidence_backing_ratio": 91.07,
+    "anchored_at": "2026-10-28T13:09:11.211944+00:00"
+  },
+  "watchdog_metrics": null
+}

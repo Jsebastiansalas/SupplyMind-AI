@@ -1,0 +1,142 @@
+{
+  "case_id": "case_020_modelo_tarimas_retornables",
+  "currency": "USD",
+  "billed_amount": "79990.00",
+  "received_amount": "47990.00",
+  "difference": "-32000.00",
+  "root_cause": "Discrepancia mixta en expediente case_020_modelo_tarimas_retornables: Faltante físico comprobado de $14,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $18,000.00 USD sin sustento contractual ni documental.",
+  "evidence": [
+    "Deducción aplicada en comprobante PAY-CASE_020-3BDB: código FALTANTE-TARIMAS-CHEP, motivo 'Faltante legítimo de 280 tarimas CHEP sin vale de intercambio electrónico', monto $14,000.00",
+    "Deducción aplicada en comprobante PAY-CASE_020-3BDB: código RETENCION-ENVASES-UNILAT, motivo 'Retención improcedente por rotura de envase ocasionada por personal de descarga del comprador', monto $18,000.00",
+    "[Factura INV-CASE_020-45DB §Total $79,990.00 USD]",
+    "[Comprobante PAY-CASE_020-3BDB §Liquidación $47,990.00 USD]"
+  ],
+  "justified_amount": "14000.00",
+  "claimable_amount": "18000.00",
+  "confidence": 0.76,
+  "recommended_action": "Aceptar deducción de $14,000.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $18,000.00 USD exigiendo su pago inmediato.",
+  "concessions": [],
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "case_020_modelo_tarimas_retornables",
+    "health_score": 100.0,
+    "status": "PRISTINE",
+    "is_healthy": true,
+    "repaired_issues": [],
+    "imputed_documents": [],
+    "documents_present": [
+      "invoice",
+      "purchase_order",
+      "delivery",
+      "payment",
+      "contract"
+    ],
+    "documents_missing": [],
+    "schema_warnings": [],
+    "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
+    "quarantine_docket": null,
+    "generated_at": "2026-10-28T13:09:10.822451+00:00"
+  },
+  "financial_proof": {
+    "case_id": "case_020_modelo_tarimas_retornables",
+    "proof_hash": "SM-PROOF-SHA256-CEF5A248F1EAF688",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$14,000.00 USD (Validado)",
+      "$18,000.00 USD (Validado)",
+      "$14,000.00 USD (Validado)",
+      "$18,000.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-10-28T13:09:10.829507+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "case_020_modelo_tarimas_retornables",
+    "total_claims_audited": 4,
+    "backed_claims_count": 2,
+    "unbacked_claims_count": 2,
+    "total_backed_amount": "127980.00",
+    "total_unbacked_amount": "32000.00",
+    "backing_ratio_pct": 80.0,
+    "evidence_pointers": [
+      {
+        "pointer_id": "PTR-INV-INV-CASE_020-45DB-TOTAL",
+        "doc_type": "INVOICE",
+        "doc_id": "INV-CASE_020-45DB",
+        "field_ref": "total_amount",
+        "item_sku": null,
+        "amount": "79990.00",
+        "citation_tag": "[Factura INV-CASE_020-45DB §Total $79,990.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Factura comercial fiscalmente válida por $79,990.00 USD."
+      },
+      {
+        "pointer_id": "PTR-PAY-PAY-CASE_020-3BDB-AMOUNT",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_020-3BDB",
+        "field_ref": "amount_paid",
+        "item_sku": null,
+        "amount": "47990.00",
+        "citation_tag": "[Comprobante PAY-CASE_020-3BDB §Liquidación $47,990.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $47,990.00."
+      },
+      {
+        "pointer_id": "PTR-DED-FALTANTE-TARIMAS-CHEP-1-UNBACKED",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_020-3BDB",
+        "field_ref": "deduction_FALTANTE-TARIMAS-CHEP",
+        "item_sku": null,
+        "amount": "14000.00",
+        "citation_tag": "[Comprobante PAY-CASE_020-3BDB §Deducción Unilateral FALTANTE-TARIMAS-CHEP | $14,000.00 SIN CLÁUSULA EN CTR-GRUPO_MODELO-2026]",
+        "is_backed_by_physical_proof": false,
+        "status": "CAUTELAR_NO_ACREDITADA",
+        "detail": "El retailer retuvo $14,000.00 bajo el código 'FALTANTE-TARIMAS-CHEP', pero el contrato CTR-GRUPO_MODELO-2026 no contiene cláusula habilitante."
+      },
+      {
+        "pointer_id": "PTR-DED-RETENCION-ENVASES-UNILAT-2-UNBACKED",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_020-3BDB",
+        "field_ref": "deduction_RETENCION-ENVASES-UNILAT",
+        "item_sku": null,
+        "amount": "18000.00",
+        "citation_tag": "[Comprobante PAY-CASE_020-3BDB §Deducción Unilateral RETENCION-ENVASES-UNILAT | $18,000.00 SIN CLÁUSULA EN CTR-GRUPO_MODELO-2026]",
+        "is_backed_by_physical_proof": false,
+        "status": "CAUTELAR_NO_ACREDITADA",
+        "detail": "El retailer retuvo $18,000.00 bajo el código 'RETENCION-ENVASES-UNILAT', pero el contrato CTR-GRUPO_MODELO-2026 no contiene cláusula habilitante."
+      }
+    ],
+    "cautelar_items": [
+      "Deducción FALTANTE-TARIMAS-CHEP ($14,000.00): Sin cláusula contractual que autorice retención.",
+      "Deducción RETENCION-ENVASES-UNILAT ($18,000.00): Sin cláusula contractual que autorice retención."
+    ],
+    "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
+    "confidence_penalty": 0.22,
+    "generated_at": "2026-10-28T13:09:10Z"
+  },
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "case_020_modelo_tarimas_retornables",
+    "currency": "USD",
+    "billed_amount": "79990.00",
+    "received_amount": "47990.00",
+    "difference": "-32000.00",
+    "justified_amount": "14000.00",
+    "claimable_amount": "18000.00",
+    "health_status": "PRISTINE",
+    "health_score": 100.0,
+    "zkp_proof_hash": "SM-PROOF-SHA256-CEF5A248F1EAF688",
+    "zkp_status": "MATHEMATICALLY_PROVEN",
+    "is_quarantined": false,
+    "evidence_backing_ratio": 80.0,
+    "anchored_at": "2026-10-28T13:09:10.831951+00:00"
+  },
+  "watchdog_metrics": null
+}

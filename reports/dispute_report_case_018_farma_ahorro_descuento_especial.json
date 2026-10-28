@@ -1,0 +1,142 @@
+{
+  "case_id": "case_018_farma_ahorro_descuento_especial",
+  "currency": "USD",
+  "billed_amount": "34986.00",
+  "received_amount": "26086.00",
+  "difference": "-8900.00",
+  "root_cause": "Discrepancia mixta en expediente case_018_farma_ahorro_descuento_especial: Faltante físico comprobado de $4,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $4,900.00 USD sin sustento contractual ni documental.",
+  "evidence": [
+    "Deducción aplicada en comprobante PAY-CASE_018-D17A: código BONIFICACION-CATALOGO, motivo 'Aportación convenida por publicación en guía médica anual', monto $4,000.00",
+    "Deducción aplicada en comprobante PAY-CASE_018-D17A: código DESCUENTO-ESPECIAL-ERR, motivo 'Deducción unilateral de 8% cuando la tasa pactada contractualmente era de 3%', monto $4,900.00",
+    "[Factura INV-CASE_018-D05C §Total $34,986.00 USD]",
+    "[Comprobante PAY-CASE_018-D17A §Liquidación $26,086.00 USD]"
+  ],
+  "justified_amount": "4000.00",
+  "claimable_amount": "4900.00",
+  "confidence": 0.78,
+  "recommended_action": "Aceptar deducción de $4,000.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $4,900.00 USD exigiendo su pago inmediato.",
+  "concessions": [],
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "case_018_farma_ahorro_descuento_especial",
+    "health_score": 100.0,
+    "status": "PRISTINE",
+    "is_healthy": true,
+    "repaired_issues": [],
+    "imputed_documents": [],
+    "documents_present": [
+      "invoice",
+      "purchase_order",
+      "delivery",
+      "payment",
+      "contract"
+    ],
+    "documents_missing": [],
+    "schema_warnings": [],
+    "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
+    "quarantine_docket": null,
+    "generated_at": "2026-10-28T13:09:10.785574+00:00"
+  },
+  "financial_proof": {
+    "case_id": "case_018_farma_ahorro_descuento_especial",
+    "proof_hash": "SM-PROOF-SHA256-C926D3CD5207B5E1",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$4,000.00 USD (Validado)",
+      "$4,900.00 USD (Validado)",
+      "$4,000.00 USD (Validado)",
+      "$4,900.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-10-28T13:09:10.790447+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "case_018_farma_ahorro_descuento_especial",
+    "total_claims_audited": 4,
+    "backed_claims_count": 2,
+    "unbacked_claims_count": 2,
+    "total_backed_amount": "61072.00",
+    "total_unbacked_amount": "8900.00",
+    "backing_ratio_pct": 87.28,
+    "evidence_pointers": [
+      {
+        "pointer_id": "PTR-INV-INV-CASE_018-D05C-TOTAL",
+        "doc_type": "INVOICE",
+        "doc_id": "INV-CASE_018-D05C",
+        "field_ref": "total_amount",
+        "item_sku": null,
+        "amount": "34986.00",
+        "citation_tag": "[Factura INV-CASE_018-D05C §Total $34,986.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Factura comercial fiscalmente válida por $34,986.00 USD."
+      },
+      {
+        "pointer_id": "PTR-PAY-PAY-CASE_018-D17A-AMOUNT",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_018-D17A",
+        "field_ref": "amount_paid",
+        "item_sku": null,
+        "amount": "26086.00",
+        "citation_tag": "[Comprobante PAY-CASE_018-D17A §Liquidación $26,086.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $26,086.00."
+      },
+      {
+        "pointer_id": "PTR-DED-BONIFICACION-CATALOGO-1-UNBACKED",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_018-D17A",
+        "field_ref": "deduction_BONIFICACION-CATALOGO",
+        "item_sku": null,
+        "amount": "4000.00",
+        "citation_tag": "[Comprobante PAY-CASE_018-D17A §Deducción Unilateral BONIFICACION-CATALOGO | $4,000.00 SIN CLÁUSULA EN CTR-FARMACIAS_AHORRO-2026]",
+        "is_backed_by_physical_proof": false,
+        "status": "CAUTELAR_NO_ACREDITADA",
+        "detail": "El retailer retuvo $4,000.00 bajo el código 'BONIFICACION-CATALOGO', pero el contrato CTR-FARMACIAS_AHORRO-2026 no contiene cláusula habilitante."
+      },
+      {
+        "pointer_id": "PTR-DED-DESCUENTO-ESPECIAL-ERR-2-UNBACKED",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_018-D17A",
+        "field_ref": "deduction_DESCUENTO-ESPECIAL-ERR",
+        "item_sku": null,
+        "amount": "4900.00",
+        "citation_tag": "[Comprobante PAY-CASE_018-D17A §Deducción Unilateral DESCUENTO-ESPECIAL-ERR | $4,900.00 SIN CLÁUSULA EN CTR-FARMACIAS_AHORRO-2026]",
+        "is_backed_by_physical_proof": false,
+        "status": "CAUTELAR_NO_ACREDITADA",
+        "detail": "El retailer retuvo $4,900.00 bajo el código 'DESCUENTO-ESPECIAL-ERR', pero el contrato CTR-FARMACIAS_AHORRO-2026 no contiene cláusula habilitante."
+      }
+    ],
+    "cautelar_items": [
+      "Deducción BONIFICACION-CATALOGO ($4,000.00): Sin cláusula contractual que autorice retención.",
+      "Deducción DESCUENTO-ESPECIAL-ERR ($4,900.00): Sin cláusula contractual que autorice retención."
+    ],
+    "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
+    "confidence_penalty": 0.2,
+    "generated_at": "2026-10-28T13:09:10Z"
+  },
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "case_018_farma_ahorro_descuento_especial",
+    "currency": "USD",
+    "billed_amount": "34986.00",
+    "received_amount": "26086.00",
+    "difference": "-8900.00",
+    "justified_amount": "4000.00",
+    "claimable_amount": "4900.00",
+    "health_status": "PRISTINE",
+    "health_score": 100.0,
+    "zkp_proof_hash": "SM-PROOF-SHA256-C926D3CD5207B5E1",
+    "zkp_status": "MATHEMATICALLY_PROVEN",
+    "is_quarantined": false,
+    "evidence_backing_ratio": 87.28,
+    "anchored_at": "2026-10-28T13:09:10.791406+00:00"
+  },
+  "watchdog_metrics": null
+}

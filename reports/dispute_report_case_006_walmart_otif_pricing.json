@@ -10,7 +10,12 @@
     "Deducción aplicada en comprobante REM-MMN-10294: código DED-PRICE-CORR, motivo 'Price Variance Adjustment SKU-WHEY-2KG to PO', monto $4,500.00",
     "Deducción aplicada en comprobante REM-MMN-10294: código DED-EARLY-PAY, motivo 'Unauthorized Early Settlement Discount 5%', monto $3,500.00",
     "Respaldo contractual: Precios facturados deben ajustarse a la OC según 3.1 ('Ajuste Estricto a Precios de Orden de Compra').",
-    "Respaldo contractual: La 7.2 ('Condiciones de Descuento por Pronto Pago') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo."
+    "Respaldo contractual: La 7.2 ('Condiciones de Descuento por Pronto Pago') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.",
+    "[Factura INV-NDP-88301 §Total $64,500.00 USD]",
+    "[Comprobante REM-MMN-10294 §Liquidación $56,500.00 USD]",
+    "[Contrato MSA-MMN-NDP-2026 §Cláusula 7.2 'Condiciones de Descuento por Pronto Pago' | Deducción DED-PRICE-CORR $4,500.00]",
+    "[Contrato MSA-MMN-NDP-2026 §Cláusula 7.2 'Condiciones de Descuento por Pronto Pago' | Deducción DED-EARLY-PAY $3,500.00]",
+    "[PO PO-MMN-77102 vs Factura INV-NDP-88301 §SKU SKU-WHEY-2KG | Varianza Precio: $3.00/ud]"
   ],
   "justified_amount": "4500.00",
   "claimable_amount": "3500.00",
@@ -35,11 +40,12 @@
     "documents_missing": [],
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
-    "generated_at": "2026-10-24T22:03:51.039364+00:00"
+    "quarantine_docket": null,
+    "generated_at": "2026-10-28T13:09:11.519803+00:00"
   },
   "financial_proof": {
     "case_id": "case_006_walmart_otif_pricing",
-    "proof_hash": "SM-PROOF-SHA256-FB7712E941FBA731",
+    "proof_hash": "SM-PROOF-SHA256-365885FEB098DFDF",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -53,6 +59,99 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-24T22:03:51.042965+00:00"
-  }
+    "tamper_proof_timestamp": "2026-10-28T13:09:11.527442+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "case_006_walmart_otif_pricing",
+    "total_claims_audited": 5,
+    "backed_claims_count": 5,
+    "unbacked_claims_count": 0,
+    "total_backed_amount": "133500.00",
+    "total_unbacked_amount": "0.00",
+    "backing_ratio_pct": 100.0,
+    "evidence_pointers": [
+      {
+        "pointer_id": "PTR-INV-INV-NDP-88301-TOTAL",
+        "doc_type": "INVOICE",
+        "doc_id": "INV-NDP-88301",
+        "field_ref": "total_amount",
+        "item_sku": null,
+        "amount": "64500.00",
+        "citation_tag": "[Factura INV-NDP-88301 §Total $64,500.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Factura comercial fiscalmente válida por $64,500.00 USD."
+      },
+      {
+        "pointer_id": "PTR-PAY-REM-MMN-10294-AMOUNT",
+        "doc_type": "PAYMENT",
+        "doc_id": "REM-MMN-10294",
+        "field_ref": "amount_paid",
+        "item_sku": null,
+        "amount": "56500.00",
+        "citation_tag": "[Comprobante REM-MMN-10294 §Liquidación $56,500.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $56,500.00."
+      },
+      {
+        "pointer_id": "PTR-DED-DED-PRICE-CORR-1",
+        "doc_type": "CONTRACT",
+        "doc_id": "MSA-MMN-NDP-2026",
+        "field_ref": "clause_7.2",
+        "item_sku": null,
+        "amount": "4500.00",
+        "citation_tag": "[Contrato MSA-MMN-NDP-2026 §Cláusula 7.2 'Condiciones de Descuento por Pronto Pago' | Deducción DED-PRICE-CORR $4,500.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Deducción 'DED-PRICE-CORR' normada por la cláusula 7.2 de MSA-MMN-NDP-2026."
+      },
+      {
+        "pointer_id": "PTR-DED-DED-EARLY-PAY-2",
+        "doc_type": "CONTRACT",
+        "doc_id": "MSA-MMN-NDP-2026",
+        "field_ref": "clause_7.2",
+        "item_sku": null,
+        "amount": "3500.00",
+        "citation_tag": "[Contrato MSA-MMN-NDP-2026 §Cláusula 7.2 'Condiciones de Descuento por Pronto Pago' | Deducción DED-EARLY-PAY $3,500.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Deducción 'DED-EARLY-PAY' normada por la cláusula 7.2 de MSA-MMN-NDP-2026."
+      },
+      {
+        "pointer_id": "PTR-PO-PO-MMN-77102-SKU-WHEY-2KG-PRICE",
+        "doc_type": "PURCHASE_ORDER",
+        "doc_id": "PO-MMN-77102",
+        "field_ref": "agreed_unit_price",
+        "item_sku": "SKU-WHEY-2KG",
+        "amount": "4500.00",
+        "citation_tag": "[PO PO-MMN-77102 vs Factura INV-NDP-88301 §SKU SKU-WHEY-2KG | Varianza Precio: $3.00/ud]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Discrepancia entre precio pactado en PO (32.00) y facturado (35.00)."
+      }
+    ],
+    "cautelar_items": [],
+    "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
+    "confidence_penalty": 0.0,
+    "generated_at": "2026-10-28T13:09:11Z"
+  },
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "case_006_walmart_otif_pricing",
+    "currency": "USD",
+    "billed_amount": "64500.00",
+    "received_amount": "56500.00",
+    "difference": "-8000.00",
+    "justified_amount": "4500.00",
+    "claimable_amount": "3500.00",
+    "health_status": "PRISTINE",
+    "health_score": 100.0,
+    "zkp_proof_hash": "SM-PROOF-SHA256-365885FEB098DFDF",
+    "zkp_status": "MATHEMATICALLY_PROVEN",
+    "is_quarantined": false,
+    "evidence_backing_ratio": 100.0,
+    "anchored_at": "2026-10-28T13:09:11.529896+00:00"
+  },
+  "watchdog_metrics": null
 }

@@ -1,0 +1,146 @@
+{
+  "case_id": "case_035_mega_multimodal_60_skus",
+  "currency": "USD",
+  "billed_amount": "120000.00",
+  "received_amount": "0.00",
+  "difference": "-120000.00",
+  "root_cause": "Discrepancia mixta en expediente case_035_mega_multimodal_60_skus: Faltante físico comprobado de $85,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $35,000.00 USD sin sustento contractual ni documental.",
+  "evidence": [
+    "Map-Reduce Audit: 60 partidas conciliadas en 2 lotes de 50 SKUs.",
+    "Total Facturado Consolidado: $120,000.00 USD | Total Pagado: $0.00 USD.",
+    "Faltante Físico Auditado: $0.00 USD | Mercancía Averiada: $0.00 USD.",
+    "Deducción REBATE-ANUAL-CONVENIDO: $85,000.00 USD ('Bonificación anual pactada por volumen sobre los 60 SKUs del contrato marco')",
+    "Deducción RETENCION-UNILATERAL-EDI: $35,000.00 USD ('Penalización unilateral por supuesto retardo en transmisión ASN consolidado')",
+    "Respaldo contractual: La CLAUSE-5.3 ('Transmisión Electrónica ASN EDI 856') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.",
+    "[Factura INV-CASE_035-35C5 §Total $120,000.00 USD]",
+    "[Contrato CTR-AMAZON_MX-2026 §Cláusula CLAUSE-4.1 'Recepción en Muelle y Faltantes' | Deducción REBATE-ANUAL-CONVENIDO $85,000.00]",
+    "[Contrato CTR-AMAZON_MX-2026 §Cláusula CLAUSE-4.1 'Recepción en Muelle y Faltantes' | Deducción RETENCION-UNILATERAL-EDI $35,000.00]"
+  ],
+  "justified_amount": "85000.00",
+  "claimable_amount": "35000.00",
+  "confidence": 0.9,
+  "recommended_action": "Aceptar deducción de $85,000.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $35,000.00 USD exigiendo su pago inmediato.",
+  "concessions": [],
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "case_035_mega_multimodal_60_skus",
+    "health_score": 100.0,
+    "status": "PRISTINE",
+    "is_healthy": true,
+    "repaired_issues": [],
+    "imputed_documents": [],
+    "documents_present": [
+      "invoice",
+      "purchase_order",
+      "delivery",
+      "payment",
+      "contract"
+    ],
+    "documents_missing": [],
+    "schema_warnings": [],
+    "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
+    "quarantine_docket": null,
+    "generated_at": "2026-10-28T13:09:11.225065+00:00"
+  },
+  "financial_proof": {
+    "case_id": "case_035_mega_multimodal_60_skus",
+    "proof_hash": "SM-PROOF-SHA256-F25957F83C2589D7",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$85,000.00 USD (Validado)",
+      "$35,000.00 USD (Validado)",
+      "$85,000.00 USD (Validado)",
+      "$35,000.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-10-28T13:09:11.242017+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "case_035_mega_multimodal_60_skus",
+    "total_claims_audited": 4,
+    "backed_claims_count": 3,
+    "unbacked_claims_count": 1,
+    "total_backed_amount": "240000.00",
+    "total_unbacked_amount": "0.00",
+    "backing_ratio_pct": 100.0,
+    "evidence_pointers": [
+      {
+        "pointer_id": "PTR-INV-INV-CASE_035-35C5-TOTAL",
+        "doc_type": "INVOICE",
+        "doc_id": "INV-CASE_035-35C5",
+        "field_ref": "total_amount",
+        "item_sku": null,
+        "amount": "120000.00",
+        "citation_tag": "[Factura INV-CASE_035-35C5 §Total $120,000.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Factura comercial fiscalmente válida por $120,000.00 USD."
+      },
+      {
+        "pointer_id": "PTR-PAY-PAY-CASE_035-3C9A-UNVERIFIED",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_035-3C9A",
+        "field_ref": "amount_paid",
+        "item_sku": null,
+        "amount": "0.00",
+        "citation_tag": "[Comprobante PAY-CASE_035-3C9A §NO_ACREDITADO]",
+        "is_backed_by_physical_proof": false,
+        "status": "CAUTELAR_NO_ACREDITADA",
+        "detail": "Liquidación bancaria sin comprobante original de transferencia/remesa."
+      },
+      {
+        "pointer_id": "PTR-DED-REBATE-ANUAL-CONVENIDO-1",
+        "doc_type": "CONTRACT",
+        "doc_id": "CTR-AMAZON_MX-2026",
+        "field_ref": "clause_CLAUSE-4.1",
+        "item_sku": null,
+        "amount": "85000.00",
+        "citation_tag": "[Contrato CTR-AMAZON_MX-2026 §Cláusula CLAUSE-4.1 'Recepción en Muelle y Faltantes' | Deducción REBATE-ANUAL-CONVENIDO $85,000.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Deducción 'REBATE-ANUAL-CONVENIDO' normada por la cláusula CLAUSE-4.1 de CTR-AMAZON_MX-2026."
+      },
+      {
+        "pointer_id": "PTR-DED-RETENCION-UNILATERAL-EDI-2",
+        "doc_type": "CONTRACT",
+        "doc_id": "CTR-AMAZON_MX-2026",
+        "field_ref": "clause_CLAUSE-4.1",
+        "item_sku": null,
+        "amount": "35000.00",
+        "citation_tag": "[Contrato CTR-AMAZON_MX-2026 §Cláusula CLAUSE-4.1 'Recepción en Muelle y Faltantes' | Deducción RETENCION-UNILATERAL-EDI $35,000.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Deducción 'RETENCION-UNILATERAL-EDI' normada por la cláusula CLAUSE-4.1 de CTR-AMAZON_MX-2026."
+      }
+    ],
+    "cautelar_items": [
+      "Monto Recibido ($0.00): Comprobante de pago bancario no verificado."
+    ],
+    "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
+    "confidence_penalty": 0.08,
+    "generated_at": "2026-10-28T13:09:11Z"
+  },
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "case_035_mega_multimodal_60_skus",
+    "currency": "USD",
+    "billed_amount": "120000.00",
+    "received_amount": "0.00",
+    "difference": "-120000.00",
+    "justified_amount": "85000.00",
+    "claimable_amount": "35000.00",
+    "health_status": "PRISTINE",
+    "health_score": 100.0,
+    "zkp_proof_hash": "SM-PROOF-SHA256-F25957F83C2589D7",
+    "zkp_status": "MATHEMATICALLY_PROVEN",
+    "is_quarantined": false,
+    "evidence_backing_ratio": 100.0,
+    "anchored_at": "2026-10-28T13:09:11.243434+00:00"
+  },
+  "watchdog_metrics": null
+}

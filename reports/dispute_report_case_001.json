@@ -4,7 +4,7 @@
   "billed_amount": "9000.0",
   "received_amount": "8200.0",
   "difference": "-800.0",
-  "root_cause": "Faltante físico justificado de 10 unidades del SKU PROD-002 (Caja Café Gourmet Tostado 24x500g). La factura ampara 50 unidades a $80.00 (subtotal de línea $4,000.00) y la remisión DEL-9912 acredita recepción de 40 unidades (quantity_short = 10), con impacto de $800.00. PROD-001 (100 unidades a $50.00) está conciliado al 100%. No hay avería ni discrepancia de precio frente a la PO. El comprobante PAY-7710 aplica una sola deducción DED-MISSING-ITEM por $800.00, coincidente al centavo con el faltante. La CLAUSE-4.2 autoriza la deducción por faltante físico acreditado en remisión. La notificación es oportuna: entrega 2026-09-03, pago 2026-09-30, 27 días naturales, dentro de la ventana de 30 días de la CLAUSE-8.2. No concurren pronto pago unilateral, penalización EDI/ASN ni cargos sin adenda. Base gravable del faltante $800.00; IVA 16% $128.00; total de Nota de Crédito $928.00. Facturado $9,000.00; recibido/pagado $8,200.00; diferencia $800.00. Deducción justificada $800.00; reclamable $0.00.",
+  "root_cause": "Faltante físico en entrega valorado en $800.00 USD, constatado en remisión de entrega firmada con sello de recepción en bodega.",
   "evidence": [
     "Faltante físico comprobado en PROD-002 (Caja Café Gourmet Tostado 24x500g): 10 unidades faltantes s/ remisión DEL-9912 valoradas en $800.00",
     "Deducción aplicada en comprobante PAY-7710: código DED-MISSING-ITEM, motivo 'Deducción por 10 cajas faltantes PROD-002 s/ remisión DEL-9912', monto $800.00",
@@ -16,8 +16,8 @@
   ],
   "justified_amount": "800.00",
   "claimable_amount": "0.00",
-  "confidence": 0.83,
-  "recommended_action": "Aceptar la deducción de $800.00 en cartera y emitir Nota de Crédito comercial por base gravable $800.00 más IVA 16% $128.00 (total $928.00) para sanear la cuenta por cobrar del SKU PROD-002. Notificar a logística/despacho para auditar el control de carga en muelle asociado a DEL-9912. No iniciar objeción ni cobro coactivo: el saldo retenido está plenamente respaldado.",
+  "confidence": 0.98,
+  "recommended_action": "Aceptar deducción de $800.00 USD en cuentas por cobrar y emitir Nota de Crédito comercial por dicho valor a favor del cliente para conciliar y cerrar la cuenta.",
   "concessions": [],
   "active_scenario": null,
   "health_audit": {
@@ -38,39 +38,23 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-25T16:23:46.837418+00:00"
+    "generated_at": "2026-10-28T13:08:17.911899+00:00"
   },
   "financial_proof": {
     "case_id": "case_001",
-    "proof_hash": "SM-PROOF-SHA256-B7EA53E437DDC863",
+    "proof_hash": "SM-PROOF-SHA256-D97046E70B41DB08",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
-    "text_hallucination_detected": true,
-    "detected_hallucinated_figures": [
-      "$4,000.00 (4000.00 USD sin respaldo fáctico)",
-      "$50.00 (50.00 USD sin respaldo fáctico)",
-      "$128.00 (128.00 USD sin respaldo fáctico)",
-      "$928.00 (928.00 USD sin respaldo fáctico)",
-      "$128.00 (128.00 USD sin respaldo fáctico)",
-      "$928.00 (928.00 USD sin respaldo fáctico)"
-    ],
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
     "verified_figures": [
-      "$80.00 (Validado)",
-      "$800.00 (Validado)",
-      "$800.00 (Validado)",
-      "$800.00 (Validado)",
-      "$9,000.00 (Validado)",
-      "$8,200.00 (Validado)",
-      "$800.00 (Validado)",
-      "$800.00 (Validado)",
-      "$0.00 (Validado)",
-      "$800.00 (Validado)",
-      "$800.00 (Validado)"
+      "$800.00 USD (Validado)",
+      "$800.00 USD (Validado)"
     ],
-    "confidence_penalty": 0.15,
-    "audit_status": "HALLUCINATION_INTERCEPTED",
-    "tamper_proof_timestamp": "2026-10-25T16:24:03.042188+00:00"
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-10-28T13:08:17.924559+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_001",
@@ -133,7 +117,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-10-25T16:24:03Z"
+    "generated_at": "2026-10-28T13:08:17Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -146,17 +130,11 @@
     "claimable_amount": "0.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-B7EA53E437DDC863",
-    "zkp_status": "HALLUCINATION_INTERCEPTED",
+    "zkp_proof_hash": "SM-PROOF-SHA256-D97046E70B41DB08",
+    "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-10-25T16:24:03.046441+00:00"
+    "anchored_at": "2026-10-28T13:08:17.927743+00:00"
   },
-  "watchdog_metrics": {
-    "total_tool_calls": 6,
-    "unique_tool_calls": 6,
-    "deduplicated_calls_count": 0,
-    "circuit_breaker_triggered": false,
-    "warnings": []
-  }
+  "watchdog_metrics": null
 }

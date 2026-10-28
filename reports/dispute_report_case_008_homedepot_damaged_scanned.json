@@ -10,10 +10,148 @@
     "Deducción aplicada en comprobante WIRE-HD-2026-33910: código DED-DAMAGED-DOCK, motivo 'Retencion por 20 unidades averiadas en muelle', monto $4,200.00",
     "Deducción aplicada en comprobante WIRE-HD-2026-33910: código DED-UNILAT-DOCK-FEE, motivo 'Penalizacion administrativa descarga no programada', monto $4,000.00",
     "Respaldo contractual: La 5.1 ('Politica de Mercancia Danada o Averiada en Muelle') autoriza deducir mercancía dañada constatada al momento de la descarga.",
-    "Respaldo contractual: La 7.2 ('Improcedencia de Penalizaciones Unilaterales') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo."
+    "Respaldo contractual: La 7.2 ('Improcedencia de Penalizaciones Unilaterales') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.",
+    "[Factura INV-HD-2026-9041 §Total $42,000.00 USD]",
+    "[Comprobante WIRE-HD-2026-33910 §Liquidación $33,800.00 USD]",
+    "[Contrato MSA-HD-CERAMIC-2026 §Cláusula 5.1 'Politica de Mercancia Danada o Averiada en Muelle' | Deducción DED-DAMAGED-DOCK $4,200.00]",
+    "[Contrato MSA-HD-CERAMIC-2026 §Cláusula 5.1 'Politica de Mercancia Danada o Averiada en Muelle' | Deducción DED-UNILAT-DOCK-FEE $4,000.00]",
+    "[Remisión DEL-HD-2026-8812 §SKU SKU-CERAMIC-60X60 | Avería: 20 uds | $4,200.00]"
   ],
   "justified_amount": "4200.00",
   "claimable_amount": "4000.00",
   "confidence": 0.98,
-  "recommended_action": "Aceptar deducción de $4,200.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $4,000.00 USD exigiendo su pago inmediato."
+  "recommended_action": "Aceptar deducción de $4,200.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $4,000.00 USD exigiendo su pago inmediato.",
+  "concessions": [],
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "case_008_homedepot_damaged_scanned",
+    "health_score": 100.0,
+    "status": "PRISTINE",
+    "is_healthy": true,
+    "repaired_issues": [],
+    "imputed_documents": [],
+    "documents_present": [
+      "invoice",
+      "purchase_order",
+      "delivery",
+      "payment",
+      "contract"
+    ],
+    "documents_missing": [],
+    "schema_warnings": [],
+    "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
+    "quarantine_docket": null,
+    "generated_at": "2026-10-28T13:09:10.544660+00:00"
+  },
+  "financial_proof": {
+    "case_id": "case_008_homedepot_damaged_scanned",
+    "proof_hash": "SM-PROOF-SHA256-B29DB885C3DA8DA5",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$4,200.00 USD (Validado)",
+      "$4,000.00 USD (Validado)",
+      "$4,200.00 USD (Validado)",
+      "$4,000.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-10-28T13:09:10.554480+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "case_008_homedepot_damaged_scanned",
+    "total_claims_audited": 5,
+    "backed_claims_count": 5,
+    "unbacked_claims_count": 0,
+    "total_backed_amount": "88200.00",
+    "total_unbacked_amount": "0.00",
+    "backing_ratio_pct": 100.0,
+    "evidence_pointers": [
+      {
+        "pointer_id": "PTR-INV-INV-HD-2026-9041-TOTAL",
+        "doc_type": "INVOICE",
+        "doc_id": "INV-HD-2026-9041",
+        "field_ref": "total_amount",
+        "item_sku": null,
+        "amount": "42000.00",
+        "citation_tag": "[Factura INV-HD-2026-9041 §Total $42,000.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Factura comercial fiscalmente válida por $42,000.00 USD."
+      },
+      {
+        "pointer_id": "PTR-PAY-WIRE-HD-2026-33910-AMOUNT",
+        "doc_type": "PAYMENT",
+        "doc_id": "WIRE-HD-2026-33910",
+        "field_ref": "amount_paid",
+        "item_sku": null,
+        "amount": "33800.00",
+        "citation_tag": "[Comprobante WIRE-HD-2026-33910 §Liquidación $33,800.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $33,800.00."
+      },
+      {
+        "pointer_id": "PTR-DED-DED-DAMAGED-DOCK-1",
+        "doc_type": "CONTRACT",
+        "doc_id": "MSA-HD-CERAMIC-2026",
+        "field_ref": "clause_5.1",
+        "item_sku": null,
+        "amount": "4200.00",
+        "citation_tag": "[Contrato MSA-HD-CERAMIC-2026 §Cláusula 5.1 'Politica de Mercancia Danada o Averiada en Muelle' | Deducción DED-DAMAGED-DOCK $4,200.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Deducción 'DED-DAMAGED-DOCK' normada por la cláusula 5.1 de MSA-HD-CERAMIC-2026."
+      },
+      {
+        "pointer_id": "PTR-DED-DED-UNILAT-DOCK-FEE-2",
+        "doc_type": "CONTRACT",
+        "doc_id": "MSA-HD-CERAMIC-2026",
+        "field_ref": "clause_5.1",
+        "item_sku": null,
+        "amount": "4000.00",
+        "citation_tag": "[Contrato MSA-HD-CERAMIC-2026 §Cláusula 5.1 'Politica de Mercancia Danada o Averiada en Muelle' | Deducción DED-UNILAT-DOCK-FEE $4,000.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Deducción 'DED-UNILAT-DOCK-FEE' normada por la cláusula 5.1 de MSA-HD-CERAMIC-2026."
+      },
+      {
+        "pointer_id": "PTR-DEL-DEL-HD-2026-8812-SKU-CERAMIC-60X60-DAMAGED",
+        "doc_type": "DELIVERY",
+        "doc_id": "DEL-HD-2026-8812",
+        "field_ref": "damaged_quantity",
+        "item_sku": "SKU-CERAMIC-60X60",
+        "amount": "4200.00",
+        "citation_tag": "[Remisión DEL-HD-2026-8812 §SKU SKU-CERAMIC-60X60 | Avería: 20 uds | $4,200.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Mercancía averiada (20 unidades) en remisión DEL-HD-2026-8812."
+      }
+    ],
+    "cautelar_items": [],
+    "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
+    "confidence_penalty": 0.0,
+    "generated_at": "2026-10-28T13:09:10Z"
+  },
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "case_008_homedepot_damaged_scanned",
+    "currency": "USD",
+    "billed_amount": "42000.00",
+    "received_amount": "33800.00",
+    "difference": "-8200.00",
+    "justified_amount": "4200.00",
+    "claimable_amount": "4000.00",
+    "health_status": "PRISTINE",
+    "health_score": 100.0,
+    "zkp_proof_hash": "SM-PROOF-SHA256-B29DB885C3DA8DA5",
+    "zkp_status": "MATHEMATICALLY_PROVEN",
+    "is_quarantined": false,
+    "evidence_backing_ratio": 100.0,
+    "anchored_at": "2026-10-28T13:09:10.556725+00:00"
+  },
+  "watchdog_metrics": null
 }

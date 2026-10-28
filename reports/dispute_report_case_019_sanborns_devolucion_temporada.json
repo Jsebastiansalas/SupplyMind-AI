@@ -1,0 +1,128 @@
+{
+  "case_id": "case_019_sanborns_devolucion_temporada",
+  "currency": "USD",
+  "billed_amount": "25000.00",
+  "received_amount": "20500.00",
+  "difference": "-4500.00",
+  "root_cause": "Discrepancia mixta en expediente case_019_sanborns_devolucion_temporada: Faltante físico comprobado de $0.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $4,500.00 USD sin sustento contractual ni documental.",
+  "evidence": [
+    "Deducción aplicada en comprobante PAY-CASE_019-71A4: código DEV-TEMPORADA-EXTEMP, motivo 'Deducción extemporánea 6 meses después por mercancía de temporada no devuelta a tiempo', monto $4,500.00",
+    "[Factura INV-CASE_019-7619 §Total $25,000.00 USD]",
+    "[Comprobante PAY-CASE_019-71A4 §Liquidación $20,500.00 USD]"
+  ],
+  "justified_amount": "0.00",
+  "claimable_amount": "4500.00",
+  "confidence": 0.87,
+  "recommended_action": "Aceptar deducción de $0.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $4,500.00 USD exigiendo su pago inmediato.",
+  "concessions": [],
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "case_019_sanborns_devolucion_temporada",
+    "health_score": 100.0,
+    "status": "PRISTINE",
+    "is_healthy": true,
+    "repaired_issues": [],
+    "imputed_documents": [],
+    "documents_present": [
+      "invoice",
+      "purchase_order",
+      "delivery",
+      "payment",
+      "contract"
+    ],
+    "documents_missing": [],
+    "schema_warnings": [],
+    "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
+    "quarantine_docket": null,
+    "generated_at": "2026-10-28T13:09:10.800348+00:00"
+  },
+  "financial_proof": {
+    "case_id": "case_019_sanborns_devolucion_temporada",
+    "proof_hash": "SM-PROOF-SHA256-64621E9B4E90880F",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$0.00 USD (Validado)",
+      "$4,500.00 USD (Validado)",
+      "$0.00 USD (Validado)",
+      "$4,500.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-10-28T13:09:10.806892+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "case_019_sanborns_devolucion_temporada",
+    "total_claims_audited": 3,
+    "backed_claims_count": 2,
+    "unbacked_claims_count": 1,
+    "total_backed_amount": "45500.00",
+    "total_unbacked_amount": "4500.00",
+    "backing_ratio_pct": 91.0,
+    "evidence_pointers": [
+      {
+        "pointer_id": "PTR-INV-INV-CASE_019-7619-TOTAL",
+        "doc_type": "INVOICE",
+        "doc_id": "INV-CASE_019-7619",
+        "field_ref": "total_amount",
+        "item_sku": null,
+        "amount": "25000.00",
+        "citation_tag": "[Factura INV-CASE_019-7619 §Total $25,000.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Factura comercial fiscalmente válida por $25,000.00 USD."
+      },
+      {
+        "pointer_id": "PTR-PAY-PAY-CASE_019-71A4-AMOUNT",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_019-71A4",
+        "field_ref": "amount_paid",
+        "item_sku": null,
+        "amount": "20500.00",
+        "citation_tag": "[Comprobante PAY-CASE_019-71A4 §Liquidación $20,500.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $20,500.00."
+      },
+      {
+        "pointer_id": "PTR-DED-DEV-TEMPORADA-EXTEMP-1-UNBACKED",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-CASE_019-71A4",
+        "field_ref": "deduction_DEV-TEMPORADA-EXTEMP",
+        "item_sku": null,
+        "amount": "4500.00",
+        "citation_tag": "[Comprobante PAY-CASE_019-71A4 §Deducción Unilateral DEV-TEMPORADA-EXTEMP | $4,500.00 SIN CLÁUSULA EN CTR-SANBORNS_MX-2026]",
+        "is_backed_by_physical_proof": false,
+        "status": "CAUTELAR_NO_ACREDITADA",
+        "detail": "El retailer retuvo $4,500.00 bajo el código 'DEV-TEMPORADA-EXTEMP', pero el contrato CTR-SANBORNS_MX-2026 no contiene cláusula habilitante."
+      }
+    ],
+    "cautelar_items": [
+      "Deducción DEV-TEMPORADA-EXTEMP ($4,500.00): Sin cláusula contractual que autorice retención."
+    ],
+    "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
+    "confidence_penalty": 0.11,
+    "generated_at": "2026-10-28T13:09:10Z"
+  },
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "case_019_sanborns_devolucion_temporada",
+    "currency": "USD",
+    "billed_amount": "25000.00",
+    "received_amount": "20500.00",
+    "difference": "-4500.00",
+    "justified_amount": "0.00",
+    "claimable_amount": "4500.00",
+    "health_status": "PRISTINE",
+    "health_score": 100.0,
+    "zkp_proof_hash": "SM-PROOF-SHA256-64621E9B4E90880F",
+    "zkp_status": "MATHEMATICALLY_PROVEN",
+    "is_quarantined": false,
+    "evidence_backing_ratio": 91.0,
+    "anchored_at": "2026-10-28T13:09:10.808887+00:00"
+  },
+  "watchdog_metrics": null
+}
