@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from config.settings import settings
-from api.routes import cases, tribunal, chat, documents, export, sandbox, telemetry, negotiation, erp, fx_leakage, precedents
+from api.routes import cases, tribunal, chat, documents, export, sandbox, telemetry, negotiation, erp, fx_leakage, precedents, adversarial
 
 app = FastAPI(
     title="SupplyMind AI Enterprise API",
@@ -38,6 +38,7 @@ app.include_router(export.router, prefix="/api")
 app.include_router(sandbox.router, prefix="/api")
 app.include_router(telemetry.router, prefix="/api")
 app.include_router(precedents.router, prefix="/api")
+app.include_router(adversarial.router, prefix="/api")
 
 
 @app.get("/api/health", tags=["Salud del Sistema"])

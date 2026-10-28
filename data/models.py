@@ -167,6 +167,8 @@ class DisputeAnalysisReport(_Base):
     quarantine_docket: Optional[Any] = Field(default=None)  # Expediente pericial de Cuarentena Forense y Bloqueo de Liquidación (Pilar 4)
     session_anchor: Optional[Any] = Field(default=None)  # Ancla de Estado Inmutable contra manipulación conversacional (Pilar 5)
     watchdog_metrics: Optional[Any] = Field(default=None)  # Métricas operativas del vigilante ReAct contra bucles infinitos (Pilar 5)
+    adversarial_verdict: Optional[Any] = Field(default=None)  # Debate Dialéctico Multi-Agente (Pilar 3)
+    recovery_prediction: Optional[Any] = Field(default=None)  # Motor Predictivo de Cobro & Simulación (Pilar 4)
 
     def formatted_display(self) -> str:
         """Formatea el reporte con la estructura solicitada para el reto."""

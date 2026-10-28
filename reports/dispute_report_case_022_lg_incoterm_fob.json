@@ -34,11 +34,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-28T13:09:10.879743+00:00"
+    "generated_at": "2026-10-28T16:21:46.814734+00:00"
   },
   "financial_proof": {
     "case_id": "case_022_lg_incoterm_fob",
-    "proof_hash": "SM-PROOF-SHA256-E0112AE96645E99C",
+    "proof_hash": "SM-PROOF-SHA256-EB9741EBD7793070",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -52,7 +52,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-28T13:09:10.887521+00:00"
+    "tamper_proof_timestamp": "2026-10-28T16:21:46.820870+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_022_lg_incoterm_fob",
@@ -105,7 +105,7 @@
     ],
     "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
     "confidence_penalty": 0.13,
-    "generated_at": "2026-10-28T13:09:10Z"
+    "generated_at": "2026-10-28T16:21:46Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -118,11 +118,111 @@
     "claimable_amount": "28000.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-E0112AE96645E99C",
+    "zkp_proof_hash": "SM-PROOF-SHA256-EB9741EBD7793070",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 83.53,
-    "anchored_at": "2026-10-28T13:09:10.889713+00:00"
+    "anchored_at": "2026-10-28T16:21:46.835448+00:00"
   },
-  "watchdog_metrics": null
+  "watchdog_metrics": null,
+  "adversarial_verdict": {
+    "case_id": "case_022_lg_incoterm_fob",
+    "courtroom_session_id": "CRT-59B9123A",
+    "disputed_amount": "28000.00",
+    "justified_amount": "0.00",
+    "claimable_amount": "28000.00",
+    "prosecutor_arguments": [
+      {
+        "role": "PROSECUTOR",
+        "speaker_name": "Lic. Gustavo Méndez (Fiscal Forense Retail B2B)",
+        "topic": "Aplicación de Políticas Operativas y Guías del Comprador",
+        "argument_text": "El retailer retuvo $28,000.00 USD con base en sus manuales internos de logística, penalizaciones por aviso anticipado ASN o descuentos comerciales por pronto pago.",
+        "legal_or_contractual_ground": "Manual Operativo de Proveedores del Retailer",
+        "strength_score": 0.15,
+        "evidence_referenced": [
+          "Comprobante de Retención Bancaria"
+        ]
+      }
+    ],
+    "advocate_counterarguments": [
+      {
+        "role": "DEFENDER",
+        "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
+        "topic": "Prueba Plena de Entrega Íntegra",
+        "argument_text": "La remisión fue firmada de plena conformidad en muelle sin sello de salvedad. Cualquier reclamo posterior de faltante carece de valor probatorio.",
+        "legal_or_contractual_ground": "Eficacia Probatoria de Remisión Limpia (Prueba Plena)",
+        "strength_score": 0.95,
+        "evidence_referenced": [
+          "DEL-CASE_022-E915"
+        ]
+      },
+      {
+        "role": "DEFENDER",
+        "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
+        "topic": "Nulidad Absoluta de Cargos Unilaterales",
+        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $28,000.00 USD. La retención constituye incumplimiento de pago.",
+        "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
+        "strength_score": 0.99,
+        "evidence_referenced": [
+          "Contrato Marco Maestro",
+          "Criterio de Nulidad Unilateral"
+        ]
+      }
+    ],
+    "sustained_objections": [],
+    "dismissed_objections": [
+      "Retención unilateral de $28,000.00 USD declarada IMPROCEDENTE y 100% RECLAMABLE."
+    ],
+    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente case_022_lg_incoterm_fob: Se condena al comprador al reintegro inmediato de $28,000.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $0.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.0%.",
+    "probative_force_supplier_pct": 87.0,
+    "final_legal_doctrine": "DOCTRINA COMERCIAL VINCULANTE: Ninguna guía operativa o portal B2B puede modificar o imponer sanciones financieras no contenidas en el contrato marco bilateral suscrito. Las remisiones firmadas con sello de muelle hacen fe pública comercial plena e inmutable entre las partes."
+  },
+  "recovery_prediction": {
+    "case_id": "case_022_lg_incoterm_fob",
+    "recovery_probability_pct": 95.0,
+    "confidence_grade": "ALTA_CERTEZA",
+    "recommended_track": "FAST_TRACK_B2B_PORTAL",
+    "target_claimable_amount": "28000.00",
+    "expected_net_recovery_usd": "26600.00",
+    "estimated_days_to_cash": 10,
+    "positive_drivers": [
+      "Remisión de entrega debidamente firmada en muelle receptor (+20%)",
+      "Contrato marco comercial vigente con cláusulas de prevalencia (+15%)",
+      "Dictamen judicial favorable con fuerza probatoria del 87.0% (+10%)"
+    ],
+    "risk_drivers": [],
+    "scenarios": [
+      {
+        "scenario_name": "Ruta Rápida — Cobro Íntegro en Portal B2B",
+        "description": "Reclamación directa del 100% del saldo insoluto con base documental plena.",
+        "projected_recovery_amount": "28000.00",
+        "concession_granted_amount": "0.00",
+        "recovery_rate_pct": 100.0,
+        "estimated_days_to_cash": 10,
+        "legal_risk_level": "BAJO",
+        "recommended": true
+      },
+      {
+        "scenario_name": "Acuerdo Estructurado — Concesión Comercial del 15%",
+        "description": "Oferta de descuento por pronto pago/relación para cierre garantizado en menos de 7 días.",
+        "projected_recovery_amount": "23800.00",
+        "concession_granted_amount": "4200.00",
+        "recovery_rate_pct": 85.0,
+        "estimated_days_to_cash": 5,
+        "legal_risk_level": "BAJO",
+        "recommended": false
+      },
+      {
+        "scenario_name": "Escalamiento Legal — Póliza Contable NIF C-3",
+        "description": "Exigencia formal y cobro coactivo con causación de intereses moratorios comerciales.",
+        "projected_recovery_amount": "28000.00",
+        "concession_granted_amount": "0.00",
+        "recovery_rate_pct": 100.0,
+        "estimated_days_to_cash": 45,
+        "legal_risk_level": "MEDIO",
+        "recommended": false
+      }
+    ],
+    "executive_summary": "El expediente presenta una probabilidad de recuperación del 95.0% (ALTA_CERTEZA). Se proyecta recuperar un valor neto ponderado de $26,600.00 USD dentro de un plazo estimado de 10 días naturales vía 'FAST_TRACK_B2B_PORTAL'."
+  }
 }

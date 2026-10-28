@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `case_018_farma_ahorro_descuento_especial` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-10-28 13:09:10 UTC | **Nivel de Confianza:** 78.0%
+> **Fecha de Emisión:** 2026-10-28 16:21:46 UTC | **Nivel de Confianza:** 78.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO
@@ -54,10 +54,37 @@ Discrepancia mixta en expediente case_018_farma_ahorro_descuento_especial: Falta
 **Cláusulas Invocadas:**
 
 ---
+## 4.1 DEBATE DIALÉCTICO MULTI-AGENTE (ADVERSARIAL COURTROOM)
+
+- **Fuerza Probatoria del Proveedor:** 87.0%
+
+- **Dictamen del Magistrado Arbitral:** VISTO el careo de autos en el expediente case_018_farma_ahorro_descuento_especial: Se condena al comprador al reintegro inmediato de $4,900.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $4,000.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.0%.
+
+**Objeciones del Retailer Desestimadas:**
+> - 🛡️ Retención unilateral de $4,900.00 USD declarada IMPROCEDENTE y 100% RECLAMABLE.
+
+**Objeciones Concedidas en Muelle:**
+> - ⚖️ Deducción de faltante físico por $4,000.00 USD declarada PROCEDENTE.
+
+---
 ## 5. PLAN DE ACCIÓN OPERATIVO Y COMERCIAL RECOMENDADO
 
 **Recomendación:**  
 Aceptar deducción de $4,000.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $4,900.00 USD exigiendo su pago inmediato.
+
+### 5.1 SCORING PREDICTIVO DE COBRO & SIMULACIÓN (PILAR 4)
+
+- **Probabilidad de Cobro:** **95.0%** (ALTA_CERTEZA)
+- **Ruta Estratégica Recomendada:** `RecoveryTrack.FAST_TRACK_B2B_PORTAL`
+- **Plazo Estimado a Liquidación:** 10 días naturales
+- **Recuperación Neta Ponderada:** $4,655.00 USD
+
+**Simulación de Escenarios:**
+| Escenario | Monto Proyectado | Concesión | Plazo | Riesgo Legal |
+| :--- | :---: | :---: | :---: | :---: |
+| **Ruta Rápida — Cobro Íntegro en Portal B2B** ⭐ (RECOMENDADO) | $4,900.00 USD | $0.00 USD | 10d | BAJO |
+| **Acuerdo Estructurado — Concesión Comercial del 15%** | $4,165.00 USD | $735.00 USD | 5d | BAJO |
+| **Escalamiento Legal — Póliza Contable NIF C-3** | $4,900.00 USD | $0.00 USD | 45d | MEDIO |
 
 
 ---

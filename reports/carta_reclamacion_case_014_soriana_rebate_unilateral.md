@@ -20,6 +20,16 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 - **Causa Raíz:** Discrepancia mixta en expediente case_014_soriana_rebate_unilateral: Faltante físico comprobado de $0.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $9,800.00 USD sin sustento contractual ni documental.
 - **Fundamentación Contractual:** Evaluación algorítmica y semántica completada. Posible deducción de $9,800.00 requiere análisis final por el Agente.
 
+#### 4. Antecedentes y Precedentes Comerciales Vinculantes
+Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
+
+**Precedente 1 (Expediente case_014_soriana_rebate_unilateral — 2026-10-08):**
+- **Criterio Acreditado:** La meta de volumen de compra requerida para activar el rebate del 5% no fue cumplida por el comprador en el trimestre auditado.
+- **Resultado Previo:** Restitución de **$6,200.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** CLAUSE-11.2.
+
+Por tanto, en observancia del principio de coherencia comercial y buena fe contractual, solicitamos la aplicación del mismo criterio para el reintegro de la presente retención.
+
 #### 3. Requerimiento de Pago
 En virtud de lo anterior, solicitamos comedidamente realizar la programación y transferencia del saldo retenido injustificadamente por valor de:
 

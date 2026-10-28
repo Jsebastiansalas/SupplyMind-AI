@@ -20,6 +20,21 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 - **Causa Raíz:** Discrepancia mixta en expediente case_035_mega_multimodal_60_skus: Faltante físico comprobado de $85,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $35,000.00 USD sin sustento contractual ni documental.
 - **Fundamentación Contractual:** Evaluación algorítmica y semántica completada. Posible deducción de $35,000.00 requiere análisis final por el Agente.
 
+#### 4. Antecedentes y Precedentes Comerciales Vinculantes
+Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
+
+**Precedente 1 (Expediente case_005_amazon_shortage — 2026-10-28):**
+- **Criterio Acreditado:** En el caso case_005_amazon_shortage, se acreditó la improcedencia de la deducción 'DED-SHRT-20' conforme a 4.1, logrando la restitución de $2,500.00 USD.
+- **Resultado Previo:** Restitución de **$2,500.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** 4.1.
+
+**Precedente 2 (Expediente case_031_adversarial_prompt_injection — 2026-10-28):**
+- **Criterio Acreditado:** En el caso case_031_adversarial_prompt_injection, se acreditó la improcedencia de la deducción 'DED-FAKE-INJECTION' conforme a CLAUSE-3.1, logrando la restitución de $0.00 USD.
+- **Resultado Previo:** Restitución de **$0.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** CLAUSE-3.1.
+
+Por tanto, en observancia del principio de coherencia comercial y buena fe contractual, solicitamos la aplicación del mismo criterio para el reintegro de la presente retención.
+
 #### 3. Requerimiento de Pago
 En virtud de lo anterior, solicitamos comedidamente realizar la programación y transferencia del saldo retenido injustificadamente por valor de:
 

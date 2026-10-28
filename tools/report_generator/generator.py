@@ -83,4 +83,38 @@ def build_dispute_report(
         health_audit=health_audit
     )
 
+    # Debate Dialéctico Multi-Agente (Pilar 3)
+    try:
+        from agent.courtroom.adversarial_engine import AdversarialCourtroomEngine
+        from agent.memory.precedent_matcher import PrecedentMatcher
+        matcher = PrecedentMatcher()
+        verdict = AdversarialCourtroomEngine.conduct_debate(
+            report=report,
+            docs=loaded_documents or {},
+            precedent_matcher=matcher
+        )
+        report.adversarial_verdict = verdict
+    except Exception:
+        pass
+
+    # Motor Predictivo de Recuperación & Simulación de Cobro (Pilar 4)
+    try:
+        from agent.predictive.recovery_scorer import RecoveryPredictor
+        from agent.memory.precedent_graph import DisputeMemoryNetwork
+        mem = DisputeMemoryNetwork()
+        ret_id = ""
+        if loaded_documents and "invoice" in loaded_documents:
+            ret_id = str(getattr(loaded_documents["invoice"], "customer_id", ""))
+        profile = mem.get_retailer_profile(ret_id) if ret_id else None
+
+        prediction = RecoveryPredictor.calculate_prediction(
+            report=report,
+            docs=loaded_documents or {},
+            adversarial_verdict=report.adversarial_verdict,
+            retailer_profile=profile
+        )
+        report.recovery_prediction = prediction
+    except Exception:
+        pass
+
     return report

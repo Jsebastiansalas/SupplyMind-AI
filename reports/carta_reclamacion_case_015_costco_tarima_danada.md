@@ -20,6 +20,21 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 - **Causa Raíz:** Discrepancia mixta en expediente case_015_costco_tarima_danada: Faltante físico comprobado de $10,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $4,200.00 USD sin sustento contractual ni documental.
 - **Fundamentación Contractual:** Evaluación algorítmica y semántica completada. Posible deducción de $4,200.00 requiere análisis final por el Agente.
 
+#### 4. Antecedentes y Precedentes Comerciales Vinculantes
+Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
+
+**Precedente 1 (Expediente case_auto_learning_test — 2026-10-28):**
+- **Criterio Acreditado:** En el caso case_auto_learning_test, se acreditó la improcedencia de la deducción 'DED-COMMERCIAL-VARIANCE' conforme a CLAUSE-3.2, logrando la restitución de $4,000.00 USD.
+- **Resultado Previo:** Restitución de **$4,000.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** CLAUSE-3.2.
+
+**Precedente 2 (Expediente case_015_costco_tarima_danada — 2026-10-11):**
+- **Criterio Acreditado:** El daño superficial al empaque secundario (playo protector) no afectó la integridad física ni caducidad del producto primario homologado.
+- **Resultado Previo:** Restitución de **$4,800.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** CLAUSE-6.3.
+
+Por tanto, en observancia del principio de coherencia comercial y buena fe contractual, solicitamos la aplicación del mismo criterio para el reintegro de la presente retención.
+
 #### 3. Requerimiento de Pago
 En virtud de lo anterior, solicitamos comedidamente realizar la programación y transferencia del saldo retenido injustificadamente por valor de:
 

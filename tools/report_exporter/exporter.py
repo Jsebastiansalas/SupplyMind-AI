@@ -84,9 +84,41 @@ def generate_markdown_report(report: DisputeAnalysisReport, state: Optional[Disp
     else:
         lines.append("- Evaluación procesada conforme a las condiciones comerciales generales pactadas.")
         
+    # Pilar 3: Debate Dialéctico Multi-Agente
+    adv_verdict = getattr(report, "adversarial_verdict", None)
+    if adv_verdict:
+        lines.append("\n---")
+        lines.append("## 4.1 DEBATE DIALÉCTICO MULTI-AGENTE (ADVERSARIAL COURTROOM)\n")
+        lines.append(f"- **Fuerza Probatoria del Proveedor:** {adv_verdict.probative_force_supplier_pct}%\n")
+        lines.append(f"- **Dictamen del Magistrado Arbitral:** {adv_verdict.magistrate_summary_ruling}\n")
+        if adv_verdict.dismissed_objections:
+            lines.append("**Objeciones del Retailer Desestimadas:**")
+            for obj in adv_verdict.dismissed_objections:
+                lines.append(f"> - 🛡️ {obj}")
+        if adv_verdict.sustained_objections:
+            lines.append("\n**Objeciones Concedidas en Muelle:**")
+            for obj in adv_verdict.sustained_objections:
+                lines.append(f"> - ⚖️ {obj}")
+
     lines.append("\n---")
     lines.append("## 5. PLAN DE ACCIÓN OPERATIVO Y COMERCIAL RECOMENDADO\n")
     lines.append(f"**Recomendación:**  \n{report.recommended_action}\n")
+
+    # Pilar 4: Predicción de Cobro y Simulación de Escenarios
+    rec_pred = getattr(report, "recovery_prediction", None)
+    if rec_pred:
+        lines.append("### 5.1 SCORING PREDICTIVO DE COBRO & SIMULACIÓN (PILAR 4)\n")
+        lines.append(f"- **Probabilidad de Cobro:** **{rec_pred.recovery_probability_pct}%** ({rec_pred.confidence_grade})")
+        lines.append(f"- **Ruta Estratégica Recomendada:** `{rec_pred.recommended_track}`")
+        lines.append(f"- **Plazo Estimado a Liquidación:** {rec_pred.estimated_days_to_cash} días naturales")
+        lines.append(f"- **Recuperación Neta Ponderada:** ${rec_pred.expected_net_recovery_usd:,.2f} USD")
+        lines.append("\n**Simulación de Escenarios:**")
+        lines.append("| Escenario | Monto Proyectado | Concesión | Plazo | Riesgo Legal |")
+        lines.append("| :--- | :---: | :---: | :---: | :---: |")
+        for sc in rec_pred.scenarios:
+            rec_badge = " ⭐ (RECOMENDADO)" if sc.recommended else ""
+            lines.append(f"| **{sc.scenario_name}**{rec_badge} | ${sc.projected_recovery_amount:,.2f} USD | ${sc.concession_granted_amount:,.2f} USD | {sc.estimated_days_to_cash}d | {sc.legal_risk_level} |")
+        lines.append("")
     
     if state and (state.tokens_in > 0 or state.tokens_out > 0):
         lines.append("---")

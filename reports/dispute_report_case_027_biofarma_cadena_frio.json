@@ -38,11 +38,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-28T13:09:11.039219+00:00"
+    "generated_at": "2026-10-28T16:21:47.275150+00:00"
   },
   "financial_proof": {
     "case_id": "case_027_biofarma_cadena_frio",
-    "proof_hash": "SM-PROOF-SHA256-CC021924B153A007",
+    "proof_hash": "SM-PROOF-SHA256-8FF740B0AC83B3C2",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -54,7 +54,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-28T13:09:11.057488+00:00"
+    "tamper_proof_timestamp": "2026-10-28T16:21:47.282204+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_027_biofarma_cadena_frio",
@@ -131,7 +131,7 @@
     ],
     "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
     "confidence_penalty": 0.14,
-    "generated_at": "2026-10-28T13:09:11Z"
+    "generated_at": "2026-10-28T16:21:47Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -144,11 +144,100 @@
     "claimable_amount": "0.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-CC021924B153A007",
+    "zkp_proof_hash": "SM-PROOF-SHA256-8FF740B0AC83B3C2",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 85.71,
-    "anchored_at": "2026-10-28T13:09:11.060236+00:00"
+    "anchored_at": "2026-10-28T16:21:47.292541+00:00"
   },
-  "watchdog_metrics": null
+  "watchdog_metrics": null,
+  "adversarial_verdict": {
+    "case_id": "case_027_biofarma_cadena_frio",
+    "courtroom_session_id": "CRT-CB31F8AC",
+    "disputed_amount": "16800.00",
+    "justified_amount": "16800.00",
+    "claimable_amount": "0.00",
+    "prosecutor_arguments": [
+      {
+        "role": "PROSECUTOR",
+        "speaker_name": "Lic. Gustavo Méndez (Fiscal Forense Retail B2B)",
+        "topic": "Faltante Físico en Muelle",
+        "argument_text": "El comprador reportó válidamente un faltante de mercancía valorado en $16,800.00 USD. Las unidades recibidas en patio fueron inferiores a las facturadas.",
+        "legal_or_contractual_ground": "Cláusula de Recepción e Integridad de Entrega",
+        "strength_score": 0.95,
+        "evidence_referenced": [
+          "DEL-CASE_027-EDE0"
+        ]
+      }
+    ],
+    "advocate_counterarguments": [
+      {
+        "role": "DEFENDER",
+        "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
+        "topic": "Allanamiento de Faltante Acreditado",
+        "argument_text": "Verificada la remisión con sello y firma física de recepción con discrepancia, reconocemos la exactitud del faltante de $16,800.00 USD y allanamos la deducción mediante emisión de Nota de Crédito comercial conforme a la ley.",
+        "legal_or_contractual_ground": "Art. 1043 Código de Comercio (Reconocimiento Expreso)",
+        "strength_score": 0.98,
+        "evidence_referenced": [
+          "Remisión firmada con sello de discrepancia"
+        ]
+      }
+    ],
+    "sustained_objections": [
+      "Deducción de faltante físico por $16,800.00 USD declarada PROCEDENTE."
+    ],
+    "dismissed_objections": [],
+    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente case_027_biofarma_cadena_frio: Se condena al comprador al reintegro inmediato de $0.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $16,800.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 95.0%.",
+    "probative_force_supplier_pct": 95.0,
+    "final_legal_doctrine": "DOCTRINA COMERCIAL VINCULANTE: Ninguna guía operativa o portal B2B puede modificar o imponer sanciones financieras no contenidas en el contrato marco bilateral suscrito. Las remisiones firmadas con sello de muelle hacen fe pública comercial plena e inmutable entre las partes."
+  },
+  "recovery_prediction": {
+    "case_id": "case_027_biofarma_cadena_frio",
+    "recovery_probability_pct": 98.5,
+    "confidence_grade": "ALTA_CERTEZA",
+    "recommended_track": "FAST_TRACK_B2B_PORTAL",
+    "target_claimable_amount": "0.00",
+    "expected_net_recovery_usd": "0.00",
+    "estimated_days_to_cash": 10,
+    "positive_drivers": [
+      "Remisión de entrega debidamente firmada en muelle receptor (+20%)",
+      "Discrepancia física allanada con sello formal de muelle (+10%)",
+      "Contrato marco comercial vigente con cláusulas de prevalencia (+15%)",
+      "Dictamen judicial favorable con fuerza probatoria del 95.0% (+10%)"
+    ],
+    "risk_drivers": [],
+    "scenarios": [
+      {
+        "scenario_name": "Ruta Rápida — Cobro Íntegro en Portal B2B",
+        "description": "Reclamación directa del 100% del saldo insoluto con base documental plena.",
+        "projected_recovery_amount": "0.00",
+        "concession_granted_amount": "0.00",
+        "recovery_rate_pct": 100.0,
+        "estimated_days_to_cash": 10,
+        "legal_risk_level": "BAJO",
+        "recommended": true
+      },
+      {
+        "scenario_name": "Acuerdo Estructurado — Concesión Comercial del 15%",
+        "description": "Oferta de descuento por pronto pago/relación para cierre garantizado en menos de 7 días.",
+        "projected_recovery_amount": "0.00",
+        "concession_granted_amount": "0.00",
+        "recovery_rate_pct": 85.0,
+        "estimated_days_to_cash": 5,
+        "legal_risk_level": "BAJO",
+        "recommended": false
+      },
+      {
+        "scenario_name": "Escalamiento Legal — Póliza Contable NIF C-3",
+        "description": "Exigencia formal y cobro coactivo con causación de intereses moratorios comerciales.",
+        "projected_recovery_amount": "0.00",
+        "concession_granted_amount": "0.00",
+        "recovery_rate_pct": 100.0,
+        "estimated_days_to_cash": 45,
+        "legal_risk_level": "MEDIO",
+        "recommended": false
+      }
+    ],
+    "executive_summary": "El expediente presenta una probabilidad de recuperación del 98.5% (ALTA_CERTEZA). Se proyecta recuperar un valor neto ponderado de $0.00 USD dentro de un plazo estimado de 10 días naturales vía 'FAST_TRACK_B2B_PORTAL'."
+  }
 }

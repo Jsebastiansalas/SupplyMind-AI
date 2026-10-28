@@ -20,6 +20,16 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 - **Causa Raíz:** Discrepancia mixta en expediente case_007_cisco_large_bundle: Faltante físico comprobado de $13,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $14,000.00 USD sin sustento contractual ni documental.
 - **Fundamentación Contractual:** Evaluación algorítmica y semántica completada. Posible deducción de $14,000.00 requiere análisis final por el Agente.
 
+#### 4. Antecedentes y Precedentes Comerciales Vinculantes
+Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
+
+**Precedente 1 (Expediente case_007_cisco_large_bundle — 2026-09-22):**
+- **Criterio Acreditado:** El comprador confirmó la cotización aprobada por su departamento de compras con anterioridad a la entrega.
+- **Resultado Previo:** Restitución de **$15,000.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** CLAUSE-3.1.
+
+Por tanto, en observancia del principio de coherencia comercial y buena fe contractual, solicitamos la aplicación del mismo criterio para el reintegro de la presente retención.
+
 #### 3. Requerimiento de Pago
 En virtud de lo anterior, solicitamos comedidamente realizar la programación y transferencia del saldo retenido injustificadamente por valor de:
 
