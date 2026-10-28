@@ -15,7 +15,7 @@
 | **3** | 0:55 - 1:35 | **El Blindaje Anti-Alucinación (5 Pilares)** | ZKP Badge, Salud 100%, Manifiesto, Cuarentena | Cero alucinación matemática, prueba criptográfica, blindaje |
 | **4** | 1:35 - 2:10 | **Consola Grok 4.7, Ancla & HITL** | Chat Console con Ancla Inmutable, Minuta de Negociación | Anti-inyección de $50k USD, recálculo en vivo y 3 escenarios |
 | **5** | 2:10 - 2:45 | **ERP SAP, SAT CFDI 4.0, FX & Retailers** | Póliza NIF C-3, BAPI SAP, Motor FX Incoterms, Checklist | Cierre contable directo a sistemas empresariales |
-| **6** | 2:45 - 3:05 | **Unit Economics & Cierre Épico** | Modal de Unit Economics (<$0.005), Métricas de impacto | Cierre de impacto y visión del producto |
+| **6** | 2:45 - 3:05 | **Batch 1,000, Crucible 50 & Cierre** | Tablero Batch Runner, The Crucible 50 Suite, Unit Economics | Throughput de 30 casos/seg, $127M USD en 33s, $0.00 MAE |
 
 ---
 
@@ -115,19 +115,23 @@
 
 ---
 
-### 🎬 ESCENA 6: UNIT ECONOMICS, IMPACTO Y CIERRE ÉPICO (2:45 - 3:05)
+### 🎬 ESCENA 6: BATCH RUNNER MASIVO (1,000 CASOS), CRUCIBLE 50 Y CIERRE ÉPICO (2:45 - 3:05)
 * **Qué tener en pantalla:**
-  - Abre el modal de **Unit Economics & Eficiencia** (ícono de llave de herramientas en la esquina superior derecha o atajo `U`):
-    * Muestra el costo real por caso: **$0.003 USD** (tres milésimas de dólar).
-    * Muestra los tokens consumidos y la aceleración por Caché Inteligente (0.001s).
-  - Haz clic en **Dictamen Oficial PDF** para mostrar el expediente formal exportado.
-  - Regresa a la vista general con el dashboard completo en pantalla completa.
-* **Música de fondo:** Clímax inspirador con resolución elegante.
+  - Ve a la pestaña **Benchmark & Telemetría** (`BenchmarkView`):
+    * Destaca la pestaña **The Crucible Suite (50 Casos)**: `100.0% Exact Match`, `$0.00 MAE`, 0% error aritmético sobre $5.4M USD auditados.
+    * Haz clic en la pestaña **Batch Runner Masivo (1,000 Casos)**:
+      - Muestra el throughput de **30.0 casos por segundo**.
+      - Muestra la auditoría desatendida de **$127,797,727.00 USD** liquidada en apenas **33.33 segundos**.
+      - Destaca el **Sanity Gate de Cuádruple Auditoría** que garantiza $0.00 MAE contable y prelación legal inmutable (Art. 88 CCom).
+  - Abre el modal de **Unit Economics & Eficiencia** (`U`):
+    * Costo real por caso auditado: **$0.0035 USD** (99.99% de ahorro vs $35.00 USD del analista humano).
+  - Regresa a la vista general con el dashboard completo en pantalla completa (`F11`).
+* **Música de fondo:** Clímax inspirador, contundente y con resolución elegante.
 * **🎙️ LOCUCIÓN (Voz en off):**
-  > *"¿El costo de todo este despliegue de inteligencia artificial? Menos de medio centavo de dólar por expediente auditado.*  
-  > *SupplyMind AI reduce los tiempos de disputa de 45 días a menos de 5 minutos, elevando la recuperación de capital legítimo a más del 95%.*  
+  > *"¿Cómo escala esta solución a nivel industrial? Pusimos a prueba el agente frente a **The Crucible Suite**: 50 casos de estrés extremo que abarcan fraude, Incoterms, penalizaciones OTIF duplicadas y ataques adversarios, logrando un **100% de precisión exacta con cero centavos de error aritmético**.*  
+  > *Y con nuestro **Batch Runner Masivo**, procesamos **1,000 expedientes industriales y más de 127 millones de dólares en solo 33 segundos** a 30 casos por segundo, reduciendo 55 horas de trabajo manual a medio centavo de dólar por expediente.*  
   > *Cero alucinación matemática. Respaldo probatorio inexpugnable.*  
-  > *SupplyMind AI: El escudo autónomo del capital de trabajo B2B."*
+  > *SupplyMind AI Enterprise: El agente autónomo soberano de arbitraje y cuentas por cobrar B2B."*
 
 ---
 

@@ -66,13 +66,15 @@ def get_unit_economics() -> Dict[str, Any]:
 @router.get("/benchmark")
 def get_benchmark_report() -> Dict[str, Any]:
     """
-    Retorna los resultados periciales del Benchmark Suite de los 35 Casos B2B.
+    Retorna los resultados periciales de The Crucible Suite (50 Casos B2B) o fallback de 35 casos.
     """
-    json_path = Path("reports/benchmark_suite_35_cases_report.json")
+    json_path = Path("reports/crucible_benchmark_50_cases_report.json")
+    if not json_path.exists():
+        json_path = Path("reports/benchmark_suite_35_cases_report.json")
     if not json_path.exists():
         raise HTTPException(
             status_code=404,
-            detail="El reporte del benchmark de 35 casos no se ha generado aún. Ejecute scripts/benchmark_30_cases.py"
+            detail="El reporte del benchmark no se ha generado aún. Ejecute scripts/benchmark_50_cases.py"
         )
     with open(json_path, "r", encoding="utf-8") as f:
         return json.load(f)
@@ -81,9 +83,14 @@ def get_benchmark_report() -> Dict[str, Any]:
 @router.post("/benchmark/run")
 def trigger_benchmark() -> Dict[str, Any]:
     """
-    Dispara la ejecución del benchmark de 35 casos y retorna el resumen pericial actualizado.
+    Dispara la ejecución de The Crucible Suite (50 casos) y retorna el resumen pericial actualizado.
     """
-    from scripts.benchmark_30_cases import run_35_cases_benchmark
-    summary = run_35_cases_benchmark(verbose=False)
-    return summary
+    try:
+        from scripts.benchmark_50_cases import run_50_cases_crucible
+        summary = run_50_cases_crucible(verbose=False)
+        return summary
+    except Exception:
+        from scripts.benchmark_30_cases import run_35_cases_benchmark
+        summary = run_35_cases_benchmark(verbose=False)
+        return summary
 

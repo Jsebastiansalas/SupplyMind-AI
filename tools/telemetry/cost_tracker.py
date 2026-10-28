@@ -369,31 +369,31 @@ def build_unit_economics_comparison() -> List[UnitEconomicsRow]:
     ]
 
 
-def generate_full_unit_economics_report(total_benchmark_cases: int = 35) -> UnitEconomicsGlobalReport:
+def generate_full_unit_economics_report(total_benchmark_cases: int = 50) -> UnitEconomicsGlobalReport:
     """Genera el informe global consolidado de Unit Economics y telemetría contable."""
     standard_profile = CostTracker.audit_case_cost("case_005_amazon_shortage", sku_count=3, complexity_tier="STANDARD")
     complex_profile = CostTracker.audit_case_cost("case_007_cisco_large_bundle", sku_count=12, complexity_tier="COMPLEX")
     massive_profile = CostTracker.audit_case_cost("case_035_mega_multimodal_60_skus", sku_count=60, complexity_tier="MASSIVE_60_SKU")
 
-    # Promedio ponderado real a lo largo de la suite de 35 casos:
-    # 28 casos estándar (80%), 5 casos complejos (14%), 2 casos masivos (6%)
+    # Promedio ponderado real a lo largo de la suite de 50 casos:
+    # 40 casos estándar (80%), 7 casos complejos (14%), 3 casos masivos (6%)
     avg_cost = (
-        (standard_profile.total_cost_usd * Decimal("28")) +
-        (complex_profile.total_cost_usd * Decimal("5")) +
-        (massive_profile.total_cost_usd * Decimal("2"))
-    ) / Decimal("35")
+        (standard_profile.total_cost_usd * Decimal("40")) +
+        (complex_profile.total_cost_usd * Decimal("7")) +
+        (massive_profile.total_cost_usd * Decimal("3"))
+    ) / Decimal("50")
     avg_cost = avg_cost.quantize(Decimal("0.000001"), rounding=ROUND_HALF_UP)
 
     avg_tokens = int(
-        (standard_profile.total_tokens * 28 +
-         complex_profile.total_tokens * 5 +
-         massive_profile.total_tokens * 2) / 35
+        (standard_profile.total_tokens * 40 +
+         complex_profile.total_tokens * 7 +
+         massive_profile.total_tokens * 3) / 50
     )
 
     avg_lat = round(
-        (standard_profile.total_latency_ms * 28 +
-         complex_profile.total_latency_ms * 5 +
-         massive_profile.total_latency_ms * 2) / 35,
+        (standard_profile.total_latency_ms * 40 +
+         complex_profile.total_latency_ms * 7 +
+         massive_profile.total_latency_ms * 3) / 50,
         2
     )
 

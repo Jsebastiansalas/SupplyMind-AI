@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-10-28T00:11:34.159693+00:00",
+  "generated_at": "2026-10-28T23:20:00.392687+00:00",
   "gateway_model": "Platica Gateway (Grok 4.7 Enterprise) + Deterministic Local Engines",
   "pricing_basis": {
     "prompt_tokens_per_1m": "$0.80 USD",
     "completion_tokens_per_1m": "$4.00 USD",
     "local_math_and_erp": "$0.000000 USD (Cómputo Local Determinístico)"
   },
-  "average_cost_per_case_usd": "0.003821",
-  "average_tokens_per_case": 2678,
-  "average_latency_per_case_ms": 222.55,
-  "cases_evaluated_count": 35,
+  "average_cost_per_case_usd": "0.003828",
+  "average_tokens_per_case": 2684,
+  "average_latency_per_case_ms": 222.97,
+  "cases_evaluated_count": 50,
   "target_sla_cost_usd": "0.005000",
   "sla_compliance": true,
   "standard_case_profile": {
@@ -269,5 +269,5 @@
       "efficiency_gain": "Protección automática contra expedientes tóxicos o adulterados"
     }
   ],
-  "annual_savings_projection_100k_cases_usd": "3499617.90"
+  "annual_savings_projection_100k_cases_usd": "3499617.20"
 }

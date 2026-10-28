@@ -95,6 +95,22 @@ export const apiClient = {
     return res.json();
   },
 
+  async runBatch(casesCount = 1000, workers = 8) {
+    const res = await fetch(`${BASE_URL}/batch/run`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ cases_count: casesCount, workers }),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async getLatestBatch() {
+    const res = await fetch(`${BASE_URL}/batch/latest`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
   async uploadCase(formData) {
     const res = await fetch(`${BASE_URL}/cases/upload`, {
       method: 'POST',
