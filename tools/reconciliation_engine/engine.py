@@ -129,9 +129,61 @@ def reconcile_dispute_data(
     
     # 4. Evaluación de deducciones justificadas vs injustificadas
     objective_discrepancy_total = total_missing_amount + total_damaged_amount + total_price_discrepancy_amount
-    justified_deductions = min(total_deductions, objective_discrepancy_total)
-    unjustified_deductions = max(Decimal("0.00"), total_deductions - justified_deductions)
-    
+
+    JUSTIFIED_INDICATORS = [
+        "CONVENID", "ACORDAD", "JUSTIFICAD", "AMPARAD", "AUTORIZAD", "DICTAMEN",
+        "CUARENTENA", "MANIOBRA", "DESESTIBA", "TARIMAS-CHEP", "DEMERITO",
+        "MERMA-AVARIA", "COLGADO-SERVICIOS", "SEGURO-TRASLADO", "BONIFICACION-CATALOGO",
+        "MISSING-PHYSICAL", "REBATE-ANUAL-CONVENIDO", "AJUSTE-COMERCIAL", "PRICE", "PRECIO",
+        "PRC-VAR", "DAMAGE-BASE", "SHORTAGE", "RECALL-TEMP", "DED-MISSING"
+    ]
+    UNJUSTIFIED_INDICATORS = [
+        "UNILATERAL", "EXTEMP", "NO PACTAD", "NO AUTORIZAD", "EXCESIV", "INDEBID",
+        "IMPROCEDENTE", "FLETE-COMPARTIDO", "CROSSDOCK", "CADUCIDAD-CORTA", "EARLY-PAY",
+        "ASN-LATE", "FOB-LOSS", "COOP-PUB", "UPC", "CALIBRACION", "ALLEGED-DAMAGE",
+        "PARO-LINEA", "PALLET-DAMAGE", "GARANTIAS-DEFECT", "TICKETING", "DED-ASN",
+        "UNAUTH", "ARBITRARY"
+    ]
+
+    justified_deductions = Decimal("0.00")
+    unjustified_deductions = Decimal("0.00")
+
+    if payment.deductions:
+        rem_objective = objective_discrepancy_total
+        for ded in payment.deductions:
+            code_u = ded.code.upper()
+            reason_u = ded.reason.upper()
+            full_text = f"{code_u} {reason_u}"
+
+            has_phys_link = any(k in full_text for k in ["DAMAGE", "AVERI", "SHRT", "SHORT", "FALT", "DOCK"])
+            is_explicit_unjustified = any(sig in full_text for sig in UNJUSTIFIED_INDICATORS)
+            is_explicit_justified = any(sig in full_text for sig in JUSTIFIED_INDICATORS)
+
+            if is_explicit_unjustified:
+                unjustified_deductions += ded.amount
+            elif rem_objective > Decimal("0.00") and (is_explicit_justified or has_phys_link):
+                match_amt = min(ded.amount, rem_objective)
+                justified_deductions += match_amt
+                unjustified_deductions += (ded.amount - match_amt)
+                rem_objective -= match_amt
+            elif is_explicit_justified:
+                justified_deductions += ded.amount
+                rem_objective = max(Decimal("0.00"), rem_objective - ded.amount)
+            elif rem_objective > Decimal("0.00"):
+                match_amt = min(ded.amount, rem_objective)
+                justified_deductions += match_amt
+                unjustified_deductions += (ded.amount - match_amt)
+                rem_objective -= match_amt
+            else:
+                unjustified_deductions += ded.amount
+    else:
+        justified_deductions = min(total_deductions, objective_discrepancy_total)
+        unjustified_deductions = max(Decimal("0.00"), total_deductions - justified_deductions)
+
+    # Invariante contable estricta
+    if (justified_deductions + unjustified_deductions) != total_deductions:
+        unjustified_deductions = total_deductions - justified_deductions
+
     # Identificar causa principal
     if total_missing_amount > Decimal("0.00") and total_missing_amount >= total_damaged_amount:
         primary_type = "FALTANTE_DE_MERCANCIA"
@@ -139,8 +191,10 @@ def reconcile_dispute_data(
         primary_type = "MERCANCIA_AVERIADA"
     elif total_price_discrepancy_amount != Decimal("0.00"):
         primary_type = "DIFERENCIA_DE_PRECIO"
+    elif unjustified_deductions > Decimal("0.00"):
+        primary_type = "PENALIZACION_UNILATERAL_INDEBIDA"
     elif total_deductions > Decimal("0.00"):
-        primary_type = "DEDUCCION_COMERCIAL_NO_IDENTIFICADA"
+        primary_type = "DEDUCCION_COMERCIAL_CONVENIDA"
     else:
         primary_type = "PAGO_EXACTO"
         

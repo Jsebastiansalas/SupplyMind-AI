@@ -1,0 +1,45 @@
+{
+  "case_id": "case_008_homedepot_damaged_scanned",
+  "category": "COMPOUND_MIXED",
+  "buyer_id": "HOMEDEPOT_MX",
+  "buyer_name": "The Home Depot México",
+  "industry": "Construcción y Ferretería",
+  "currency": "USD",
+  "billed_amount": "42000.00",
+  "received_amount": "33800.00",
+  "difference": "-8200.00",
+  "expected_justified_amount": "4200.00",
+  "expected_claimable_amount": "4000.00",
+  "expected_confidence": 0.98,
+  "justified_breakdown": {
+    "DED-DAMAGED-DOCK": "4200.00"
+  },
+  "claimable_breakdown": {
+    "DED-UNILAT-DOCK-FEE": "4000.00"
+  },
+  "required_clause_citations": [
+    "CLAUSE-4.3",
+    "CLAUSE-7.2"
+  ],
+  "recommended_commercial_action": "EMIT_CREDIT_NOTE_AND_RECOVERY_LETTER",
+  "deductions": [
+    {
+      "code": "DED-DAMAGED-DOCK",
+      "amount": "4200.00",
+      "reason": "Retencion por 20 unidades averiadas en muelle",
+      "is_justified": true,
+      "governing_clause_id": "CLAUSE-4.3",
+      "factual_basis": "Avería física en muelle amparada en remisión",
+      "remedy_action": "ACCEPT_AND_CREDIT"
+    },
+    {
+      "code": "DED-UNILAT-DOCK-FEE",
+      "amount": "4000.00",
+      "reason": "Penalizacion administrativa descarga no programada",
+      "is_justified": false,
+      "governing_clause_id": "CLAUSE-7.2",
+      "factual_basis": "Penalización unilateral sin aviso",
+      "remedy_action": "REJECT_AND_CLAIM"
+    }
+  ]
+}

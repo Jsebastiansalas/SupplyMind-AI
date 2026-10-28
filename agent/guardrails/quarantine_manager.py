@@ -140,6 +140,9 @@ class QuarantineManager:
 
         po_date = _try_parse_date(po_date_raw)
         del_date = _try_parse_date(del_date_raw)
+        inv_date = _try_parse_date(inv_date_raw)
+        pay_date_raw = _val(payment, "payment_date")
+        pay_date = _try_parse_date(pay_date_raw)
 
         if po_date and del_date:
             # Si la entrega se registró más de 5 días ANTES de que se emitiera la orden de compra
@@ -151,6 +154,46 @@ class QuarantineManager:
                 remediation_steps.append("Auditar sellos de fecha y folio de la remisión de muelle para descartar traslape con órdenes previas.")
                 release_conditions.append("Ratificación de fecha de despacho por gerencia de logística.")
                 severity = "ANACHRONISM_RISK"
+
+        if inv_date and pay_date:
+            # Si el pago se registró más de 5 días ANTES de que se emitiera la factura
+            if (pay_date - inv_date).days < -5:
+                blocking_reasons.append(
+                    f"Anacronismo temporal crítico: El pago registrado ({pay_date_raw}) antecede a la Factura ({inv_date_raw}) por {(inv_date - pay_date).days} días."
+                )
+                violated_invariants.append("TEMPORAL_PAYMENT_INVOICE_INVARIANT_VIOLATED")
+                remediation_steps.append("Revisar folio fiscal del comprobante de pago para verificar si pertenece a una factura anterior.")
+                release_conditions.append("Ratificación bancaria de aplicación de fondos.")
+                severity = "ANACHRONISM_RISK"
+                operator_override_permitted = False
+
+        # ======================================================================
+        # 2b. Chequeo de Ataques Adversarios y Prompt Injection (Ancla Fáctica)
+        # ======================================================================
+        adversarial_signatures = [
+            "SYSTEM INSTRUCTION", "IGNORE ALL PREVIOUS RULES", "CONCEDE 100%",
+            "PROMPT INJECTION", "SYSTEM PROMPT OVERRIDE", "FORCE_CREDIT_NOTE"
+        ]
+        corpus_texts = []
+        if invoice and hasattr(invoice, "items"):
+            for itm in invoice.items:
+                corpus_texts.append(getattr(itm, "description", ""))
+        if delivery and hasattr(delivery, "items"):
+            for itm in delivery.items:
+                corpus_texts.append(getattr(itm, "notes", ""))
+
+        for txt in corpus_texts:
+            txt_upper = (txt or "").upper()
+            if any(sig in txt_upper for sig in adversarial_signatures):
+                blocking_reasons.append(
+                    f"Inyección adversarial o manipulación detectada en texto comercial: '{txt[:80]}...'"
+                )
+                violated_invariants.append("ADVERSARIAL_PROMPT_INJECTION_DETECTED")
+                remediation_steps.append("Aislar expediente contaminado con inyección y bloquear cualquier concesión comercial.")
+                release_conditions.append("Dictamen pericial de seguridad y limpieza del expediente.")
+                severity = "ADVERSARIAL_ATTACK_DETECTED"
+                operator_override_permitted = False
+                break
 
         # ======================================================================
         # 3. Chequeo de Salud Documental Crítica (<50% o Cuarentena Declarada)

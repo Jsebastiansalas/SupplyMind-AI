@@ -1542,24 +1542,30 @@ class SkynetRunner:
                 console.print(f"\n[bold cyan]SupplyMind AI:[/bold cyan] {assistant_reply}\n")
 
     def _generate_error_report(self, error_msg: str) -> DisputeAnalysisReport:
-        """Genera un reporte de fallo técnico para el jurado si el caso está completamente roto."""
+        """Genera un reporte de fallo técnico o cuarentena forense para el jurado."""
         from decimal import Decimal
         from datetime import datetime, timezone
-        from data.models import DocumentHealthAudit
-        audit = DocumentHealthAudit(
-            case_id=self.case_id,
-            health_score=0.0,
-            status="QUARANTINE",
-            is_healthy=False,
-            repaired_issues=[],
-            imputed_documents=[],
-            documents_present=[],
-            documents_missing=["unrecoverable_corrupt_files"],
-            schema_warnings=[error_msg[:300]],
-            execution_safety_level="HOLD_SETTLEMENT_DOCUMENT_AUDIT_REQUIRED",
-            generated_at=datetime.now(timezone.utc).isoformat()
-        )
-        from data.models import ZKPFinancialProof, EvidenceBindingManifest
+        from data.models import DocumentHealthAudit, ZKPFinancialProof, EvidenceBindingManifest
+
+        # Si el gestor de cuarentena ya había emitido un docket o detectado cuarentena
+        audit = self.state.health_audit
+        docket = getattr(audit, "quarantine_docket", None) if audit else None
+
+        if not audit:
+            audit = DocumentHealthAudit(
+                case_id=self.case_id,
+                health_score=0.0,
+                status="QUARANTINE",
+                is_healthy=False,
+                repaired_issues=[],
+                imputed_documents=[],
+                documents_present=[],
+                documents_missing=["unrecoverable_corrupt_files"],
+                schema_warnings=[error_msg[:300]],
+                execution_safety_level="HOLD_SETTLEMENT_DOCUMENT_AUDIT_REQUIRED",
+                generated_at=datetime.now(timezone.utc).isoformat()
+            )
+
         proof = ZKPFinancialProof(
             case_id=self.case_id,
             proof_hash=f"SM-PROOF-QUARANTINE-{self.case_id}",
@@ -1579,11 +1585,36 @@ class SkynetRunner:
             total_unbacked_amount=Decimal("0.00"),
             backing_ratio_pct=0.0,
             evidence_pointers=[],
-            cautelar_items=["Expediente en cuarentena: Archivos base no recuperables o esquema inválido."],
+            cautelar_items=["Expediente en cuarentena: Bloqueo cautelar de liquidación activado."],
             binding_verdict="CRITICAL_UNBACKED_DEFICIT",
             confidence_penalty=1.0,
             generated_at=datetime.now(timezone.utc).isoformat()
         )
+
+        if docket:
+            blocking_reasons_str = "; ".join(docket.blocking_reasons) if docket.blocking_reasons else "Inconsistencia pericial crítica"
+            rec_action = (
+                f"🚨 PROTOCOLO FORENSE ACTIVADO: Expediente en CUARENTENA PREVENTIVA. "
+                f"La emisión de Notas de Crédito comerciales y acuerdos vinculantes ha sido BLOQUEADA. "
+                f"Motivo principal: {blocking_reasons_str}. "
+                f"Requiere intervención y subsanación documental por el operador antes de proceder."
+            )
+            root_cause = f"FORENSIC_QUARANTINE: {docket.severity}"
+            evidence = [f"Violación de Invariante: {inv}" for inv in docket.violated_invariants] or ["Cuarentena forense"]
+        elif "cuarentena documental" in error_msg.lower():
+            rec_action = (
+                f"🚨 PROTOCOLO FORENSE ACTIVADO: Expediente en CUARENTENA PREVENTIVA. "
+                f"La emisión de Notas de Crédito comerciales y acuerdos vinculantes ha sido BLOQUEADA. "
+                f"Motivo principal: {error_msg}. "
+                f"Requiere intervención y subsanación documental por el operador antes de proceder."
+            )
+            root_cause = "FORENSIC_QUARANTINE: SEVERE_DOCUMENT_DEFICIT"
+            evidence = [f"Alerta documental: {error_msg[:300]}"]
+        else:
+            rec_action = "Rechazar expediente. Los archivos JSON base carecen de integridad estructural y fallaron la validación de Esquemas (Pydantic). Verifique los datos de entrada."
+            root_cause = "TECHNICAL_ERROR: Datos corruptos o esquema inválido."
+            evidence = [f"Trace técnico de Pydantic/Motor: {error_msg[:500]}"]
+
         return DisputeAnalysisReport(
             case_id=self.case_id,
             billed_amount=Decimal("0.00"),
@@ -1591,11 +1622,12 @@ class SkynetRunner:
             difference=Decimal("0.00"),
             justified_amount=Decimal("0.00"),
             claimable_amount=Decimal("0.00"),
-            root_cause="TECHNICAL_ERROR: Datos corruptos o esquema inválido.",
-            evidence=[f"Trace técnico de Pydantic/Motor: {error_msg[:500]}"],
-            recommended_action="Rechazar expediente. Los archivos JSON base carecen de integridad estructural y fallaron la validación de Esquemas (Pydantic). Verifique los datos de entrada.",
+            root_cause=root_cause,
+            evidence=evidence,
+            recommended_action=rec_action,
             confidence=0.0,
             health_audit=audit,
             financial_proof=proof,
-            evidence_manifest=manifest
+            evidence_manifest=manifest,
+            quarantine_docket=docket
         )
