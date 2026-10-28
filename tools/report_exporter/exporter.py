@@ -118,6 +118,26 @@ def generate_reclamation_letter(report: DisputeAnalysisReport, state: Optional[D
     del_id = deliv.delivery_id if deliv else "DEL-S/N"
     ctr_id = ctr.contract_id if ctr else "CTR-MARCO"
     
+    # Búsqueda de precedentes históricos en la Red de Memoria
+    precedents_block = ""
+    try:
+        from agent.memory.precedent_matcher import PrecedentMatcher
+        matcher = PrecedentMatcher()
+        ded_code = None
+        if pay and hasattr(pay, "deductions") and pay.deductions:
+            ded_code = pay.deductions[0].code
+        
+        matches = matcher.find_relevant_precedents(
+            retailer_id=str(customer_id),
+            dispute_type=report.root_cause,
+            deduction_code=ded_code,
+            top_k=2
+        )
+        if matches:
+            precedents_block = "\n" + PrecedentMatcher.format_precedents_block_for_letter(matches)
+    except Exception:
+        precedents_block = ""
+
     letter = f"""# 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
 **Ref: Expediente de Cartera {report.case_id} / Factura {inv_id}**  
 **Fecha:** {date_str}  
@@ -139,7 +159,7 @@ Aceptamos de plena conformidad la deducción por valor de **${report.justified_a
 Rechazamos formalmente las deducciones adicionales aplicadas por un importe total de **${report.claimable_amount:,.2f} USD**, por carecer de soporte probatorio y contrariar los términos del contrato comercial **{ctr_id}**:
 - **Causa Raíz:** {report.root_cause}
 - **Fundamentación Contractual:** {state.contract_evaluation.summary_legal_assessment if state and state.contract_evaluation else 'Deducción unilateral no convenida ni acreditada en muelle de recepción.'}
-
+{precedents_block}
 #### 3. Requerimiento de Pago
 En virtud de lo anterior, solicitamos comedidamente realizar la programación y transferencia del saldo retenido injustificadamente por valor de:
 
@@ -164,6 +184,7 @@ def export_dispute_artifacts(report: DisputeAnalysisReport, state: Optional[Disp
     - dispute_report_<case_id>.md
     - dispute_report_<case_id>.json
     - carta_reclamacion_<case_id>.md (si claimable_amount > 0)
+    Y archiva el fallo en la Red de Memoria de Precedentes (Pilar 2).
     """
     REPORTS_DIR.mkdir(parents=True, exist_ok=True)
     generated_files = {}
@@ -190,5 +211,19 @@ def export_dispute_artifacts(report: DisputeAnalysisReport, state: Optional[Disp
         with open(letter_path, "w", encoding="utf-8") as f:
             f.write(letter_content)
         generated_files["reclamation_letter"] = str(letter_path)
+
+    # 4. Pilar 2: Auto-aprendizaje en la Red de Memoria de Precedentes
+    try:
+        from agent.memory.precedent_graph import DisputeMemoryNetwork
+        memory = DisputeMemoryNetwork()
+        docs = state.loaded_documents if state else {}
+        memory.record_case_resolution(
+            case_id=report.case_id,
+            report=report,
+            docs=docs
+        )
+    except Exception:
+        pass
         
     return generated_files
+

@@ -52,16 +52,36 @@ CRITERIOS Y MATRIZ DE DECISIÓN COMERCIAL SENIOR:
 from typing import Dict, Any, List, Optional
 
 def get_calibrated_system_prompt(kb_path: Optional[str] = None) -> str:
-    """Genera el System Prompt de Grok enriquecido con los criterios de decisión calibrados."""
+    """Genera el System Prompt de Grok enriquecido con los criterios de decisión calibrados y memoria histórica."""
     precedents_text = ""
     try:
-        from agent.planner.precedents import PrecedentRegistry
-        registry = PrecedentRegistry(kb_path=kb_path)
-        formatted = registry.format_precedents_for_prompt()
-        if formatted:
-            precedents_text = f"\n{formatted}\n"
+        from agent.memory.precedent_graph import DisputeMemoryNetwork
+        mem = DisputeMemoryNetwork()
+        profiles = mem.get_all_retailer_profiles()
+        if profiles:
+            p_lines = [
+                "\n--- RED DE MEMORIA DE PRECEDENTES Y PERFILES DE RETAILERS (HISTORIAL B2B) ---"
+            ]
+            for p in profiles[:6]:
+                p_lines.append(
+                    f"• {p.retailer_name} ({p.retailer_id}): {p.total_cases_analyzed} disputas auditadas, "
+                    f"tasa de éxito {p.overall_success_rate_pct}%, recuperado ${p.total_recovered_usd:,.2f} USD. "
+                    f"Patrones: {', '.join(p.common_dispute_patterns[:2])}"
+                )
+            p_lines.append("--------------------------------------------------------------------------------\n")
+            precedents_text = "\n".join(p_lines)
     except Exception:
-        precedents_text = ""
+        pass
+
+    if not precedents_text:
+        try:
+            from agent.planner.precedents import PrecedentRegistry
+            registry = PrecedentRegistry(kb_path=kb_path)
+            formatted = registry.format_precedents_for_prompt()
+            if formatted:
+                precedents_text = f"\n{formatted}\n"
+        except Exception:
+            precedents_text = ""
 
     base_prompt = f"""Eres SupplyMind AI, un analista digital senior de operaciones y conciliación de cadenas de suministro B2B.
 Tu misión es resolver de forma autónoma, rigurosa y equitativa disputas comerciales entre proveedores y clientes corporativos (retailers).
