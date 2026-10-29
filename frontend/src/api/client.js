@@ -150,4 +150,11 @@ export const apiClient = {
   getDocumentUrl(caseId, filename) {
     return `${BASE_URL}/cases/${caseId}/documents/${filename}`;
   },
+
+  async getPrecedentGraph() {
+    const res = await fetch(`${BASE_URL}/precedents/graph`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
 };
+

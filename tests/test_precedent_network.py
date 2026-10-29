@@ -286,3 +286,24 @@ def test_api_precedents_endpoints():
     assert res_all.status_code == 200
     data_all = res_all.json()
     assert data_all["total_precedents"] >= 5
+
+
+def test_api_precedent_graph_endpoint():
+    """Valida el endpoint /api/precedents/graph para la visualización de red en Obsidian Glass."""
+    res = client.get("/api/precedents/graph")
+    assert res.status_code == 200
+    data = res.json()
+    assert data["status"] == "success"
+    assert "summary" in data
+    assert data["summary"]["total_nodes"] > 10
+    assert data["summary"]["total_links"] > 10
+    assert data["summary"]["total_retailers"] >= 1
+    assert data["summary"]["total_precedents"] >= 5
+    assert len(data["nodes"]) == data["summary"]["total_nodes"]
+    assert len(data["links"]) == data["summary"]["total_links"]
+
+    # Validar que exista el nodo Hub Central
+    hub = next((n for n in data["nodes"] if n["id"] == "HUB_SUPPLYMIND"), None)
+    assert hub is not None
+    assert hub["type"] == "hub"
+

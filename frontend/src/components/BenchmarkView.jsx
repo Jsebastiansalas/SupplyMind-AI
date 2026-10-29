@@ -16,8 +16,10 @@ import {
   Cpu,
   Layers,
   Building2,
-  FileSpreadsheet
+  FileSpreadsheet,
+  Network
 } from 'lucide-react';
+import PrecedentsGraphView from './PrecedentsGraphView';
 
 export default function BenchmarkView({ onSelectCase }) {
   const [benchmarkData, setBenchmarkData] = useState(null);
@@ -261,6 +263,21 @@ export default function BenchmarkView({ onSelectCase }) {
         >
           <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
           <span>Unit Economics: Humano vs AI</span>
+        </button>
+
+        <button
+          onClick={() => setActiveSubTab('precedents_graph')}
+          className={`pb-2.5 flex items-center space-x-2 border-b-2 transition-colors ${
+            activeSubTab === 'precedents_graph'
+              ? 'border-[#d4af37] text-white font-bold'
+              : 'border-transparent text-zinc-400 hover:text-white'
+          }`}
+        >
+          <Network className="w-3.5 h-3.5 text-[#d4af37]" />
+          <span>Red de Precedentes & Grafo Jurisprudencial</span>
+          <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#1b1910] text-[#eed98d] border border-[#d4af37]/40 font-bold">
+            P-02
+          </span>
         </button>
       </div>
 
@@ -713,6 +730,11 @@ export default function BenchmarkView({ onSelectCase }) {
             </div>
           </div>
         </div>
+      )}
+
+      {/* 5. Precedents Graph View (Sprint 4.7) */}
+      {activeSubTab === 'precedents_graph' && (
+        <PrecedentsGraphView onSelectCase={onSelectCase} />
       )}
 
     </div>
