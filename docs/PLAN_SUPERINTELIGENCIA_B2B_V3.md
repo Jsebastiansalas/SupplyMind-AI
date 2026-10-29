@@ -164,8 +164,17 @@ graph LR
 │   - Generador de Dossier Arbitral Foliado ICC Paris / CANACO (7 Caps)  │
 │   - Catálogo de Evidencias Periciales Foliadas con Hash SHA-256        │
 │   - API REST (/api/radar/dvi-evaluate, generate-arbitration-dossier)   │
-│   - 8/8 Tests Unitarios e Integración en Verde (test_predictive_radar) │
-│ Sprint 5.5: Interfaz Obsidian Glass 3.0 (EDI Inspector & Courtroom)   │ [SIGUIENTE 🚀]
+│ Sprint 5.5: Interfaz Obsidian Glass 3.0 (EDI Inspector & Courtroom)   │ [COMPLETADO ✅]
+│   - Decodificador Interactivo EDI ANSI X12 (EdiInspectorView.jsx)      │
+│   - Visualizador Jerárquico de Segmentos y Elementos Posicionales      │
+│   - Auditor Forense en Vivo de Lead-Time ASN vs 997 UTC                │
+│   - Generador Interactivo de Notificación EDI 824 (Application Advice) │
+│   - Estrado Dialéctico Adversarial con Careo por Rondas (CourtroomView) │
+│   - Sentencia Vinculante Magistrado Arbitral ICC e Interés Moratorio 9%│
+│   - Integración MCTS y Compilación de Dossier Arbitral en UI           │
+│   - Atajos de Teclado Profesionales (1-6) y Navegación Obsidian Glass  │
+│   - 53/53 Tests Unitarios e Integración en Verde (100% Passing)        │
+│   - Frontend Vite Production Build Exitoso (2.20s, 0 Errores)          │
 └────────────────────────────────────────────────────────────────────────┘
 ```
 

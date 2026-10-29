@@ -172,6 +172,112 @@ export const apiClient = {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return res.json();
   },
+
+  // --- SPRINT 5.1 / 5.5: EDI B2B Nativo ---
+  async getEdiSamples() {
+    const res = await fetch(`${BASE_URL}/edi/samples`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async parseEdi(rawEdiContent) {
+    const res = await fetch(`${BASE_URL}/edi/parse`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ raw_edi_content: rawEdiContent }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: 'Error al decodificar paquete EDI' }));
+      throw new Error(err.detail || `HTTP ${res.status}`);
+    }
+    return res.json();
+  },
+
+  async auditEdiAsn(payload) {
+    const res = await fetch(`${BASE_URL}/edi/audit-asn`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: 'Error al auditar ASN EDI 856' }));
+      throw new Error(err.detail || `HTTP ${res.status}`);
+    }
+    return res.json();
+  },
+
+  async generateEdi824(payload) {
+    const res = await fetch(`${BASE_URL}/edi/generate-824`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: 'Error al generar EDI 824' }));
+      throw new Error(err.detail || `HTTP ${res.status}`);
+    }
+    return res.json();
+  },
+
+  // --- SPRINT 5.2 / 5.5: Estrado Dialéctico & Meta-Cognición ---
+  async getCourtroomCareo(caseId) {
+    const res = await fetch(`${BASE_URL}/cases/${caseId}/adversarial-courtroom`);
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: 'Error al obtener estrado dialéctico' }));
+      throw new Error(err.detail || `HTTP ${res.status}`);
+    }
+    return res.json();
+  },
+
+  async getMctsSimulation(payload) {
+    const res = await fetch(`${BASE_URL}/meta-cognition/mcts-simulate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async autoHardenCase(payload) {
+    const res = await fetch(`${BASE_URL}/meta-cognition/auto-harden`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  // --- SPRINT 5.4: Radar DVI & Dossier Arbitral ICC ---
+  async evaluateDvi(payload) {
+    const res = await fetch(`${BASE_URL}/radar/dvi-evaluate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async generateArbitrationDossier(payload) {
+    const res = await fetch(`${BASE_URL}/radar/generate-arbitration-dossier`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: 'Error al compilar dossier arbitral' }));
+      throw new Error(err.detail || `HTTP ${res.status}`);
+    }
+    return res.json();
+  },
+
+  async getHighRiskDestinations() {
+    const res = await fetch(`${BASE_URL}/radar/high-risk-destinations`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
 };
 
 

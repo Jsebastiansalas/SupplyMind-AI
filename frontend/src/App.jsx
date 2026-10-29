@@ -15,6 +15,8 @@ import PitchWalkthrough, { PITCH_STEPS } from './components/PitchWalkthrough';
 import CreateCaseModal from './components/CreateCaseModal';
 import CaseSummaryView from './components/CaseSummaryView';
 import BenchmarkView from './components/BenchmarkView';
+import EdiInspectorView from './components/EdiInspectorView';
+import CourtroomView from './components/CourtroomView';
 import { apiClient } from './api/client';
 import { 
   DollarSign, 
@@ -36,7 +38,9 @@ import {
   Eye,
   CheckCircle2,
   Clock,
-  Trophy
+  Trophy,
+  Gavel,
+  Binary
 } from 'lucide-react';
 
 function Workspace() {
@@ -132,6 +136,12 @@ function Workspace() {
         setForceShowSummary(false);
       } else if (e.key === '4') {
         setActiveTab('chat');
+        setForceShowSummary(false);
+      } else if (e.key === '5') {
+        setActiveTab('courtroom');
+        setForceShowSummary(false);
+      } else if (e.key === '6') {
+        setActiveTab('edi');
         setForceShowSummary(false);
       } else if (e.key === 'b' || e.key === 'B') {
         setIsSidebarOpen(prev => !prev);
@@ -382,6 +392,40 @@ function Workspace() {
                   </button>
 
                   <button
+                    onClick={() => {
+                      setActiveTab('courtroom');
+                      setForceShowSummary(false);
+                    }}
+                    className={`btn-tactile px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors flex items-center space-x-1.5 ${
+                      activeTab === 'courtroom'
+                        ? 'bg-[#221f14] text-[#eed98d] border border-[#d4af37]/60 shadow-tactile font-bold'
+                        : 'text-zinc-400 hover:text-white hover:bg-[#12131a]'
+                    }`}
+                    title="Estrado Dialéctico Adversarial con Veredicto Arbitral ICC"
+                  >
+                    <Gavel className="w-3.5 h-3.5 text-[#d4af37]" />
+                    <span>Estrado</span>
+                    <span className="text-[9px] px-1 py-0.2 rounded bg-[#101117] text-zinc-500 font-mono hidden md:inline">5</span>
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setActiveTab('edi');
+                      setForceShowSummary(false);
+                    }}
+                    className={`btn-tactile px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors flex items-center space-x-1.5 ${
+                      activeTab === 'edi'
+                        ? 'bg-[#14232c] text-cyan-300 border border-cyan-500/60 shadow-tactile font-bold'
+                        : 'text-zinc-400 hover:text-white hover:bg-[#12131a]'
+                    }`}
+                    title="Inspector Forense EDI B2B ANSI X12 y Auditor ASN"
+                  >
+                    <Binary className="w-3.5 h-3.5 text-cyan-400" />
+                    <span>EDI B2B</span>
+                    <span className="text-[9px] px-1 py-0.2 rounded bg-[#101117] text-zinc-500 font-mono hidden md:inline">6</span>
+                  </button>
+
+                  <button
                     onClick={() => setActiveTab('benchmark')}
                     className={`btn-tactile px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors flex items-center space-x-1.5 ${
                       activeTab === 'benchmark'
@@ -489,6 +533,28 @@ function Workspace() {
                     <button
                       onClick={() => {
                         setShowToolsMenu(false);
+                        setActiveTab('courtroom');
+                      }}
+                      className="btn-tactile w-full text-left px-3 py-2 rounded hover:bg-[#181a24] text-zinc-300 hover:text-white flex items-center space-x-2"
+                    >
+                      <Gavel className="w-3.5 h-3.5 text-[#d4af37]" />
+                      <span>Estrado Dialéctico (Careo)</span>
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        setShowToolsMenu(false);
+                        setActiveTab('edi');
+                      }}
+                      className="btn-tactile w-full text-left px-3 py-2 rounded hover:bg-[#181a24] text-zinc-300 hover:text-white flex items-center space-x-2"
+                    >
+                      <Binary className="w-3.5 h-3.5 text-cyan-400" />
+                      <span>Inspector EDI B2B ANSI X12</span>
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        setShowToolsMenu(false);
                         setActiveTab('benchmark');
                       }}
                       className="btn-tactile w-full text-left px-3 py-2 rounded hover:bg-[#181a24] text-zinc-300 hover:text-white flex items-center space-x-2"
@@ -527,13 +593,20 @@ function Workspace() {
 
           </div>
 
-          {/* Active View: Benchmark View OR Summary when not resolved OR Full Financial Workspace */}
+          {/* Active View: Benchmark View OR EDI Inspector OR Courtroom View OR Summary when not resolved OR Full Financial Workspace */}
           {activeTab === 'benchmark' ? (
             <BenchmarkView 
               onSelectCase={(cId) => {
                 setSelectedCaseId(cId);
                 setActiveTab('financial');
               }}
+            />
+          ) : activeTab === 'edi' ? (
+            <EdiInspectorView />
+          ) : activeTab === 'courtroom' ? (
+            <CourtroomView 
+              caseId={selectedCaseId} 
+              onOpenDossier={() => setShowDossierModal(true)} 
             />
           ) : (!report || forceShowSummary) ? (
             <CaseSummaryView 
