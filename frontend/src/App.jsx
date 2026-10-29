@@ -17,6 +17,8 @@ import CaseSummaryView from './components/CaseSummaryView';
 import BenchmarkView from './components/BenchmarkView';
 import EdiInspectorView from './components/EdiInspectorView';
 import CourtroomView from './components/CourtroomView';
+import PortalCrawlerView from './components/PortalCrawlerView';
+import PalletVisionView from './components/PalletVisionView';
 import { apiClient } from './api/client';
 import { 
   DollarSign, 
@@ -40,7 +42,9 @@ import {
   Clock,
   Trophy,
   Gavel,
-  Binary
+  Binary,
+  Bot,
+  Camera
 } from 'lucide-react';
 
 function Workspace() {
@@ -142,6 +146,12 @@ function Workspace() {
         setForceShowSummary(false);
       } else if (e.key === '6') {
         setActiveTab('edi');
+        setForceShowSummary(false);
+      } else if (e.key === '7') {
+        setActiveTab('portals');
+        setForceShowSummary(false);
+      } else if (e.key === '8') {
+        setActiveTab('vision');
         setForceShowSummary(false);
       } else if (e.key === 'b' || e.key === 'B') {
         setIsSidebarOpen(prev => !prev);
@@ -426,6 +436,40 @@ function Workspace() {
                   </button>
 
                   <button
+                    onClick={() => {
+                      setActiveTab('portals');
+                      setForceShowSummary(false);
+                    }}
+                    className={`btn-tactile px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors flex items-center space-x-1.5 ${
+                      activeTab === 'portals'
+                        ? 'bg-[#121c29] text-blue-300 border border-blue-500/60 shadow-tactile font-bold'
+                        : 'text-zinc-400 hover:text-white hover:bg-[#12131a]'
+                    }`}
+                    title="RPA Autónomo y Sincronizador de Portales Retailer (Walmart, Amazon, Soriana, Liverpool)"
+                  >
+                    <Bot className="w-3.5 h-3.5 text-blue-400" />
+                    <span>Portales</span>
+                    <span className="text-[9px] px-1 py-0.2 rounded bg-[#101117] text-zinc-500 font-mono hidden md:inline">7</span>
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setActiveTab('vision');
+                      setForceShowSummary(false);
+                    }}
+                    className={`btn-tactile px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors flex items-center space-x-1.5 ${
+                      activeTab === 'vision'
+                        ? 'bg-[#12241b] text-emerald-300 border border-emerald-500/60 shadow-tactile font-bold'
+                        : 'text-zinc-400 hover:text-white hover:bg-[#12131a]'
+                    }`}
+                    title="Laboratorio de Visión Multimodal en Muelle & Certificación C-TPAT"
+                  >
+                    <Camera className="w-3.5 h-3.5 text-emerald-400" />
+                    <span>Visión Muelle</span>
+                    <span className="text-[9px] px-1 py-0.2 rounded bg-[#101117] text-zinc-500 font-mono hidden md:inline">8</span>
+                  </button>
+
+                  <button
                     onClick={() => setActiveTab('benchmark')}
                     className={`btn-tactile px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors flex items-center space-x-1.5 ${
                       activeTab === 'benchmark'
@@ -593,7 +637,7 @@ function Workspace() {
 
           </div>
 
-          {/* Active View: Benchmark View OR EDI Inspector OR Courtroom View OR Summary when not resolved OR Full Financial Workspace */}
+          {/* Active View: Benchmark View OR EDI Inspector OR Courtroom View OR Portals OR Vision OR Summary when not resolved OR Full Financial Workspace */}
           {activeTab === 'benchmark' ? (
             <BenchmarkView 
               onSelectCase={(cId) => {
@@ -608,6 +652,10 @@ function Workspace() {
               caseId={selectedCaseId} 
               onOpenDossier={() => setShowDossierModal(true)} 
             />
+          ) : activeTab === 'portals' ? (
+            <PortalCrawlerView />
+          ) : activeTab === 'vision' ? (
+            <PalletVisionView />
           ) : (!report || forceShowSummary) ? (
             <CaseSummaryView 
               caseDetails={caseDetails} 

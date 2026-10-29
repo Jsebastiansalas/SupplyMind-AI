@@ -278,6 +278,58 @@ export const apiClient = {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return res.json();
   },
+
+  // --- SPRINT 6.1 / 6.2: RPA Portales B2B & Visión Multimodal ---
+  async getPortalCatalog() {
+    const res = await fetch(`${BASE_URL}/portal/catalog`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async syncRetailerPortal(payload) {
+    const res = await fetch(`${BASE_URL}/portal/sync-retailer`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: 'Error al sincronizar portal B2B' }));
+      throw new Error(err.detail || `HTTP ${res.status}`);
+    }
+    return res.json();
+  },
+
+  async uploadPortalDispute(payload) {
+    const res = await fetch(`${BASE_URL}/portal/upload-dispute`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: 'Error al cargar disputa en portal' }));
+      throw new Error(err.detail || `HTTP ${res.status}`);
+    }
+    return res.json();
+  },
+
+  async inspectPalletVision(payload) {
+    const res = await fetch(`${BASE_URL}/vision/inspect-pallet`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: 'Error en peritaje de visión' }));
+      throw new Error(err.detail || `HTTP ${res.status}`);
+    }
+    return res.json();
+  },
+
+  async getVisionSamples() {
+    const res = await fetch(`${BASE_URL}/vision/samples`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
 };
 
 
