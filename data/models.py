@@ -170,6 +170,12 @@ class DisputeAnalysisReport(_Base):
     adversarial_verdict: Optional[Any] = Field(default=None)  # Debate Dialéctico Multi-Agente (Pilar 3)
     recovery_prediction: Optional[Any] = Field(default=None)  # Motor Predictivo de Cobro & Simulación (Pilar 4)
     sanity_gate_audit: Optional[Any] = Field(default=None)  # Filtro de Sanidad Cuádruple & Anti-Puntos Ciegos (Semana 4)
+    resolution_notes: Optional[List[str]] = Field(default_factory=list)  # Notas de resolución y blindaje jurídico (Sprint 5.2)
+    deduction_type: Optional[str] = Field(default=None)  # Tipo específico de deducción (ej. SHORTAGE, OTIF, PRICING)
+    adversarial_critique: Optional[Any] = Field(default=None)  # Dictamen del Subagente Crítico Reflexivo (Sprint 5.2)
+    mcts_negotiation_plan: Optional[Any] = Field(default=None)  # Plan MCTS de Negociación Estratégica (Sprint 5.2)
+    cross_border_assessment: Optional[Any] = Field(default=None)  # Dictamen de Tratados CISG/T-MEC (Sprint 5.2)
+
 
     def formatted_display(self) -> str:
         """Formatea el reporte con la estructura solicitada para el reto."""

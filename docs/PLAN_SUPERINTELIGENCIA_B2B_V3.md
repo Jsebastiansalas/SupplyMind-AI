@@ -141,8 +141,14 @@ graph LR
 │   - Generador Oficial EDI 824 Application Advice (Edi824Generator)     │
 │   - API REST (/api/edi/parse, audit-asn, generate-824, samples)        │
 │   - 15/15 Tests Unitarios e Integración en Verde (tests/test_edi_engine)│
-│ Sprint 5.2: Meta-Cognición Dialéctica & Subagente Crítico Adversarial │ [SIGUIENTE 🚀]
-│ Sprint 5.3: Simulador PAC CFDI 4.0 & Conciliación Bancaria MT940/SPEI  │ [PENDIENTE]
+│ Sprint 5.2: Meta-Cognición Dialéctica & Subagente Crítico Adversarial │ [COMPLETADO ✅]
+│   - Subagente Crítico 'Abogado del Diablo' (AdversarialCritic)         │
+│   - Auto-Refuerzo de Dictámenes y Escudo Jurídico Preventivo           │
+│   - Árbol MCTS de Negociación B2B Multi-Ruta (MCTSNegotiator)          │
+│   - Jurisprudencia Transfronteriza CISG Viena 1980 & T-MEC Cap. 20     │
+│   - API REST (/api/meta-cognition/critique, auto-harden, mcts, etc.)   │
+│   - 15/15 Tests Unitarios e Integración en Verde (test_meta_cognition) │
+│ Sprint 5.3: Simulador PAC CFDI 4.0 & Conciliación Bancaria MT940/SPEI  │ [SIGUIENTE 🚀]
 │ Sprint 5.4: Radar Predictivo de Fugas & Generador de Dossier ICC       │ [PENDIENTE]
 │ Sprint 5.5: Interfaz Obsidian Glass 3.0 (EDI Inspector & Courtroom)   │ [PENDIENTE]
 └────────────────────────────────────────────────────────────────────────┘
