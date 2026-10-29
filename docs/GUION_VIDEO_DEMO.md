@@ -97,25 +97,27 @@
 
 ---
 
-### 🎬 ESCENA 5: ERP SAP / NETSUITE, SAT CFDI 4.0, MOTOR FX & RETAILERS (2:10 - 2:45)
+### 🎬 ESCENA 5: ERP SAP / NETSUITE EN VIVO, SAT CFDI 4.0, MOTOR FX & RETAILERS (2:10 - 2:45)
 * **Qué tener en pantalla:**
   - Haz clic en la pestaña **Exportar / Pólizas ERP & CFDI 4.0**:
     * Muestra la tabla de partida doble balanceada al centavo bajo estándar **NIF C-3 / US GAAP**.
-    * Muestra los botones de exportación a **SAP S/4HANA (BAPI `BAPI_ACC_DOCUMENT_POST`)**, **Oracle NetSuite (CSV Journal)** y el XML de **Nota de Crédito CFDI 4.0 del SAT**.
+    * **Demostración de Integración en Vivo**: En el *Simulador Bidireccional de Integración Contable*, haz clic en el botón **Contabilizar en SAP S/4HANA**.
+    * Muestra cómo en menos de 1 segundo se conecta a la BAPI y despliega el badge verde **`POSTED SUCCESS`** con el Número de Documento SAP generado (`1000525479`), la Sociedad `1000` y el código de compensación subledger `RW 605`.
+    * Muestra también el botón para **Oracle NetSuite** (JournalEntry vía SuiteTalk REST) y la descarga del XML de **Nota de Crédito CFDI 4.0 del SAT**.
   - Haz clic en la subpestaña **🌐 FX & Incoterms 2020**:
     * Muestra cómo la fórmula aísla la varianza cambiaria oficial del Banco de México/DOF de la controversia operativa.
     * Cambia el selector de Incoterm de `DDP` a `FOB`: muestra cómo el veredicto legal cambia de inmediato a verde `IMPROCEDENTE_POR_INCOTERM`, citando la Regla ICC Incoterms Art. A4/B4.
   - Haz clic en la subpestaña **🛡️ Fugas Retailers & Checklist**:
     * Muestra el perfil longitudinal de **Walmart** o **Amazon** con su tasa de retención abusiva y el **Checklist Preventivo Pre-Despacho**.
 * **🎙️ LOCUCIÓN (Voz en off):**
-  > *"SupplyMind AI cierra el ciclo contable directo al corazón del ERP corporativo.*  
-  > *Genera la póliza contable en partida doble exacta bajo NIF C-3, exportable a SAP S/4HANA, Oracle NetSuite y estructurada como Nota de Crédito CFDI 4.0 timbrada ante el SAT.*  
+  > *"SupplyMind AI no solo genera reportes: cierra el ciclo contable de forma bidireccional directo al corazón del ERP corporativo.*  
+  > *Con un solo clic ejecutamos la BAPI oficial de SAP S/4HANA y SuiteTalk en NetSuite, recibiendo en tiempo real la confirmación de compensación con número de documento contable y partida doble auditada bajo NIF C-3.*  
   > *En operaciones internacionales, nuestro Motor Cambiario FX y de Incoterms 2020 aísla la variación cambiaria de la merma física, y dictamina la transferencia legal del riesgo en transporte.*  
   > *Además, nuestro Perfilador de Retailers analiza patrones sistemáticos en Walmart y Amazon, entregando checklists operacionales pre-despacho para blindar los embarques antes de salir del almacén."*
 
 ---
 
-### 🎬 ESCENA 6: BATCH RUNNER MASIVO (1,000 CASOS), CRUCIBLE 50 Y CIERRE ÉPICO (2:45 - 3:05)
+### 🎬 ESCENA 6: BATCH RUNNER MASIVO (1,000 CASOS), RED DE PRECEDENTES Y CIERRE ÉPICO (2:45 - 3:05)
 * **Qué tener en pantalla:**
   - Ve a la pestaña **Benchmark & Telemetría** (`BenchmarkView`):
     * Destaca la pestaña **The Crucible Suite (50 Casos)**: `100.0% Exact Match`, `$0.00 MAE`, 0% error aritmético sobre $5.4M USD auditados.
@@ -123,13 +125,16 @@
       - Muestra el throughput de **30.0 casos por segundo**.
       - Muestra la auditoría desatendida de **$127,797,727.00 USD** liquidada en apenas **33.33 segundos**.
       - Destaca el **Sanity Gate de Cuádruple Auditoría** que garantiza $0.00 MAE contable y prelación legal inmutable (Art. 88 CCom).
+    * Haz clic en la pestaña **Red de Precedentes & Grafo Jurisprudencial**:
+      - Muestra la constelación visual de **103 nodos y 155 conexiones** en Obsidian Glass, conectando a Walmart, Amazon, Liverpool y Costco con las normas rectoras (Art. 88 CCom, Cláusula 5.1).
   - Abre el modal de **Unit Economics & Eficiencia** (`U`):
-    * Costo real por caso auditado: **$0.0035 USD** (99.99% de ahorro vs $35.00 USD del analista humano).
+    * Costo real por caso auditado: **$0.0038 USD** (99.99% de ahorro vs $30.00 USD del analista humano).
   - Regresa a la vista general con el dashboard completo en pantalla completa (`F11`).
 * **Música de fondo:** Clímax inspirador, contundente y con resolución elegante.
 * **🎙️ LOCUCIÓN (Voz en off):**
   > *"¿Cómo escala esta solución a nivel industrial? Pusimos a prueba el agente frente a **The Crucible Suite**: 50 casos de estrés extremo que abarcan fraude, Incoterms, penalizaciones OTIF duplicadas y ataques adversarios, logrando un **100% de precisión exacta con cero centavos de error aritmético**.*  
-  > *Y con nuestro **Batch Runner Masivo**, procesamos **1,000 expedientes industriales y más de 127 millones de dólares en solo 33 segundos** a 30 casos por segundo, reduciendo 55 horas de trabajo manual a medio centavo de dólar por expediente.*  
+  > *Con nuestro **Batch Runner Masivo**, procesamos **1,000 expedientes industriales y más de 127 millones de dólares en solo 33 segundos** a 30 casos por segundo, reduciendo 55 horas de trabajo manual a menos de medio centavo de dólar por expediente.*  
+  > *Y con nuestra **Red de Precedentes**, el agente aprende de cada disputa resuelta, acumulando jurisprudencia vinculante para ganar negociaciones futuras.*  
   > *Cero alucinación matemática. Respaldo probatorio inexpugnable.*  
   > *SupplyMind AI Enterprise: El agente autónomo soberano de arbitraje y cuentas por cobrar B2B."*
 
