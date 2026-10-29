@@ -98,3 +98,108 @@ def export_erp_package_endpoint(case_id: str):
         "message": f"Paquete ERP exportado exitosamente a reports/erp_{case_id}/",
         "package": _decimal_to_float(package.model_dump(mode="python"))
     }
+
+
+@router.post("/{case_id}/erp/sap/post-document")
+def post_sap_document_simulation(case_id: str):
+    """
+    Simulador bidireccional de contabilización directa en SAP S/4HANA (BAPI_ACC_DOCUMENT_POST / RFC).
+    Valida partida doble, genera número de documento contable (FI-GL) y retorna confirmación de compensación.
+    """
+    case_path = Path("data/cases") / case_id
+    if not case_path.exists():
+        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+
+    report = ConcessionEngine.get_or_create_base_report(case_id)
+    lines = ErpEngine.build_erp_posting_lines(report)
+    
+    # Validar partida doble
+    total_debit = sum(l.debit for l in lines)
+    total_credit = sum(l.credit for l in lines)
+    if total_debit != total_credit:
+        raise HTTPException(status_code=400, detail="Descuadre en partida doble contable. Transacción rechazada por SAP.")
+
+    # Generación de identificador único determinístico para SAP S/4HANA
+    clean_id = abs(hash(f"SAP-{case_id}-{total_debit}")) % 900000 + 100000
+    sap_doc_num = f"1000{clean_id}"
+    company_code = "1000"
+    fiscal_year = "2026"
+
+    return {
+        "status": "SUCCESS_POSTED",
+        "system": "SAP S/4HANA Cloud / On-Premise",
+        "protocol": "RFC_BAPI_ACC_DOCUMENT_POST",
+        "case_id": case_id,
+        "confirmation": {
+            "sap_document_number": sap_doc_num,
+            "company_code": company_code,
+            "fiscal_year": fiscal_year,
+            "document_type": "DG",  # Credit memo / Nota de débito de deudor
+            "reference": f"SM-{case_id.upper()}",
+            "posting_status": "CLEARED_IN_SUBLEDGER",
+            "currency": "USD",
+            "total_posted_usd": float(total_debit),
+            "lines_posted_count": len(lines),
+            "bapi_return": [
+                {
+                    "type": "S",
+                    "id": "RW",
+                    "number": "605",
+                    "message": f"Document {sap_doc_num} was successfully posted in company code {company_code} ({fiscal_year})."
+                },
+                {
+                    "type": "S",
+                    "id": "FI",
+                    "number": "012",
+                    "message": "Subledger open items cleared automatically against commercial dispute resolution."
+                }
+            ],
+            "posted_at": "2026-10-28T19:08:00Z"
+        }
+    }
+
+
+@router.post("/{case_id}/erp/netsuite/post-journal")
+def post_netsuite_journal_simulation(case_id: str):
+    """
+    Simulador bidireccional de integración con Oracle NetSuite vía SuiteTalk REST Web Services.
+    Registra el asiento contable (JournalEntry / CreditMemo) y retorna el Internal ID y TranID de auditoría.
+    """
+    case_path = Path("data/cases") / case_id
+    if not case_path.exists():
+        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+
+    report = ConcessionEngine.get_or_create_base_report(case_id)
+    lines = ErpEngine.build_erp_posting_lines(report)
+
+    # Validar partida doble
+    total_debit = sum(l.debit for l in lines)
+    total_credit = sum(l.credit for l in lines)
+    if total_debit != total_credit:
+        raise HTTPException(status_code=400, detail="Desbalance en partida doble. Oracle NetSuite rechazó la transacción.")
+
+    # Generación de identificador único de NetSuite
+    clean_hash = abs(hash(f"NETSUITE-{case_id}-{total_debit}"))
+    internal_id = str(clean_hash % 900000 + 100000)
+    tran_id = f"JE-2026-{clean_hash % 9000 + 1000}"
+
+    return {
+        "status": "APPROVED_POSTED",
+        "system": "Oracle NetSuite ERP",
+        "protocol": "SuiteTalk REST Web Services (v1)",
+        "case_id": case_id,
+        "confirmation": {
+            "internal_id": internal_id,
+            "tran_id": tran_id,
+            "record_type": "journalEntry",
+            "subsidiary": "SupplyMind LatAm México S.A. de C.V. (Subsidiary ID: 1)",
+            "memo": f"SupplyMind AI Autonomous Dispute Conciliation - {case_id.upper()}",
+            "posting_status": "APPROVED",
+            "currency": "USD",
+            "total_posted_usd": float(total_debit),
+            "lines_posted_count": len(lines),
+            "audit_trail_url": f"https://system.netsuite.com/app/accounting/transactions/journal.nl?id={internal_id}",
+            "posted_at": "2026-10-28T19:08:00Z"
+        }
+    }
+

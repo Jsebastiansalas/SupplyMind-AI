@@ -156,5 +156,22 @@ export const apiClient = {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return res.json();
   },
+
+  async postSapDocument(caseId) {
+    const res = await fetch(`${BASE_URL}/cases/${caseId}/erp/sap/post-document`, {
+      method: 'POST',
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async postNetSuiteJournal(caseId) {
+    const res = await fetch(`${BASE_URL}/cases/${caseId}/erp/netsuite/post-journal`, {
+      method: 'POST',
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
 };
+
 

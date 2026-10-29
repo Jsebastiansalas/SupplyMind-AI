@@ -21,8 +21,14 @@ import {
   Square,
   ArrowRightLeft,
   Lock,
-  Link2
+  Link2,
+  Send,
+  CheckCircle2,
+  Cpu,
+  Zap,
+  Building2
 } from 'lucide-react';
+import { apiClient } from '../api/client';
 
 export default function FinancialPanel({ 
   report, 
@@ -38,6 +44,41 @@ export default function FinancialPanel({
     setLocalSubTab(tab);
   };
   const [copiedHash, setCopiedHash] = useState(false);
+
+  // Estados para Simulación Bidireccional ERP en Tiempo Real (Sprint 4.8)
+  const [isPostingSap, setIsPostingSap] = useState(false);
+  const [sapConfirmation, setSapConfirmation] = useState(null);
+  const [isPostingNetSuite, setIsPostingNetSuite] = useState(false);
+  const [netSuiteConfirmation, setNetSuiteConfirmation] = useState(null);
+  const [erpPostError, setErpPostError] = useState(null);
+
+  const handlePostSap = async () => {
+    if (!report?.case_id) return;
+    setIsPostingSap(true);
+    setErpPostError(null);
+    try {
+      const res = await apiClient.postSapDocument(report.case_id);
+      setSapConfirmation(res);
+    } catch (err) {
+      setErpPostError(`Error en conexión con SAP NetWeaver: ${err.message}`);
+    } finally {
+      setIsPostingSap(false);
+    }
+  };
+
+  const handlePostNetSuite = async () => {
+    if (!report?.case_id) return;
+    setIsPostingNetSuite(true);
+    setErpPostError(null);
+    try {
+      const res = await apiClient.postNetSuiteJournal(report.case_id);
+      setNetSuiteConfirmation(res);
+    } catch (err) {
+      setErpPostError(`Error en conexión con SuiteTalk NetSuite: ${err.message}`);
+    } finally {
+      setIsPostingNetSuite(false);
+    }
+  };
 
   // Estados interactivos para Motor Cambiario FX & Incoterms 2020 (Pilar 5)
   const [selectedIncoterm, setSelectedIncoterm] = useState('FOB');
@@ -951,6 +992,132 @@ export default function FinancialPanel({
                     </tr>
                   </tfoot>
                 </table>
+              </div>
+            </div>
+
+            {/* Simulación Bidireccional ERP en Tiempo Real (Sprint 4.8) */}
+            <div className="bg-[#12131a] border border-[#232636] rounded-xl p-5 space-y-4 shadow-tactile">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-[#1e202d] pb-3">
+                <div className="flex items-center space-x-2">
+                  <Zap className="w-4 h-4 text-[#d4af37]" />
+                  <h4 className="text-xs font-mono font-bold text-white uppercase tracking-wider">
+                    Simulador Bidireccional de Integración Contable en Vivo
+                  </h4>
+                </div>
+                <span className="text-[10px] font-mono text-[#eed98d] bg-[#1d1b11] border border-[#d4af37]/40 px-2 py-0.5 rounded font-bold">
+                  BAPI / RFC & SuiteTalk REST
+                </span>
+              </div>
+
+              {erpPostError && (
+                <div className="p-3 rounded bg-rose-950/40 border border-rose-800/50 text-rose-300 text-xs font-mono flex items-center space-x-2">
+                  <AlertTriangle className="w-4 h-4 text-rose-400 flex-shrink-0" />
+                  <span>{erpPostError}</span>
+                </div>
+              )}
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                
+                {/* 1. SAP S/4HANA Box */}
+                <div className="p-4 rounded-lg bg-[#0e0f14] border border-[#1e202b] flex flex-col justify-between space-y-3">
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-sky-300 font-mono flex items-center gap-1.5">
+                        <Building2 className="w-3.5 h-3.5 text-sky-400" />
+                        SAP S/4HANA Cloud / RFC
+                      </span>
+                      {sapConfirmation && (
+                        <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-bold flex items-center gap-1">
+                          <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                          POSTED SUCCESS
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-[11px] text-zinc-400 mt-1 font-sans">
+                      Ejecuta <span className="font-mono text-zinc-300">BAPI_ACC_DOCUMENT_POST</span> para liquidar la partida abierta en la sociedad 1000.
+                    </p>
+                  </div>
+
+                  {sapConfirmation ? (
+                    <div className="p-3 rounded bg-[#131722] border border-sky-900/40 font-mono text-xs space-y-1.5">
+                      <div className="flex justify-between text-zinc-400 text-[10px]">
+                        <span>Doc SAP:</span>
+                        <span className="text-white font-bold">{sapConfirmation.confirmation.sap_document_number}</span>
+                      </div>
+                      <div className="flex justify-between text-zinc-400 text-[10px]">
+                        <span>Sociedad / Ejercicio:</span>
+                        <span className="text-zinc-200">{sapConfirmation.confirmation.company_code} / {sapConfirmation.confirmation.fiscal_year}</span>
+                      </div>
+                      <div className="flex justify-between text-zinc-400 text-[10px]">
+                        <span>Estatus Subledger:</span>
+                        <span className="text-emerald-400 font-bold">{sapConfirmation.confirmation.posting_status}</span>
+                      </div>
+                      <div className="text-[10px] text-zinc-400 pt-1 border-t border-[#1e2335]">
+                        {sapConfirmation.confirmation.bapi_return?.[0]?.message}
+                      </div>
+                    </div>
+                  ) : null}
+
+                  <button
+                    onClick={handlePostSap}
+                    disabled={isPostingSap}
+                    className="btn-tactile w-full py-2 rounded bg-[#141b29] hover:bg-[#1a2336] border border-sky-800/60 hover:border-sky-500 text-sky-300 font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-1.5 transition-all shadow-tactile disabled:opacity-50"
+                  >
+                    <Send className={`w-3.5 h-3.5 ${isPostingSap ? 'animate-spin' : ''}`} />
+                    <span>{isPostingSap ? 'Conectando RFC...' : (sapConfirmation ? 'Re-contabilizar en SAP' : 'Contabilizar en SAP S/4HANA')}</span>
+                  </button>
+                </div>
+
+                {/* 2. Oracle NetSuite Box */}
+                <div className="p-4 rounded-lg bg-[#0e0f14] border border-[#1e202b] flex flex-col justify-between space-y-3">
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-purple-300 font-mono flex items-center gap-1.5">
+                        <Cpu className="w-3.5 h-3.5 text-purple-400" />
+                        Oracle NetSuite / SuiteTalk
+                      </span>
+                      {netSuiteConfirmation && (
+                        <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-bold flex items-center gap-1">
+                          <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                          APPROVED POSTED
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-[11px] text-zinc-400 mt-1 font-sans">
+                      Emite un <span className="font-mono text-zinc-300">JournalEntry</span> automático mediante SuiteTalk REST con conciliación automática.
+                    </p>
+                  </div>
+
+                  {netSuiteConfirmation ? (
+                    <div className="p-3 rounded bg-[#181322] border border-purple-900/40 font-mono text-xs space-y-1.5">
+                      <div className="flex justify-between text-zinc-400 text-[10px]">
+                        <span>Tran ID:</span>
+                        <span className="text-white font-bold">{netSuiteConfirmation.confirmation.tran_id}</span>
+                      </div>
+                      <div className="flex justify-between text-zinc-400 text-[10px]">
+                        <span>Internal ID:</span>
+                        <span className="text-zinc-200">{netSuiteConfirmation.confirmation.internal_id}</span>
+                      </div>
+                      <div className="flex justify-between text-zinc-400 text-[10px]">
+                        <span>Estatus:</span>
+                        <span className="text-emerald-400 font-bold">{netSuiteConfirmation.confirmation.posting_status}</span>
+                      </div>
+                      <div className="text-[10px] text-zinc-400 pt-1 border-t border-[#231b35] truncate">
+                        Subsidiaria: {netSuiteConfirmation.confirmation.subsidiary}
+                      </div>
+                    </div>
+                  ) : null}
+
+                  <button
+                    onClick={handlePostNetSuite}
+                    disabled={isPostingNetSuite}
+                    className="btn-tactile w-full py-2 rounded bg-[#1e1529] hover:bg-[#281c36] border border-purple-800/60 hover:border-purple-500 text-purple-300 font-mono font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-1.5 transition-all shadow-tactile disabled:opacity-50"
+                  >
+                    <Send className={`w-3.5 h-3.5 ${isPostingNetSuite ? 'animate-spin' : ''}`} />
+                    <span>{isPostingNetSuite ? 'Conectando SuiteTalk...' : (netSuiteConfirmation ? 'Re-contabilizar en NetSuite' : 'Contabilizar en Oracle NetSuite')}</span>
+                  </button>
+                </div>
+
               </div>
             </div>
           </div>
