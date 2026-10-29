@@ -23,7 +23,7 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_016_nestle_cuarentena_lab — 2026-10-28):**
+**Precedente 1 (Expediente case_016_nestle_cuarentena_lab — 2026-10-29):**
 - **Criterio Acreditado:** En el caso case_016_nestle_cuarentena_lab, se acreditó la improcedencia de la deducción 'CUARENTENA-LAB' conforme a CLAUSE-6.3, logrando la restitución de $7,000.00 USD.
 - **Resultado Previo:** Restitución de **$7,000.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CLAUSE-6.3.

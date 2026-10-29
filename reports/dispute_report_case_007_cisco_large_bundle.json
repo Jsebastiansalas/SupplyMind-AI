@@ -53,11 +53,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-28T23:59:18.176013+00:00"
+    "generated_at": "2026-10-29T01:00:28.610312+00:00"
   },
   "financial_proof": {
     "case_id": "case_007_cisco_large_bundle",
-    "proof_hash": "SM-PROOF-SHA256-180F40DBB81819FD",
+    "proof_hash": "SM-PROOF-SHA256-4EF7E6494A129AB7",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -71,7 +71,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-28T23:59:18.181252+00:00"
+    "tamper_proof_timestamp": "2026-10-29T01:00:28.618785+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_007_cisco_large_bundle",
@@ -206,7 +206,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-10-28T23:59:18Z"
+    "generated_at": "2026-10-29T01:00:28Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -219,16 +219,16 @@
     "claimable_amount": "14000.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-180F40DBB81819FD",
+    "zkp_proof_hash": "SM-PROOF-SHA256-4EF7E6494A129AB7",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-10-28T23:59:18.190677+00:00"
+    "anchored_at": "2026-10-29T01:00:28.628399+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_007_cisco_large_bundle",
-    "courtroom_session_id": "CRT-E6EC6151",
+    "courtroom_session_id": "CRT-EC5E0E70",
     "disputed_amount": "27000.00",
     "justified_amount": "13000.00",
     "claimable_amount": "14000.00",

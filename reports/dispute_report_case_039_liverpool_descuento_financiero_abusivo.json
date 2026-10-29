@@ -35,11 +35,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-29T00:00:05.316474+00:00"
+    "generated_at": "2026-10-29T01:01:17.244045+00:00"
   },
   "financial_proof": {
     "case_id": "case_039_liverpool_descuento_financiero_abusivo",
-    "proof_hash": "SM-PROOF-SHA256-9780D8057AB24784",
+    "proof_hash": "SM-PROOF-SHA256-432253FE5F4FF29C",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -53,7 +53,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-29T00:00:05.611053+00:00"
+    "tamper_proof_timestamp": "2026-10-29T01:01:17.735768+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_039_liverpool_descuento_financiero_abusivo",
@@ -106,7 +106,7 @@
     ],
     "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
     "confidence_penalty": 0.09,
-    "generated_at": "2026-10-29T00:00:05Z"
+    "generated_at": "2026-10-29T01:01:17Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -119,16 +119,16 @@
     "claimable_amount": "4250.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-9780D8057AB24784",
+    "zkp_proof_hash": "SM-PROOF-SHA256-432253FE5F4FF29C",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 97.5,
-    "anchored_at": "2026-10-29T00:00:05.621537+00:00"
+    "anchored_at": "2026-10-29T01:01:17.750358+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_039_liverpool_descuento_financiero_abusivo",
-    "courtroom_session_id": "CRT-873DF533",
+    "courtroom_session_id": "CRT-BD732569",
     "disputed_amount": "4250.0",
     "justified_amount": "0.00",
     "claimable_amount": "4250.00",
@@ -161,7 +161,7 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $4,250.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_039_liverpool_descuento_financiero_abusivo (fecha 2026-10-28), donde Liverpool Mx acordó el reintegro de $4,250.00 USD ante una deducción análoga por 'DED-EARLY-PAY-5PCT', amparada en la cláusula contractual CLAUSE-STD-01.",
+        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $4,250.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_039_liverpool_descuento_financiero_abusivo (fecha 2026-10-29), donde Liverpool Mx acordó el reintegro de $4,250.00 USD ante una deducción análoga por 'DED-EARLY-PAY-5PCT', amparada en la cláusula contractual CTR-GENERAL-TERMS.",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [

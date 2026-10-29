@@ -34,11 +34,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-29T00:00:01.872341+00:00"
+    "generated_at": "2026-10-29T01:01:12.594637+00:00"
   },
   "financial_proof": {
     "case_id": "case_011_oxxo_caducidad_corta",
-    "proof_hash": "SM-PROOF-SHA256-AE78602E3E81A696",
+    "proof_hash": "SM-PROOF-SHA256-0794499F6BE82BE9",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -52,7 +52,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-29T00:00:01.876209+00:00"
+    "tamper_proof_timestamp": "2026-10-29T01:01:12.602213+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_011_oxxo_caducidad_corta",
@@ -105,7 +105,7 @@
     ],
     "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
     "confidence_penalty": 0.1,
-    "generated_at": "2026-10-29T00:00:01Z"
+    "generated_at": "2026-10-29T01:01:12Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -118,16 +118,16 @@
     "claimable_amount": "3200.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-AE78602E3E81A696",
+    "zkp_proof_hash": "SM-PROOF-SHA256-0794499F6BE82BE9",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 95.0,
-    "anchored_at": "2026-10-29T00:00:01.883353+00:00"
+    "anchored_at": "2026-10-29T01:01:12.614301+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_011_oxxo_caducidad_corta",
-    "courtroom_session_id": "CRT-DFBF426D",
+    "courtroom_session_id": "CRT-D0113DCA",
     "disputed_amount": "3200.00",
     "justified_amount": "0.00",
     "claimable_amount": "3200.00",
@@ -160,7 +160,7 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $3,200.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_011_oxxo_caducidad_corta (fecha 2026-10-28), donde Cust-Oxxo Femsa acordó el reintegro de $3,200.00 USD ante una deducción análoga por 'CADUCIDAD-CORTA', amparada en la cláusula contractual CLAUSE-4.4.",
+        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $3,200.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_011_oxxo_caducidad_corta (fecha 2026-10-29), donde Cust-Oxxo Femsa acordó el reintegro de $3,200.00 USD ante una deducción análoga por 'CADUCIDAD-CORTA', amparada en la cláusula contractual CLAUSE-4.4.",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [

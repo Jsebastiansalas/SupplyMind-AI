@@ -26,3 +26,7 @@ logs/
 # Node & Frontend
 node_modules/
 frontend/node_modules/
+
+# Local Vector DB & Cache
+data/vector_db/
+

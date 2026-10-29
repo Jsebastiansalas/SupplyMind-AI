@@ -35,11 +35,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-29T00:00:09.438558+00:00"
+    "generated_at": "2026-10-29T01:01:23.668105+00:00"
   },
   "financial_proof": {
     "case_id": "case_045_mercadolibre_fulfillment_lost",
-    "proof_hash": "SM-PROOF-SHA256-E380D6F1F9B2EB1C",
+    "proof_hash": "SM-PROOF-SHA256-A6958E83A6BCEB36",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -53,7 +53,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-29T00:00:09.773874+00:00"
+    "tamper_proof_timestamp": "2026-10-29T01:01:24.079206+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_045_mercadolibre_fulfillment_lost",
@@ -106,7 +106,7 @@
     ],
     "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
     "confidence_penalty": 0.12,
-    "generated_at": "2026-10-29T00:00:09Z"
+    "generated_at": "2026-10-29T01:01:24Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -119,16 +119,16 @@
     "claimable_amount": "5000.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-E380D6F1F9B2EB1C",
+    "zkp_proof_hash": "SM-PROOF-SHA256-A6958E83A6BCEB36",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 87.18,
-    "anchored_at": "2026-10-29T00:00:09.783687+00:00"
+    "anchored_at": "2026-10-29T01:01:24.091673+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_045_mercadolibre_fulfillment_lost",
-    "courtroom_session_id": "CRT-7773786D",
+    "courtroom_session_id": "CRT-D381A3A6",
     "disputed_amount": "5000.0",
     "justified_amount": "0.00",
     "claimable_amount": "5000.00",
@@ -161,7 +161,7 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $5,000.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_045_mercadolibre_fulfillment_lost (fecha 2026-10-28), donde Mercadolibre Mx acordó el reintegro de $5,000.00 USD ante una deducción análoga por 'DED-UNAUTHORIZED', amparada en la cláusula contractual CLAUSE-STD-01.",
+        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $5,000.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_045_mercadolibre_fulfillment_lost (fecha 2026-10-29), donde Mercadolibre Mx acordó el reintegro de $5,000.00 USD ante una deducción análoga por 'DED-UNAUTHORIZED', amparada en la cláusula contractual CTR-GENERAL-TERMS.",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [

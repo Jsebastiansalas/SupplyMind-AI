@@ -23,7 +23,7 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_019_sanborns_devolucion_temporada — 2026-10-28):**
+**Precedente 1 (Expediente case_019_sanborns_devolucion_temporada — 2026-10-29):**
 - **Criterio Acreditado:** En el caso case_019_sanborns_devolucion_temporada, se acreditó la improcedencia de la deducción 'DEV-TEMPORADA-EXTEMP' conforme a CLAUSE-7.1, logrando la restitución de $4,500.00 USD.
 - **Resultado Previo:** Restitución de **$4,500.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CLAUSE-7.1.

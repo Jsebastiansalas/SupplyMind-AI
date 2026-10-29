@@ -23,10 +23,10 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_037_walmart_doble_penalizacion_otif — 2026-10-28):**
-- **Criterio Acreditado:** En el caso case_037_walmart_doble_penalizacion_otif, se acreditó la improcedencia de la deducción 'DED-SHORTAGE' conforme a CLAUSE-STD-01, logrando la restitución de $4,500.00 USD.
+**Precedente 1 (Expediente case_037_walmart_doble_penalizacion_otif — 2026-10-29):**
+- **Criterio Acreditado:** En el caso case_037_walmart_doble_penalizacion_otif, se acreditó la improcedencia de la deducción 'DED-SHORTAGE' conforme a CTR-GENERAL-TERMS, logrando la restitución de $4,500.00 USD.
 - **Resultado Previo:** Restitución de **$4,500.00 USD** a favor del proveedor.
-- **Fundamento Vinculante:** CLAUSE-STD-01.
+- **Fundamento Vinculante:** CTR-GENERAL-TERMS.
 
 **Precedente 2 (Expediente case_006_walmart_otif_pricing — 2026-09-18):**
 - **Criterio Acreditado:** Las guías de entrega de Walmart no pueden imponer penalidades superiores a las estipuladas en el contrato marco bilateral suscrito.

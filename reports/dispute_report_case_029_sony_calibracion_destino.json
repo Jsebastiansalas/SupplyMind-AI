@@ -35,11 +35,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-29T00:00:02.742086+00:00"
+    "generated_at": "2026-10-29T01:01:13.835736+00:00"
   },
   "financial_proof": {
     "case_id": "case_029_sony_calibracion_destino",
-    "proof_hash": "SM-PROOF-SHA256-AB46F2CF656B64B3",
+    "proof_hash": "SM-PROOF-SHA256-91632CAE1DF128F0",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -53,7 +53,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-29T00:00:02.745370+00:00"
+    "tamper_proof_timestamp": "2026-10-29T01:01:13.839796+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_029_sony_calibracion_destino",
@@ -119,7 +119,7 @@
     ],
     "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
     "confidence_penalty": 0.23,
-    "generated_at": "2026-10-29T00:00:02Z"
+    "generated_at": "2026-10-29T01:01:13Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -132,16 +132,16 @@
     "claimable_amount": "24000.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-AB46F2CF656B64B3",
+    "zkp_proof_hash": "SM-PROOF-SHA256-91632CAE1DF128F0",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 75.0,
-    "anchored_at": "2026-10-29T00:00:02.753527+00:00"
+    "anchored_at": "2026-10-29T01:01:13.851991+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_029_sony_calibracion_destino",
-    "courtroom_session_id": "CRT-63686345",
+    "courtroom_session_id": "CRT-0F3C3E94",
     "disputed_amount": "38000.00",
     "justified_amount": "14000.00",
     "claimable_amount": "24000.00",
@@ -185,7 +185,7 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $24,000.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_029_sony_calibracion_destino (fecha 2026-10-28), donde Cust-Sony Mx acordó el reintegro de $24,000.00 USD ante una deducción análoga por 'SEGURO-TRASLADO-JUST', amparada en la cláusula contractual CLAUSE-7.8.",
+        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $24,000.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_029_sony_calibracion_destino (fecha 2026-10-29), donde Cust-Sony Mx acordó el reintegro de $24,000.00 USD ante una deducción análoga por 'SEGURO-TRASLADO-JUST', amparada en la cláusula contractual CLAUSE-7.8.",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [

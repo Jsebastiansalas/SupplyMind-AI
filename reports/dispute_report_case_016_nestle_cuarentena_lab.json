@@ -37,11 +37,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-29T00:00:02.119423+00:00"
+    "generated_at": "2026-10-29T01:01:12.997651+00:00"
   },
   "financial_proof": {
     "case_id": "case_016_nestle_cuarentena_lab",
-    "proof_hash": "SM-PROOF-SHA256-EC7A560800D95105",
+    "proof_hash": "SM-PROOF-SHA256-094660C9D45845D7",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -55,7 +55,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-29T00:00:02.123557+00:00"
+    "tamper_proof_timestamp": "2026-10-29T01:01:13.004069+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_016_nestle_cuarentena_lab",
@@ -118,7 +118,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-10-29T00:00:02Z"
+    "generated_at": "2026-10-29T01:01:13Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -131,16 +131,16 @@
     "claimable_amount": "7000.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-EC7A560800D95105",
+    "zkp_proof_hash": "SM-PROOF-SHA256-094660C9D45845D7",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-10-29T00:00:02.130804+00:00"
+    "anchored_at": "2026-10-29T01:01:13.014554+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_016_nestle_cuarentena_lab",
-    "courtroom_session_id": "CRT-DAD6F8C4",
+    "courtroom_session_id": "CRT-903EBEA3",
     "disputed_amount": "21000.00",
     "justified_amount": "14000.00",
     "claimable_amount": "7000.00",
@@ -184,7 +184,7 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $7,000.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_016_nestle_cuarentena_lab (fecha 2026-10-28), donde Cust-Nestle Mx acordó el reintegro de $7,000.00 USD ante una deducción análoga por 'CUARENTENA-LAB', amparada en la cláusula contractual CLAUSE-6.3.",
+        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $7,000.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_016_nestle_cuarentena_lab (fecha 2026-10-29), donde Cust-Nestle Mx acordó el reintegro de $7,000.00 USD ante una deducción análoga por 'CUARENTENA-LAB', amparada en la cláusula contractual CLAUSE-6.3.",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [

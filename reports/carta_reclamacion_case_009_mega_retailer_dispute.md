@@ -23,7 +23,7 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_009_mega_retailer_dispute — 2026-10-28):**
+**Precedente 1 (Expediente case_009_mega_retailer_dispute — 2026-10-29):**
 - **Criterio Acreditado:** En el caso case_009_mega_retailer_dispute, se acreditó la improcedencia de la deducción 'DED-DOCK-SHORTAGE' conforme a CLAUSE-3.1, logrando la restitución de $13,000.00 USD.
 - **Resultado Previo:** Restitución de **$13,000.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CLAUSE-3.1.

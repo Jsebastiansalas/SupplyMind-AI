@@ -23,7 +23,7 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_026_truper_dev_extemporanea — 2026-10-28):**
+**Precedente 1 (Expediente case_026_truper_dev_extemporanea — 2026-10-29):**
 - **Criterio Acreditado:** En el caso case_026_truper_dev_extemporanea, se acreditó la improcedencia de la deducción 'DEV-EXTEMPORANEA' conforme a CLAUSE-4.5, logrando la restitución de $19,500.00 USD.
 - **Resultado Previo:** Restitución de **$19,500.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CLAUSE-4.5.

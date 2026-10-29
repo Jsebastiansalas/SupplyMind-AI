@@ -1,0 +1,26 @@
+{
+  "case_id": "case_auto_learning_test",
+  "currency": "USD",
+  "billed_amount": "15000.00",
+  "received_amount": "11000.00",
+  "difference": "-4000.00",
+  "root_cause": "Descuento comercial no pactado en orden de compra.",
+  "evidence": [
+    "PO acordada con precio fijo"
+  ],
+  "justified_amount": "0.00",
+  "claimable_amount": "4000.00",
+  "confidence": 0.98,
+  "recommended_action": "Exigir reintegro inmediato.",
+  "concessions": [],
+  "active_scenario": null,
+  "health_audit": null,
+  "financial_proof": null,
+  "evidence_manifest": null,
+  "quarantine_docket": null,
+  "session_anchor": null,
+  "watchdog_metrics": null,
+  "adversarial_verdict": null,
+  "recovery_prediction": null,
+  "sanity_gate_audit": null
+}

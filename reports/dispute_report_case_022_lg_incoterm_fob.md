@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `case_022_lg_incoterm_fob` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-10-29 00:00:02 UTC | **Nivel de Confianza:** 85.0%
+> **Fecha de Emisión:** 2026-10-29 01:01:13 UTC | **Nivel de Confianza:** 85.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO

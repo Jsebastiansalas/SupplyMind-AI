@@ -23,7 +23,7 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_028_inditex_curva_tallas — 2026-10-28):**
+**Precedente 1 (Expediente case_028_inditex_curva_tallas — 2026-10-29):**
 - **Criterio Acreditado:** En el caso case_028_inditex_curva_tallas, se acreditó la improcedencia de la deducción 'DEMERITO-CURVA-TALLAS' conforme a CLAUSE-4.7, logrando la restitución de $8,300.00 USD.
 - **Resultado Previo:** Restitución de **$8,300.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CLAUSE-4.7.

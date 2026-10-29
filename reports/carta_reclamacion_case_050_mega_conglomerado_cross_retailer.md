@@ -23,10 +23,10 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_050_mega_conglomerado_cross_retailer — 2026-10-28):**
-- **Criterio Acreditado:** En el caso case_050_mega_conglomerado_cross_retailer, se acreditó la improcedencia de la deducción 'DED-JUSTIFIED' conforme a CLAUSE-STD-01, logrando la restitución de $20,000.00 USD.
+**Precedente 1 (Expediente case_050_mega_conglomerado_cross_retailer — 2026-10-29):**
+- **Criterio Acreditado:** En el caso case_050_mega_conglomerado_cross_retailer, se acreditó la improcedencia de la deducción 'DED-JUSTIFIED' conforme a CTR-GENERAL-TERMS, logrando la restitución de $20,000.00 USD.
 - **Resultado Previo:** Restitución de **$20,000.00 USD** a favor del proveedor.
-- **Fundamento Vinculante:** CLAUSE-STD-01.
+- **Fundamento Vinculante:** CTR-GENERAL-TERMS.
 
 Por tanto, en observancia del principio de coherencia comercial y buena fe contractual, solicitamos la aplicación del mismo criterio para el reintegro de la presente retención.
 

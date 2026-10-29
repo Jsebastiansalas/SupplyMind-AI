@@ -23,7 +23,7 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_017_unilever_despacho_fuera_cita — 2026-10-28):**
+**Precedente 1 (Expediente case_017_unilever_despacho_fuera_cita — 2026-10-29):**
 - **Criterio Acreditado:** En el caso case_017_unilever_despacho_fuera_cita, se acreditó la improcedencia de la deducción 'MANIOBRA-ESPECIAL' conforme a CLAUSE-4.8, logrando la restitución de $5,500.00 USD.
 - **Resultado Previo:** Restitución de **$5,500.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CLAUSE-4.8.

@@ -39,11 +39,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-29T00:00:03.604892+00:00"
+    "generated_at": "2026-10-29T01:01:14.920820+00:00"
   },
   "financial_proof": {
     "case_id": "case_037_walmart_doble_penalizacion_otif",
-    "proof_hash": "SM-PROOF-SHA256-9465DBAE54C57549",
+    "proof_hash": "SM-PROOF-SHA256-C44B4DD1934B7C77",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -57,7 +57,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-29T00:00:04.221759+00:00"
+    "tamper_proof_timestamp": "2026-10-29T01:01:15.705343+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_037_walmart_doble_penalizacion_otif",
@@ -135,7 +135,7 @@
     ],
     "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
     "confidence_penalty": 0.18,
-    "generated_at": "2026-10-29T00:00:04Z"
+    "generated_at": "2026-10-29T01:01:15Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -148,16 +148,16 @@
     "claimable_amount": "4500.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-9465DBAE54C57549",
+    "zkp_proof_hash": "SM-PROOF-SHA256-C44B4DD1934B7C77",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 92.72,
-    "anchored_at": "2026-10-29T00:00:04.231093+00:00"
+    "anchored_at": "2026-10-29T01:01:15.716716+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_037_walmart_doble_penalizacion_otif",
-    "courtroom_session_id": "CRT-0C356325",
+    "courtroom_session_id": "CRT-F934157A",
     "disputed_amount": "7500.0",
     "justified_amount": "3000.00",
     "claimable_amount": "4500.00",
@@ -201,7 +201,7 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $4,500.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_037_walmart_doble_penalizacion_otif (fecha 2026-10-28), donde Walmart Mexico acordó el reintegro de $4,500.00 USD ante una deducción análoga por 'DED-SHORTAGE', amparada en la cláusula contractual CLAUSE-STD-01.",
+        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $4,500.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_037_walmart_doble_penalizacion_otif (fecha 2026-10-29), donde Walmart Mexico acordó el reintegro de $4,500.00 USD ante una deducción análoga por 'DED-SHORTAGE', amparada en la cláusula contractual CTR-GENERAL-TERMS.",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [

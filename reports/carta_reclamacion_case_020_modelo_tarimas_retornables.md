@@ -23,7 +23,7 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_020_modelo_tarimas_retornables — 2026-10-28):**
+**Precedente 1 (Expediente case_020_modelo_tarimas_retornables — 2026-10-29):**
 - **Criterio Acreditado:** En el caso case_020_modelo_tarimas_retornables, se acreditó la improcedencia de la deducción 'FALTANTE-TARIMAS-CHEP' conforme a CLAUSE-8.6, logrando la restitución de $18,000.00 USD.
 - **Resultado Previo:** Restitución de **$18,000.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CLAUSE-8.6.

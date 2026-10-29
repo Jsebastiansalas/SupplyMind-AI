@@ -24,9 +24,9 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
 **Precedente 1 (Expediente case_004_enterprise — 2026-10-28):**
-- **Criterio Acreditado:** En el caso case_004_enterprise, se acreditó la improcedencia de la deducción 'DED-DAMAGE-PENALTY' conforme a CLAUSE-STD-01, logrando la restitución de $2,500.00 USD.
+- **Criterio Acreditado:** En el caso case_004_enterprise, se acreditó la improcedencia de la deducción 'DED-DAMAGE-PENALTY' conforme a CTR-GENERAL-TERMS, logrando la restitución de $2,500.00 USD.
 - **Resultado Previo:** Restitución de **$2,500.00 USD** a favor del proveedor.
-- **Fundamento Vinculante:** CLAUSE-STD-01.
+- **Fundamento Vinculante:** CTR-GENERAL-TERMS.
 
 Por tanto, en observancia del principio de coherencia comercial y buena fe contractual, solicitamos la aplicación del mismo criterio para el reintegro de la presente retención.
 

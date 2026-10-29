@@ -23,7 +23,7 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_036_massive_1000_skus — 2026-10-28):**
+**Precedente 1 (Expediente case_036_massive_1000_skus — 2026-10-29):**
 - **Criterio Acreditado:** En el caso case_036_massive_1000_skus, se acreditó la improcedencia de la deducción 'DED-SHORTAGE-SIGNED' conforme a CLAUSE-1.1, logrando la restitución de $5,000.00 USD.
 - **Resultado Previo:** Restitución de **$5,000.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CLAUSE-1.1.

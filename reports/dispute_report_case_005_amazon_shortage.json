@@ -41,11 +41,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-28T23:59:17.911094+00:00"
+    "generated_at": "2026-10-29T01:00:27.964940+00:00"
   },
   "financial_proof": {
     "case_id": "case_005_amazon_shortage",
-    "proof_hash": "SM-PROOF-SHA256-AA30A05652261251",
+    "proof_hash": "SM-PROOF-SHA256-185309080AB93830",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -59,7 +59,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-28T23:59:17.915409+00:00"
+    "tamper_proof_timestamp": "2026-10-29T01:00:27.975740+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_005_amazon_shortage",
@@ -134,7 +134,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-10-28T23:59:17Z"
+    "generated_at": "2026-10-29T01:00:27Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -147,16 +147,16 @@
     "claimable_amount": "2500.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-AA30A05652261251",
+    "zkp_proof_hash": "SM-PROOF-SHA256-185309080AB93830",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-10-28T23:59:17.926673+00:00"
+    "anchored_at": "2026-10-29T01:00:28.031102+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_005_amazon_shortage",
-    "courtroom_session_id": "CRT-9240A36B",
+    "courtroom_session_id": "CRT-40F43015",
     "disputed_amount": "7500.00",
     "justified_amount": "5000.00",
     "claimable_amount": "2500.00",

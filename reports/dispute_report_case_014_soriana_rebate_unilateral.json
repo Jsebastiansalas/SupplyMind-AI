@@ -34,11 +34,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-29T00:00:02.023410+00:00"
+    "generated_at": "2026-10-29T01:01:12.813243+00:00"
   },
   "financial_proof": {
     "case_id": "case_014_soriana_rebate_unilateral",
-    "proof_hash": "SM-PROOF-SHA256-DA25FD07D06B3F3B",
+    "proof_hash": "SM-PROOF-SHA256-F2F0B126DDC7F1D9",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -52,7 +52,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-29T00:00:02.026814+00:00"
+    "tamper_proof_timestamp": "2026-10-29T01:01:12.822659+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_014_soriana_rebate_unilateral",
@@ -105,7 +105,7 @@
     ],
     "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
     "confidence_penalty": 0.11,
-    "generated_at": "2026-10-29T00:00:02Z"
+    "generated_at": "2026-10-29T01:01:12Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -118,16 +118,16 @@
     "claimable_amount": "9800.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-DA25FD07D06B3F3B",
+    "zkp_proof_hash": "SM-PROOF-SHA256-F2F0B126DDC7F1D9",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 91.09,
-    "anchored_at": "2026-10-29T00:00:02.033856+00:00"
+    "anchored_at": "2026-10-29T01:01:12.840410+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_014_soriana_rebate_unilateral",
-    "courtroom_session_id": "CRT-B0DF36CF",
+    "courtroom_session_id": "CRT-0E509E4C",
     "disputed_amount": "9800.00",
     "justified_amount": "0.00",
     "claimable_amount": "9800.00",
@@ -160,7 +160,7 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $9,800.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_014_soriana_rebate_unilateral (fecha 2026-10-28), donde Cust-Soriana Mx acordó el reintegro de $9,800.00 USD ante una deducción análoga por 'REBATE-UNILATERAL', amparada en la cláusula contractual CLAUSE-11.2.",
+        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $9,800.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_014_soriana_rebate_unilateral (fecha 2026-10-29), donde Cust-Soriana Mx acordó el reintegro de $9,800.00 USD ante una deducción análoga por 'REBATE-UNILATERAL', amparada en la cláusula contractual CLAUSE-11.2.",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [

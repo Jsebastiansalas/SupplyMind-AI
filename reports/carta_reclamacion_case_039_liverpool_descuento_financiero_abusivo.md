@@ -23,10 +23,10 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_039_liverpool_descuento_financiero_abusivo — 2026-10-28):**
-- **Criterio Acreditado:** En el caso case_039_liverpool_descuento_financiero_abusivo, se acreditó la improcedencia de la deducción 'DED-EARLY-PAY-5PCT' conforme a CLAUSE-STD-01, logrando la restitución de $4,250.00 USD.
+**Precedente 1 (Expediente case_039_liverpool_descuento_financiero_abusivo — 2026-10-29):**
+- **Criterio Acreditado:** En el caso case_039_liverpool_descuento_financiero_abusivo, se acreditó la improcedencia de la deducción 'DED-EARLY-PAY-5PCT' conforme a CTR-GENERAL-TERMS, logrando la restitución de $4,250.00 USD.
 - **Resultado Previo:** Restitución de **$4,250.00 USD** a favor del proveedor.
-- **Fundamento Vinculante:** CLAUSE-STD-01.
+- **Fundamento Vinculante:** CTR-GENERAL-TERMS.
 
 **Precedente 2 (Expediente case_012_liverpool_colgado_etiqueta — 2026-10-29):**
 - **Criterio Acreditado:** En el caso case_012_liverpool_colgado_etiqueta, se acreditó la improcedencia de la deducción 'COLGADO-SERVICIOS' conforme a CLAUSE-5.2, logrando la restitución de $11,000.00 USD.

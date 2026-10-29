@@ -23,7 +23,7 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_023_apple_garantias_usuario — 2026-10-28):**
+**Precedente 1 (Expediente case_023_apple_garantias_usuario — 2026-10-29):**
 - **Criterio Acreditado:** En el caso case_023_apple_garantias_usuario, se acreditó la improcedencia de la deducción 'RMA-DICTAMEN-LAB' conforme a CLAUSE-9.1, logrando la restitución de $34,000.00 USD.
 - **Resultado Previo:** Restitución de **$34,000.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CLAUSE-9.1.

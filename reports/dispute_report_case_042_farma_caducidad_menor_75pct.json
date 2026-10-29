@@ -33,11 +33,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-29T00:00:07.485987+00:00"
+    "generated_at": "2026-10-29T01:01:20.723677+00:00"
   },
   "financial_proof": {
     "case_id": "case_042_farma_caducidad_menor_75pct",
-    "proof_hash": "SM-PROOF-SHA256-A3993A1D336A6AB2",
+    "proof_hash": "SM-PROOF-SHA256-D570EBBF2CF8710B",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -49,7 +49,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-29T00:00:07.501051+00:00"
+    "tamper_proof_timestamp": "2026-10-29T01:01:20.753376+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_042_farma_caducidad_menor_75pct",
@@ -88,7 +88,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-10-29T00:00:07Z"
+    "generated_at": "2026-10-29T01:01:20Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -101,16 +101,16 @@
     "claimable_amount": "0.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-A3993A1D336A6AB2",
+    "zkp_proof_hash": "SM-PROOF-SHA256-D570EBBF2CF8710B",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-10-29T00:00:07.506131+00:00"
+    "anchored_at": "2026-10-29T01:01:20.764591+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_042_farma_caducidad_menor_75pct",
-    "courtroom_session_id": "CRT-5058AFD7",
+    "courtroom_session_id": "CRT-644A9A87",
     "disputed_amount": "0.0",
     "justified_amount": "0.00",
     "claimable_amount": "0.00",

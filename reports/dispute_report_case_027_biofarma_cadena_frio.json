@@ -38,11 +38,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-29T00:00:02.662947+00:00"
+    "generated_at": "2026-10-29T01:01:13.723082+00:00"
   },
   "financial_proof": {
     "case_id": "case_027_biofarma_cadena_frio",
-    "proof_hash": "SM-PROOF-SHA256-86CCE34258A5D768",
+    "proof_hash": "SM-PROOF-SHA256-D92EAA69B3A9B78E",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -54,7 +54,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-29T00:00:02.665962+00:00"
+    "tamper_proof_timestamp": "2026-10-29T01:01:13.727413+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_027_biofarma_cadena_frio",
@@ -131,7 +131,7 @@
     ],
     "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
     "confidence_penalty": 0.14,
-    "generated_at": "2026-10-29T00:00:02Z"
+    "generated_at": "2026-10-29T01:01:13Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -144,16 +144,16 @@
     "claimable_amount": "0.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-86CCE34258A5D768",
+    "zkp_proof_hash": "SM-PROOF-SHA256-D92EAA69B3A9B78E",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 85.71,
-    "anchored_at": "2026-10-29T00:00:02.670443+00:00"
+    "anchored_at": "2026-10-29T01:01:13.737178+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_027_biofarma_cadena_frio",
-    "courtroom_session_id": "CRT-1AE55290",
+    "courtroom_session_id": "CRT-A7F21794",
     "disputed_amount": "16800.00",
     "justified_amount": "16800.00",
     "claimable_amount": "0.00",

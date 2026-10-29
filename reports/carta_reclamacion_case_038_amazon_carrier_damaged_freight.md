@@ -23,12 +23,12 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_038_amazon_carrier_damaged_freight — 2026-10-28):**
-- **Criterio Acreditado:** En el caso case_038_amazon_carrier_damaged_freight, se acreditó la improcedencia de la deducción 'DED-DAMAGE-IN-TRANSIT' conforme a CLAUSE-STD-01, logrando la restitución de $6,200.00 USD.
+**Precedente 1 (Expediente case_038_amazon_carrier_damaged_freight — 2026-10-29):**
+- **Criterio Acreditado:** En el caso case_038_amazon_carrier_damaged_freight, se acreditó la improcedencia de la deducción 'DED-DAMAGE-IN-TRANSIT' conforme a CTR-GENERAL-TERMS, logrando la restitución de $6,200.00 USD.
 - **Resultado Previo:** Restitución de **$6,200.00 USD** a favor del proveedor.
-- **Fundamento Vinculante:** CLAUSE-STD-01.
+- **Fundamento Vinculante:** CTR-GENERAL-TERMS.
 
-**Precedente 2 (Expediente case_005_amazon_shortage — 2026-10-28):**
+**Precedente 2 (Expediente case_005_amazon_shortage — 2026-10-29):**
 - **Criterio Acreditado:** En el caso case_005_amazon_shortage, se acreditó la improcedencia de la deducción 'DED-SHRT-20' conforme a 4.1, logrando la restitución de $2,500.00 USD.
 - **Resultado Previo:** Restitución de **$2,500.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** 4.1.
