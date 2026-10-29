@@ -9,6 +9,16 @@ from agent.ingestion.resilient_parser import (
     impute_missing_document,
     ResilientDocumentLoader,
 )
+from agent.ingestion.edi_engine import (
+    EdiSegment,
+    EdiEnvelope,
+    EdiItemLine,
+    EdiDeductionLine,
+    EdiParsedTransaction,
+    EdiX12Parser,
+    EdiAuditEngine,
+    Edi824Generator,
+)
 
 __all__ = [
     "repair_json_string",
@@ -16,4 +26,13 @@ __all__ = [
     "normalize_schema_dict",
     "impute_missing_document",
     "ResilientDocumentLoader",
+    "EdiSegment",
+    "EdiEnvelope",
+    "EdiItemLine",
+    "EdiDeductionLine",
+    "EdiParsedTransaction",
+    "EdiX12Parser",
+    "EdiAuditEngine",
+    "Edi824Generator",
 ]
+
