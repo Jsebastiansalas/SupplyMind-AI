@@ -1,5 +1,5 @@
 # 🏆 The Crucible Suite — Reporte Pericial de Evaluación de 50 Casos B2B
-**Fecha de Ejecución:** 2026-10-28T23:26:30Z  
+**Fecha de Ejecución:** 2026-10-29T00:00:13Z  
 **Motor de Auditoría:** SupplyMind AI Enterprise (Platica.mx x Campuslands)
 
 ## 📊 Métricas Globales de Rendimiento
@@ -9,7 +9,7 @@
 - **Eficacia de Cuarentena Forense:** **100.0% (4/4 casos adversarios neutralizados)**
 - **Volumen Financiero Auditado:** **$5,419,359.00 USD**
 - **Capital Reclamable Recuperado:** **$400,550.00 USD**
-- **Tiempo Total:** **31.82 segundos (636ms por caso)**
+- **Tiempo Total:** **73.99 segundos (1480ms por caso)**
 
 ## 📋 Detalle de Casos de Estrés Extremo (50 Casos)
 | Caso ID | Comprador | Monto Disputa | Justificado | Reclamable | Invariante | Resultado |

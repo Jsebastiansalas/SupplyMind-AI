@@ -41,11 +41,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-28T16:21:45.517518+00:00"
+    "generated_at": "2026-10-29T00:00:01.716574+00:00"
   },
   "financial_proof": {
     "case_id": "case_008_homedepot_damaged_scanned",
-    "proof_hash": "SM-PROOF-SHA256-CA8993A3AD1EEBFC",
+    "proof_hash": "SM-PROOF-SHA256-23F8431A84E470D4",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -59,7 +59,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-28T16:21:45.524034+00:00"
+    "tamper_proof_timestamp": "2026-10-29T00:00:01.731826+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_008_homedepot_damaged_scanned",
@@ -134,7 +134,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-10-28T16:21:45Z"
+    "generated_at": "2026-10-29T00:00:01Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -147,16 +147,16 @@
     "claimable_amount": "4000.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-CA8993A3AD1EEBFC",
+    "zkp_proof_hash": "SM-PROOF-SHA256-23F8431A84E470D4",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-10-28T16:21:45.529473+00:00"
+    "anchored_at": "2026-10-29T00:00:01.739543+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_008_homedepot_damaged_scanned",
-    "courtroom_session_id": "CRT-0B520EE3",
+    "courtroom_session_id": "CRT-135E38A6",
     "disputed_amount": "8200.00",
     "justified_amount": "4200.00",
     "claimable_amount": "4000.00",
@@ -200,7 +200,7 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $4,000.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_008_homedepot_damaged_scanned (fecha 2026-09-28), donde The Home Depot México acordó el reintegro de $4,200.00 USD ante una deducción análoga por 'DED-DAMAGE-CLAIM', amparada en la cláusula contractual CLAUSE-5.1.",
+        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $4,000.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_008_homedepot_damaged_scanned (fecha 2026-10-28), donde Home Depot Mexico acordó el reintegro de $4,000.00 USD ante una deducción análoga por 'DED-DAMAGED-DOCK', amparada en la cláusula contractual 5.1.",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [
@@ -231,8 +231,7 @@
       "Remisión de entrega debidamente firmada en muelle receptor (+20%)",
       "Discrepancia física allanada con sello formal de muelle (+10%)",
       "Contrato marco comercial vigente con cláusulas de prevalencia (+15%)",
-      "Historial altamente favorable con The Home Depot México (100.0% de éxito histórico) (+12%)",
-      "Existen precedentes ganados al 100% con este cliente corporativo (+5%)",
+      "Historial altamente favorable con Home Depot Mexico (100.0% de éxito histórico) (+12%)",
       "Dictamen judicial favorable con fuerza probatoria del 87.5% (+10%)"
     ],
     "risk_drivers": [],
@@ -269,5 +268,22 @@
       }
     ],
     "executive_summary": "El expediente presenta una probabilidad de recuperación del 98.5% (ALTA_CERTEZA). Se proyecta recuperar un valor neto ponderado de $3,940.00 USD dentro de un plazo estimado de 10 días naturales vía 'FAST_TRACK_B2B_PORTAL'."
+  },
+  "sanity_gate_audit": {
+    "is_bulletproof": true,
+    "arithmetic_invariant_passed": true,
+    "precedence_hierarchy_passed": true,
+    "notice_window_passed": true,
+    "notice_window_days_allowed": null,
+    "notice_window_days_elapsed": null,
+    "double_penalty_detected": false,
+    "double_penalty_details": [],
+    "irrefutability_grade": "A1_IRREFUTABLE",
+    "corrective_actions_applied": [],
+    "audit_notes": [
+      "Invarianza aritmética perfecta verificada al centavo ($0.00 MAE)."
+    ],
+    "verified_claimable_amount": "4000.00",
+    "verified_justified_amount": "4200.00"
   }
 }

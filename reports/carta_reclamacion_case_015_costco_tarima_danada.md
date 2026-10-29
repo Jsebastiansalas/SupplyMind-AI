@@ -23,15 +23,15 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_auto_learning_test — 2026-10-28):**
-- **Criterio Acreditado:** En el caso case_auto_learning_test, se acreditó la improcedencia de la deducción 'DED-COMMERCIAL-VARIANCE' conforme a CLAUSE-3.2, logrando la restitución de $4,000.00 USD.
-- **Resultado Previo:** Restitución de **$4,000.00 USD** a favor del proveedor.
-- **Fundamento Vinculante:** CLAUSE-3.2.
+**Precedente 1 (Expediente case_015_costco_tarima_danada — 2026-10-28):**
+- **Criterio Acreditado:** En el caso case_015_costco_tarima_danada, se acreditó la improcedencia de la deducción 'MERMA-AVARIA-FISICA' conforme a CLAUSE-3.4, logrando la restitución de $4,200.00 USD.
+- **Resultado Previo:** Restitución de **$4,200.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** CLAUSE-3.4.
 
-**Precedente 2 (Expediente case_015_costco_tarima_danada — 2026-10-11):**
-- **Criterio Acreditado:** El daño superficial al empaque secundario (playo protector) no afectó la integridad física ni caducidad del producto primario homologado.
-- **Resultado Previo:** Restitución de **$4,800.00 USD** a favor del proveedor.
-- **Fundamento Vinculante:** CLAUSE-6.3.
+**Precedente 2 (Expediente case_041_costco_pallets_rotos_patio — 2026-10-28):**
+- **Criterio Acreditado:** En el caso case_041_costco_pallets_rotos_patio, se acreditó la improcedencia de la deducción 'DED-UNAUTHORIZED' conforme a CLAUSE-STD-01, logrando la restitución de $3,500.00 USD.
+- **Resultado Previo:** Restitución de **$3,500.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** CLAUSE-STD-01.
 
 Por tanto, en observancia del principio de coherencia comercial y buena fe contractual, solicitamos la aplicación del mismo criterio para el reintegro de la presente retención.
 

@@ -37,11 +37,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-28T16:21:47.119012+00:00"
+    "generated_at": "2026-10-29T00:00:02.570811+00:00"
   },
   "financial_proof": {
     "case_id": "case_025_miniso_faltante_cif",
-    "proof_hash": "SM-PROOF-SHA256-BD317AADE216B026",
+    "proof_hash": "SM-PROOF-SHA256-9C348F28C488EA5F",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -55,7 +55,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-28T16:21:47.123503+00:00"
+    "tamper_proof_timestamp": "2026-10-29T00:00:02.574373+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_025_miniso_faltante_cif",
@@ -118,7 +118,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-10-28T16:21:47Z"
+    "generated_at": "2026-10-29T00:00:02Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -131,16 +131,16 @@
     "claimable_amount": "2800.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-BD317AADE216B026",
+    "zkp_proof_hash": "SM-PROOF-SHA256-9C348F28C488EA5F",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-10-28T16:21:47.130807+00:00"
+    "anchored_at": "2026-10-29T00:00:02.582062+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_025_miniso_faltante_cif",
-    "courtroom_session_id": "CRT-1B9DD390",
+    "courtroom_session_id": "CRT-1F1F6DA5",
     "disputed_amount": "7800.00",
     "justified_amount": "5000.00",
     "claimable_amount": "2800.00",
@@ -184,7 +184,7 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $2,800.00 USD. La retención constituye incumplimiento de pago.",
+        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $2,800.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_025_miniso_faltante_cif (fecha 2026-10-28), donde Cust-Miniso Mx acordó el reintegro de $2,800.00 USD ante una deducción análoga por 'DESESTIBA-CONTENEDOR', amparada en la cláusula contractual CLAUSE-3.6.",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [
@@ -199,22 +199,23 @@
     "dismissed_objections": [
       "Retención unilateral de $2,800.00 USD declarada IMPROCEDENTE y 100% RECLAMABLE."
     ],
-    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente case_025_miniso_faltante_cif: Se condena al comprador al reintegro inmediato de $2,800.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $5,000.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.0%.",
-    "probative_force_supplier_pct": 87.0,
+    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente case_025_miniso_faltante_cif: Se condena al comprador al reintegro inmediato de $2,800.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $5,000.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%.",
+    "probative_force_supplier_pct": 87.5,
     "final_legal_doctrine": "DOCTRINA COMERCIAL VINCULANTE: Ninguna guía operativa o portal B2B puede modificar o imponer sanciones financieras no contenidas en el contrato marco bilateral suscrito. Las remisiones firmadas con sello de muelle hacen fe pública comercial plena e inmutable entre las partes."
   },
   "recovery_prediction": {
     "case_id": "case_025_miniso_faltante_cif",
-    "recovery_probability_pct": 95.0,
+    "recovery_probability_pct": 98.5,
     "confidence_grade": "ALTA_CERTEZA",
     "recommended_track": "FAST_TRACK_B2B_PORTAL",
     "target_claimable_amount": "2800.00",
-    "expected_net_recovery_usd": "2660.00",
+    "expected_net_recovery_usd": "2758.00",
     "estimated_days_to_cash": 10,
     "positive_drivers": [
       "Remisión de entrega debidamente firmada en muelle receptor (+20%)",
       "Contrato marco comercial vigente con cláusulas de prevalencia (+15%)",
-      "Dictamen judicial favorable con fuerza probatoria del 87.0% (+10%)"
+      "Historial altamente favorable con Cust-Miniso Mx (100.0% de éxito histórico) (+12%)",
+      "Dictamen judicial favorable con fuerza probatoria del 87.5% (+10%)"
     ],
     "risk_drivers": [],
     "scenarios": [
@@ -249,6 +250,28 @@
         "recommended": false
       }
     ],
-    "executive_summary": "El expediente presenta una probabilidad de recuperación del 95.0% (ALTA_CERTEZA). Se proyecta recuperar un valor neto ponderado de $2,660.00 USD dentro de un plazo estimado de 10 días naturales vía 'FAST_TRACK_B2B_PORTAL'."
+    "executive_summary": "El expediente presenta una probabilidad de recuperación del 98.5% (ALTA_CERTEZA). Se proyecta recuperar un valor neto ponderado de $2,758.00 USD dentro de un plazo estimado de 10 días naturales vía 'FAST_TRACK_B2B_PORTAL'."
+  },
+  "sanity_gate_audit": {
+    "is_bulletproof": true,
+    "arithmetic_invariant_passed": true,
+    "precedence_hierarchy_passed": true,
+    "notice_window_passed": true,
+    "notice_window_days_allowed": null,
+    "notice_window_days_elapsed": null,
+    "double_penalty_detected": true,
+    "double_penalty_details": [
+      "Doble Imposición Detectada: El comprador descontó las unidades faltantes y simultáneamente aplicó penalización por nivel de servicio (OTIF/Fill-Rate) sobre el mismo embarque."
+    ],
+    "irrefutability_grade": "A1_IRREFUTABLE",
+    "corrective_actions_applied": [
+      "Desestimación de sanción por nivel de servicio duplicada sobre faltante ya ajustado."
+    ],
+    "audit_notes": [
+      "Invarianza aritmética perfecta verificada al centavo ($0.00 MAE).",
+      "Doble Imposición Detectada: El comprador descontó las unidades faltantes y simultáneamente aplicó penalización por nivel de servicio (OTIF/Fill-Rate) sobre el mismo embarque."
+    ],
+    "verified_claimable_amount": "2800.00",
+    "verified_justified_amount": "5000.00"
   }
 }

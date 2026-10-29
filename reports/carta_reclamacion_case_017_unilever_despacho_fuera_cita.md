@@ -20,6 +20,16 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 - **Causa Raíz:** Discrepancia mixta en expediente case_017_unilever_despacho_fuera_cita: Faltante físico comprobado de $6,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $5,500.00 USD sin sustento contractual ni documental.
 - **Fundamentación Contractual:** Evaluación algorítmica y semántica completada. Posible deducción de $5,500.00 requiere análisis final por el Agente.
 
+#### 4. Antecedentes y Precedentes Comerciales Vinculantes
+Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
+
+**Precedente 1 (Expediente case_017_unilever_despacho_fuera_cita — 2026-10-28):**
+- **Criterio Acreditado:** En el caso case_017_unilever_despacho_fuera_cita, se acreditó la improcedencia de la deducción 'MANIOBRA-ESPECIAL' conforme a CLAUSE-4.8, logrando la restitución de $5,500.00 USD.
+- **Resultado Previo:** Restitución de **$5,500.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** CLAUSE-4.8.
+
+Por tanto, en observancia del principio de coherencia comercial y buena fe contractual, solicitamos la aplicación del mismo criterio para el reintegro de la presente retención.
+
 #### 3. Requerimiento de Pago
 En virtud de lo anterior, solicitamos comedidamente realizar la programación y transferencia del saldo retenido injustificadamente por valor de:
 

@@ -32,7 +32,7 @@
     "schema_warnings": [],
     "execution_safety_level": "QUARANTINE_ISOLATION_SETTLEMENT_BLOCKED",
     "quarantine_docket": {
-      "quarantine_id": "FRQ-CASE_033_QUARANTINE_ANACHRONISTIC_DATES-EB03BFDE",
+      "quarantine_id": "FRQ-CASE_033_QUARANTINE_ANACHRONISTIC_DATES-E943BF7A",
       "case_id": "case_033_quarantine_anachronistic_dates",
       "severity": "ANACHRONISM_RISK",
       "is_settlement_blocked": true,
@@ -45,13 +45,13 @@
       "remediation_steps": [
         "Revisar folio fiscal del comprobante de pago para verificar si pertenece a una factura anterior."
       ],
-      "quarantine_timestamp": "2026-10-28T16:21:47.815742+00:00",
+      "quarantine_timestamp": "2026-10-29T00:00:02.909560+00:00",
       "release_conditions": [
         "Ratificación bancaria de aplicación de fondos."
       ],
       "operator_override_permitted": false
     },
-    "generated_at": "2026-10-28T16:21:47.815453+00:00"
+    "generated_at": "2026-10-29T00:00:02.909406+00:00"
   },
   "financial_proof": {
     "case_id": "case_033_quarantine_anachronistic_dates",
@@ -64,7 +64,7 @@
     "verified_figures": [],
     "confidence_penalty": 0.0,
     "audit_status": "ARITHMETIC_MISMATCH",
-    "tamper_proof_timestamp": "2026-10-28T16:21:47.816855+00:00"
+    "tamper_proof_timestamp": "2026-10-29T00:00:02.910077+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_033_quarantine_anachronistic_dates",
@@ -80,10 +80,10 @@
     ],
     "binding_verdict": "CRITICAL_UNBACKED_DEFICIT",
     "confidence_penalty": 1.0,
-    "generated_at": "2026-10-28T16:21:47.816933+00:00"
+    "generated_at": "2026-10-29T00:00:02.910109+00:00"
   },
   "quarantine_docket": {
-    "quarantine_id": "FRQ-CASE_033_QUARANTINE_ANACHRONISTIC_DATES-EB03BFDE",
+    "quarantine_id": "FRQ-CASE_033_QUARANTINE_ANACHRONISTIC_DATES-E943BF7A",
     "case_id": "case_033_quarantine_anachronistic_dates",
     "severity": "ANACHRONISM_RISK",
     "is_settlement_blocked": true,
@@ -96,7 +96,7 @@
     "remediation_steps": [
       "Revisar folio fiscal del comprobante de pago para verificar si pertenece a una factura anterior."
     ],
-    "quarantine_timestamp": "2026-10-28T16:21:47.815742+00:00",
+    "quarantine_timestamp": "2026-10-29T00:00:02.909560+00:00",
     "release_conditions": [
       "Ratificación bancaria de aplicación de fondos."
     ],
@@ -116,9 +116,10 @@
     "zkp_status": "ARITHMETIC_MISMATCH",
     "is_quarantined": true,
     "evidence_backing_ratio": 0.0,
-    "anchored_at": "2026-10-28T16:21:47.817049+00:00"
+    "anchored_at": "2026-10-29T00:00:02.910170+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": null,
-  "recovery_prediction": null
+  "recovery_prediction": null,
+  "sanity_gate_audit": null
 }

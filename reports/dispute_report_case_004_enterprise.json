@@ -8,25 +8,24 @@
   "evidence": [
     "Mercancía averiada en SRV-X9: 1 unidades valoradas en $5,000.00",
     "Deducción aplicada en comprobante PAY-ENT-001: código DED-DAMAGE-PENALTY, motivo 'Caja de servidor averiada. Penalidad 150% segun clausula 37', monto $7,500.00",
+    "Respaldo contractual: La CLÁUSULA 37 ('Política de Averías y Tolerancia Logística') autoriza deducir mercancía dañada constatada al momento de la descarga.",
+    "Respaldo contractual: La CLÁUSULA 37 ('Política de Averías y Tolerancia Logística') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.",
     "[Factura INV-ENT-001 §Total $50,000.00 USD]",
     "[Comprobante PAY-ENT-001 §Liquidación $42,500.00 USD]",
-    "[Contrato contract §Cláusula CLAUSE-STD-01 'Condición General de Recepción y Pago' | Deducción DED-DAMAGE-PENALTY $7,500.00]",
     "[Remisión DEL-ENT-999 §SKU SRV-X9 | Avería: 1 uds | $5,000.00]"
   ],
   "justified_amount": "5000.00",
   "claimable_amount": "2500.00",
-  "confidence": 0.98,
+  "confidence": 0.88,
   "recommended_action": "Aceptar deducción de $5,000.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $2,500.00 USD exigiendo su pago inmediato.",
   "concessions": [],
   "active_scenario": null,
   "health_audit": {
     "case_id": "case_004_enterprise",
-    "health_score": 85.0,
-    "status": "AUTO_REPAIRED",
+    "health_score": 100.0,
+    "status": "PRISTINE",
     "is_healthy": true,
-    "repaired_issues": [
-      "[contract.md] Error de lectura primaria: Se requiere instalar chromadb: pip install chromadb. Activando autocuración profunda."
-    ],
+    "repaired_issues": [],
     "imputed_documents": [],
     "documents_present": [
       "invoice",
@@ -37,13 +36,13 @@
     ],
     "documents_missing": [],
     "schema_warnings": [],
-    "execution_safety_level": "SAFE_WITH_TRACEABILITY",
+    "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-28T16:20:57.299569+00:00"
+    "generated_at": "2026-10-28T23:59:16.568306+00:00"
   },
   "financial_proof": {
     "case_id": "case_004_enterprise",
-    "proof_hash": "SM-PROOF-SHA256-4399C365022991AD",
+    "proof_hash": "SM-PROOF-SHA256-0409731BDFCBBFE0",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -57,16 +56,16 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-28T16:20:57.308391+00:00"
+    "tamper_proof_timestamp": "2026-10-28T23:59:17.822330+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_004_enterprise",
     "total_claims_audited": 4,
-    "backed_claims_count": 4,
-    "unbacked_claims_count": 0,
-    "total_backed_amount": "105000.00",
-    "total_unbacked_amount": "0.00",
-    "backing_ratio_pct": 100.0,
+    "backed_claims_count": 3,
+    "unbacked_claims_count": 1,
+    "total_backed_amount": "97500.00",
+    "total_unbacked_amount": "7500.00",
+    "backing_ratio_pct": 92.86,
     "evidence_pointers": [
       {
         "pointer_id": "PTR-INV-INV-ENT-001-TOTAL",
@@ -93,16 +92,16 @@
         "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $42,500.00."
       },
       {
-        "pointer_id": "PTR-DED-DED-DAMAGE-PENALTY-1",
-        "doc_type": "CONTRACT",
-        "doc_id": "contract",
-        "field_ref": "clause_CLAUSE-STD-01",
+        "pointer_id": "PTR-DED-DED-DAMAGE-PENALTY-1-UNBACKED",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-ENT-001",
+        "field_ref": "deduction_DED-DAMAGE-PENALTY",
         "item_sku": null,
         "amount": "7500.0",
-        "citation_tag": "[Contrato contract §Cláusula CLAUSE-STD-01 'Condición General de Recepción y Pago' | Deducción DED-DAMAGE-PENALTY $7,500.00]",
-        "is_backed_by_physical_proof": true,
-        "status": "ACREDITADO",
-        "detail": "Deducción 'DED-DAMAGE-PENALTY' normada por la cláusula CLAUSE-STD-01 de contract."
+        "citation_tag": "[Comprobante PAY-ENT-001 §Deducción Unilateral DED-DAMAGE-PENALTY | $7,500.00 SIN CLÁUSULA EN case_004_enterprise]",
+        "is_backed_by_physical_proof": false,
+        "status": "CAUTELAR_NO_ACREDITADA",
+        "detail": "El retailer retuvo $7,500.00 bajo el código 'DED-DAMAGE-PENALTY', pero el contrato case_004_enterprise no contiene cláusula habilitante."
       },
       {
         "pointer_id": "PTR-DEL-DEL-ENT-999-SRV-X9-DAMAGED",
@@ -117,10 +116,12 @@
         "detail": "Mercancía averiada (1 unidades) en remisión DEL-ENT-999."
       }
     ],
-    "cautelar_items": [],
-    "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
-    "confidence_penalty": 0.0,
-    "generated_at": "2026-10-28T16:20:57Z"
+    "cautelar_items": [
+      "Deducción DED-DAMAGE-PENALTY ($7,500.00): Sin cláusula contractual que autorice retención."
+    ],
+    "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
+    "confidence_penalty": 0.1,
+    "generated_at": "2026-10-28T23:59:17Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -131,18 +132,18 @@
     "difference": "-7500.0",
     "justified_amount": "5000.00",
     "claimable_amount": "2500.00",
-    "health_status": "AUTO_REPAIRED",
-    "health_score": 85.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-4399C365022991AD",
+    "health_status": "PRISTINE",
+    "health_score": 100.0,
+    "zkp_proof_hash": "SM-PROOF-SHA256-0409731BDFCBBFE0",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
-    "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-10-28T16:20:57.317822+00:00"
+    "evidence_backing_ratio": 92.86,
+    "anchored_at": "2026-10-28T23:59:17.832514+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_004_enterprise",
-    "courtroom_session_id": "CRT-44AEAA8A",
+    "courtroom_session_id": "CRT-186C99C1",
     "disputed_amount": "7500.0",
     "justified_amount": "5000.00",
     "claimable_amount": "2500.00",
@@ -186,7 +187,7 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $2,500.00 USD. La retención constituye incumplimiento de pago.",
+        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $2,500.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_004_enterprise (fecha 2026-10-28), donde Mcr-111 acordó el reintegro de $2,500.00 USD ante una deducción análoga por 'DED-DAMAGE-PENALTY', amparada en la cláusula contractual CLAUSE-STD-01.",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [
@@ -201,25 +202,27 @@
     "dismissed_objections": [
       "Retención unilateral de $2,500.00 USD declarada IMPROCEDENTE y 100% RECLAMABLE."
     ],
-    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente case_004_enterprise: Se condena al comprador al reintegro inmediato de $2,500.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $5,000.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.0%.",
-    "probative_force_supplier_pct": 87.0,
+    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente case_004_enterprise: Se condena al comprador al reintegro inmediato de $2,500.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $5,000.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%.",
+    "probative_force_supplier_pct": 87.5,
     "final_legal_doctrine": "DOCTRINA COMERCIAL VINCULANTE: Ninguna guía operativa o portal B2B puede modificar o imponer sanciones financieras no contenidas en el contrato marco bilateral suscrito. Las remisiones firmadas con sello de muelle hacen fe pública comercial plena e inmutable entre las partes."
   },
   "recovery_prediction": {
     "case_id": "case_004_enterprise",
-    "recovery_probability_pct": 98.5,
+    "recovery_probability_pct": 87.0,
     "confidence_grade": "ALTA_CERTEZA",
     "recommended_track": "FAST_TRACK_B2B_PORTAL",
     "target_claimable_amount": "2500.00",
-    "expected_net_recovery_usd": "2462.50",
+    "expected_net_recovery_usd": "2175.00",
     "estimated_days_to_cash": 10,
     "positive_drivers": [
       "Remisión de entrega debidamente firmada en muelle receptor (+20%)",
       "Discrepancia física allanada con sello formal de muelle (+10%)",
-      "Contrato marco comercial vigente con cláusulas de prevalencia (+15%)",
-      "Dictamen judicial favorable con fuerza probatoria del 87.0% (+10%)"
+      "Historial altamente favorable con Mcr-111 (100.0% de éxito histórico) (+12%)",
+      "Dictamen judicial favorable con fuerza probatoria del 87.5% (+10%)"
     ],
-    "risk_drivers": [],
+    "risk_drivers": [
+      "Relación comercial sin contrato formal suscrito (-15%)"
+    ],
     "scenarios": [
       {
         "scenario_name": "Ruta Rápida — Cobro Íntegro en Portal B2B",
@@ -252,6 +255,23 @@
         "recommended": false
       }
     ],
-    "executive_summary": "El expediente presenta una probabilidad de recuperación del 98.5% (ALTA_CERTEZA). Se proyecta recuperar un valor neto ponderado de $2,462.50 USD dentro de un plazo estimado de 10 días naturales vía 'FAST_TRACK_B2B_PORTAL'."
+    "executive_summary": "El expediente presenta una probabilidad de recuperación del 87.0% (ALTA_CERTEZA). Se proyecta recuperar un valor neto ponderado de $2,175.00 USD dentro de un plazo estimado de 10 días naturales vía 'FAST_TRACK_B2B_PORTAL'."
+  },
+  "sanity_gate_audit": {
+    "is_bulletproof": true,
+    "arithmetic_invariant_passed": true,
+    "precedence_hierarchy_passed": true,
+    "notice_window_passed": true,
+    "notice_window_days_allowed": null,
+    "notice_window_days_elapsed": null,
+    "double_penalty_detected": false,
+    "double_penalty_details": [],
+    "irrefutability_grade": "A1_IRREFUTABLE",
+    "corrective_actions_applied": [],
+    "audit_notes": [
+      "Invarianza aritmética perfecta verificada al centavo ($0.00 MAE)."
+    ],
+    "verified_claimable_amount": "2500.00",
+    "verified_justified_amount": "5000.00"
   }
 }

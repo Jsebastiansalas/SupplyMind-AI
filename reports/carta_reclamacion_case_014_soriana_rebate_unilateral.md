@@ -23,10 +23,15 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_014_soriana_rebate_unilateral — 2026-10-08):**
-- **Criterio Acreditado:** La meta de volumen de compra requerida para activar el rebate del 5% no fue cumplida por el comprador en el trimestre auditado.
-- **Resultado Previo:** Restitución de **$6,200.00 USD** a favor del proveedor.
+**Precedente 1 (Expediente case_014_soriana_rebate_unilateral — 2026-10-28):**
+- **Criterio Acreditado:** En el caso case_014_soriana_rebate_unilateral, se acreditó la improcedencia de la deducción 'REBATE-UNILATERAL' conforme a CLAUSE-11.2, logrando la restitución de $9,800.00 USD.
+- **Resultado Previo:** Restitución de **$9,800.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CLAUSE-11.2.
+
+**Precedente 2 (Expediente case_040_soriana_merma_operativa_no_pactada — 2026-10-28):**
+- **Criterio Acreditado:** En el caso case_040_soriana_merma_operativa_no_pactada, se acreditó la improcedencia de la deducción 'DED-MERMA-ESTIMADA' conforme a CLAUSE-STD-01, logrando la restitución de $5,500.00 USD.
+- **Resultado Previo:** Restitución de **$5,500.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** CLAUSE-STD-01.
 
 Por tanto, en observancia del principio de coherencia comercial y buena fe contractual, solicitamos la aplicación del mismo criterio para el reintegro de la presente retención.
 

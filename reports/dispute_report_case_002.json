@@ -43,11 +43,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-28T16:20:39.342881+00:00"
+    "generated_at": "2026-10-28T23:59:00.900673+00:00"
   },
   "financial_proof": {
     "case_id": "case_002",
-    "proof_hash": "SM-PROOF-SHA256-884E7CF8C90EBB92",
+    "proof_hash": "SM-PROOF-SHA256-246ACE39D7BD2E50",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -61,7 +61,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-28T16:20:39.349176+00:00"
+    "tamper_proof_timestamp": "2026-10-28T23:59:00.906974+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_002",
@@ -148,7 +148,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-10-28T16:20:39Z"
+    "generated_at": "2026-10-28T23:59:00Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -161,16 +161,16 @@
     "claimable_amount": "12500.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-884E7CF8C90EBB92",
+    "zkp_proof_hash": "SM-PROOF-SHA256-246ACE39D7BD2E50",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-10-28T16:20:39.355984+00:00"
+    "anchored_at": "2026-10-28T23:59:00.924403+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_002",
-    "courtroom_session_id": "CRT-65BFA7AF",
+    "courtroom_session_id": "CRT-FC4D008D",
     "disputed_amount": "16500.0",
     "justified_amount": "4000.00",
     "claimable_amount": "12500.00",
@@ -282,5 +282,22 @@
       }
     ],
     "executive_summary": "El expediente presenta una probabilidad de recuperación del 98.5% (ALTA_CERTEZA). Se proyecta recuperar un valor neto ponderado de $12,312.50 USD dentro de un plazo estimado de 10 días naturales vía 'FAST_TRACK_B2B_PORTAL'."
+  },
+  "sanity_gate_audit": {
+    "is_bulletproof": true,
+    "arithmetic_invariant_passed": true,
+    "precedence_hierarchy_passed": true,
+    "notice_window_passed": true,
+    "notice_window_days_allowed": null,
+    "notice_window_days_elapsed": null,
+    "double_penalty_detected": false,
+    "double_penalty_details": [],
+    "irrefutability_grade": "A1_IRREFUTABLE",
+    "corrective_actions_applied": [],
+    "audit_notes": [
+      "Invarianza aritmética perfecta verificada al centavo ($0.00 MAE)."
+    ],
+    "verified_claimable_amount": "12500.00",
+    "verified_justified_amount": "4000.00"
   }
 }

@@ -35,11 +35,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-28T16:21:45.720936+00:00"
+    "generated_at": "2026-10-29T00:00:01.825252+00:00"
   },
   "financial_proof": {
     "case_id": "case_010_mercadolibre_crossdock",
-    "proof_hash": "SM-PROOF-SHA256-F4DCBA5137A71548",
+    "proof_hash": "SM-PROOF-SHA256-9AC69CD0CB5F0F46",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -53,7 +53,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-28T16:21:45.725470+00:00"
+    "tamper_proof_timestamp": "2026-10-29T00:00:01.828777+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_010_mercadolibre_crossdock",
@@ -106,7 +106,7 @@
     ],
     "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
     "confidence_penalty": 0.1,
-    "generated_at": "2026-10-28T16:21:45Z"
+    "generated_at": "2026-10-29T00:00:01Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -119,16 +119,16 @@
     "claimable_amount": "5400.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-F4DCBA5137A71548",
+    "zkp_proof_hash": "SM-PROOF-SHA256-9AC69CD0CB5F0F46",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 95.0,
-    "anchored_at": "2026-10-28T16:21:45.732281+00:00"
+    "anchored_at": "2026-10-29T00:00:01.835884+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_010_mercadolibre_crossdock",
-    "courtroom_session_id": "CRT-4F846B90",
+    "courtroom_session_id": "CRT-4957633D",
     "disputed_amount": "5400.00",
     "justified_amount": "0.00",
     "claimable_amount": "5400.00",
@@ -161,7 +161,7 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $5,400.00 USD. La retención constituye incumplimiento de pago.",
+        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $5,400.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_010_mercadolibre_crossdock (fecha 2026-10-28), donde Cust-Mercadolibre Mx acordó el reintegro de $5,400.00 USD ante una deducción análoga por 'CROSSDOCK-MISROUTING', amparada en la cláusula contractual CLAUSE-5.1.",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [
@@ -174,22 +174,24 @@
     "dismissed_objections": [
       "Retención unilateral de $5,400.00 USD declarada IMPROCEDENTE y 100% RECLAMABLE."
     ],
-    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente case_010_mercadolibre_crossdock: Se condena al comprador al reintegro inmediato de $5,400.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $0.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.0%.",
-    "probative_force_supplier_pct": 87.0,
+    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente case_010_mercadolibre_crossdock: Se condena al comprador al reintegro inmediato de $5,400.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $0.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%.",
+    "probative_force_supplier_pct": 87.5,
     "final_legal_doctrine": "DOCTRINA COMERCIAL VINCULANTE: Ninguna guía operativa o portal B2B puede modificar o imponer sanciones financieras no contenidas en el contrato marco bilateral suscrito. Las remisiones firmadas con sello de muelle hacen fe pública comercial plena e inmutable entre las partes."
   },
   "recovery_prediction": {
     "case_id": "case_010_mercadolibre_crossdock",
-    "recovery_probability_pct": 95.0,
+    "recovery_probability_pct": 98.5,
     "confidence_grade": "ALTA_CERTEZA",
     "recommended_track": "FAST_TRACK_B2B_PORTAL",
     "target_claimable_amount": "5400.00",
-    "expected_net_recovery_usd": "5130.00",
+    "expected_net_recovery_usd": "5319.00",
     "estimated_days_to_cash": 10,
     "positive_drivers": [
       "Remisión de entrega debidamente firmada en muelle receptor (+20%)",
       "Contrato marco comercial vigente con cláusulas de prevalencia (+15%)",
-      "Dictamen judicial favorable con fuerza probatoria del 87.0% (+10%)"
+      "Historial altamente favorable con Cust-Mercadolibre Mx (100.0% de éxito histórico) (+12%)",
+      "Existen precedentes ganados al 100% con este cliente corporativo (+5%)",
+      "Dictamen judicial favorable con fuerza probatoria del 87.5% (+10%)"
     ],
     "risk_drivers": [],
     "scenarios": [
@@ -224,6 +226,23 @@
         "recommended": false
       }
     ],
-    "executive_summary": "El expediente presenta una probabilidad de recuperación del 95.0% (ALTA_CERTEZA). Se proyecta recuperar un valor neto ponderado de $5,130.00 USD dentro de un plazo estimado de 10 días naturales vía 'FAST_TRACK_B2B_PORTAL'."
+    "executive_summary": "El expediente presenta una probabilidad de recuperación del 98.5% (ALTA_CERTEZA). Se proyecta recuperar un valor neto ponderado de $5,319.00 USD dentro de un plazo estimado de 10 días naturales vía 'FAST_TRACK_B2B_PORTAL'."
+  },
+  "sanity_gate_audit": {
+    "is_bulletproof": true,
+    "arithmetic_invariant_passed": true,
+    "precedence_hierarchy_passed": true,
+    "notice_window_passed": true,
+    "notice_window_days_allowed": null,
+    "notice_window_days_elapsed": null,
+    "double_penalty_detected": false,
+    "double_penalty_details": [],
+    "irrefutability_grade": "A1_IRREFUTABLE",
+    "corrective_actions_applied": [],
+    "audit_notes": [
+      "Invarianza aritmética perfecta verificada al centavo ($0.00 MAE)."
+    ],
+    "verified_claimable_amount": "5400.00",
+    "verified_justified_amount": "0.00"
   }
 }

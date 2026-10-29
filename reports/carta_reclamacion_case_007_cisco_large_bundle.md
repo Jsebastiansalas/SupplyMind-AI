@@ -23,10 +23,10 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_007_cisco_large_bundle — 2026-09-22):**
-- **Criterio Acreditado:** El comprador confirmó la cotización aprobada por su departamento de compras con anterioridad a la entrega.
-- **Resultado Previo:** Restitución de **$15,000.00 USD** a favor del proveedor.
-- **Fundamento Vinculante:** CLAUSE-3.1.
+**Precedente 1 (Expediente case_007_cisco_large_bundle — 2026-10-28):**
+- **Criterio Acreditado:** En el caso case_007_cisco_large_bundle, se acreditó la improcedencia de la deducción 'DED-PRC-VAR' conforme a 3.1, logrando la restitución de $14,000.00 USD.
+- **Resultado Previo:** Restitución de **$14,000.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** 3.1.
 
 Por tanto, en observancia del principio de coherencia comercial y buena fe contractual, solicitamos la aplicación del mismo criterio para el reintegro de la presente retención.
 

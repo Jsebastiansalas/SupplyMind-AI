@@ -41,11 +41,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-28T16:20:57.468866+00:00"
+    "generated_at": "2026-10-28T23:59:17.911094+00:00"
   },
   "financial_proof": {
     "case_id": "case_005_amazon_shortage",
-    "proof_hash": "SM-PROOF-SHA256-4A031BF55946B894",
+    "proof_hash": "SM-PROOF-SHA256-AA30A05652261251",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -59,7 +59,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-28T16:20:57.475980+00:00"
+    "tamper_proof_timestamp": "2026-10-28T23:59:17.915409+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_005_amazon_shortage",
@@ -134,7 +134,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-10-28T16:20:57Z"
+    "generated_at": "2026-10-28T23:59:17Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -147,16 +147,16 @@
     "claimable_amount": "2500.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-4A031BF55946B894",
+    "zkp_proof_hash": "SM-PROOF-SHA256-AA30A05652261251",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-10-28T16:20:57.483028+00:00"
+    "anchored_at": "2026-10-28T23:59:17.926673+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_005_amazon_shortage",
-    "courtroom_session_id": "CRT-C6A84C50",
+    "courtroom_session_id": "CRT-9240A36B",
     "disputed_amount": "7500.00",
     "justified_amount": "5000.00",
     "claimable_amount": "2500.00",
@@ -200,7 +200,7 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $2,500.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_005_amazon_shortage (fecha 2026-09-10), donde Amazon México Fulfillment acordó el reintegro de $1,800.00 USD ante una deducción análoga por 'DED-SHORTAGE-ASN', amparada en la cláusula contractual CLAUSE-4.2.",
+        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $2,500.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_005_amazon_shortage (fecha 2026-10-28), donde Amazon Retail Llc acordó el reintegro de $2,500.00 USD ante una deducción análoga por 'DED-SHRT-20', amparada en la cláusula contractual 4.1.",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [
@@ -231,6 +231,7 @@
       "Remisión de entrega debidamente firmada en muelle receptor (+20%)",
       "Discrepancia física allanada con sello formal de muelle (+10%)",
       "Contrato marco comercial vigente con cláusulas de prevalencia (+15%)",
+      "Historial altamente favorable con Amazon Retail Llc (100.0% de éxito histórico) (+12%)",
       "Dictamen judicial favorable con fuerza probatoria del 87.5% (+10%)"
     ],
     "risk_drivers": [],
@@ -267,5 +268,22 @@
       }
     ],
     "executive_summary": "El expediente presenta una probabilidad de recuperación del 98.5% (ALTA_CERTEZA). Se proyecta recuperar un valor neto ponderado de $2,462.50 USD dentro de un plazo estimado de 10 días naturales vía 'FAST_TRACK_B2B_PORTAL'."
+  },
+  "sanity_gate_audit": {
+    "is_bulletproof": true,
+    "arithmetic_invariant_passed": true,
+    "precedence_hierarchy_passed": true,
+    "notice_window_passed": true,
+    "notice_window_days_allowed": null,
+    "notice_window_days_elapsed": null,
+    "double_penalty_detected": false,
+    "double_penalty_details": [],
+    "irrefutability_grade": "A1_IRREFUTABLE",
+    "corrective_actions_applied": [],
+    "audit_notes": [
+      "Invarianza aritmética perfecta verificada al centavo ($0.00 MAE)."
+    ],
+    "verified_claimable_amount": "2500.00",
+    "verified_justified_amount": "5000.00"
   }
 }

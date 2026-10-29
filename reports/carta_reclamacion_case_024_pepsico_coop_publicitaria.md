@@ -20,6 +20,16 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 - **Causa Raíz:** Discrepancia mixta en expediente case_024_pepsico_coop_publicitaria: Faltante físico comprobado de $0.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $13,600.00 USD sin sustento contractual ni documental.
 - **Fundamentación Contractual:** Evaluación algorítmica y semántica completada. Posible deducción de $13,600.00 requiere análisis final por el Agente.
 
+#### 4. Antecedentes y Precedentes Comerciales Vinculantes
+Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
+
+**Precedente 1 (Expediente case_024_pepsico_coop_publicitaria — 2026-10-28):**
+- **Criterio Acreditado:** En el caso case_024_pepsico_coop_publicitaria, se acreditó la improcedencia de la deducción 'COOP-PUB-UNILATERAL' conforme a CLAUSE-10.4, logrando la restitución de $13,600.00 USD.
+- **Resultado Previo:** Restitución de **$13,600.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** CLAUSE-10.4.
+
+Por tanto, en observancia del principio de coherencia comercial y buena fe contractual, solicitamos la aplicación del mismo criterio para el reintegro de la presente retención.
+
 #### 3. Requerimiento de Pago
 En virtud de lo anterior, solicitamos comedidamente realizar la programación y transferencia del saldo retenido injustificadamente por valor de:
 

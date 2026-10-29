@@ -23,15 +23,15 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_008_homedepot_damaged_scanned — 2026-09-28):**
-- **Criterio Acreditado:** Home Depot reconoció que la falta de notificación oportuna de daño en rampa imposibilita el reclamo al seguro de carga del transportista.
-- **Resultado Previo:** Restitución de **$4,200.00 USD** a favor del proveedor.
-- **Fundamento Vinculante:** CLAUSE-5.1.
+**Precedente 1 (Expediente case_008_homedepot_damaged_scanned — 2026-10-28):**
+- **Criterio Acreditado:** En el caso case_008_homedepot_damaged_scanned, se acreditó la improcedencia de la deducción 'DED-DAMAGED-DOCK' conforme a 5.1, logrando la restitución de $4,000.00 USD.
+- **Resultado Previo:** Restitución de **$4,000.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** 5.1.
 
 **Precedente 2 (Expediente case_004_enterprise — 2026-10-28):**
-- **Criterio Acreditado:** En el caso case_004_enterprise, se acreditó la improcedencia de la deducción 'DED-DAMAGE-PENALTY' conforme a CLAUSE-STD-01, logrando la restitución de $2,500.00 USD.
+- **Criterio Acreditado:** En el caso case_004_enterprise, se acreditó la improcedencia de la deducción 'DED-DAMAGE-PENALTY' conforme a CTR-GENERAL-TERMS, logrando la restitución de $2,500.00 USD.
 - **Resultado Previo:** Restitución de **$2,500.00 USD** a favor del proveedor.
-- **Fundamento Vinculante:** CLAUSE-STD-01.
+- **Fundamento Vinculante:** CTR-GENERAL-TERMS.
 
 Por tanto, en observancia del principio de coherencia comercial y buena fe contractual, solicitamos la aplicación del mismo criterio para el reintegro de la presente retención.
 

@@ -1,0 +1,249 @@
+{
+  "case_id": "case_038_amazon_carrier_damaged_freight",
+  "currency": "USD",
+  "billed_amount": "38000.0",
+  "received_amount": "31800.0",
+  "difference": "-6200.0",
+  "root_cause": "Discrepancia mixta en expediente case_038_amazon_carrier_damaged_freight: Faltante físico comprobado de $0.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $6,200.00 USD sin sustento contractual ni documental.",
+  "evidence": [
+    "Deducción aplicada en comprobante PAY-AMZ-3801: código DED-DAMAGE-IN-TRANSIT, motivo 'Cajas aplastadas en tránsito vehicular', monto $6,200.00",
+    "Respaldo contractual: La CONVENIO LOGÍSTICO VENDOR CENTRAL AMAZON 2026 ('CONVENIO LOGÍSTICO VENDOR CENTRAL AMAZON 2026') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.",
+    "[Factura INV-AUTO-001 §Total $38,000.00 USD]",
+    "[Comprobante PAY-AMZ-3801 §Liquidación $31,800.00 USD]"
+  ],
+  "justified_amount": "0.00",
+  "claimable_amount": "6200.00",
+  "confidence": 0.88,
+  "recommended_action": "Aceptar deducción de $0.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $6,200.00 USD exigiendo su pago inmediato.",
+  "concessions": [],
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "case_038_amazon_carrier_damaged_freight",
+    "health_score": 100.0,
+    "status": "PRISTINE",
+    "is_healthy": true,
+    "repaired_issues": [],
+    "imputed_documents": [],
+    "documents_present": [
+      "invoice",
+      "purchase_order",
+      "delivery",
+      "payment",
+      "contract"
+    ],
+    "documents_missing": [],
+    "schema_warnings": [],
+    "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
+    "quarantine_docket": null,
+    "generated_at": "2026-10-29T00:00:04.593440+00:00"
+  },
+  "financial_proof": {
+    "case_id": "case_038_amazon_carrier_damaged_freight",
+    "proof_hash": "SM-PROOF-SHA256-1220813DEE4D7F13",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$0.00 USD (Validado)",
+      "$6,200.00 USD (Validado)",
+      "$0.00 USD (Validado)",
+      "$6,200.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-10-29T00:00:04.921063+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "case_038_amazon_carrier_damaged_freight",
+    "total_claims_audited": 3,
+    "backed_claims_count": 2,
+    "unbacked_claims_count": 1,
+    "total_backed_amount": "69800.00",
+    "total_unbacked_amount": "6200.00",
+    "backing_ratio_pct": 91.84,
+    "evidence_pointers": [
+      {
+        "pointer_id": "PTR-INV-INV-AUTO-001-TOTAL",
+        "doc_type": "INVOICE",
+        "doc_id": "INV-AUTO-001",
+        "field_ref": "total_amount",
+        "item_sku": null,
+        "amount": "38000.0",
+        "citation_tag": "[Factura INV-AUTO-001 §Total $38,000.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Factura comercial fiscalmente válida por $38,000.00 USD."
+      },
+      {
+        "pointer_id": "PTR-PAY-PAY-AMZ-3801-AMOUNT",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-AMZ-3801",
+        "field_ref": "amount_paid",
+        "item_sku": null,
+        "amount": "31800.0",
+        "citation_tag": "[Comprobante PAY-AMZ-3801 §Liquidación $31,800.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $31,800.00."
+      },
+      {
+        "pointer_id": "PTR-DED-DED-DAMAGE-IN-TRANSIT-1-UNBACKED",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-AMZ-3801",
+        "field_ref": "deduction_DED-DAMAGE-IN-TRANSIT",
+        "item_sku": null,
+        "amount": "6200.0",
+        "citation_tag": "[Comprobante PAY-AMZ-3801 §Deducción Unilateral DED-DAMAGE-IN-TRANSIT | $6,200.00 SIN CLÁUSULA EN case_038_amazon_carrier_damaged_freight]",
+        "is_backed_by_physical_proof": false,
+        "status": "CAUTELAR_NO_ACREDITADA",
+        "detail": "El retailer retuvo $6,200.00 bajo el código 'DED-DAMAGE-IN-TRANSIT', pero el contrato case_038_amazon_carrier_damaged_freight no contiene cláusula habilitante."
+      }
+    ],
+    "cautelar_items": [
+      "Deducción DED-DAMAGE-IN-TRANSIT ($6,200.00): Sin cláusula contractual que autorice retención."
+    ],
+    "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
+    "confidence_penalty": 0.1,
+    "generated_at": "2026-10-29T00:00:04Z"
+  },
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "case_038_amazon_carrier_damaged_freight",
+    "currency": "USD",
+    "billed_amount": "38000.0",
+    "received_amount": "31800.0",
+    "difference": "-6200.0",
+    "justified_amount": "0.00",
+    "claimable_amount": "6200.00",
+    "health_status": "PRISTINE",
+    "health_score": 100.0,
+    "zkp_proof_hash": "SM-PROOF-SHA256-1220813DEE4D7F13",
+    "zkp_status": "MATHEMATICALLY_PROVEN",
+    "is_quarantined": false,
+    "evidence_backing_ratio": 91.84,
+    "anchored_at": "2026-10-29T00:00:04.928787+00:00"
+  },
+  "watchdog_metrics": null,
+  "adversarial_verdict": {
+    "case_id": "case_038_amazon_carrier_damaged_freight",
+    "courtroom_session_id": "CRT-747B52FE",
+    "disputed_amount": "6200.0",
+    "justified_amount": "0.00",
+    "claimable_amount": "6200.00",
+    "prosecutor_arguments": [
+      {
+        "role": "PROSECUTOR",
+        "speaker_name": "Lic. Gustavo Méndez (Fiscal Forense Retail B2B)",
+        "topic": "Aplicación de Políticas Operativas y Guías del Comprador",
+        "argument_text": "El retailer retuvo $6,200.00 USD con base en sus manuales internos de logística, penalizaciones por aviso anticipado ASN o descuentos comerciales por pronto pago.",
+        "legal_or_contractual_ground": "Manual Operativo de Proveedores del Retailer",
+        "strength_score": 0.15,
+        "evidence_referenced": [
+          "Comprobante de Retención Bancaria"
+        ]
+      }
+    ],
+    "advocate_counterarguments": [
+      {
+        "role": "DEFENDER",
+        "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
+        "topic": "Prueba Plena de Entrega Íntegra",
+        "argument_text": "La remisión fue firmada de plena conformidad en muelle sin sello de salvedad. Cualquier reclamo posterior de faltante carece de valor probatorio.",
+        "legal_or_contractual_ground": "Eficacia Probatoria de Remisión Limpia (Prueba Plena)",
+        "strength_score": 0.95,
+        "evidence_referenced": [
+          "REM-AMZ-3801"
+        ]
+      },
+      {
+        "role": "DEFENDER",
+        "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
+        "topic": "Nulidad Absoluta de Cargos Unilaterales",
+        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $6,200.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_038_amazon_carrier_damaged_freight (fecha 2026-10-28), donde Amazon Mexico acordó el reintegro de $6,200.00 USD ante una deducción análoga por 'DED-DAMAGE-IN-TRANSIT', amparada en la cláusula contractual CLAUSE-STD-01.",
+        "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
+        "strength_score": 0.99,
+        "evidence_referenced": [
+          "Contrato Marco Maestro",
+          "Criterio de Nulidad Unilateral"
+        ]
+      }
+    ],
+    "sustained_objections": [],
+    "dismissed_objections": [
+      "Retención unilateral de $6,200.00 USD declarada IMPROCEDENTE y 100% RECLAMABLE."
+    ],
+    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente case_038_amazon_carrier_damaged_freight: Se condena al comprador al reintegro inmediato de $6,200.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $0.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%.",
+    "probative_force_supplier_pct": 87.5,
+    "final_legal_doctrine": "DOCTRINA COMERCIAL VINCULANTE: Ninguna guía operativa o portal B2B puede modificar o imponer sanciones financieras no contenidas en el contrato marco bilateral suscrito. Las remisiones firmadas con sello de muelle hacen fe pública comercial plena e inmutable entre las partes."
+  },
+  "recovery_prediction": {
+    "case_id": "case_038_amazon_carrier_damaged_freight",
+    "recovery_probability_pct": 82.0,
+    "confidence_grade": "MODERADA",
+    "recommended_track": "STRUCTURED_CONCESSION_SETTLEMENT",
+    "target_claimable_amount": "6200.00",
+    "expected_net_recovery_usd": "5084.00",
+    "estimated_days_to_cash": 20,
+    "positive_drivers": [
+      "Remisión de entrega debidamente firmada en muelle receptor (+20%)",
+      "Historial altamente favorable con Amazon Mexico (100.0% de éxito histórico) (+12%)",
+      "Existen precedentes ganados al 100% con este cliente corporativo (+5%)",
+      "Dictamen judicial favorable con fuerza probatoria del 87.5% (+10%)"
+    ],
+    "risk_drivers": [
+      "Relación comercial sin contrato formal suscrito (-15%)"
+    ],
+    "scenarios": [
+      {
+        "scenario_name": "Ruta Rápida — Cobro Íntegro en Portal B2B",
+        "description": "Reclamación directa del 100% del saldo insoluto con base documental plena.",
+        "projected_recovery_amount": "6200.00",
+        "concession_granted_amount": "0.00",
+        "recovery_rate_pct": 100.0,
+        "estimated_days_to_cash": 10,
+        "legal_risk_level": "BAJO",
+        "recommended": false
+      },
+      {
+        "scenario_name": "Acuerdo Estructurado — Concesión Comercial del 15%",
+        "description": "Oferta de descuento por pronto pago/relación para cierre garantizado en menos de 7 días.",
+        "projected_recovery_amount": "5270.00",
+        "concession_granted_amount": "930.00",
+        "recovery_rate_pct": 85.0,
+        "estimated_days_to_cash": 5,
+        "legal_risk_level": "BAJO",
+        "recommended": true
+      },
+      {
+        "scenario_name": "Escalamiento Legal — Póliza Contable NIF C-3",
+        "description": "Exigencia formal y cobro coactivo con causación de intereses moratorios comerciales.",
+        "projected_recovery_amount": "6200.00",
+        "concession_granted_amount": "0.00",
+        "recovery_rate_pct": 100.0,
+        "estimated_days_to_cash": 45,
+        "legal_risk_level": "MEDIO",
+        "recommended": false
+      }
+    ],
+    "executive_summary": "El expediente presenta una probabilidad de recuperación del 82.0% (MODERADA). Se proyecta recuperar un valor neto ponderado de $5,084.00 USD dentro de un plazo estimado de 20 días naturales vía 'STRUCTURED_CONCESSION_SETTLEMENT'."
+  },
+  "sanity_gate_audit": {
+    "is_bulletproof": true,
+    "arithmetic_invariant_passed": true,
+    "precedence_hierarchy_passed": true,
+    "notice_window_passed": true,
+    "notice_window_days_allowed": null,
+    "notice_window_days_elapsed": null,
+    "double_penalty_detected": false,
+    "double_penalty_details": [],
+    "irrefutability_grade": "A1_IRREFUTABLE",
+    "corrective_actions_applied": [],
+    "audit_notes": [
+      "Invarianza aritmética perfecta verificada al centavo ($0.00 MAE)."
+    ],
+    "verified_claimable_amount": "6200.00",
+    "verified_justified_amount": "0.00"
+  }
+}

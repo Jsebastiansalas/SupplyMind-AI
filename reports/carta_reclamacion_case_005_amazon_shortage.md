@@ -23,10 +23,15 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_005_amazon_shortage — 2026-09-10):**
-- **Criterio Acreditado:** Amazon aceptó que la discrepancia de 10 unidades obedeció a retraso interno de desembalaje en rampa y no a faltante de origen.
-- **Resultado Previo:** Restitución de **$1,800.00 USD** a favor del proveedor.
-- **Fundamento Vinculante:** CLAUSE-4.2.
+**Precedente 1 (Expediente case_005_amazon_shortage — 2026-10-28):**
+- **Criterio Acreditado:** En el caso case_005_amazon_shortage, se acreditó la improcedencia de la deducción 'DED-SHRT-20' conforme a 4.1, logrando la restitución de $2,500.00 USD.
+- **Resultado Previo:** Restitución de **$2,500.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** 4.1.
+
+**Precedente 2 (Expediente case_038_amazon_carrier_damaged_freight — 2026-10-28):**
+- **Criterio Acreditado:** En el caso case_038_amazon_carrier_damaged_freight, se acreditó la improcedencia de la deducción 'DED-DAMAGE-IN-TRANSIT' conforme a CLAUSE-STD-01, logrando la restitución de $6,200.00 USD.
+- **Resultado Previo:** Restitución de **$6,200.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** CLAUSE-STD-01.
 
 Por tanto, en observancia del principio de coherencia comercial y buena fe contractual, solicitamos la aplicación del mismo criterio para el reintegro de la presente retención.
 

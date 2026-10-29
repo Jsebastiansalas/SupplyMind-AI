@@ -1,0 +1,203 @@
+{
+  "case_id": "case_042_farma_caducidad_menor_75pct",
+  "currency": "USD",
+  "billed_amount": "32000.0",
+  "received_amount": "32000.0",
+  "difference": "0.0",
+  "root_cause": "Faltante físico en entrega valorado en $0.00 USD, constatado en remisión de entrega firmada con sello de recepción en bodega.",
+  "evidence": [
+    "[Factura INV-AUTO-001 §Total $32,000.00 USD]",
+    "[Comprobante PAY-OR_75PCT §Liquidación $32,000.00 USD]"
+  ],
+  "justified_amount": "0.00",
+  "claimable_amount": "0.00",
+  "confidence": 0.98,
+  "recommended_action": "Aceptar deducción de $0.00 USD en cuentas por cobrar y emitir Nota de Crédito comercial por dicho valor a favor del cliente para conciliar y cerrar la cuenta.",
+  "concessions": [],
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "case_042_farma_caducidad_menor_75pct",
+    "health_score": 100.0,
+    "status": "PRISTINE",
+    "is_healthy": true,
+    "repaired_issues": [],
+    "imputed_documents": [],
+    "documents_present": [
+      "invoice",
+      "purchase_order",
+      "delivery",
+      "payment",
+      "contract"
+    ],
+    "documents_missing": [],
+    "schema_warnings": [],
+    "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
+    "quarantine_docket": null,
+    "generated_at": "2026-10-29T00:00:07.485987+00:00"
+  },
+  "financial_proof": {
+    "case_id": "case_042_farma_caducidad_menor_75pct",
+    "proof_hash": "SM-PROOF-SHA256-A3993A1D336A6AB2",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$0.00 USD (Validado)",
+      "$0.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-10-29T00:00:07.501051+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "case_042_farma_caducidad_menor_75pct",
+    "total_claims_audited": 2,
+    "backed_claims_count": 2,
+    "unbacked_claims_count": 0,
+    "total_backed_amount": "64000.00",
+    "total_unbacked_amount": "0.00",
+    "backing_ratio_pct": 100.0,
+    "evidence_pointers": [
+      {
+        "pointer_id": "PTR-INV-INV-AUTO-001-TOTAL",
+        "doc_type": "INVOICE",
+        "doc_id": "INV-AUTO-001",
+        "field_ref": "total_amount",
+        "item_sku": null,
+        "amount": "32000.0",
+        "citation_tag": "[Factura INV-AUTO-001 §Total $32,000.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Factura comercial fiscalmente válida por $32,000.00 USD."
+      },
+      {
+        "pointer_id": "PTR-PAY-PAY-OR_75PCT-AMOUNT",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-OR_75PCT",
+        "field_ref": "amount_paid",
+        "item_sku": null,
+        "amount": "32000.0",
+        "citation_tag": "[Comprobante PAY-OR_75PCT §Liquidación $32,000.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $32,000.00."
+      }
+    ],
+    "cautelar_items": [],
+    "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
+    "confidence_penalty": 0.0,
+    "generated_at": "2026-10-29T00:00:07Z"
+  },
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "case_042_farma_caducidad_menor_75pct",
+    "currency": "USD",
+    "billed_amount": "32000.0",
+    "received_amount": "32000.0",
+    "difference": "0.0",
+    "justified_amount": "0.00",
+    "claimable_amount": "0.00",
+    "health_status": "PRISTINE",
+    "health_score": 100.0,
+    "zkp_proof_hash": "SM-PROOF-SHA256-A3993A1D336A6AB2",
+    "zkp_status": "MATHEMATICALLY_PROVEN",
+    "is_quarantined": false,
+    "evidence_backing_ratio": 100.0,
+    "anchored_at": "2026-10-29T00:00:07.506131+00:00"
+  },
+  "watchdog_metrics": null,
+  "adversarial_verdict": {
+    "case_id": "case_042_farma_caducidad_menor_75pct",
+    "courtroom_session_id": "CRT-5058AFD7",
+    "disputed_amount": "0.0",
+    "justified_amount": "0.00",
+    "claimable_amount": "0.00",
+    "prosecutor_arguments": [],
+    "advocate_counterarguments": [
+      {
+        "role": "DEFENDER",
+        "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
+        "topic": "Prueba Plena de Entrega Íntegra",
+        "argument_text": "La remisión fue firmada de plena conformidad en muelle sin sello de salvedad. Cualquier reclamo posterior de faltante carece de valor probatorio.",
+        "legal_or_contractual_ground": "Eficacia Probatoria de Remisión Limpia (Prueba Plena)",
+        "strength_score": 0.95,
+        "evidence_referenced": [
+          "REM-OR_75PCT"
+        ]
+      }
+    ],
+    "sustained_objections": [],
+    "dismissed_objections": [],
+    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente case_042_farma_caducidad_menor_75pct: Se condena al comprador al reintegro inmediato de $0.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $0.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 95.0%.",
+    "probative_force_supplier_pct": 95.0,
+    "final_legal_doctrine": "DOCTRINA COMERCIAL VINCULANTE: Ninguna guía operativa o portal B2B puede modificar o imponer sanciones financieras no contenidas en el contrato marco bilateral suscrito. Las remisiones firmadas con sello de muelle hacen fe pública comercial plena e inmutable entre las partes."
+  },
+  "recovery_prediction": {
+    "case_id": "case_042_farma_caducidad_menor_75pct",
+    "recovery_probability_pct": 65.0,
+    "confidence_grade": "MODERADA",
+    "recommended_track": "STRUCTURED_CONCESSION_SETTLEMENT",
+    "target_claimable_amount": "0.00",
+    "expected_net_recovery_usd": "0.00",
+    "estimated_days_to_cash": 20,
+    "positive_drivers": [
+      "Remisión de entrega debidamente firmada en muelle receptor (+20%)",
+      "Dictamen judicial favorable con fuerza probatoria del 95.0% (+10%)"
+    ],
+    "risk_drivers": [
+      "Relación comercial sin contrato formal suscrito (-15%)"
+    ],
+    "scenarios": [
+      {
+        "scenario_name": "Ruta Rápida — Cobro Íntegro en Portal B2B",
+        "description": "Reclamación directa del 100% del saldo insoluto con base documental plena.",
+        "projected_recovery_amount": "0.00",
+        "concession_granted_amount": "0.00",
+        "recovery_rate_pct": 100.0,
+        "estimated_days_to_cash": 10,
+        "legal_risk_level": "BAJO",
+        "recommended": false
+      },
+      {
+        "scenario_name": "Acuerdo Estructurado — Concesión Comercial del 15%",
+        "description": "Oferta de descuento por pronto pago/relación para cierre garantizado en menos de 7 días.",
+        "projected_recovery_amount": "0.00",
+        "concession_granted_amount": "0.00",
+        "recovery_rate_pct": 85.0,
+        "estimated_days_to_cash": 5,
+        "legal_risk_level": "BAJO",
+        "recommended": true
+      },
+      {
+        "scenario_name": "Escalamiento Legal — Póliza Contable NIF C-3",
+        "description": "Exigencia formal y cobro coactivo con causación de intereses moratorios comerciales.",
+        "projected_recovery_amount": "0.00",
+        "concession_granted_amount": "0.00",
+        "recovery_rate_pct": 100.0,
+        "estimated_days_to_cash": 45,
+        "legal_risk_level": "MEDIO",
+        "recommended": false
+      }
+    ],
+    "executive_summary": "El expediente presenta una probabilidad de recuperación del 65.0% (MODERADA). Se proyecta recuperar un valor neto ponderado de $0.00 USD dentro de un plazo estimado de 20 días naturales vía 'STRUCTURED_CONCESSION_SETTLEMENT'."
+  },
+  "sanity_gate_audit": {
+    "is_bulletproof": true,
+    "arithmetic_invariant_passed": true,
+    "precedence_hierarchy_passed": true,
+    "notice_window_passed": true,
+    "notice_window_days_allowed": null,
+    "notice_window_days_elapsed": null,
+    "double_penalty_detected": false,
+    "double_penalty_details": [],
+    "irrefutability_grade": "B1_ALLANAMIENTO",
+    "corrective_actions_applied": [],
+    "audit_notes": [
+      "Invarianza aritmética perfecta verificada al centavo ($0.00 MAE)."
+    ],
+    "verified_claimable_amount": "0.00",
+    "verified_justified_amount": "0.00"
+  }
+}

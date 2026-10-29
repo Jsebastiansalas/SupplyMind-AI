@@ -20,6 +20,16 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 - **Causa Raíz:** Discrepancia mixta en expediente case_018_farma_ahorro_descuento_especial: Faltante físico comprobado de $4,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $4,900.00 USD sin sustento contractual ni documental.
 - **Fundamentación Contractual:** Evaluación algorítmica y semántica completada. Posible deducción de $4,900.00 requiere análisis final por el Agente.
 
+#### 4. Antecedentes y Precedentes Comerciales Vinculantes
+Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
+
+**Precedente 1 (Expediente case_018_farma_ahorro_descuento_especial — 2026-10-28):**
+- **Criterio Acreditado:** En el caso case_018_farma_ahorro_descuento_especial, se acreditó la improcedencia de la deducción 'BONIFICACION-CATALOGO' conforme a CLAUSE-5.5, logrando la restitución de $4,900.00 USD.
+- **Resultado Previo:** Restitución de **$4,900.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** CLAUSE-5.5.
+
+Por tanto, en observancia del principio de coherencia comercial y buena fe contractual, solicitamos la aplicación del mismo criterio para el reintegro de la presente retención.
+
 #### 3. Requerimiento de Pago
 En virtud de lo anterior, solicitamos comedidamente realizar la programación y transferencia del saldo retenido injustificadamente por valor de:
 

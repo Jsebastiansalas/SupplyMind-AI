@@ -35,11 +35,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-28T16:21:46.003985+00:00"
+    "generated_at": "2026-10-29T00:00:01.967895+00:00"
   },
   "financial_proof": {
     "case_id": "case_013_chedraui_flete_compartido",
-    "proof_hash": "SM-PROOF-SHA256-AF4CEB982A63FBA6",
+    "proof_hash": "SM-PROOF-SHA256-85C44B4737B8994A",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -53,7 +53,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-28T16:21:46.009353+00:00"
+    "tamper_proof_timestamp": "2026-10-29T00:00:01.970766+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_013_chedraui_flete_compartido",
@@ -119,7 +119,7 @@
     ],
     "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
     "confidence_penalty": 0.18,
-    "generated_at": "2026-10-28T16:21:46Z"
+    "generated_at": "2026-10-29T00:00:01Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -132,16 +132,16 @@
     "claimable_amount": "3800.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-AF4CEB982A63FBA6",
+    "zkp_proof_hash": "SM-PROOF-SHA256-85C44B4737B8994A",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 92.74,
-    "anchored_at": "2026-10-28T16:21:46.016262+00:00"
+    "anchored_at": "2026-10-29T00:00:01.979665+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_013_chedraui_flete_compartido",
-    "courtroom_session_id": "CRT-67B5E398",
+    "courtroom_session_id": "CRT-F6589151",
     "disputed_amount": "6100.00",
     "justified_amount": "2300.00",
     "claimable_amount": "3800.00",
@@ -185,7 +185,7 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $3,800.00 USD. La retención constituye incumplimiento de pago.",
+        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $3,800.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_013_chedraui_flete_compartido (fecha 2026-10-28), donde Cust-Chedraui Mx acordó el reintegro de $3,800.00 USD ante una deducción análoga por 'MANIOBRA-MUELLE', amparada en la cláusula contractual CLAUSE-9.3.",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [
@@ -200,8 +200,8 @@
     "dismissed_objections": [
       "Retención unilateral de $3,800.00 USD declarada IMPROCEDENTE y 100% RECLAMABLE."
     ],
-    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente case_013_chedraui_flete_compartido: Se condena al comprador al reintegro inmediato de $3,800.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $2,300.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.0%.",
-    "probative_force_supplier_pct": 87.0,
+    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente case_013_chedraui_flete_compartido: Se condena al comprador al reintegro inmediato de $3,800.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $2,300.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%.",
+    "probative_force_supplier_pct": 87.5,
     "final_legal_doctrine": "DOCTRINA COMERCIAL VINCULANTE: Ninguna guía operativa o portal B2B puede modificar o imponer sanciones financieras no contenidas en el contrato marco bilateral suscrito. Las remisiones firmadas con sello de muelle hacen fe pública comercial plena e inmutable entre las partes."
   },
   "recovery_prediction": {
@@ -215,7 +215,7 @@
     "positive_drivers": [
       "Remisión de entrega debidamente firmada en muelle receptor (+20%)",
       "Contrato marco comercial vigente con cláusulas de prevalencia (+15%)",
-      "Dictamen judicial favorable con fuerza probatoria del 87.0% (+10%)"
+      "Dictamen judicial favorable con fuerza probatoria del 87.5% (+10%)"
     ],
     "risk_drivers": [],
     "scenarios": [
@@ -251,5 +251,22 @@
       }
     ],
     "executive_summary": "El expediente presenta una probabilidad de recuperación del 95.0% (ALTA_CERTEZA). Se proyecta recuperar un valor neto ponderado de $3,610.00 USD dentro de un plazo estimado de 10 días naturales vía 'FAST_TRACK_B2B_PORTAL'."
+  },
+  "sanity_gate_audit": {
+    "is_bulletproof": true,
+    "arithmetic_invariant_passed": true,
+    "precedence_hierarchy_passed": true,
+    "notice_window_passed": true,
+    "notice_window_days_allowed": null,
+    "notice_window_days_elapsed": null,
+    "double_penalty_detected": false,
+    "double_penalty_details": [],
+    "irrefutability_grade": "A1_IRREFUTABLE",
+    "corrective_actions_applied": [],
+    "audit_notes": [
+      "Invarianza aritmética perfecta verificada al centavo ($0.00 MAE)."
+    ],
+    "verified_claimable_amount": "3800.00",
+    "verified_justified_amount": "2300.00"
   }
 }

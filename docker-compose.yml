@@ -21,10 +21,10 @@ services:
       - DATA_DIR=${DATA_DIR:-data/cases}
       - DEFAULT_CURRENCY=${DEFAULT_CURRENCY:-USD}
     volumes:
-      # Persistencia de logs de auditoría, reportes PDF/JSON generados y casos B2B
+      # Persistencia de logs de auditoría, reportes PDF/JSON generados, casos B2B y base de precedentes SQLite
       - ./logs:/app/logs
       - ./reports:/app/reports
-      - ./data/cases:/app/data/cases
+      - ./data:/app/data
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
       interval: 30s
@@ -54,6 +54,6 @@ services:
     volumes:
       - ./logs:/app/logs
       - ./reports:/app/reports
-      - ./data/cases:/app/data/cases
+      - ./data:/app/data
     profiles:
       - legacy

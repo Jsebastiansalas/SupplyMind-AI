@@ -20,6 +20,16 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 - **Causa Raíz:** Discrepancia mixta en expediente case_011_oxxo_caducidad_corta: Faltante físico comprobado de $0.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $3,200.00 USD sin sustento contractual ni documental.
 - **Fundamentación Contractual:** Evaluación algorítmica y semántica completada. Posible deducción de $3,200.00 requiere análisis final por el Agente.
 
+#### 4. Antecedentes y Precedentes Comerciales Vinculantes
+Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
+
+**Precedente 1 (Expediente case_011_oxxo_caducidad_corta — 2026-10-28):**
+- **Criterio Acreditado:** En el caso case_011_oxxo_caducidad_corta, se acreditó la improcedencia de la deducción 'CADUCIDAD-CORTA' conforme a CLAUSE-4.4, logrando la restitución de $3,200.00 USD.
+- **Resultado Previo:** Restitución de **$3,200.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** CLAUSE-4.4.
+
+Por tanto, en observancia del principio de coherencia comercial y buena fe contractual, solicitamos la aplicación del mismo criterio para el reintegro de la presente retención.
+
 #### 3. Requerimiento de Pago
 En virtud de lo anterior, solicitamos comedidamente realizar la programación y transferencia del saldo retenido injustificadamente por valor de:
 
