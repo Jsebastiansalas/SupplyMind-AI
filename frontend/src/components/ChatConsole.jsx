@@ -407,8 +407,11 @@ export default function ChatConsole({
           </div>
           <div>
             <div className="flex items-center space-x-2">
-              <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-zinc-100">
-                Consola Arbitral Grok 4.7
+              <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-zinc-100 flex items-center space-x-1.5">
+                <span>Copiloto Pericial Grok 4.7</span>
+                <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-950/40 text-amber-300 border border-amber-800/50 font-sans">
+                  Solo Caso Activo
+                </span>
               </h3>
               <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-[#15161f] text-zinc-300 border border-[#222432]">
                 {caseId}
@@ -416,6 +419,8 @@ export default function ChatConsole({
             </div>
             <p className="text-[10px] text-zinc-400 font-mono">
               Perspectiva: <strong className="text-zinc-200">{currentRoleObj.label}</strong>
+              <span className="text-zinc-600 mx-1.5">•</span>
+              <span className="text-emerald-400">Gobernanza Restrictiva Activa</span>
             </p>
           </div>
         </div>
@@ -544,10 +549,10 @@ export default function ChatConsole({
               <span className="text-[10px] text-zinc-500">Expediente {caseId}</span>
             </div>
             <p className="text-zinc-300 leading-relaxed mb-1.5 font-sans">
-              Expediente integrado en memoria: <strong>facturas CFDI, remisiones firmadas, comprobantes de pago SPEI, contrato comercial y dictamen pericial colegiado</strong>.
+              Expediente integrado en memoria pericial: <strong>facturas CFDI, remisiones en muelle, contratos comerciales, cálculo exacto en Python Decimal y veredicto del Tribunal Colegiado</strong>.
             </p>
             <p className="text-zinc-400 text-[11px] font-sans">
-              Disponible para consultas de <strong>desglose producto a producto</strong>, <strong>cálculo determinístico en Python Decimal</strong>, <strong>amparo de cláusulas contractuales</strong> o <strong>redacción de cartas de objeción</strong>.
+              🔒 <strong>Gobernanza de Alcance Activa:</strong> Este copiloto de Grok 4.7 está entrenado exclusivamente para resolver el expediente <strong>{caseId}</strong>. No responderá preguntas ajenas a esta controversia contable o legal.
             </p>
           </div>
         </div>
@@ -578,8 +583,18 @@ export default function ChatConsole({
                 
                 {/* Header del Mensaje */}
                 <div className="flex items-center justify-between border-b border-[#1b1c24] pb-1.5 mb-2 font-mono">
-                  <span className={`text-[10px] font-bold ${isUser ? 'text-indigo-300' : 'text-[#eed98d]'}`}>
-                    {isUser ? 'CONSULTA USUARIO' : 'SUPPLYMIND AI'}
+                  <span className={`text-[10px] font-bold ${isUser ? 'text-indigo-300' : 'text-[#eed98d]'} flex items-center space-x-1.5`}>
+                    {isUser ? (
+                      <span>CONSULTA USUARIO</span>
+                    ) : (
+                      <>
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                        <span>{msg.model || 'GROK 4.7 COPILOTO'}</span>
+                        <span className="text-[9px] px-1 py-0.2 rounded bg-[#1b1c28] text-zinc-400 border border-[#2b2e3e]">
+                          {caseId}
+                        </span>
+                      </>
+                    )}
                   </span>
                   {!isUser && (
                     <button

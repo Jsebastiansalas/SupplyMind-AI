@@ -501,8 +501,17 @@ def get_case_adversarial_courtroom(case_id: str):
             "currency": currency,
             "disputed_amount": float(claimable),
             "invoice_total": float(total_inv),
-            "paid_amount": float(paid_amt),
             "courtroom_session_id": f"SESSION-ICC-{case_id.upper()}",
+            "probative_force_supplier_pct": float(critique.robustness_score),
+            "prosecutor_arguments": [round_1["prosecutor_claim"], round_2["prosecutor_claim"], round_3["prosecutor_claim"]],
+            "advocate_counterarguments": [round_1["defense_counter"], round_2["defense_counter"], round_3["defense_counter"]],
+            "magistrate_summary_ruling": (
+                f"VISTOS los autos del expediente {case_id}, este Tribunal Arbitral RESUELVE: "
+                f"PRIMERO.- Se declara la improcedencia total de la deducción de ${float(claimable):,.2f} {currency} aplicada por {retailer_name}. "
+                f"SEGUNDO.- Se condena al Retailer al reembolso íntegro de la suma deducida, más ${float(moratory_accrued):,.2f} {currency} "
+                f"por concepto de intereses moratorios al 9% anual."
+            ),
+            "final_legal_doctrine": "Jurisprudencia SCJN Registro 178234 + Art. 88 Código de Comercio (Preclusión de excepciones extracontractuales).",
             "prosecutor": {
                 "name": "Fiscal del Retailer (Auditor de Débitos)",
                 "organization": str(retailer_name),
