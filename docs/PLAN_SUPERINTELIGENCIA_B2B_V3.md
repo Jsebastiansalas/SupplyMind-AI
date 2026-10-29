@@ -157,8 +157,15 @@ graph LR
 │   - Motor de Conciliación Bancaria Automática ($0.00 MAE)              │
 │   - API REST (/api/fiscal/cfdi/stamp-*, /bank/parse-mt940, etc.)       │
 │   - 13/13 Tests Unitarios e Integración en Verde (test_fiscal_engine)  │
-│ Sprint 5.4: Radar Predictivo de Fugas & Generador de Dossier ICC       │ [SIGUIENTE 🚀]
-│ Sprint 5.5: Interfaz Obsidian Glass 3.0 (EDI Inspector & Courtroom)   │ [PENDIENTE]
+│ Sprint 5.4: Radar Predictivo de Fugas & Generador de Dossier ICC       │ [COMPLETADO ✅]
+│   - Radar Pre-Despacho (Deduction Vulnerability Index - DVI)          │
+│   - Catálogo Topológico de Centros de Distribución de Alto Riesgo      │
+│   - Protocolo de Salvaguardas Blindadas (C-TPAT, Fotos 4 Ángulos, EDI) │
+│   - Generador de Dossier Arbitral Foliado ICC Paris / CANACO (7 Caps)  │
+│   - Catálogo de Evidencias Periciales Foliadas con Hash SHA-256        │
+│   - API REST (/api/radar/dvi-evaluate, generate-arbitration-dossier)   │
+│   - 8/8 Tests Unitarios e Integración en Verde (test_predictive_radar) │
+│ Sprint 5.5: Interfaz Obsidian Glass 3.0 (EDI Inspector & Courtroom)   │ [SIGUIENTE 🚀]
 └────────────────────────────────────────────────────────────────────────┘
 ```
 

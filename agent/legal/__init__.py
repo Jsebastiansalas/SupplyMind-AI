@@ -8,9 +8,18 @@ from agent.legal.cross_border_treaties import (
     CrossBorderEvaluationResult,
     CrossBorderTreatiesEngine,
 )
+from agent.legal.arbitration_dossier import (
+    ArbitrationEvidenceItem,
+    ArbitrationDossier,
+    ArbitrationDossierGenerator,
+)
 
 __all__ = [
     "TreatyArticle",
     "CrossBorderEvaluationResult",
     "CrossBorderTreatiesEngine",
+    "ArbitrationEvidenceItem",
+    "ArbitrationDossier",
+    "ArbitrationDossierGenerator",
 ]
+
