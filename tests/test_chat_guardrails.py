@@ -92,3 +92,31 @@ def test_chat_endpoint_answers_case_inquiries():
     reply_text = data["reply"]
     # Debe referirse a las cifras o hechos del caso
     assert any(term in reply_text.lower() for term in ["faltante", "remisión", "remision", "deducción", "deduccion", "case_001", "800", "usd", "saldo"])
+
+
+def test_chat_endpoint_clarifies_all_case_doubts():
+    """
+    Valida que el Copiloto pericial aclare cualquier duda que tenga el usuario
+    (auditor, CFO, abogado, jurado, negociador) sobre el expediente.
+    """
+    doubts_to_test = [
+        ("¿Quién tiene la razón en esta disputa y qué ampara la ley?", ["razón", "razon", "proveedor", "comprador", "artículo 88", "articulo 88"]),
+        ("¿Qué discrepancia existe entre la Orden de Compra y la Factura?", ["orden de compra", "factura", "po", "partida"]),
+        ("¿Acreditó el ASN EDI 856 y acuse 997 la entrega en tiempo?", ["edi", "856", "asn", "997"]),
+        ("¿Qué valor probatorio tiene el sello C-TPAT ISO 17712 de muelle?", ["c-tpat", "sello", "iso 17712"]),
+        ("¿Por qué precluyó el derecho del cliente bajo el Art. 88 del Código de Comercio?", ["artículo 88", "articulo 88", "5 días", "5 dias", "preclusión", "preclusion"]),
+        ("¿Qué escenarios de negociación bilateral tenemos con el comprador?", ["escenario", "agresivo", "equilibrado", "conservador"]),
+        ("¿Qué dictamina el Incoterm FOB sobre el riesgo en tránsito?", ["fob", "riesgo", "origen", "incoterm"]),
+    ]
+
+    for question, expected_keywords in doubts_to_test:
+        res = client.post(
+            "/api/cases/case_001/chat",
+            json={"message": question, "role": "senior_analyst"}
+        )
+        assert res.status_code == 200, f"Error al consultar: {question}"
+        data = res.json()
+        assert "reply" in data
+        reply_lower = data["reply"].lower()
+        matched = any(kw.lower() in reply_lower for kw in expected_keywords)
+        assert matched, f"La respuesta a '{question}' no contuvo ninguna de las palabras esperadas {expected_keywords}.\nRespuesta: {data['reply']}"

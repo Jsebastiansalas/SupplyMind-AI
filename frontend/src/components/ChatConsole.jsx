@@ -228,7 +228,7 @@ export default function ChatConsole({
 }) {
   const [inputText, setInputText] = useState('');
   const [selectedRole, setSelectedRole] = useState('senior_analyst');
-  const [promptCategory, setPromptCategory] = useState('jurado');
+  const [promptCategory, setPromptCategory] = useState('dudas');
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [copiedIndex, setCopiedIndex] = useState(null);
 
@@ -273,6 +273,14 @@ export default function ChatConsole({
 
   // Sugerencias de Preguntas Segmentadas por Audiencia
   const categorizedPrompts = {
+    dudas: [
+      { text: "¿Quién tiene la razón en esta disputa y qué ampara la ley?", badge: "⭐ Veredicto" },
+      { text: "¿Qué discrepancia existe entre la Orden de Compra y la Factura?", badge: "📋 PO vs Factura" },
+      { text: "¿Acreditó el ASN EDI 856 y acuse 997 la entrega en tiempo?", badge: "📡 EDI 856/997" },
+      { text: "¿Qué valor probatorio tiene el sello C-TPAT ISO 17712 de muelle?", badge: "🔒 Sello C-TPAT" },
+      { text: "¿Por qué precluyó el derecho del cliente bajo el Art. 88 del Código de Comercio?", badge: "⚖️ Art. 88 CCom" },
+      { text: "¿Qué parte de la deducción es justificada y cuál es reclamable?", badge: "💰 Saldo Neto" },
+    ],
     jurado: [
       { text: "¿Cómo garantiza el agente cero alucinación matemática?", badge: "Metodología" },
       { text: "¿Cuál fue la deliberación del Tribunal Colegiado (CFO, Legal, COO)?", badge: "100 Pts" },
@@ -662,6 +670,7 @@ export default function ChatConsole({
 
           <div className="flex items-center space-x-1 font-mono">
             {[
+              { id: 'dudas', label: '💡 Dudas del Caso' },
               { id: 'jurado', label: 'Jurados' },
               { id: 'seguridad', label: '🛡️ Seguridad & Ancla' },
               { id: 'fx', label: '🌐 FX & Incoterms' },
