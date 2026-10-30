@@ -495,6 +495,70 @@ class WatchdogMetrics(BaseModel):
     warnings: List[str] = Field(default_factory=list)
 
 
+# ==========================================
+# 16. Confrontación Dialéctica Multi-Agente (Fase 6 - Sprint 6.1)
+# ==========================================
+class RetailerArchetypeConfig(BaseModel):
+    """Configuración psicológica y táctica del comprador hostil retail."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    archetype_id: str                      # "WALMART_OTIF", "AMAZON_FC", "SORIANA_REBATE", "COSTCO_DEPOT", "GENERIC_B2B"
+    retailer_name: str                     # "Walmart Supercenter", "Amazon Fulfillment Services", etc.
+    buyer_title: str                       # "Director de Compras & Compliance OTIF", etc.
+    initial_demand_pct: float = 100.0      # Demanda inicial de retención (% del saldo disputado)
+    concession_resistance_score: float = 8.5 # 1.0 (flexible) a 10.0 (intransigente)
+    key_pressure_points: List[str] = Field(default_factory=list) # "Scorecard OTIF", "Corte de pedidos", etc.
+    evidence_vulnerability: str = "DELIVERY_SLIP_AND_SEAL" # Qué prueba lo desarma ("DELIVERY_SLIP_AND_SEAL", "EDI_997", "CCOM_ART88")
+    tone: str = "Hostil y burocrático"
+
+
+class NegotiationDuelRound(BaseModel):
+    """Ronda individual del careo bilateral entre Agente SupplyMind y Comprador."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    round_number: int                      # 1 a 5
+    buyer_message: str                     # Argumento del comprador retail
+    buyer_stance: str                      # "INTRANSIGENT", "DEFENSIVE", "PARTIAL_CONCESSION", "FINAL_SETTLEMENT"
+    buyer_demand_credit_memo: Decimal = Field(default=Decimal("0.00"), ge=0) # Cuánto exige en Nota de Crédito
+    buyer_cash_payout_offer: Decimal = Field(default=Decimal("0.00"), ge=0)  # Cuánto ofrece pagar en banco
+    
+    supplier_message: str                  # Réplica de SupplyMind AI
+    supplier_stance: str                   # "EVIDENCE_FIRMNESS", "COUNTER_OFFER", "PROPORTIONAL_CONCESSION", "CLOSING_AGREEMENT"
+    supplier_offer_credit_memo: Decimal = Field(default=Decimal("0.00"), ge=0) # Cuánto concede el proveedor
+    supplier_claim_cash: Decimal = Field(default=Decimal("0.00"), ge=0)       # Cuánto exige cobrar en efectivo
+    
+    evidence_exhibited: List[str] = Field(default_factory=list) # Pruebas mostradas en la ronda
+    spread: Decimal = Field(default=Decimal("0.00"), ge=0)      # Brecha entre pretensiones
+    convergence_pct: float = Field(default=0.0, ge=0.0, le=100.0)
+    round_status: str = "IN_PROGRESS"      # "IN_PROGRESS", "CONVERGING", "AGREED", "IMPASSE"
+
+
+class NegotiationDuelSession(BaseModel):
+    """Sesión completa de careo dialéctico multi-agente."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    session_id: str                        # "DUEL-CASE-001-XXXX"
+    case_id: str
+    retailer_name: str
+    archetype: RetailerArchetypeConfig
+    governance_mode: str = "HUMAN_GATEKEEPER" # "FULL_AUTONOMY" | "HUMAN_GATEKEEPER"
+    status: str = "IN_PROGRESS"            # "IN_PROGRESS", "AGREEMENT_REACHED", "IMPASSE_REACHED", "AWAITING_HUMAN_APPROVAL"
+    current_round: int = 1
+    max_rounds: int = 5
+    delegation_limit_pct: float = Field(default=50.0, ge=0.0, le=100.0) # Máxima concesión de reclamable autorizada
+    delegation_limit_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    total_disputed_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    rounds: List[NegotiationDuelRound] = Field(default_factory=list)
+    final_agreed_credit_memo: Optional[Decimal] = None
+    final_agreed_cash_recovery: Optional[Decimal] = None
+    settlement_minutes_hash: Optional[str] = None
+    minutes_markdown_path: Optional[str] = None
+    started_at: str = ""
+    completed_at: Optional[str] = None
+    summary_verdict: str = ""
+
+
+
 
 
 

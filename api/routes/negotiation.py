@@ -86,3 +86,107 @@ def select_negotiation_scenario_endpoint(case_id: str, request: SelectScenarioRe
         "report": _decimal_to_float(updated_report.model_dump(mode="python")),
         "settlement_minutes": minutes_content
     }
+
+
+# ==============================================================================
+# Confrontación Dialéctica Multi-Agente en Tiempo Real (Sprint 6.1)
+# ==============================================================================
+from agent.core.bilateral_negotiation_engine import BilateralNegotiationEngine
+from data.models import NegotiationDuelSession
+
+
+class StartDuelRequest(BaseModel):
+    governance_mode: Optional[str] = Field(default="HUMAN_GATEKEEPER", description="FULL_AUTONOMY | HUMAN_GATEKEEPER")
+    delegation_limit_pct: Optional[float] = Field(default=50.0, ge=0.0, le=100.0, description="Porcentaje máximo de concesión autorizada")
+
+
+class ApproveDuelRequest(BaseModel):
+    operator_name: Optional[str] = Field(default="Director Comercial B2B", description="Nombre del operador firmante")
+
+
+@router.get("/{case_id}/negotiation/duel")
+def get_duel_session_endpoint(case_id: str):
+    """
+    Retorna el estado de la sesión de careo bilateral activa para el expediente.
+    """
+    case_path = Path("data/cases") / case_id
+    if not case_path.exists():
+        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+
+    session = BilateralNegotiationEngine.get_duel_session(case_id)
+    if not session:
+        return {"status": "not_started", "case_id": case_id, "session": None}
+
+    return {
+        "status": "success",
+        "case_id": case_id,
+        "session": _decimal_to_float(session.model_dump(mode="python"))
+    }
+
+
+@router.post("/{case_id}/negotiation/duel/start")
+def start_duel_endpoint(case_id: str, request: Optional[StartDuelRequest] = None):
+    """
+    Inicia una nueva sesión de careo bilateral multi-agente y ejecuta la Ronda 1.
+    """
+    case_path = Path("data/cases") / case_id
+    if not case_path.exists():
+        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+
+    req = request or StartDuelRequest()
+    session = BilateralNegotiationEngine.start_duel(
+        case_id=case_id,
+        governance_mode=req.governance_mode or "HUMAN_GATEKEEPER",
+        delegation_limit_pct=req.delegation_limit_pct if req.delegation_limit_pct is not None else 50.0
+    )
+
+    return {
+        "status": "success",
+        "case_id": case_id,
+        "session": _decimal_to_float(session.model_dump(mode="python"))
+    }
+
+
+@router.post("/{case_id}/negotiation/duel/step")
+def step_duel_endpoint(case_id: str):
+    """
+    Avanza una ronda en el careo bilateral entre SupplyMind y el Comprador Retailer.
+    """
+    case_path = Path("data/cases") / case_id
+    if not case_path.exists():
+        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+
+    session = BilateralNegotiationEngine.advance_duel_step(case_id)
+    return {
+        "status": "success",
+        "case_id": case_id,
+        "session": _decimal_to_float(session.model_dump(mode="python"))
+    }
+
+
+@router.post("/{case_id}/negotiation/duel/approve")
+def approve_duel_settlement_endpoint(case_id: str, request: Optional[ApproveDuelRequest] = None):
+    """
+    Aprueba formalmente el acuerdo preliminar en modo Human Gatekeeper,
+    rubricando la Minuta de Conciliación con sello criptográfico ZKP.
+    """
+    case_path = Path("data/cases") / case_id
+    if not case_path.exists():
+        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+
+    req = request or ApproveDuelRequest()
+    try:
+        session = BilateralNegotiationEngine.approve_settlement(
+            case_id=case_id,
+            operator_name=req.operator_name or "Director Comercial B2B"
+        )
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+    return {
+        "status": "success",
+        "case_id": case_id,
+        "session": _decimal_to_float(session.model_dump(mode="python")),
+        "minutes_hash": session.settlement_minutes_hash
+    }
+
