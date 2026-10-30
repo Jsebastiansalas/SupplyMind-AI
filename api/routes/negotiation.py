@@ -190,3 +190,123 @@ def approve_duel_settlement_endpoint(case_id: str, request: Optional[ApproveDuel
         "minutes_hash": session.settlement_minutes_hash
     }
 
+
+class SetGovernanceModeRequest(BaseModel):
+    governance_mode: str = Field(..., description="FULL_AUTONOMY | HUMAN_GATEKEEPER")
+
+
+@router.post("/{case_id}/negotiation/duel/governance")
+def set_duel_governance_endpoint(case_id: str, request: SetGovernanceModeRequest):
+    """
+    Conmuta el modo de gobernanza del careo (FULL_AUTONOMY vs HUMAN_GATEKEEPER)
+    con auditoría estricta de salvaguardas financieras de la Matriz CFO.
+    """
+    case_path = Path("data/cases") / case_id
+    if not case_path.exists():
+        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+
+    try:
+        session = BilateralNegotiationEngine.set_governance_mode(case_id, request.governance_mode.upper())
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+    return {
+        "status": "success",
+        "case_id": case_id,
+        "governance_mode": session.governance_mode,
+        "session": _decimal_to_float(session.model_dump(mode="python"))
+    }
+
+
+@router.get("/{case_id}/negotiation/duel/minutes")
+def get_duel_settlement_minutes_endpoint(case_id: str):
+    """
+    Retorna el convenio formal de transacción mercantil, sello ZKP SHA-256
+    y el texto íntegro en Markdown con autoridad de cosa juzgada.
+    """
+    case_path = Path("data/cases") / case_id
+    if not case_path.exists():
+        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+
+    session = BilateralNegotiationEngine.get_duel_session(case_id)
+    if not session:
+        raise HTTPException(status_code=404, detail=f"No hay careo registrado para el caso '{case_id}'.")
+
+    minutes_file = Path("reports") / f"convenio_finiquito_{case_id}.md"
+    if not minutes_file.exists():
+        minutes_file = Path("reports") / f"minuta_conciliacion_duel_{case_id}.md"
+
+    minutes_content = ""
+    if minutes_file.exists():
+        with open(minutes_file, "r", encoding="utf-8") as f:
+            minutes_content = f.read()
+
+    details = BilateralNegotiationEngine.get_settlement_agreement_details(case_id)
+    details_dict = _decimal_to_float(details.model_dump(mode="python")) if details else None
+
+    return {
+        "status": "success",
+        "case_id": case_id,
+        "session_id": session.session_id,
+        "settlement_minutes_hash": session.settlement_minutes_hash,
+        "agreement_details": details_dict,
+        "markdown_content": minutes_content
+    }
+
+
+# ==============================================================================
+# Matriz de Delegación Financiera & Gobernanza B2B (Sprint 6.2)
+# ==============================================================================
+from agent.core.delegation_matrix_engine import DelegationMatrixEngine
+from data.models import FinancialDelegationMatrix, SettlementAgreementDetails
+
+governance_router = APIRouter(prefix="/negotiation", tags=["Gobernanza Financiera B2B"])
+
+
+class UpdateDelegationMatrixRequest(BaseModel):
+    matrix_id: Optional[str] = None
+    cfo_approver: Optional[str] = None
+    strict_approval_threshold: Optional[Decimal] = None
+    allow_autonomous_execution: Optional[bool] = None
+    tier_policies: Optional[Dict[str, Any]] = None
+
+
+@governance_router.get("/delegation-matrix")
+@router.get("/delegation-matrix")
+def get_delegation_matrix_endpoint():
+    """Retorna la matriz corporativa activa de delegación financiera y salvaguardas."""
+    matrix = DelegationMatrixEngine.get_active_matrix()
+    return {
+        "status": "success",
+        "matrix": _decimal_to_float(matrix.model_dump(mode="python"))
+    }
+
+
+@governance_router.post("/delegation-matrix")
+@router.post("/delegation-matrix")
+def update_delegation_matrix_endpoint(request: UpdateDelegationMatrixRequest):
+    """Actualiza los parámetros o políticas de la matriz de delegación financiera del CFO."""
+    matrix = DelegationMatrixEngine.get_active_matrix()
+    if request.matrix_id is not None:
+        matrix.matrix_id = request.matrix_id
+    if request.cfo_approver is not None:
+        matrix.cfo_approver = request.cfo_approver
+    if request.strict_approval_threshold is not None:
+        matrix.strict_approval_threshold = request.strict_approval_threshold
+    if request.allow_autonomous_execution is not None:
+        matrix.allow_autonomous_execution = request.allow_autonomous_execution
+    if request.tier_policies is not None:
+        for tier_k, tier_v in request.tier_policies.items():
+            if tier_k in matrix.tier_policies and isinstance(tier_v, dict):
+                curr = matrix.tier_policies[tier_k]
+                updated = curr.model_copy(update=tier_v)
+                matrix.tier_policies[tier_k] = updated
+
+    DelegationMatrixEngine.save_matrix(matrix)
+    return {
+        "status": "success",
+        "message": "Matriz de Delegación Financiera actualizada y persistida correctamente.",
+        "matrix": _decimal_to_float(matrix.model_dump(mode="python"))
+    }
+
+

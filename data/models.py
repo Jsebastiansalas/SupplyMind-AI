@@ -558,6 +558,55 @@ class NegotiationDuelSession(BaseModel):
     summary_verdict: str = ""
 
 
+# ==========================================
+# 17. Matriz de Delegación Financiera & Gobernanza B2B (Fase 6 - Sprint 6.2)
+# ==========================================
+class DelegationTierPolicy(BaseModel):
+    """Política de concesión y plazos por nivel de cuenta comercial."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    tier_id: str                           # "TIER_1_STRATEGIC", "TIER_2_REGULAR", "TIER_3_HIGH_RISK"
+    tier_name: str                         # "Cuentas Estratégicas Tier-1", etc.
+    max_concession_pct: float = Field(default=50.0, ge=0.0, le=100.0)
+    max_concession_fixed_cap: Decimal = Field(default=Decimal("15000.00"), ge=0)
+    max_payment_days: int = 5
+    require_reciprocal_concession: bool = True
+    reciprocal_clauses_required: List[str] = Field(default_factory=list)
+
+
+class FinancialDelegationMatrix(BaseModel):
+    """Matriz corporativa de delegación financiera y salvaguardas de gobernanza."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    matrix_id: str = "FDM-GLOBAL-DEFAULT"
+    cfo_approver: str = "Dirección de Finanzas & Tesorería B2B"
+    strict_approval_threshold: Decimal = Field(default=Decimal("10000.00"), ge=0) # Casos > este importe fuerzan Gatekeeper
+    tier_policies: Dict[str, DelegationTierPolicy] = Field(default_factory=dict)
+    allow_autonomous_execution: bool = True
+    last_updated: str = ""
+
+
+class SettlementAgreementDetails(BaseModel):
+    """Detalle legal y financiero del convenio formal de finiquito y transacción comercial."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    agreement_id: str                      # "AGR-CASE-001-XXXX"
+    case_id: str
+    retailer_name: str
+    dispute_original_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    justified_credit_memo: Decimal = Field(default=Decimal("0.00"), ge=0)
+    commercial_concession_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    total_credit_memo: Decimal = Field(default=Decimal("0.00"), ge=0)
+    cash_recovery_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    payment_deadline_days: int = 5
+    legal_doctrines: List[str] = Field(default_factory=list)
+    reciprocal_commitments: List[str] = Field(default_factory=list)
+    zkp_seal_hash: str = ""
+    signed_by_operator: str = ""
+    signed_at: str = ""
+
+
+
 
 
 

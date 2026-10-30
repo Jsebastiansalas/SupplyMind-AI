@@ -17,10 +17,13 @@ from data.models import (
     NegotiationDuelRound,
     NegotiationDuelSession,
     RetailerArchetypeConfig,
-    DisputeAnalysisReport
+    DisputeAnalysisReport,
+    SettlementAgreementDetails
 )
 from agent.core.retailer_buyer_simulator import RetailerBuyerSimulator, ARCHETYPE_REGISTRY
 from agent.core.concession_engine import ConcessionEngine, ConcessionIntent
+from agent.core.delegation_matrix_engine import DelegationMatrixEngine
+from agent.core.settlement_agreement_generator import SettlementAgreementGenerator
 from config.settings import settings
 
 ROOT_DIR = Path(__file__).resolve().parent.parent.parent
@@ -60,41 +63,59 @@ class BilateralNegotiationEngine:
         cls,
         case_id: str,
         governance_mode: str = "HUMAN_GATEKEEPER",
-        delegation_limit_pct: float = 50.0
+        delegation_limit_pct: Optional[float] = None
     ) -> NegotiationDuelSession:
         """
         Inicia una nueva sesión de careo bilateral entre SupplyMind y el Comprador Retailer.
+        Aplica los límites y salvaguardas de la Matriz de Delegación Financiera (Sprint 6.2).
         Ejecuta de inmediato la Ronda 1 de apertura de posturas.
         """
         report = ConcessionEngine.get_or_create_base_report(case_id)
         archetype = RetailerBuyerSimulator.resolve_archetype(case_id)
 
+        # Evaluar contra la Matriz de Delegación Corporativa
+        delegation_eval = DelegationMatrixEngine.evaluate_case_delegation(case_id, requested_mode=governance_mode)
+
         total_dispute = abs(report.difference).quantize(Decimal("0.01"))
         justified = report.justified_amount.quantize(Decimal("0.01"))
         claimable = report.claimable_amount.quantize(Decimal("0.01"))
 
-        # Límite máximo de dinero reclamable que el agente tiene autorización de conceder
-        limit_pct_decimal = (Decimal(str(delegation_limit_pct)) / Decimal("100.0")).quantize(Decimal("0.01"))
-        delegation_limit_amount = (claimable * limit_pct_decimal).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+        # Determinar modo de gobernanza efectivo (respetando salvaguarda estricta > $10,000 USD)
+        effective_mode = delegation_eval["enforced_mode"]
+
+        # Determinar límite de concesión autorizado por la matriz
+        max_matrix_pct = delegation_eval["max_allowed_concession_pct"]
+        max_matrix_cap = delegation_eval["max_allowed_concession_amount"]
+
+        if delegation_limit_pct is not None:
+            effective_limit_pct = min(float(delegation_limit_pct), max_matrix_pct)
+        else:
+            effective_limit_pct = max_matrix_pct
+
+        limit_pct_decimal = (Decimal(str(effective_limit_pct)) / Decimal("100.0")).quantize(Decimal("0.01"))
+        calculated_limit_amount = (claimable * limit_pct_decimal).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+        delegation_limit_amount = min(calculated_limit_amount, max_matrix_cap)
 
         session_id = f"DUEL-{case_id.upper()}-{uuid.uuid4().hex[:8].upper()}"
         now_iso = datetime.now(timezone.utc).isoformat()
+
+        safeguard_note = f" [{delegation_eval['safeguard_reason']}]" if delegation_eval["safeguard_triggered"] else ""
 
         session = NegotiationDuelSession(
             session_id=session_id,
             case_id=case_id,
             retailer_name=archetype.retailer_name,
             archetype=archetype,
-            governance_mode=governance_mode,
+            governance_mode=effective_mode,
             status="IN_PROGRESS",
             current_round=1,
             max_rounds=5,
-            delegation_limit_pct=delegation_limit_pct,
+            delegation_limit_pct=effective_limit_pct,
             delegation_limit_amount=delegation_limit_amount,
             total_disputed_amount=total_dispute,
             rounds=[],
             started_at=now_iso,
-            summary_verdict="Careo iniciado. Apertura de posturas preliminares."
+            summary_verdict=f"Careo iniciado. Posturas preliminares bajo política {delegation_eval['account_tier']}.{safeguard_note}"
         )
 
         # Generar Ronda 1 de inmediato
@@ -379,69 +400,58 @@ class BilateralNegotiationEngine:
         return session
 
     @classmethod
+    def set_governance_mode(cls, case_id: str, new_mode: str) -> NegotiationDuelSession:
+        """
+        Conmuta el modo de gobernanza de una sesión activa (FULL_AUTONOMY vs HUMAN_GATEKEEPER).
+        Aplica estrictamente las salvaguardas de la Matriz de Delegación Financiera.
+        """
+        if new_mode not in ["FULL_AUTONOMY", "HUMAN_GATEKEEPER"]:
+            raise ValueError(f"Modo de gobernanza inválido '{new_mode}'. Use 'FULL_AUTONOMY' o 'HUMAN_GATEKEEPER'.")
+
+        session = cls.get_duel_session(case_id)
+        if not session:
+            session = cls.start_duel(case_id, governance_mode=new_mode)
+            return session
+
+        delegation_eval = DelegationMatrixEngine.evaluate_case_delegation(case_id, requested_mode=new_mode)
+        if delegation_eval["safeguard_triggered"] and new_mode == "FULL_AUTONOMY":
+            raise ValueError(delegation_eval["safeguard_reason"])
+
+        session.governance_mode = delegation_eval["enforced_mode"]
+        cls._save_session(session)
+        return session
+
+    @classmethod
+    def get_settlement_agreement_details(
+        cls,
+        case_id: str
+    ) -> Optional[SettlementAgreementDetails]:
+        """Obtiene o reconstruye los detalles certificados del convenio para el caso."""
+        session = cls.get_duel_session(case_id)
+        if not session or not session.settlement_minutes_hash:
+            return None
+        report = ConcessionEngine.get_or_create_base_report(case_id)
+        return SettlementAgreementGenerator.generate_agreement(
+            session=session,
+            report=report,
+            operator_name="Auditor B2B / SupplyMind AI"
+        )
+
+    @classmethod
     def _seal_and_generate_minutes(
         cls,
         session: NegotiationDuelSession,
         report: DisputeAnalysisReport,
         operator_name: str = "Director Comercial B2B / SupplyMind AI"
     ):
-        """Genera y firma digitalmente la Minuta de Conciliación con hash criptográfico SHA-256."""
-        reports_dir = ROOT_DIR / "reports"
-        reports_dir.mkdir(parents=True, exist_ok=True)
-        minutes_path = reports_dir / f"minuta_conciliacion_duel_{session.case_id}.md"
-
-        final_cm = session.final_agreed_credit_memo or Decimal("0.00")
-        final_cash = session.final_agreed_cash_recovery or Decimal("0.00")
-
-        # Criptografía SHA-256 para el sello de integridad
-        raw_proof = f"{session.session_id}|{session.case_id}|{final_cm}|{final_cash}|{session.completed_at}"
-        proof_hash = hashlib.sha256(raw_proof.encode("utf-8")).hexdigest()
-
-        rounds_table = ""
-        for r in session.rounds:
-            rounds_table += (
-                f"| R{r.round_number} | {r.buyer_stance} | ${r.buyer_demand_credit_memo:,.2f} | "
-                f"${r.buyer_cash_payout_offer:,.2f} | {r.supplier_stance} | ${r.supplier_offer_credit_memo:,.2f} | "
-                f"${r.supplier_claim_cash:,.2f} | ${r.spread:,.2f} | {r.convergence_pct:.1f}% |\n"
-            )
-
-        minutes_content = f"""# CONVENIO DE CONCILIACIÓN COMERCIAL Y FINIQUITO TRANSACCIONAL BILATERAL
-**Folio de Negociación:** `{session.session_id}`  
-**Expediente Arbitrado:** `{session.case_id}`  
-**Fecha de Cierre:** {datetime.now(timezone.utc).strftime("%d de %B de %Y - %H:%M:%S UTC")}  
-**Partes:** Proveedor Autorizado de Suministro vs **{session.retailer_name}**  
-**Representante Retailer:** {session.archetype.buyer_title}  
-**Representante Proveedor:** {operator_name} / SupplyMind Bilateral Negotiation Engine  
-**Sello Criptográfico ZKP (SHA-256):** `{proof_hash}`
-
----
-
-### 1. DECLARACIÓN DE ANTECEDENTES Y DISPUTA
-1. Con motivo del suministro correspondiente al caso `{session.case_id}`, la parte compradora retuvo un monto de **${session.total_disputed_amount:,.2f} USD** sobre la facturación emitida.
-2. Ambas partes acordaron dirimir la controversia mediante careo dialéctico pericial en {len(session.rounds)} rondas de intercambio de evidencias.
-
----
-
-### 2. TRAZABILIDAD AUDITABLE DE LA NEGOCIACIÓN
-
-| Ronda | Postura Comprador | Exigencia NC | Oferta Efectivo | Postura Proveedor | Concesión NC | Reclamo Efectivo | Spread | Convergencia |
-| :---: | :--- | :---: | :---: | :--- | :---: | :---: | :---: | :---: |
-{rounds_table}
-
----
-
-### 3. TÉRMINOS DEFINITIVOS DE CONCILIACIÓN
-- **Nota de Crédito Autorizada:** **${final_cm:,.2f} USD** (Ampara faltantes físicos acreditados y concesión comercial concertada).
-- **Liquidación en Efectivo Inmediata:** **${final_cash:,.2f} USD** (Pago bancario exigible en menos de 5 días hábiles).
-- **Estatus Legal:** Finiquito pleno, total y definitivo entre las partes bajo el Código de Comercio.
-
-*Documento generado y certificado automáticamente por SupplyMind AI Enterprise.*
-"""
-        with open(minutes_path, "w", encoding="utf-8") as f:
-            f.write(minutes_content)
-
-        session.settlement_minutes_hash = proof_hash
-        session.minutes_markdown_path = str(minutes_path)
+        """Genera y firma digitalmente el Convenio de Transacción Mercantil con ZKP SHA-256."""
+        agreement = SettlementAgreementGenerator.generate_agreement(
+            session=session,
+            report=report,
+            operator_name=operator_name
+        )
+        session.settlement_minutes_hash = agreement.zkp_seal_hash
+        session.minutes_markdown_path = str(ROOT_DIR / "reports" / f"convenio_finiquito_{session.case_id}.md")
 
     @classmethod
     def _save_session(cls, session: NegotiationDuelSession):

@@ -1,37 +1,47 @@
-# Plan de Implementación: Sprint 6.1 — Motor Multi-Agente de Negociación Bilateral (IA vs IA)
+# Plan de Implementación: Sprint 6.2 — Matriz de Delegación Financiera & Dualidad de Gobernanza
 
 ## Resumen Ejecutivo
-Construcción del motor de confrontación dialéctica autónoma de SupplyMind AI, permitiendo que el Agente Defensor SupplyMind se caree en tiempo real contra un Agente Comprador Retailer simulado (calibrado con personalidades y tácticas de Walmart, Amazon, Soriana y Costco), aplicando teoría de juegos (MCTS), límites de delegación financiera infranqueables y protocolo de 5 rondas máximas con detección de acuerdo o impasse arbitral.
+Implementación del marco de gobernanza financiera y jurídica vinculante de SupplyMind AI. Permite a los directores financieros (CFO) establecer una Matriz de Delegación con límites infranqueables por nivel de cuenta (Tier 1 Estratégica, Tier 2 Regular, Tier 3 Alto Riesgo), reglas de reciprocidad comercial obligatoria (exención de multas futuras por pronto acuerdo), umbrales de forzado a Human Gatekeeper para disputas de alto volumen y generación de convenios de finiquito mercantil certificados con sellos criptográficos ZKP SHA-256.
 
 ---
 
 ## Decisiones de Arquitectura
-1. **Desacoplamiento Aritmético Estricto:** Toda suma, concesión, retención y cálculo de spread se ejecuta con tipos Python `Decimal` ($0.00 MAE).
-2. **Arquetipos de Comprador Hostil:** Modelado de comportamientos reales de grandes cadenas comerciales (`WALMART_OTIF`, `AMAZON_FC`, `SORIANA_REBATE`, `COSTCO_DEPOT`, `GENERIC_B2B`) con posturas de apertura, argumentos de desgaste y umbrales de reacción ante pruebas documentales.
-3. **Control de Rondas y Anti-Bucles:** Protocolo rígido de máximo 5 rondas. Si el spread converge a cero o dentro de la tolerancia de delegación, se sella `AGREEMENT_REACHED`; si se agotan las 5 rondas sin consenso, se emite `IMPASSE_REACHED` derivando automáticamente a arbitraje ICC / CANACO.
-4. **Dualidad de Inferencia:** Funciona con Grok 4.7 Direct en vivo para argumentación dialéctica rica, respaldado por un motor determinístico senior local con 100% de operatividad offline.
+1. **Matriz Jerárquica de Delegación:**
+   - `TIER_1_STRATEGIC`: Hasta 50% de concesión de lo reclamable si hay compromiso de volumen o exención de multas.
+   - `TIER_2_REGULAR`: Hasta 25% de concesión máxima.
+   - `TIER_3_HIGH_RISK`: 0% de concesión (Cobro íntegro estricto sin tolerancia).
+   - Umbral de Salvaguarda: Disputas > $10,000 USD activan obligatoriamente el modo `HUMAN_GATEKEEPER` para requerir rúbrica del CFO.
+2. **Reciprocidad Comercial Vinculante:** Ninguna concesión económica se otorga de forma unilateral. El convenio exige automáticamente al comprador:
+   - Compromiso de pago bancario en menos de 5 días hábiles.
+   - Cláusula de no-penalización logística por 2 pedidos consecutivos.
+   - Eliminación de cargos de reprogramación en muelle.
+3. **Finiquito Legal Mercantil Certificado:**
+   - Redacción formal conforme a los Artículos 2944 y 2953 del Código Civil y Art. 1054 del Código de Comercio (autoridad de cosa juzgada entre las partes).
+   - Sello criptográfico SHA-256 HMAC inmutable que une el folio, las partes, los montos y la fecha UTC.
+4. **API REST y Gobernanza Dinámica:**
+   - Endpoints para consultar/calibrar la matriz de delegación y conmutar el modo operativo del expediente en caliente.
 
 ---
 
 ## Task List & Checkpoints
 
-### Fase 1: Modelos de Datos & Arquetipos de Comprador
-- [ ] **Task 1:** Definir esquemas Pydantic V2 en `data/models.py` (`NegotiationDuelRound`, `NegotiationDuelSession`, `RetailerArchetypeConfig`, `DuelStepRequest`, `DuelStepResponse`).
-- [ ] **Task 2:** Implementar `RetailerBuyerSimulator` en `agent/core/retailer_buyer_simulator.py` con 5 arquetipos de retail y respuestas condicionadas a evidencias.
+### Fase 1: Modelos de Gobernanza y Matriz de Delegación
+- [x] **Task 6.2.1:** Esquemas Pydantic V2 en `data/models.py` (`DelegationTierPolicy`, `FinancialDelegationMatrix`, `SettlementAgreementDetails`).
+- [x] **Task 6.2.2:** Motor de Gobernanza en `agent/core/delegation_matrix_engine.py` (auditoría de límites, forzado automático de Gatekeeper para casos > $10,000 USD, inyección de reciprocidad).
 
-### Checkpoint: Modelos y Simulador Comprador
-- [ ] Validar instanciación y cálculo de pretensiones del comprador.
+### Checkpoint: Motor de Gobernanza
+- [x] Validar que ninguna concesión viole los topes de la matriz y que el forzado de Gatekeeper opere en casos de alto valor.
 
-### Fase 2: Motor Bilateral & Orquestador MCTS
-- [ ] **Task 3:** Implementar `BilateralNegotiationEngine` en `agent/core/bilateral_negotiation_engine.py` (cálculo de contraofertas MCTS, cruce de pruebas, cálculo de spread y convergencia).
-- [ ] **Task 4:** Crear rutas de API REST en `api/routes/negotiation_duel.py` (`POST /api/negotiation/duel/start`, `POST /api/negotiation/duel/step`, `GET /api/negotiation/duel/{case_id}`).
+### Fase 2: Redacción y Certificación de Convenios Mercantiles
+- [x] **Task 6.2.3:** Generador de Convenios y Minutas Formales en `agent/core/settlement_agreement_generator.py` con cláusulas de cosa juzgada, reciprocidad comercial y sellos ZKP.
+- [x] **Task 6.2.4:** Integrar el validador de gobernanza y generador de convenios en `agent/core/bilateral_negotiation_engine.py`.
 
-### Checkpoint: Motor y Endpoints REST
-- [ ] Endpoints activos y documentados en Swagger `/docs`.
+### Checkpoint: Generador de Convenios
+- [x] Validar generación de convenios certificados con hash SHA-256 e invariantes contables $0.00 MAE.
 
-### Fase 3: Pruebas Exhaustivas y Verificación
-- [ ] **Task 5:** Suite de pruebas automatizadas en `tests/test_negotiation_duel.py` cubriendo convergencia de acuerdo, detección de impasse, respeto de límites de delegación y compatibilidad con expedientes reales.
+### Fase 3: Endpoints REST y Tests Automatizados
+- [x] **Task 6.2.5:** Endpoints REST en `api/routes/negotiation.py` (`GET/POST /api/negotiation/delegation-matrix`, `POST /api/cases/{case_id}/negotiation/duel/governance`, `GET /api/cases/{case_id}/negotiation/duel/minutes`).
+- [x] **Task 6.2.6:** Suite completa de tests en `tests/test_delegation_matrix.py` (100% passing).
 
-### Checkpoint: Sprint 6.1 Completado
-- [ ] Todos los tests unitarios en verde (100% passing).
-- [ ] Servidor FastAPI respondiendo sin errores.
+### Checkpoint Final Sprint 6.2
+- [x] Tests en verde, servidor API activo y actualización de documentación maestra.
