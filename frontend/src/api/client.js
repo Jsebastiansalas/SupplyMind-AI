@@ -330,6 +330,104 @@ export const apiClient = {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return res.json();
   },
+
+  // --- SPRINT 6.1 / 6.2 / 6.3: Careo Dialéctico B2B & Despacho a Portales ---
+  async getDuelSession(caseId) {
+    const res = await fetch(`${BASE_URL}/cases/${caseId}/negotiation/duel`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async startDuel(caseId, payload = {}) {
+    const res = await fetch(`${BASE_URL}/cases/${caseId}/negotiation/duel/start`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: 'Error al iniciar careo' }));
+      throw new Error(err.detail || `HTTP ${res.status}`);
+    }
+    return res.json();
+  },
+
+  async advanceDuelStep(caseId) {
+    const res = await fetch(`${BASE_URL}/cases/${caseId}/negotiation/duel/step`, {
+      method: 'POST',
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: 'Error al avanzar careo' }));
+      throw new Error(err.detail || `HTTP ${res.status}`);
+    }
+    return res.json();
+  },
+
+  async approveDuelSettlement(caseId, payload = {}) {
+    const res = await fetch(`${BASE_URL}/cases/${caseId}/negotiation/duel/approve`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: 'Error al aprobar finiquito' }));
+      throw new Error(err.detail || `HTTP ${res.status}`);
+    }
+    return res.json();
+  },
+
+  async setDuelGovernance(caseId, payload = {}) {
+    const res = await fetch(`${BASE_URL}/cases/${caseId}/negotiation/duel/governance`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: 'Error al conmutar gobernanza' }));
+      throw new Error(err.detail || `HTTP ${res.status}`);
+    }
+    return res.json();
+  },
+
+  async getDuelMinutes(caseId) {
+    const res = await fetch(`${BASE_URL}/cases/${caseId}/negotiation/duel/minutes`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async getDelegationMatrix() {
+    const res = await fetch(`${BASE_URL}/negotiation/delegation-matrix`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async getCasePortalDossier(caseId, portalType = null) {
+    const url = portalType 
+      ? `${BASE_URL}/cases/${caseId}/portal/dossier?portal_type=${portalType}`
+      : `${BASE_URL}/cases/${caseId}/portal/dossier`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async dispatchCaseToPortal(caseId, payload = {}) {
+    const res = await fetch(`${BASE_URL}/cases/${caseId}/portal/dispatch`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: 'Error al despachar caso a portal' }));
+      throw new Error(err.detail || `HTTP ${res.status}`);
+    }
+    return res.json();
+  },
+
+  async getCasePortalReceipt(caseId) {
+    const res = await fetch(`${BASE_URL}/cases/${caseId}/portal/receipt`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
 };
+
 
 

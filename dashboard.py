@@ -215,9 +215,10 @@ if "current_report" in st.session_state:
     report = st.session_state.current_report
     
     st.markdown(f"<h2>📊 RESULTADOS: {Path(report.case_id).name.upper()}</h2>", unsafe_allow_html=True)
-    tab1, tab_neg, tab_fx, tab_fugas, tab2, tab_pdf, tab3, tab4, tab5 = st.tabs([
+    tab1, tab_neg, tab_duel, tab_fx, tab_fugas, tab2, tab_pdf, tab3, tab4, tab5 = st.tabs([
         "💵 PANEL FINANCIERO", 
-        "🤝 NEGOCIACIÓN B2B", 
+        "🤝 ESCENARIOS B2B", 
+        "⚔️ MESA DE CAREO & DESPACHO",
         "🌐 FX & INCOTERMS", 
         "🛡️ FUGAS RETAILERS", 
         "⚖️ VEREDICTO LEGAL", 
@@ -283,6 +284,81 @@ if "current_report" in st.session_state:
             with st.expander("📄 Ver Minuta de Conciliación y Convenio Extrajudicial Generado", expanded=False):
                 with open(minutes_path, "r", encoding="utf-8") as mf:
                     st.markdown(mf.read())
+
+    with tab_duel:
+        from agent.core.bilateral_negotiation_engine import BilateralNegotiationEngine
+        from agent.core.delegation_matrix_engine import DelegationMatrixEngine
+        from agent.portal.portal_dispatcher_engine import PortalDispatcherEngine
+
+        duel_sess = BilateralNegotiationEngine.get_duel_session(report.case_id)
+        if not duel_sess:
+            duel_sess = BilateralNegotiationEngine.start_duel(report.case_id, governance_mode="HUMAN_GATEKEEPER")
+
+        st.markdown("### ⚔️ Mesa de Negociación B2B Bilateral (IA vs IA MCTS)")
+        st.caption(f"Contraparte: **{duel_sess.retailer_name}** | Arquetipo: **{duel_sess.archetype.buyer_title}** | Estatus: **{duel_sess.status}**")
+
+        # Fila de Gobernanza
+        g1, g2, g3 = st.columns([2, 1, 1])
+        with g1:
+            st.info(f"🛡️ **Modo Activo:** `{duel_sess.governance_mode}` | Tope Máximo Concesión: **${duel_sess.delegation_limit_amount:,.2f} USD** ({duel_sess.delegation_limit_pct}%)")
+        with g2:
+            if duel_sess.status not in ["AGREEMENT_REACHED", "IMPASSE_REACHED"]:
+                if st.button("▶️ Siguiente Ronda", use_container_width=True):
+                    duel_sess = BilateralNegotiationEngine.advance_duel_step(report.case_id)
+                    st.rerun()
+        with g3:
+            if duel_sess.status == "AWAITING_HUMAN_APPROVAL":
+                if st.button("✍️ Aprobar Finiquito (CFO)", type="primary", use_container_width=True):
+                    BilateralNegotiationEngine.approve_settlement(report.case_id, operator_name="Director de Finanzas Streamlit")
+                    st.toast("✅ Finiquito aprobado y sellado.", icon="✍️")
+                    st.rerun()
+
+        # Split screen de la última ronda
+        if duel_sess.rounds:
+            last_round = duel_sess.rounds[-1]
+            st.markdown(f"#### 🥊 Ronda {last_round.round_number} de {duel_sess.max_rounds} — Spread: `${last_round.spread:,.2f} USD` (Convergencia: `{last_round.convergence_pct}%`)")
+            
+            c_sup, c_mid, c_buy = st.columns([5, 2, 5])
+            with c_sup:
+                st.markdown(f"""
+                <div class='premium-card' style='border-left: 4px solid #38bdf8;'>
+                    <h4 style='color: #38bdf8; margin: 0;'>🤖 SupplyMind AI (Defensor)</h4>
+                    <p style='color: #94a3b8; font-size: 0.8rem;'>Postura: <code>{last_round.supplier_stance}</code></p>
+                    <p style='margin: 4px 0;'>📑 <strong>Concesión NC Ofrecida:</strong> <span style='color: #f59e0b; font-weight:bold;'>${last_round.supplier_offer_credit_memo:,.2f} USD</span></p>
+                    <p style='margin: 4px 0;'>💵 <strong>Reclamo en Banco:</strong> <span style='color: #10b981; font-weight:bold;'>${last_round.supplier_claim_cash:,.2f} USD</span></p>
+                    <hr style='border-color: rgba(255,255,255,0.08); margin: 6px 0;'>
+                    <p style='font-style: italic; font-size: 0.83rem;'>"{last_round.supplier_message}"</p>
+                </div>
+                """, unsafe_allow_html=True)
+            with c_mid:
+                st.metric("Spread", f"${last_round.spread:,.2f}")
+                st.progress(min(1.0, max(0.0, float(last_round.convergence_pct / 100.0))))
+            with c_buy:
+                st.markdown(f"""
+                <div class='premium-card' style='border-right: 4px solid #f43f5e; text-align: right;'>
+                    <h4 style='color: #f43f5e; margin: 0;'>🏢 {duel_sess.retailer_name}</h4>
+                    <p style='color: #94a3b8; font-size: 0.8rem;'>Postura: <code>{last_round.buyer_stance}</code></p>
+                    <p style='margin: 4px 0;'>📑 <strong>Demanda NC Retenida:</strong> <span style='color: #f43f5e; font-weight:bold;'>${last_round.buyer_demand_credit_memo:,.2f} USD</span></p>
+                    <p style='margin: 4px 0;'>💵 <strong>Oferta Pago Banco:</strong> <span style='color: #94a3b8;'>${last_round.buyer_cash_payout_offer:,.2f} USD</span></p>
+                    <hr style='border-color: rgba(255,255,255,0.08); margin: 6px 0;'>
+                    <p style='font-style: italic; font-size: 0.83rem;'>"{last_round.buyer_message}"</p>
+                </div>
+                """, unsafe_allow_html=True)
+
+        # Módulo de Despacho Robótico
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("#### 🚀 Despacho Robótico a Portal B2B")
+        rcpt = PortalDispatcherEngine.get_dispatch_receipt(report.case_id)
+        if rcpt:
+            st.success(f"✅ **Radicado Exitosamente:** Ticket `{rcpt.tracking_ticket}` | Portal `{rcpt.portal_type}` | SLA: `{rcpt.estimated_sla_days} días`")
+            with st.expander("🔍 Ver Bitácora de Auditoría Micro-Pasos"):
+                for step in rcpt.log_trace:
+                    st.text(step)
+        else:
+            if st.button("⚡ Radicar Expediente en Portal Retailer Ahora", use_container_width=True):
+                new_rcpt = PortalDispatcherEngine.dispatch_case_to_portal(report.case_id)
+                st.success(f"¡Radicación completada! Ticket emitido: {new_rcpt.tracking_ticket}")
+                st.rerun()
 
     with tab_fx:
         from agent.core.fx_and_leakage_engine import FxAndIncotermsEngine, INCOTERM_RULES_REGISTRY

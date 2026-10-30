@@ -1,49 +1,38 @@
-# Plan de Implementación: Sprint 6.3 — Despachador Robótico a Portales B2B (Retail Link, Vendor Central, Soriana, Liverpool)
+# Plan de Implementación: Sprint 6.4 — Interfaz Obsidian Glass 3.0: Mesa de Negociación B2B & Careo en Vivo
 
 ## Resumen Ejecutivo
-Implementación del Despachador Robótico y Automatización de Radicación B2B de SupplyMind AI. Permite generar automáticamente un expediente probatorio pericial consolidado (CFDI 4.0, remisión sellada, ASN EDI 856, EDI 997, C-TPAT y Convenio de Finiquito ZKP) y radicar formalmente la controversia en los 4 grandes portales comerciales retail (Walmart Retail Link / Luminate, Amazon Vendor Central, Soriana B2B y Liverpool Partners), obteniendo un folio oficial de ticket y bitácora auditable de radicación.
+Implementación de la experiencia visual y operativa Obsidian Glass 3.0 para la confrontación dialéctica autónoma (Mesa de Negociación B2B) y la radicación desatendida en portales retail. Dota a los analistas y directores financieros de una consola interactiva en tiempo real donde pueden presenciar el debate IA vs Retailer ronda a ronda, monitorear la curva de convergencia de ofertas, intervenir con controles Human-in-the-Loop o conmutar al modo 100% autónomo, y supervisar el despacho pericial con folios de ticket.
 
 ---
 
-## Decisiones de Arquitectura
-1. **Empaquetador Forense de Evidencias (Dossier Generator):**
-   - Agrupa los documentos del expediente con comprobación de integridad SHA-256.
-   - Genera un archivo manifest JSON normalizado con rutas relativas, hashes y metadatos periciales.
-2. **Adaptadores Específicos por Portal:**
-   - `WALMART_RETAIL_LINK`: Mapea códigos de deducción (Claim Codes 21, 22, 24, 86 OTIF), DC Number, PO Number y telemetría de cita.
-   - `AMAZON_VENDOR_CENTRAL`: Mapea AP Claims Engine (SHORTAGE_FC, FREIGHT_VARIANCE, ON_TIME_COMPLIANCE), código de estación/FC Dock (DAL3, PHX6), BOL y EDI 856.
-   - `SORIANA_B2B`: Mapea Folio de Contra-recibo, Clave Tienda/CEDIS, Deducción de Merma/Comercial y Timbre SAT UUID.
-   - `LIVERPOOL_B2B`: Mapea Pedido B2B, Folio de Cita en Patio, Remisión física sellada y Factura fiscal.
-3. **Máquina de Estados de Radicación:**
-   - `PREPARING_DOSSIER` -> `AUTHENTICATING_SSO` -> `UPLOADING_EVIDENCE_BUNDLE` -> `VALIDATING_CLAIM_PAYLOAD` -> `DISPATCHED_CONFIRMED` / `PORTAL_ERROR_RETRY`.
-   - Generación de tickets auditables (ej: `WLMT-TK-2026-XXXX`, `AMZN-CASE-2026-XXXX`).
-4. **API REST y Vinculación con Mesa de Negociación:**
-   - Endpoints para generar el dossier, radicar la disputa y consultar el recibo y bitácora de eventos.
-   - Conexión opcional post-convenio: una vez que el acuerdo o impasse se formaliza, el caso queda listo para despacho en 1 clic.
+## Decisiones de Arquitectura de UI
+1. **Consola Dividida (Split-Screen Dialéctico):**
+   - Lado Izquierdo: Agente Defensor SupplyMind AI con desglose de reclamo en banco, concesión ofrecida, argumentos periciales y catálogo de pruebas exhibidas en la ronda.
+   - Centro: Stepper de rondas 1 a 5, indicador visual de Spread ($0.00 MAE) y barra de convergencia animada. Botones de avance de ronda, auto-careo y reinicio.
+   - Lado Derecho: Comprador Retailer con arquetipo (Walmart, Amazon, Soriana, Costco, Liverpool), nivel de resistencia (1-10), postura y demandas comerciales.
+2. **Barra de Gobernanza y Salvaguardas:**
+   - Conmutador en caliente de gobernanza: `Piloto Automático` vs `Human Gatekeeper`.
+   - Insignia de salvaguarda financiera para controversias $\ge \$10,000$ USD (bloquea el cierre autónomo para exigir rúbrica del CFO).
+   - Indicador del tope máximo autorizado por la Matriz de Delegación Financiera.
+3. **Visor de Finiquito y Transacción Mercantil:**
+   - Modal interactivo con el texto del Convenio de Finiquito en Markdown formal (Arts. 1054 CCom / 2944 CCF), sello ZKP SHA-256 copiable en 1 clic y reciprocidad comercial.
+4. **Terminal Integrada de Despacho Robótico (RPA):**
+   - Botón directo para radicar en el portal B2B del retailer.
+   - Bitácora de micro-pasos en vivo y confirmación de ticket oficial (ej. `WLMT-TK-2026-XXXXXX`, `AMZN-CASE-2026-XXXXXX`).
 
 ---
 
 ## Task List & Checkpoints
 
-### Fase 1: Modelos Pydantic del Despachador Robótico
-- [x] **Task 6.3.1:** Modelos en `data/models.py` (`PortalEvidenceManifestItem`, `PortalDispatchDossier`, `PortalAdapterPayload`, `PortalDispatchReceipt`).
+### Fase 1: Componente Core de Careo y Navegación
+- [x] **Task 6.4.1:** Componente `NegotiationDuelView.jsx` en `frontend/src/components/NegotiationDuelView.jsx`.
+- [x] **Task 6.4.2:** Métodos API de negociación y despacho en `frontend/src/api/client.js`.
 
-### Fase 2: Empaquetador Forense y Adaptadores de Portales
-- [x] **Task 6.3.2:** Empaquetador y adaptadores en `agent/portal/portal_dispatcher_engine.py` para Walmart, Amazon, Soriana y Liverpool.
+### Fase 2: Integración en Aplicación Principal
+- [x] **Task 6.4.3:** Integración del Tab `Mesa Careo` y selector de herramientas en `frontend/src/App.jsx`.
+- [x] **Task 6.4.4:** Integración complementaria en Streamlit `dashboard.py` (Tab `⚔️ MESA DE CAREO & DESPACHO`).
 
-### Checkpoint: Empaquetador y Adaptadores
-- [x] Validar generación de dossier con hashes SHA-256 y formateo de payloads específicos.
-
-### Fase 3: Despachador Robótico con Bitácora y Conexión Bilateral
-- [x] **Task 6.3.3:** Motor de despacho con máquina de estados y registro de bitácora en `agent/portal/portal_dispatcher_engine.py`.
-- [x] **Task 6.3.4:** Integración con `BilateralNegotiationEngine` y generación de tickets oficiales.
-
-### Checkpoint: Flujo de Despacho
-- [x] Validar radicación completa con ticket y registro auditable.
-
-### Fase 4: Endpoints REST y Tests Automatizados
-- [x] **Task 6.3.5:** Endpoints REST en `api/routes/portal_agent.py` y `api/routes/cases.py`.
-- [x] **Task 6.3.6:** Suite de tests automatizados en `tests/test_portal_dispatcher.py` (100% passing).
-
-### Checkpoint Final Sprint 6.3
-- [x] 100% tests en verde, daemon API actualizado y verificación en vivo en rama develop.
+### Checkpoint Final Sprint 6.4
+- [x] Compilación de producción Vite `npm run build` en verde (3.99s, 0 errores).
+- [x] 14/14 tests automatizados de backend pasando.
+- [x] Commits y push en rama `develop`.

@@ -19,6 +19,7 @@ import EdiInspectorView from './components/EdiInspectorView';
 import CourtroomView from './components/CourtroomView';
 import PortalCrawlerView from './components/PortalCrawlerView';
 import PalletVisionView from './components/PalletVisionView';
+import NegotiationDuelView from './components/NegotiationDuelView';
 import { apiClient } from './api/client';
 import { 
   DollarSign, 
@@ -26,25 +27,26 @@ import {
   Scale, 
   Terminal, 
   Share2, 
-  AlertCircle,
-  PanelLeft,
-  PanelLeftClose,
-  Sliders,
-  TrendingUp,
-  ChevronDown,
-  Printer,
-  Sparkles,
-  Play,
-  RotateCcw,
-  Wrench,
-  Eye,
-  CheckCircle2,
-  Clock,
-  Trophy,
-  Gavel,
-  Binary,
-  Bot,
-  Camera
+  AlertCircle, 
+  PanelLeft, 
+  PanelLeftClose, 
+  Sliders, 
+  TrendingUp, 
+  ChevronDown, 
+  Printer, 
+  Sparkles, 
+  Play, 
+  RotateCcw, 
+  Wrench, 
+  Eye, 
+  CheckCircle2, 
+  Clock, 
+  Trophy, 
+  Gavel, 
+  Binary, 
+  Bot, 
+  Camera,
+  Swords
 } from 'lucide-react';
 
 function Workspace() {
@@ -454,6 +456,23 @@ function Workspace() {
 
                   <button
                     onClick={() => {
+                      setActiveTab('duel');
+                      setForceShowSummary(false);
+                    }}
+                    className={`btn-tactile px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors flex items-center space-x-1.5 ${
+                      activeTab === 'duel'
+                        ? 'bg-[#261d15] text-[#eed98d] border border-[#d4af37]/70 shadow-tactile font-bold'
+                        : 'text-zinc-400 hover:text-white hover:bg-[#12131a]'
+                    }`}
+                    title="Mesa de Negociación Bilateral B2B (IA vs IA con MCTS y Despachador Robótico)"
+                  >
+                    <Swords className="w-3.5 h-3.5 text-[#d4af37]" />
+                    <span>Mesa Careo</span>
+                    <span className="text-[9px] px-1 py-0.2 rounded bg-[#101117] text-zinc-500 font-mono hidden md:inline">⚔️</span>
+                  </button>
+
+                  <button
+                    onClick={() => {
                       setActiveTab('vision');
                       setForceShowSummary(false);
                     }}
@@ -577,6 +596,17 @@ function Workspace() {
                     <button
                       onClick={() => {
                         setShowToolsMenu(false);
+                        setActiveTab('duel');
+                      }}
+                      className="btn-tactile w-full text-left px-3 py-2 rounded hover:bg-[#181a24] text-[#eed98d] hover:text-white flex items-center space-x-2"
+                    >
+                      <Swords className="w-3.5 h-3.5 text-[#d4af37]" />
+                      <span>Mesa de Negociación B2B</span>
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        setShowToolsMenu(false);
                         setActiveTab('courtroom');
                       }}
                       className="btn-tactile w-full text-left px-3 py-2 rounded hover:bg-[#181a24] text-zinc-300 hover:text-white flex items-center space-x-2"
@@ -654,6 +684,8 @@ function Workspace() {
             />
           ) : activeTab === 'portals' ? (
             <PortalCrawlerView />
+          ) : activeTab === 'duel' ? (
+            <NegotiationDuelView caseId={selectedCaseId} />
           ) : activeTab === 'vision' ? (
             <PalletVisionView />
           ) : (!report || forceShowSummary) ? (

@@ -1,11 +1,9 @@
-# Task List: Sprint 6.3 — Despachador Robótico a Portales B2B (Retail Link, Vendor Central, Soriana, Liverpool)
+# Task List: Sprint 6.4 — Interfaz Obsidian Glass 3.0: Mesa de Negociación B2B & Careo en Vivo
 
-- [x] Task 6.3.1: Modelos Pydantic en `data/models.py` (`PortalEvidenceManifestItem`, `PortalDispatchDossier`, `PortalAdapterPayload`, `PortalDispatchReceipt`)
-- [x] Task 6.3.2: Empaquetador Forense y Adaptadores B2B en `agent/portal/portal_dispatcher_engine.py` (Walmart, Amazon, Soriana, Liverpool)
-- [x] Checkpoint 1: Empaquetador y adaptadores probados
-- [x] Task 6.3.3: Despachador robótico con máquina de estados y bitácora de auditoría en `agent/portal/portal_dispatcher_engine.py`
-- [x] Task 6.3.4: Integración con `BilateralNegotiationEngine` y generación automática de tickets
-- [x] Checkpoint 2: Flujo integral de radicación desatendida probado
-- [x] Task 6.3.5: Endpoints REST en `api/routes/portal_agent.py` y `api/routes/cases.py` (`POST /api/cases/{case_id}/portal/dispatch`, `GET .../dossier`, `GET .../receipt`)
-- [x] Task 6.3.6: Suite de tests automatizados en `tests/test_portal_dispatcher.py` (100% passing)
-- [x] Checkpoint Final Sprint 6.3: Verificación de despacho en vivo, tests en verde y commit en rama develop
+- [x] Task 6.4.1: Componente `NegotiationDuelView.jsx` con consola de careo dividido Agente SupplyMind vs Comprador Retailer
+- [x] Task 6.4.2: Gráfica interactiva de convergencia MCTS, stepper de rondas 1-5 y medidor de spread en tiempo real
+- [x] Task 6.4.3: Controles Human-in-the-Loop y selector de gobernanza con salvaguarda CFO (Piloto Automático vs Gatekeeper)
+- [x] Task 6.4.4: Terminal integrada de despacho robótico a portales con bitácora micro-pasos y confirmación de tickets
+- [x] Task 6.4.5: Integración en `frontend/src/App.jsx` (nuevo Tab 'Mesa Careo' e item en menú herramientas) y `api/client.js`
+- [x] Task 6.4.6: Integración espejo en Streamlit `dashboard.py` (Tab '⚔️ MESA DE CAREO & DESPACHO')
+- [x] Checkpoint Final Sprint 6.4: Compilación Vite en verde (0 errores), suite de 14 tests backend pasando y commit en develop
