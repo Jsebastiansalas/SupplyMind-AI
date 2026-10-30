@@ -829,3 +829,68 @@ def delete_case(case_id: str):
     shutil.rmtree(target_dir)
     return {"status": "success", "message": f"Caso '{case_id}' eliminado exitosamente."}
 
+
+# ==============================================================================
+# Endpoints de Despacho Robótico a Portales B2B (Sprint 6.3)
+# ==============================================================================
+from agent.portal.portal_dispatcher_engine import PortalDispatcherEngine
+
+
+class CaseDispatchPortalRequest(BaseModel):
+    portal_type: Optional[str] = None
+    operator_name: Optional[str] = "SupplyMind Robotic Dispatcher"
+
+
+@router.get("/{case_id}/portal/dossier")
+def get_case_portal_dossier_route(case_id: str, portal_type: Optional[str] = None):
+    """Construye y retorna el expediente pericial consolidado para despacho a portal."""
+    case_path = CASES_DIR / case_id
+    if not case_path.exists():
+        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+
+    dossier = PortalDispatcherEngine.build_dispatch_dossier(case_id, portal_type)
+    return {
+        "status": "success",
+        "case_id": case_id,
+        "dossier": _decimal_to_float(dossier.model_dump(mode="python"))
+    }
+
+
+@router.post("/{case_id}/portal/dispatch")
+def dispatch_case_portal_route(case_id: str, request: Optional[CaseDispatchPortalRequest] = None):
+    """Radica de forma desatendida el expediente en el portal B2B del retailer."""
+    case_path = CASES_DIR / case_id
+    if not case_path.exists():
+        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+
+    req = request or CaseDispatchPortalRequest()
+    try:
+        receipt = PortalDispatcherEngine.dispatch_case_to_portal(
+            case_id=case_id,
+            portal_type=req.portal_type,
+            operator_name=req.operator_name or "SupplyMind Robotic Dispatcher"
+        )
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+    return {
+        "status": "success",
+        "case_id": case_id,
+        "receipt": _decimal_to_float(receipt.model_dump(mode="python"))
+    }
+
+
+@router.get("/{case_id}/portal/receipt")
+def get_case_portal_receipt_route(case_id: str):
+    """Retorna el recibo de radicación y ticket emitido por el portal."""
+    receipt = PortalDispatcherEngine.get_dispatch_receipt(case_id)
+    if not receipt:
+        raise HTTPException(status_code=404, detail=f"El caso '{case_id}' aún no ha sido radicado en ningún portal.")
+
+    return {
+        "status": "success",
+        "case_id": case_id,
+        "receipt": _decimal_to_float(receipt.model_dump(mode="python"))
+    }
+
+

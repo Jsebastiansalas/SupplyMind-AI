@@ -91,3 +91,100 @@ def upload_dispute_package(request: PortalUploadDisputeRequest):
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al cargar disputa en portal: {str(e)}")
+
+
+# ==============================================================================
+# Despachador Robótico B2B Multi-Portal (Sprint 6.3)
+# ==============================================================================
+from pathlib import Path
+from agent.portal.portal_dispatcher_engine import PortalDispatcherEngine
+from data.models import PortalDispatchDossier, PortalDispatchReceipt
+
+
+def _decimal_to_float(obj: Any) -> Any:
+    """Convierte recursivamente Decimals a floats para serialización JSON segura."""
+    if isinstance(obj, Decimal):
+        return float(obj)
+    if isinstance(obj, dict):
+        return {k: _decimal_to_float(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [_decimal_to_float(item) for item in obj]
+    return obj
+
+
+class DispatchCaseRequest(BaseModel):
+    portal_type: Optional[str] = Field(default=None, description="WALMART_RETAIL_LINK | AMAZON_VENDOR_CENTRAL | SORIANA_B2B | LIVERPOOL_B2B")
+    operator_name: Optional[str] = Field(default="SupplyMind Robotic Dispatcher", description="Nombre del operador firmante")
+
+
+@router.get("/cases/{case_id}/dossier")
+def get_case_dossier_endpoint(case_id: str, portal_type: Optional[str] = None):
+    """
+    Construye y retorna el expediente pericial consolidado con índice foliado,
+    hashes SHA-256 y payload del adaptador adaptado al portal destino.
+    """
+    case_path = Path("data/cases") / case_id
+    if not case_path.exists():
+        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+
+    dossier = PortalDispatcherEngine.build_dispatch_dossier(case_id, portal_type)
+    return {
+        "status": "success",
+        "case_id": case_id,
+        "dossier": _decimal_to_float(dossier.model_dump(mode="python"))
+    }
+
+
+@router.post("/cases/{case_id}/dispatch")
+def dispatch_case_endpoint(case_id: str, request: Optional[DispatchCaseRequest] = None):
+    """
+    Ejecuta el despacho robótico del expediente hacia el portal B2B del retailer.
+    Genera el ticket oficial y la bitácora de auditoría con marcas de tiempo.
+    """
+    case_path = Path("data/cases") / case_id
+    if not case_path.exists():
+        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+
+    req = request or DispatchCaseRequest()
+    try:
+        receipt = PortalDispatcherEngine.dispatch_case_to_portal(
+            case_id=case_id,
+            portal_type=req.portal_type,
+            operator_name=req.operator_name or "SupplyMind Robotic Dispatcher"
+        )
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+    return {
+        "status": "success",
+        "case_id": case_id,
+        "receipt": _decimal_to_float(receipt.model_dump(mode="python"))
+    }
+
+
+@router.get("/cases/{case_id}/receipt")
+def get_case_dispatch_receipt_endpoint(case_id: str):
+    """
+    Retorna el recibo oficial y ticket de radicación emitido por el portal.
+    """
+    receipt = PortalDispatcherEngine.get_dispatch_receipt(case_id)
+    if not receipt:
+        raise HTTPException(status_code=404, detail=f"El caso '{case_id}' aún no ha sido radicado en ningún portal.")
+
+    return {
+        "status": "success",
+        "case_id": case_id,
+        "receipt": _decimal_to_float(receipt.model_dump(mode="python"))
+    }
+
+
+@router.get("/dispatches")
+def list_dispatches_endpoint():
+    """Retorna la lista de todos los casos radicados en portales B2B."""
+    items = PortalDispatcherEngine.list_dispatched_cases()
+    return {
+        "status": "success",
+        "total_dispatches": len(items),
+        "dispatches": _decimal_to_float(items)
+    }
+

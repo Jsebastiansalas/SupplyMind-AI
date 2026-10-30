@@ -606,6 +606,77 @@ class SettlementAgreementDetails(BaseModel):
     signed_at: str = ""
 
 
+# ==========================================
+# 18. Despachador Robótico a Portales B2B (Fase 6 - Sprint 6.3)
+# ==========================================
+class PortalEvidenceManifestItem(BaseModel):
+    """Ítem individual del manifiesto de evidencias con hash criptográfico SHA-256."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    doc_id: str
+    doc_type: str                          # "CFDI_40_XML", "REMISSION_STAMPED_POD", "ASN_EDI_856", "EDI_997_ACK", "CTPAT_SEAL_CERTIFICATE", "SETTLEMENT_AGREEMENT"
+    file_name: str
+    file_size_bytes: int = 0
+    sha256_hash: str
+    description: str
+    status: str = "VERIFIED_VALID"
+
+
+class PortalAdapterPayload(BaseModel):
+    """Payload normalizado adaptado a la API o formulario del portal B2B del retailer."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    portal_type: str                       # "WALMART_RETAIL_LINK", "AMAZON_VENDOR_CENTRAL", "SORIANA_B2B", "LIVERPOOL_B2B"
+    retailer_name: str
+    claim_code: str                        # "21 (Shortage)", "SHORTAGE_FC", "DED-MERMA", "DED-04"
+    invoice_uuid_or_folio: str
+    po_reference: str
+    dc_or_fc_code: str                     # "CEDIS 6014 San Martín", "DAL3 Dallas FC", etc.
+    receipt_folio: str
+    dispute_reason: str
+    claimable_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    currency: str = "USD"
+    attached_evidence_files: List[str] = Field(default_factory=list)
+    portal_specific_fields: Dict[str, Any] = Field(default_factory=dict)
+
+
+class PortalDispatchDossier(BaseModel):
+    """Expediente forense consolidado foliado y listo para radicación desatendida."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    dossier_id: str                        # "DOSSIER-CASE_001-XXXX"
+    case_id: str
+    portal_type: str
+    retailer_name: str
+    total_disputed_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    claimable_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    currency: str = "USD"
+    manifest_items: List[PortalEvidenceManifestItem] = Field(default_factory=list)
+    adapter_payload: Optional[PortalAdapterPayload] = None
+    zkp_dossier_digest: str = ""
+    generated_at: str = ""
+
+
+class PortalDispatchReceipt(BaseModel):
+    """Recibo oficial emitido por el portal comercial y bitácora de auditoría de radicación."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    receipt_id: str                        # "RCPT-WLMT-XXXX"
+    case_id: str
+    portal_type: str
+    retailer_name: str
+    tracking_ticket: str                   # "WLMT-TK-2026-XXXX", "AMZN-CASE-2026-XXXX", etc.
+    status: str = "CONFIRMED_ACCEPTED"     # "CONFIRMED_ACCEPTED", "UNDER_REVIEW", "FAILED"
+    http_status_code: int = 201
+    claimable_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    currency: str = "USD"
+    confirmation_seal_sha256: str = ""
+    estimated_sla_days: int = 7
+    log_trace: List[str] = Field(default_factory=list)
+    submitted_at: str = ""
+
+
+
 
 
 
