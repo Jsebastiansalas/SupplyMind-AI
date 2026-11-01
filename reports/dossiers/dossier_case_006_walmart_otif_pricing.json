@@ -1,0 +1,83 @@
+{
+  "dossier_id": "DOSSIER-CASE_006_WALMART_OTIF_PRICING-9D9AC9",
+  "case_id": "case_006_walmart_otif_pricing",
+  "portal_type": "WALMART_RETAIL_LINK",
+  "retailer_name": "Walmart Retail Link / Luminate AP Claims",
+  "total_disputed_amount": "8000.00",
+  "claimable_amount": "3500.00",
+  "currency": "USD",
+  "manifest_items": [
+    {
+      "doc_id": "DOC-INV-CASE_006",
+      "doc_type": "CFDI_40_XML",
+      "file_name": "factura_cfdi_case_006_walmart_otif_pricing.xml",
+      "file_size_bytes": 14200,
+      "sha256_hash": "ac2df99a5bd409e081857e904b61a95ea5369357f44682723c2c8292c53bb18e",
+      "description": "CFDI 4.0 timbrado ante el SAT amparando facturación de $64,500.00 USD.",
+      "status": "VERIFIED_VALID"
+    },
+    {
+      "doc_id": "DOC-POD-CASE_006",
+      "doc_type": "REMISSION_STAMPED_POD",
+      "file_name": "remision_sellada_muelle_case_006_walmart_otif_pricing.pdf",
+      "file_size_bytes": 248000,
+      "sha256_hash": "08953ff4cae99728579fb54c3071284ef772df9af8869d2394a8db065dcb7ccc",
+      "description": "Comprobante físico de entrega sellado en muelle de recepción sin salvedades de avería.",
+      "status": "VERIFIED_VALID"
+    },
+    {
+      "doc_id": "DOC-EDI-CASE_006",
+      "doc_type": "ASN_EDI_856",
+      "file_name": "transmision_edi_856_997_case_006_walmart_otif_pricing.txt",
+      "file_size_bytes": 8650,
+      "sha256_hash": "4b8b49f199ba4dbea7a803b850783eda3dd9ca1d7e90995223fd9926cd10cfaa",
+      "description": "Trazabilidad electrónica EDI 856 ASN transmitida y acuse funcional EDI 997 Status A.",
+      "status": "VERIFIED_VALID"
+    },
+    {
+      "doc_id": "DOC-SEC-CASE_006",
+      "doc_type": "CTPAT_SEAL_CERTIFICATE",
+      "file_name": "certificado_sello_ctpat_case_006_walmart_otif_pricing.pdf",
+      "file_size_bytes": 112000,
+      "sha256_hash": "0c560c0def2c47760c03d94e390aa3d809401456798499870c8de51ca3b57241",
+      "description": "Inspección de 17 puntos y sello perimetral de alta seguridad ISO 17712 verificado intacto.",
+      "status": "VERIFIED_VALID"
+    },
+    {
+      "doc_id": "DOC-AGR-CASE_006",
+      "doc_type": "SETTLEMENT_AGREEMENT",
+      "file_name": "convenio_finiquito_case_006_walmart_otif_pricing.md",
+      "file_size_bytes": 5600,
+      "sha256_hash": "df0fc6ad14a39a4d77b8e2970d57cb5ba534ca624fa2590863f63a3c32b1296a",
+      "description": "Convenio de Transacción Mercantil sellado con hash ZKP `df0fc6ad14a39a4d...`",
+      "status": "VERIFIED_VALID"
+    }
+  ],
+  "adapter_payload": {
+    "portal_type": "WALMART_RETAIL_LINK",
+    "retailer_name": "Walmart Inc. Retail Operations",
+    "claim_code": "21 (Shortage en Muelle)",
+    "invoice_uuid_or_folio": "FAC-WM-CASE_006",
+    "po_reference": "PO-WAL-7B41C5",
+    "dc_or_fc_code": "CEDIS 6014 San Martín Obispo",
+    "receipt_folio": "REC-WM-F2198E",
+    "dispute_reason": "Recepción conforme en muelle acreditada mediante remisión sellada y EDI 856 ASN pre-notificado.",
+    "claimable_amount": "3500.00",
+    "currency": "USD",
+    "attached_evidence_files": [
+      "factura_cfdi_case_006_walmart_otif_pricing.xml",
+      "remision_sellada_muelle_case_006_walmart_otif_pricing.pdf",
+      "transmision_edi_856_997_case_006_walmart_otif_pricing.txt",
+      "certificado_sello_ctpat_case_006_walmart_otif_pricing.pdf",
+      "convenio_finiquito_case_006_walmart_otif_pricing.md"
+    ],
+    "portal_specific_fields": {
+      "luminate_supplier_id": "VN-77291-WAL",
+      "dispute_category": "ACCOUNTS_PAYABLE_MERCHANDISE",
+      "preclusion_article_88_invoked": true,
+      "request_fast_track_settlement": true
+    }
+  },
+  "zkp_dossier_digest": "180e04a6c98642d97b40552294432e45e04a78e1e77d0f5cb19194c6f6be4258",
+  "generated_at": "2026-10-30T13:27:35.742140+00:00"
+}

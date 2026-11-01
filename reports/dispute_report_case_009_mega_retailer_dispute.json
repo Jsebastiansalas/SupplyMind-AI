@@ -47,11 +47,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-29T01:01:12.467997+00:00"
+    "generated_at": "2026-10-30T13:27:35.385493+00:00"
   },
   "financial_proof": {
     "case_id": "case_009_mega_retailer_dispute",
-    "proof_hash": "SM-PROOF-SHA256-44C1F121064A02D8",
+    "proof_hash": "SM-PROOF-SHA256-6DF8EA4CE4E20E21",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -65,7 +65,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-29T01:01:12.475067+00:00"
+    "tamper_proof_timestamp": "2026-10-30T13:27:35.394708+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_009_mega_retailer_dispute",
@@ -176,7 +176,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-10-29T01:01:12Z"
+    "generated_at": "2026-10-30T13:27:35Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -189,16 +189,16 @@
     "claimable_amount": "13000.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-44C1F121064A02D8",
+    "zkp_proof_hash": "SM-PROOF-SHA256-6DF8EA4CE4E20E21",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-10-29T01:01:12.486807+00:00"
+    "anchored_at": "2026-10-30T13:27:35.418803+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_009_mega_retailer_dispute",
-    "courtroom_session_id": "CRT-55604915",
+    "courtroom_session_id": "CRT-09588D8E",
     "disputed_amount": "25000.0",
     "justified_amount": "12000.00",
     "claimable_amount": "13000.00",
@@ -331,5 +331,10 @@
     ],
     "verified_claimable_amount": "13000.00",
     "verified_justified_amount": "12000.00"
-  }
+  },
+  "resolution_notes": [],
+  "deduction_type": null,
+  "adversarial_critique": null,
+  "mcts_negotiation_plan": null,
+  "cross_border_assessment": null
 }

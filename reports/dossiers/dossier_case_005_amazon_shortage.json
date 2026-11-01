@@ -1,0 +1,73 @@
+{
+  "dossier_id": "DOSSIER-CASE_005_AMAZON_SHORTAGE-1ED30E",
+  "case_id": "case_005_amazon_shortage",
+  "portal_type": "AMAZON_VENDOR_CENTRAL",
+  "retailer_name": "Amazon Vendor Central (AP Financials & Co-Op)",
+  "total_disputed_amount": "7500.00",
+  "claimable_amount": "2500.00",
+  "currency": "USD",
+  "manifest_items": [
+    {
+      "doc_id": "DOC-INV-CASE_005",
+      "doc_type": "CFDI_40_XML",
+      "file_name": "factura_cfdi_case_005_amazon_shortage.xml",
+      "file_size_bytes": 14200,
+      "sha256_hash": "d535b73f603c9e3ce7da1d872270735c1b0fccf8c50fd467bb0969090da5aed1",
+      "description": "CFDI 4.0 timbrado ante el SAT amparando facturación de $48,000.00 USD.",
+      "status": "VERIFIED_VALID"
+    },
+    {
+      "doc_id": "DOC-POD-CASE_005",
+      "doc_type": "REMISSION_STAMPED_POD",
+      "file_name": "remision_sellada_muelle_case_005_amazon_shortage.pdf",
+      "file_size_bytes": 248000,
+      "sha256_hash": "dcea914967d02d379075ef3b3adc7350d357af26ed4d7570172930e2eaae17a5",
+      "description": "Comprobante físico de entrega sellado en muelle de recepción sin salvedades de avería.",
+      "status": "VERIFIED_VALID"
+    },
+    {
+      "doc_id": "DOC-EDI-CASE_005",
+      "doc_type": "ASN_EDI_856",
+      "file_name": "transmision_edi_856_997_case_005_amazon_shortage.txt",
+      "file_size_bytes": 8650,
+      "sha256_hash": "db7689bfdbe133316989604d3d7671857e735d9c7cf9392eb16fafbeca2bc1f1",
+      "description": "Trazabilidad electrónica EDI 856 ASN transmitida y acuse funcional EDI 997 Status A.",
+      "status": "VERIFIED_VALID"
+    },
+    {
+      "doc_id": "DOC-SEC-CASE_005",
+      "doc_type": "CTPAT_SEAL_CERTIFICATE",
+      "file_name": "certificado_sello_ctpat_case_005_amazon_shortage.pdf",
+      "file_size_bytes": 112000,
+      "sha256_hash": "8da6575809227371bf7968ca3721cd6e70a7bef48bd1b54b1b7faaca3fec98e9",
+      "description": "Inspección de 17 puntos y sello perimetral de alta seguridad ISO 17712 verificado intacto.",
+      "status": "VERIFIED_VALID"
+    }
+  ],
+  "adapter_payload": {
+    "portal_type": "AMAZON_VENDOR_CENTRAL",
+    "retailer_name": "Amazon Fulfillment Services LLC",
+    "claim_code": "SHORTAGE_FC_DOCK",
+    "invoice_uuid_or_folio": "INV-AMZ-CASE_005",
+    "po_reference": "PO-AMZ-081431",
+    "dc_or_fc_code": "DAL3 (Dallas Fulfillment Center)",
+    "receipt_folio": "BOL-AMZ-2CAB5E",
+    "dispute_reason": "Shipment verified intact under C-TPAT ISO 17712 security seal. Carton variance is unsubstantiated.",
+    "claimable_amount": "2500.00",
+    "currency": "USD",
+    "attached_evidence_files": [
+      "factura_cfdi_case_005_amazon_shortage.xml",
+      "remision_sellada_muelle_case_005_amazon_shortage.pdf",
+      "transmision_edi_856_997_case_005_amazon_shortage.txt",
+      "certificado_sello_ctpat_case_005_amazon_shortage.pdf"
+    ],
+    "portal_specific_fields": {
+      "vendor_code": "AMZMX-4401",
+      "ap_claim_type": "SHORTAGE_VARIANCE",
+      "coop_chargeback_waiver_requested": true,
+      "edi_997_status": "ACCEPTED_CONFIRMED"
+    }
+  },
+  "zkp_dossier_digest": "a3c5b0f5bf60df861c8e975a2fa85aae8fdafad6c245a98abda7de5eb719dca4",
+  "generated_at": "2026-10-30T13:28:59.318381+00:00"
+}

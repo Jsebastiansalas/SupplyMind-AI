@@ -1,0 +1,52 @@
+{
+  "session_id": "DUEL-CASE_009_MEGA_RETAILER_DISPUTE-0127AB9C",
+  "case_id": "case_009_mega_retailer_dispute",
+  "retailer_name": "Cadena Comercial Mayorista B2B",
+  "archetype": {
+    "archetype_id": "GENERIC_B2B",
+    "retailer_name": "Cadena Comercial Mayorista B2B",
+    "buyer_title": "Lic. Fernando Mora (Gerente de Cuentas por Pagar y Abastecimiento)",
+    "initial_demand_pct": 100.0,
+    "concession_resistance_score": 6.5,
+    "key_pressure_points": [
+      "Retraso de programaciones de pago",
+      "Reasignación de cuotas de mercado a la competencia"
+    ],
+    "evidence_vulnerability": "CONTRACT_CLAUSES_AND_ARITHMETIC",
+    "tone": "Comercial tradicional, busca maximizar margen de fin de mes"
+  },
+  "governance_mode": "HUMAN_GATEKEEPER",
+  "status": "IN_PROGRESS",
+  "current_round": 1,
+  "max_rounds": 5,
+  "delegation_limit_pct": 50.0,
+  "delegation_limit_amount": "6500.00",
+  "total_disputed_amount": "25000.00",
+  "rounds": [
+    {
+      "round_number": 1,
+      "buyer_message": "Hemos revisado la factura y confirmamos las retenciones contables por $25,000.00 USD. Nuestra postura de cierre es mantener la deducción íntegra mediante Nota de Crédito por $25,000.00 USD.",
+      "buyer_stance": "INTRANSIGENT",
+      "buyer_demand_credit_memo": "25000.00",
+      "buyer_cash_payout_offer": "0.00",
+      "supplier_message": "Estimado Lic. Fernando Mora (Gerente de Cuentas por Pagar y Abastecimiento): Rechazamos categóricamente la retención unilateral de $13,000.00 USD. Exhibimos la factura y remisión debidamente autorizadas. Reconocemos únicamente $12,000.00 USD por faltante físico real mediante Nota de Crédito comercial, y requerimos la transferencia inmediata del saldo restante de $13,000.00 USD.",
+      "supplier_stance": "EVIDENCE_FIRMNESS",
+      "supplier_offer_credit_memo": "12000.00",
+      "supplier_claim_cash": "13000.00",
+      "evidence_exhibited": [
+        "Factura Comercial Oficial INV por $385,000.00 USD",
+        "Orden de Compra aprobada sin variaciones de precio unitario"
+      ],
+      "spread": "13000.00",
+      "convergence_pct": 48.0,
+      "round_status": "IN_PROGRESS"
+    }
+  ],
+  "final_agreed_credit_memo": null,
+  "final_agreed_cash_recovery": null,
+  "settlement_minutes_hash": null,
+  "minutes_markdown_path": null,
+  "started_at": "2026-10-30T13:27:35.668933+00:00",
+  "completed_at": null,
+  "summary_verdict": "Careo iniciado. Posturas preliminares bajo política TIER_1_STRATEGIC."
+}

@@ -1,0 +1,45 @@
+{
+  "matrix_id": "FDM-POLICY-CORP-V1",
+  "cfo_approver": "Comité de Riesgos y Finanzas Corporativas B2B",
+  "strict_approval_threshold": "10000.0",
+  "tier_policies": {
+    "TIER_1_STRATEGIC": {
+      "tier_id": "TIER_1_STRATEGIC",
+      "tier_name": "Cuentas Estratégicas Tier-1 (Walmart, Amazon, Soriana)",
+      "max_concession_pct": 50.0,
+      "max_concession_fixed_cap": "15000.00",
+      "max_payment_days": 5,
+      "require_reciprocal_concession": true,
+      "reciprocal_clauses_required": [
+        "Exención de penalizaciones logísticas análogas en las siguientes 2 Órdenes de Compra",
+        "Asignación de citas prioritarias en muelle de CEDIS sin recargos de reprogramación",
+        "Compromiso vinculante de mantenimiento o incremento de volumen de compra trimestral"
+      ]
+    },
+    "TIER_2_REGULAR": {
+      "tier_id": "TIER_2_REGULAR",
+      "tier_name": "Cuentas Comerciales Regulares Tier-2",
+      "max_concession_pct": 25.0,
+      "max_concession_fixed_cap": "5000.00",
+      "max_payment_days": 5,
+      "require_reciprocal_concession": true,
+      "reciprocal_clauses_required": [
+        "Liquidación bancaria expedita en menos de 5 días hábiles del saldo no deducido",
+        "Eliminación de cargos administrativos de patio en entregas subsecuentes"
+      ]
+    },
+    "TIER_3_HIGH_RISK": {
+      "tier_id": "TIER_3_HIGH_RISK",
+      "tier_name": "Cuentas de Alto Riesgo o Reincidentes Tier-3",
+      "max_concession_pct": 0.0,
+      "max_concession_fixed_cap": "0.00",
+      "max_payment_days": 3,
+      "require_reciprocal_concession": false,
+      "reciprocal_clauses_required": [
+        "Cobro íntegro del 100% de lo reclamable bajo apercibimiento formal de suspensión de suministros"
+      ]
+    }
+  },
+  "allow_autonomous_execution": true,
+  "last_updated": "2026-10-30 13:27:35 UTC"
+}

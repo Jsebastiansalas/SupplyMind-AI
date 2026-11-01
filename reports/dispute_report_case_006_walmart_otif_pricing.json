@@ -4,7 +4,7 @@
   "billed_amount": "64500.00",
   "received_amount": "56500.00",
   "difference": "-8000.00",
-  "root_cause": "Discrepancia mixta en expediente case_006_walmart_otif_pricing: Faltante físico comprobado de $4,500.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $3,500.00 USD sin sustento contractual ni documental.",
+  "root_cause": "Discrepancia mixta en expediente case_006_walmart_otif_pricing: Faltante físico comprobado de $4,500.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $3,500.00 USD sin sustento contractual ni documental. | [HUMAN-IN-THE-LOOP] Se aplicó concesión comercial autorizada de $875.00 USD sobre el saldo de penalización disputado.",
   "evidence": [
     "Discrepancia de precio en SKU-WHEY-2KG: facturado $35.00 vs acordado $32.00",
     "Deducción aplicada en comprobante REM-MMN-10294: código DED-PRICE-CORR, motivo 'Price Variance Adjustment SKU-WHEY-2KG to PO', monto $4,500.00",
@@ -15,277 +15,40 @@
     "[Comprobante REM-MMN-10294 §Liquidación $56,500.00 USD]",
     "[Contrato MSA-MMN-NDP-2026 §Cláusula 7.2 'Condiciones de Descuento por Pronto Pago' | Deducción DED-PRICE-CORR $4,500.00]",
     "[Contrato MSA-MMN-NDP-2026 §Cláusula 7.2 'Condiciones de Descuento por Pronto Pago' | Deducción DED-EARLY-PAY $3,500.00]",
-    "[PO PO-MMN-77102 vs Factura INV-NDP-88301 §SKU SKU-WHEY-2KG | Varianza Precio: $3.00/ud]"
+    "[PO PO-MMN-77102 vs Factura INV-NDP-88301 §SKU SKU-WHEY-2KG | Varianza Precio: $3.00/ud]",
+    "Autorización Human-in-the-Loop: Concesión de $875.00 USD (Acuerdo bilateral formalizado en mesa de negociación multi-agente frente a Walmart Inc. Retail Operations) s/ ID CONCESS-CASE_006_WALMART_OTIF_PRICING-1793366854"
   ],
-  "justified_amount": "4500.00",
-  "claimable_amount": "3500.00",
-  "confidence": 0.98,
-  "recommended_action": "Aceptar deducción de $4,500.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $3,500.00 USD exigiendo su pago inmediato.",
-  "concessions": [],
+  "justified_amount": "5375.00",
+  "claimable_amount": "2625.00",
+  "confidence": 0.99,
+  "recommended_action": "Resolución Comercial Ajustada con Human-in-the-Loop: Emitir Nota de Crédito global por $5,375.00 USD (incluyendo $4,500.00 USD de faltante físico comprobado y $875.00 USD de concesión comercial acordada para preservar la relación de cuenta). Exigir el pago bancario inmediato del saldo neto reclamable de $2,625.00 USD.",
+  "concessions": [
+    {
+      "concession_id": "CONCESS-CASE_006_WALMART_OTIF_PRICING-1793366854",
+      "applied_at": "2026-10-30 13:27:34 UTC",
+      "operator": "Lic. Javier Treviño (CFO)",
+      "concession_type": "FIXED_AMOUNT",
+      "target": "CONCILIACION_DUEL_AUTONOMA",
+      "original_claimable": "3500.00",
+      "concession_amount": "875.00",
+      "new_claimable": "2625.00",
+      "new_justified": "5375.00",
+      "reason": "Acuerdo bilateral formalizado en mesa de negociación multi-agente frente a Walmart Inc. Retail Operations"
+    }
+  ],
   "active_scenario": null,
-  "health_audit": {
-    "case_id": "case_006_walmart_otif_pricing",
-    "health_score": 100.0,
-    "status": "PRISTINE",
-    "is_healthy": true,
-    "repaired_issues": [],
-    "imputed_documents": [],
-    "documents_present": [
-      "invoice",
-      "purchase_order",
-      "delivery",
-      "payment",
-      "contract"
-    ],
-    "documents_missing": [],
-    "schema_warnings": [],
-    "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
-    "quarantine_docket": null,
-    "generated_at": "2026-10-29T01:00:28.220758+00:00"
-  },
-  "financial_proof": {
-    "case_id": "case_006_walmart_otif_pricing",
-    "proof_hash": "SM-PROOF-SHA256-6EC4D48F2930C1FB",
-    "invariant_conservation_ok": true,
-    "invariant_deductions_ok": true,
-    "invariant_line_items_ok": true,
-    "text_hallucination_detected": false,
-    "detected_hallucinated_figures": [],
-    "verified_figures": [
-      "$4,500.00 USD (Validado)",
-      "$3,500.00 USD (Validado)",
-      "$4,500.00 USD (Validado)",
-      "$3,500.00 USD (Validado)"
-    ],
-    "confidence_penalty": 0.0,
-    "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-29T01:00:28.226702+00:00"
-  },
-  "evidence_manifest": {
-    "case_id": "case_006_walmart_otif_pricing",
-    "total_claims_audited": 5,
-    "backed_claims_count": 5,
-    "unbacked_claims_count": 0,
-    "total_backed_amount": "133500.00",
-    "total_unbacked_amount": "0.00",
-    "backing_ratio_pct": 100.0,
-    "evidence_pointers": [
-      {
-        "pointer_id": "PTR-INV-INV-NDP-88301-TOTAL",
-        "doc_type": "INVOICE",
-        "doc_id": "INV-NDP-88301",
-        "field_ref": "total_amount",
-        "item_sku": null,
-        "amount": "64500.00",
-        "citation_tag": "[Factura INV-NDP-88301 §Total $64,500.00 USD]",
-        "is_backed_by_physical_proof": true,
-        "status": "ACREDITADO",
-        "detail": "Factura comercial fiscalmente válida por $64,500.00 USD."
-      },
-      {
-        "pointer_id": "PTR-PAY-REM-MMN-10294-AMOUNT",
-        "doc_type": "PAYMENT",
-        "doc_id": "REM-MMN-10294",
-        "field_ref": "amount_paid",
-        "item_sku": null,
-        "amount": "56500.00",
-        "citation_tag": "[Comprobante REM-MMN-10294 §Liquidación $56,500.00 USD]",
-        "is_backed_by_physical_proof": true,
-        "status": "ACREDITADO",
-        "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $56,500.00."
-      },
-      {
-        "pointer_id": "PTR-DED-DED-PRICE-CORR-1",
-        "doc_type": "CONTRACT",
-        "doc_id": "MSA-MMN-NDP-2026",
-        "field_ref": "clause_7.2",
-        "item_sku": null,
-        "amount": "4500.00",
-        "citation_tag": "[Contrato MSA-MMN-NDP-2026 §Cláusula 7.2 'Condiciones de Descuento por Pronto Pago' | Deducción DED-PRICE-CORR $4,500.00]",
-        "is_backed_by_physical_proof": true,
-        "status": "ACREDITADO",
-        "detail": "Deducción 'DED-PRICE-CORR' normada por la cláusula 7.2 de MSA-MMN-NDP-2026."
-      },
-      {
-        "pointer_id": "PTR-DED-DED-EARLY-PAY-2",
-        "doc_type": "CONTRACT",
-        "doc_id": "MSA-MMN-NDP-2026",
-        "field_ref": "clause_7.2",
-        "item_sku": null,
-        "amount": "3500.00",
-        "citation_tag": "[Contrato MSA-MMN-NDP-2026 §Cláusula 7.2 'Condiciones de Descuento por Pronto Pago' | Deducción DED-EARLY-PAY $3,500.00]",
-        "is_backed_by_physical_proof": true,
-        "status": "ACREDITADO",
-        "detail": "Deducción 'DED-EARLY-PAY' normada por la cláusula 7.2 de MSA-MMN-NDP-2026."
-      },
-      {
-        "pointer_id": "PTR-PO-PO-MMN-77102-SKU-WHEY-2KG-PRICE",
-        "doc_type": "PURCHASE_ORDER",
-        "doc_id": "PO-MMN-77102",
-        "field_ref": "agreed_unit_price",
-        "item_sku": "SKU-WHEY-2KG",
-        "amount": "4500.00",
-        "citation_tag": "[PO PO-MMN-77102 vs Factura INV-NDP-88301 §SKU SKU-WHEY-2KG | Varianza Precio: $3.00/ud]",
-        "is_backed_by_physical_proof": true,
-        "status": "ACREDITADO",
-        "detail": "Discrepancia entre precio pactado en PO (32.00) y facturado (35.00)."
-      }
-    ],
-    "cautelar_items": [],
-    "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
-    "confidence_penalty": 0.0,
-    "generated_at": "2026-10-29T01:00:28Z"
-  },
+  "health_audit": null,
+  "financial_proof": null,
+  "evidence_manifest": null,
   "quarantine_docket": null,
-  "session_anchor": {
-    "case_id": "case_006_walmart_otif_pricing",
-    "currency": "USD",
-    "billed_amount": "64500.00",
-    "received_amount": "56500.00",
-    "difference": "-8000.00",
-    "justified_amount": "4500.00",
-    "claimable_amount": "3500.00",
-    "health_status": "PRISTINE",
-    "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-6EC4D48F2930C1FB",
-    "zkp_status": "MATHEMATICALLY_PROVEN",
-    "is_quarantined": false,
-    "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-10-29T01:00:28.245530+00:00"
-  },
+  "session_anchor": null,
   "watchdog_metrics": null,
-  "adversarial_verdict": {
-    "case_id": "case_006_walmart_otif_pricing",
-    "courtroom_session_id": "CRT-5BCA499B",
-    "disputed_amount": "8000.00",
-    "justified_amount": "4500.00",
-    "claimable_amount": "3500.00",
-    "prosecutor_arguments": [
-      {
-        "role": "PROSECUTOR",
-        "speaker_name": "Lic. Gustavo Méndez (Fiscal Forense Retail B2B)",
-        "topic": "Faltante Físico en Muelle",
-        "argument_text": "El comprador reportó válidamente un faltante de mercancía valorado en $4,500.00 USD. Las unidades recibidas en patio fueron inferiores a las facturadas.",
-        "legal_or_contractual_ground": "Cláusula de Recepción e Integridad de Entrega",
-        "strength_score": 0.95,
-        "evidence_referenced": [
-          "REC-MMN-33019"
-        ]
-      },
-      {
-        "role": "PROSECUTOR",
-        "speaker_name": "Lic. Gustavo Méndez (Fiscal Forense Retail B2B)",
-        "topic": "Aplicación de Políticas Operativas y Guías del Comprador",
-        "argument_text": "El retailer retuvo $3,500.00 USD con base en sus manuales internos de logística, penalizaciones por aviso anticipado ASN o descuentos comerciales por pronto pago.",
-        "legal_or_contractual_ground": "Manual Operativo de Proveedores del Retailer",
-        "strength_score": 0.15,
-        "evidence_referenced": [
-          "Comprobante de Retención Bancaria"
-        ]
-      }
-    ],
-    "advocate_counterarguments": [
-      {
-        "role": "DEFENDER",
-        "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
-        "topic": "Allanamiento de Faltante Acreditado",
-        "argument_text": "Verificada la remisión con sello y firma física de recepción con discrepancia, reconocemos la exactitud del faltante de $4,500.00 USD y allanamos la deducción mediante emisión de Nota de Crédito comercial conforme a la ley.",
-        "legal_or_contractual_ground": "Art. 1043 Código de Comercio (Reconocimiento Expreso)",
-        "strength_score": 0.98,
-        "evidence_referenced": [
-          "Remisión firmada con sello de discrepancia"
-        ]
-      },
-      {
-        "role": "DEFENDER",
-        "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
-        "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $3,500.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_006_walmart_otif_pricing (fecha 2026-10-28), donde Megamart Stores Inc acordó el reintegro de $3,500.00 USD ante una deducción análoga por 'DED-PRICE-CORR', amparada en la cláusula contractual 3.1.",
-        "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
-        "strength_score": 0.99,
-        "evidence_referenced": [
-          "Contrato Marco Maestro",
-          "Criterio de Nulidad Unilateral"
-        ]
-      }
-    ],
-    "sustained_objections": [
-      "Deducción de faltante físico por $4,500.00 USD declarada PROCEDENTE."
-    ],
-    "dismissed_objections": [
-      "Retención unilateral de $3,500.00 USD declarada IMPROCEDENTE y 100% RECLAMABLE."
-    ],
-    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente case_006_walmart_otif_pricing: Se condena al comprador al reintegro inmediato de $3,500.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $4,500.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%.",
-    "probative_force_supplier_pct": 87.5,
-    "final_legal_doctrine": "DOCTRINA COMERCIAL VINCULANTE: Ninguna guía operativa o portal B2B puede modificar o imponer sanciones financieras no contenidas en el contrato marco bilateral suscrito. Las remisiones firmadas con sello de muelle hacen fe pública comercial plena e inmutable entre las partes."
-  },
-  "recovery_prediction": {
-    "case_id": "case_006_walmart_otif_pricing",
-    "recovery_probability_pct": 98.5,
-    "confidence_grade": "ALTA_CERTEZA",
-    "recommended_track": "FAST_TRACK_B2B_PORTAL",
-    "target_claimable_amount": "3500.00",
-    "expected_net_recovery_usd": "3447.50",
-    "estimated_days_to_cash": 10,
-    "positive_drivers": [
-      "Remisión de entrega debidamente firmada en muelle receptor (+20%)",
-      "Contrato marco comercial vigente con cláusulas de prevalencia (+15%)",
-      "Historial altamente favorable con Megamart Stores Inc (100.0% de éxito histórico) (+12%)",
-      "Dictamen judicial favorable con fuerza probatoria del 87.5% (+10%)"
-    ],
-    "risk_drivers": [],
-    "scenarios": [
-      {
-        "scenario_name": "Ruta Rápida — Cobro Íntegro en Portal B2B",
-        "description": "Reclamación directa del 100% del saldo insoluto con base documental plena.",
-        "projected_recovery_amount": "3500.00",
-        "concession_granted_amount": "0.00",
-        "recovery_rate_pct": 100.0,
-        "estimated_days_to_cash": 10,
-        "legal_risk_level": "BAJO",
-        "recommended": true
-      },
-      {
-        "scenario_name": "Acuerdo Estructurado — Concesión Comercial del 15%",
-        "description": "Oferta de descuento por pronto pago/relación para cierre garantizado en menos de 7 días.",
-        "projected_recovery_amount": "2975.00",
-        "concession_granted_amount": "525.00",
-        "recovery_rate_pct": 85.0,
-        "estimated_days_to_cash": 5,
-        "legal_risk_level": "BAJO",
-        "recommended": false
-      },
-      {
-        "scenario_name": "Escalamiento Legal — Póliza Contable NIF C-3",
-        "description": "Exigencia formal y cobro coactivo con causación de intereses moratorios comerciales.",
-        "projected_recovery_amount": "3500.00",
-        "concession_granted_amount": "0.00",
-        "recovery_rate_pct": 100.0,
-        "estimated_days_to_cash": 45,
-        "legal_risk_level": "MEDIO",
-        "recommended": false
-      }
-    ],
-    "executive_summary": "El expediente presenta una probabilidad de recuperación del 98.5% (ALTA_CERTEZA). Se proyecta recuperar un valor neto ponderado de $3,447.50 USD dentro de un plazo estimado de 10 días naturales vía 'FAST_TRACK_B2B_PORTAL'."
-  },
-  "sanity_gate_audit": {
-    "is_bulletproof": false,
-    "arithmetic_invariant_passed": true,
-    "precedence_hierarchy_passed": true,
-    "notice_window_passed": false,
-    "notice_window_days_allowed": 10,
-    "notice_window_days_elapsed": 13,
-    "double_penalty_detected": false,
-    "double_penalty_details": [],
-    "irrefutability_grade": "A1_IRREFUTABLE",
-    "corrective_actions_applied": [
-      "Invocación de nulidad extemporánea (13d > 10d pactados)."
-    ],
-    "audit_notes": [
-      "Invarianza aritmética perfecta verificada al centavo ($0.00 MAE).",
-      "EXTEMPORANEIDAD CONFIRMADA: El comprador notificó/retuvo a los 13 días naturales, excediendo el plazo perentorio contractual de 10 días. La deducción es legalmente extemporánea y nula de pleno derecho."
-    ],
-    "verified_claimable_amount": "3500.00",
-    "verified_justified_amount": "4500.00"
-  }
+  "adversarial_verdict": null,
+  "recovery_prediction": null,
+  "sanity_gate_audit": null,
+  "resolution_notes": [],
+  "deduction_type": null,
+  "adversarial_critique": null,
+  "mcts_negotiation_plan": null,
+  "cross_border_assessment": null
 }

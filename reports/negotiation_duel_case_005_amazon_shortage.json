@@ -1,0 +1,53 @@
+{
+  "session_id": "DUEL-CASE_005_AMAZON_SHORTAGE-949FBD75",
+  "case_id": "case_005_amazon_shortage",
+  "retailer_name": "Amazon Fulfillment Services LLC",
+  "archetype": {
+    "archetype_id": "AMAZON_FC",
+    "retailer_name": "Amazon Fulfillment Services LLC",
+    "buyer_title": "Marcus Vance (Vendor Chargeback Resolution Manager)",
+    "initial_demand_pct": 100.0,
+    "concession_resistance_score": 9.5,
+    "key_pressure_points": [
+      "Bloqueo de Buy-Box en Vendor Central",
+      "Cobro automático de tarifa de discrepancia",
+      "Suspensión de POs semanales"
+    ],
+    "evidence_vulnerability": "EDI_997_AND_C_TPAT",
+    "tone": "Frío, algorítmico, automatizado y despersonalizado"
+  },
+  "governance_mode": "FULL_AUTONOMY",
+  "status": "IN_PROGRESS",
+  "current_round": 1,
+  "max_rounds": 5,
+  "delegation_limit_pct": 50.0,
+  "delegation_limit_amount": "1250.00",
+  "total_disputed_amount": "7500.00",
+  "rounds": [
+    {
+      "round_number": 1,
+      "buyer_message": "Notificación de Vendor Central: Se generó un Chargeback automático de recepción en CEDIS por $7,500.00 USD debido a discrepancias en el escaneo de bultos. El algoritmo retuvo el saldo de forma definitiva. Para proceder a conciliar el estatus de su cuenta, solicitamos formalizar la Nota de Crédito por $7,500.00 USD.",
+      "buyer_stance": "INTRANSIGENT",
+      "buyer_demand_credit_memo": "7500.00",
+      "buyer_cash_payout_offer": "0.00",
+      "supplier_message": "Estimado Marcus Vance (Vendor Chargeback Resolution Manager): Rechazamos categóricamente la retención unilateral de $2,500.00 USD. Exhibimos la factura y remisión debidamente autorizadas. Reconocemos únicamente $5,000.00 USD por faltante físico real mediante Nota de Crédito comercial, y requerimos la transferencia inmediata del saldo restante de $2,500.00 USD.",
+      "supplier_stance": "EVIDENCE_FIRMNESS",
+      "supplier_offer_credit_memo": "5000.00",
+      "supplier_claim_cash": "2500.00",
+      "evidence_exhibited": [
+        "Factura Comercial Oficial INV por $48,000.00 USD",
+        "Orden de Compra aprobada sin variaciones de precio unitario"
+      ],
+      "spread": "2500.00",
+      "convergence_pct": 66.7,
+      "round_status": "IN_PROGRESS"
+    }
+  ],
+  "final_agreed_credit_memo": null,
+  "final_agreed_cash_recovery": null,
+  "settlement_minutes_hash": null,
+  "minutes_markdown_path": null,
+  "started_at": "2026-10-30T13:27:35.625115+00:00",
+  "completed_at": null,
+  "summary_verdict": "Careo iniciado. Posturas preliminares bajo política TIER_1_STRATEGIC."
+}

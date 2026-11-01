@@ -1,6 +1,6 @@
 # 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
 **Ref: Expediente de Cartera case_005_amazon_shortage / Factura INV-PAC-2026-4402**  
-**Fecha:** 28 de October de 2026  
+**Fecha:** 30 de October de 2026  
 **De:** Departamento de Cartera y Asuntos Comerciales — PACIFIC_TECH_CORP  
 **Para:** Gerencia de Cuentas por Pagar y Conciliación — AMAZON_RETAIL_LLC  
 
@@ -23,7 +23,7 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_005_amazon_shortage — 2026-10-28):**
+**Precedente 1 (Expediente case_005_amazon_shortage — 2026-10-30):**
 - **Criterio Acreditado:** En el caso case_005_amazon_shortage, se acreditó la improcedencia de la deducción 'DED-SHRT-20' conforme a 4.1, logrando la restitución de $2,500.00 USD.
 - **Resultado Previo:** Restitución de **$2,500.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** 4.1.
