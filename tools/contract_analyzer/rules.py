@@ -332,3 +332,162 @@ def evaluate_contract_compliance(
         summary_legal_assessment=assessment,
         recommended_contract_action=action
     )
+
+
+class ContractualCapAuditResult(BaseModel):
+    """Resultado de la auditoría de topes porcentuales y franquicias contractuales (Sprint 8.3)."""
+    model_config = ConfigDict(extra="allow")
+
+    clause_id: str
+    cap_percentage: Decimal
+    base_reference_amount: Decimal
+    deduction_applied_amount: Decimal
+    contractually_allowed_amount: Decimal
+    unjustified_excess_amount: Decimal
+    is_cap_exceeded: bool
+    legal_finding: str
+
+
+class ContractualCapEnforcer:
+    """
+    US-805 / US-806: Motor de extracción y partición matemática de topes porcentuales
+    y franquicias contractuales (ej. 'tope máximo del 3%', 'tolerancia de merma del 2%').
+    """
+
+    CAP_REGEX = re.compile(
+        r"(?:tope\s+m[aá]ximo|l[ií]mite\s+m[aá]ximo|tolerancia(?:\s+de\s+merma)?(?:\s+(?:de\s+)?hasta|\s+de)?|"
+        r"penalidad\s+m[aá]xima|hasta\s+un\s+m[aá]ximo|no\s+exceder[aá]\s+el|cap\s+of)\s*(?:(?:de\s+)?(?:un\s+|el\s+)?|del?\s*)?(\d+(?:\.\d+)?)\s*%",
+        re.IGNORECASE,
+    )
+
+    @classmethod
+    def extract_clause_cap_pct(cls, clause_text: str) -> Optional[Decimal]:
+        """Extrae el porcentaje de tope máximo pactado en el texto de una cláusula."""
+        if not clause_text:
+            return None
+        m = cls.CAP_REGEX.search(clause_text)
+        if m:
+            return Decimal(m.group(1)).quantize(Decimal("0.01"))
+        return None
+
+    @classmethod
+    def enforce_deduction_cap(
+        cls,
+        clause_id: str,
+        clause_text: str,
+        base_amount: Decimal,
+        deduction_applied: Decimal,
+    ) -> ContractualCapAuditResult:
+        """
+        Particiona con precisión Decimal ($0.00 MAE) una deducción aplicada contra el tope
+        porcentual pactado en la cláusula contractual, separando la fracción procedente
+        del excedente abusivo 100% reclamable.
+        """
+        from decimal import ROUND_HALF_UP
+
+        base_dec = Decimal(str(base_amount)).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+        ded_dec = Decimal(str(deduction_applied)).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+        cap_pct = cls.extract_clause_cap_pct(clause_text)
+
+        if cap_pct is None:
+            return ContractualCapAuditResult(
+                clause_id=clause_id,
+                cap_percentage=Decimal("100.00"),
+                base_reference_amount=base_dec,
+                deduction_applied_amount=ded_dec,
+                contractually_allowed_amount=ded_dec,
+                unjustified_excess_amount=Decimal("0.00"),
+                is_cap_exceeded=False,
+                legal_finding=f"Cláusula {clause_id} sin tope porcentual explícito.",
+            )
+
+        max_allowed = ((base_dec * cap_pct) / Decimal("100.00")).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+        if ded_dec > max_allowed:
+            allowed_part = max_allowed
+            excess_part = (ded_dec - max_allowed).quantize(Decimal("0.01"))
+            exceeded = True
+            finding = (
+                f"Violación de tope en {clause_id} (Cap {cap_pct}% sobre ${base_dec:,.2f} = ${max_allowed:,.2f} USD). "
+                f"Se admite ${allowed_part:,.2f} USD y se reclama el excedente abusivo de ${excess_part:,.2f} USD."
+            )
+        else:
+            allowed_part = ded_dec
+            excess_part = Decimal("0.00")
+            exceeded = False
+            finding = (
+                f"Deducción de ${ded_dec:,.2f} USD dentro del tope contractual del {cap_pct}% "
+                f"(${max_allowed:,.2f} USD) estipulado en {clause_id}."
+            )
+
+        return ContractualCapAuditResult(
+            clause_id=clause_id,
+            cap_percentage=cap_pct,
+            base_reference_amount=base_dec,
+            deduction_applied_amount=ded_dec,
+            contractually_allowed_amount=allowed_part,
+            unjustified_excess_amount=excess_part,
+            is_cap_exceeded=exceeded,
+            legal_finding=finding,
+        )
+
+    @classmethod
+    def enforce_caps(
+        cls,
+        clauses: List[Any],
+        base_amount: Decimal,
+        deductions_or_amount: Any
+    ) -> Tuple[Decimal, Decimal, List[ContractualCapAuditResult]]:
+        """
+        US-902: Evalúa deducciones contra todas las cláusulas que contengan topes contractuales (caps).
+        Soporta recibir una lista de deducciones o un monto decimal consolidado.
+        Retorna: (total_allowed_justified, total_unjustified_excess, list_of_audit_results)
+        """
+        from decimal import ROUND_HALF_UP
+
+        results: List[ContractualCapAuditResult] = []
+        base_dec = Decimal(str(base_amount)).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+
+        if isinstance(deductions_or_amount, (int, float, str, Decimal)):
+            ded_items = [{"code": "DED-GLOBAL", "reason": "Deducción Global", "amount": Decimal(str(deductions_or_amount))}]
+        elif isinstance(deductions_or_amount, list):
+            ded_items = []
+            for d in deductions_or_amount:
+                amt = getattr(d, "amount", None)
+                if amt is None and isinstance(d, dict):
+                    amt = d.get("amount", Decimal("0.00"))
+                elif amt is None:
+                    amt = Decimal("0.00")
+                cid = getattr(d, "code", None) or (d.get("code") if isinstance(d, dict) else "DED")
+                rsn = getattr(d, "reason", None) or (d.get("reason") if isinstance(d, dict) else "")
+                ded_items.append({"code": str(cid), "reason": str(rsn), "amount": Decimal(str(amt))})
+        else:
+            ded_items = []
+
+        total_d = sum((d["amount"] for d in ded_items), Decimal("0.00")).quantize(Decimal("0.01"))
+
+        # Buscar cláusulas que definan topes porcentuales (caps)
+        cap_clauses = []
+        for cl in (clauses or []):
+            c_text = getattr(cl, "text", str(cl))
+            c_id = getattr(cl, "clause_id", getattr(cl, "id", "CL-CAP"))
+            pct = cls.extract_clause_cap_pct(c_text)
+            if pct is not None:
+                cap_clauses.append((c_id, c_text, pct))
+
+        if not cap_clauses:
+            return total_d, Decimal("0.00"), []
+
+        # Usar el tope porcentual contractual más específico/restrictivo
+        min_cap_pct = min(c[2] for c in cap_clauses)
+        best_clause = next(c for c in cap_clauses if c[2] == min_cap_pct)
+        c_id, c_text, c_pct = best_clause
+
+        res = cls.enforce_deduction_cap(
+            clause_id=c_id,
+            clause_text=c_text,
+            base_amount=base_dec,
+            deduction_applied=total_d
+        )
+        results.append(res)
+        return res.contractually_allowed_amount, res.unjustified_excess_amount, results
+

@@ -36,6 +36,9 @@ class SanityGateAuditResult(BaseModel):
     audit_notes: List[str] = Field(default_factory=list)
     verified_claimable_amount: Decimal = Field(default=Decimal("0.00"))
     verified_justified_amount: Decimal = Field(default=Decimal("0.00"))
+    contractual_cap_enforced: bool = False
+    contractual_cap_excess_claimed: Decimal = Field(default=Decimal("0.00"))
+    contractual_cap_details: List[str] = Field(default_factory=list)
 
 
 class SanityGateEngine:
@@ -188,6 +191,38 @@ class SanityGateEngine:
                 audit_notes.append(detail)
 
         # =================================================================
+        # FILTRO 5: AUDITORÍA DE TOPES DE RESPONSABILIDAD CONTRACTUAL (LIABILITY CAPS)
+        # =================================================================
+        cap_enforced = False
+        cap_excess = Decimal("0.00")
+        cap_details: List[str] = []
+
+        contract_clauses = getattr(ctr, "clauses", []) if ctr else []
+        if contract_clauses and report.justified_amount > Decimal("0.00"):
+            from tools.contract_analyzer.rules import ContractualCapEnforcer
+            allowed_part, excess_part, cap_audits = ContractualCapEnforcer.enforce_caps(
+                clauses=contract_clauses,
+                base_amount=report.billed_amount,
+                deductions_or_amount=report.justified_amount
+            )
+            if excess_part > Decimal("0.00"):
+                cap_enforced = True
+                cap_excess = excess_part
+                # Auto-truncamiento en el reporte ($0.00 MAE) preservando la invariante
+                report.justified_amount = allowed_part
+                report.claimable_amount = (report.claimable_amount + excess_part).quantize(Decimal("0.01"))
+                for ca in cap_audits:
+                    if ca.is_cap_exceeded:
+                        det = (
+                            f"Filtro 5 (Tope Contractual {ca.clause_id}): Deducción admisible truncada al "
+                            f"{ca.cap_percentage}% (${ca.contractually_allowed_amount:,.2f} USD). Excedente "
+                            f"indebido de ${ca.unjustified_excess_amount:,.2f} USD reasignado como monto 100% reclamable."
+                        )
+                        cap_details.append(det)
+                        audit_notes.append(det)
+                        corrections.append(f"Auto-truncamiento de penalización en {ca.clause_id} al tope contractual del {ca.cap_percentage}%.")
+
+        # =================================================================
         # CLASIFICACIÓN DEL ÍNDICE DE IRREFUTABILIDAD PROBATORIA
         # =================================================================
         if report.claimable_amount > Decimal("0.00"):
@@ -213,7 +248,10 @@ class SanityGateEngine:
             corrective_actions_applied=corrections,
             audit_notes=audit_notes,
             verified_claimable_amount=report.claimable_amount,
-            verified_justified_amount=report.justified_amount
+            verified_justified_amount=report.justified_amount,
+            contractual_cap_enforced=cap_enforced,
+            contractual_cap_excess_claimed=cap_excess,
+            contractual_cap_details=cap_details
         )
 
         # Anclar resultado al reporte

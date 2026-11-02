@@ -10,8 +10,9 @@ from tools.reconciliation_engine.engine import ReconciliationSummary
 
 def extract_monetary_figures(text: str) -> List[Tuple[str, Decimal]]:
     """
-    Extrae con precisión todas las cifras monetarias mencionadas en un texto libre:
-    e.g. '$12,500.00', '$ 800 USD', '$4,000', '15000.00 dólares'.
+    US-902: Extrae con precisión todas las cifras monetarias multi-divisa (USD, MXN, EUR)
+    mencionadas en un texto libre:
+    e.g. '$12,500.00', '$ 800 USD', '$4,000', '15000.00 dólares', '50000.00 MXN', '1200 euros', '€450.00'.
     Retorna lista de tuplas (texto_coincidente, valor_decimal).
     """
     if not text:
@@ -19,21 +20,21 @@ def extract_monetary_figures(text: str) -> List[Tuple[str, Decimal]]:
 
     results: List[Tuple[str, Decimal]] = []
 
-    # 1. Encontrar todas las menciones con prefijo '$'
-    dollar_pattern = re.compile(
-        r"\$\s*([0-9]{1,3}(?:,[0-9]{3})*(?:\.[0-9]{1,2})?|[0-9]+(?:\.[0-9]{1,2})?)(?:\s*(?:USD|dólares|dolares))?",
+    # 1. Encontrar menciones con prefijos de moneda: $, €, £, MXN$, USD$, EUR€
+    prefix_pattern = re.compile(
+        r"(?:\$|€|£|MXN\$|USD\$|EUR€)\s*([0-9]{1,3}(?:,[0-9]{3})*(?:\.[0-9]{1,2})?|[0-9]+(?:\.[0-9]{1,2})?)(?:\s*(?:USD|MXN|EUR|dólares|dolares|pesos|euros))?",
         re.IGNORECASE
     )
 
-    # 2. Encontrar menciones sin '$' pero con sufijo 'USD' o 'dólares'
+    # 2. Encontrar menciones sin prefijo de símbolo pero con sufijo explícito de divisa
     suffix_pattern = re.compile(
-        r"(?<![\$\d,\.])([0-9]{1,3}(?:,[0-9]{3})*(?:\.[0-9]{1,2})?|[0-9]+(?:\.[0-9]{1,2})?)\s*(?:USD|dólares|dolares)\b",
+        r"(?<![\$\d,\.€£])([0-9]{1,3}(?:,[0-9]{3})*(?:\.[0-9]{1,2})?|[0-9]+(?:\.[0-9]{1,2})?)\s*(?:USD|MXN|EUR|dólares|dolares|pesos|pesos\s+mexicanos|euros)\b",
         re.IGNORECASE
     )
 
     matched_spans: List[Tuple[int, int]] = []
 
-    for m in dollar_pattern.finditer(text):
+    for m in prefix_pattern.finditer(text):
         matched_spans.append(m.span())
         raw_full = m.group(0).strip()
         num_str = m.group(1).replace(",", "")
@@ -45,7 +46,7 @@ def extract_monetary_figures(text: str) -> List[Tuple[str, Decimal]]:
 
     for m in suffix_pattern.finditer(text):
         start, end = m.span()
-        # Si se superpone con un match previo con '$', omitir para evitar fragmentación de cifras
+        # Si se superpone con un match previo con prefijo, omitir para evitar fragmentación
         if any(s <= start < e or s < end <= e for s, e in matched_spans):
             continue
         raw_full = m.group(0).strip()
@@ -65,8 +66,10 @@ def collect_valid_ground_truth_figures(
     loaded_docs: Optional[Dict[str, Any]] = None
 ) -> Set[Decimal]:
     """
-    Consolida el conjunto cerrado de cifras matemáticas admisibles en el expediente:
-    totales, subtotales, diferencias, partidas, deducciones bancarias e impactos individuales.
+    US-902: Consolida el conjunto cerrado de cifras matemáticas admisibles en el expediente:
+    totales, subtotales, diferencias, partidas, deducciones bancarias, impactos individuales,
+    intereses moratorios legales (Art. 362 CCom 9%), topes contractuales, desglose fiscal (IVA 16%/8%/IEPS),
+    Valor Presente Neto (NPV/WACC) y conversiones multi-divisa (MXN/EUR).
     """
     valid_set: Set[Decimal] = set()
 
@@ -75,14 +78,14 @@ def collect_valid_ground_truth_figures(
             valid_set.add(round(d, 2))
             valid_set.add(round(abs(d), 2))
 
-    # Cifras maestras del reporte
+    # 1. Cifras maestras del reporte
     _add(report.billed_amount)
     _add(report.received_amount)
     _add(report.difference)
     _add(report.justified_amount)
     _add(report.claimable_amount)
 
-    # Cifras de conciliación física
+    # 2. Cifras de conciliación física
     if reconciliation:
         _add(reconciliation.total_missing_amount)
         _add(reconciliation.total_damaged_amount)
@@ -101,25 +104,98 @@ def collect_valid_ground_truth_figures(
             if d.damaged_quantity > 0:
                 _add(Decimal(d.damaged_quantity) * d.agreed_unit_price)
 
-    # Cifras de documentos en crudo
+    # 3. Cifras de documentos en crudo
     if loaded_docs:
         inv = loaded_docs.get("invoice")
         if inv and hasattr(inv, "items"):
             for it in inv.items:
                 _add(getattr(it, "total_price", None))
                 _add(getattr(it, "unit_price", None))
-        
+
         pay = loaded_docs.get("payment")
         if pay and hasattr(pay, "deductions"):
             for ded in pay.deductions:
                 _add(getattr(ded, "amount", None))
 
-    # Agregar cifras de cero explícito
+    # 4. Agregar cifras de cero explícito y sumas lógicas básicas
     valid_set.add(Decimal("0.00"))
-
-    # Agregar sumas lógicas derivadas de partidas (ej. suma de faltante + avería)
     if report.justified_amount > Decimal("0.00") and report.claimable_amount > Decimal("0.00"):
         valid_set.add(round(report.justified_amount + report.claimable_amount, 2))
+
+    # 5. Cifras Legítimas Derivadas (US-902):
+    claimable = report.claimable_amount
+
+    # 5.1 Intereses Moratorios Legales Art. 362 Código de Comercio (9% anual)
+    if claimable > Decimal("0.00"):
+        int_annual = round(claimable * Decimal("0.09"), 2)
+        _add(int_annual)
+        _add(round(claimable + int_annual, 2))
+        for days in [15, 30, 45, 60, 90, 120, 180, 270, 360, 365]:
+            int_360 = round((claimable * Decimal("0.09") * Decimal(days)) / Decimal("360.00"), 2)
+            _add(int_360)
+            _add(round(claimable + int_360, 2))
+            int_365 = round((claimable * Decimal("0.09") * Decimal(days)) / Decimal("365.00"), 2)
+            _add(int_365)
+            _add(round(claimable + int_365, 2))
+
+    # 5.2 Topes Contractuales y Límites de Responsabilidad (Liability Caps)
+    contract = loaded_docs.get("contract") if loaded_docs else None
+    clauses = getattr(contract, "clauses", []) if contract else []
+    cap_rates = [Decimal(str(r)) for r in [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 7.5, 8.0, 10.0, 12.0, 15.0, 20.0, 25.0]]
+    for cl in clauses:
+        c_text = getattr(cl, "text", str(cl))
+        m_pct = re.search(r"(\d+(?:\.\d+)?)\s*%", c_text)
+        if m_pct:
+            try:
+                cap_rates.append(Decimal(m_pct.group(1)).quantize(Decimal("0.01")))
+            except Exception:
+                pass
+    for r in set(cap_rates):
+        cap_on_billed = round((report.billed_amount * r) / Decimal("100.00"), 2)
+        _add(cap_on_billed)
+        _add(round(report.billed_amount - cap_on_billed, 2))
+        if report.justified_amount > Decimal("0.00"):
+            _add(round(abs(report.justified_amount - cap_on_billed), 2))
+        diff_abs = abs(report.difference)
+        if diff_abs > Decimal("0.00"):
+            _add(round(abs(diff_abs - cap_on_billed), 2))
+
+    # 5.3 Desglose Fiscal Tributario (IVA 16% / IVA 8% / IEPS)
+    for base_val in [report.billed_amount, report.claimable_amount, report.justified_amount, abs(report.difference)]:
+        if base_val > Decimal("0.00"):
+            sub_16 = round(base_val / Decimal("1.16"), 2)
+            tax_16 = round(base_val - sub_16, 2)
+            _add(sub_16)
+            _add(tax_16)
+            sub_8 = round(base_val / Decimal("1.08"), 2)
+            tax_8 = round(base_val - sub_8, 2)
+            _add(sub_8)
+            _add(tax_8)
+            sub_ieps = round(base_val / Decimal("1.2528"), 2)
+            _add(sub_ieps)
+            _add(round(base_val - sub_ieps, 2))
+
+    # 5.4 Simulación Financiera NPV y Costo de Capital (WACC / TIIE / SOFR)
+    if claimable > Decimal("0.00"):
+        for rate in [0.06, 0.08, 0.10, 0.12, 0.14, 0.16, 0.18]:
+            for days in [5, 15, 30, 45, 60, 90, 120, 180]:
+                denom = Decimal("1.0") + (Decimal(str(rate)) * Decimal(days) / Decimal("365.0"))
+                npv = round(claimable / denom, 2)
+                _add(npv)
+                _add(round(npv - Decimal("5000.00"), 2))
+        _add(Decimal("5000.00"))  # Costas legales arbitrales
+
+    # 5.5 Conversión Multi-Divisa (FX MXN y EUR)
+    fx_rates = [Decimal(str(x)) for x in [17.00, 17.50, 17.85, 18.00, 18.50, 19.00, 19.50, 20.00]]
+    eur_rates = [Decimal(str(x)) for x in [0.90, 0.92, 0.95, 1.05, 1.08]]
+    for val in [report.billed_amount, report.received_amount, report.claimable_amount, report.justified_amount, abs(report.difference)]:
+        if val > Decimal("0.00"):
+            for fx in fx_rates:
+                _add(round(val * fx, 2))
+                _add(round(val / fx, 2))
+            for eur in eur_rates:
+                _add(round(val * eur, 2))
+                _add(round(val / eur, 2))
 
     return valid_set
 

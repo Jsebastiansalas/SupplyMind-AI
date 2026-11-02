@@ -50,11 +50,13 @@ def reconcile_dispute_data(
     invoice: Invoice,
     purchase_order: PurchaseOrder,
     delivery: DeliveryNote,
-    payment: PaymentReceipt
+    payment: PaymentReceipt,
+    contract: Optional[Any] = None
 ) -> ReconciliationSummary:
     """
     Motor determinístico de conciliación línea a línea para cadenas de suministro B2B.
     Realiza los cálculos con precisión exacta en Decimal para eliminar cualquier alucinación.
+    Soporta auto-truncamiento de topes contractuales (US-902 / ContractualCapEnforcer).
     """
     po_items_map = {item.item_id: item for item in purchase_order.items}
     delivery_items_map = {item.item_id: item for item in delivery.items}
@@ -65,10 +67,12 @@ def reconcile_dispute_data(
     total_price_discrepancy_amount = Decimal("0.00")
     evidence_trail: List[str] = []
     
+    from tools.sku_matcher import CrossSkuResolver, UnitOfMeasureNormalizer
+
     for inv_item in invoice.items:
         item_id = inv_item.item_id
-        po_item = po_items_map.get(item_id)
-        del_item = delivery_items_map.get(item_id)
+        po_item = po_items_map.get(item_id) or CrossSkuResolver.find_matching_item(item_id, inv_item.description, po_items_map)
+        del_item = delivery_items_map.get(item_id) or CrossSkuResolver.find_matching_item(item_id, inv_item.description, delivery_items_map)
         
         # 1. Cotejo de precios unitarios con la Orden de Compra
         agreed_price = po_item.agreed_unit_price if po_item else inv_item.unit_price
@@ -80,11 +84,27 @@ def reconcile_dispute_data(
                 f"Discrepancia de precio en {item_id}: facturado ${inv_item.unit_price} vs acordado ${agreed_price}"
             )
             
-        # 2. Cotejo de cantidades físicas con la Remisión de Entrega
-        rec_qty = del_item.quantity_received if del_item else inv_item.quantity
-        deliv_qty = del_item.quantity_delivered if del_item else inv_item.quantity
-        missing_qty = del_item.missing_quantity if del_item else max(0, inv_item.quantity - rec_qty)
-        damaged_qty = del_item.damaged_quantity if del_item else 0
+        # 2. Cotejo de cantidades físicas con la Remisión de Entrega (con conversión UoM CA <-> EA)
+        if del_item:
+            deliv_qty, rec_qty, missing_qty, damaged_qty, pack_factor, was_converted = UnitOfMeasureNormalizer.normalize_quantities(
+                billed_qty=inv_item.quantity,
+                invoiced_desc=inv_item.description,
+                deliv_qty_delivered=del_item.quantity_delivered,
+                deliv_qty_received=del_item.quantity_received,
+                deliv_qty_missing=del_item.missing_quantity,
+                deliv_qty_damaged=del_item.damaged_quantity,
+                deliv_notes=del_item.notes,
+            )
+            if was_converted:
+                evidence_trail.append(
+                    f"Conversión UoM aplicada en {item_id}: remisión en piezas (factor x{pack_factor} EA/CA) "
+                    f"homologada a {rec_qty}/{inv_item.quantity} cajas master."
+                )
+        else:
+            rec_qty = inv_item.quantity
+            deliv_qty = inv_item.quantity
+            missing_qty = 0
+            damaged_qty = 0
         
         item_missing_amount = Decimal(missing_qty) * inv_item.unit_price
         item_damaged_amount = Decimal(damaged_qty) * inv_item.unit_price
@@ -183,6 +203,28 @@ def reconcile_dispute_data(
     # Invariante contable estricta
     if (justified_deductions + unjustified_deductions) != total_deductions:
         unjustified_deductions = total_deductions - justified_deductions
+
+    # 4.1 Auto-Truncamiento de Topes Contractuales (US-902 / ContractualCapEnforcer)
+    if contract and hasattr(contract, "clauses") and contract.clauses:
+        try:
+            from tools.contract_analyzer.rules import ContractualCapEnforcer
+            allowed_cap, excess_cap, cap_audits = ContractualCapEnforcer.enforce_caps(
+                clauses=contract.clauses,
+                base_amount=billed_amt,
+                deductions_or_amount=justified_deductions
+            )
+            if excess_cap > Decimal("0.00"):
+                justified_deductions = allowed_cap
+                unjustified_deductions = total_deductions - justified_deductions
+                for ca in cap_audits:
+                    if ca.is_cap_exceeded:
+                        evidence_trail.append(
+                            f"Tope contractual aplicado ({ca.clause_id}): Deducción truncada al {ca.cap_percentage}% "
+                            f"(${ca.contractually_allowed_amount:,.2f} USD). Excedente indebido de ${ca.unjustified_excess_amount:,.2f} USD "
+                            f"clasificado como 100% reclamable."
+                        )
+        except Exception:
+            pass
 
     # Identificar causa principal
     if total_missing_amount > Decimal("0.00") and total_missing_amount >= total_damaged_amount:
