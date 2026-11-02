@@ -5,6 +5,7 @@ Capaz de responder a cualquier duda técnica de jurados o comercial de clientes.
 """
 
 import json
+from datetime import datetime, timezone
 from decimal import Decimal
 from pathlib import Path
 from typing import Dict, Any, List, Optional
@@ -14,6 +15,14 @@ from pydantic import BaseModel, Field
 from config.settings import settings
 from agent.core.skynet_runner import SkynetRunner
 from data.models import DisputeAnalysisReport
+from agent.tools.registry import TOOL_DEFINITIONS, ToolExecutor
+from agent.core.state import DisputeState, ProcessStatus
+from agent.memory.audit_logger import AuditLogger
+from agent.core.dispute_sla_watchdog import DisputeSlaWatchdog
+from agent.core.relational_health_engine import RelationalHealthEngine
+from agent.core.bank_remittance_reconciler import BankRemittanceReconciler
+from agent.core.root_cause_analyzer import RootCauseAnalyzer
+from tools.contract_analyzer.rules import ContractualCapEnforcer
 from agent.core.concession_engine import (
     ConcessionEngine,
     ConcessionIntent,
@@ -207,6 +216,445 @@ def format_erp_reply(case_id: str, report: Any) -> str:
 3. **CFDI 4.0 (SAT Anexo 20):** Nota de Crédito tipo `E` (Egreso) vinculada al UUID con clave de relación `01` y concepto SAT `84111506`.
 
 *(Puedes descargar los archivos en formato SAP, NetSuite y XML directamente desde la pestaña de Exportación o mediante la API `/api/cases/{case_id}/erp/export`).*"""
+
+
+# ==============================================================================
+# INTELIGENCIA DE PORTAFOLIO Y COPILOTO OMNISCIENTE (FASE 9 - SPRINT 9.1)
+# ==============================================================================
+
+_PORTFOLIO_CACHE: Dict[str, Any] = {}
+_PORTFOLIO_CACHE_TS: float = 0.0
+
+
+def parse_portfolio_query(text: str) -> bool:
+    """Detecta consultas sobre la cartera global, todos los casos, ranking o prescripción de portafolio."""
+    t = text.lower().strip()
+    keywords = [
+        "portafolio", "cartera", "todos los casos", "todas las disputas",
+        "ranking", "top casos", "resumen de cartera", "resumen global",
+        "resumen general", "prescripción general", "prescripcion general",
+        "casos criticos", "casos críticos", "casos urgentes", "panorama general",
+        "flota", "analisis de cartera", "análisis de cartera", "estado de la cartera"
+    ]
+    return any(k in t for k in keywords)
+
+
+def generate_portfolio_overview(target_limit: int = 52) -> Dict[str, Any]:
+    """
+    US-901 / US-903: Analiza y consolida la flota de casos en data/cases/
+    agregando métricas financieras, semáforo SLA, causas raíz y casos prioritarios.
+    """
+    global _PORTFOLIO_CACHE, _PORTFOLIO_CACHE_TS
+    import time
+    now_ts = time.time()
+    if _PORTFOLIO_CACHE and (now_ts - _PORTFOLIO_CACHE_TS < 45.0):
+        return _PORTFOLIO_CACHE
+
+    cases_dir = ROOT_DIR / "data" / "cases"
+    if not cases_dir.exists():
+        return {
+            "total_cases": 0,
+            "total_billed": 0.0,
+            "total_received": 0.0,
+            "total_disputed": 0.0,
+            "total_justified": 0.0,
+            "total_claimable": 0.0,
+            "recovery_ratio_pct": 0.0,
+            "prescription_var_amount": 0.0,
+            "urgency_counts": {},
+            "department_counts": {},
+            "top_critical_cases": []
+        }
+
+    case_dirs = sorted([d.name for d in cases_dir.iterdir() if d.is_dir()])
+    if target_limit:
+        case_dirs = case_dirs[:target_limit]
+
+    tot_billed = Decimal("0.00")
+    tot_received = Decimal("0.00")
+    tot_disputed = Decimal("0.00")
+    tot_justified = Decimal("0.00")
+    tot_claimable = Decimal("0.00")
+
+    urgency_counts = {
+        "CRITICAL_EXPIRED": 0,
+        "HIGH_IMMINENT": 0,
+        "MEDIUM_ATTENTION": 0,
+        "LOW_HEALTHY": 0
+    }
+    dept_counts = {
+        "WAREHOUSE_CEDIS": 0,
+        "TRANSPORT_LOGISTICS": 0,
+        "SYSTEMS_EDI": 0,
+        "SALES_COMMERCIAL": 0
+    }
+    var_prescription_amount = Decimal("0.00")
+
+    case_summaries = []
+
+    for cid in case_dirs:
+        gt_path = cases_dir / cid / "ground_truth.json"
+        rep_path = ROOT_DIR / "reports" / f"dispute_report_{cid}.json"
+
+        billed = Decimal("0.00")
+        received = Decimal("0.00")
+        diff = Decimal("0.00")
+        justified = Decimal("0.00")
+        claimable = Decimal("0.00")
+        buyer_name = "Cliente B2B"
+        rc_text = "Auditoría integral"
+
+        if rep_path.exists():
+            try:
+                with open(rep_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                billed = Decimal(str(data.get("billed_amount", "0.00")))
+                received = Decimal(str(data.get("received_amount", "0.00")))
+                diff = Decimal(str(data.get("difference", "0.00")))
+                justified = Decimal(str(data.get("justified_amount", "0.00")))
+                claimable = Decimal(str(data.get("claimable_amount", "0.00")))
+                rc_text = data.get("root_cause", rc_text)
+            except Exception:
+                pass
+        elif gt_path.exists():
+            try:
+                with open(gt_path, "r", encoding="utf-8") as f:
+                    gt = json.load(f)
+                billed = Decimal(str(gt.get("billed_amount", "0.00")))
+                received = Decimal(str(gt.get("received_amount", "0.00")))
+                diff = Decimal(str(gt.get("difference", "0.00")))
+                justified = Decimal(str(gt.get("expected_justified_amount", "0.00")))
+                claimable = Decimal(str(gt.get("expected_claimable_amount", "0.00")))
+                buyer_name = gt.get("buyer_name", buyer_name)
+                rc_text = gt.get("category", rc_text)
+            except Exception:
+                pass
+
+        disputed = abs(diff)
+        tot_billed += billed
+        tot_received += received
+        tot_disputed += disputed
+        tot_justified += justified
+        tot_claimable += claimable
+
+        # SLA Status (optimizado y determinístico sin SkynetRunner)
+        try:
+            sla_cfg = DisputeSlaWatchdog.resolve_retailer_sla_config(cid, rc_text)
+            sla_days = int(sla_cfg.get("sla_days", 90))
+            elapsed = DisputeSlaWatchdog._estimate_default_elapsed_days(cid, sla_days)
+            dtp = sla_days - elapsed
+            urgency = DisputeSlaWatchdog.classify_urgency(dtp)
+            retailer = sla_cfg.get("retailer_name", buyer_name)
+        except Exception:
+            urgency = "MEDIUM_ATTENTION"
+            dtp = 20
+            retailer = buyer_name
+
+        urgency_counts[urgency] = urgency_counts.get(urgency, 0) + 1
+        if urgency in ["CRITICAL_EXPIRED", "HIGH_IMMINENT"]:
+            var_prescription_amount += claimable
+
+        # RCA Department (optimizado y determinístico)
+        try:
+            rc_attr = RootCauseAnalyzer.classify_case_root_cause(cid, rc_text)
+            dept = rc_attr.get("department_code", "WAREHOUSE_CEDIS")
+        except Exception:
+            dept = "WAREHOUSE_CEDIS"
+        dept_counts[dept] = dept_counts.get(dept, 0) + 1
+
+        urgency_score = 4 if urgency == "CRITICAL_EXPIRED" else (3 if urgency == "HIGH_IMMINENT" else (2 if urgency == "MEDIUM_ATTENTION" else 1))
+
+        case_summaries.append({
+            "case_id": cid,
+            "retailer": retailer,
+            "disputed_amount": float(disputed),
+            "claimable_amount": float(claimable),
+            "justified_amount": float(justified),
+            "urgency": urgency,
+            "urgency_score": urgency_score,
+            "days_to_expiration": dtp,
+            "department": dept
+        })
+
+    sorted_cases = sorted(case_summaries, key=lambda c: (c["urgency_score"], c["claimable_amount"]), reverse=True)
+    top_5 = sorted_cases[:5]
+    rec_ratio = float((tot_claimable / tot_disputed) * Decimal("100.0")) if tot_disputed > Decimal("0.00") else 0.0
+
+    overview = {
+        "total_cases": len(case_dirs),
+        "total_billed": float(tot_billed),
+        "total_received": float(tot_received),
+        "total_disputed": float(tot_disputed),
+        "total_justified": float(tot_justified),
+        "total_claimable": float(tot_claimable),
+        "recovery_ratio_pct": round(rec_ratio, 2),
+        "prescription_var_amount": float(var_prescription_amount),
+        "urgency_counts": urgency_counts,
+        "department_counts": dept_counts,
+        "top_critical_cases": top_5,
+        "generated_at": datetime.now(timezone.utc).isoformat()
+    }
+    _PORTFOLIO_CACHE = overview
+    _PORTFOLIO_CACHE_TS = now_ts
+    return overview
+
+
+def format_portfolio_overview_reply(overview: Dict[str, Any]) -> str:
+    """Genera dictamen ejecutivo C-Level para la cartera completa de disputas B2B."""
+    urg = overview.get("urgency_counts", {})
+    dept = overview.get("department_counts", {})
+    top_cases = overview.get("top_critical_cases", [])
+
+    rows_top = ""
+    for idx, c in enumerate(top_cases, start=1):
+        urg_badge = "🚨 CRÍTICO (Vencido)" if c["urgency"] == "CRITICAL_EXPIRED" else ("⚠️ ALTO (Inminente)" if c["urgency"] == "HIGH_IMMINENT" else "ℹ️ MEDIO")
+        rows_top += f"| {idx} | `{c['case_id']}` | {c['retailer']} | `${c['disputed_amount']:,.2f}` | **`${c['claimable_amount']:,.2f}`** | {c['days_to_expiration']}d | {urg_badge} |\n"
+
+    billed_tot = overview.get('total_billed', 0.0)
+    received_tot = overview.get('total_received', 0.0)
+    disputed_tot = overview.get('total_disputed', 0.0)
+    justified_tot = overview.get('total_justified', 0.0)
+    pct_rec = (received_tot / billed_tot * 100) if billed_tot else 0.0
+    pct_just = (justified_tot / disputed_tot * 100) if disputed_tot else 0.0
+
+    return f"""### 🌐 Panorama Ejecutivo de Cartera B2B (Cross-Portfolio War-Room)
+
+**Expedientes Auditados:** `{overview['total_cases']} casos activos` | **Generado en UTC:** `{overview.get('generated_at', 'En Vivo')}`
+
+---
+
+#### 💰 Balance Financiero Consolidado ($0.00 MAE):
+| Concepto de Cartera | Monto Consolidado (USD) | Proporción sobre Disputa |
+| :--- | :---: | :---: |
+| **Facturación Total Auditada** | `${billed_tot:,.2f}` | 100.0% |
+| **Cobranza Bancaria Recibida** | `${received_tot:,.2f}` | {pct_rec:.1f}% |
+| **Volumen Total Retenido / Disputado** | `${disputed_tot:,.2f}` | 100.0% |
+| **Deducciones Justificadas (Notas de Crédito)** | `${justified_tot:,.2f}` | {pct_just:.1f}% |
+| **Capital Reclamable Legítimo (ROI Recuperación)** | **`${overview['total_claimable']:,.2f}`** | **{overview['recovery_ratio_pct']:.1f}%** |
+
+---
+
+#### ⏱️ Semáforo de Riesgo de Prescripción SLA (Art. 1041 Código de Comercio):
+- 🚨 **CRITICAL_EXPIRED (Plazo vencido - Requiere Interrupción Inmediata):** `{urg.get('CRITICAL_EXPIRED', 0)} casos`
+- ⚠️ **HIGH_IMMINENT (Caducidad en 1 a 15 días):** `{urg.get('HIGH_IMMINENT', 0)} casos`
+- ℹ️ **MEDIUM_ATTENTION (Atención en 16 a 30 días):** `{urg.get('MEDIUM_ATTENTION', 0)} casos`
+- 🟢 **LOW_HEALTHY (Ventana holgada >30 días):** `{urg.get('LOW_HEALTHY', 0)} casos`
+- 💸 **Capital en Riesgo Inminente de Prescripción (VaR SLA):** **`${overview['prescription_var_amount']:,.2f} USD`**
+
+---
+
+#### 🏭 Atribución Operativa por Causa Raíz Interna:
+- 📦 **Almacén / CEDIS Propio (Etiquetas GS1 / Picking / Estiba):** `{dept.get('WAREHOUSE_CEDIS', 0)} casos`
+- 🚚 **Transporte / Logística (Citas OTIF / Sello ISO 17712 / Muelle):** `{dept.get('TRANSPORT_LOGISTICS', 0)} casos`
+- 💻 **Sistemas EDI (ASN 856 / Acuses 997 / Factores de Empaque):** `{dept.get('SYSTEMS_EDI', 0)} casos`
+- 🤝 **Ventas / Comercial (Catálogo de Precios / Promociones):** `{dept.get('SALES_COMMERCIAL', 0)} casos`
+
+---
+
+#### 🎯 Top 5 Casos de Máxima Prioridad de Ejecución (War-Room):
+| # | Caso | Comprador Retail | Monto Disputado | Monto Reclamable | DTP Restante | Urgencia SLA |
+| :-: | :--- | :--- | :---: | :---: | :---: | :--- |
+{rows_top}
+*Directiva Ejecutiva:* Para frenar la prescripción en los casos críticos vencidos o inminentes, emite los Avisos de Interrupción formal bajo el Art. 1041 del Código de Comercio o ejecuta la conciliación bilateral desde el panel de Cierre y Prevención."""
+
+
+def parse_sla_query(text: str) -> bool:
+    """Detecta consultas sobre SLA, prescripción, ventanas de portal o Art. 1041 CCom."""
+    t = text.lower().strip()
+    keywords = [
+        "sla", "prescripci", "caducidad", "ventana", "dtp", "1041",
+        "días restantes", "dias restantes", "tiempo restante", "cuanto tiempo queda",
+        "cuánto tiempo queda", "dias para prescribir", "días para prescribir",
+        "interrupcion de prescripcion", "interrupción de prescripción", "semaforo sla", "semáforo sla"
+    ]
+    return any(k in t for k in keywords)
+
+
+def format_sla_reply(case_id: str, sla: Any, report: Any) -> str:
+    """Genera dictamen pericial del estado SLA y prescripción legal."""
+    urg_badge = {
+        "CRITICAL_EXPIRED": "🚨 CRITICAL_EXPIRED (Ventana Vencida)",
+        "HIGH_IMMINENT": "⚠️ HIGH_IMMINENT (Prescripción Inminente <= 15 días)",
+        "MEDIUM_ATTENTION": "ℹ️ MEDIUM_ATTENTION (Atención Requerida 16-30 días)",
+        "LOW_HEALTHY": "🟢 LOW_HEALTHY (Ventana Holgada > 30 días)"
+    }.get(sla.urgency_level, sla.urgency_level)
+
+    folio = getattr(sla, "interruption_folio", None) or getattr(sla, "interruption_notice_folio", None)
+    notice_info = f"- **Folio de Aviso Formal Emitido:** `{folio}` (Prescripción Congelada ✅)" if folio else "- **Estado de Aviso:** No emitido aún (Requiere emisión para congelar plazo)"
+    sla_win = getattr(sla, "contractual_sla_days", getattr(sla, "sla_window_days", 60))
+    action_req = getattr(sla, "recommended_immediate_action", getattr(sla, "action_required", "Gestionar conciliación formal inmediata."))
+
+    return f"""### ⏱️ Auditoría de Prescripción Legal y Caducidad SLA (Art. 1041 CCom)
+
+**Expediente:** `{case_id}` | **Retailer:** {sla.retailer_name}
+
+---
+
+#### 📊 Parámetros Temporales y Semáforo de Urgencia:
+- **Nivel de Urgencia:** **{urg_badge}**
+- **Ventana Contractual Pactada:** `{sla_win} días naturales`
+- **Días Transcurridos:** `{sla.elapsed_days} días`
+- **Días Restantes para Prescripción (DTP):** **`{sla.days_to_expiration} días`**
+- **Capital en Riesgo:** **`${report.claimable_amount:,.2f} {report.currency}`**
+{notice_info}
+
+---
+
+#### ⚖️ Fundamentación Legal Estatutaria:
+- **Base Normativa:** *{sla.legal_basis}*
+- **Efecto Jurídico Art. 1041 CCom:** *La interpelación formal judicial, notarial o mediante acuse fehaciente interrumpe y congela de pleno derecho la prescripción mercantil negativa, salvaguardando el derecho de cobro íntegro.*
+
+---
+
+#### 🛠️ Directiva Operativa Inmediata:
+{action_req}"""
+
+
+def parse_rhi_query(text: str) -> bool:
+    """Detecta consultas sobre salud relacional, RHI, riesgo de deserción (churn) o LTV."""
+    t = text.lower().strip()
+    keywords = [
+        "rhi", "salud relacional", "churn", "desercion", "deserción", "ltv",
+        "share of wallet", "postura comercial", "postura negociadora", "margen bruto",
+        "diplomatic", "preservacion de cuenta", "preservación de cuenta", "riesgo relacional"
+    ]
+    return any(k in t for k in keywords)
+
+
+def format_rhi_reply(case_id: str, rhi: Any, report: Any) -> str:
+    """Genera dictamen del Relationship Health Index y postura comercial."""
+    tier_badge = "💎 Estratégico Tier-1" if "TIER_1" in rhi.account_tier else ("🏢 Cuenta Clave Tier-2" if "TIER_2" in rhi.account_tier else "📦 Distribuidor Transaccional")
+
+    return f"""### 🤝 Guardrail de Salud Relacional & Riesgo de Deserción (RHI)
+
+**Expediente:** `{case_id}` | **Contraparte Comercial:** {rhi.retailer_name} ({tier_badge})
+
+---
+
+#### 📈 Indicadores Financieros y Relacionales de la Cuenta:
+- **Relationship Health Index (RHI):** **`{rhi.rhi_score:.1f} / 100 Pts`**
+- **Nivel de Riesgo de Churn / Deserción:** `{rhi.churn_risk_level}`
+- **Facturación Anualizada (LTV):** `${rhi.ltv_annual_usd:,.2f} USD`
+- **Participación en Ventas (Share of Wallet):** `{rhi.share_of_wallet_pct:.1f}%`
+- **Margen Bruto de Cuenta:** `{rhi.gross_margin_pct:.1f}%`
+
+---
+
+#### 🎯 Modulación y Postura Táctica Recomendada:
+- **Modo Táctico Asignado:** **`{rhi.modulation_mode}`**
+- **Concesión Comercial Máxima Sugerida:** `{rhi.recommended_max_concession_pct:.1f}%` del monto disputado
+- **Directriz de Tono y Negociación:**
+  > *{rhi.tone_directive}*
+
+*(Este índice modula automáticamente la agresividad de las contrapropuestas en el duelo de negociación bilateral).*"""
+
+
+def parse_bank_remittance_query(text: str) -> bool:
+    """Detecta consultas sobre remesa bancaria, depósito neto, conciliación 3-way o liquidación."""
+    t = text.lower().strip()
+    keywords = [
+        "remesa", "banco", "bancari", "deposito neto", "depósito neto", "3-way", "tres vias",
+        "tres vías", "order to cash", "liquidaci", "clearance", "certificado de cierre",
+        "saldo insoluto", "edi 820", "camt.053"
+    ]
+    return any(k in t for k in keywords)
+
+
+def format_bank_remittance_reply(case_id: str, cert: Any, report: Any) -> str:
+    """Genera dictamen de liquidación bancaria 3-Way Order-to-Cash."""
+    m = cert.settlement_match
+    return f"""### 🏦 Conciliación de Remesa Bancaria & Empatador 3-Way Order-to-Cash
+
+**Expediente:** `{case_id}` | **Certificado Oficial:** `{cert.certificate_id}`
+
+---
+
+#### ⚖️ Empatador Aritmético Trilateral ($0.00 MAE):
+$$\\text{{Factura Original}} - \\text{{Deducción Retailer}} + \\text{{Monto Recuperado Convenio}} = \\text{{Depósito Neto Bancario}}$$
+
+| Componente de Liquidación | Importe Exacto (USD) | Estado Contable |
+| :--- | :---: | :--- |
+| **Factura Comercial Original** | `${m.original_invoice_amount:,.2f}` | Emitida |
+| **Deducción Aplicada en Remesa** | `${m.retailer_deduction_applied:,.2f}` | Retención Banco |
+| **Monto Recuperado en Convenio** | `${m.settlement_recovery_paid:,.2f}` | Recuperación Acordada |
+| **Depósito Neto Bancario Verificado** | **`${m.net_bank_deposit:,.2f}`** | **Acreditado en Banco** |
+
+---
+
+#### 📜 Certificación Pericial de Cierre:
+- **Estatus de Liquidación:** **`{cert.settlement_status}`**
+- **Saldo Insoluto Residual:** **`${cert.remaining_unresolved_balance:,.2f} USD`** (Cuadratura al Centavo ✅)
+- **Sello de Cierre Criptográfico SHA-256:** `{cert.clearance_hash}`
+- **Firma de Emisión:** *{cert.evidentiary_legal_statement}*"""
+
+
+def parse_root_cause_query(text: str) -> bool:
+    """Detecta consultas específicas sobre atribución a departamento interno, tickets CAPA o ingeniería preventiva."""
+    t = text.lower().strip()
+    keywords = [
+        "capa", "ticket capa", "departamento", "departamento responsable",
+        "qué departamento", "que departamento", "a qué departamento", "a que departamento",
+        "atribucion departamental", "atribución departamental",
+        "ingeniería preventiva", "ingenieria preventiva", "responsable interno",
+        "defecto operativo interno", "atribucion de causa", "atribuición de causa"
+    ]
+    return any(k in t for k in keywords)
+
+
+def format_root_cause_reply(case_id: str, rc: Any, report: Any) -> str:
+    """Genera dictamen de Causa Raíz Longitudinal y Ticket CAPA."""
+    return f"""### 🔍 Atribución de Causa Raíz & Ticket de Ingeniería Preventiva (CAPA)
+
+**Expediente:** `{case_id}` | **Departamento Responsable:** **`{rc['department_name']}`**
+
+---
+
+#### 🏭 Diagnóstico Operativo Interno:
+- **Responsable Asignado:** `{rc['responsible_role']}`
+- **Anomalía Primaria Detectada:** *{rc['detected_anomaly']}*
+- **Monto de Fuga Preventible:** `${report.difference:,.2f} {report.currency}`
+
+---
+
+#### 🛡️ Protocolo de Acción Correctiva y Preventiva:
+> *{rc['corrective_protocol']}*
+
+*(Puedes descargar la orden de trabajo CAPA completa en formato Markdown dentro de `reports/capa/capa_{case_id}.md`)*."""
+
+
+def parse_liability_cap_query(text: str) -> bool:
+    """Detecta consultas sobre topes contractuales, límites de responsabilidad o franquicias."""
+    t = text.lower().strip()
+    keywords = [
+        "tope", "límite de responsabilidad", "limite de responsabilidad", "franquicia",
+        "cap", "excess over cap", "exceso", "porcentaje maximo", "porcentaje máximo"
+    ]
+    return any(k in t for k in keywords)
+
+
+def format_liability_cap_reply(case_id: str, caps: List[Dict[str, Any]], report: Any) -> str:
+    """Genera dictamen pericial sobre topes de responsabilidad contractual."""
+    if not caps:
+        return f"""### 📜 Auditoría de Topes Contractuales de Responsabilidad (Liability Caps)
+
+**Expediente:** `{case_id}`
+
+En la auditoría contractual del expediente `{case_id}`, no se detectaron cláusulas con topes porcentuales explícitos (ej. "hasta un máximo del 3%"). 
+Toda deducción no pactada expresamente en el contrato marco es **100% nula e improcedente** conforme al **Artículo 88 del Código de Comercio**."""
+
+    rows = ""
+    for c in caps:
+        rows += f"- **Cláusula `{c.get('clause_id')}` (Tope: {c.get('cap_pct'):.1f}%):** \"{c.get('text')}\"\n"
+
+    return f"""### 📜 Auditoría de Topes Contractuales de Responsabilidad (Liability Caps)
+
+**Expediente:** `{case_id}`
+
+#### Cláusulas con Límite Máximo de Penalización Detectadas:
+{rows}
+
+**Principio de Enforzamiento Contractual:**
+Cualquier deducción aplicada por el comprador que exceda el tope porcentual pactado constituye un **exceso ilegal sobre el tope (`excess_over_cap`)** y es **100% reclamable de forma irrefutable**."""
 
 
 def _extract_case_full_context(case_id: str) -> Dict[str, Any]:
@@ -414,6 +862,101 @@ def _extract_case_full_context(case_id: str) -> Dict[str, Any]:
         f"3. Escenario Conservador: Condonación del 100% de la penalidad operativa para cerrar el expediente de mutuo acuerdo a cambio de orden de compra preferente."
     ]
 
+    # 11. Prescripción Legal y Watchdog SLA (DTP / Art. 1041 CCom)
+    try:
+        from agent.core.dispute_sla_watchdog import DisputeSlaWatchdog
+        sla_stat = DisputeSlaWatchdog.evaluate_case_sla(case_id)
+        context["sla_watchdog"] = {
+            "retailer_name": sla_stat.retailer_name,
+            "sla_window_days": sla_stat.sla_window_days,
+            "elapsed_days": sla_stat.elapsed_days,
+            "days_to_expiration": sla_stat.days_to_expiration,
+            "urgency_level": sla_stat.urgency_level,
+            "prescription_notice_needed": sla_stat.prescription_notice_needed,
+            "legal_basis": sla_stat.legal_basis,
+            "action_required": sla_stat.action_required,
+            "interruption_notice_folio": sla_stat.interruption_notice_folio
+        }
+        context["sources"].append(f"SLA Watchdog ({sla_stat.urgency_level} - {sla_stat.days_to_expiration}d DTP)")
+    except Exception:
+        pass
+
+    # 12. Guardrail de Salud Relacional (RHI / Churn Risk / LTV)
+    try:
+        from agent.core.relational_health_engine import RelationalHealthEngine
+        rhi_stat = RelationalHealthEngine.evaluate_case_relationship(case_id)
+        context["relational_health"] = {
+            "retailer_name": rhi_stat.retailer_name,
+            "account_tier": rhi_stat.account_tier,
+            "rhi_score": float(rhi_stat.rhi_score),
+            "modulation_mode": rhi_stat.modulation_mode,
+            "churn_risk_level": rhi_stat.churn_risk_level,
+            "ltv_annual_usd": float(rhi_stat.ltv_annual_usd),
+            "share_of_wallet_pct": float(rhi_stat.share_of_wallet_pct),
+            "gross_margin_pct": float(rhi_stat.gross_margin_pct),
+            "recommended_max_concession_pct": float(rhi_stat.recommended_max_concession_pct),
+            "tone_directive": rhi_stat.tone_directive
+        }
+        context["sources"].append(f"Salud Relacional RHI ({rhi_stat.rhi_score:.1f} pts - {rhi_stat.modulation_mode})")
+    except Exception:
+        pass
+
+    # 13. Empatador de Remesas Bancarias 3-Way Order-to-Cash (EDI 820 / $0.00 MAE)
+    try:
+        from agent.core.bank_remittance_reconciler import BankRemittanceReconciler
+        cert = BankRemittanceReconciler.reconcile_case(case_id)
+        m = cert.settlement_match
+        context["bank_remittance_3way"] = {
+            "certificate_id": cert.certificate_id,
+            "payer_name": cert.payer_name,
+            "settlement_status": cert.settlement_status,
+            "original_invoice_amount": float(m.original_invoice_amount),
+            "retailer_deduction_applied": float(m.retailer_deduction_applied),
+            "settlement_recovery_paid": float(m.settlement_recovery_paid),
+            "net_bank_deposit": float(m.net_bank_deposit),
+            "cleared_amount": float(cert.cleared_amount),
+            "remaining_unresolved_balance": float(cert.remaining_unresolved_balance),
+            "is_zero_balance_closed": cert.is_zero_balance_closed,
+            "clearance_hash": cert.clearance_hash
+        }
+        context["sources"].append(f"Remesa Bancaria 3-Way ({cert.settlement_status})")
+    except Exception:
+        pass
+
+    # 14. Atribución Causa Raíz y Ticket Preventivo CAPA
+    try:
+        from agent.core.root_cause_analyzer import RootCauseAnalyzer
+        rc_data = RootCauseAnalyzer.attribute_case(case_id)
+        context["root_cause_capa"] = {
+            "department_code": rc_data["department_code"],
+            "department_name": rc_data["department_name"],
+            "responsible_role": rc_data["responsible_role"],
+            "detected_anomaly": rc_data["detected_anomaly"],
+            "corrective_protocol": rc_data["corrective_protocol"]
+        }
+        context["sources"].append(f"Causa Raíz ({rc_data['department_name']})")
+    except Exception:
+        pass
+
+    # 15. Topes Contractuales de Responsabilidad (Liability Caps)
+    try:
+        from tools.contract_analyzer.rules import ContractualCapEnforcer
+        clauses = context.get("clauses", [])
+        caps_found = []
+        for cl in clauses:
+            cap_pct = ContractualCapEnforcer.extract_clause_cap_pct(cl.get("text", ""))
+            if cap_pct is not None:
+                caps_found.append({
+                    "clause_id": cl.get("id"),
+                    "cap_pct": float(cap_pct),
+                    "text": cl.get("text")
+                })
+        context["contract_caps"] = caps_found
+        if caps_found:
+            context["sources"].append("Topes Contractuales (Cap Enforcer)")
+    except Exception:
+        pass
+
     return context
 
 
@@ -549,6 +1092,50 @@ def _build_system_prompt_for_role(case_id: str, ctx: Dict[str, Any], role: str) 
         for s_str in ctx["negotiation_scenarios"]:
             negotiation_txt += f"- {s_str}\n"
 
+    # Formatear Prescripción Legal SLA Watchdog (Fase 7 - Sprint 7.1)
+    sla_txt = ""
+    if ctx.get("sla_watchdog"):
+        sw = ctx["sla_watchdog"]
+        notice_txt = f" (Aviso Art. 1041 Emitido: {sw.get('interruption_notice_folio')})" if sw.get("interruption_notice_folio") else ""
+        sla_txt = f"\nAUDITORÍA DE PRESCRIPCIÓN SLA (Art. 1041 CCom):\n"
+        sla_txt += f"- Retailer: {sw.get('retailer_name')} | Ventana Pactada: {sw.get('sla_window_days')} días | Transcurridos: {sw.get('elapsed_days')} días | DTP Restantes: {sw.get('days_to_expiration')} días\n"
+        sla_txt += f"- Nivel de Urgencia: {sw.get('urgency_level')}{notice_txt}\n"
+        sla_txt += f"- Acción Mandatoria: {sw.get('action_required')}\n"
+
+    # Formatear Salud Relacional y Churn Risk (Fase 7 - Sprint 7.3)
+    rhi_txt = ""
+    if ctx.get("relational_health"):
+        rh = ctx["relational_health"]
+        rhi_txt = f"\nSALUD RELACIONAL Y CHURN RISK (RHI):\n"
+        rhi_txt += f"- RHI Score: {rh.get('rhi_score', 80.0):.1f}/100 Pts | Clasificación: {rh.get('account_tier')} | Modo Táctico: {rh.get('modulation_mode')}\n"
+        rhi_txt += f"- LTV Anual: ${rh.get('ltv_annual_usd', 0.0):,.2f} USD | Share of Wallet: {rh.get('share_of_wallet_pct', 0.0):.1f}%\n"
+        rhi_txt += f"- Directriz Negociadora: {rh.get('tone_directive')}\n"
+
+    # Formatear Conciliación Bancaria 3-Way (Fase 7 - Sprint 7.2)
+    remittance_3way_txt = ""
+    if ctx.get("bank_remittance_3way"):
+        b3 = ctx["bank_remittance_3way"]
+        remittance_3way_txt = f"\nCONCILIACIÓN BANCARIA 3-WAY ORDER-TO-CASH ($0.00 MAE):\n"
+        remittance_3way_txt += f"- Certificado de Cierre: {b3.get('certificate_id')} (Status: {b3.get('settlement_status')})\n"
+        remittance_3way_txt += f"- Factura Original: ${b3.get('original_invoice_amount', 0.0):,.2f} - Deducción: ${b3.get('retailer_deduction_applied', 0.0):,.2f} + Recuperado: ${b3.get('settlement_recovery_paid', 0.0):,.2f} = Depósito Neto: ${b3.get('net_bank_deposit', 0.0):,.2f}\n"
+        remittance_3way_txt += f"- Saldo Insoluto Residual: ${b3.get('remaining_unresolved_balance', 0.0):,.2f} USD | SHA-256: {b3.get('clearance_hash', 'SEAL-OK')[:16]}\n"
+
+    # Formatear Causa Raíz y Ticket CAPA (Fase 7 - Sprint 7.4)
+    rc_txt = ""
+    if ctx.get("root_cause_capa"):
+        rc_c = ctx["root_cause_capa"]
+        rc_txt = f"\nATRIBUCIÓN DE CAUSA RAÍZ Y TICKET CAPA:\n"
+        rc_txt += f"- Departamento Interno: {rc_c.get('department_name')} (Rol: {rc_c.get('responsible_role')})\n"
+        rc_txt += f"- Anomalía Detectada: {rc_c.get('detected_anomaly')}\n"
+        rc_txt += f"- Protocolo Preventivo: {rc_c.get('corrective_protocol')}\n"
+
+    # Formatear Topes Contractuales (Fase 8 - Sprint 8.3)
+    caps_txt = ""
+    if ctx.get("contract_caps"):
+        caps_txt = "\nTOPES CONTRACTUALES DE RESPONSABILIDAD (LIABILITY CAPS):\n"
+        for cp in ctx["contract_caps"]:
+            caps_txt += f"- Cláusula {cp.get('clause_id')}: Límite máximo del {cp.get('cap_pct'):.1f}%. Exceso deducido constituye exceso ilegal 100% reclamable.\n"
+
     didactic_guide = f"""
 ================================================================================
 GUÍA MAESTRA PERICIAL PARA ACLARAR CUALQUIER DUDA DEL USUARIO SOBRE ESTE EXPEDIENTE:
@@ -587,6 +1174,21 @@ Como Copiloto Pericial Grok 4.7, debes responder con máxima pedagogía, autorid
 
 10. SI PIDE REDACTAR UN CORREO O CARTA DE RECLAMO:
     Redacta de inmediato una comunicación formal, impecable y diplomática lista para remitir al comprador.
+
+11. SI PREGUNTA POR PRESCRIPCIÓN O SLA (Art. 1041 CCom):
+    Explica el reloj de prescripción DTP, cuántos días faltan para que venza la ventana del portal y detalla cómo el Aviso de Interrupción formal congela el plazo legalmente.
+
+12. SI PREGUNTA POR SALUD RELACIONAL (RHI) O CHURN RISK:
+    Explica el puntaje RHI (0 a 100 pts), el peso de la cuenta en el LTV anual y la postura comercial recomendada (Diplomática, Firme o Litigiosa).
+
+13. SI PREGUNTA POR LA REMESA O CONCILIACIÓN 3-WAY:
+    Desglosa la ecuación matemática Factura - Deducción + Recuperado = Depósito Neto Bancario ($0.00 MAE) y cita el Certificado de Cierre.
+
+14. SI PREGUNTA POR CAUSA RAÍZ O TICKET CAPA:
+    Atribuye el defecto al departamento responsable (Almacén, Transporte, EDI o Ventas) y prescribe el protocolo preventivo.
+
+15. SI PREGUNTA POR TOPES O LÍMITES CONTRACTUALES:
+    Identifica si la cláusula fija un tope porcentual y segrega el exceso indebido como monto 100% reclamable.
 ================================================================================
 """
 
@@ -663,6 +1265,11 @@ DATOS VERIFICADOS CON PRECISIÓN MATEMÁTICA DECIMAL:
 {erp_txt}
 {negotiation_txt}
 {tribunal_txt}
+{sla_txt}
+{rhi_txt}
+{remittance_3way_txt}
+{rc_txt}
+{caps_txt}
 
 REGLAS DE RESPUESTA:
 - Usa Markdown limpio: negritas para montos y cláusulas, viñetas para listas, y tablas cuando se soliciten desgloses comparativos.
@@ -1007,6 +1614,39 @@ Para el expediente **`{case_id}`**:
 
 *(Puedes descargar los archivos en formato SAP, NetSuite y XML directamente desde la pestaña de Exportación o mediante la API `/api/cases/{case_id}/erp/export`).*"""
 
+    # 6.2 Prescripción Legal y SLA Watchdog (Art. 1041 CCom)
+    if parse_sla_query(p):
+        from agent.core.dispute_sla_watchdog import DisputeSlaWatchdog
+        sla_stat = DisputeSlaWatchdog.evaluate_case_sla(case_id)
+        return format_sla_reply(case_id, sla_stat, report)
+
+    # 6.3 Salud Relacional y Churn Risk (RHI)
+    if parse_rhi_query(p):
+        from agent.core.relational_health_engine import RelationalHealthEngine
+        rhi_stat = RelationalHealthEngine.evaluate_case_relationship(case_id)
+        return format_rhi_reply(case_id, rhi_stat, report)
+
+    # 6.4 Conciliación Bancaria 3-Way Order-to-Cash
+    if parse_bank_remittance_query(p):
+        from agent.core.bank_remittance_reconciler import BankRemittanceReconciler
+        cert = BankRemittanceReconciler.reconcile_case(case_id)
+        return format_bank_remittance_reply(case_id, cert, report)
+
+    # 6.5 Causa Raíz Longitudinal y Ticket CAPA
+    if parse_root_cause_query(p):
+        from agent.core.root_cause_analyzer import RootCauseAnalyzer
+        rc_data = RootCauseAnalyzer.attribute_case(case_id)
+        return format_root_cause_reply(case_id, rc_data, report)
+
+    # 6.6 Topes Contractuales de Responsabilidad (Liability Caps)
+    if parse_liability_cap_query(p):
+        return format_liability_cap_reply(case_id, ctx.get("contract_caps", []), report)
+
+    # 6.7 Portafolio y Cartera Global
+    if parse_portfolio_query(p):
+        overview = generate_portfolio_overview()
+        return format_portfolio_overview_reply(overview)
+
     # 7. Remisión, entrega y muelle
     if any(k in p for k in ["remision", "remisión", "entrega", "muelle", "bodega", "patio", "firma", "sello"]):
         if delivery:
@@ -1041,6 +1681,21 @@ Para el expediente **`{case_id}`**:
 *(Puedes preguntarme por desgloses de productos, cláusulas contractuales, veredicto del Tribunal Colegiado o solicitar la redacción de correos formales).*"""
 
 
+@router.get("/portfolio/overview", tags=["Chat con Agente"])
+def get_portfolio_overview_endpoint():
+    """
+    US-901 / US-903: Retorna el panorama consolidado de la cartera B2B,
+    resumen financiero, semáforo SLA de prescripción y top 5 casos críticos.
+    """
+    overview = generate_portfolio_overview()
+    report_md = format_portfolio_overview_reply(overview)
+    return {
+        "status": "success",
+        "overview": _decimal_to_float(overview),
+        "markdown_report": report_md
+    }
+
+
 @router.post("/{case_id}/chat")
 def chat_with_agent(case_id: str, request: ChatRequest):
     """
@@ -1048,13 +1703,29 @@ def chat_with_agent(case_id: str, request: ChatRequest):
     Usa Grok 4.7 vía Platica Gateway con prompt enriquecido por rol,
     o conmuta fluidamente a un motor determinístico senior de alta fidelidad.
     """
-    case_path = Path("data/cases") / case_id
-    if not case_path.exists():
-        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+    if case_id.lower() != "portfolio":
+        case_path = Path("data/cases") / case_id
+        if not case_path.exists():
+            raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
 
     prompt = request.message.strip()
     if not prompt:
         raise HTTPException(status_code=400, detail="El mensaje no puede estar vacío.")
+
+    # -1. Interceptar consultas sobre la Cartera Global / Portafolio (HU 9.1.3)
+    if case_id.lower() == "portfolio" or parse_portfolio_query(prompt):
+        role = request.role or "senior_analyst"
+        overview = generate_portfolio_overview()
+        reply_text = format_portfolio_overview_reply(overview)
+        return {
+            "reply": reply_text,
+            "mode": "portfolio_intelligence",
+            "model": "SupplyMind Cross-Portfolio War-Room Intelligence",
+            "role": role,
+            "sources": [f"Catálogo de {overview['total_cases']} Expedientes Comerciales", "DisputeSlaWatchdog", "RootCauseAnalyzer"],
+            "portfolio_overview": _decimal_to_float(overview),
+            "tools_executed": []
+        }
 
     # 0. Interceptar directivas Human-in-the-Loop de concesión comercial o recálculo dinámico
     concession_intent = parse_concession_intent(prompt)
@@ -1074,7 +1745,8 @@ def chat_with_agent(case_id: str, request: ChatRequest):
             "sources": ["Instrucción Directa de Operador Comercial Human-in-the-Loop"],
             "recalculated_report": _decimal_to_float(recalculated.model_dump(mode="python")),
             "concession_applied": True,
-            "is_reset": concession_intent.is_reset
+            "is_reset": concession_intent.is_reset,
+            "tools_executed": []
         }
 
     # 0.1 Interceptar consultas o directivas de negociación B2B multitáctica (Fase 2)
@@ -1104,7 +1776,8 @@ def chat_with_agent(case_id: str, request: ChatRequest):
                 "sources": [f"Estrategia de Negociación B2B ({scen_id})", "Minuta de Conciliación Bilateral"],
                 "recalculated_report": _decimal_to_float(recalculated.model_dump(mode="python")),
                 "scenario_applied": scen_id,
-                "concession_applied": True
+                "concession_applied": True,
+                "tools_executed": []
             }
         elif neg_query["action"] == "show_scenarios":
             plan = NegotiationEngine.build_negotiation_plan(case_id)
@@ -1115,7 +1788,8 @@ def chat_with_agent(case_id: str, request: ChatRequest):
                 "model": "SupplyMind B2B Multi-Tactical Negotiation Engine",
                 "role": role,
                 "sources": [f"Matriz de Tolerancia de Cuenta {plan.account_name} ({plan.account_tier})"],
-                "negotiation_plan": _decimal_to_float(plan.model_dump(mode="python"))
+                "negotiation_plan": _decimal_to_float(plan.model_dump(mode="python")),
+                "tools_executed": []
             }
 
     # 0.2 Interceptar consultas sobre Motor FX Transfronterizo e Incoterms 2020 (Fase 4 - Pilar 5)
@@ -1133,7 +1807,8 @@ def chat_with_agent(case_id: str, request: ChatRequest):
             "model": "SupplyMind Cross-Border FX & ICC Incoterms 2020 Engine",
             "role": role,
             "sources": ["ICC Incoterms 2020 Rules", "DOF / Fix Official FX Isolation"],
-            "fx_audit": _decimal_to_float(fx_report.model_dump(mode="python"))
+            "fx_audit": _decimal_to_float(fx_report.model_dump(mode="python")),
+            "tools_executed": []
         }
 
     # 0.3 Interceptar consultas sobre Perfilador de Fugas de Retailers y Checklists (Fase 4 - Pilar 3)
@@ -1148,7 +1823,8 @@ def chat_with_agent(case_id: str, request: ChatRequest):
             "model": "SupplyMind Retailer Leakage Profiler & Risk Engine",
             "role": role,
             "sources": [f"Perfil Longitudinal de {profile.retailer_name}", "Checklist Preventivo Pre-Despacho"],
-            "retailer_profile": _decimal_to_float(profile.model_dump(mode="python"))
+            "retailer_profile": _decimal_to_float(profile.model_dump(mode="python")),
+            "tools_executed": []
         }
 
     # 0.4 Interceptar consultas sobre Pólizas Contables ERP y Fiscal CFDI 4.0 (Fase 3 - NIF C-3)
@@ -1162,7 +1838,83 @@ def chat_with_agent(case_id: str, request: ChatRequest):
             "model": "SupplyMind Double-Entry ERP Engine (NIF C-3 / SAP / CFDI 4.0)",
             "role": role,
             "sources": ["Póliza Contable NIF C-3 Balanceada", "SAT CFDI 4.0 Anexo 20", "SAP S/4HANA BAPI"],
-            "report": _decimal_to_float(ctx_temp["report"].model_dump(mode="python"))
+            "report": _decimal_to_float(ctx_temp["report"].model_dump(mode="python")),
+            "tools_executed": []
+        }
+
+    # 0.5 Interceptar consultas sobre Prescripción Legal y SLA Watchdog (Fase 7 - Sprint 7.1)
+    if parse_sla_query(prompt):
+        role = request.role or "legal_counsel"
+        sla_stat = DisputeSlaWatchdog.evaluate_case_sla(case_id)
+        reply_text = format_sla_reply(case_id, sla_stat, ConcessionEngine.get_or_create_base_report(case_id))
+        return {
+            "reply": reply_text,
+            "mode": "sla_watchdog",
+            "model": "SupplyMind Dispute SLA & Legal Prescription Watchdog",
+            "role": role,
+            "sources": [f"Ventana SLA {sla_stat.retailer_name} ({getattr(sla_stat, 'contractual_sla_days', getattr(sla_stat, 'sla_window_days', 60))}d)", "Art. 1041 Código de Comercio"],
+            "sla_status": _decimal_to_float(sla_stat.model_dump(mode="python")),
+            "tools_executed": []
+        }
+
+    # 0.6 Interceptar consultas sobre Salud Relacional y Churn Risk (Fase 7 - Sprint 7.3)
+    if parse_rhi_query(prompt):
+        role = request.role or "commercial_negotiator"
+        rhi_stat = RelationalHealthEngine.evaluate_case_relationship(case_id)
+        reply_text = format_rhi_reply(case_id, rhi_stat, ConcessionEngine.get_or_create_base_report(case_id))
+        return {
+            "reply": reply_text,
+            "mode": "relational_health",
+            "model": "SupplyMind Relational Health & Churn Risk Engine (RHI)",
+            "role": role,
+            "sources": [f"Perfil Relacional {rhi_stat.retailer_name}", "Matriz de Margen y Reciprocidad"],
+            "relational_health": _decimal_to_float(rhi_stat.model_dump(mode="python")),
+            "tools_executed": []
+        }
+
+    # 0.7 Interceptar consultas sobre Conciliación Bancaria 3-Way Order-to-Cash (Fase 7 - Sprint 7.2)
+    if parse_bank_remittance_query(prompt):
+        role = request.role or "judge_auditor"
+        cert = BankRemittanceReconciler.reconcile_case(case_id)
+        reply_text = format_bank_remittance_reply(case_id, cert, ConcessionEngine.get_or_create_base_report(case_id))
+        return {
+            "reply": reply_text,
+            "mode": "bank_remittance_3way",
+            "model": "SupplyMind 3-Way Order-to-Cash Settlement Matcher",
+            "role": role,
+            "sources": ["EDI 820 Remittance Advice", "Certificado de Cierre y Liquidación de Cartera"],
+            "clearance_certificate": _decimal_to_float(cert.model_dump(mode="python")),
+            "tools_executed": []
+        }
+
+    # 0.8 Interceptar consultas sobre Causa Raíz y Tickets CAPA (Fase 7 - Sprint 7.4)
+    if parse_root_cause_query(prompt):
+        role = request.role or "senior_analyst"
+        rc_data = RootCauseAnalyzer.attribute_case(case_id)
+        reply_text = format_root_cause_reply(case_id, rc_data, ConcessionEngine.get_or_create_base_report(case_id))
+        return {
+            "reply": reply_text,
+            "mode": "root_cause_capa",
+            "model": "SupplyMind Closed-Loop Root Cause & CAPA Engine",
+            "role": role,
+            "sources": [f"Atribución Departamental ({rc_data['department_name']})", "Checklist Preventivo CAPA"],
+            "root_cause_attribution": rc_data,
+            "tools_executed": []
+        }
+
+    # 0.9 Interceptar consultas sobre Topes Contractuales de Responsabilidad (Fase 8 - Sprint 8.3)
+    if parse_liability_cap_query(prompt):
+        role = request.role or "legal_counsel"
+        ctx_temp = _extract_case_full_context(case_id)
+        reply_text = format_liability_cap_reply(case_id, ctx_temp.get("contract_caps", []), ctx_temp["report"])
+        return {
+            "reply": reply_text,
+            "mode": "contractual_caps",
+            "model": "SupplyMind Contractual Liability Cap Enforcer",
+            "role": role,
+            "sources": ["Contrato Marco Comercial", "ContractualCapEnforcer"],
+            "contract_caps": ctx_temp.get("contract_caps", []),
+            "tools_executed": []
         }
 
     # 1. Extraer contexto integral 360° del caso
@@ -1186,11 +1938,11 @@ def chat_with_agent(case_id: str, request: ChatRequest):
             "session_anchor": _decimal_to_float(session_anchor.model_dump(mode="python"))
         }
 
-    # 2. Intentar llamar a Grok 4.7 vía Platica Gateway si la llave de API está configurada
+    # 2. Intentar llamar a Grok 4.7 vía Platica Gateway con Function / Tool-Calling si la API está lista
     if settings.is_live_api_ready:
         try:
             from openai import OpenAI
-            client = OpenAI(api_key=settings.RETO_KEY.strip(), base_url=settings.PLATICA_BASE_URL, timeout=20.0)
+            client = OpenAI(api_key=settings.RETO_KEY.strip(), base_url=settings.PLATICA_BASE_URL, timeout=30.0)
 
             system_prompt = _build_system_prompt_for_role(case_id, ctx, role)
 
@@ -1199,21 +1951,71 @@ def chat_with_agent(case_id: str, request: ChatRequest):
                 messages.append({"role": h.role, "content": h.content})
             messages.append({"role": "user", "content": prompt})
 
-            response = client.chat.completions.create(
-                model=settings.MODEL_NAME,
-                messages=messages,
-                temperature=0.2,
-                max_tokens=1500,
-            )
-            bot_reply = response.choices[0].message.content
+            tools_executed: List[Dict[str, Any]] = []
+            max_tool_rounds = 3
+            current_round = 0
+            bot_reply = ""
+
+            audit_logger = AuditLogger(case_id)
+            dispute_state = DisputeState(case_id=case_id)
+            tool_executor = ToolExecutor(dispute_state, audit_logger)
+
+            while current_round < max_tool_rounds:
+                current_round += 1
+                response = client.chat.completions.create(
+                    model=settings.MODEL_NAME,
+                    messages=messages,
+                    tools=TOOL_DEFINITIONS,
+                    tool_choice="auto",
+                    temperature=0.2,
+                    max_tokens=1500,
+                )
+                msg = response.choices[0].message
+
+                # Si el modelo no solicita ejecutar herramientas, tenemos la respuesta final
+                if not getattr(msg, "tool_calls", None):
+                    bot_reply = msg.content or ""
+                    break
+
+                # El modelo solicitó una o más herramientas: registrar en historial
+                messages.append(msg)
+
+                for tc in msg.tool_calls:
+                    fn_name = tc.function.name
+                    try:
+                        fn_args = json.loads(tc.function.arguments) if tc.function.arguments else {}
+                    except Exception:
+                        fn_args = {}
+                    if "case_id" not in fn_args:
+                        fn_args["case_id"] = case_id
+
+                    tool_res = tool_executor.execute_tool(fn_name, fn_args)
+                    tools_executed.append({
+                        "tool": fn_name,
+                        "arguments": fn_args,
+                        "status": tool_res.get("status", "executed")
+                    })
+                    messages.append({
+                        "role": "tool",
+                        "tool_call_id": tc.id,
+                        "content": json.dumps(_decimal_to_float(tool_res), ensure_ascii=False)
+                    })
+
+            if not bot_reply and messages:
+                last_msg = messages[-1]
+                if isinstance(last_msg, dict) and last_msg.get("role") == "assistant":
+                    bot_reply = last_msg.get("content", "")
+
             if is_adversarial and adv_preface:
                 bot_reply = f"{adv_preface}\n\n{bot_reply}"
+
             return {
-                "reply": bot_reply,
+                "reply": bot_reply or _deterministic_chat_response(case_id, prompt, role, ctx),
                 "mode": "live",
-                "model": f"Grok 4.7 Direct ({settings.MODEL_NAME})",
+                "model": f"Grok 4.7 Direct with Tool-Calling ({settings.MODEL_NAME})",
                 "role": role,
                 "sources": ctx.get("sources", []),
+                "tools_executed": tools_executed,
                 "session_anchor": _decimal_to_float(session_anchor.model_dump(mode="python"))
             }
         except Exception as e:
@@ -1230,6 +2032,7 @@ def chat_with_agent(case_id: str, request: ChatRequest):
         "model": "SupplyMind Deterministic Engine",
         "role": role,
         "sources": ctx.get("sources", []),
+        "tools_executed": [],
         "session_anchor": _decimal_to_float(session_anchor.model_dump(mode="python"))
     }
 
