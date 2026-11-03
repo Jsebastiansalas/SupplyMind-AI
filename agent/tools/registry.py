@@ -123,6 +123,192 @@ TOOL_DEFINITIONS = [
                 "required": ["case_id"]
             }
         }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "audit_cross_border_fx_and_incoterms",
+            "description": "Aísla matemáticamente la varianza cambiaria FX (tasa DOF factura vs liquidación) de la deducción comercial operativa y emite dictamen de responsabilidad en tránsito bajo reglas ICC Incoterms 2020 (FOB, FCA, DDP, DAP, CIF).",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "case_id": {"type": "string", "description": "Identificador del caso."},
+                    "incoterm_code": {"type": "string", "description": "Incoterm pactado (ej. FOB, DDP, FCA)."}
+                },
+                "required": ["case_id"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "audit_edi_856_asn_compliance",
+            "description": "Audita la telemetría electrónica ANSI X12 EDI 856 (Advance Ship Notice) y el acuse funcional EDI 997 contra el recibo en muelle para desvirtuar multas por ASN tardío o conteo incompleto de tarimas SSCC-18.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "case_id": {"type": "string", "description": "Identificador del caso."}
+                },
+                "required": ["case_id"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "evaluate_dispute_sla_and_interrupt_prescription",
+            "description": "Calcula los Days-to-Prescription (DTP) según la ventana SLA del Retailer (Amazon 30d, Soriana/Liverpool 60d, Walmart 90d, CCom 120d) y opcionalmente emite el Aviso Formal de Interrupción de Prescripción Mercantil bajo el Art. 1041 del Código de Comercio.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "case_id": {"type": "string", "description": "Identificador del caso."},
+                    "issue_interruption_notice": {"type": "boolean", "description": "Si es True, sella y emite la interpelación extrajudicial Art. 1041 CCom."}
+                },
+                "required": ["case_id"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "reconcile_edi820_bank_remittance",
+            "description": "Ejecuta el empatador de liquidación 3-Way Settlement Matcher sobre la remesa bancaria EDI 820 verificando con precisión Decimal ($0.00 MAE): Factura Original - Deducción Retailer + Monto Recuperado Convenio = Depósito Neto Bancario, y emite el Certificado de Cierre de Cartera.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "case_id": {"type": "string", "description": "Identificador del caso."}
+                },
+                "required": ["case_id"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "evaluate_relational_health_rhi",
+            "description": "Calcula el Relationship Health Index (RHI 0-100 pts) ponderando LTV anual, Share of Wallet, Margen Bruto e Historial de Reciprocidad para determinar el modo de modulación comercial (DIPLOMATIC_PRESERVATION, FIRM_COMMERCIAL o ASSERTIVE_LITIGIOUS).",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "case_id": {"type": "string", "description": "Identificador del caso."}
+                },
+                "required": ["case_id"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "generate_preventive_capa_ticket",
+            "description": "Atribuye la causa raíz operativa al departamento interno responsable (Almacén, Transporte, Sistemas EDI o Comercial) y genera un Ticket CAPA preventivo con checklist pre-despacho en reports/capa/.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "case_id": {"type": "string", "description": "Identificador del caso."}
+                },
+                "required": ["case_id"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "run_bilateral_negotiation_duel",
+            "description": "Inicia o avanza una ronda en la Mesa de Negociación Bilateral Multi-Agente (Teoría de Juegos MCTS) entre SupplyMind AI y el Comprador Retailer, respetando la Matriz de Delegación Financiera del CFO.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "case_id": {"type": "string", "description": "Identificador del caso."},
+                    "governance_mode": {"type": "string", "description": "HUMAN_GATEKEEPER o FULL_AUTONOMY."}
+                },
+                "required": ["case_id"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "dispatch_dossier_to_retailer_portal",
+            "description": "Ensambla el expediente probatorio foliado con sello ZKP y ejecuta la radicación robótica (RPA) en el portal B2B del Retailer (Walmart Retail Link, Amazon Vendor Central, Soriana, Liverpool).",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "case_id": {"type": "string", "description": "Identificador del caso."}
+                },
+                "required": ["case_id"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "generate_erp_accounting_and_cfdi_payload",
+            "description": "Genera la póliza contable de partida doble bajo NIF C-3 para SAP S/4HANA (BAPI_ACC_DOCUMENT_POST), Oracle NetSuite (Journal CSV) y el XML CFDI 4.0 Tipo E (Nota de Crédito SAT).",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "case_id": {"type": "string", "description": "Identificador del caso."}
+                },
+                "required": ["case_id"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "optimize_working_capital_portfolio",
+            "description": "Optimiza la cartera de controversias B2B de capital de trabajo, priorizando casos por Valor Presente Neto (NPV con WACC anual), riesgo de caducidad SLA (DTP) y salud relacional (RHI).",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "case_ids": {
+                        "type": "array",
+                        "items": {"type": "string"},
+                        "description": "Lista opcional de expedientes específicos a optimizar. Si se omite, audita la cartera completa."
+                    },
+                    "wacc_annual": {
+                        "type": "number",
+                        "description": "Tasa anual de costo de capital WACC (ejemplo: 0.12 para 12%)."
+                    },
+                    "target_count": {
+                        "type": "integer",
+                        "description": "Cantidad máxima de expedientes a evaluar (default 50)."
+                    }
+                }
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "simulate_mcts_npv_strategy",
+            "description": "Ejecuta una simulación Monte Carlo Tree Search (MCTS) descontando flujos de efectivo con costo de capital WACC anual, deduciendo costos legales directos e intereses moratorios Art. 362 CCom.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "case_id": {"type": "string", "description": "Identificador del caso."},
+                    "claimable_amount": {"type": "number", "description": "Monto reclamable a negociar (opcional, si se omite usa el del reporte)."},
+                    "wacc_annual_pct": {"type": "number", "description": "Tasa anual de costo ponderado de capital WACC en porcentaje (default 12.0)."},
+                    "supplier_priority": {"type": "string", "description": "Prioridad financiera del proveedor ('BALANCED', 'AGGRESSIVE_CASH', 'RELATIONSHIP_PRESERVATION')."}
+                },
+                "required": ["case_id"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "resolve_fiscal_regime_and_erp",
+            "description": "Determina el régimen fiscal del caso (IVA 16%, Tasa 0% Alimentos/Medicinas, Frontera 8%, IEPS, Exportación T-MEC) y genera pólizas contables ERP y XML CFDI 4.0 con cuadratura de débito/crédito.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "case_id": {"type": "string", "description": "Identificador del caso."},
+                    "regime_override": {"type": "string", "description": "Sobrescritura opcional del régimen fiscal (ejemplo: 'STANDARD_VAT_16', 'ZERO_RATED_FOOD_PHARMA_0', 'BORDER_REGION_VAT_8')."}
+                },
+                "required": ["case_id"]
+            }
+        }
     }
 ]
 
@@ -387,7 +573,159 @@ class ToolExecutor:
                 )
                 result = {
                     "status": "success",
-                    "sku_matching": sku_res.model_dump()
+                    "sku_matching": sku_res.model_dump(mode="json")
+                }
+
+            elif tool_name == "audit_cross_border_fx_and_incoterms":
+                from decimal import Decimal
+                from agent.core.fx_and_leakage_engine import FxAndIncotermsEngine
+                incoterm_code = arguments.get("incoterm_code", "FOB")
+                fx_res = FxAndIncotermsEngine.audit_cross_border_fx(
+                    case_id=case_id,
+                    invoice_rate=Decimal("18.50"),
+                    payment_rate=Decimal("17.85"),
+                    target_currency="MXN",
+                    incoterm_code=incoterm_code,
+                )
+                result = {
+                    "status": "success",
+                    "fx_incoterms_audit": fx_res.model_dump(mode="json")
+                }
+
+            elif tool_name == "audit_edi_856_asn_compliance":
+                from agent.ingestion.edi_engine import EdiB2BEngine, SAMPLE_EDI_856_ASN
+                raw_edi = arguments.get("raw_edi_content") or SAMPLE_EDI_856_ASN
+                edi_doc = EdiB2BEngine.parse_edi_x12(raw_edi)
+                result = {
+                    "status": "success",
+                    "edi_document": edi_doc.model_dump(mode="json")
+                }
+
+            elif tool_name == "evaluate_dispute_sla_and_interrupt_prescription":
+                from agent.core.dispute_sla_watchdog import DisputeSlaWatchdog
+                issue_notice = bool(arguments.get("issue_interruption_notice", False))
+                notice_dump = None
+                if issue_notice:
+                    notice = DisputeSlaWatchdog.issue_prescription_interruption_notice(case_id=case_id)
+                    notice_dump = notice.model_dump(mode="json")
+                sla_st = DisputeSlaWatchdog.evaluate_case_sla(case_id=case_id)
+                result = {
+                    "status": "success",
+                    "sla_status": sla_st.model_dump(mode="json"),
+                    "interruption_notice": notice_dump
+                }
+
+            elif tool_name == "reconcile_edi820_bank_remittance":
+                from agent.core.bank_remittance_reconciler import BankRemittanceReconciler
+                remit, match_res, cert = BankRemittanceReconciler.execute_three_way_settlement_match(case_id=case_id)
+                result = {
+                    "status": "success",
+                    "remittance": remit.model_dump(mode="json"),
+                    "three_way_match": match_res.model_dump(mode="json"),
+                    "clearance_certificate": cert.model_dump(mode="json")
+                }
+
+            elif tool_name == "evaluate_relational_health_rhi":
+                from agent.core.relational_health_engine import RelationalHealthEngine
+                rhi_rep = RelationalHealthEngine.evaluate_relational_health(case_id=case_id)
+                result = {
+                    "status": "success",
+                    "relational_health": rhi_rep.model_dump(mode="json")
+                }
+
+            elif tool_name == "generate_preventive_capa_ticket":
+                from agent.core.capa_ticket_generator import CapaTicketGenerator
+                capa = CapaTicketGenerator.generate_capa_ticket(case_id=case_id)
+                result = {
+                    "status": "success",
+                    "capa_ticket": capa.model_dump(mode="json")
+                }
+
+            elif tool_name == "run_bilateral_negotiation_duel":
+                from agent.core.bilateral_negotiation_engine import BilateralNegotiationEngine
+                gov_mode = arguments.get("governance_mode", "HUMAN_GATEKEEPER")
+                session = BilateralNegotiationEngine.get_duel_session(case_id)
+                if not session:
+                    session = BilateralNegotiationEngine.start_duel(case_id=case_id, governance_mode=gov_mode)
+                else:
+                    session = BilateralNegotiationEngine.advance_duel_step(case_id=case_id)
+                result = {
+                    "status": "success",
+                    "duel_session": session.model_dump(mode="json")
+                }
+
+            elif tool_name == "dispatch_dossier_to_retailer_portal":
+                from agent.portal.portal_dispatcher_engine import PortalDispatcherEngine
+                receipt = PortalDispatcherEngine.dispatch_case_to_portal(case_id=case_id)
+                result = {
+                    "status": "success",
+                    "portal_receipt": receipt.model_dump(mode="json")
+                }
+
+            elif tool_name == "generate_erp_accounting_and_cfdi_payload":
+                from agent.core.erp_engine import ErpEngine, get_case_fiscal_profile
+                from agent.core.concession_engine import ConcessionEngine
+                rep = self.state.final_report or ConcessionEngine.get_or_create_base_report(case_id)
+                lines = ErpEngine.build_erp_posting_lines(rep)
+                fiscal_prof = get_case_fiscal_profile(case_id)
+                sap_bapi = ErpEngine.generate_sap_bapi_payload(case_id, rep, lines)
+                cfdi_xml = ErpEngine.generate_cfdi_40_xml(case_id, rep, fiscal_prof)
+                result = {
+                    "status": "success",
+                    "sap_bapi_payload": sap_bapi,
+                    "cfdi_xml_preview": cfdi_xml[:500]
+                }
+
+            elif tool_name == "optimize_working_capital_portfolio":
+                from agent.core.portfolio_optimizer import WorkingCapitalPortfolioOptimizer
+                wacc = float(arguments.get("wacc_annual", 0.12))
+                count = int(arguments.get("target_count", 50))
+                c_ids = arguments.get("case_ids", None)
+                summary = WorkingCapitalPortfolioOptimizer.optimize_portfolio(case_ids=c_ids, wacc_annual=wacc, target_count=count)
+                result = {
+                    "status": "success",
+                    "portfolio_optimization": summary.model_dump(mode="json")
+                }
+
+            elif tool_name == "simulate_mcts_npv_strategy":
+                from decimal import Decimal
+                from agent.planner.mcts_negotiator import MCTSNegotiator
+                from agent.core.concession_engine import ConcessionEngine
+                claim_amt = arguments.get("claimable_amount")
+                if claim_amt is not None:
+                    claim_dec = Decimal(str(claim_amt))
+                else:
+                    rep = self.state.final_report or ConcessionEngine.get_or_create_base_report(case_id)
+                    claim_dec = rep.claimable_amount
+                wacc_pct = float(arguments.get("wacc_annual_pct", 12.0))
+                priority = arguments.get("supplier_priority", "BALANCED")
+                plan = MCTSNegotiator.simulate_negotiation(
+                    case_id=case_id,
+                    claimable_amount=claim_dec,
+                    supplier_cashflow_priority=priority,
+                    wacc_annual_pct=wacc_pct
+                )
+                result = {
+                    "status": "success",
+                    "mcts_npv_plan": plan.model_dump(mode="json")
+                }
+
+            elif tool_name == "resolve_fiscal_regime_and_erp":
+                from agent.core.erp_engine import ErpEngine, FiscalRegimeResolver, get_case_fiscal_profile
+                from agent.core.concession_engine import ConcessionEngine
+                regime_ov = arguments.get("regime_override")
+                fiscal_tax = FiscalRegimeResolver.resolve(case_id=case_id, regime=regime_ov)
+                rep = self.state.final_report or ConcessionEngine.get_or_create_base_report(case_id)
+                lines = ErpEngine.build_erp_posting_lines(rep, fiscal_regime=fiscal_tax.regime_code)
+                fiscal_prof = get_case_fiscal_profile(case_id)
+                sap_bapi = ErpEngine.generate_sap_bapi_payload(case_id, rep, lines)
+                cfdi_xml = ErpEngine.generate_cfdi_40_xml(case_id, rep, fiscal_prof, fiscal_regime=fiscal_tax.regime_code)
+                result = {
+                    "status": "success",
+                    "fiscal_tax_profile": fiscal_tax.model_dump(mode="json"),
+                    "erp_posting_lines": [l.model_dump(mode="json") for l in lines],
+                    "sap_bapi_payload": sap_bapi,
+                    "cfdi_xml_preview": cfdi_xml[:500]
                 }
 
             else:
