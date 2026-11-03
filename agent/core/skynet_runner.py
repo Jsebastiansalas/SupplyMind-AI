@@ -285,12 +285,21 @@ class SkynetRunner:
             
             safe_messages = self.anonymizer.anonymize_messages(messages)
             
-            response = client.chat.completions.create(
-                model=settings.MODEL_NAME,
-                messages=safe_messages,
-                tools=TOOL_DEFINITIONS,
-                tool_choice="auto"
-            )
+            from agent.core.circuit_breaker import CircuitBreakerRegistry
+            cb_llm = CircuitBreakerRegistry.get("platica_llm", failure_threshold=3, recovery_timeout=30.0)
+            try:
+                response = cb_llm.execute(
+                    lambda: client.chat.completions.create(
+                        model=settings.MODEL_NAME,
+                        messages=safe_messages,
+                        tools=TOOL_DEFINITIONS,
+                        tool_choice="auto",
+                        timeout=15.0
+                    )
+                )
+            except Exception as e:
+                console.print(f"[bold red][CIRCUIT BREAKER][/bold red] Fallo o apertura de circuito en llamada LLM ({e}). Conmutando a pipeline determinístico seguro...")
+                return self._run_fast_path_skynet()
             
             if response.choices and response.choices[0].message.tool_calls:
                 self.anonymizer.deanonymize_tool_calls(response.choices[0].message.tool_calls)

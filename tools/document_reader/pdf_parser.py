@@ -40,6 +40,13 @@ def extract_text_from_pdf(pdf_path: Path) -> str:
     """Extrae el contenido de texto completo de un archivo PDF, con fallback OCR automático si es escaneado."""
     if not pdf_path.exists():
         raise FileNotFoundError(f"Archivo PDF no encontrado: {pdf_path}")
+
+    from agent.core.ocr_cache import OcrCache
+    pdf_hash = OcrCache.compute_hash(pdf_path)
+    cached_text = OcrCache.get_text(pdf_hash)
+    if cached_text:
+        return cached_text
+
     reader = pypdf.PdfReader(str(pdf_path))
     pages_text = []
     has_images = False
@@ -58,10 +65,12 @@ def extract_text_from_pdf(pdf_path: Path) -> str:
             ocr = OCREngine()
             scanned_text = ocr.transcribe_scanned_pdf(pdf_path)
             if scanned_text.strip():
+                OcrCache.set(pdf_hash, text=scanned_text)
                 return scanned_text
         except Exception:
             pass
             
+    OcrCache.set(pdf_hash, text=combined)
     return combined
 
 class PDFCaseParser:
@@ -175,6 +184,12 @@ class PDFCaseParser:
 
     @classmethod
     def parse_delivery_note(cls, pdf_path: Path) -> DeliveryNote:
+        from agent.core.ocr_cache import OcrCache
+        pdf_hash = OcrCache.compute_hash(pdf_path)
+        cached_data = OcrCache.get_structured(pdf_hash)
+        if cached_data:
+            return DeliveryNote.model_validate(cached_data)
+
         text = extract_text_from_pdf(pdf_path)
         try:
             del_id_match = re.search(r'Folio Remision:\s*([A-Za-z0-9\-_]+)', text) or re.search(r'RECEIVING SLIP:\s*([A-Za-z0-9\-_]+)', text)
@@ -209,7 +224,7 @@ class PDFCaseParser:
                     )
                     
             if del_id_match and po_match and items:
-                return DeliveryNote(
+                note = DeliveryNote(
                     delivery_id=del_id_match.group(1),
                     po_reference=po_match.group(1),
                     delivery_date=date_match.group(1) if date_match else "2026-03-10",
@@ -219,6 +234,8 @@ class PDFCaseParser:
                     discrepancy_reported=disc_reported,
                     items=items
                 )
+                OcrCache.set(pdf_hash, structured=note.model_dump(mode="json"))
+                return note
         except Exception:
             pass
             
@@ -226,8 +243,9 @@ class PDFCaseParser:
         try:
             from tools.ocr_engine.vision import OCREngine
             ocr = OCREngine()
-            if ocr.extract_images_from_pdf(pdf_path):
-                return ocr.extract_delivery_note(pdf_path)
+            note = ocr.extract_delivery_note(pdf_path)
+            OcrCache.set(pdf_hash, structured=note.model_dump(mode="json"))
+            return note
         except Exception:
             pass
             
@@ -359,4 +377,88 @@ class PDFCaseParser:
         )
         content = response.choices[0].message.content
         data = json.loads(content)
-        return model_cls.model_validate(data)
+        parsed_obj = model_cls.model_validate(data)
+        if isinstance(parsed_obj, Invoice):
+            return OpticalMathHealer.heal_invoice(parsed_obj)
+        if isinstance(parsed_obj, DeliveryNote):
+            return OpticalMathHealer.heal_delivery_note(parsed_obj)
+        return parsed_obj
+
+
+class OpticalMathHealer:
+    """
+    US-807 / US-808: Motor de Auto-Corrección Algebraica para extracciones OCR / PDF escaneados.
+    Verifica invariantes de renglón (Cantidad * Precio Unitario == Importe Línea) y ecuaciones
+    físicas de recepción en muelle, reconstruyendo dígitos degradados por sellos o ruido óptico.
+    """
+
+    @classmethod
+    def heal_invoice(cls, invoice: Invoice) -> Invoice:
+        healed_items: List[InvoiceItem] = []
+        for it in invoice.items:
+            qty = it.quantity
+            up = it.unit_price
+            tot = it.total_price
+            expected_tot = (Decimal(qty) * up).quantize(Decimal("0.01"))
+
+            if expected_tot != tot:
+                # 1. ¿El total de línea es múltiplo entero exacto del precio unitario? -> Despejar cantidad
+                if up > Decimal("0.00") and tot > Decimal("0.00") and (tot % up) == Decimal("0.00"):
+                    inferred_qty = int(tot // up)
+                    if inferred_qty > 0:
+                        qty = inferred_qty
+                # 2. ¿El total de línea dividido entre la cantidad da un precio exacto a 2 decimales? -> Despejar precio
+                elif qty > 0 and tot > Decimal("0.00"):
+                    cand_up = (tot / Decimal(qty)).quantize(Decimal("0.01"))
+                    if (cand_up * Decimal(qty)).quantize(Decimal("0.01")) == tot:
+                        up = cand_up
+                    else:
+                        tot = expected_tot
+                else:
+                    tot = expected_tot
+
+            healed_items.append(
+                InvoiceItem(
+                    item_id=it.item_id,
+                    description=it.description,
+                    quantity=qty,
+                    unit_price=up,
+                    total_price=tot,
+                )
+            )
+
+        calc_sub = sum((i.total_price for i in healed_items), Decimal("0.00")).quantize(Decimal("0.01"))
+        sub = calc_sub if calc_sub > Decimal("0.00") else invoice.subtotal
+        tot_amt = (sub + invoice.tax).quantize(Decimal("0.01")) if invoice.total_amount != (sub + invoice.tax) else invoice.total_amount
+
+        return invoice.model_copy(update={"items": healed_items, "subtotal": sub, "total_amount": tot_amt})
+
+    @classmethod
+    def heal_delivery_note(cls, delivery: DeliveryNote) -> DeliveryNote:
+        healed_items: List[DeliveryItem] = []
+        for it in delivery.items:
+            deliv = it.quantity_delivered
+            rec = it.quantity_received
+            miss = it.missing_quantity
+            dam = it.damaged_quantity
+
+            # Ecuación física de muelle: Recibido + Faltante + Averiado == Despachado
+            if deliv > 0 and (rec + miss + dam) != deliv:
+                if rec <= deliv and miss == 0 and dam == 0 and rec < deliv:
+                    miss = deliv - rec
+                elif rec + dam < deliv and miss == 0:
+                    miss = deliv - rec - dam
+                elif rec == 0 and (miss + dam) < deliv:
+                    rec = deliv - miss - dam
+
+            healed_items.append(
+                DeliveryItem(
+                    item_id=it.item_id,
+                    quantity_delivered=deliv,
+                    quantity_received=rec,
+                    missing_quantity=miss,
+                    damaged_quantity=dam,
+                    notes=it.notes,
+                )
+            )
+        return delivery.model_copy(update={"items": healed_items})
