@@ -168,7 +168,7 @@ class CognitiveRouter:
         # 2. Inspeccionar archivos físicos del expediente
         case_dir = cls._locate_case_dir(case_id)
         if case_dir:
-            files = [f for f in case_dir.iterdir() if f.is_file() and f.name != "ground_truth.json"]
+            files = [f for f in case_dir.iterdir() if f.is_file() and not f.stem.startswith("ground_")]
             exts = {f.suffix.lower() for f in files}
 
             # A) Archivos de texto libre, correos o contratos extensos en Markdown

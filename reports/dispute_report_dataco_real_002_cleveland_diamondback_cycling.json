@@ -1,0 +1,300 @@
+{
+  "case_id": "dataco_real_002_cleveland_diamondback_cycling",
+  "currency": "USD",
+  "billed_amount": "11999.20",
+  "received_amount": "10599.24",
+  "difference": "-1399.96",
+  "root_cause": "Discrepancia mixta en expediente dataco_real_002_cleveland_diamondback_cycling: Faltante físico comprobado de $599.96 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $800.00 USD sin sustento contractual ni documental.",
+  "evidence": [
+    "Mercancía averiada en DC-957: 2 unidades valoradas en $599.96",
+    "Deducción aplicada en comprobante PAY-DC-71204: código DAMAGED, motivo 'Averia en muelle de 2 bicicletas Diamondback SKU DC-957 constatada en POD', monto $599.96",
+    "Deducción aplicada en comprobante PAY-DC-71204: código ADMIN_PORTAL_FEE, motivo 'Comision administrativa por uso de portal EDI no estipulada en contrato', monto $800.00",
+    "Respaldo contractual: Requiere acreditación de avería conforme a CL-DAMAGE-01.",
+    "[Factura INV-DC-71204 §Total $11,999.20 USD]",
+    "[Comprobante PAY-DC-71204 §Liquidación $10,599.24 USD]",
+    "[Contrato MSA-DC-71204 §Cláusula CL-DAMAGE-01 'Averías Reportadas en Recepción' | Deducción DAMAGED $599.96]",
+    "[Contrato MSA-DC-71204 §Cláusula CL-DAMAGE-01 'Averías Reportadas en Recepción' | Deducción ADMIN_PORTAL_FEE $800.00]",
+    "[Remisión BOL-DC-71204 §SKU DC-957 | Avería: 2 uds | $599.96]"
+  ],
+  "justified_amount": "599.96",
+  "claimable_amount": "800.00",
+  "confidence": 0.98,
+  "recommended_action": "Aceptar deducción de $599.96 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $800.00 USD exigiendo su pago inmediato.",
+  "concessions": [],
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "dataco_real_002_cleveland_diamondback_cycling",
+    "health_score": 100.0,
+    "status": "PRISTINE",
+    "is_healthy": true,
+    "repaired_issues": [],
+    "imputed_documents": [],
+    "documents_present": [
+      "invoice",
+      "purchase_order",
+      "delivery",
+      "payment",
+      "contract"
+    ],
+    "documents_missing": [],
+    "schema_warnings": [],
+    "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
+    "quarantine_docket": null,
+    "generated_at": "2026-11-03T20:57:23.767137+00:00"
+  },
+  "financial_proof": {
+    "case_id": "dataco_real_002_cleveland_diamondback_cycling",
+    "proof_hash": "SM-PROOF-SHA256-C187F0A853F32B46",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$599.96 USD (Validado)",
+      "$800.00 USD (Validado)",
+      "$599.96 USD (Validado)",
+      "$800.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-11-03T20:57:23.778799+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "dataco_real_002_cleveland_diamondback_cycling",
+    "total_claims_audited": 5,
+    "backed_claims_count": 5,
+    "unbacked_claims_count": 0,
+    "total_backed_amount": "24598.36",
+    "total_unbacked_amount": "0.00",
+    "backing_ratio_pct": 100.0,
+    "evidence_pointers": [
+      {
+        "pointer_id": "PTR-INV-INV-DC-71204-TOTAL",
+        "doc_type": "INVOICE",
+        "doc_id": "INV-DC-71204",
+        "field_ref": "total_amount",
+        "item_sku": null,
+        "amount": "11999.20",
+        "citation_tag": "[Factura INV-DC-71204 §Total $11,999.20 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Factura comercial fiscalmente válida por $11,999.20 USD."
+      },
+      {
+        "pointer_id": "PTR-PAY-PAY-DC-71204-AMOUNT",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-DC-71204",
+        "field_ref": "amount_paid",
+        "item_sku": null,
+        "amount": "10599.24",
+        "citation_tag": "[Comprobante PAY-DC-71204 §Liquidación $10,599.24 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $10,599.24."
+      },
+      {
+        "pointer_id": "PTR-DED-DAMAGED-1",
+        "doc_type": "CONTRACT",
+        "doc_id": "MSA-DC-71204",
+        "field_ref": "clause_CL-DAMAGE-01",
+        "item_sku": null,
+        "amount": "599.96",
+        "citation_tag": "[Contrato MSA-DC-71204 §Cláusula CL-DAMAGE-01 'Averías Reportadas en Recepción' | Deducción DAMAGED $599.96]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Deducción 'DAMAGED' normada por la cláusula CL-DAMAGE-01 de MSA-DC-71204."
+      },
+      {
+        "pointer_id": "PTR-DED-ADMIN_PORTAL_FEE-2",
+        "doc_type": "CONTRACT",
+        "doc_id": "MSA-DC-71204",
+        "field_ref": "clause_CL-DAMAGE-01",
+        "item_sku": null,
+        "amount": "800.00",
+        "citation_tag": "[Contrato MSA-DC-71204 §Cláusula CL-DAMAGE-01 'Averías Reportadas en Recepción' | Deducción ADMIN_PORTAL_FEE $800.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Deducción 'ADMIN_PORTAL_FEE' normada por la cláusula CL-DAMAGE-01 de MSA-DC-71204."
+      },
+      {
+        "pointer_id": "PTR-DEL-BOL-DC-71204-DC-957-DAMAGED",
+        "doc_type": "DELIVERY",
+        "doc_id": "BOL-DC-71204",
+        "field_ref": "damaged_quantity",
+        "item_sku": "DC-957",
+        "amount": "599.96",
+        "citation_tag": "[Remisión BOL-DC-71204 §SKU DC-957 | Avería: 2 uds | $599.96]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Mercancía averiada (2 unidades) en remisión BOL-DC-71204."
+      }
+    ],
+    "cautelar_items": [],
+    "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
+    "confidence_penalty": 0.0,
+    "generated_at": "2026-11-03T20:57:23Z"
+  },
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "dataco_real_002_cleveland_diamondback_cycling",
+    "currency": "USD",
+    "billed_amount": "11999.20",
+    "received_amount": "10599.24",
+    "difference": "-1399.96",
+    "justified_amount": "599.96",
+    "claimable_amount": "800.00",
+    "health_status": "PRISTINE",
+    "health_score": 100.0,
+    "zkp_proof_hash": "SM-PROOF-SHA256-C187F0A853F32B46",
+    "zkp_status": "MATHEMATICALLY_PROVEN",
+    "is_quarantined": false,
+    "evidence_backing_ratio": 100.0,
+    "anchored_at": "2026-11-03T20:57:23.820675+00:00"
+  },
+  "watchdog_metrics": null,
+  "adversarial_verdict": {
+    "case_id": "dataco_real_002_cleveland_diamondback_cycling",
+    "courtroom_session_id": "CRT-389BB96D",
+    "disputed_amount": "1399.96",
+    "justified_amount": "599.96",
+    "claimable_amount": "800.00",
+    "prosecutor_arguments": [
+      {
+        "role": "PROSECUTOR",
+        "speaker_name": "Lic. Gustavo Méndez (Fiscal Forense Retail B2B)",
+        "topic": "Faltante Físico en Muelle",
+        "argument_text": "El comprador reportó válidamente un faltante de mercancía valorado en $599.96 USD (2x DC-957 (dañado)) en la remisión BOL-DC-71204 (Columbus Distribution Dock B). Las unidades recibidas en patio fueron inferiores a las amparadas en factura INV-DC-71204.",
+        "legal_or_contractual_ground": "Cláusula CL-DAMAGE-01",
+        "strength_score": 0.95,
+        "evidence_referenced": [
+          "BOL-DC-71204",
+          "INV-DC-71204"
+        ]
+      },
+      {
+        "role": "PROSECUTOR",
+        "speaker_name": "Lic. Gustavo Méndez (Fiscal Forense Retail B2B)",
+        "topic": "Aplicación de Políticas Operativas y Guías del Comprador",
+        "argument_text": "El retailer retuvo $800.00 USD bajo conceptos DAMAGED ($599.96), ADMIN_PORTAL_FEE ($800.00) en liquidación PAY-DC-71204 con base en sus manuales internos de logística, penalizaciones por aviso anticipado ASN o descuentos comerciales por pronto pago.",
+        "legal_or_contractual_ground": "Manual Operativo de Proveedores del Retailer & Portal B2B",
+        "strength_score": 0.15,
+        "evidence_referenced": [
+          "Comprobante de Retención PAY-DC-71204"
+        ]
+      }
+    ],
+    "advocate_counterarguments": [
+      {
+        "role": "DEFENDER",
+        "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
+        "topic": "Allanamiento de Faltante Acreditado",
+        "argument_text": "Verificada la remisión BOL-DC-71204 con sello y firma física de recepción en Columbus Distribution Dock B con discrepancia asentada (2x DC-957 (dañado)), reconocemos la exactitud del faltante de $599.96 USD y allanamos la deducción mediante emisión de Nota de Crédito comercial conforme a la ley.",
+        "legal_or_contractual_ground": "Art. 1043 Código de Comercio (Reconocimiento Expreso)",
+        "strength_score": 0.98,
+        "evidence_referenced": [
+          "Remisión BOL-DC-71204 con salvedad en muelle",
+          "INV-DC-71204"
+        ]
+      },
+      {
+        "role": "DEFENDER",
+        "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
+        "topic": "Nulidad Absoluta de Cargos Unilaterales",
+        "argument_text": "Objeción perentoria sobre factura INV-DC-71204 y liquidación PAY-DC-71204: El contrato marco bilateral MSA-DC-71204 prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $800.00 USD. La retención constituye incumplimiento de pago. RELOJ SLA: Restan 7 días de ventana perentoria (HIGH_IMMINENT). Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente dataco_real_002_cleveland_diamondback_cycling (fecha 2026-11-03), donde Midwest-Cycling-Corp acordó el reintegro de $800.00 USD ante una deducción análoga por 'DAMAGED', amparada en la cláusula contractual CL-DAMAGE-01..",
+        "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
+        "strength_score": 0.99,
+        "evidence_referenced": [
+          "MSA-DC-71204",
+          "INV-DC-71204",
+          "PAY-DC-71204",
+          "Conforme al precedente formalizado en el expediente dataco_real_002_cleveland_diamondback_cycling (fecha 2026-11-03), donde Midwest-Cycling-Corp acordó el reintegro de $800.00 USD ante una deducción análoga por 'DAMAGED', amparada en la cláusula contractual CL-DAMAGE-01."
+        ]
+      }
+    ],
+    "sustained_objections": [
+      "Deducción de faltante físico por $599.96 USD amparada en BOL-DC-71204 declarada PROCEDENTE."
+    ],
+    "dismissed_objections": [
+      "Retención unilateral de $800.00 USD en PAY-DC-71204 declarada IMPROCEDENTE y 100% RECLAMABLE."
+    ],
+    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente dataco_real_002_cleveland_diamondback_cycling (Factura: INV-DC-71204, Remisión: BOL-DC-71204, Liquidación: PAY-DC-71204): Se condena al comprador al reintegro inmediato de $800.00 USD por carecer de título legal habilitante en MSA-DC-71204, y se valida la emisión de Nota de Crédito por $599.96 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%. Reloj SLA: 7 días restantes (HIGH_IMMINENT).",
+    "probative_force_supplier_pct": 87.5,
+    "final_legal_doctrine": "DOCTRINA COMERCIAL VINCULANTE: Ninguna guía operativa o portal B2B puede modificar o imponer sanciones financieras no contenidas en el contrato marco bilateral suscrito. Las remisiones firmadas con sello de muelle hacen fe pública comercial plena e inmutable entre las partes."
+  },
+  "recovery_prediction": {
+    "case_id": "dataco_real_002_cleveland_diamondback_cycling",
+    "recovery_probability_pct": 98.5,
+    "confidence_grade": "ALTA_CERTEZA",
+    "recommended_track": "FAST_TRACK_B2B_PORTAL",
+    "target_claimable_amount": "800.00",
+    "expected_net_recovery_usd": "788.00",
+    "estimated_days_to_cash": 10,
+    "positive_drivers": [
+      "Remisión de entrega debidamente firmada en muelle receptor (+20%)",
+      "Discrepancia física allanada con sello formal de muelle (+10%)",
+      "Contrato marco comercial vigente con cláusulas de prevalencia (+15%)",
+      "Historial altamente favorable con Midwest-Cycling-Corp (100.0% de éxito histórico) (+12%)",
+      "Dictamen judicial favorable con fuerza probatoria del 87.5% (+10%)"
+    ],
+    "risk_drivers": [],
+    "scenarios": [
+      {
+        "scenario_name": "Ruta Rápida — Cobro Íntegro en Portal B2B",
+        "description": "Reclamación directa del 100% del saldo insoluto con base documental plena.",
+        "projected_recovery_amount": "800.00",
+        "concession_granted_amount": "0.00",
+        "recovery_rate_pct": 100.0,
+        "estimated_days_to_cash": 10,
+        "legal_risk_level": "BAJO",
+        "recommended": true
+      },
+      {
+        "scenario_name": "Acuerdo Estructurado — Concesión Comercial del 15%",
+        "description": "Oferta de descuento por pronto pago/relación para cierre garantizado en menos de 7 días.",
+        "projected_recovery_amount": "680.00",
+        "concession_granted_amount": "120.00",
+        "recovery_rate_pct": 85.0,
+        "estimated_days_to_cash": 5,
+        "legal_risk_level": "BAJO",
+        "recommended": false
+      },
+      {
+        "scenario_name": "Escalamiento Legal — Póliza Contable NIF C-3",
+        "description": "Exigencia formal y cobro coactivo con causación de intereses moratorios comerciales.",
+        "projected_recovery_amount": "800.00",
+        "concession_granted_amount": "0.00",
+        "recovery_rate_pct": 100.0,
+        "estimated_days_to_cash": 45,
+        "legal_risk_level": "MEDIO",
+        "recommended": false
+      }
+    ],
+    "executive_summary": "El expediente presenta una probabilidad de recuperación del 98.5% (ALTA_CERTEZA). Se proyecta recuperar un valor neto ponderado de $788.00 USD dentro de un plazo estimado de 10 días naturales vía 'FAST_TRACK_B2B_PORTAL'."
+  },
+  "sanity_gate_audit": {
+    "is_bulletproof": true,
+    "arithmetic_invariant_passed": true,
+    "precedence_hierarchy_passed": true,
+    "notice_window_passed": true,
+    "notice_window_days_allowed": null,
+    "notice_window_days_elapsed": null,
+    "double_penalty_detected": false,
+    "double_penalty_details": [],
+    "irrefutability_grade": "A1_IRREFUTABLE",
+    "corrective_actions_applied": [],
+    "audit_notes": [
+      "Invarianza aritmética perfecta verificada al centavo ($0.00 MAE)."
+    ],
+    "verified_claimable_amount": "800.00",
+    "verified_justified_amount": "599.96",
+    "contractual_cap_enforced": false,
+    "contractual_cap_excess_claimed": "0.00",
+    "contractual_cap_details": []
+  },
+  "resolution_notes": [],
+  "deduction_type": null,
+  "adversarial_critique": null,
+  "mcts_negotiation_plan": null,
+  "cross_border_assessment": null
+}
