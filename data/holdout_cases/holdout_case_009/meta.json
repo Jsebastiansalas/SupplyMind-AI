@@ -1,0 +1,9 @@
+{
+  "case_id": "holdout_case_009",
+  "buyer_id": "CUST-TAS-09",
+  "buyer_name": "Tiendas de Autoservicio del Sur",
+  "industry": "Autoservicio",
+  "created_at": "2026-03-15T10:00:00Z",
+  "currency": "USD",
+  "description": "Expediente ciego holdout_case_009: Tiendas de Autoservicio del Sur (Autoservicio)"
+}

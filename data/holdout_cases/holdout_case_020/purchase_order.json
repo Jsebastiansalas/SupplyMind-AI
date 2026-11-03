@@ -1,0 +1,17 @@
+{
+  "po_id": "PO-HOLDOUT_CASE_020",
+  "customer_id": "CUST-CTC-20",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "issue_date": "2026-02-01",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-TENIS-RUNNING-UNISEX",
+      "description": "Tenis de Running Amortiguación Dual",
+      "ordered_quantity": 1000,
+      "agreed_unit_price": 70.0,
+      "total_price": 70000.0
+    }
+  ],
+  "total_amount": 70000.0
+}

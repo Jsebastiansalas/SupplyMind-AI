@@ -1,0 +1,19 @@
+{
+  "payment_id": "PAY-HOLDOUT_CASE_016",
+  "invoice_reference": "INV-HOLDOUT_CASE_016",
+  "payment_date": "2026-03-01",
+  "currency": "USD",
+  "amount_paid": 18000.0,
+  "deductions": [
+    {
+      "code": "SHORTAGE_JUSTIFICAD",
+      "amount": 1000.0,
+      "reason": "Faltante físico de 5 botellas comprobado en muelle"
+    },
+    {
+      "code": "CARGO_ADMIN_IMPROCEDENTE",
+      "amount": 1000.0,
+      "reason": "Cargo administrativo punitivo no estipulado en contrato"
+    }
+  ]
+}

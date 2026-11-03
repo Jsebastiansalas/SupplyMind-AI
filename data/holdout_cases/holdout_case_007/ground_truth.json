@@ -1,0 +1,26 @@
+{
+  "case_id": "holdout_case_007",
+  "buyer_id": "CUST-CAM-07",
+  "buyer_name": "Consorcio Abarrotero Metropolitano",
+  "industry": "Abarrotes",
+  "billed_amount": 30000.0,
+  "received_amount": 28500.0,
+  "difference": -1500.0,
+  "expected_justified_amount": 750.0,
+  "expected_claimable_amount": 750.0,
+  "expected_quarantine": false,
+  "currency": "USD",
+  "category": "DAMAGE-BASE-TARIMA",
+  "deductions": [
+    {
+      "code": "DAMAGE-BASE-TARIMA",
+      "amount": 750.0,
+      "reason": "Tarima dañada comprobada en descarga"
+    },
+    {
+      "code": "PALLET-DAMAGE-UNILATERAL",
+      "amount": 750.0,
+      "reason": "Deducción duplicada por la misma tarima cobrada dos veces"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "contract_id": "CTR-HOLDOUT_CASE_004",
+  "effective_date": "2025-01-01",
+  "buyer_id": "CUST-OCC-04",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "clauses": [
+    {
+      "clause_id": "CL-04",
+      "name": "Pronto Pago",
+      "content": "Descuento del 2% aplica exclusivamente si el pago se liquida dentro de los 10 días."
+    }
+  ]
+}

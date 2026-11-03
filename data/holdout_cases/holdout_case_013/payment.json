@@ -1,0 +1,14 @@
+{
+  "payment_id": "PAY-HOLDOUT_CASE_013",
+  "invoice_reference": "INV-HOLDOUT_CASE_013",
+  "payment_date": "2026-03-01",
+  "currency": "USD",
+  "amount_paid": 47500.0,
+  "deductions": [
+    {
+      "code": "ARBITRARY_FX_VARIANCE",
+      "amount": 2500.0,
+      "reason": "Conversión cambiaria realizada a tipo de cambio inferior al FIX publicado"
+    }
+  ]
+}

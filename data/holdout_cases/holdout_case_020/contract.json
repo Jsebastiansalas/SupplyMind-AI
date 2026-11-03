@@ -1,0 +1,13 @@
+{
+  "contract_id": "CTR-HOLDOUT_CASE_020",
+  "effective_date": "2025-01-01",
+  "buyer_id": "CUST-CTC-20",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "clauses": [
+    {
+      "clause_id": "CL-20",
+      "name": "Rebate Anual",
+      "content": "El rebate del 2% opera únicamente sobre compras anuales netas superiores a $500,000 USD."
+    }
+  ]
+}

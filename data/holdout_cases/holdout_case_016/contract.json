@@ -1,0 +1,13 @@
+{
+  "contract_id": "CTR-HOLDOUT_CASE_016",
+  "effective_date": "2025-01-01",
+  "buyer_id": "CUST-DVL-16",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "clauses": [
+    {
+      "clause_id": "CL-16",
+      "name": "Deducciones",
+      "content": "Queda prohibido imponer cargos administrativos no pactados por escrito."
+    }
+  ]
+}

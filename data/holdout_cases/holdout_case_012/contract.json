@@ -1,0 +1,13 @@
+{
+  "contract_id": "CTR-HOLDOUT_CASE_012",
+  "effective_date": "2025-01-01",
+  "buyer_id": "CUST-CFU-12",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "clauses": [
+    {
+      "clause_id": "CL-12",
+      "name": "Publicidad",
+      "content": "Toda aportación publicitaria requiere orden de inserción firmada previamente."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "po_id": "PO-HOLDOUT_CASE_013",
+  "customer_id": "CUST-IEN-13",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "issue_date": "2026-02-01",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-DISCO-DURO-EXT-2TB",
+      "description": "Disco Duro Externo USB 3.2 2TB",
+      "ordered_quantity": 1000,
+      "agreed_unit_price": 50.0,
+      "total_price": 50000.0
+    }
+  ],
+  "total_amount": 50000.0
+}

@@ -642,6 +642,12 @@ class ResilientDocumentLoader:
         provided_path = Path(case_id)
         if provided_path.is_absolute() or provided_path.exists():
             case_path = provided_path
+        elif (settings.DATA_DIR / case_id).exists():
+            case_path = settings.DATA_DIR / case_id
+        elif (Path("data/holdout_cases") / case_id).exists():
+            case_path = Path("data/holdout_cases") / case_id
+        elif (ROOT_DIR / "data" / "holdout_cases" / case_id).exists():
+            case_path = ROOT_DIR / "data" / "holdout_cases" / case_id
         else:
             case_path = settings.DATA_DIR / case_id
 

@@ -1,0 +1,21 @@
+{
+  "case_id": "holdout_case_011",
+  "buyer_id": "CUST-CFP-11",
+  "buyer_name": "Comercializadora Frutas del Pacífico",
+  "industry": "Agroindustria",
+  "billed_amount": 18000.0,
+  "received_amount": 16800.0,
+  "difference": -1200.0,
+  "expected_justified_amount": 0.0,
+  "expected_claimable_amount": 1200.0,
+  "expected_quarantine": false,
+  "currency": "USD",
+  "category": "FLETE-COMPARTIDO_UNILATERAL",
+  "deductions": [
+    {
+      "code": "FLETE-COMPARTIDO_UNILATERAL",
+      "amount": 1200.0,
+      "reason": "Cargo de transporte interno entre sucursales transferido al proveedor"
+    }
+  ]
+}

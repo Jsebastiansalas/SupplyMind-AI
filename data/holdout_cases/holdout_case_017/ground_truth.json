@@ -1,0 +1,21 @@
+{
+  "case_id": "holdout_case_017",
+  "buyer_id": "CUST-CTC-17",
+  "buyer_name": "Cadena de Tiendas de Conveniencia",
+  "industry": "Retail Conveniencia",
+  "billed_amount": 45000.0,
+  "received_amount": 41800.0,
+  "difference": -3200.0,
+  "expected_justified_amount": 0.0,
+  "expected_claimable_amount": 3200.0,
+  "expected_quarantine": false,
+  "currency": "USD",
+  "category": "EXTEMP_NO_PACTAD",
+  "deductions": [
+    {
+      "code": "EXTEMP_NO_PACTAD",
+      "amount": 3200.0,
+      "reason": "Deducción aplicada a los 160 días de la entrega, precluida por contrato"
+    }
+  ]
+}

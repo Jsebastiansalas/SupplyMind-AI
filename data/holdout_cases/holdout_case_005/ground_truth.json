@@ -1,0 +1,21 @@
+{
+  "case_id": "holdout_case_005",
+  "buyer_id": "CUST-CLM-05",
+  "buyer_name": "Cadena Logística Multimodal",
+  "industry": "Logística y Retail",
+  "billed_amount": 40000.0,
+  "received_amount": 38800.0,
+  "difference": -1200.0,
+  "expected_justified_amount": 0.0,
+  "expected_claimable_amount": 1200.0,
+  "expected_quarantine": false,
+  "currency": "USD",
+  "category": "ASN_LATE_UNILATERAL",
+  "deductions": [
+    {
+      "code": "ASN_LATE_UNILATERAL",
+      "amount": 1200.0,
+      "reason": "Multa OTIF por retraso en cita a pesar de ingreso en caseta a tiempo"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "case_id": "holdout_case_001",
+  "buyer_id": "CUST-GAN-01",
+  "buyer_name": "Grupo Almacenes Nacionales",
+  "industry": "Retail Autoservicio",
+  "billed_amount": 10000.0,
+  "received_amount": 9600.0,
+  "difference": -400.0,
+  "expected_justified_amount": 400.0,
+  "expected_claimable_amount": 0.0,
+  "expected_quarantine": false,
+  "currency": "USD",
+  "category": "SHORTAGE_DOCK_MISSING",
+  "deductions": [
+    {
+      "code": "SHORTAGE_DOCK_MISSING",
+      "amount": 400.0,
+      "reason": "Faltante físico en muelle según remisión"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "invoice_id": "INV-HOLDOUT_CASE_001",
+  "customer_id": "CUST-GAN-01",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "po_reference": "PO-HOLDOUT_CASE_001",
+  "issue_date": "2026-02-05",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-ARROZ-PREM-1KG",
+      "description": "Arroz Extra Grano Largo 1kg",
+      "quantity": 500,
+      "unit_price": 20.0,
+      "total_price": 10000.0
+    }
+  ],
+  "subtotal": 10000.0,
+  "tax": 0.0,
+  "total_amount": 10000.0
+}

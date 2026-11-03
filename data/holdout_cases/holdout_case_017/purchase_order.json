@@ -1,0 +1,17 @@
+{
+  "po_id": "PO-HOLDOUT_CASE_017",
+  "customer_id": "CUST-CTC-17",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "issue_date": "2026-02-01",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-SNACK-PAPA-ONDULADA-150G",
+      "description": "Papa Frita Ondulada Salada 150g",
+      "ordered_quantity": 1000,
+      "agreed_unit_price": 45.0,
+      "total_price": 45000.0
+    }
+  ],
+  "total_amount": 45000.0
+}

@@ -1,0 +1,13 @@
+{
+  "contract_id": "CTR-HOLDOUT_CASE_013",
+  "effective_date": "2025-01-01",
+  "buyer_id": "CUST-IEN-13",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "clauses": [
+    {
+      "clause_id": "CL-13",
+      "name": "Moneda y Divisa",
+      "content": "Operación tasada en USD; pagos en MXN aplican tipo de cambio oficial Banxico FIX."
+    }
+  ]
+}

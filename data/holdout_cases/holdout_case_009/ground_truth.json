@@ -1,0 +1,21 @@
+{
+  "case_id": "holdout_case_009",
+  "buyer_id": "CUST-TAS-09",
+  "buyer_name": "Tiendas de Autoservicio del Sur",
+  "industry": "Autoservicio",
+  "billed_amount": 60000.0,
+  "received_amount": 58200.0,
+  "difference": -1800.0,
+  "expected_justified_amount": 0.0,
+  "expected_claimable_amount": 1800.0,
+  "expected_quarantine": false,
+  "currency": "USD",
+  "category": "MERMA_OPERATIVA_UNILATERAL",
+  "deductions": [
+    {
+      "code": "MERMA_OPERATIVA_UNILATERAL",
+      "amount": 1800.0,
+      "reason": "Retención por merma estadística en anaquel sin pacto expreso"
+    }
+  ]
+}

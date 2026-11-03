@@ -1,0 +1,13 @@
+{
+  "contract_id": "CTR-HOLDOUT_CASE_015",
+  "effective_date": "2025-01-01",
+  "buyer_id": "CUST-LQF-15",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "clauses": [
+    {
+      "clause_id": "CL-15",
+      "name": "Control de Calidad",
+      "content": "El lote que no cumpla con pureza de certificado de análisis será bonificado."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "delivery_id": "REM-HOLDOUT_CASE_003",
+  "po_reference": "PO-HOLDOUT_CASE_003",
+  "carrier_name": "Transportes Rápidos B2B",
+  "delivery_date": "2026-02-10",
+  "warehouse_location": "CEDIS Central Muelle 4",
+  "items": [
+    {
+      "item_id": "SKU-ACEITE-VEG-900ML",
+      "quantity_delivered": 1000,
+      "quantity_received": 1000,
+      "missing_quantity": 0,
+      "damaged_quantity": 0,
+      "notes": "Remisión oficial de entrega firmada y sellada en muelle de recepción"
+    }
+  ]
+}

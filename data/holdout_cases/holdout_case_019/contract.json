@@ -1,0 +1,13 @@
+{
+  "contract_id": "CTR-HOLDOUT_CASE_019",
+  "effective_date": "2025-01-01",
+  "buyer_id": "CUST-MDN-19",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "clauses": [
+    {
+      "clause_id": "CL-19",
+      "name": "Recepción Anticipada",
+      "content": "Si el CEDIS acepta la unidad y sella la remisión, renuncia a penalización por entrega anticipada."
+    }
+  ]
+}

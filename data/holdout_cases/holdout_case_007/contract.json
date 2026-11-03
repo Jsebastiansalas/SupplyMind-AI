@@ -1,0 +1,13 @@
+{
+  "contract_id": "CTR-HOLDOUT_CASE_007",
+  "effective_date": "2025-01-01",
+  "buyer_id": "CUST-CAM-07",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "clauses": [
+    {
+      "clause_id": "CL-07",
+      "name": "Tarimas",
+      "content": "Solo se cobrará un cargo por tarima dañada con evidencia fotográfica."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "payment_id": "PAY-HOLDOUT_CASE_015",
+  "invoice_reference": "INV-HOLDOUT_CASE_015",
+  "payment_date": "2026-03-01",
+  "currency": "USD",
+  "amount_paid": 31500.0,
+  "deductions": [
+    {
+      "code": "DICTAMEN_CALIDAD_JUSTIFICAD",
+      "amount": 3500.0,
+      "reason": "Muestreo técnico con 10% de impurezas documentado por laboratorio acreditado"
+    }
+  ]
+}

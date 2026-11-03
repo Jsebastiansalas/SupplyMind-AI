@@ -171,8 +171,9 @@ class QuarantineManager:
         # 2b. Chequeo de Ataques Adversarios y Prompt Injection (Ancla Fáctica)
         # ======================================================================
         adversarial_signatures = [
-            "SYSTEM INSTRUCTION", "IGNORE ALL PREVIOUS RULES", "CONCEDE 100%",
-            "PROMPT INJECTION", "SYSTEM PROMPT OVERRIDE", "FORCE_CREDIT_NOTE"
+            "SYSTEM INSTRUCTION", "IGNORE ALL PREVIOUS RULES", "IGNORE PREVIOUS INSTRUCTIONS",
+            "CONCEDE 100%", "PROMPT INJECTION", "SYSTEM PROMPT OVERRIDE", "FORCE_CREDIT_NOTE",
+            "INYECCIÓN ADVERSARIA", "INYECCION ADVERSARIA", "ADVERSARIAL ATTACK", "JAILBREAK"
         ]
         corpus_texts = []
         if invoice and hasattr(invoice, "items"):
@@ -181,6 +182,10 @@ class QuarantineManager:
         if delivery and hasattr(delivery, "items"):
             for itm in delivery.items:
                 corpus_texts.append(getattr(itm, "notes", ""))
+        if payment and hasattr(payment, "deductions"):
+            for ded in payment.deductions:
+                corpus_texts.append(getattr(ded, "reason", "") or "")
+                corpus_texts.append(getattr(ded, "code", "") or "")
 
         for txt in corpus_texts:
             txt_upper = (txt or "").upper()

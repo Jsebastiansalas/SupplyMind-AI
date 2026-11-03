@@ -1,0 +1,20 @@
+{
+  "invoice_id": "INV-HOLDOUT_CASE_011",
+  "customer_id": "CUST-CFP-11",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "po_reference": "PO-HOLDOUT_CASE_011",
+  "issue_date": "2026-02-05",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-MANZANA-GALA-CAJA",
+      "description": "Caja de Manzana Gala Seleccionada 18kg",
+      "quantity": 500,
+      "unit_price": 36.0,
+      "total_price": 18000.0
+    }
+  ],
+  "subtotal": 18000.0,
+  "tax": 0.0,
+  "total_amount": 18000.0
+}

@@ -1,0 +1,17 @@
+{
+  "po_id": "PO-HOLDOUT_CASE_015",
+  "customer_id": "CUST-LQF-15",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "issue_date": "2026-02-01",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-SOLVENTE-ORGAN-TAMBOR",
+      "description": "Tambor de Solvente Grado Reactivo 200L",
+      "ordered_quantity": 100,
+      "agreed_unit_price": 350.0,
+      "total_price": 35000.0
+    }
+  ],
+  "total_amount": 35000.0
+}

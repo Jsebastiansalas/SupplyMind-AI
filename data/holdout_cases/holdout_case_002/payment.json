@@ -1,0 +1,14 @@
+{
+  "payment_id": "PAY-HOLDOUT_CASE_002",
+  "invoice_reference": "INV-HOLDOUT_CASE_002",
+  "payment_date": "2026-03-01",
+  "currency": "USD",
+  "amount_paid": 18500.0,
+  "deductions": [
+    {
+      "code": "ALLEGED_DAMAGE_UNILATERAL",
+      "amount": 1500.0,
+      "reason": "Avería alegada posterior en tarimas sin dictamen en muelle"
+    }
+  ]
+}

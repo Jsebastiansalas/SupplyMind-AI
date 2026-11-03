@@ -1,0 +1,14 @@
+{
+  "payment_id": "PAY-HOLDOUT_CASE_008",
+  "invoice_reference": "INV-HOLDOUT_CASE_008",
+  "payment_date": "2026-03-01",
+  "currency": "USD",
+  "amount_paid": 95000.0,
+  "deductions": [
+    {
+      "code": "SHORTAGE_UNILATERAL_NO_PACTAD",
+      "amount": 5000.0,
+      "reason": "Faltante alegado en auditoría interna tras firma de recibido conforme"
+    }
+  ]
+}

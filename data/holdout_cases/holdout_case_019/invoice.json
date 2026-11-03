@@ -1,0 +1,20 @@
+{
+  "invoice_id": "INV-HOLDOUT_CASE_019",
+  "customer_id": "CUST-MDN-19",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "po_reference": "PO-HOLDOUT_CASE_019",
+  "issue_date": "2026-02-05",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-BALON-FUTBOL-PROF-N5",
+      "description": "Balón de Fútbol Profesional Termosellado No.5",
+      "quantity": 400,
+      "unit_price": 70.0,
+      "total_price": 28000.0
+    }
+  ],
+  "subtotal": 28000.0,
+  "tax": 0.0,
+  "total_amount": 28000.0
+}

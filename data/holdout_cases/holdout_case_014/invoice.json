@@ -1,0 +1,20 @@
+{
+  "invoice_id": "INV-HOLDOUT_CASE_014",
+  "customer_id": "CUST-AIA-14",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "po_reference": "PO-HOLDOUT_CASE_014",
+  "issue_date": "2026-02-05",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-TORNILLO-INOX-PAQ100",
+      "description": "Tornillo Grado 8 Inox Paquete 100pz",
+      "quantity": 1000,
+      "unit_price": 10.0,
+      "total_price": 10000.0
+    }
+  ],
+  "subtotal": 10000.0,
+  "tax": 0.0,
+  "total_amount": 10000.0
+}

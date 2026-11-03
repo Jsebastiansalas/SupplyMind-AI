@@ -1,0 +1,21 @@
+{
+  "case_id": "holdout_case_003",
+  "buyer_id": "CUST-SDN-03",
+  "buyer_name": "Supermercados del Norte",
+  "industry": "Retail Supermercados",
+  "billed_amount": 15000.0,
+  "received_amount": 13000.0,
+  "difference": -2000.0,
+  "expected_justified_amount": 0.0,
+  "expected_claimable_amount": 2000.0,
+  "expected_quarantine": false,
+  "currency": "USD",
+  "category": "PRC_VAR_UNILATERAL",
+  "deductions": [
+    {
+      "code": "PRC_VAR_UNILATERAL",
+      "amount": 2000.0,
+      "reason": "Precio unitario renegociado unilateralmente post-entrega"
+    }
+  ]
+}

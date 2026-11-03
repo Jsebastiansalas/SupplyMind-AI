@@ -1,0 +1,19 @@
+{
+  "payment_id": "PAY-HOLDOUT_CASE_006",
+  "invoice_reference": "INV-HOLDOUT_CASE_006",
+  "payment_date": "2026-03-01",
+  "currency": "USD",
+  "amount_paid": 92000.0,
+  "deductions": [
+    {
+      "code": "ETIQUETA_BASE_JUSTIFICAD",
+      "amount": 3000.0,
+      "reason": "Penalización por reetiquetado dentro del tope pactado del 3%"
+    },
+    {
+      "code": "ETIQUETA_EXCESO_UNILATERAL",
+      "amount": 5000.0,
+      "reason": "Exceso ilegal sobre el tope contractual máximo del 3%"
+    }
+  ]
+}

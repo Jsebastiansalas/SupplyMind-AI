@@ -1,0 +1,13 @@
+{
+  "contract_id": "CTR-HOLDOUT_CASE_005",
+  "effective_date": "2025-01-01",
+  "buyer_id": "CUST-CLM-05",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "clauses": [
+    {
+      "clause_id": "CL-05",
+      "name": "Citas de Entrega",
+      "content": "El sello de caseta de ingreso determina la puntualidad de la entrega."
+    }
+  ]
+}

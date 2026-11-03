@@ -1,0 +1,13 @@
+{
+  "contract_id": "CTR-HOLDOUT_CASE_011",
+  "effective_date": "2025-01-01",
+  "buyer_id": "CUST-CFP-11",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "clauses": [
+    {
+      "clause_id": "CL-11",
+      "name": "Incoterm",
+      "content": "Entrega pactada DDP en CEDIS; traslados secundarios son a cuenta del comprador."
+    }
+  ]
+}

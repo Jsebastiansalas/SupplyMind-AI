@@ -1,0 +1,21 @@
+{
+  "case_id": "holdout_case_008",
+  "buyer_id": "CUST-CEN-08",
+  "buyer_name": "Cadena Electrónica Nacional",
+  "industry": "Tecnología y Electrónica",
+  "billed_amount": 100000.0,
+  "received_amount": 95000.0,
+  "difference": -5000.0,
+  "expected_justified_amount": 0.0,
+  "expected_claimable_amount": 5000.0,
+  "expected_quarantine": false,
+  "currency": "USD",
+  "category": "SHORTAGE_UNILATERAL_NO_PACTAD",
+  "deductions": [
+    {
+      "code": "SHORTAGE_UNILATERAL_NO_PACTAD",
+      "amount": 5000.0,
+      "reason": "Faltante alegado en auditoría interna tras firma de recibido conforme"
+    }
+  ]
+}

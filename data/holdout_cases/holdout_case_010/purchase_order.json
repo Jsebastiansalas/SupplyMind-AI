@@ -1,0 +1,17 @@
+{
+  "po_id": "PO-HOLDOUT_CASE_010",
+  "customer_id": "CUST-LAF-10",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "issue_date": "2026-02-01",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-YOGURT-GRIEGO-1KG",
+      "description": "Yogurt Griego Natural 1kg",
+      "ordered_quantity": 1000,
+      "agreed_unit_price": 25.0,
+      "total_price": 25000.0
+    }
+  ],
+  "total_amount": 25000.0
+}

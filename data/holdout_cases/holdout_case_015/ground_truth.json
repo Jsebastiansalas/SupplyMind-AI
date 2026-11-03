@@ -1,0 +1,21 @@
+{
+  "case_id": "holdout_case_015",
+  "buyer_id": "CUST-LQF-15",
+  "buyer_name": "Laboratorios Químicos Frontera",
+  "industry": "Química Industrial",
+  "billed_amount": 35000.0,
+  "received_amount": 31500.0,
+  "difference": -3500.0,
+  "expected_justified_amount": 3500.0,
+  "expected_claimable_amount": 0.0,
+  "expected_quarantine": false,
+  "currency": "USD",
+  "category": "DICTAMEN_CALIDAD_JUSTIFICAD",
+  "deductions": [
+    {
+      "code": "DICTAMEN_CALIDAD_JUSTIFICAD",
+      "amount": 3500.0,
+      "reason": "Muestreo técnico con 10% de impurezas documentado por laboratorio acreditado"
+    }
+  ]
+}

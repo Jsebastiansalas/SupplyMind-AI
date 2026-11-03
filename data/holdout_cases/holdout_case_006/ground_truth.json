@@ -1,0 +1,26 @@
+{
+  "case_id": "holdout_case_006",
+  "buyer_id": "CUST-GTD-06",
+  "buyer_name": "Grandes Tiendas Departamentales",
+  "industry": "Departamental",
+  "billed_amount": 100000.0,
+  "received_amount": 92000.0,
+  "difference": -8000.0,
+  "expected_justified_amount": 3000.0,
+  "expected_claimable_amount": 5000.0,
+  "expected_quarantine": false,
+  "currency": "USD",
+  "category": "ETIQUETA_BASE_JUSTIFICAD",
+  "deductions": [
+    {
+      "code": "ETIQUETA_BASE_JUSTIFICAD",
+      "amount": 3000.0,
+      "reason": "Penalización por reetiquetado dentro del tope pactado del 3%"
+    },
+    {
+      "code": "ETIQUETA_EXCESO_UNILATERAL",
+      "amount": 5000.0,
+      "reason": "Exceso ilegal sobre el tope contractual máximo del 3%"
+    }
+  ]
+}

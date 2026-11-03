@@ -1,0 +1,13 @@
+{
+  "contract_id": "CTR-HOLDOUT_CASE_017",
+  "effective_date": "2025-01-01",
+  "buyer_id": "CUST-CTC-17",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "clauses": [
+    {
+      "clause_id": "CL-17",
+      "name": "Plazo de Objeción",
+      "content": "Cualquier objeción comercial prescribe a los 60 días naturales de la entrega."
+    }
+  ]
+}

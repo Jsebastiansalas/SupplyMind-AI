@@ -1,0 +1,20 @@
+{
+  "invoice_id": "INV-HOLDOUT_CASE_006",
+  "customer_id": "CUST-GTD-06",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "po_reference": "PO-HOLDOUT_CASE_006",
+  "issue_date": "2026-02-05",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-CHAMARRA-PLUMA-GANSO",
+      "description": "Chamarra Térmica de Pluma Impermeable",
+      "quantity": 1000,
+      "unit_price": 100.0,
+      "total_price": 100000.0
+    }
+  ],
+  "subtotal": 100000.0,
+  "tax": 0.0,
+  "total_amount": 100000.0
+}

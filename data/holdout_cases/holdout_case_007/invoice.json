@@ -1,0 +1,20 @@
+{
+  "invoice_id": "INV-HOLDOUT_CASE_007",
+  "customer_id": "CUST-CAM-07",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "po_reference": "PO-HOLDOUT_CASE_007",
+  "issue_date": "2026-02-05",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-DETERGENTE-LIQ-5L",
+      "description": "Detergente Líquido Concentrado 5L",
+      "quantity": 200,
+      "unit_price": 150.0,
+      "total_price": 30000.0
+    }
+  ],
+  "subtotal": 30000.0,
+  "tax": 0.0,
+  "total_amount": 30000.0
+}

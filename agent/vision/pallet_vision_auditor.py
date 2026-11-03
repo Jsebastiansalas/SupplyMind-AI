@@ -298,6 +298,8 @@ class PalletVisionAuditor:
             if not case_path.exists():
                 from config.settings import settings
                 case_path = settings.DATA_DIR / case_id
+            if not case_path.exists():
+                case_path = Path("data/holdout_cases") / case_id
 
             if case_path.exists():
                 deliv_file = case_path / "delivery.json"

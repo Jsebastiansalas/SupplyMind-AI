@@ -1,0 +1,14 @@
+{
+  "payment_id": "PAY-HOLDOUT_CASE_009",
+  "invoice_reference": "INV-HOLDOUT_CASE_009",
+  "payment_date": "2026-03-01",
+  "currency": "USD",
+  "amount_paid": 58200.0,
+  "deductions": [
+    {
+      "code": "MERMA_OPERATIVA_UNILATERAL",
+      "amount": 1800.0,
+      "reason": "Retención por merma estadística en anaquel sin pacto expreso"
+    }
+  ]
+}

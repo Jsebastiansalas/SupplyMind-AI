@@ -1,0 +1,20 @@
+{
+  "invoice_id": "INV-HOLDOUT_CASE_002",
+  "customer_id": "CUST-DFB-02",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "po_reference": "PO-HOLDOUT_CASE_002",
+  "issue_date": "2026-02-05",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-TALADRO-ROT-18V",
+      "description": "Rotomartillo Inalámbrico Brushless 18V",
+      "quantity": 200,
+      "unit_price": 100.0,
+      "total_price": 20000.0
+    }
+  ],
+  "subtotal": 20000.0,
+  "tax": 0.0,
+  "total_amount": 20000.0
+}

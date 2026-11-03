@@ -1,0 +1,9 @@
+{
+  "case_id": "holdout_case_004",
+  "buyer_id": "CUST-OCC-04",
+  "buyer_name": "Operadora Comercial del Centro",
+  "industry": "Comercial Mayorista",
+  "created_at": "2026-03-15T10:00:00Z",
+  "currency": "USD",
+  "description": "Expediente ciego holdout_case_004: Operadora Comercial del Centro (Comercial Mayorista)"
+}

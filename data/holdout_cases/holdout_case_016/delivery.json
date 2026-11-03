@@ -1,0 +1,17 @@
+{
+  "delivery_id": "REM-HOLDOUT_CASE_016",
+  "po_reference": "PO-HOLDOUT_CASE_016",
+  "carrier_name": "Transportes Rápidos B2B",
+  "delivery_date": "2026-02-10",
+  "warehouse_location": "CEDIS Central Muelle 4",
+  "items": [
+    {
+      "item_id": "SKU-VINO-TINTO-CRIANZA-750ML",
+      "quantity_delivered": 100,
+      "quantity_received": 95,
+      "missing_quantity": 5,
+      "damaged_quantity": 0,
+      "notes": "Remisión oficial de entrega firmada y sellada en muelle de recepción"
+    }
+  ]
+}

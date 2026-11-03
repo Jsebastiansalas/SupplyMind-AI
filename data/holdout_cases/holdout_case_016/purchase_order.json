@@ -1,0 +1,17 @@
+{
+  "po_id": "PO-HOLDOUT_CASE_016",
+  "customer_id": "CUST-DVL-16",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "issue_date": "2026-02-01",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-VINO-TINTO-CRIANZA-750ML",
+      "description": "Vino Tinto Crianza D.O. Rioja 750ml",
+      "ordered_quantity": 100,
+      "agreed_unit_price": 200.0,
+      "total_price": 20000.0
+    }
+  ],
+  "total_amount": 20000.0
+}

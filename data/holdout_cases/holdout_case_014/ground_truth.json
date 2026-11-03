@@ -1,0 +1,21 @@
+{
+  "case_id": "holdout_case_014",
+  "buyer_id": "CUST-AIA-14",
+  "buyer_name": "Almacenes Industriales de Acero",
+  "industry": "Manufactura",
+  "billed_amount": 10000.0,
+  "received_amount": 9000.0,
+  "difference": -1000.0,
+  "expected_justified_amount": 1000.0,
+  "expected_claimable_amount": 0.0,
+  "expected_quarantine": false,
+  "currency": "USD",
+  "category": "DED-MISSING_JUSTIFICAD",
+  "deductions": [
+    {
+      "code": "DED-MISSING_JUSTIFICAD",
+      "amount": 1000.0,
+      "reason": "Faltante real de 100 paquetes asentado en remisión de entrega"
+    }
+  ]
+}

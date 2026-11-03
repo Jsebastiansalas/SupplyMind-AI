@@ -1,0 +1,13 @@
+{
+  "contract_id": "CTR-HOLDOUT_CASE_009",
+  "effective_date": "2025-01-01",
+  "buyer_id": "CUST-TAS-09",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "clauses": [
+    {
+      "clause_id": "CL-09",
+      "name": "Mermas",
+      "content": "El proveedor no absorbe mermas por robo hormiga o manejo interno en tienda."
+    }
+  ]
+}

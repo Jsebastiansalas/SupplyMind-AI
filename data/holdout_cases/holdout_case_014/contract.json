@@ -1,0 +1,13 @@
+{
+  "contract_id": "CTR-HOLDOUT_CASE_014",
+  "effective_date": "2025-01-01",
+  "buyer_id": "CUST-AIA-14",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "clauses": [
+    {
+      "clause_id": "CL-14",
+      "name": "Surtimiento",
+      "content": "Solo se pagarán las piezas efectivamente ingresadas a inventario."
+    }
+  ]
+}

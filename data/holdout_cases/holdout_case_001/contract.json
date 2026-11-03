@@ -1,0 +1,13 @@
+{
+  "contract_id": "CTR-HOLDOUT_CASE_001",
+  "effective_date": "2025-01-01",
+  "buyer_id": "CUST-GAN-01",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "clauses": [
+    {
+      "clause_id": "CL-01",
+      "name": "Recepción Física",
+      "content": "Se recibirán solo cantidades físicamente constatadas en muelle."
+    }
+  ]
+}

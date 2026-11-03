@@ -174,10 +174,12 @@ def reconcile_dispute_data(
             code_u = ded.code.upper()
             reason_u = ded.reason.upper()
             full_text = f"{code_u} {reason_u}"
+            # Normalizar separadores para detectar variantes con guion bajo o medio
+            full_text_norm = full_text.replace("_", " ").replace("-", " ")
 
-            has_phys_link = any(k in full_text for k in ["DAMAGE", "AVERI", "SHRT", "SHORT", "FALT", "DOCK"])
-            is_explicit_unjustified = any(sig in full_text for sig in UNJUSTIFIED_INDICATORS)
-            is_explicit_justified = any(sig in full_text for sig in JUSTIFIED_INDICATORS)
+            has_phys_link = any(k in full_text or k in full_text_norm for k in ["DAMAGE", "AVERI", "SHRT", "SHORT", "FALT", "DOCK"])
+            is_explicit_unjustified = any(sig in full_text or sig.replace("-", " ").replace("_", " ") in full_text_norm for sig in UNJUSTIFIED_INDICATORS)
+            is_explicit_justified = any(sig in full_text or sig.replace("-", " ").replace("_", " ") in full_text_norm for sig in JUSTIFIED_INDICATORS)
 
             if is_explicit_unjustified:
                 unjustified_deductions += ded.amount

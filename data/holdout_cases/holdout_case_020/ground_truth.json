@@ -1,0 +1,21 @@
+{
+  "case_id": "holdout_case_020",
+  "buyer_id": "CUST-CTC-20",
+  "buyer_name": "Corporación Textil y Calzado",
+  "industry": "Textil y Calzado",
+  "billed_amount": 70000.0,
+  "received_amount": 68600.0,
+  "difference": -1400.0,
+  "expected_justified_amount": 0.0,
+  "expected_claimable_amount": 1400.0,
+  "expected_quarantine": false,
+  "currency": "USD",
+  "category": "REBATE_NO_PACTAD",
+  "deductions": [
+    {
+      "code": "REBATE_NO_PACTAD",
+      "amount": 1400.0,
+      "reason": "Rebate de volumen anual cobrado sin haber alcanzado el volumen mínimo acordado"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "payment_id": "PAY-HOLDOUT_CASE_011",
+  "invoice_reference": "INV-HOLDOUT_CASE_011",
+  "payment_date": "2026-03-01",
+  "currency": "USD",
+  "amount_paid": 16800.0,
+  "deductions": [
+    {
+      "code": "FLETE-COMPARTIDO_UNILATERAL",
+      "amount": 1200.0,
+      "reason": "Cargo de transporte interno entre sucursales transferido al proveedor"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "case_id": "holdout_case_012",
+  "buyer_id": "CUST-CFU-12",
+  "buyer_name": "Cadena de Farmacias Unidas",
+  "industry": "Farmacéutica y Cuidado Personal",
+  "billed_amount": 80000.0,
+  "received_amount": 76000.0,
+  "difference": -4000.0,
+  "expected_justified_amount": 0.0,
+  "expected_claimable_amount": 4000.0,
+  "expected_quarantine": false,
+  "currency": "USD",
+  "category": "COOP-PUB_NO_AUTORIZAD",
+  "deductions": [
+    {
+      "code": "COOP-PUB_NO_AUTORIZAD",
+      "amount": 4000.0,
+      "reason": "Deducción de pauta publicitaria no aprobada ni firmada por el proveedor"
+    }
+  ]
+}

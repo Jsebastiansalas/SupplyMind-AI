@@ -1,0 +1,9 @@
+{
+  "case_id": "holdout_case_016",
+  "buyer_id": "CUST-DVL-16",
+  "buyer_name": "Distribuidora de Vinos y Licores",
+  "industry": "Bebidas Alcohólicas",
+  "created_at": "2026-03-15T10:00:00Z",
+  "currency": "USD",
+  "description": "Expediente ciego holdout_case_016: Distribuidora de Vinos y Licores (Bebidas Alcohólicas)"
+}

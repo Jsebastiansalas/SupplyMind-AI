@@ -1,0 +1,17 @@
+{
+  "po_id": "PO-HOLDOUT_CASE_009",
+  "customer_id": "CUST-TAS-09",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "issue_date": "2026-02-01",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-CEREAL-INTEGRAL-500G",
+      "description": "Cereal Integral de Avena 500g",
+      "ordered_quantity": 2000,
+      "agreed_unit_price": 30.0,
+      "total_price": 60000.0
+    }
+  ],
+  "total_amount": 60000.0
+}

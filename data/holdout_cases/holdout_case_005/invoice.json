@@ -1,0 +1,20 @@
+{
+  "invoice_id": "INV-HOLDOUT_CASE_005",
+  "customer_id": "CUST-CLM-05",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "po_reference": "PO-HOLDOUT_CASE_005",
+  "issue_date": "2026-02-05",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-CAFE-SOLUBLE-300G",
+      "description": "Café Soluble Liofilizado 300g Frasco",
+      "quantity": 1000,
+      "unit_price": 40.0,
+      "total_price": 40000.0
+    }
+  ],
+  "subtotal": 40000.0,
+  "tax": 0.0,
+  "total_amount": 40000.0
+}

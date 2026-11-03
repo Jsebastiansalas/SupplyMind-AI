@@ -1,0 +1,21 @@
+{
+  "case_id": "holdout_case_019",
+  "buyer_id": "CUST-MDN-19",
+  "buyer_name": "Mundo Deportivo del Norte",
+  "industry": "Artículos Deportivos",
+  "billed_amount": 28000.0,
+  "received_amount": 26600.0,
+  "difference": -1400.0,
+  "expected_justified_amount": 0.0,
+  "expected_claimable_amount": 1400.0,
+  "expected_quarantine": false,
+  "currency": "USD",
+  "category": "UNAUTH_EARLY_DELIVERY",
+  "deductions": [
+    {
+      "code": "UNAUTH_EARLY_DELIVERY",
+      "amount": 1400.0,
+      "reason": "Multa por ingreso anticipado aceptado y sellado de conformidad en muelle"
+    }
+  ]
+}

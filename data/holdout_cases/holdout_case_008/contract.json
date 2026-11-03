@@ -1,0 +1,13 @@
+{
+  "contract_id": "CTR-HOLDOUT_CASE_008",
+  "effective_date": "2025-01-01",
+  "buyer_id": "CUST-CEN-08",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "clauses": [
+    {
+      "clause_id": "CL-08",
+      "name": "Firma de Conformidad",
+      "content": "La firma y sello en la remisión constituye prueba plena de entrega íntegra."
+    }
+  ]
+}

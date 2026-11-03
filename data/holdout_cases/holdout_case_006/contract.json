@@ -1,0 +1,13 @@
+{
+  "contract_id": "CTR-HOLDOUT_CASE_006",
+  "effective_date": "2025-01-01",
+  "buyer_id": "CUST-GTD-06",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "clauses": [
+    {
+      "clause_id": "CL-CAP",
+      "name": "Tope Contractual",
+      "content": "Las penalizaciones por etiquetado no podrán superar el 3% del valor total de la orden."
+    }
+  ]
+}

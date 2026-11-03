@@ -1,0 +1,21 @@
+{
+  "case_id": "holdout_case_010",
+  "buyer_id": "CUST-LAF-10",
+  "buyer_name": "Lácteos y Alimentos Finos",
+  "industry": "Perecederos",
+  "billed_amount": 25000.0,
+  "received_amount": 21500.0,
+  "difference": -3500.0,
+  "expected_justified_amount": 0.0,
+  "expected_claimable_amount": 3500.0,
+  "expected_quarantine": false,
+  "currency": "USD",
+  "category": "CADUCIDAD-CORTA_UNILATERAL",
+  "deductions": [
+    {
+      "code": "CADUCIDAD-CORTA_UNILATERAL",
+      "amount": 3500.0,
+      "reason": "Rechazo por caducidad cuando el lote contaba con 72% de vida útil"
+    }
+  ]
+}

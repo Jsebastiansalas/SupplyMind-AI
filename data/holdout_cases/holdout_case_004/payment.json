@@ -1,0 +1,14 @@
+{
+  "payment_id": "PAY-HOLDOUT_CASE_004",
+  "invoice_reference": "INV-HOLDOUT_CASE_004",
+  "payment_date": "2026-03-01",
+  "currency": "USD",
+  "amount_paid": 49000.0,
+  "deductions": [
+    {
+      "code": "EARLY_PAY_EXTEMP",
+      "amount": 1000.0,
+      "reason": "Descuento de pronto pago deducido a los 28 días de vencimiento"
+    }
+  ]
+}

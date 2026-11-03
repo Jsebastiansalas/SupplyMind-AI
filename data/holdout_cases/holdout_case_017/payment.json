@@ -1,0 +1,14 @@
+{
+  "payment_id": "PAY-HOLDOUT_CASE_017",
+  "invoice_reference": "INV-HOLDOUT_CASE_017",
+  "payment_date": "2026-03-01",
+  "currency": "USD",
+  "amount_paid": 41800.0,
+  "deductions": [
+    {
+      "code": "EXTEMP_NO_PACTAD",
+      "amount": 3200.0,
+      "reason": "Deducción aplicada a los 160 días de la entrega, precluida por contrato"
+    }
+  ]
+}

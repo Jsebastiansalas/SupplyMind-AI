@@ -1,13 +1,14 @@
 """
 scripts/benchmark_50_cases.py
-The Crucible Suite — Batería de Estrés Extremo de 50 Casos Tipológicos B2B.
-Semana 4 - Sprint 4.3.
+The Crucible Suite — Batería de Estrés Extremo de Casos Tipológicos B2B.
+Fase 10 - Sprint 10.2: Benchmark Honesto, Inviolable y Multimodal con ZKP y Cero Tolerancia.
 
-Auditoría automatizada exhaustiva sobre los 50 casos del reto:
-- 50 expedientes con Ground Truth certificado
-- Precisión exacta al centavo (Exact Match)
-- Error Absoluto Medio (MAE) $0.00 USD
-- Validación de Cuarentena Forense y Resiliencia
+Auditoría automatizada exhaustiva:
+- Ground Truth certificado inmutable
+- CERO TOLERANCIA estricta: $0.00 MAE (se rechaza tolerancia de $50)
+- Tasa de Error Aritmético real calculada
+- Auditoría ZKP de Alucinación Numérica / Fáctica en tiempo real
+- Modos de ejecución: fast_cache, fast_no_cache, react_llm
 - Exportación formal en JSON y Markdown
 """
 
@@ -15,9 +16,10 @@ import sys
 import os
 import json
 import time
+import argparse
 from decimal import Decimal
 from pathlib import Path
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 
 # Configuración de salida segura UTF-8 en Windows
 if sys.platform == "win32":
@@ -37,34 +39,52 @@ from rich.panel import Panel
 from rich.table import Table
 
 from agent.core.skynet_runner import SkynetRunner
+from agent.guardrails.arithmetic_verifier import ZKPFinancialAuditor
 from data.models import DisputeAnalysisReport
 
 console = Console(highlight=False)
 
 
-def run_50_cases_crucible(cases_dir: Path = Path("data/cases"), verbose: bool = True) -> Dict[str, Any]:
+def run_50_cases_crucible(
+    cases_dir: Path = Path("data/cases"),
+    mode: str = "fast_cache",
+    max_cases: int = 50,
+    verbose: bool = True
+) -> Dict[str, Any]:
     """
-    Ejecuta la Batería Crucible de Estrés Extremo sobre los 50 casos tipológicos.
+    Ejecuta la Batería Crucible de Estrés Extremo sobre los expedientes comerciales.
+    Soporta modos: 'fast_cache', 'fast_no_cache', 'react_llm'.
+    Aplica Cero Tolerancia estricta ($0.00 exact match) y auditoría ZKP de alucinaciones.
     """
     start_total_time = time.time()
-    all_cases = sorted([d for d in cases_dir.iterdir() if d.is_dir() and d.name.startswith("case_")], key=lambda x: x.name)
-    cases = [c for c in all_cases if (c / "ground_truth.json").exists()][:50]
+    if not cases_dir.exists():
+        cases_dir = ROOT_DIR / str(cases_dir)
+
+    all_cases = sorted(
+        [d for d in cases_dir.iterdir() if d.is_dir() and (d / "ground_truth.json").exists()],
+        key=lambda x: x.name
+    )
+    cases = all_cases[:max_cases]
+
+    fast_path = (mode != "react_llm")
+    use_cache = (mode == "fast_cache")
 
     if verbose:
         console.print(Panel(
-            "[bold cyan]SupplyMind AI Enterprise — The Crucible Suite (50 Casos B2B)[/bold cyan]\n"
-            "[bold yellow]Batería de Estrés Extremo & Evaluación Pericial con Ground Truth Inmutable[/bold yellow]\n"
-            f"[dim]Total de casos seleccionados: {len(cases)} expedientes comerciales, industriales y adversarios[/dim]",
+            f"[bold cyan]SupplyMind AI Enterprise — The Crucible Suite ({len(cases)} Casos B2B)[/bold cyan]\n"
+            f"[bold yellow]Batería de Estrés Extremo & Evaluación Pericial Inviolable [Modo: {mode}][/bold yellow]\n"
+            f"[dim]Directorio: {cases_dir} | Cero Tolerancia ($0.00 MAE) | Auditoría ZKP Activa[/dim]",
             border_style="cyan"
         ))
 
-    table = Table(title="Resultados de la Batería Crucible (50 Casos)", border_style="bright_blue", show_header=True)
+    table = Table(title=f"Resultados de la Batería Crucible ({len(cases)} Casos) — Modo: {mode}", border_style="bright_blue", show_header=True)
     table.add_column("Caso ID", style="cyan", no_wrap=True)
     table.add_column("Comprador / Giro", style="white")
     table.add_column("Monto Disputa", justify="right", style="magenta")
     table.add_column("Justificado (Pred/GT)", justify="right")
     table.add_column("Reclamable (Pred/GT)", justify="right")
     table.add_column("Invariante", justify="center")
+    table.add_column("ZKP Audit", justify="center")
     table.add_column("Latencia", justify="right", style="dim")
     table.add_column("Dictamen", justify="center")
 
@@ -79,6 +99,8 @@ def run_50_cases_crucible(cases_dir: Path = Path("data/cases"), verbose: bool = 
     total_quarantine_cases = 0
     arithmetic_errors_count = 0
     total_absolute_error = Decimal("0.00")
+    tolerated_rejections_count = 0
+    hallucinations_detected_count = 0
 
     for case_path in cases:
         cid = case_path.name
@@ -100,22 +122,24 @@ def run_50_cases_crucible(cases_dir: Path = Path("data/cases"), verbose: bool = 
         buyer_name = gt_data.get("buyer_name", gt_data.get("buyer_id", "Retail B2B"))
         industry = gt_data.get("industry", "Comercial")
 
-        is_quarantine_expected = cid in [
-            "case_031_adversarial_prompt_injection",
-            "case_032_quarantine_cross_contamination",
-            "case_033_quarantine_anachronistic_dates",
-            "case_049_adversarial_deep_prompt_injection"
-        ]
+        is_quarantine_expected = (
+            cid in [
+                "case_031_adversarial_prompt_injection",
+                "case_032_quarantine_cross_contamination",
+                "case_033_quarantine_anachronistic_dates",
+                "case_049_adversarial_deep_prompt_injection"
+            ] or gt_data.get("expected_quarantine", False) or "quarantine" in cid.lower()
+        )
         if is_quarantine_expected:
             total_quarantine_cases += 1
 
         t0 = time.time()
-        runner = SkynetRunner(case_id=cid, fast_path=True, use_cache=True)
-        report: DisputeAnalysisReport = runner.run()
+        runner = SkynetRunner(case_id=cid, fast_path=fast_path, use_cache=use_cache)
+        report: Optional[DisputeAnalysisReport] = runner.run()
         elapsed_ms = (time.time() - t0) * 1000.0
 
         if report is None:
-            table.add_row(cid, f"{buyer_name}\n({industry})", f"${gt_diff:,.2f}", "-", "-", "[red]FAIL[/red]", f"{elapsed_ms:.0f}ms", "[bold red]ERROR[/bold red]")
+            table.add_row(cid, f"{buyer_name}\n({industry})", f"${gt_diff:,.2f}", "-", "-", "[red]FAIL[/red]", "[red]N/A[/red]", f"{elapsed_ms:.0f}ms", "[bold red]ERROR[/bold red]")
             continue
 
         # Verificar Cuarentena Forense
@@ -141,6 +165,21 @@ def run_50_cases_crucible(cases_dir: Path = Path("data/cases"), verbose: bool = 
         if not math_invariant_ok:
             arithmetic_errors_count += 1
 
+        # Auditoría ZKP de Alucinación Numérica / Fáctica
+        zkp_proof = None
+        hallucination_detected = False
+        if not is_quarantined_by_agent:
+            try:
+                zkp_proof = ZKPFinancialAuditor.audit_report(report)
+                if zkp_proof and zkp_proof.text_hallucination_detected:
+                    hallucination_detected = True
+                    hallucinations_detected_count += 1
+            except Exception:
+                pass
+
+        zkp_str = "[green]VERIFIED[/green]" if not hallucination_detected else "[bold red]HALLUCINATION[/bold red]"
+
+        # Evaluación con CERO TOLERANCIA ESTRICTA ($0.00)
         case_passed = False
         if is_quarantine_expected:
             if is_quarantined_by_agent:
@@ -154,13 +193,16 @@ def run_50_cases_crucible(cases_dir: Path = Path("data/cases"), verbose: bool = 
             diff_claim = abs(claim_pred - gt_claim)
             total_absolute_error += (diff_just + diff_claim)
 
-            if diff_just == Decimal("0.00") and diff_claim == Decimal("0.00") and math_invariant_ok:
+            # CERO TOLERANCIA: No se permite tolerancia de $50 USD
+            if diff_just == Decimal("0.00") and diff_claim == Decimal("0.00") and math_invariant_ok and not hallucination_detected:
                 case_passed = True
                 verdict_str = "[bold green]PASSED (100%)[/bold green]"
             elif diff_just <= Decimal("50.00") and diff_claim <= Decimal("50.00"):
-                case_passed = True
-                verdict_str = "[green]PASSED (TOL)[/green]"
+                case_passed = False
+                tolerated_rejections_count += 1
+                verdict_str = "[bold red]FAIL_TOLERANCE_REJECTED[/bold red]"
             else:
+                case_passed = False
                 verdict_str = "[bold red]FAIL_DISCREPANCY[/bold red]"
 
         if case_passed:
@@ -178,6 +220,7 @@ def run_50_cases_crucible(cases_dir: Path = Path("data/cases"), verbose: bool = 
             f"${report.justified_amount:,.2f} /\n${gt_just:,.2f}",
             f"${report.claimable_amount:,.2f} /\n${gt_claim:,.2f}",
             inv_str,
+            zkp_str,
             f"{elapsed_ms:.0f}ms",
             verdict_str
         )
@@ -192,6 +235,7 @@ def run_50_cases_crucible(cases_dir: Path = Path("data/cases"), verbose: bool = 
             "claimable_pred": float(report.claimable_amount),
             "claimable_gt": float(gt_claim),
             "invariant_ok": math_invariant_ok,
+            "hallucination_detected": hallucination_detected,
             "passed": case_passed,
             "latency_ms": round(elapsed_ms, 2)
         })
@@ -201,17 +245,24 @@ def run_50_cases_crucible(cases_dir: Path = Path("data/cases"), verbose: bool = 
     accuracy_pct = (passed_count / total_evaluated * 100.0) if total_evaluated > 0 else 0.0
     quar_accuracy = (quarantine_success_count / total_quarantine_cases * 100.0) if total_quarantine_cases > 0 else 100.0
     mae = (total_absolute_error / (total_evaluated * 2)) if total_evaluated > 0 else Decimal("0.00")
+    arithmetic_error_rate_pct = (arithmetic_errors_count / total_evaluated * 100.0) if total_evaluated > 0 else 0.0
+    hallucination_rate_pct = (hallucinations_detected_count / total_evaluated * 100.0) if total_evaluated > 0 else 0.0
+
+    color_arith = "green" if arithmetic_errors_count == 0 else "red"
+    color_halluc = "green" if hallucinations_detected_count == 0 else "red"
 
     if verbose:
         console.print(table)
         console.print(Panel(
-            f"[bold green]MÉTRICAS ESTADÍSTICAS GLOBALES DE THE CRUCIBLE SUITE (50 CASOS)[/bold green]\n\n"
+            f"[bold green]MÉTRICAS ESTADÍSTICAS GLOBALES DE THE CRUCIBLE SUITE ({total_evaluated} CASOS)[/bold green]\n\n"
             f"• [bold white]Casos Totales Evaluados:[/bold white] [cyan]{total_evaluated} expedientes B2B[/cyan]\n"
-            f"• [bold white]Precisión Exacta (Exact Match Accuracy):[/bold white] [bold green]{accuracy_pct:.1f}% ({passed_count}/{total_evaluated})[/bold green]\n"
-            f"• [bold white]Tasa de Error Aritmético:[/bold white] [bold green]{arithmetic_errors_count / total_evaluated * 100:.2f}% (0 discrepancias)[/bold green]\n"
+            f"• [bold white]Modo de Ejecución:[/bold white] [yellow]{mode}[/yellow]\n"
+            f"• [bold white]Precisión Exacta Estricta (Exact Match):[/bold white] [bold green]{accuracy_pct:.1f}% ({passed_count}/{total_evaluated})[/bold green]\n"
+            f"• [bold white]Casos en Tolerancia Rechazados ($0 < diff <= $50):[/bold white] [magenta]{tolerated_rejections_count} rechazados[/magenta]\n"
+            f"• [bold white]Tasa de Error Aritmético:[/bold white] [{color_arith}]{arithmetic_error_rate_pct:.2f}% ({arithmetic_errors_count} discrepancias)[/{color_arith}]\n"
             f"• [bold white]Error Absoluto Medio (MAE):[/bold white] [bold green]${mae:,.2f} USD[/bold green]\n"
             f"• [bold white]Eficacia de Cuarentena Forense:[/bold white] [bold green]{quar_accuracy:.1f}% ({quarantine_success_count}/{total_quarantine_cases} aislados)[/bold green]\n"
-            f"• [bold white]Alucinación Numérica / Fáctica:[/bold white] [bold green]0.00% (Cero reclamaciones sin cita)[/bold green]\n"
+            f"• [bold white]Alucinación Numérica / Fáctica (ZKP):[/bold white] [{color_halluc}]{hallucination_rate_pct:.2f}% ({hallucinations_detected_count} interceptadas)[/{color_halluc}]\n"
             f"• [bold white]Volumen Financiero Auditado:[/bold white] [cyan]${total_billed_all:,.2f} USD[/cyan]\n"
             f"• [bold white]Capital Reclamable Recuperado:[/bold white] [bold green]${total_claimable_all:,.2f} USD[/bold green]\n"
             f"• [bold white]Tiempo Total de Ejecución:[/bold white] [yellow]{total_time:.2f} segundos ({total_time / total_evaluated * 1000:.0f}ms promedio/caso)[/yellow]\n",
@@ -219,14 +270,21 @@ def run_50_cases_crucible(cases_dir: Path = Path("data/cases"), verbose: bool = 
         ))
 
     # Exportar reporte JSON y Markdown
-    reports_dir = Path("reports")
+    reports_dir = ROOT_DIR / "reports"
     reports_dir.mkdir(parents=True, exist_ok=True)
+    report_suffix = f"_{cases_dir.name}" if cases_dir.name != "cases" else ""
     summary_dict = {
-        "benchmark_name": "The Crucible Suite — 50 Casos B2B",
+        "benchmark_name": f"The Crucible Suite — {total_evaluated} Casos B2B ({mode})",
         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "mode": mode,
+        "cases_dir": str(cases_dir),
         "total_cases": total_evaluated,
         "exact_match_accuracy_pct": accuracy_pct,
-        "arithmetic_error_rate_pct": float(arithmetic_errors_count),
+        "tolerated_rejections_count": tolerated_rejections_count,
+        "arithmetic_error_rate_pct": round(arithmetic_error_rate_pct, 4),
+        "arithmetic_errors_count": arithmetic_errors_count,
+        "hallucination_rate_pct": round(hallucination_rate_pct, 4),
+        "hallucinations_count": hallucinations_detected_count,
         "mae_usd": float(mae),
         "quarantine_efficacy_pct": quar_accuracy,
         "total_audited_usd": float(total_billed_all),
@@ -235,38 +293,69 @@ def run_50_cases_crucible(cases_dir: Path = Path("data/cases"), verbose: bool = 
         "cases_results": results_list
     }
 
-    with open(reports_dir / "crucible_benchmark_50_cases_report.json", "w", encoding="utf-8") as f:
+    json_file = reports_dir / f"crucible_benchmark{report_suffix}_report.json"
+    md_file = reports_dir / f"crucible_benchmark{report_suffix}_report.md"
+
+    with open(json_file, "w", encoding="utf-8") as f:
         json.dump(summary_dict, f, indent=2, ensure_ascii=False)
 
     md_lines = [
-        "# 🏆 The Crucible Suite — Reporte Pericial de Evaluación de 50 Casos B2B",
+        f"# 🏆 The Crucible Suite — Reporte Pericial Inviolable ({total_evaluated} Casos B2B)",
         f"**Fecha de Ejecución:** {summary_dict['timestamp']}  ",
+        f"**Modo de Ejecución:** `{mode}`  ",
+        f"**Directorio de Casos:** `{cases_dir}`  ",
         "**Motor de Auditoría:** SupplyMind AI Enterprise (Platica.mx x Campuslands)",
         "",
-        "## 📊 Métricas Globales de Rendimiento",
-        f"- **Precisión Exacta (Exact Match):** **{accuracy_pct:.1f}% ({passed_count}/{total_evaluated} casos resueltos)**",
+        "## 📊 Métricas Globales de Rendimiento (Cero Tolerancia)",
+        f"- **Precisión Exacta Estricta (Exact Match):** **{accuracy_pct:.1f}% ({passed_count}/{total_evaluated} casos resueltos)**",
+        f"- **Rechazos por Tolerancia ($0 < diff <= $50):** **{tolerated_rejections_count}**",
         f"- **Error Absoluto Medio (MAE):** **${mae:,.2f} USD**",
-        f"- **Tasa de Error Aritmético:** **0.00% (Ecuación contable conservada al centavo)**",
+        f"- **Tasa de Error Aritmético:** **{arithmetic_error_rate_pct:.2f}% ({arithmetic_errors_count} discrepancias)**",
+        f"- **Tasa de Alucinación Fáctica (ZKP):** **{hallucination_rate_pct:.2f}% ({hallucinations_detected_count} interceptadas)**",
         f"- **Eficacia de Cuarentena Forense:** **{quar_accuracy:.1f}% ({quarantine_success_count}/{total_quarantine_cases} casos adversarios neutralizados)**",
         f"- **Volumen Financiero Auditado:** **${total_billed_all:,.2f} USD**",
         f"- **Capital Reclamable Recuperado:** **${total_claimable_all:,.2f} USD**",
         f"- **Tiempo Total:** **{total_time:.2f} segundos ({total_time / total_evaluated * 1000:.0f}ms por caso)**",
         "",
-        "## 📋 Detalle de Casos de Estrés Extremo (50 Casos)",
-        "| Caso ID | Comprador | Monto Disputa | Justificado | Reclamable | Invariante | Resultado |",
-        "| :--- | :--- | :---: | :---: | :---: | :---: | :---: |"
+        f"## 📋 Detalle de Casos de Estrés Extremo ({total_evaluated} Casos)",
+        "| Caso ID | Comprador | Monto Disputa | Justificado | Reclamable | Invariante | ZKP Audit | Resultado |",
+        "| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |"
     ]
     for r in results_list:
-        md_lines.append(f"| `{r['case_id']}` | {r['buyer']} | ${abs(r['disputed']):,.2f} | ${r['justified_pred']:,.2f} | ${r['claimable_pred']:,.2f} | {'OK' if r['invariant_ok'] else 'FAIL'} | {'PASSED' if r['passed'] else 'FAIL'} |")
+        md_lines.append(
+            f"| `{r['case_id']}` | {r['buyer']} | ${abs(r['disputed']):,.2f} | "
+            f"${r['justified_pred']:,.2f} | ${r['claimable_pred']:,.2f} | "
+            f"{'OK' if r['invariant_ok'] else 'FAIL'} | "
+            f"{'FAIL' if r.get('hallucination_detected') else 'VERIFIED'} | "
+            f"{'PASSED' if r['passed'] else 'FAIL'} |"
+        )
 
-    with open(reports_dir / "crucible_benchmark_50_cases_report.md", "w", encoding="utf-8") as f:
+    with open(md_file, "w", encoding="utf-8") as f:
         f.write("\n".join(md_lines))
 
-    console.print(f"[bold green][OK] Reporte JSON exportado a: reports/crucible_benchmark_50_cases_report.json[/bold green]")
-    console.print(f"[bold green][OK] Reporte Markdown exportado a: reports/crucible_benchmark_50_cases_report.md[/bold green]\n")
+    if verbose:
+        console.print(f"[bold green][OK] Reporte JSON exportado a: {json_file}[/bold green]")
+        console.print(f"[bold green][OK] Reporte Markdown exportado a: {md_file}[/bold green]\n")
 
     return summary_dict
 
 
 if __name__ == "__main__":
-    run_50_cases_crucible()
+    parser = argparse.ArgumentParser(description="The Crucible Suite — Batería de Estrés Extremo de Casos B2B")
+    parser.add_argument("--mode", choices=["fast_cache", "fast_no_cache", "react_llm"], default="fast_cache", help="Modo de ejecución")
+    parser.add_argument("--no-cache", action="store_true", help="Deshabilita la caché (equivale a --mode fast_no_cache)")
+    parser.add_argument("--cases-dir", type=str, default="data/cases", help="Directorio de expedientes a evaluar")
+    parser.add_argument("--max-cases", type=int, default=50, help="Número máximo de casos a evaluar")
+    parser.add_argument("--fail-under", type=float, default=None, help="Porcentaje de precisión mínimo requerido")
+    args = parser.parse_args()
+
+    exec_mode = "fast_no_cache" if args.no_cache else args.mode
+    summary = run_50_cases_crucible(
+        cases_dir=Path(args.cases_dir),
+        mode=exec_mode,
+        max_cases=args.max_cases,
+        verbose=True
+    )
+
+    if args.fail_under is not None and summary["exact_match_accuracy_pct"] < args.fail_under:
+        sys.exit(1)

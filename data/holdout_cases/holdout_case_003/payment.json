@@ -1,0 +1,14 @@
+{
+  "payment_id": "PAY-HOLDOUT_CASE_003",
+  "invoice_reference": "INV-HOLDOUT_CASE_003",
+  "payment_date": "2026-03-01",
+  "currency": "USD",
+  "amount_paid": 13000.0,
+  "deductions": [
+    {
+      "code": "PRC_VAR_UNILATERAL",
+      "amount": 2000.0,
+      "reason": "Precio unitario renegociado unilateralmente post-entrega"
+    }
+  ]
+}

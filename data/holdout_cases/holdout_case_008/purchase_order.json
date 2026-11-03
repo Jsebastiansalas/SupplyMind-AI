@@ -1,0 +1,17 @@
+{
+  "po_id": "PO-HOLDOUT_CASE_008",
+  "customer_id": "CUST-CEN-08",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "issue_date": "2026-02-01",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-TABLET-10IN-64GB",
+      "description": "Tablet Android 10 Pulgadas 64GB",
+      "ordered_quantity": 500,
+      "agreed_unit_price": 200.0,
+      "total_price": 100000.0
+    }
+  ],
+  "total_amount": 100000.0
+}

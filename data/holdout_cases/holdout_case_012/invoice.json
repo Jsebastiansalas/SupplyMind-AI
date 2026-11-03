@@ -1,0 +1,20 @@
+{
+  "invoice_id": "INV-HOLDOUT_CASE_012",
+  "customer_id": "CUST-CFU-12",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "po_reference": "PO-HOLDOUT_CASE_012",
+  "issue_date": "2026-02-05",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-SHAMPOO-DERMAT-400ML",
+      "description": "Shampoo Anticaspa Dermatológico 400ml",
+      "quantity": 1000,
+      "unit_price": 80.0,
+      "total_price": 80000.0
+    }
+  ],
+  "subtotal": 80000.0,
+  "tax": 0.0,
+  "total_amount": 80000.0
+}

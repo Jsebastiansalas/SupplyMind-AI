@@ -1,0 +1,21 @@
+{
+  "case_id": "holdout_case_002",
+  "buyer_id": "CUST-DFB-02",
+  "buyer_name": "Distribuidora Ferretera del Bajío",
+  "industry": "Ferretería Industrial",
+  "billed_amount": 20000.0,
+  "received_amount": 18500.0,
+  "difference": -1500.0,
+  "expected_justified_amount": 0.0,
+  "expected_claimable_amount": 1500.0,
+  "expected_quarantine": false,
+  "currency": "USD",
+  "category": "ALLEGED_DAMAGE_UNILATERAL",
+  "deductions": [
+    {
+      "code": "ALLEGED_DAMAGE_UNILATERAL",
+      "amount": 1500.0,
+      "reason": "Avería alegada posterior en tarimas sin dictamen en muelle"
+    }
+  ]
+}

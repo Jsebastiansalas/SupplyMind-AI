@@ -1,14 +1,75 @@
 import json
 from pathlib import Path
-from typing import Dict, Any
+from typing import Dict, Any, List
 from config.settings import settings
 from data.models import (
     Invoice,
     PurchaseOrder,
     DeliveryNote,
+    DeliveryItem,
     PaymentReceipt,
     CommercialContract
 )
+
+
+def consolidate_partial_deliveries(deliveries: List[DeliveryNote]) -> DeliveryNote:
+    """
+    US-803: Consolida múltiples remisiones de entregas parciales (Split Shipments / Backorders)
+    asociadas a una misma Orden de Compra en una sola entidad DeliveryNote agregada por SKU,
+    evitando que entregas divididas en varios camiones se clasifiquen erróneamente como faltantes.
+    """
+    if not deliveries:
+        raise ValueError("La lista de entregas parciales a consolidar está vacía.")
+    if len(deliveries) == 1:
+        return deliveries[0]
+
+    base = deliveries[0]
+    merged_items: Dict[str, Dict[str, Any]] = {}
+    delivery_ids = []
+
+    for d_note in deliveries:
+        delivery_ids.append(d_note.delivery_id)
+        for item in d_note.items:
+            if item.item_id not in merged_items:
+                merged_items[item.item_id] = {
+                    "item_id": item.item_id,
+                    "quantity_delivered": item.quantity_delivered,
+                    "quantity_received": item.quantity_received,
+                    "missing_quantity": item.missing_quantity,
+                    "damaged_quantity": item.damaged_quantity,
+                    "notes_list": [item.notes] if item.notes else [],
+                }
+            else:
+                acc = merged_items[item.item_id]
+                acc["quantity_delivered"] += item.quantity_delivered
+                acc["quantity_received"] += item.quantity_received
+                acc["missing_quantity"] += item.missing_quantity
+                acc["damaged_quantity"] += item.damaged_quantity
+                if item.notes:
+                    acc["notes_list"].append(item.notes)
+
+    consolidated_items = [
+        DeliveryItem(
+            item_id=k,
+            quantity_delivered=v["quantity_delivered"],
+            quantity_received=v["quantity_received"],
+            missing_quantity=v["missing_quantity"],
+            damaged_quantity=v["damaged_quantity"],
+            notes=" | ".join(v["notes_list"]) if v["notes_list"] else f"Consolidado de {len(deliveries)} entregas parciales",
+        )
+        for k, v in merged_items.items()
+    ]
+
+    return DeliveryNote(
+        delivery_id="+".join(delivery_ids),
+        po_reference=base.po_reference,
+        delivery_date=max(d.delivery_date for d in deliveries),
+        received_by=", ".join(dict.fromkeys(d.received_by for d in deliveries if d.received_by)),
+        warehouse_location=base.warehouse_location,
+        signed=all(d.signed for d in deliveries),
+        discrepancy_reported=any(d.discrepancy_reported for d in deliveries),
+        items=consolidated_items,
+    )
 
 class DocumentReaderError(Exception):
     """Excepción para errores al localizar, leer o parsear documentos de un caso."""
@@ -28,6 +89,12 @@ def load_case_documents(case_id: str) -> Dict[str, Any]:
     provided_path = Path(case_id)
     if provided_path.is_absolute() or provided_path.exists():
         case_path = provided_path
+    elif (settings.DATA_DIR / case_id).exists():
+        case_path = settings.DATA_DIR / case_id
+    elif (Path("data/holdout_cases") / case_id).exists():
+        case_path = Path("data/holdout_cases") / case_id
+    elif (ROOT_DIR / "data" / "holdout_cases" / case_id).exists():
+        case_path = ROOT_DIR / "data" / "holdout_cases" / case_id
     else:
         case_path = settings.DATA_DIR / case_id
 
@@ -149,6 +216,23 @@ def load_case_documents(case_id: str) -> Dict[str, Any]:
                 from tools.ocr_engine.vision import OCREngine
                 ocr = OCREngine()
                 documents["delivery"] = ocr.extract_delivery_note(del_file)
+
+            # Verificar si existen remisiones parciales adicionales (Split Shipments: delivery_02.json, etc.)
+            extra_deliv_files = sorted(
+                [
+                    p for p in case_path.glob("*delivery*.json")
+                    if p.resolve() != del_file.resolve()
+                ]
+            )
+            if extra_deliv_files and "delivery" in documents:
+                partial_notes = [documents["delivery"]]
+                for ep in extra_deliv_files:
+                    try:
+                        partial_notes.append(DeliveryNote.model_validate(json.loads(ep.read_text(encoding="utf-8"))))
+                    except Exception:
+                        pass
+                if len(partial_notes) > 1:
+                    documents["delivery"] = consolidate_partial_deliveries(partial_notes)
         except Exception as e:
             raise DocumentReaderError(f"Error al procesar remisión de entrega '{del_file.name}' en '{case_id}': {str(e)}")
     else:

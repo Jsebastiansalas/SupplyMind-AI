@@ -1,0 +1,13 @@
+{
+  "contract_id": "CTR-HOLDOUT_CASE_003",
+  "effective_date": "2025-01-01",
+  "buyer_id": "CUST-SDN-03",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "clauses": [
+    {
+      "clause_id": "CL-03",
+      "name": "Precios de Orden de Compra",
+      "content": "El precio acordado en la Orden de Compra es vinculante e inmutable."
+    }
+  ]
+}

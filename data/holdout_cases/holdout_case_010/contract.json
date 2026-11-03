@@ -1,0 +1,13 @@
+{
+  "contract_id": "CTR-HOLDOUT_CASE_010",
+  "effective_date": "2025-01-01",
+  "buyer_id": "CUST-LAF-10",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "clauses": [
+    {
+      "clause_id": "CL-10",
+      "name": "Caducidad Mínima",
+      "content": "Los productos lácteos deberán recibirse con al menos 60% de vida de anaquel."
+    }
+  ]
+}

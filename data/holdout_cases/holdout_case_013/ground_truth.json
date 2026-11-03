@@ -1,0 +1,21 @@
+{
+  "case_id": "holdout_case_013",
+  "buyer_id": "CUST-IEN-13",
+  "buyer_name": "Importadora de Electrónica del Norte",
+  "industry": "Importaciones",
+  "billed_amount": 50000.0,
+  "received_amount": 47500.0,
+  "difference": -2500.0,
+  "expected_justified_amount": 0.0,
+  "expected_claimable_amount": 2500.0,
+  "expected_quarantine": false,
+  "currency": "USD",
+  "category": "ARBITRARY_FX_VARIANCE",
+  "deductions": [
+    {
+      "code": "ARBITRARY_FX_VARIANCE",
+      "amount": 2500.0,
+      "reason": "Conversión cambiaria realizada a tipo de cambio inferior al FIX publicado"
+    }
+  ]
+}

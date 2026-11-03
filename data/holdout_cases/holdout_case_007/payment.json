@@ -1,0 +1,19 @@
+{
+  "payment_id": "PAY-HOLDOUT_CASE_007",
+  "invoice_reference": "INV-HOLDOUT_CASE_007",
+  "payment_date": "2026-03-01",
+  "currency": "USD",
+  "amount_paid": 28500.0,
+  "deductions": [
+    {
+      "code": "DAMAGE-BASE-TARIMA",
+      "amount": 750.0,
+      "reason": "Tarima dañada comprobada en descarga"
+    },
+    {
+      "code": "PALLET-DAMAGE-UNILATERAL",
+      "amount": 750.0,
+      "reason": "Deducción duplicada por la misma tarima cobrada dos veces"
+    }
+  ]
+}

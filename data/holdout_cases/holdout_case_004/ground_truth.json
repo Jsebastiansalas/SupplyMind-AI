@@ -1,0 +1,21 @@
+{
+  "case_id": "holdout_case_004",
+  "buyer_id": "CUST-OCC-04",
+  "buyer_name": "Operadora Comercial del Centro",
+  "industry": "Comercial Mayorista",
+  "billed_amount": 50000.0,
+  "received_amount": 49000.0,
+  "difference": -1000.0,
+  "expected_justified_amount": 0.0,
+  "expected_claimable_amount": 1000.0,
+  "expected_quarantine": false,
+  "currency": "USD",
+  "category": "EARLY_PAY_EXTEMP",
+  "deductions": [
+    {
+      "code": "EARLY_PAY_EXTEMP",
+      "amount": 1000.0,
+      "reason": "Descuento de pronto pago deducido a los 28 días de vencimiento"
+    }
+  ]
+}

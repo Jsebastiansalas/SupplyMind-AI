@@ -1,0 +1,17 @@
+{
+  "po_id": "PO-HOLDOUT_CASE_003",
+  "customer_id": "CUST-SDN-03",
+  "vendor_id": "VEND-SUPPLYMIND",
+  "issue_date": "2026-02-01",
+  "currency": "USD",
+  "items": [
+    {
+      "item_id": "SKU-ACEITE-VEG-900ML",
+      "description": "Aceite Vegetal Comestible 900ml",
+      "ordered_quantity": 1000,
+      "agreed_unit_price": 15.0,
+      "total_price": 15000.0
+    }
+  ],
+  "total_amount": 15000.0
+}
