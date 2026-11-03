@@ -211,7 +211,64 @@ class PreDispatchLeakageRadar:
             risk_factors.append(rf)
             safeguards.append(rf.mandatory_safeguard)
 
-        # 5. SALVAGUARDA ELECTRÓNICA EDI 856
+        # 5. ANÁLISIS PREDICTIVO DE CAUSA RAÍZ (RCA) Y PRECEDENTES (HU 9.5.3)
+        # Se activa para centros de distribución o retailers de riesgo con historial documentado
+        if dc_profile or any(k in dc_clean or k in retailer_clean for k in ["WALMART", "AMAZON", "SORIANA", "LIVERPOOL"]):
+            try:
+                from agent.core.root_cause_analyzer import RootCauseAnalyzer
+                rca_res = RootCauseAnalyzer.classify_case_root_cause(
+                    case_id=destination_dc,
+                    root_cause_text=f"{retailer_id} {destination_dc} {' '.join(sku_list)}"
+                )
+                if rca_res and rca_res.get("detected_anomaly"):
+                    impact = 8.0
+                    raw_dvi += impact
+                    rf_rca = DviRiskFactor(
+                        factor_id="RF-RCA-PREDICTIVE",
+                        category="HISTORICAL_ROOT_CAUSE",
+                        severity="HIGH",
+                        score_impact=impact,
+                        description=(
+                            f"Análisis predictivo de causa raíz detectó recurrencia en {rca_res['department_name']} "
+                            f"({rca_res['responsible_role']}): {rca_res['detected_anomaly']}"
+                        ),
+                        mandatory_safeguard=rca_res["corrective_protocol"]
+                    )
+                    risk_factors.append(rf_rca)
+                    safeguards.append(rf_rca.mandatory_safeguard)
+            except Exception:
+                pass
+
+            try:
+                from agent.memory.precedent_graph import DisputeMemoryNetwork
+                mem = DisputeMemoryNetwork()
+                precedents = mem.get_precedents_by_retailer(retailer_clean)
+                if precedents:
+                    total_cases = len(precedents)
+                    lost_cases = sum(1 for p in precedents if p.outcome == "LOST")
+                    if lost_cases > 0 or total_cases >= 2:
+                        impact = 7.0
+                        raw_dvi += impact
+                        rf_mem = DviRiskFactor(
+                            factor_id="RF-MEM-PRECEDENTS",
+                            category="PORTFOLIO_PRECEDENT_MEMORY",
+                            severity="HIGH",
+                            score_impact=impact,
+                            description=(
+                                f"La Red de Memoria registra {total_cases} precedentes vinculados a {retailer_id}. "
+                                f"Tasa de controversia recurrente en cláusula {precedents[0].governing_clause}."
+                            ),
+                            mandatory_safeguard=(
+                                "Exigir confirmación por escrito de recepción en muelle conforme al precedente vinculante "
+                                f"{precedents[0].precedent_id} antes de emitir complemento de pago."
+                            )
+                        )
+                        risk_factors.append(rf_mem)
+                        safeguards.append(rf_mem.mandatory_safeguard)
+            except Exception:
+                pass
+
+        # 6. SALVAGUARDA ELECTRÓNICA EDI 856
         safeguards.append(
             "Transmitir el Advance Ship Notice (EDI 856) con al menos 6 horas de antelación y resguardar "
             "el acuse técnico Functional Acknowledgment (EDI 997) con marca UTC como prueba pericial."
