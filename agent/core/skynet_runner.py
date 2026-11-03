@@ -41,12 +41,34 @@ class SkynetRunner:
         case_id: str,
         objective: Optional[str] = None,
         fast_path: bool = False,
-        use_cache: bool = True
+        use_cache: bool = True,
+        auto_route: bool = False,
+        budget_cap_usd: Optional[float] = None
     ):
+        from decimal import Decimal
+        from agent.planner.cognitive_router import CognitiveRouter
+        from agent.guardrails.budget_guard import TaskBudgetGuard
+
         self.case_id = case_id
         self.objective = objective or f"Analiza la disputa {case_id}"
-        self.fast_path = fast_path
+        self.auto_route = auto_route
+        self.routing_decision = CognitiveRouter.evaluate_routing(
+            case_id=case_id,
+            task_type="full_audit",
+            force_symbolic=(fast_path and not auto_route)
+        )
+        if auto_route:
+            self.fast_path = not self.routing_decision.use_llm
+        else:
+            self.fast_path = fast_path
+
         self.use_cache = use_cache
+        self.budget_cap_usd = Decimal(str(budget_cap_usd)) if budget_cap_usd is not None else None
+        TaskBudgetGuard.init_task(
+            task_id=case_id,
+            budget_cap_usd=self.budget_cap_usd,
+            reset_if_exists=not use_cache
+        )
         self.state = DisputeState(case_id=case_id, objective=self.objective)
         self.audit_logger = AuditLogger(case_id=case_id)
         self.tool_executor = ToolExecutor(state=self.state, audit_logger=self.audit_logger)
@@ -251,14 +273,23 @@ class SkynetRunner:
         
         watchdog = ReActExecutionWatchdog(max_step_budget=12, max_duplicate_calls=2)
 
+        from agent.planner.cognitive_router import CognitiveRouter
+        from agent.guardrails.budget_guard import TaskBudgetGuard
+
         messages = [
-            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "system", "content": SYSTEM_PROMPT + "\n\n" + CognitiveRouter.get_neuro_symbolic_system_directive()},
             {"role": "user", "content": self.objective}
         ]
         
         max_turns = 10
         for turn in range(max_turns):
+            allowed_budget, budget_reason = TaskBudgetGuard.can_make_request(self.case_id)
+            if not allowed_budget:
+                console.print(f"[bold yellow]{budget_reason}[/bold yellow]")
+                return self._run_fast_path_skynet()
+
             console.print(f"[dim]Turno {turn + 1}: Consultando a Grok ({settings.MODEL_NAME})...[/dim]")
+            t_call_start = time.time()
             
             # Compresión inteligente de contexto para documentos de gran escala (evita pérdida de información)
             if len(messages) > 6:
@@ -304,12 +335,18 @@ class SkynetRunner:
             if response.choices and response.choices[0].message.tool_calls:
                 self.anonymizer.deanonymize_tool_calls(response.choices[0].message.tool_calls)
             
-            if response.usage:
-                self.state.tokens_in += getattr(response.usage, "prompt_tokens", 0) or 0
-                self.state.tokens_out += getattr(response.usage, "completion_tokens", 0) or 0
-                cost_in = (self.state.tokens_in / 1000.0) * 0.002
-                cost_out = (self.state.tokens_out / 1000.0) * 0.010
-                self.state.estimated_cost_usd = round(cost_in + cost_out, 6)
+            call_latency_ms = (time.time() - t_call_start) * 1000.0
+            p_tok = (getattr(response.usage, "prompt_tokens", 0) or 0) if response.usage else 0
+            c_tok = (getattr(response.usage, "completion_tokens", 0) or 0) if response.usage else 0
+            budget_summary = TaskBudgetGuard.record_request(
+                task_id=self.case_id,
+                prompt_tokens=p_tok,
+                completion_tokens=c_tok,
+                latency_ms=call_latency_ms
+            )
+            self.state.tokens_in = budget_summary.prompt_tokens_total
+            self.state.tokens_out = budget_summary.completion_tokens_total
+            self.state.estimated_cost_usd = float(budget_summary.measured_cost_usd)
             
             msg = response.choices[0].message
             messages.append(msg.model_dump())

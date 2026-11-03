@@ -39,7 +39,9 @@ from rich.panel import Panel
 from rich.table import Table
 
 from agent.core.skynet_runner import SkynetRunner
-from agent.guardrails.arithmetic_verifier import ZKPFinancialAuditor
+from agent.guardrails.arithmetic_verifier import CryptographicInvariantAuditor
+from agent.guardrails.budget_guard import TaskBudgetGuard
+from agent.planner.cognitive_router import CognitiveRouter
 from data.models import DisputeAnalysisReport
 
 console = Console(highlight=False)
@@ -53,8 +55,8 @@ def run_50_cases_crucible(
 ) -> Dict[str, Any]:
     """
     Ejecuta la Batería Crucible de Estrés Extremo sobre los expedientes comerciales.
-    Soporta modos: 'fast_cache', 'fast_no_cache', 'react_llm'.
-    Aplica Cero Tolerancia estricta ($0.00 exact match) y auditoría ZKP de alucinaciones.
+    Soporta modos: 'fast_cache', 'fast_no_cache', 'react_llm', 'auto_router'.
+    Aplica Cero Tolerancia estricta ($0.00 exact match) y verificación criptográfica de invariantes (SHA-256).
     """
     start_total_time = time.time()
     if not cases_dir.exists():
@@ -66,14 +68,15 @@ def run_50_cases_crucible(
     )
     cases = all_cases[:max_cases]
 
-    fast_path = (mode != "react_llm")
+    auto_route = (mode == "auto_router")
+    fast_path = (mode not in ("react_llm", "auto_router"))
     use_cache = (mode == "fast_cache")
 
     if verbose:
         console.print(Panel(
             f"[bold cyan]SupplyMind AI Enterprise — The Crucible Suite ({len(cases)} Casos B2B)[/bold cyan]\n"
-            f"[bold yellow]Batería de Estrés Extremo & Evaluación Pericial Inviolable [Modo: {mode}][/bold yellow]\n"
-            f"[dim]Directorio: {cases_dir} | Cero Tolerancia ($0.00 MAE) | Auditoría ZKP Activa[/dim]",
+            f"[bold yellow]Batería de Evaluación Pericial Inviolable [Modo: {mode}][/bold yellow]\n"
+            f"[dim]Directorio: {cases_dir} | Cero Tolerancia ($0.00 MAE) | Integridad Criptográfica SHA-256[/dim]",
             border_style="cyan"
         ))
 
@@ -84,7 +87,7 @@ def run_50_cases_crucible(
     table.add_column("Justificado (Pred/GT)", justify="right")
     table.add_column("Reclamable (Pred/GT)", justify="right")
     table.add_column("Invariante", justify="center")
-    table.add_column("ZKP Audit", justify="center")
+    table.add_column("Integridad SHA-256", justify="center")
     table.add_column("Latencia", justify="right", style="dim")
     table.add_column("Dictamen", justify="center")
 
@@ -134,7 +137,7 @@ def run_50_cases_crucible(
             total_quarantine_cases += 1
 
         t0 = time.time()
-        runner = SkynetRunner(case_id=cid, fast_path=fast_path, use_cache=use_cache)
+        runner = SkynetRunner(case_id=cid, fast_path=fast_path, use_cache=use_cache, auto_route=auto_route)
         report: Optional[DisputeAnalysisReport] = runner.run()
         elapsed_ms = (time.time() - t0) * 1000.0
 
@@ -165,13 +168,13 @@ def run_50_cases_crucible(
         if not math_invariant_ok:
             arithmetic_errors_count += 1
 
-        # Auditoría ZKP de Alucinación Numérica / Fáctica
-        zkp_proof = None
+        # Auditoría de Invariantes Criptográficas y Alucinación Numérica
+        inv_proof = None
         hallucination_detected = False
         if not is_quarantined_by_agent:
             try:
-                zkp_proof = ZKPFinancialAuditor.audit_report(report)
-                if zkp_proof and zkp_proof.text_hallucination_detected:
+                inv_proof = CryptographicInvariantAuditor.audit_report(report)
+                if inv_proof and inv_proof.text_hallucination_detected:
                     hallucination_detected = True
                     hallucinations_detected_count += 1
             except Exception:
@@ -225,10 +228,16 @@ def run_50_cases_crucible(
             verdict_str
         )
 
+        budget_summary = TaskBudgetGuard.get_summary(cid)
+        routing_mode_val = runner.routing_decision.mode.value if runner.routing_decision else ("HYBRID_NEURO_SYMBOLIC" if not runner.fast_path else "SYMBOLIC_PYTHON")
+
         results_list.append({
             "case_id": cid,
             "buyer": buyer_name,
             "industry": industry,
+            "routing_mode": routing_mode_val,
+            "measured_cost_usd": float(budget_summary.measured_cost_usd),
+            "llm_requests": budget_summary.requests_count,
             "disputed": float(report.difference),
             "justified_pred": float(report.justified_amount),
             "justified_gt": float(gt_just),
@@ -247,6 +256,7 @@ def run_50_cases_crucible(
     mae = (total_absolute_error / (total_evaluated * 2)) if total_evaluated > 0 else Decimal("0.00")
     arithmetic_error_rate_pct = (arithmetic_errors_count / total_evaluated * 100.0) if total_evaluated > 0 else 0.0
     hallucination_rate_pct = (hallucinations_detected_count / total_evaluated * 100.0) if total_evaluated > 0 else 0.0
+    session_telemetry = TaskBudgetGuard.get_global_session_telemetry()
 
     color_arith = "green" if arithmetic_errors_count == 0 else "red"
     color_halluc = "green" if hallucinations_detected_count == 0 else "red"
@@ -262,7 +272,8 @@ def run_50_cases_crucible(
             f"• [bold white]Tasa de Error Aritmético:[/bold white] [{color_arith}]{arithmetic_error_rate_pct:.2f}% ({arithmetic_errors_count} discrepancias)[/{color_arith}]\n"
             f"• [bold white]Error Absoluto Medio (MAE):[/bold white] [bold green]${mae:,.2f} USD[/bold green]\n"
             f"• [bold white]Eficacia de Cuarentena Forense:[/bold white] [bold green]{quar_accuracy:.1f}% ({quarantine_success_count}/{total_quarantine_cases} aislados)[/bold green]\n"
-            f"• [bold white]Alucinación Numérica / Fáctica (ZKP):[/bold white] [{color_halluc}]{hallucination_rate_pct:.2f}% ({hallucinations_detected_count} interceptadas)[/{color_halluc}]\n"
+            f"• [bold white]Integridad Fáctica / Invariantes SHA-256:[/bold white] [{color_halluc}]{hallucination_rate_pct:.2f}% ({hallucinations_detected_count} interceptadas)[/{color_halluc}]\n"
+            f"• [bold white]Costo Medido Sesión / Base Pasarela ($0.01134/req):[/bold white] [cyan]${session_telemetry['session_measured_cost_usd']:.4f} USD ({session_telemetry['session_total_requests']} peticiones LLM)[/cyan]\n"
             f"• [bold white]Volumen Financiero Auditado:[/bold white] [cyan]${total_billed_all:,.2f} USD[/cyan]\n"
             f"• [bold white]Capital Reclamable Recuperado:[/bold white] [bold green]${total_claimable_all:,.2f} USD[/bold green]\n"
             f"• [bold white]Tiempo Total de Ejecución:[/bold white] [yellow]{total_time:.2f} segundos ({total_time / total_evaluated * 1000:.0f}ms promedio/caso)[/yellow]\n",
@@ -287,6 +298,7 @@ def run_50_cases_crucible(
         "hallucinations_count": hallucinations_detected_count,
         "mae_usd": float(mae),
         "quarantine_efficacy_pct": quar_accuracy,
+        "gateway_telemetry": session_telemetry,
         "total_audited_usd": float(total_billed_all),
         "total_recovered_usd": float(total_claimable_all),
         "total_time_seconds": round(total_time, 2),
@@ -300,7 +312,7 @@ def run_50_cases_crucible(
         json.dump(summary_dict, f, indent=2, ensure_ascii=False)
 
     md_lines = [
-        f"# 🏆 The Crucible Suite — Reporte Pericial Inviolable ({total_evaluated} Casos B2B)",
+        f"# 🏆 The Crucible Suite — Reporte de Auditoría Financiera ({total_evaluated} Casos B2B)",
         f"**Fecha de Ejecución:** {summary_dict['timestamp']}  ",
         f"**Modo de Ejecución:** `{mode}`  ",
         f"**Directorio de Casos:** `{cases_dir}`  ",
@@ -311,19 +323,20 @@ def run_50_cases_crucible(
         f"- **Rechazos por Tolerancia ($0 < diff <= $50):** **{tolerated_rejections_count}**",
         f"- **Error Absoluto Medio (MAE):** **${mae:,.2f} USD**",
         f"- **Tasa de Error Aritmético:** **{arithmetic_error_rate_pct:.2f}% ({arithmetic_errors_count} discrepancias)**",
-        f"- **Tasa de Alucinación Fáctica (ZKP):** **{hallucination_rate_pct:.2f}% ({hallucinations_detected_count} interceptadas)**",
+        f"- **Tasa de Alucinación Fáctica (Auditoría de Invariantes SHA-256):** **{hallucination_rate_pct:.2f}% ({hallucinations_detected_count} interceptadas)**",
         f"- **Eficacia de Cuarentena Forense:** **{quar_accuracy:.1f}% ({quarantine_success_count}/{total_quarantine_cases} casos adversarios neutralizados)**",
+        f"- **Costo Medido en Sesión (Tarifa Pasarela $0.011340/petición):** **${session_telemetry['session_measured_cost_usd']:.4f} USD ({session_telemetry['session_total_requests']} peticiones)**",
         f"- **Volumen Financiero Auditado:** **${total_billed_all:,.2f} USD**",
         f"- **Capital Reclamable Recuperado:** **${total_claimable_all:,.2f} USD**",
         f"- **Tiempo Total:** **{total_time:.2f} segundos ({total_time / total_evaluated * 1000:.0f}ms por caso)**",
         "",
-        f"## 📋 Detalle de Casos de Estrés Extremo ({total_evaluated} Casos)",
-        "| Caso ID | Comprador | Monto Disputa | Justificado | Reclamable | Invariante | ZKP Audit | Resultado |",
-        "| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |"
+        f"## 📋 Detalle de Casos Evaluados ({total_evaluated} Casos)",
+        "| Caso ID | Comprador | Motor Cognitivo | Monto Disputa | Justificado | Reclamable | Invariante | Integridad SHA-256 | Resultado |",
+        "| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |"
     ]
     for r in results_list:
         md_lines.append(
-            f"| `{r['case_id']}` | {r['buyer']} | ${abs(r['disputed']):,.2f} | "
+            f"| `{r['case_id']}` | {r['buyer']} | `{r.get('routing_mode', 'SYMBOLIC_PYTHON')}` | ${abs(r['disputed']):,.2f} | "
             f"${r['justified_pred']:,.2f} | ${r['claimable_pred']:,.2f} | "
             f"{'OK' if r['invariant_ok'] else 'FAIL'} | "
             f"{'FAIL' if r.get('hallucination_detected') else 'VERIFIED'} | "
@@ -342,7 +355,7 @@ def run_50_cases_crucible(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="The Crucible Suite — Batería de Estrés Extremo de Casos B2B")
-    parser.add_argument("--mode", choices=["fast_cache", "fast_no_cache", "react_llm"], default="fast_cache", help="Modo de ejecución")
+    parser.add_argument("--mode", choices=["fast_cache", "fast_no_cache", "react_llm", "auto_router"], default="fast_cache", help="Modo de ejecución")
     parser.add_argument("--no-cache", action="store_true", help="Deshabilita la caché (equivale a --mode fast_no_cache)")
     parser.add_argument("--cases-dir", type=str, default="data/cases", help="Directorio de expedientes a evaluar")
     parser.add_argument("--max-cases", type=int, default=50, help="Número máximo de casos a evaluar")

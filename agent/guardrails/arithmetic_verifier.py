@@ -200,7 +200,7 @@ def collect_valid_ground_truth_figures(
     return valid_set
 
 
-def generate_zkp_proof_token(
+def generate_cryptographic_proof_token(
     case_id: str,
     billed: Decimal,
     received: Decimal,
@@ -210,11 +210,11 @@ def generate_zkp_proof_token(
     timestamp: str
 ) -> str:
     """
-    Genera un token de prueba criptográfica determinística SHA-256 (estilo ZKP)
-    que sella matemáticamente las invariantes financieras del arbitraje.
+    Genera un sello de integridad criptográfica determinística SHA-256
+    que certifica las invariantes aritméticas de partida doble del arbitraje.
     """
     canonical_payload = (
-        f"SUPPLYMIND-ZKP-V1|"
+        f"SUPPLYMIND-INVARIANT-V1|"
         f"CASE:{case_id.strip()}|"
         f"BILLED:{billed:.2f}|"
         f"RECEIVED:{received:.2f}|"
@@ -227,9 +227,9 @@ def generate_zkp_proof_token(
     return f"SM-PROOF-SHA256-{digest[:16].upper()}"
 
 
-def verify_zkp_proof_token(proof_token: str, report: DisputeAnalysisReport, timestamp: str) -> bool:
-    """Verifica si un token de prueba corresponde exactamente a las cifras del reporte."""
-    expected = generate_zkp_proof_token(
+def verify_cryptographic_proof_token(proof_token: str, report: DisputeAnalysisReport, timestamp: str) -> bool:
+    """Verifica si un token de integridad SHA-256 corresponde exactamente a las cifras del reporte."""
+    expected = generate_cryptographic_proof_token(
         case_id=report.case_id,
         billed=report.billed_amount,
         received=report.received_amount,
@@ -241,10 +241,15 @@ def verify_zkp_proof_token(proof_token: str, report: DisputeAnalysisReport, time
     return proof_token.strip().upper() == expected.strip().upper()
 
 
-class ZKPFinancialAuditor:
+# Alias de retrocompatibilidad para módulos previos
+generate_zkp_proof_token = generate_cryptographic_proof_token
+verify_zkp_proof_token = verify_cryptographic_proof_token
+
+
+class CryptographicInvariantAuditor:
     """
-    Guardián criptográfico y verificador de invarianzas aritméticas para SupplyMind AI.
-    Elimina cualquier posibilidad de alucinación financiera en texto libre o montos de reporte.
+    Auditor de integridad criptográfica (SHA-256) y verificador de invarianzas aritméticas.
+    Detecta y corrige cualquier discrepancia de partida doble o cifra no sustentada en texto libre.
     """
 
     @classmethod
@@ -382,10 +387,14 @@ class ZKPFinancialAuditor:
         return len(hallucinations) > 0, hallucinations, sanitized
 
 
+# Alias de retrocompatibilidad
+ZKPFinancialAuditor = CryptographicInvariantAuditor
+
+
 def audit_and_enforce_zero_hallucination(
     report: DisputeAnalysisReport,
     reconciliation: Optional[ReconciliationSummary] = None,
     loaded_docs: Optional[Dict[str, Any]] = None
 ) -> DisputeAnalysisReport:
-    """Helper funcional para invocar la auditoría y sellado ZKP."""
-    return ZKPFinancialAuditor.audit_and_enforce(report, reconciliation, loaded_docs)
+    """Helper funcional para invocar la auditoría y sellado de invariantes."""
+    return CryptographicInvariantAuditor.audit_and_enforce(report, reconciliation, loaded_docs)
