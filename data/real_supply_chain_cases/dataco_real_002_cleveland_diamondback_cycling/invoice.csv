@@ -1,0 +1,11 @@
+# invoice_id: INV-DC-71204
+# vendor_id: DATACO-CLEVELAND-OH
+# customer_id: MIDWEST-CYCLING-CORP
+# po_reference: PO-DC-71204
+# issue_date: 2026-02-03
+# currency: USD
+# subtotal: 11999.20
+# tax: 0.00
+# total_amount: 11999.20
+item_id,description,quantity,unit_price,total_price
+DC-957,Diamondback Women's Serene Classic Comfort Bike (DataCo SKU 957),40,299.98,11999.20

@@ -1,0 +1,17 @@
+{
+  "case_id": "dataco_real_005_miami_perfect_fitness_multiformat",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Atlantic Fitness Dist (DataCo Miami Hub)",
+  "industry": "Fitness Equipment",
+  "file_formats": [
+    ".csv",
+    ".json",
+    ".xlsx",
+    ".txt"
+  ],
+  "billed_amount": "11998.00",
+  "received_amount": "10898.00",
+  "difference": "-1100.00",
+  "expected_justified_amount": "479.92",
+  "expected_claimable_amount": "620.08"
+}

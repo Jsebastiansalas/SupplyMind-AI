@@ -1,0 +1,9 @@
+MASTER SUPPLY AGREEMENT — DATACO LOS ANGELES HUB
+contract_id: MSA-DC-73419
+vendor_id: DATACO-LA-CA
+customer_id: WESTERN-FIELD-STREAM
+valid_from: 2025-01-01
+valid_to: 2026-12-31
+
+[CLAUSE CL-POD-01|Prevalencia del Comprobante de Entrega Firmado|STRICT_POD_REQUIRED|0.00]
+La firma de conformidad sin reservas en el Proof of Delivery (BOL) transfiere el riesgo al comprador. No proceden descuentos por faltantes reportados después de la recepción en muelle.

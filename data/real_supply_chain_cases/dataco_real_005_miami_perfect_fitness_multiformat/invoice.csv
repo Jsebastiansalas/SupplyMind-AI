@@ -1,0 +1,11 @@
+# invoice_id: INV-DC-78112
+# vendor_id: DATACO-MIAMI-FL
+# customer_id: ATLANTIC-FITNESS-DIST
+# po_reference: PO-DC-78112
+# issue_date: 2026-02-09
+# currency: USD
+# subtotal: 11998.00
+# tax: 0.00
+# total_amount: 11998.00
+item_id,description,quantity,unit_price,total_price
+DC-365,Perfect Fitness Perfect Rip Deck (DataCo SKU 365),200,59.99,11998.00

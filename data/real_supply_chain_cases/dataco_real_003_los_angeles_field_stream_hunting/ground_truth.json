@@ -1,0 +1,17 @@
+{
+  "case_id": "dataco_real_003_los_angeles_field_stream_hunting",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Western Field & Stream (DataCo LA Hub)",
+  "industry": "Camping & Security Hardware",
+  "file_formats": [
+    ".json",
+    ".csv",
+    ".xlsx",
+    ".txt"
+  ],
+  "billed_amount": "9999.50",
+  "received_amount": "8799.56",
+  "difference": "-1199.94",
+  "expected_justified_amount": "0.00",
+  "expected_claimable_amount": "1199.94"
+}

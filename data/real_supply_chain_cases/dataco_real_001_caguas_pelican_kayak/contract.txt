@@ -1,0 +1,11 @@
+MASTER SUPPLY AGREEMENT (DATACO SMART SUPPLY CHAIN NETWORK)
+contract_id: MSA-DC-68914
+vendor_id: DATACO-CAGUAS-PR
+customer_id: PACIFIC-NW-OUTDOOR
+valid_from: 2025-01-01
+valid_to: 2026-12-31
+
+[CLAUSE CL-01|Faltantes de Entrega en Muelle|STRICT_POD_REQUIRED|0.00]
+Cualquier faltante físico documentado y firmado en el manifiesto de muelle (BOL/POD) autoriza al comprador a deducir exactamente el valor unitario de las unidades faltantes.
+[CLAUSE CL-02|Prohibición de Cargos Promocionales Unilaterales|NO_UNILATERAL_COOP|0.00]
+Queda estrictamente prohibido aplicar deducciones por publicidad, Co-Op o mercadeo que no cuenten con anexo firmado por el proveedor.

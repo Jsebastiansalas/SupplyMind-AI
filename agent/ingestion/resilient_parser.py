@@ -638,7 +638,9 @@ class ResilientDocumentLoader:
         from config.settings import settings
         from tools.document_reader.classifier import DocumentClassifier
         from tools.document_reader.pdf_parser import PDFCaseParser
+        from tools.document_reader.multiformat_parser import MultiFormatParser
 
+        root_dir = Path(__file__).resolve().parent.parent.parent
         provided_path = Path(case_id)
         if provided_path.is_absolute() or provided_path.exists():
             case_path = provided_path
@@ -646,8 +648,12 @@ class ResilientDocumentLoader:
             case_path = settings.DATA_DIR / case_id
         elif (Path("data/holdout_cases") / case_id).exists():
             case_path = Path("data/holdout_cases") / case_id
-        elif (ROOT_DIR / "data" / "holdout_cases" / case_id).exists():
-            case_path = ROOT_DIR / "data" / "holdout_cases" / case_id
+        elif (root_dir / "data" / "holdout_cases" / case_id).exists():
+            case_path = root_dir / "data" / "holdout_cases" / case_id
+        elif (Path("data/real_supply_chain_cases") / case_id).exists():
+            case_path = Path("data/real_supply_chain_cases") / case_id
+        elif (root_dir / "data" / "real_supply_chain_cases" / case_id).exists():
+            case_path = root_dir / "data" / "real_supply_chain_cases" / case_id
         else:
             case_path = settings.DATA_DIR / case_id
 
@@ -664,7 +670,7 @@ class ResilientDocumentLoader:
 
         health_score = 100.0
 
-        # Helper interno para cargar archivo JSON o PDF de forma tolerante
+        # Helper interno para cargar archivo JSON, PDF, CSV, XLSX o TXT de forma tolerante
         def _load_doc_file(doc_key: str, model_cls: Any) -> Optional[Any]:
             nonlocal health_score
             if doc_key not in mapped:
@@ -702,6 +708,12 @@ class ResilientDocumentLoader:
                         return PDFCaseParser.parse_payment_receipt(f_path)
                     elif doc_key == "contract":
                         return PDFCaseParser.parse_contract(f_path)
+
+                elif suffix in (".csv", ".xlsx"):
+                    return MultiFormatParser.parse_tabular_document(f_path, doc_key)
+
+                elif suffix in (".txt", ".eml"):
+                    return MultiFormatParser.parse_text_document(f_path, doc_key)
 
                 elif suffix in [".png", ".jpg", ".jpeg", ".webp"] and doc_key == "delivery":
                     from tools.ocr_engine.vision import OCREngine

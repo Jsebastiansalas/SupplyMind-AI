@@ -1,0 +1,7 @@
+# payment_id: PAY-DC-73419
+# invoice_reference: INV-DC-73419
+# payment_date: 2026-02-19
+# currency: USD
+# amount_paid: 8799.56
+code,reason,amount,reference_doc
+ALLEGED_SHORTAGE_UNILATERAL,Retencion unilateral improcedente por supuesto faltante de 3 cajas fuertes SKU DC-1004 no reportado en muelle,1199.94,INV-DC-73419

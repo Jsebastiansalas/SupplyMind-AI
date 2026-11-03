@@ -1,0 +1,23 @@
+{
+  "contract_id": "MSA-DC-75890",
+  "vendor_id": "DATACO-CHICAGO-IL",
+  "customer_id": "GREAT-LAKES-FOOTWEAR",
+  "valid_from": "2025-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CL-PRICE-01",
+      "title": "Prevalencia del Precio Pactado en Orden de Compra",
+      "text": "Todo sobreprecio en factura respecto al precio unitario autorizado en la Orden de Compra faculta al comprador a descontar exactamente la diferencia aritmética.",
+      "policy": "PO_PRICE_PREVAILS",
+      "tolerance_percentage": "0.00"
+    },
+    {
+      "clause_id": "CL-SLOT-02",
+      "title": "Improcedencia de Cargos de Exhibición (Slotting Fees)",
+      "text": "No se admiten retenciones por posicionamiento de anaquel sin convenio comercial específico.",
+      "policy": "NO_SLOTTING_FEES",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

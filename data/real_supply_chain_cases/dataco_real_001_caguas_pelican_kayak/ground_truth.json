@@ -1,0 +1,16 @@
+{
+  "case_id": "dataco_real_001_caguas_pelican_kayak",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Pacific NW Outdoor (DataCo Caguas Hub)",
+  "industry": "Outdoors & Water Sports",
+  "file_formats": [
+    ".xlsx",
+    ".csv",
+    ".txt"
+  ],
+  "billed_amount": "14997.50",
+  "received_amount": "13897.53",
+  "difference": "-1099.97",
+  "expected_justified_amount": "599.97",
+  "expected_claimable_amount": "500.00"
+}

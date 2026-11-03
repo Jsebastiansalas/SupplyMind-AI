@@ -207,17 +207,35 @@ class DocumentClassifier:
         """
         pdf_files = list(case_dir.glob("*.pdf"))
         json_files = list(case_dir.glob("*.json"))
+        tabular_files = list(case_dir.glob("*.csv")) + list(case_dir.glob("*.xlsx"))
+        text_files = list(case_dir.glob("*.txt")) + list(case_dir.glob("*.eml")) + list(case_dir.glob("*.md"))
         image_files = list(case_dir.glob("*.png")) + list(case_dir.glob("*.jpg")) + list(case_dir.glob("*.jpeg")) + list(case_dir.glob("*.webp"))
         
         mapped_documents: Dict[str, Path] = {}
         
         # 1. Si los nombres convencionales ya existen, asignarlos directamente
         standard_keys = {
-            "invoice": ["invoice.pdf", "invoice.json", "factura.pdf", "factura.json", "cfdi.xml", "cfdi.json"],
-            "purchase_order": ["purchase_order.pdf", "purchase_order.json", "po.json", "po.pdf", "oc.json", "oc.pdf", "orden_compra.json", "orden_compra.pdf"],
-            "delivery": ["delivery.pdf", "delivery.json", "delivery.png", "delivery.jpg", "delivery.jpeg", "remision.pdf", "remision.json", "pod.pdf", "pod.png"],
-            "payment": ["payment.pdf", "payment.json", "pago.pdf", "pago.json"],
-            "contract": ["contract.pdf", "contract.json", "contract.md", "contrato.pdf", "contrato.json", "contrato.md"]
+            "invoice": [
+                "invoice.pdf", "invoice.json", "invoice.csv", "invoice.xlsx", "invoice.txt",
+                "factura.pdf", "factura.json", "factura.csv", "factura.xlsx", "cfdi.xml", "cfdi.json"
+            ],
+            "purchase_order": [
+                "purchase_order.pdf", "purchase_order.json", "purchase_order.csv", "purchase_order.xlsx",
+                "po.json", "po.pdf", "po.csv", "po.xlsx", "oc.json", "oc.pdf", "orden_compra.json", "orden_compra.pdf"
+            ],
+            "delivery": [
+                "delivery.pdf", "delivery.json", "delivery.csv", "delivery.xlsx", "delivery.txt",
+                "delivery.png", "delivery.jpg", "delivery.jpeg", "remision.pdf", "remision.json",
+                "remision.csv", "remision.xlsx", "pod.pdf", "pod.png", "pod.csv", "manifest.csv"
+            ],
+            "payment": [
+                "payment.pdf", "payment.json", "payment.csv", "payment.xlsx", "payment.txt", "payment.eml",
+                "pago.pdf", "pago.json", "pago.csv", "pago.xlsx", "remittance.xlsx", "settlement.xlsx"
+            ],
+            "contract": [
+                "contract.pdf", "contract.json", "contract.md", "contract.txt", "contract.csv", "contract.xlsx",
+                "contrato.pdf", "contrato.json", "contrato.md", "contrato.txt", "msa.txt", "msa.md"
+            ]
         }
         all_standard_found = True
         for key, possible_names in standard_keys.items():
@@ -237,29 +255,34 @@ class DocumentClassifier:
         # 2. Si no están los 5 nombres estándar, clasificar exhaustivamente los archivos restantes
         already_mapped_paths = set(mapped_documents.values())
         all_candidates = [
-            f for f in (pdf_files + json_files + image_files) 
+            f for f in (pdf_files + json_files + tabular_files + text_files + image_files) 
             if f not in already_mapped_paths and f.name not in ["meta.json", "ground_truth.json"] and not f.name.startswith(".")
         ]
         
         scored_candidates: List[Tuple[Path, str, float]] = []
         for candidate in all_candidates:
-            if candidate.suffix.lower() == ".pdf":
+            suffix = candidate.suffix.lower()
+            if suffix == ".pdf":
                 doc_type, conf = cls.classify_pdf(candidate)
                 scored_candidates.append((candidate, doc_type, conf))
-            elif candidate.suffix.lower() == ".json":
+            elif suffix in [".json", ".csv", ".xlsx", ".txt", ".eml", ".md"]:
                 try:
-                    with open(candidate, "r", encoding="utf-8", errors="replace") as f:
-                        data_text = f.read()
+                    if suffix in [".csv", ".xlsx", ".txt", ".eml", ".md"]:
+                        from tools.document_reader.multiformat_parser import MultiFormatParser
+                        data_text = MultiFormatParser.extract_text_any_format(candidate)
+                    else:
+                        with open(candidate, "r", encoding="utf-8", errors="replace") as f:
+                            data_text = f.read()
                     scores = cls.score_document(data_text)
-                    if not any(scores.values()) or max(scores.values()) == 0:
-                        stem = candidate.stem.lower()
-                        for role in ["invoice", "purchase_order", "delivery", "payment", "contract"]:
-                            if (role in stem or 
-                                (role == "payment" and "pago" in stem) or 
-                                (role == "delivery" and ("remision" in stem or "pod" in stem)) or
-                                (role == "purchase_order" and stem in ["po", "oc", "orden_compra"]) or
-                                (role == "invoice" and stem in ["factura", "cfdi"])):
-                                scores[role] = 10.0
+                    stem = candidate.stem.lower()
+                    for role in ["invoice", "purchase_order", "delivery", "payment", "contract"]:
+                        if (role in stem or 
+                            (role == "payment" and any(k in stem for k in ["pago", "remittance", "settlement", "wire"])) or 
+                            (role == "delivery" and any(k in stem for k in ["remision", "pod", "manifest", "dispatch", "bol"])) or
+                            (role == "purchase_order" and any(k in stem for k in ["po", "oc", "orden_compra", "order"])) or
+                            (role == "invoice" and any(k in stem for k in ["factura", "cfdi", "inv"])) or
+                            (role == "contract" and any(k in stem for k in ["msa", "contrato", "agreement", "terms"]))):
+                            scores[role] = scores.get(role, 0.0) + 25.0
                     best_type = max(scores, key=scores.get) if any(scores.values()) else "unknown"
                     scored_candidates.append((candidate, best_type, 0.95))
                 except Exception:

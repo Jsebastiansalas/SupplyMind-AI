@@ -1,0 +1,23 @@
+{
+  "contract_id": "MSA-DC-71204",
+  "vendor_id": "DATACO-CLEVELAND-OH",
+  "customer_id": "MIDWEST-CYCLING-CORP",
+  "valid_from": "2025-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CL-DAMAGE-01",
+      "title": "Averías Reportadas en Recepción",
+      "text": "Las unidades recibidas con daño físico comprobado en el acta de muelle serán deducibles íntegramente al costo unitario pactado en la OC.",
+      "policy": "DAMAGED_GOODS_DEDUCTIBLE",
+      "tolerance_percentage": "0.00"
+    },
+    {
+      "clause_id": "CL-FEES-02",
+      "title": "Exención de Cargos por Portal EDI",
+      "text": "El proveedor no asume costos ni comisiones administrativas por transmisión electrónica o mantenimiento de portal del comprador.",
+      "policy": "NO_ADMIN_FEES",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+# po_id: PO-DC-73419
+# vendor_id: DATACO-LA-CA
+# customer_id: WESTERN-FIELD-STREAM
+# order_date: 2026-01-29
+# currency: USD
+# total_amount: 9999.50
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-1004,Field & Stream Sportsman 16 Gun Fire Safe (DataCo SKU 1004),25,399.98,9999.50

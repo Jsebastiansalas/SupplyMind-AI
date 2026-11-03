@@ -1,0 +1,17 @@
+{
+  "case_id": "dataco_real_004_chicago_nike_footwear_overcharge",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Great Lakes Footwear (DataCo Chicago Hub)",
+  "industry": "Footwear & Apparel",
+  "file_formats": [
+    ".xlsx",
+    ".csv",
+    ".txt",
+    ".json"
+  ],
+  "billed_amount": "10999.00",
+  "received_amount": "9549.00",
+  "difference": "-1450.00",
+  "expected_justified_amount": "1000.00",
+  "expected_claimable_amount": "450.00"
+}

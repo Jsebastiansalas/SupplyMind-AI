@@ -1,0 +1,17 @@
+{
+  "case_id": "dataco_real_002_cleveland_diamondback_cycling",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Midwest Cycling Corp (DataCo Cleveland Hub)",
+  "industry": "Apparel & Cycling",
+  "file_formats": [
+    ".csv",
+    ".xlsx",
+    ".txt",
+    ".json"
+  ],
+  "billed_amount": "11999.20",
+  "received_amount": "10599.24",
+  "difference": "-1399.96",
+  "expected_justified_amount": "599.96",
+  "expected_claimable_amount": "800.00"
+}
