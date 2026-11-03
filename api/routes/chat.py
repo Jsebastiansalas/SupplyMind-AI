@@ -1296,6 +1296,18 @@ def _deterministic_chat_response(case_id: str, prompt: str, role: str, ctx: Dict
     if is_off_topic:
         return guardrail_reply
 
+    # 0.0 Protocolo de Cuarentena Forense
+    from agent.core.case_ledger import is_report_quarantined
+    if is_report_quarantined(report) or "quarantine" in case_id.lower():
+        return (
+            f"### 🛑 PROTOCOLO FORENSE ACTIVADO: Expediente `{case_id}` en CUARENTENA PREVENTIVA\n\n"
+            f"El expediente ha sido aislado de forma cautelar debido a anomalías críticas de integridad documental, "
+            f"riesgo de inyección adversaria o anacronismo temporal.\n\n"
+            f"- **Estatus:** En Cuarentena Forense (Cierre y Liquidación Bloqueados)\n"
+            f"- **Saldo Reclamable:** $0.00 USD (Suspendido)\n"
+            f"- **Acción Inmediata:** Intervención humana y auditoría forense antes de cualquier acuerdo comercial."
+        )
+
     # 0.1 Didáctica Pericial del Caso: ¿Quién tiene la razón? / ¿Qué pasó? / ¿Por qué retuvieron?
     if any(k in p for k in ["quien tiene la razon", "quién tiene la razón", "que paso", "qué pasó", "por que retuvo", "por qué retuvo", "por que me retuvieron", "por qué me retuvieron", "por que retuvieron", "por qué retuvieron", "explicame el caso", "explícame el caso", "entender el caso", "de que trata", "de qué trata", "por que la retencion", "por qué la retención", "resumen del caso"]):
         deliv_id = delivery.get('delivery_id', 'DEL-REF')

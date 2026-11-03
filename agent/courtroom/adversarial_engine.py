@@ -33,14 +33,24 @@ class AdversarialCourtroomEngine:
     @classmethod
     def conduct_debate(
         cls,
-        report: DisputeAnalysisReport,
-        docs: Optional[Dict[str, Any]] = None,
+        report: Any,
+        docs: Optional[Any] = None,
         precedent_matcher: Optional[PrecedentMatcher] = None
     ) -> AdversarialVerdict:
         """
         Ejecuta el careo dialéctico multi-agente sobre el expediente.
         """
-        docs = docs or {}
+        if isinstance(report, str):
+            if isinstance(docs, DisputeAnalysisReport):
+                report, docs = docs, None
+            else:
+                from agent.core.skynet_runner import SkynetRunner
+                case_id = report
+                report = SkynetRunner(case_id=case_id, fast_path=True, use_cache=True).run()
+                if not isinstance(docs, dict):
+                    docs = None
+
+        docs = docs if isinstance(docs, dict) else {}
         if not docs and getattr(report, "case_id", None):
             try:
                 docs = load_case_documents(report.case_id)
