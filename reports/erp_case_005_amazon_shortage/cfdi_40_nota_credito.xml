@@ -5,7 +5,7 @@
                   Version="4.0"
                   Serie="NC"
                   Folio="CASE_005_AMAZON_SHORTAGE"
-                  Fecha="2026-10-28T13:00:04"
+                  Fecha="2026-11-03T01:13:04"
                   Sello="MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC7..."
                   FormaPago="15"
                   NoCertificado="30001000000500003416"
@@ -41,22 +41,14 @@
                    ObjetoImp="02">
       <cfdi:Impuestos>
         <cfdi:Traslados>
-          <cfdi:Traslado Base="4310.34"
-                         Impuesto="002"
-                         TipoFactor="Tasa"
-                         TasaOCuota="0.160000"
-                         Importe="689.66"/>
+          <cfdi:Traslado Base="4310.34" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="689.66"/>
         </cfdi:Traslados>
       </cfdi:Impuestos>
     </cfdi:Concepto>
   </cfdi:Conceptos>
   <cfdi:Impuestos TotalImpuestosTrasladados="689.66">
     <cfdi:Traslados>
-      <cfdi:Traslado Base="4310.34"
-                     Impuesto="002"
-                     TipoFactor="Tasa"
-                     TasaOCuota="0.160000"
-                     Importe="689.66"/>
+      <cfdi:Traslado Base="4310.34" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="689.66"/>
     </cfdi:Traslados>
   </cfdi:Impuestos>
 </cfdi:Comprobante>

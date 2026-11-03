@@ -124,24 +124,50 @@ class CfdiPacSimulator:
         original_invoice_folio: str,
         amount_justified: Decimal,
         adjustment_reason: str,
-        currency: str = "USD"
+        currency: str = "USD",
+        fiscal_regime: Optional[str] = None,
+        breakdown_taxes: bool = False
     ) -> StampedCfdi:
         """
         Emite y timbra una Nota de Crédito fiscal (TipoDeComprobante='E') conforme a CFDI 4.0
-        para amparar reducciones de cobro o mermas reconocidas legalmente.
+        para amparar reducciones de cobro o mermas reconocidas legalmente,
+        con soporte multirrégimen tributario SAT (IVA 16%, 8%, 0%, IEPS, Exportación) (HU 9.3.2).
         """
         now = datetime.now(timezone.utc)
         date_iso = now.strftime("%Y-%m-%dT%H:%M:%S")
         folio_fiscal_uuid = str(uuid.uuid4()).upper()
         folio_interno = f"NC-{abs(hash(dispute_id)) % 90000 + 10000}"
 
-        subtotal = amount_justified.quantize(Decimal("0.01"))
-        total = subtotal  # En notas de crédito de ajuste comercial directo
+        if breakdown_taxes or fiscal_regime is not None:
+            from agent.core.erp_engine import FiscalRegimeResolver
+            profile = FiscalRegimeResolver.resolve(
+                case_id=dispute_id,
+                regime=fiscal_regime,
+                postal_code=receptor.domicilio_fiscal_receptor
+            )
+            breakdown = profile.calculate_breakdown(amount_justified)
+            subtotal = breakdown["subtotal"]
+            total = breakdown["total"]
+            vat_amount = breakdown["vat"]
+            ieps_amount = breakdown["ieps"]
+            total_tax = breakdown["total_tax"]
+            exportacion = profile.exportacion
+            objeto_imp = profile.objeto_imp
+        else:
+            profile = None
+            subtotal = amount_justified.quantize(Decimal("0.01"))
+            total = subtotal  # En notas de crédito de ajuste comercial directo no desglosado
+            vat_amount = Decimal("0.00")
+            ieps_amount = Decimal("0.00")
+            total_tax = Decimal("0.00")
+            exportacion = "01"
+            objeto_imp = "02"
 
         concepto = CfdiConcepto(
             descripcion=f"Ajuste comercial por conciliación de disputa: {adjustment_reason[:90]}",
             valor_unitario=subtotal,
-            importe=subtotal
+            importe=subtotal,
+            objeto_imp=objeto_imp
         )
 
         # Generar firma CSD simulada del emisor
@@ -162,6 +188,67 @@ class CfdiPacSimulator:
             f"?id={folio_fiscal_uuid}&re={emisor.rfc}&rr={receptor.rfc}&tt={total}&fe={last_8_sello}"
         )
 
+        # Construcción de nodos de impuestos si aplica
+        concepto_impuestos_xml = ""
+        comprobante_impuestos_xml = ""
+
+        if profile is not None and objeto_imp == "02":
+            traslados_concepto = []
+            traslados_comprobante = []
+
+            if profile.regime_code == "IEPS_HIGH_CALORIE_BEVERAGE":
+                traslados_concepto.append(
+                    f'          <cfdi:Traslado Base="{subtotal:.2f}" Impuesto="003" TipoFactor="Tasa" TasaOCuota="0.080000" Importe="{ieps_amount:.2f}"/>'
+                )
+                traslados_comprobante.append(
+                    f'      <cfdi:Traslado Base="{subtotal:.2f}" Impuesto="003" TipoFactor="Tasa" TasaOCuota="0.080000" Importe="{ieps_amount:.2f}"/>'
+                )
+                vat_base = subtotal + ieps_amount
+                traslados_concepto.append(
+                    f'          <cfdi:Traslado Base="{vat_base:.2f}" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="{vat_amount:.2f}"/>'
+                )
+                traslados_comprobante.append(
+                    f'      <cfdi:Traslado Base="{vat_base:.2f}" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="{vat_amount:.2f}"/>'
+                )
+            elif profile.regime_code == "BORDER_REGION_VAT_8":
+                traslados_concepto.append(
+                    f'          <cfdi:Traslado Base="{subtotal:.2f}" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.080000" Importe="{vat_amount:.2f}"/>'
+                )
+                traslados_comprobante.append(
+                    f'      <cfdi:Traslado Base="{subtotal:.2f}" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.080000" Importe="{vat_amount:.2f}"/>'
+                )
+            elif profile.regime_code == "ZERO_RATED_FOOD_PHARMA_0":
+                traslados_concepto.append(
+                    f'          <cfdi:Traslado Base="{subtotal:.2f}" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.000000" Importe="0.00"/>'
+                )
+                traslados_comprobante.append(
+                    f'      <cfdi:Traslado Base="{subtotal:.2f}" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.000000" Importe="0.00"/>'
+                )
+            else:  # STANDARD_VAT_16
+                traslados_concepto.append(
+                    f'          <cfdi:Traslado Base="{subtotal:.2f}" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="{vat_amount:.2f}"/>'
+                )
+                traslados_comprobante.append(
+                    f'      <cfdi:Traslado Base="{subtotal:.2f}" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="{vat_amount:.2f}"/>'
+                )
+
+            traslados_c_str = "\n".join(traslados_concepto)
+            concepto_impuestos_xml = (
+                f'\n        <cfdi:Impuestos>\n'
+                f'          <cfdi:Traslados>\n'
+                f'{traslados_c_str}\n'
+                f'          </cfdi:Traslados>\n'
+                f'        </cfdi:Impuestos>'
+            )
+            traslados_cmp_str = "\n".join(traslados_comprobante)
+            comprobante_impuestos_xml = (
+                f'  <cfdi:Impuestos TotalImpuestosTrasladados="{total_tax:.2f}">\n'
+                f'    <cfdi:Traslados>\n'
+                f'{traslados_cmp_str}\n'
+                f'    </cfdi:Traslados>\n'
+                f'  </cfdi:Impuestos>\n'
+            )
+
         # Construcción del XML CFDI 4.0 canónico
         xml_template = (
             f'<?xml version="1.0" encoding="UTF-8"?>\n'
@@ -171,7 +258,7 @@ class CfdiPacSimulator:
             f'Version="4.0" Serie="NC" Folio="{folio_interno}" Fecha="{date_iso}" '
             f'Sello="{sello_cfd}" FormaPago="15" NoCertificado="00001000000508849201" '
             f'SubTotal="{subtotal}" Moneda="{currency}" Total="{total}" TipoDeComprobante="E" '
-            f'Exportacion="01" MetodoPago="PUE" LugarExpedicion="06000">\n'
+            f'Exportacion="{exportacion}" MetodoPago="PUE" LugarExpedicion="06000">\n'
             f'  <cfdi:CfdiRelacionados TipoRelacion="01">\n'
             f'    <cfdi:CfdiRelacionado UUID="{original_invoice_uuid}"/>\n'
             f'  </cfdi:CfdiRelacionados>\n'
@@ -183,8 +270,9 @@ class CfdiPacSimulator:
             f'    <cfdi:Concepto ClaveProdServ="{concepto.clave_prod_serv}" NoIdentificacion="{concepto.no_identificacion}" '
             f'Cantidad="{concepto.cantidad}" ClaveUnidad="{concepto.clave_unidad}" Unidad="{concepto.unidad}" '
             f'Descripcion="{concepto.descripcion}" ValorUnitario="{concepto.valor_unitario}" Importe="{concepto.importe}" '
-            f'ObjetoImp="{concepto.objeto_imp}"/>\n'
+            f'ObjetoImp="{concepto.objeto_imp}">{concepto_impuestos_xml}</cfdi:Concepto>\n'
             f'  </cfdi:Conceptos>\n'
+            f'{comprobante_impuestos_xml}'
             f'  <cfdi:Complemento>\n'
             f'    <tfd:TimbreFiscalDigital Version="1.1" UUID="{folio_fiscal_uuid}" FechaTimbrado="{date_iso}" '
             f'RfcProvCertif="{cls.PAC_RFC}" SelloCFD="{sello_cfd}" NoCertificadoSAT="{cls.SAT_CERT_NUMBER}" '

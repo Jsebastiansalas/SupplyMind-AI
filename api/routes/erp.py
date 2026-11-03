@@ -5,7 +5,7 @@ Endpoints REST para Integración ERP (SAP S/4HANA, NetSuite) y Fiscal CFDI 4.0 (
 
 from decimal import Decimal
 from pathlib import Path
-from typing import Dict, Any
+from typing import Dict, Any, Optional, List
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import PlainTextResponse, Response
 from pydantic import BaseModel
@@ -28,14 +28,14 @@ def _decimal_to_float(obj: Any) -> Any:
 
 
 @router.get("/{case_id}/erp/sap")
-def get_sap_payload_endpoint(case_id: str):
+def get_sap_payload_endpoint(case_id: str, fiscal_regime: Optional[str] = None):
     """Retorna la estructura BAPI_ACC_DOCUMENT_POST y el IDoc FIDCCP02 para SAP."""
     case_path = Path("data/cases") / case_id
     if not case_path.exists():
         raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
 
     report = ConcessionEngine.get_or_create_base_report(case_id)
-    lines = ErpEngine.build_erp_posting_lines(report)
+    lines = ErpEngine.build_erp_posting_lines(report, fiscal_regime=fiscal_regime)
     sap_bapi = ErpEngine.generate_sap_bapi_payload(case_id, report, lines)
     sap_idoc = ErpEngine.generate_sap_idoc_text(case_id, report, lines)
 
@@ -49,14 +49,14 @@ def get_sap_payload_endpoint(case_id: str):
 
 
 @router.get("/{case_id}/erp/netsuite")
-def get_netsuite_payload_endpoint(case_id: str):
+def get_netsuite_payload_endpoint(case_id: str, fiscal_regime: Optional[str] = None):
     """Retorna los asientos contables y el archivo CSV para Oracle NetSuite."""
     case_path = Path("data/cases") / case_id
     if not case_path.exists():
         raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
 
     report = ConcessionEngine.get_or_create_base_report(case_id)
-    lines = ErpEngine.build_erp_posting_lines(report)
+    lines = ErpEngine.build_erp_posting_lines(report, fiscal_regime=fiscal_regime)
     csv_text = ErpEngine.generate_netsuite_csv(case_id, report, lines)
 
     return {
@@ -69,7 +69,7 @@ def get_netsuite_payload_endpoint(case_id: str):
 
 
 @router.get("/{case_id}/erp/cfdi")
-def get_cfdi_xml_endpoint(case_id: str):
+def get_cfdi_xml_endpoint(case_id: str, fiscal_regime: Optional[str] = None):
     """Genera y descarga el archivo XML fiscal CFDI 4.0 de Nota de Crédito (Tipo E)."""
     case_path = Path("data/cases") / case_id
     if not case_path.exists():
@@ -77,13 +77,13 @@ def get_cfdi_xml_endpoint(case_id: str):
 
     report = ConcessionEngine.get_or_create_base_report(case_id)
     fiscal_profile = get_case_fiscal_profile(case_id)
-    xml_str = ErpEngine.generate_cfdi_40_xml(case_id, report, fiscal_profile)
+    xml_str = ErpEngine.generate_cfdi_40_xml(case_id, report, fiscal_profile, fiscal_regime=fiscal_regime)
 
     return Response(content=xml_str, media_type="application/xml")
 
 
 @router.post("/{case_id}/erp/export")
-def export_erp_package_endpoint(case_id: str):
+def export_erp_package_endpoint(case_id: str, fiscal_regime: Optional[str] = None):
     """
     Genera y almacena todos los artefactos ERP (SAP, NetSuite, CFDI 4.0) en reports/erp_{case_id}/.
     """
@@ -91,7 +91,7 @@ def export_erp_package_endpoint(case_id: str):
     if not case_path.exists():
         raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
 
-    package = ErpEngine.export_full_erp_package(case_id)
+    package = ErpEngine.export_full_erp_package(case_id, fiscal_regime=fiscal_regime)
     return {
         "status": "success",
         "case_id": case_id,
@@ -101,7 +101,7 @@ def export_erp_package_endpoint(case_id: str):
 
 
 @router.post("/{case_id}/erp/sap/post-document")
-def post_sap_document_simulation(case_id: str):
+def post_sap_document_simulation(case_id: str, fiscal_regime: Optional[str] = None):
     """
     Simulador bidireccional de contabilización directa en SAP S/4HANA (BAPI_ACC_DOCUMENT_POST / RFC).
     Valida partida doble, genera número de documento contable (FI-GL) y retorna confirmación de compensación.
@@ -111,7 +111,7 @@ def post_sap_document_simulation(case_id: str):
         raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
 
     report = ConcessionEngine.get_or_create_base_report(case_id)
-    lines = ErpEngine.build_erp_posting_lines(report)
+    lines = ErpEngine.build_erp_posting_lines(report, fiscal_regime=fiscal_regime)
     
     # Validar partida doble
     total_debit = sum(l.debit for l in lines)

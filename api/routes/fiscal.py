@@ -41,6 +41,8 @@ class StampCreditNoteRequest(BaseModel):
     amount_justified: Decimal = Field(..., description="Monto en dinero de la deducción justificada a timbrar.")
     adjustment_reason: str = Field(..., description="Motivo comercial y pericial del ajuste.")
     currency: str = Field(default="USD", description="Moneda fiscal del comprobante.")
+    fiscal_regime: Optional[str] = Field(default=None, description="Régimen fiscal (STANDARD_VAT_16, ZERO_RATED_FOOD_PHARMA_0, BORDER_REGION_VAT_8, IEPS_HIGH_CALORIE_BEVERAGE, EXPORT_USMCA_0).")
+    breakdown_taxes: bool = Field(default=False, description="Desglosar nodo cfdi:Impuestos conforme al régimen.")
 
 
 class StampPaymentReceiptRequest(BaseModel):
@@ -133,7 +135,9 @@ def stamp_credit_note(request: StampCreditNoteRequest):
         original_invoice_folio=request.original_invoice_folio,
         amount_justified=request.amount_justified,
         adjustment_reason=request.adjustment_reason,
-        currency=request.currency
+        currency=request.currency,
+        fiscal_regime=request.fiscal_regime,
+        breakdown_taxes=request.breakdown_taxes,
     )
     return stamped
 
