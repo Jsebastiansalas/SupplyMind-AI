@@ -36,9 +36,12 @@ class CritiqueCaseRequest(BaseModel):
 class MctsSimulateRequest(BaseModel):
     case_id: str = Field(..., description="Identificador del caso.")
     claimable_amount: Optional[Decimal] = Field(default=None, description="Monto en disputa (si es None, se toma del caso).")
-    retailer_account_weight_pct: float = Field(default=20.0, ge=0.0, le=100.0, description="% de concentración de ventas.")
+    retailer_account_weight_pct: Optional[float] = Field(default=20.0, ge=0.0, le=100.0, description="% de concentración de ventas.")
     supplier_cashflow_priority: str = Field(default="BALANCED", description="AGGRESSIVE, BALANCED o CASH_URGENT.")
     num_simulations: int = Field(default=500, ge=10, le=5000, description="Número de iteraciones Monte Carlo.")
+    wacc_annual_pct: float = Field(default=12.0, ge=0.0, le=100.0, description="Costo de capital ponderado anual WACC (por defecto 12.0%).")
+    rhi_score: Optional[float] = Field(default=None, ge=0.0, le=100.0, description="Puntaje de salud relacional RHI (si es None, se consulta automáticamente).")
+    direct_legal_cost_override: Optional[Decimal] = Field(default=None, description="Sobrescribir costo legal directo para litigio.")
 
 
 class CrossBorderEvaluateRequest(BaseModel):
@@ -139,7 +142,10 @@ def simulate_mcts_negotiation(request: MctsSimulateRequest):
         claimable_amount=claimable,
         retailer_account_weight_pct=request.retailer_account_weight_pct,
         supplier_cashflow_priority=request.supplier_cashflow_priority,
-        num_simulations=request.num_simulations
+        num_simulations=request.num_simulations,
+        wacc_annual_pct=request.wacc_annual_pct,
+        rhi_score=request.rhi_score,
+        direct_legal_cost_override=request.direct_legal_cost_override,
     )
     return result
 
