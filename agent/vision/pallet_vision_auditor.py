@@ -302,7 +302,6 @@ class PalletVisionAuditor:
             if case_path.exists():
                 deliv_file = case_path / "delivery.json"
                 inv_file = case_path / "invoice.json"
-                gt_file = case_path / "ground_truth.json"
 
                 if deliv_file.exists():
                     try:
@@ -326,17 +325,6 @@ class PalletVisionAuditor:
                         inv_sum = sum(int(it.get("quantity", 0)) for it in inv_items)
                         if inv_sum > 0:
                             total_boxes = inv_sum
-                    except Exception:
-                        pass
-
-                if damaged_boxes == 0 and gt_file.exists():
-                    try:
-                        gt_data = json.loads(gt_file.read_text(encoding="utf-8"))
-                        for d in gt_data.get("deductions", []):
-                            reason = d.get("reason", "").lower()
-                            code = d.get("code", "").lower()
-                            if "averi" in reason or "danad" in reason or "damage" in code:
-                                damaged_boxes += 2
                     except Exception:
                         pass
 

@@ -16,6 +16,7 @@ import json
 
 from pydantic import BaseModel, Field
 
+from agent.core.case_ledger import CaseLedger
 from agent.core.dispute_sla_watchdog import DisputeSlaWatchdog
 from agent.core.relational_health_engine import RelationalHealthEngine
 from config.settings import settings
@@ -39,6 +40,7 @@ class PortfolioItemPriority(BaseModel):
     recommended_action: str = ""
     is_prescription_interrupted: bool = False
     interruption_folio: Optional[str] = None
+    is_quarantined: bool = False
 
 
 class PortfolioOptimizationSummary(BaseModel):
@@ -48,6 +50,8 @@ class PortfolioOptimizationSummary(BaseModel):
     total_npv_usd: Decimal
     value_at_risk_prescription_usd: Decimal
     high_priority_cases_count: int
+    quarantined_cases_count: int = 0
+    quarantined_case_ids: List[str] = Field(default_factory=list)
     wacc_annual_applied_pct: float
     ranked_cases: List[PortfolioItemPriority]
     recommended_war_room_agenda: List[str]
@@ -188,16 +192,9 @@ class WorkingCapitalPortfolioOptimizer:
                 # 2. Relational Health Engine (RHI)
                 rhi_rep = RelationalHealthEngine.evaluate_relational_health(cid)
 
-                # 3. Monto reclamable
-                claimable = sla_st.claimable_at_risk
-                if claimable <= Decimal("0.00"):
-                    gt_file = cases_dir / cid / "ground_truth.json"
-                    if gt_file.exists():
-                        try:
-                            gt_d = json.loads(gt_file.read_text(encoding="utf-8"))
-                            claimable = Decimal(str(gt_d.get("expected_claimable_amount", "0.00"))).quantize(Decimal("0.01"))
-                        except Exception:
-                            pass
+                # 3. Monto reclamable canónico (Fuente Única de Verdad)
+                canon = CaseLedger.get(cid)
+                claimable = canon.claimable_amount
 
                 # 4. Cálculo de NPV
                 npv = cls.calculate_npv(
@@ -208,7 +205,7 @@ class WorkingCapitalPortfolioOptimizer:
                 )
 
                 # 5. Eficacia Probatoria
-                if "quarantine" in cid.lower() or "prompt" in cid.lower():
+                if canon.is_quarantined:
                     irref = "C1_LITIGIOSO"
                 elif claimable == Decimal("0.00"):
                     irref = "B1_ALLANAMIENTO"
@@ -227,7 +224,14 @@ class WorkingCapitalPortfolioOptimizer:
                 )
 
                 # 7. Acción recomendada y clasificación
-                if sla_st.days_to_expiration <= 15 and not sla_st.is_prescription_interrupted and claimable > Decimal("0.00"):
+                if canon.is_quarantined:
+                    action_type = "FORENSIC_REVIEW"
+                    rec_action = (
+                        "🛑 CUARENTENA FORENSE: Expediente aislado por integridad comprometida. "
+                        "Excluido de cobro, ERP y acciones masivas hasta revisión humana."
+                    )
+                    p_score = 0.0
+                elif sla_st.days_to_expiration <= 15 and not sla_st.is_prescription_interrupted and claimable > Decimal("0.00"):
                     action_type = "INTERRUPT_PRESCRIPTION"
                     rec_action = (
                         f"🚨 URGENTE: Emitir de inmediato Aviso Formal de Interrupción Art. 1041 CCom "
@@ -260,7 +264,8 @@ class WorkingCapitalPortfolioOptimizer:
                     action_type=action_type,
                     recommended_action=rec_action,
                     is_prescription_interrupted=sla_st.is_prescription_interrupted,
-                    interruption_folio=sla_st.interruption_folio
+                    interruption_folio=sla_st.interruption_folio,
+                    is_quarantined=canon.is_quarantined
                 )
                 items.append(item)
             except Exception:
@@ -272,10 +277,14 @@ class WorkingCapitalPortfolioOptimizer:
         tot_claimable = sum((i.claimable_amount for i in items), Decimal("0.00")).quantize(Decimal("0.01"))
         tot_npv = sum((i.npv_payoff for i in items), Decimal("0.00")).quantize(Decimal("0.01"))
         var_presc = sum(
-            (i.claimable_amount for i in items if i.urgency_level in ("CRITICAL_EXPIRED", "HIGH_IMMINENT") and not i.is_prescription_interrupted),
+            (i.claimable_amount for i in items
+             if not i.is_quarantined
+             and i.urgency_level in ("CRITICAL_EXPIRED", "HIGH_IMMINENT")
+             and not i.is_prescription_interrupted),
             Decimal("0.00")
         ).quantize(Decimal("0.01"))
-        high_pri_count = sum(1 for i in items if i.priority_execution_score >= 70.0)
+        high_pri_count = sum(1 for i in items if i.priority_execution_score >= 70.0 and not i.is_quarantined)
+        quarantined_ids = [i.case_id for i in items if i.is_quarantined]
 
         # Generar agenda ejecutiva de War-Room C-Level
         agenda = [
@@ -296,6 +305,8 @@ class WorkingCapitalPortfolioOptimizer:
             total_npv_usd=tot_npv,
             value_at_risk_prescription_usd=var_presc,
             high_priority_cases_count=high_pri_count,
+            quarantined_cases_count=len(quarantined_ids),
+            quarantined_case_ids=quarantined_ids,
             wacc_annual_applied_pct=round(wacc_annual * 100.0, 2),
             ranked_cases=items,
             recommended_war_room_agenda=agenda,
@@ -318,8 +329,26 @@ class WorkingCapitalPortfolioOptimizer:
         results = []
         action_upper = action_type.strip().upper()
 
-        if action_upper == "INTERRUPT_PRESCRIPTION":
+        # Guarda de integridad: nunca ejecutar acciones de cobro/ERP sobre casos en cuarentena
+        # o sin monto reclamable canónico.
+        if action_upper in ("INTERRUPT_PRESCRIPTION", "POST_ERP"):
+            allowed: List[str] = []
             for cid in case_ids:
+                canon = CaseLedger.get(cid)
+                if canon.is_quarantined:
+                    results.append({"case_id": cid, "status": "BLOCKED",
+                                    "error": "Expediente en cuarentena forense; acción bloqueada."})
+                elif canon.claimable_amount <= Decimal("0.00"):
+                    results.append({"case_id": cid, "status": "BLOCKED",
+                                    "error": "Sin monto reclamable canónico; acción no aplicable."})
+                else:
+                    allowed.append(cid)
+            case_ids_to_run = allowed
+        else:
+            case_ids_to_run = list(case_ids)
+
+        if action_upper == "INTERRUPT_PRESCRIPTION":
+            for cid in case_ids_to_run:
                 try:
                     notice = DisputeSlaWatchdog.issue_prescription_interruption_notice(
                         case_id=cid,
@@ -341,7 +370,8 @@ class WorkingCapitalPortfolioOptimizer:
 
         elif action_upper == "POST_ERP":
             from agent.core.erp_engine import ErpEngine, get_case_fiscal_profile
-            for cid in case_ids:
+            from agent.core.concession_engine import ConcessionEngine
+            for cid in case_ids_to_run:
                 try:
                     rep = ConcessionEngine.get_or_create_base_report(cid)
                     lines = ErpEngine.build_erp_posting_lines(rep)
@@ -364,7 +394,7 @@ class WorkingCapitalPortfolioOptimizer:
 
         elif action_upper == "GENERATE_CAPA":
             from agent.core.capa_ticket_generator import CapaTicketGenerator
-            for cid in case_ids:
+            for cid in case_ids_to_run:
                 try:
                     capa = CapaTicketGenerator.generate_capa_ticket(cid)
                     results.append({
@@ -389,5 +419,6 @@ class WorkingCapitalPortfolioOptimizer:
             "total_cases_requested": len(case_ids),
             "total_success": sum(1 for r in results if r["status"] == "SUCCESS"),
             "total_failed": sum(1 for r in results if r["status"] == "FAILED"),
+            "total_blocked": sum(1 for r in results if r["status"] == "BLOCKED"),
             "results": results
         }

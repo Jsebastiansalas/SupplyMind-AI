@@ -293,7 +293,6 @@ def generate_portfolio_overview(target_limit: int = 52) -> Dict[str, Any]:
     case_summaries = []
 
     for cid in case_dirs:
-        gt_path = cases_dir / cid / "ground_truth.json"
         rep_path = ROOT_DIR / "reports" / f"dispute_report_{cid}.json"
 
         billed = Decimal("0.00")
@@ -316,19 +315,16 @@ def generate_portfolio_overview(target_limit: int = 52) -> Dict[str, Any]:
                 rc_text = data.get("root_cause", rc_text)
             except Exception:
                 pass
-        elif gt_path.exists():
-            try:
-                with open(gt_path, "r", encoding="utf-8") as f:
-                    gt = json.load(f)
-                billed = Decimal(str(gt.get("billed_amount", "0.00")))
-                received = Decimal(str(gt.get("received_amount", "0.00")))
-                diff = Decimal(str(gt.get("difference", "0.00")))
-                justified = Decimal(str(gt.get("expected_justified_amount", "0.00")))
-                claimable = Decimal(str(gt.get("expected_claimable_amount", "0.00")))
-                buyer_name = gt.get("buyer_name", buyer_name)
-                rc_text = gt.get("category", rc_text)
-            except Exception:
-                pass
+        else:
+            # Fuente Única de Verdad (nunca ground_truth.json en producción)
+            from agent.core.case_ledger import CaseLedger
+            canon = CaseLedger.get(cid)
+            billed = canon.billed_amount
+            received = canon.received_amount
+            diff = canon.difference
+            justified = canon.justified_amount
+            claimable = canon.claimable_amount
+            rc_text = canon.root_cause or rc_text
 
         disputed = abs(diff)
         tot_billed += billed

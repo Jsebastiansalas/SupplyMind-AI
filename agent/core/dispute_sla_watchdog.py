@@ -170,16 +170,17 @@ class DisputeSlaWatchdog:
         if report is not None:
             root_cause = getattr(report, "root_cause", "")
             invoice_id = getattr(report, "invoice_id", None) or invoice_id
-            claimable = report.claimable_amount.quantize(Decimal("0.01"))
+            from agent.core.case_ledger import is_report_quarantined
+            claimable = (
+                Decimal("0.00") if is_report_quarantined(report)
+                else report.claimable_amount.quantize(Decimal("0.01"))
+            )
         else:
-            gt_file = ROOT_DIR / "data" / "cases" / case_id / "ground_truth.json"
-            if gt_file.exists():
-                try:
-                    gt_d = json.loads(gt_file.read_text(encoding="utf-8"))
-                    root_cause = gt_d.get("category", "")
-                    claimable = Decimal(str(gt_d.get("expected_claimable_amount", "0.00"))).quantize(Decimal("0.01"))
-                except Exception:
-                    pass
+            # Fuente Única de Verdad: nunca leer ground_truth.json en producción.
+            from agent.core.case_ledger import CaseLedger
+            canon = CaseLedger.get(case_id)
+            root_cause = canon.root_cause
+            claimable = canon.claimable_amount
             inv_file = ROOT_DIR / "data" / "cases" / case_id / "invoice.json"
             if inv_file.exists():
                 try:

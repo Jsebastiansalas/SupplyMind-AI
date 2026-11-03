@@ -134,9 +134,28 @@ class SkynetRunner:
         if self.use_cache and report and report.confidence > 0:
             from agent.core.cache import dispute_cache
             dispute_cache.set(self.case_id, report, self.state)
+
+        # Retroalimentación Episódica Automática en SQLite (Fase 8 - Sprint 8.5 Closed-Loop Learning)
+        if report and report.confidence > 0:
+            try:
+                from agent.memory.precedent_graph import DisputeMemoryNetwork
+                mem_net = DisputeMemoryNetwork()
+                mem_net.record_case_resolution(
+                    case_id=self.case_id,
+                    report=report,
+                    docs=getattr(self.state, "loaded_documents", None) or {}
+                )
+            except Exception:
+                pass
         
         # Exportar artefactos de negocio formales (Reporte Markdown/JSON y Carta de Reclamación)
         if report is not None:
+            # Registrar cifras canónicas en la Fuente Única de Verdad (CaseLedger)
+            try:
+                from agent.core.case_ledger import CaseLedger
+                CaseLedger.register(report)
+            except Exception:
+                pass
             try:
                 artifacts = export_dispute_artifacts(report, self.state)
                 if "markdown_report" in artifacts:

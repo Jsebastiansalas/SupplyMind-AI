@@ -287,7 +287,6 @@ class RetailerPortalAgent:
                         dispute_st = "AUTO_DISPUTED" if sla_st.is_prescription_interrupted else "PENDING_ANALYSIS"
 
                         pay_json = case_folder / "payment.json"
-                        gt_json = case_folder / "ground_truth.json"
                         inv_json = case_folder / "invoice.json"
 
                         inv_ref = f"FAC-{case_id.upper()[:10]}"
@@ -317,31 +316,6 @@ class RetailerPortalAgent:
                                         po_reference=po_ref,
                                         deduction_code=code_val,
                                         deduction_reason=d.get("reason", "Retención unilateral conciliable"),
-                                        amount=Decimal(str(d.get("amount", 0.0))),
-                                        currency=curr,
-                                        posting_date=post_dt,
-                                        dispute_deadline=disp_dead,
-                                        dispute_status=dispute_st,
-                                        portal_claim_url=f"{meta['base_url']}/{case_id}"
-                                    ))
-                            except Exception:
-                                pass
-                        elif gt_json.exists():
-                            try:
-                                gt_d = json.loads(gt_json.read_text(encoding="utf-8"))
-                                curr = gt_d.get("currency", curr)
-                                for d_idx, d in enumerate(gt_d.get("deductions", [])):
-                                    code_val = d.get("code", "DED-CLAIM")
-                                    if "shrt" in code_val.lower() and "shortage" not in code_val.lower():
-                                        code_val = f"SHORTAGE_{code_val}"
-                                    real_deductions.append(PortalDeductionItem(
-                                        deduction_id=f"DED-{portal_type_upper[:3]}-{case_id[:8].upper()}-{d_idx+1}",
-                                        portal_type=portal_type_upper,
-                                        retailer_name=retailer_name,
-                                        invoice_reference=inv_ref,
-                                        po_reference=po_ref,
-                                        deduction_code=code_val,
-                                        deduction_reason=d.get("reason", "Deducción de portafolio B2B"),
                                         amount=Decimal(str(d.get("amount", 0.0))),
                                         currency=curr,
                                         posting_date=post_dt,
