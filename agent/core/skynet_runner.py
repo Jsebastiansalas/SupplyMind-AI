@@ -290,10 +290,11 @@ class SkynetRunner:
         
         max_turns = 10
         for turn in range(max_turns):
-            allowed_budget, budget_reason = TaskBudgetGuard.can_make_request(self.case_id)
-            if not allowed_budget:
-                console.print(f"[bold yellow]{budget_reason}[/bold yellow]")
-                return self._run_fast_path_skynet()
+            if self.budget_cap_usd is not None:
+                allowed_budget, budget_reason = TaskBudgetGuard.can_make_request(self.case_id)
+                if not allowed_budget:
+                    console.print(f"[bold yellow]{budget_reason}[/bold yellow]")
+                    return self._run_fast_path_skynet()
 
             console.print(f"[dim]Turno {turn + 1}: Consultando a Grok ({settings.MODEL_NAME})...[/dim]")
             t_call_start = time.time()

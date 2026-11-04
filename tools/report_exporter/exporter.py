@@ -145,7 +145,8 @@ def generate_markdown_report(report: DisputeAnalysisReport, state: Optional[Disp
             lines.append(f"- **Peticiones Realizadas a Grok-4.7:** {b_sum.requests_count} llamadas")
             lines.append(f"- **Tokens Totales Medidos:** {b_sum.total_tokens:,} ({b_sum.prompt_tokens_total:,} in / {b_sum.completion_tokens_total:,} out)")
             lines.append(f"- **Costo Real Medido por Tarea:** **${b_sum.measured_cost_usd:.5f} USD** (Calibrado con Platica Gateway: $0.011340/req)")
-            lines.append(f"- **Tope Presupuestario por Tarea:** ${b_sum.budget_cap_usd:.4f} USD (Estatus: `{b_sum.status}`)")
+            if b_sum.budget_cap_usd is not None:
+                lines.append(f"- **Tope Presupuestario Configurado:** ${b_sum.budget_cap_usd:.4f} USD (Estatus: `{b_sum.status}`)")
             if b_sum.was_throttled:
                 lines.append(f"> ⚠️ **Límite Presupuestario Activado:** {b_sum.throttle_reason}")
         else:
@@ -278,7 +279,7 @@ def export_dispute_artifacts(report: DisputeAnalysisReport, state: Optional[Disp
             "prompt_tokens": b_sum.prompt_tokens_total,
             "completion_tokens": b_sum.completion_tokens_total,
             "total_tokens": b_sum.total_tokens,
-            "budget_cap_usd": float(b_sum.budget_cap_usd),
+            "budget_cap_usd": float(b_sum.budget_cap_usd) if b_sum.budget_cap_usd is not None else None,
             "was_throttled": b_sum.was_throttled,
             "gateway_baseline_cost_per_request_usd": 0.011340,
             "cost_basis_description": "Calibrado con el consumo histórico real medido en Platica Gateway ($10.66 en 940 peticiones = $0.011340 USD/req)."

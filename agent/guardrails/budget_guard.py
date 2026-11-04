@@ -33,9 +33,9 @@ CALIBRATED_PROMPT_1K_USD = Decimal("0.005000")
 CALIBRATED_COMPLETION_1K_USD = Decimal("0.015000")
 MIN_GATEWAY_REQUEST_FLOOR_USD = Decimal("0.002500")
 
-# Presupuesto máximo predeterminado por expediente/tarea ($0.10 USD ~= 6-8 llamadas reales a Grok)
-DEFAULT_TASK_BUDGET_CAP_USD = Decimal("0.1000")
-DEFAULT_MAX_LLM_CALLS_PER_TASK = 6
+# Sin tope predeterminado: el agente resuelve sin cortar el análisis del modelo
+DEFAULT_TASK_BUDGET_CAP_USD: Optional[Decimal] = None
+DEFAULT_MAX_LLM_CALLS_PER_TASK: Optional[int] = None
 
 
 class BudgetExceededException(Exception):
@@ -57,13 +57,13 @@ class TaskBudgetSummary(BaseModel):
     """Resumen auditado del consumo económico real de una tarea o expediente."""
     task_id: str
     requests_count: int = 0
-    max_requests_allowed: int = DEFAULT_MAX_LLM_CALLS_PER_TASK
+    max_requests_allowed: Optional[int] = None
     prompt_tokens_total: int = 0
     completion_tokens_total: int = 0
     total_tokens: int = 0
     measured_cost_usd: Decimal = Decimal("0.000000")
     gateway_baseline_equivalent_usd: Decimal = Decimal("0.000000")
-    budget_cap_usd: Decimal = DEFAULT_TASK_BUDGET_CAP_USD
+    budget_cap_usd: Optional[Decimal] = None
     budget_utilization_pct: float = 0.0
     status: str = "OK"  # "OK" | "WARNING_80_PCT" | "THROTTLED_CAP_REACHED"
     was_throttled: bool = False
@@ -119,13 +119,13 @@ class TaskBudgetGuard:
     @classmethod
     def can_make_request(cls, task_id: str) -> Tuple[bool, str]:
         """
-        Verifica antes de invocar a Grok si la tarea tiene presupuesto y turnos disponibles.
-        Retorna (permitido: bool, motivo: str).
+        Verifica antes de invocar a Grok si la tarea tiene restricciones explícitas.
+        Por defecto, el agente no corta el análisis y permite que el modelo complete la tarea.
         """
         with cls._lock:
             summary = cls.init_task(task_id)
 
-            if summary.requests_count >= summary.max_requests_allowed:
+            if summary.max_requests_allowed is not None and summary.requests_count >= summary.max_requests_allowed:
                 reason = (
                     f"[BUDGET GUARD] Límite de peticiones por tarea alcanzado "
                     f"({summary.requests_count}/{summary.max_requests_allowed}) en '{task_id}'. "
@@ -137,25 +137,11 @@ class TaskBudgetGuard:
                 logger.warning(reason)
                 return False, reason
 
-            if summary.measured_cost_usd >= summary.budget_cap_usd:
+            if summary.budget_cap_usd is not None and summary.measured_cost_usd >= summary.budget_cap_usd:
                 reason = (
                     f"[BUDGET GUARD] Tope presupuestario por tarea alcanzado "
                     f"(${summary.measured_cost_usd:.4f} / ${summary.budget_cap_usd:.4f} USD) en '{task_id}'. "
                     f"Bloqueando llamada adicional a Grok para evitar sobrecosto."
-                )
-                summary.was_throttled = True
-                summary.status = "THROTTLED_CAP_REACHED"
-                summary.throttle_reason = reason
-                logger.warning(reason)
-                return False, reason
-
-            # Comprobar si el costo proyectado de una llamada más superaría drásticamente el tope
-            projected = summary.measured_cost_usd + MIN_GATEWAY_REQUEST_FLOOR_USD
-            if projected > summary.budget_cap_usd and summary.requests_count > 0:
-                reason = (
-                    f"[BUDGET GUARD] Presupuesto restante insuficiente "
-                    f"(Gastado: ${summary.measured_cost_usd:.4f}, Tope: ${summary.budget_cap_usd:.4f} USD). "
-                    f"Conmutando a resolución determinística."
                 )
                 summary.was_throttled = True
                 summary.status = "THROTTLED_CAP_REACHED"
@@ -191,11 +177,11 @@ class TaskBudgetGuard:
                 Decimal(str(summary.requests_count)) * GATEWAY_MEASURED_AVG_COST_PER_REQUEST_USD
             ).quantize(Decimal("0.000001"), rounding=ROUND_HALF_UP)
 
-            if summary.budget_cap_usd > Decimal("0.00"):
+            if summary.budget_cap_usd is not None and summary.budget_cap_usd > Decimal("0.00"):
                 util = float((summary.measured_cost_usd / summary.budget_cap_usd) * Decimal("100.0"))
                 summary.budget_utilization_pct = round(util, 2)
             else:
-                summary.budget_utilization_pct = 100.0
+                summary.budget_utilization_pct = 0.0
 
             record = LLMCallRecord(
                 call_index=summary.requests_count,
@@ -207,10 +193,16 @@ class TaskBudgetGuard:
             )
             summary.calls_history.append(record)
 
-            if summary.measured_cost_usd >= summary.budget_cap_usd or summary.requests_count >= summary.max_requests_allowed:
+            is_capped = False
+            if summary.budget_cap_usd is not None and summary.measured_cost_usd >= summary.budget_cap_usd:
+                is_capped = True
+            if summary.max_requests_allowed is not None and summary.requests_count >= summary.max_requests_allowed:
+                is_capped = True
+
+            if is_capped:
                 summary.status = "THROTTLED_CAP_REACHED"
                 summary.was_throttled = True
-            elif summary.budget_utilization_pct >= 80.0:
+            elif summary.budget_cap_usd is not None and summary.budget_utilization_pct >= 80.0:
                 summary.status = "WARNING_80_PCT"
                 logger.info(
                     f"[BUDGET WARNING] Tarea '{task_id}' al {summary.budget_utilization_pct}% "

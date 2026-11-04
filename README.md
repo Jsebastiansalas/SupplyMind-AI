@@ -209,10 +209,10 @@ A diferencia de estimaciones teóricas, los costos de SupplyMind AI están calib
 - **Costo por Tarea Neuronal Completa (2-3 turnos de Grok):** **$0.0227 – $0.0340 USD**
 - **Costo por Tarea Simbólica en Python:** **$0.00 USD**
 
-### Guardarraíl Presupuestario (`TaskBudgetGuard`)
-Para evitar bucles infinitos o sobrecostos inesperados en llamadas a Grok:
-- Cada tarea tiene un tope configurable (`budget_cap_usd = Decimal("0.1000")`, equivalente a ~8 llamadas a Grok).
-- Si una consulta compleja alcanza el límite presupuestario, el guardarraíl corta las llamadas subsiguientes (`THROTTLED_CAP_REACHED`) y cierra el expediente de forma determinística en Python sin costo adicional.
+### Telemetría de Costo Real Medido (`TaskBudgetGuard`)
+A diferencia de sistemas que imponen cortes arbitrarios o estimaciones teóricas:
+- El agente mide y reporta con precisión el gasto real de cada tarea basado en la pasarela ($0.011340 USD/petición).
+- Si un expediente requiere más turnos o razonamiento profundo de Grok, el agente completa el análisis sin truncar el caso ni forzar fallbacks prematuros ("si se gasta más, se reporta con honestidad y exactitud").
 
 ---
 
@@ -225,7 +225,7 @@ El proyecto cuenta con un reporte pericial exhaustivo en [`reports/reporte_trans
    - **Falso Positivo en Deducciones:** El clasificador confundía `"no justificada"` con `"JUSTIFICAD"`; corregido con análisis de polaridad negativa prioritaria.
    - **Penalidades Compuestas sobre Daño Real (`case_004`):** Se separó la base física justificada (\$5,000 USD) del recargo punitivo arbitrario (\$2,500 USD).
    - **Delimitadores LIFO en JSONs Truncados:** Auto-reparación en 3ms mediante pila inversa.
-   - **Tope Presupuestario de Grok:** Ajustado a \$0.1000 USD con invocación Batch en Turno 1 para evitar cortes prematuros.
+   - **Optimización de Turnos con Grok:** Invocación Batch en Turno 1 para resolver múltiples herramientas en una sola ida y vuelta, acelerando la respuesta sin truncar el razonamiento.
 2. **Experimento de Alucinación Aritmética de Grok Solo:** Un LLM sin herramientas falla en el **23.3%** de facturas complejas; SupplyMind AI delega obligatoriamente la matemática a Python (`Decimal`), logrando **0.00% de error ($0.00 MAE)**.
 3. **Casos Límite No Liquidables (Cuarentena Forense):** En casos de fraude o contaminación (`case_031`, `case_032`, `case_033`, `case_049`), el agente **declara honestamente Confianza 0.0%** y bloquea la liquidación para exigir revisión humana.
 
