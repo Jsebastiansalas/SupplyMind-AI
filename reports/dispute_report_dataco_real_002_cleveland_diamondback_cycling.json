@@ -40,11 +40,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-11-04T11:50:10.214242+00:00"
+    "generated_at": "2026-11-04T12:02:48.366696+00:00"
   },
   "financial_proof": {
     "case_id": "dataco_real_002_cleveland_diamondback_cycling",
-    "proof_hash": "SM-PROOF-SHA256-562AC75D8C72ACC4",
+    "proof_hash": "SM-PROOF-SHA256-6F08F8278084F954",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -58,7 +58,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-11-04T11:50:10.218175+00:00"
+    "tamper_proof_timestamp": "2026-11-04T12:02:48.374674+00:00"
   },
   "evidence_manifest": {
     "case_id": "dataco_real_002_cleveland_diamondback_cycling",
@@ -133,7 +133,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-11-04T11:50:10Z"
+    "generated_at": "2026-11-04T12:02:48Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -146,16 +146,16 @@
     "claimable_amount": "800.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-562AC75D8C72ACC4",
+    "zkp_proof_hash": "SM-PROOF-SHA256-6F08F8278084F954",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-11-04T11:50:10.234200+00:00"
+    "anchored_at": "2026-11-04T12:02:48.397337+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "dataco_real_002_cleveland_diamondback_cycling",
-    "courtroom_session_id": "CRT-BE775110",
+    "courtroom_session_id": "CRT-5710E181",
     "disputed_amount": "1399.96",
     "justified_amount": "599.96",
     "claimable_amount": "800.00",
@@ -308,5 +308,17 @@
     "prevented_harm_description": "Se documentó el rechazo formal de $800.00 USD en retenciones sin sustento, y se reconoció honestamente $599.96 USD de faltante/avería comprobada.",
     "human_escalation_protocol": "No requerida; el dictamen cuenta con respaldo probatorio pleno.",
     "lesson_learned_record": "Separación estricta entre cálculo numérico en Python y razonamiento semántico en Grok."
+  },
+  "cost_telemetry": {
+    "task_id": "dataco_real_002_cleveland_diamondback_cycling",
+    "measured_cost_usd": 0.0,
+    "requests_count": 0,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "budget_cap_usd": 0.1,
+    "was_throttled": false,
+    "gateway_baseline_cost_per_request_usd": 0.01134,
+    "cost_basis_description": "Calibrado con el consumo histórico real medido en Platica Gateway ($10.66 en 940 peticiones = $0.011340 USD/req)."
   }
 }

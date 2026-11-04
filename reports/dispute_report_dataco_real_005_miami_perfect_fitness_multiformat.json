@@ -44,11 +44,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-11-04T11:50:10.532683+00:00"
+    "generated_at": "2026-11-04T12:02:48.941301+00:00"
   },
   "financial_proof": {
     "case_id": "dataco_real_005_miami_perfect_fitness_multiformat",
-    "proof_hash": "SM-PROOF-SHA256-89D46A727D86718D",
+    "proof_hash": "SM-PROOF-SHA256-28CB829E8D1541C2",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -62,7 +62,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-11-04T11:50:10.535976+00:00"
+    "tamper_proof_timestamp": "2026-11-04T12:02:48.952732+00:00"
   },
   "evidence_manifest": {
     "case_id": "dataco_real_005_miami_perfect_fitness_multiformat",
@@ -161,7 +161,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-11-04T11:50:10Z"
+    "generated_at": "2026-11-04T12:02:48Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -174,16 +174,16 @@
     "claimable_amount": "620.08",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-89D46A727D86718D",
+    "zkp_proof_hash": "SM-PROOF-SHA256-28CB829E8D1541C2",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-11-04T11:50:10.551654+00:00"
+    "anchored_at": "2026-11-04T12:02:48.983846+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "dataco_real_005_miami_perfect_fitness_multiformat",
-    "courtroom_session_id": "CRT-1F47F6E1",
+    "courtroom_session_id": "CRT-C7B49C39",
     "disputed_amount": "1100.00",
     "justified_amount": "479.92",
     "claimable_amount": "620.08",
@@ -336,5 +336,17 @@
     "prevented_harm_description": "Se documentó el rechazo formal de $620.08 USD en retenciones sin sustento, y se reconoció honestamente $479.92 USD de faltante/avería comprobada.",
     "human_escalation_protocol": "No requerida; el dictamen cuenta con respaldo probatorio pleno.",
     "lesson_learned_record": "Separación estricta entre cálculo numérico en Python y razonamiento semántico en Grok."
+  },
+  "cost_telemetry": {
+    "task_id": "dataco_real_005_miami_perfect_fitness_multiformat",
+    "measured_cost_usd": 0.0,
+    "requests_count": 0,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "budget_cap_usd": 0.1,
+    "was_throttled": false,
+    "gateway_baseline_cost_per_request_usd": 0.01134,
+    "cost_basis_description": "Calibrado con el consumo histórico real medido en Platica Gateway ($10.66 en 940 peticiones = $0.011340 USD/req)."
   }
 }

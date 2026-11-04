@@ -326,17 +326,18 @@ def run_50_cases_crucible(
         f"- **Tasa de Alucinación Fáctica (Auditoría de Invariantes SHA-256):** **{hallucination_rate_pct:.2f}% ({hallucinations_detected_count} interceptadas)**",
         f"- **Eficacia de Cuarentena Forense:** **{quar_accuracy:.1f}% ({quarantine_success_count}/{total_quarantine_cases} casos adversarios neutralizados)**",
         f"- **Costo Medido en Sesión (Tarifa Pasarela $0.011340/petición):** **${session_telemetry['session_measured_cost_usd']:.4f} USD ({session_telemetry['session_total_requests']} peticiones)**",
+        f"- **Costo Promedio Real por Tarea Evaluada:** **${session_telemetry['session_measured_cost_usd'] / max(1, total_evaluated):.5f} USD / tarea**",
         f"- **Volumen Financiero Auditado:** **${total_billed_all:,.2f} USD**",
         f"- **Capital Reclamable Recuperado:** **${total_claimable_all:,.2f} USD**",
         f"- **Tiempo Total:** **{total_time:.2f} segundos ({total_time / total_evaluated * 1000:.0f}ms por caso)**",
         "",
         f"## 📋 Detalle de Casos Evaluados ({total_evaluated} Casos)",
-        "| Caso ID | Comprador | Motor Cognitivo | Monto Disputa | Justificado | Reclamable | Invariante | Integridad SHA-256 | Resultado |",
-        "| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |"
+        "| Caso ID | Comprador | Motor Cognitivo | Costo Tarea (USD) | Monto Disputa | Justificado | Reclamable | Invariante | Integridad SHA-256 | Resultado |",
+        "| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |"
     ]
     for r in results_list:
         md_lines.append(
-            f"| `{r['case_id']}` | {r['buyer']} | `{r.get('routing_mode', 'SYMBOLIC_PYTHON')}` | ${abs(r['disputed']):,.2f} | "
+            f"| `{r['case_id']}` | {r['buyer']} | `{r.get('routing_mode', 'SYMBOLIC_PYTHON')}` | ${r.get('measured_cost_usd', 0.0):.4f} | ${abs(r['disputed']):,.2f} | "
             f"${r['justified_pred']:,.2f} | ${r['claimable_pred']:,.2f} | "
             f"{'OK' if r['invariant_ok'] else 'FAIL'} | "
             f"{'FAIL' if r.get('hallucination_detected') else 'VERIFIED'} | "

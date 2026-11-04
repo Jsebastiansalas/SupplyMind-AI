@@ -353,6 +353,7 @@ def main():
     report_table.add_row("Monto justificado", f"[green]${report.justified_amount:,.2f} {report.currency}[/green]")
     report_table.add_row("Monto reclamable", f"${report.claimable_amount:,.2f} {report.currency}")
     report_table.add_row("Nivel de confianza", f"[bold yellow]{report.confidence * 100:.1f}%[/bold yellow]")
+    report_table.add_row("Costo medido tarea", f"[bold green]${runner.state.estimated_cost_usd:.5f} USD[/bold green] [dim](Pasarela: $0.011340/req)[/dim]")
     report_table.add_row("Accion recomendada", f"[bold yellow]{report.recommended_action}[/bold yellow]")
     
     console.print(report_table)
