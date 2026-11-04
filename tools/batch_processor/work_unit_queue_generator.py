@@ -1,12 +1,12 @@
 """
-tools/batch_processor/s4_queue_generator.py
-Generador Determinista de Alta Diversidad para el Hito S4 (Semana de Carga - 1,000+ Unidades).
+tools/batch_processor/work_unit_queue_generator.py
+Generador Determinista de Alta Diversidad para Procesamiento Batch Desatendido (1,000+ Unidades).
 
 Genera una cola reproducible de 1,024 unidades de trabajo de punta a punta:
 1. 35% Casos derivados del dataset abierto real DataCo Global Smart Supply Chain.
 2. 62% Casos de grandes retailers comerciales (Walmart, Amazon, Soriana, Home Depot, Cisco, Liverpool, Chedraui, Oxxo, etc.).
 3. 3% Casos con anomalías deliberadas (JSON corrupto, precios no pactados, inyecciones adversariales y falta de POD)
-   para evaluar la resiliencia, auto-recuperación y reconocimiento honesto de fallos exigido por Platica.
+   para evaluar la resiliencia, auto-recuperación y reconocimiento honesto de fallos.
 
 Garantías:
 - Invariante contable en Decimal ($0.00 MAE).
@@ -36,7 +36,7 @@ def _dec(val: Any) -> Decimal:
     return Decimal(str(val)).quantize(TWO_PLACES, rounding=ROUND_HALF_UP)
 
 
-class S4WorkUnit(BaseModel):
+class WorkUnit(BaseModel):
     """Representación formal de una unidad de trabajo completa de punta a punta."""
     model_config = ConfigDict(extra="allow", populate_by_name=True)
 
@@ -59,8 +59,8 @@ class S4WorkUnit(BaseModel):
     dossier_data: Optional[Dict[str, Any]] = Field(default=None, exclude=True)
 
 
-class S4QueueGenerator:
-    """Generador maestro de la cola de trabajo para la Semana de Carga (S4)."""
+class WorkUnitQueueGenerator:
+    """Generador maestro de la cola de trabajo para procesamiento batch desatendido."""
 
     ANOMALY_TYPES = [
         ("CORRUPT_JSON_SYNTAX", "Archivo JSON de pago con llave truncada para auto-recuperación sintáctica."),
@@ -89,12 +89,12 @@ class S4QueueGenerator:
         return rng.choices(choices, weights=weights, k=1)[0]
 
     @classmethod
-    def generate_queue(cls, total_units: int = 1024, seed: int = 2026) -> List[S4WorkUnit]:
+    def generate_queue(cls, total_units: int = 1024, seed: int = 2026) -> List[WorkUnit]:
         """
         Genera la cola completa de 1,024 unidades de trabajo diversificadas y reproducibles.
         """
         rng = random.Random(seed)
-        queue: List[S4WorkUnit] = []
+        queue: List[WorkUnit] = []
 
         # 1. Recuperar casos reales disponibles de DataCo
         dataco_dir = ROOT_DIR / "data" / "real_supply_chain_cases"
@@ -104,7 +104,7 @@ class S4QueueGenerator:
 
         # 2. Generar unidades de trabajo
         for idx in range(1, total_units + 1):
-            task_id = f"s4_unit_{idx:04d}"
+            task_id = f"work_unit_{idx:04d}"
             
             # Decidir tipo de caso
             roll = rng.random()
@@ -127,17 +127,14 @@ class S4QueueGenerator:
         return queue
 
     @classmethod
-    def _generate_dataco_unit(cls, idx: int, task_id: str, case_name: str, rng: random.Random) -> S4WorkUnit:
+    def _generate_dataco_unit(cls, idx: int, task_id: str, case_name: str, rng: random.Random) -> WorkUnit:
         """Genera una unidad de trabajo anclada en el dataset abierto DataCo Supply Chain."""
-        # Extraer parámetros de variación sobre la base de DataCo
         base_amt = rng.randint(4500, 32000)
         billed = _dec(base_amt)
-        # Tasa típica de controversia logística en tránsito: 8% a 25%
         disc_rate = Decimal(str(round(rng.uniform(0.08, 0.24), 2)))
         disputed = _dec(billed * disc_rate)
         received = _dec(billed - disputed)
 
-        # La mayoría de los casos DataCo en tránsito son defendibles si el flete fue FOB/FCA
         is_claimable_heavy = rng.random() > 0.3
         if is_claimable_heavy:
             claimable = _dec(disputed * Decimal("0.85"))
@@ -148,7 +145,7 @@ class S4QueueGenerator:
             claimable = _dec(disputed - justified)
             action = "CREDIT_MEMO_PARTIAL_ACCEPTED"
 
-        return S4WorkUnit(
+        return WorkUnit(
             unit_index=idx,
             task_id=task_id,
             case_id=f"{case_name}_var_{idx:04d}",
@@ -168,7 +165,7 @@ class S4QueueGenerator:
         )
 
     @classmethod
-    def _generate_retailer_unit(cls, idx: int, task_id: str, buyer_key: str, rng: random.Random) -> S4WorkUnit:
+    def _generate_retailer_unit(cls, idx: int, task_id: str, buyer_key: str, rng: random.Random) -> WorkUnit:
         """Genera una unidad de trabajo de gran cadena comercial parametrizada."""
         buyer = get_retailer_profile(buyer_key)
         buyer_name = (buyer.trade_name or buyer.business_name) if buyer else buyer_key
@@ -182,7 +179,6 @@ class S4QueueGenerator:
         ]
         cat, cat_desc = rng.choice(categories)
 
-        # Monto facturado según categoría
         if buyer_key in ["CISCO_MX", "SAMSUNG_MX"]:
             base_amt = rng.randint(25000, 115000)
         elif buyer_key in ["WALMART_MX", "COSTCO_MX"]:
@@ -192,20 +188,18 @@ class S4QueueGenerator:
 
         billed = _dec(base_amt)
 
-        # Deducción
         if cat == "LATE_DELIVERY_OTIF":
-            disputed = _dec(billed * Decimal("0.03"))  # 3% penalización estándar
-            claimable = disputed  # En el 90% es improcedente por tolerancia de 60 min
+            disputed = _dec(billed * Decimal("0.03"))
+            claimable = disputed
             justified = Decimal("0.00")
             action = "REJECT_OTIF_PENALTY_AND_RECOVER"
         elif cat == "UNAUTHORIZED_PENALTY":
-            disputed = _dec(billed * Decimal("0.02"))  # 2% pronto pago extemporáneo
+            disputed = _dec(billed * Decimal("0.02"))
             claimable = disputed
             justified = Decimal("0.00")
             action = "REJECT_EXTEMPORANEOUS_EARLY_PAY"
         elif cat == "SHORTAGE_DOCK":
             disputed = _dec(min(billed * Decimal("0.12"), Decimal("4500.00")))
-            # Mitad faltante real, mitad error de conteo del retailer
             justified = _dec(disputed * Decimal("0.60"))
             claimable = _dec(disputed - justified)
             action = "CREDIT_MEMO_AND_RECOVER_BALANCE"
@@ -222,10 +216,10 @@ class S4QueueGenerator:
 
         received = _dec(billed - disputed)
 
-        return S4WorkUnit(
+        return WorkUnit(
             unit_index=idx,
             task_id=task_id,
-            case_id=f"case_s4_{buyer_key.lower()}_{idx:04d}",
+            case_id=f"case_batch_{buyer_key.lower()}_{idx:04d}",
             source_origin="RETAILER_CATALOG",
             retailer_id=buyer_key,
             retailer_name=buyer_name,
@@ -249,7 +243,7 @@ class S4QueueGenerator:
         anom_type: str,
         anom_desc: str,
         rng: random.Random
-    ) -> S4WorkUnit:
+    ) -> WorkUnit:
         """Genera una unidad con anomalía deliberada para validar recuperación y cuarentena."""
         buyer_key = rng.choice(["WALMART_MX", "AMAZON_MX", "SORIANA_MX", "LIVERPOOL_MX"])
         billed = _dec(rng.randint(8000, 42000))
@@ -273,10 +267,10 @@ class S4QueueGenerator:
             claimable = disputed
             justified = Decimal("0.00")
 
-        return S4WorkUnit(
+        return WorkUnit(
             unit_index=idx,
             task_id=task_id,
-            case_id=f"anomaly_s4_{anom_type.lower()}_{idx:04d}",
+            case_id=f"anomaly_batch_{anom_type.lower()}_{idx:04d}",
             source_origin="ANOMALY_CONTROLLED",
             retailer_id=buyer_key,
             retailer_name=buyer_key,
@@ -295,21 +289,21 @@ class S4QueueGenerator:
     @classmethod
     def export_queue_manifest(
         cls,
-        queue: List[S4WorkUnit],
+        queue: List[WorkUnit],
         output_dir: Optional[Path] = None
     ) -> Dict[str, str]:
         """Exporta el manifiesto oficial de las 1,024 unidades en CSV y JSON."""
         target_dir = output_dir or (ROOT_DIR / "reports")
         target_dir.mkdir(parents=True, exist_ok=True)
 
-        json_path = target_dir / "s4_queue_manifest_1024.json"
-        csv_path = target_dir / "s4_queue_manifest_1024.csv"
+        json_path = target_dir / "work_unit_queue_manifest_1024.json"
+        csv_path = target_dir / "work_unit_queue_manifest_1024.csv"
 
         # 1. Guardar JSON
         data_dicts = [u.model_dump(mode="json") for u in queue]
         with open(json_path, "w", encoding="utf-8") as f:
             json.dump({
-                "manifest_version": "S4_WEEK_OF_LOAD_1024",
+                "manifest_version": "MASSIVE_UNATTENDED_BATCH_1024",
                 "total_units": len(queue),
                 "generated_seed": 2026,
                 "units": data_dicts
@@ -330,7 +324,6 @@ class S4QueueGenerator:
             for u in queue:
                 d = u.model_dump(mode="python")
                 row = {k: d.get(k) for k in fieldnames}
-                # Formato Decimal a float o string
                 row["billed_amount"] = f"{d['billed_amount']:.2f}"
                 row["received_amount"] = f"{d['received_amount']:.2f}"
                 row["disputed_amount"] = f"{d['disputed_amount']:.2f}"
@@ -344,7 +337,7 @@ class S4QueueGenerator:
         }
 
     @classmethod
-    def materialize_task_to_disk(cls, unit: S4WorkUnit, base_dir: Path) -> Path:
+    def materialize_task_to_disk(cls, unit: WorkUnit, base_dir: Path) -> Path:
         """
         Materializa un expediente físico completo en disco para que SkynetRunner lo procese.
         Crea invoice.json, purchase_order.json, delivery.json, payment.json y contract.json.
@@ -358,7 +351,6 @@ class S4QueueGenerator:
         pay_id = f"REM-{unit.task_id.upper()}"
         ctr_id = f"CTR-{unit.retailer_id}-2026"
 
-        # Item principal
         qty_ordered = 100
         qty_invoiced = 100
         qty_received = 90 if "SHORTAGE" in unit.category else 100
@@ -375,7 +367,7 @@ class S4QueueGenerator:
             "currency": "USD",
             "items": [
                 {
-                    "sku": "SKU-AUTO-S4",
+                    "sku": "SKU-AUTO-BATCH",
                     "description": f"Mercancía de Suministro B2B - {unit.category}",
                     "quantity": qty_invoiced,
                     "unit_price": str(unit_price),
@@ -401,7 +393,7 @@ class S4QueueGenerator:
             },
             "items": [
                 {
-                    "sku": "SKU-AUTO-S4",
+                    "sku": "SKU-AUTO-BATCH",
                     "quantity": qty_ordered,
                     "agreed_price": str(unit_price),
                     "subtotal": str(unit.billed_amount)
@@ -428,7 +420,7 @@ class S4QueueGenerator:
             },
             "items": [
                 {
-                    "sku": "SKU-AUTO-S4",
+                    "sku": "SKU-AUTO-BATCH",
                     "quantity_shipped": qty_invoiced,
                     "quantity_received": qty_received,
                     "quantity_damaged": 0
@@ -457,10 +449,8 @@ class S4QueueGenerator:
             "net_paid": str(unit.received_amount)
         }
 
-        # Inyectar anomalía de sintaxis si corresponde
         if unit.anomaly_type == "CORRUPT_JSON_SYNTAX":
-            # Escribir con llave faltante para probar auto-recuperación
-            corrupt_raw = json.dumps(payment_doc, indent=2)[:-4]  # Truncar intencionalmente
+            corrupt_raw = json.dumps(payment_doc, indent=2)[:-4]
             with open(case_dir / "payment.json", "w", encoding="utf-8") as f:
                 f.write(corrupt_raw)
         else:
@@ -493,7 +483,6 @@ class S4QueueGenerator:
             ]
         }
 
-        # Guardar resto de archivos
         with open(case_dir / "invoice.json", "w", encoding="utf-8") as f:
             json.dump(invoice_doc, f, indent=2, ensure_ascii=False)
         with open(case_dir / "purchase_order.json", "w", encoding="utf-8") as f:

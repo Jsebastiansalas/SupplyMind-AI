@@ -1,6 +1,6 @@
 """
-tests/test_s4_queue_generator.py
-Suite de pruebas para el Generador de Cola de Trabajo del Hito S4 (Semana de Carga - 1,000+ Unidades).
+tests/test_work_unit_queue_generator.py
+Suite de pruebas para el Generador de Cola de Unidades de Trabajo de Carga Masiva (1,000+ Unidades).
 
 Valida:
 1. Generación determinista de 1,024 unidades con semilla reproducible.
@@ -14,18 +14,18 @@ from decimal import Decimal
 from pathlib import Path
 import pytest
 
-from tools.batch_processor.s4_queue_generator import S4QueueGenerator, S4WorkUnit
+from tools.batch_processor.work_unit_queue_generator import WorkUnitQueueGenerator, WorkUnit
 
 
-def test_s4_queue_generation_and_invariants():
+def test_work_unit_queue_generation_and_invariants():
     """Verifica que se generen exactamente 1,024 unidades con balance contable estricto."""
-    queue = S4QueueGenerator.generate_queue(total_units=1024, seed=2026)
+    queue = WorkUnitQueueGenerator.generate_queue(total_units=1024, seed=2026)
 
     assert len(queue) == 1024
 
     for u in queue:
-        assert isinstance(u, S4WorkUnit)
-        assert u.task_id.startswith("s4_unit_")
+        assert isinstance(u, WorkUnit)
+        assert u.task_id.startswith("work_unit_")
         assert u.unit_index >= 1
         assert u.billed_amount > Decimal("0.00")
         assert u.received_amount >= Decimal("0.00")
@@ -36,10 +36,10 @@ def test_s4_queue_generation_and_invariants():
         assert diff == Decimal("0.00"), f"Invariante roto en unidad {u.task_id}"
 
 
-def test_s4_queue_reproducibility():
+def test_work_unit_queue_reproducibility():
     """Valida que la misma semilla genere idénticos expedientes."""
-    q1 = S4QueueGenerator.generate_queue(total_units=50, seed=2026)
-    q2 = S4QueueGenerator.generate_queue(total_units=50, seed=2026)
+    q1 = WorkUnitQueueGenerator.generate_queue(total_units=50, seed=2026)
+    q2 = WorkUnitQueueGenerator.generate_queue(total_units=50, seed=2026)
 
     assert len(q1) == len(q2)
     for u1, u2 in zip(q1, q2):
@@ -49,9 +49,9 @@ def test_s4_queue_reproducibility():
         assert u1.disputed_amount == u2.disputed_amount
 
 
-def test_s4_queue_distribution():
+def test_work_unit_queue_distribution():
     """Valida la distribución realista entre DataCo, Retailers y Anomalías controladas."""
-    queue = S4QueueGenerator.generate_queue(total_units=1024, seed=2026)
+    queue = WorkUnitQueueGenerator.generate_queue(total_units=1024, seed=2026)
 
     origins = {}
     for u in queue:
@@ -68,10 +68,10 @@ def test_s4_queue_distribution():
         assert expected in retailers
 
 
-def test_s4_manifest_export(tmp_path):
+def test_work_unit_manifest_export(tmp_path):
     """Valida la exportación de los manifiestos JSON y CSV."""
-    queue = S4QueueGenerator.generate_queue(total_units=100, seed=2026)
-    paths = S4QueueGenerator.export_queue_manifest(queue, output_dir=tmp_path)
+    queue = WorkUnitQueueGenerator.generate_queue(total_units=100, seed=2026)
+    paths = WorkUnitQueueGenerator.export_queue_manifest(queue, output_dir=tmp_path)
 
     json_p = Path(paths["json_manifest"])
     csv_p = Path(paths["csv_manifest"])
@@ -86,12 +86,12 @@ def test_s4_manifest_export(tmp_path):
     assert len(lines) == 101  # Header + 100 registros
 
 
-def test_s4_task_materialization(tmp_path):
+def test_work_unit_task_materialization(tmp_path):
     """Valida que una unidad de trabajo se materialice en disco con los 5 archivos requeridos."""
-    queue = S4QueueGenerator.generate_queue(total_units=10, seed=2026)
+    queue = WorkUnitQueueGenerator.generate_queue(total_units=10, seed=2026)
     unit = queue[0]
 
-    case_dir = S4QueueGenerator.materialize_task_to_disk(unit, tmp_path)
+    case_dir = WorkUnitQueueGenerator.materialize_task_to_disk(unit, tmp_path)
     assert case_dir.exists()
 
     required_files = ["invoice.json", "purchase_order.json", "delivery.json", "payment.json", "contract.json"]
