@@ -191,6 +191,38 @@ def approve_duel_settlement_endpoint(case_id: str, request: Optional[ApproveDuel
     }
 
 
+class LiveObjectionRequest(BaseModel):
+    objection: str = Field(..., description="Objeción o contra-argumento en lenguaje natural formulado por el comprador retailer o evaluador")
+    operator_name: Optional[str] = Field(default="Evaluador Retailer B2B", description="Nombre del comprador u operador")
+
+
+@router.post("/{case_id}/negotiation/duel/live-objection")
+def live_objection_endpoint(case_id: str, request: LiveObjectionRequest):
+    """
+    Evalúa y contra-argumenta en vivo frente a una objeción del comprador retailer (Eje 2).
+    Aplica análisis de tolerancia contractual, recálculo en Decimal e invariante contable ($0.00 MAE).
+    """
+    case_path = Path("data/cases") / case_id
+    if not case_path.exists() and not (Path("data/real_supply_chain_cases") / case_id).exists():
+        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+
+    if not request.objection or not request.objection.strip():
+        raise HTTPException(status_code=400, detail="El campo 'objection' no puede estar vacío.")
+
+    res = BilateralNegotiationEngine.respond_to_live_objection(
+        case_id=case_id,
+        objection=request.objection.strip(),
+        operator_name=request.operator_name or "Evaluador Retailer B2B"
+    )
+
+    return {
+        "status": "success",
+        "case_id": case_id,
+        "live_response": _decimal_to_float(res.model_dump(mode="python"))
+    }
+
+
+
 class SetGovernanceModeRequest(BaseModel):
     governance_mode: str = Field(..., description="FULL_AUTONOMY | HUMAN_GATEKEEPER")
 

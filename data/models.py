@@ -561,6 +561,28 @@ class NegotiationDuelSession(BaseModel):
     modulation_mode: Optional[str] = None
     churn_risk_level: Optional[str] = None
 
+class LiveNegotiationResponse(BaseModel):
+    """Respuesta estructurada a una contra-objeción en vivo del comprador retail (Eje 2)."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    case_id: str
+    round_number: int
+    objection_received: str
+    objection_category: str  # LATE_DELIVERY_OTIF, UNAUTHORIZED_PENALTY, DAMAGED_GOODS, PRICE_VARIANCE, SHORTAGE_MISSING, ASN_EDI, GENERAL_OBJECTION
+    contract_clause_applied: str
+    contract_tolerance_rule: str
+    is_objection_contractually_valid: bool
+    recalculated_justified_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    recalculated_claimable_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    proposed_credit_memo: Decimal = Field(default=Decimal("0.00"), ge=0)
+    proposed_cash_recovery: Decimal = Field(default=Decimal("0.00"), ge=0)
+    spread: Decimal = Field(default=Decimal("0.00"), ge=0)
+    convergence_pct: float = Field(default=0.0, ge=0.0, le=100.0)
+    status: str = "IN_PROGRESS"  # "IN_PROGRESS", "CONVERGING", "AGREED", "IMPASSE", "AWAITING_HUMAN_APPROVAL"
+    counter_argument_reply: str
+    evidence_exhibited: List[str] = Field(default_factory=list)
+
+
 
 # ==========================================
 # 17. Matriz de Delegación Financiera & Gobernanza B2B (Fase 6 - Sprint 6.2)

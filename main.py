@@ -122,6 +122,106 @@ def prompt_add_case() -> Optional[str]:
             return None
     return None
 
+
+def run_interactive_careo(case_id: str):
+    """Simulador interactivo en vivo de careo y contra-argumentación B2B frente al retailer (Eje 2)."""
+    from agent.core.bilateral_negotiation_engine import BilateralNegotiationEngine
+    from agent.core.retailer_buyer_simulator import RetailerBuyerSimulator
+    from decimal import Decimal
+
+    archetype = RetailerBuyerSimulator.resolve_archetype(case_id)
+    session = BilateralNegotiationEngine.get_duel_session(case_id)
+    if not session:
+        session = BilateralNegotiationEngine.start_duel(case_id=case_id)
+
+    console.print(Panel(
+        f"[bold cyan]SupplyMind AI — Simulador de Negociación y Contra-Argumentación B2B en Vivo (Eje 2)[/bold cyan]\n"
+        f"[bold white]Expediente:[/bold white] [green]{case_id}[/green] | [bold white]Contraparte Retailer:[/bold white] [yellow]{session.retailer_name}[/yellow] ({session.archetype.buyer_title})\n"
+        f"[dim]Monto en Disputa: ${session.total_disputed_amount:,.2f} USD | Modo Gobernanza: {session.governance_mode} | Ronda: {session.current_round}/{session.max_rounds}[/dim]\n"
+        f"[dim]Escribe cualquier objeción en lenguaje natural como si fueras el comprador del retailer o selecciona una prueba típica.[/dim]",
+        border_style="yellow"
+    ))
+
+    while True:
+        console.print("\n[bold white]Opciones de objeción comercial o escribe tu propio argumento:[/bold white]")
+        console.print("  [bold green][1][/bold green] \"Amazon rechaza tu carta porque el transportista llegó 45 minutos tarde al muelle de descarga.\"")
+        console.print("  [bold green][2][/bold green] \"El comprador deduce $500 por folleto publicitario / co-op de verano según su política interna.\"")
+        console.print("  [bold green][3][/bold green] \"Walmart aplica retención de $1,200 USD por penalización OTIF ya que el camión excedió 90 minutos la cita.\"")
+        console.print("  [bold green][4][/bold green] \"Rechazamos el reclamo de avería porque las cajas venían con humedad y empaque roto al momento de la descarga.\"")
+        console.print("  [bold cyan][T][/bold cyan] [bold white]Escribir objeción personalizada en texto libre[/bold white]")
+        console.print("  [bold red][0][/bold red] Salir del simulador de careo\n")
+
+        try:
+            console.print("[bold yellow]Ingresa opción [1-4, T para texto libre, o 0 para salir]: [/bold yellow]", end="")
+            choice = input().strip()
+        except (EOFError, KeyboardInterrupt):
+            break
+
+        if choice in ["0", "exit", "quit", "salir"]:
+            console.print("\n[dim]Sesión de careo finalizada.[/dim]\n")
+            break
+        elif choice == "1":
+            objection = "Amazon rechaza tu carta porque el transportista llegó 45 minutos tarde al muelle de descarga."
+        elif choice == "2":
+            objection = "El comprador deduce $500 por folleto publicitario de verano según política interna."
+        elif choice == "3":
+            objection = "Walmart aplica retención de $1,200 USD por penalización OTIF ya que el camión excedió 90 minutos la cita."
+        elif choice == "4":
+            objection = "Rechazamos el reclamo de avería porque las cajas venían con humedad y empaque roto al momento de la descarga."
+        elif choice.lower() in ["t", "texto", "custom", "escribir"]:
+            try:
+                console.print("\n[bold yellow]Escribe la objeción del comprador retailer: [/bold yellow]", end="")
+                objection = input().strip()
+                if not objection:
+                    continue
+            except (EOFError, KeyboardInterrupt):
+                break
+        elif len(choice) > 5:
+            objection = choice
+        else:
+            continue
+
+        console.print(f"\n[bold magenta]Comprador Retailer ({session.retailer_name}):[/bold magenta] [white]\"{objection}\"[/white]")
+        console.print("[dim]Auditoría de tolerancias contractuales y recálculo determinista en Python Decimal...[/dim]\n")
+
+        res = BilateralNegotiationEngine.respond_to_live_objection(
+            case_id=case_id,
+            objection=objection,
+            operator_name="Evaluador Retailer B2B"
+        )
+
+        # Desplegar dictamen y contra-oferta en tabla formateada
+        res_table = Table(title=f"Resolución de Careo — Ronda {res.round_number}", border_style="cyan", show_header=True)
+        res_table.add_column("Dimensión Contractual / Financiera", style="cyan", width=34)
+        res_table.add_column("Dictamen de SupplyMind AI", style="bold white")
+
+        valid_str = "[bold red]Objeción Inválida (Rechazada de plano)[/bold red]" if not res.is_objection_contractually_valid else "[bold green]Objeción Parcialmente Procedente[/bold green]"
+        res_table.add_row("Categoría de Objeción", res.objection_category)
+        res_table.add_row("Validez Contractual", valid_str)
+        res_table.add_row("Cláusula Contractual Aplicada", res.contract_clause_applied)
+        res_table.add_row("Regla de Tolerancia / Grace Period", res.contract_tolerance_rule)
+        res_table.add_row("Deducción Justificada (Nota de Crédito)", f"${res.proposed_credit_memo:,.2f} USD")
+        res_table.add_row("Recuperación Exigida en Efectivo (Banco)", f"${res.proposed_cash_recovery:,.2f} USD")
+        res_table.add_row("Invariante Aritmética ($0.00 MAE)", f"Total: ${res.proposed_credit_memo + res.proposed_cash_recovery:,.2f} / ${session.total_disputed_amount:,.2f} USD")
+        res_table.add_row("Brecha (Spread) y Convergencia", f"Spread: ${res.spread:,.2f} USD | Convergencia: {res.convergence_pct:.1f}%")
+        res_table.add_row("Estado de la Negociación", res.status)
+
+        console.print(res_table)
+
+        console.print(Panel(
+            f"[bold cyan]Réplica Jurídico-Comercial de SupplyMind AI:[/bold cyan]\n\n"
+            f"{res.counter_argument_reply}\n\n"
+            f"[dim]Pruebas exhibidas:\n" + "\n".join(f"  • {e}" for e in res.evidence_exhibited) + "[/dim]",
+            border_style="green"
+        ))
+
+        if res.status in ["AGREEMENT_REACHED", "AWAITING_HUMAN_APPROVAL"]:
+            console.print(f"[bold green]✓ Acuerdo alcanzado con éxito. Minuta foliada disponible en reports/[/bold green]\n")
+            break
+        elif res.status == "IMPASSE_REACHED":
+            console.print(f"[bold red]✕ Punto muerto alcanzado tras agotar las rondas sin convergencia.[/bold red]\n")
+            break
+
 def main():
     args = sys.argv[1:]
     
@@ -132,6 +232,7 @@ def main():
     is_evaluate = any(a.lower() in ["evaluar", "--evaluar", "demo", "--demo", "verify"] for a in args)
     is_add_case = any(a.lower() in ["--add-case", "--nuevo-caso", "-n", "nuevo", "importar"] for a in args)
     is_batch = any(a.lower() in ["batch", "--batch", "lote", "--lote", "masivo"] for a in args)
+    is_careo = any(a.lower() in ["--careo", "careo", "--duel", "duel", "negociacion", "--negociacion"] for a in args)
 
     # 0. Modo Batch Masivo Desatendido
     if is_batch:
@@ -165,6 +266,11 @@ def main():
         table.add_row("Throughput Industrial", f"{summary.throughput_cases_per_second:.1f} casos/segundo")
         console.print(table)
         console.print(f"[bold green]✓ Corrida batch completada en {summary.total_execution_time_seconds:.2f}s. Reporte en: {md_path}[/bold green]\n")
+        return
+
+    # 0.2 Modo Careo y Negociación en Vivo (Eje 2)
+    if is_careo:
+        run_interactive_careo(case_id=case_id)
         return
 
     # 0.1 Modo Registro de Nuevo Caso directo por flag
@@ -234,6 +340,7 @@ def main():
                 "  [bold green][7][/bold green] [bold white]case_006_walmart_otif_pricing[/bold white] : [bold cyan]PDF Real[/bold cyan] (Walmart OTIF y Sobreprecio)\n"
                 "  [bold green][8][/bold green] [bold white]case_007_cisco_large_bundle[/bold white] : [bold cyan]PDF Masivo Multi-Pág.[/bold cyan] (Cisco $125k, Nombres Arbitrarios y Clasificación Autónoma)\n"
                 "  [bold green][9][/bold green] [bold white]case_008_homedepot_damaged_scanned[/bold white] : [bold cyan]Visión OCR Multimodal[/bold cyan] (Home Depot $42k, Remisión Papel Escaneada con Sello de Muelle)\n"
+                "  [bold yellow][C][/bold yellow] [bold white]Careo de Negociación en Vivo[/bold white] : [bold yellow]Simulador interactivo comprador vs agente (Eje 2)[/bold yellow]\n"
                 "  [bold yellow][N][/bold yellow] [bold white]Poner / Importar Nuevo Caso[/bold white] : [bold yellow]Cargar tus propios documentos o crear caso guiado[/bold yellow]\n"
                 "  [bold red][0][/bold red] Salir\n",
                 title="[bold green]Menú de Selección de Caso[/bold green]",
@@ -266,6 +373,14 @@ def main():
                 case_id = "case_007_cisco_large_bundle"
             elif choice in ["9", "case_008", "case_008_homedepot_damaged_scanned", "c9"]:
                 case_id = "case_008_homedepot_damaged_scanned"
+            elif choice.lower() in ["c", "careo", "duel"]:
+                console.print("[bold yellow]Ingresa el caso para el careo [ej. case_005_amazon_shortage o Enter para case_005]: [/bold yellow]", end="")
+                try:
+                    c_careo = input().strip() or "case_005_amazon_shortage"
+                except (EOFError, KeyboardInterrupt):
+                    return
+                run_interactive_careo(case_id=c_careo)
+                return
             elif choice == "4":
                 runner_temp = SkynetRunner(case_id="case_001")
                 runner_temp._display_all_cases_comparison()

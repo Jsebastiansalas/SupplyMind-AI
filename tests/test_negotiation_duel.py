@@ -172,3 +172,155 @@ def test_negotiation_duel_rest_api():
     data_app = res_app.json()
     assert data_app["session"]["status"] == "AGREEMENT_REACHED"
     assert data_app["minutes_hash"] is not None
+
+
+
+def test_live_objection_amazon_45min_late_delivery_tolerance():
+    """Valida la refutación autónoma de la objeción de Amazon por retraso de 45 min dentro de tolerancia (Eje 2)."""
+    case_id = "case_005_amazon_shortage"
+    objection = "Amazon rechaza tu carta porque el transportista llegó 45 minutos tarde al muelle de descarga."
+
+    res = BilateralNegotiationEngine.respond_to_live_objection(
+        case_id=case_id,
+        objection=objection
+    )
+
+    assert res.case_id == case_id
+    assert res.objection_category == "LATE_DELIVERY_OTIF"
+    assert res.is_objection_contractually_valid is False
+    assert "CL-LOG-05.2" in res.contract_clause_applied
+    assert "60 minutos" in res.contract_tolerance_rule
+    assert "45 min" in res.contract_tolerance_rule
+
+    # Invariante contable Decimal ($0.00 MAE)
+    total_agreed = res.proposed_credit_memo + res.proposed_cash_recovery
+    session = BilateralNegotiationEngine.get_duel_session(case_id)
+    assert total_agreed == session.total_disputed_amount
+    assert res.proposed_credit_memo == Decimal("5000.00")
+    assert res.proposed_cash_recovery == Decimal("2500.00")
+
+    # Argumentación jurídica fundamentada
+    assert "Cláusula 5.2" in res.counter_argument_reply or "5.2" in res.counter_argument_reply
+    assert "tolerancia" in res.counter_argument_reply.lower()
+    assert len(res.evidence_exhibited) >= 2
+
+
+def test_live_objection_late_delivery_exceeding_tolerance():
+    """Valida el cálculo proporcional cuando el retraso excede la ventana de gracia contractual (Eje 2)."""
+    case_id = "case_006_walmart_otif_pricing"
+    objection = "Walmart aplica retención de penalización OTIF ya que el camión excedió 90 minutos la cita fijada."
+
+    res = BilateralNegotiationEngine.respond_to_live_objection(
+        case_id=case_id,
+        objection=objection
+    )
+
+    assert res.objection_category == "LATE_DELIVERY_OTIF"
+    assert res.is_objection_contractually_valid is True
+    assert "CL-LOG-05.3" in res.contract_clause_applied
+    assert "Exceso de 30 minutos" in res.contract_tolerance_rule
+
+    # Invariante contable Decimal ($0.00 MAE)
+    session = BilateralNegotiationEngine.get_duel_session(case_id)
+    assert res.proposed_credit_memo + res.proposed_cash_recovery == session.total_disputed_amount
+    assert res.proposed_credit_memo > Decimal("0.00")
+
+
+def test_live_objection_unauthorized_coop_advertising_penalty():
+    """Valida el rechazo categórico de retenciones unilaterales por publicidad sin adenda firmada (Eje 2)."""
+    case_id = "case_005_amazon_shortage"
+    objection = "El comprador deduce $500 por folleto publicitario / co-op de verano según su política interna."
+
+    res = BilateralNegotiationEngine.respond_to_live_objection(
+        case_id=case_id,
+        objection=objection
+    )
+
+    assert res.objection_category == "UNAUTHORIZED_PENALTY"
+    assert res.is_objection_contractually_valid is False
+    assert "CL-COM-07.2" in res.contract_clause_applied or "10.4" in res.contract_clause_applied
+    assert "Código de Comercio" in res.counter_argument_reply or "Art. 78" in res.counter_argument_reply
+    assert "adenda" in res.counter_argument_reply.lower()
+
+    # Invariante contable
+    session = BilateralNegotiationEngine.get_duel_session(case_id)
+    assert res.proposed_credit_memo + res.proposed_cash_recovery == session.total_disputed_amount
+
+
+def test_live_objection_damaged_goods_preclusion():
+    """Valida la aplicación de preclusión procesal de 5 días por remisión sellada conforme en muelle (Eje 2)."""
+    case_id = "case_001"
+    objection = "Rechazamos el pago porque la mercancía llegó con tarimas dañadas y empaque roto."
+
+    res = BilateralNegotiationEngine.respond_to_live_objection(
+        case_id=case_id,
+        objection=objection
+    )
+
+    assert res.objection_category == "DAMAGED_GOODS"
+    assert res.is_objection_contractually_valid is False
+    assert "Art. 88" in res.contract_clause_applied or "CL-CAL-04.1" in res.contract_clause_applied
+    assert "preclusión" in res.counter_argument_reply.lower() or "precluido" in res.counter_argument_reply.lower()
+
+
+def test_live_objection_rest_api_endpoint():
+    """Valida el endpoint REST POST /api/cases/{case_id}/negotiation/duel/live-objection (Eje 2)."""
+    case_id = "case_005_amazon_shortage"
+
+    # 1. Petición válida
+    res = client.post(
+        f"/api/cases/{case_id}/negotiation/duel/live-objection",
+        json={
+            "objection": "Amazon rechaza tu carta porque el transportista llegó 45 minutos tarde al muelle de descarga.",
+            "operator_name": "Juez Evaluador B2B"
+        }
+    )
+    assert res.status_code == 200
+    data = res.json()
+    assert data["status"] == "success"
+    assert data["case_id"] == case_id
+    live = data["live_response"]
+    assert live["objection_category"] == "LATE_DELIVERY_OTIF"
+    assert live["is_objection_contractually_valid"] is False
+    assert live["proposed_credit_memo"] == 5000.0
+    assert live["proposed_cash_recovery"] == 2500.0
+
+    # 2. Validación de error: objeción vacía
+    res_bad = client.post(
+        f"/api/cases/{case_id}/negotiation/duel/live-objection",
+        json={"objection": "   "}
+    )
+    assert res_bad.status_code == 400
+
+    # 3. Validación de error: caso inexistente
+    res_404 = client.post(
+        "/api/cases/case_inexistente_999/negotiation/duel/live-objection",
+        json={"objection": "Alguna objecion"}
+    )
+    assert res_404.status_code == 404
+
+
+def test_live_objection_tool_executor_react_integration():
+    """Valida la invocación de run_bilateral_negotiation_duel con buyer_objection en ToolExecutor (Eje 2)."""
+    from agent.tools.registry import ToolExecutor
+    from agent.core.state import DisputeState
+    from agent.memory.audit_logger import AuditLogger
+
+    case_id = "case_005_amazon_shortage"
+    state = DisputeState(case_id=case_id, objective="Auditar objeción de transporte")
+    logger = AuditLogger(case_id)
+    executor = ToolExecutor(state=state, audit_logger=logger)
+
+    result = executor.execute_tool(
+        "run_bilateral_negotiation_duel",
+        {
+            "case_id": case_id,
+            "buyer_objection": "Amazon rechaza tu carta porque el transportista llegó 45 minutos tarde al muelle de descarga."
+        }
+    )
+
+    assert result["status"] == "success"
+    assert result["mode"] == "live_objection"
+    assert result["live_response"]["objection_category"] == "LATE_DELIVERY_OTIF"
+    assert result["live_response"]["is_objection_contractually_valid"] is False
+    assert "CL-LOG-05.2" in result["live_response"]["contract_clause_applied"]

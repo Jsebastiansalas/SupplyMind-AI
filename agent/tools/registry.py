@@ -219,7 +219,8 @@ TOOL_DEFINITIONS = [
                 "type": "object",
                 "properties": {
                     "case_id": {"type": "string", "description": "Identificador del caso."},
-                    "governance_mode": {"type": "string", "description": "HUMAN_GATEKEEPER o FULL_AUTONOMY."}
+                    "governance_mode": {"type": "string", "description": "HUMAN_GATEKEEPER o FULL_AUTONOMY."},
+                    "buyer_objection": {"type": "string", "description": "Contra-objeción u réplica en lenguaje natural formulada por el comprador o evaluador (ej. retraso de 45 min, cargo de folleto de verano)."}
                 },
                 "required": ["case_id"]
             }
@@ -666,15 +667,31 @@ class ToolExecutor:
             elif tool_name == "run_bilateral_negotiation_duel":
                 from agent.core.bilateral_negotiation_engine import BilateralNegotiationEngine
                 gov_mode = arguments.get("governance_mode", "HUMAN_GATEKEEPER")
-                session = BilateralNegotiationEngine.get_duel_session(case_id)
-                if not session:
-                    session = BilateralNegotiationEngine.start_duel(case_id=case_id, governance_mode=gov_mode)
+                buyer_objection = arguments.get("buyer_objection")
+
+                if buyer_objection:
+                    live_res = BilateralNegotiationEngine.respond_to_live_objection(
+                        case_id=case_id,
+                        objection=buyer_objection
+                    )
+                    session = BilateralNegotiationEngine.get_duel_session(case_id)
+                    result = {
+                        "status": "success",
+                        "mode": "live_objection",
+                        "live_response": live_res.model_dump(mode="json"),
+                        "duel_session": session.model_dump(mode="json") if session else None
+                    }
                 else:
-                    session = BilateralNegotiationEngine.advance_duel_step(case_id=case_id)
-                result = {
-                    "status": "success",
-                    "duel_session": session.model_dump(mode="json")
-                }
+                    session = BilateralNegotiationEngine.get_duel_session(case_id)
+                    if not session:
+                        session = BilateralNegotiationEngine.start_duel(case_id=case_id, governance_mode=gov_mode)
+                    else:
+                        session = BilateralNegotiationEngine.advance_duel_step(case_id=case_id)
+                    result = {
+                        "status": "success",
+                        "mode": "duel_step",
+                        "duel_session": session.model_dump(mode="json")
+                    }
 
             elif tool_name == "dispatch_dossier_to_retailer_portal":
                 from agent.portal.portal_dispatcher_engine import PortalDispatcherEngine
