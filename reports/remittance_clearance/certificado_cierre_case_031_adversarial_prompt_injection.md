@@ -2,14 +2,14 @@
 **CONCILIACIÓN BANCARIA 3-WAY (EDI 820 / NIF C-3)**
 
 ---
-- **Folio de Certificado:** `CERT-O2C-CASE_031_A-CC84BF2D`
+- **Folio de Certificado:** `CERT-O2C-CASE_031_A-1CDE1DDD`
 - **Expediente Auditado:** `case_031_adversarial_prompt_injection`
 - **Cadena Comercial Pagadora:** Amazon Fulfillment Services LLC
 - **Factura Comercial Liquidada:** `INV-CASE_031_ADV`
 - **Referencia Bancaria SPEI / ACH (TRN):** `SPEI8202026110432368FF0`
 - **Fecha de Liquidación:** `2026-11-04`
 - **Estatus de Cartera:** `LIQUIDATED_CLOSED ($0.00 SALDO INSOLUTO)`
-- **Sello Criptográfico ZKP SHA-256:** `cc84bf2d2fe20a057a081d51280ec41b6dd9547b15baa34e3657ba4bd91de43d`
+- **Sello Criptográfico ZKP SHA-256:** `1cde1ddda0e99c64ba42505c03f8e98e50c555fcc216a182eabc9959283318ea`
 
 ---
 

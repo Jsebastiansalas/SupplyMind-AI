@@ -36,11 +36,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-11-04T05:07:52.887792+00:00"
+    "generated_at": "2026-11-04T11:45:21.058871+00:00"
   },
   "financial_proof": {
     "case_id": "dataco_real_023_portland_northface_backpacks",
-    "proof_hash": "SM-PROOF-SHA256-6D7701F144B77FCB",
+    "proof_hash": "SM-PROOF-SHA256-B3CC74294A18F048",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -54,7 +54,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-11-04T05:07:52.908419+00:00"
+    "tamper_proof_timestamp": "2026-11-04T11:45:21.071449+00:00"
   },
   "evidence_manifest": {
     "case_id": "dataco_real_023_portland_northface_backpacks",
@@ -105,7 +105,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-11-04T05:07:52Z"
+    "generated_at": "2026-11-04T11:45:21Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -118,16 +118,16 @@
     "claimable_amount": "594.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-6D7701F144B77FCB",
+    "zkp_proof_hash": "SM-PROOF-SHA256-B3CC74294A18F048",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-11-04T05:07:52.979273+00:00"
+    "anchored_at": "2026-11-04T11:45:21.092673+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "dataco_real_023_portland_northface_backpacks",
-    "courtroom_session_id": "CRT-F42D1EED",
+    "courtroom_session_id": "CRT-64D1F1A9",
     "disputed_amount": "594.00",
     "justified_amount": "0.00",
     "claimable_amount": "594.00",
@@ -254,5 +254,6 @@
   "deduction_type": null,
   "adversarial_critique": null,
   "mcts_negotiation_plan": null,
-  "cross_border_assessment": null
+  "cross_border_assessment": null,
+  "failure_diagnostics": null
 }

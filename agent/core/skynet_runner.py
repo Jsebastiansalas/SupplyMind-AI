@@ -150,6 +150,13 @@ class SkynetRunner:
             except Exception:
                 pass
 
+            # Adjuntar diagnóstico de fallos y límites operacionales (Hito S3 - Reconocer fallos suma)
+            try:
+                from agent.guardrails.failure_diagnostics import FailureDiagnosticsManager
+                report = FailureDiagnosticsManager.evaluate_and_attach(report, self.state)
+            except Exception:
+                pass
+
         self.state.execution_time_seconds = round(time.time() - start_time, 2)
         
         # Almacenar en caché para acelerar consultas subsecuentes

@@ -36,11 +36,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-11-04T05:07:49.133304+00:00"
+    "generated_at": "2026-11-04T11:45:17.068785+00:00"
   },
   "financial_proof": {
     "case_id": "dataco_real_008_atlanta_underarmour_shoes",
-    "proof_hash": "SM-PROOF-SHA256-D34982B90F46B30B",
+    "proof_hash": "SM-PROOF-SHA256-A7B549D2671C68E7",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -54,7 +54,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-11-04T05:07:49.142465+00:00"
+    "tamper_proof_timestamp": "2026-11-04T11:45:17.080175+00:00"
   },
   "evidence_manifest": {
     "case_id": "dataco_real_008_atlanta_underarmour_shoes",
@@ -105,7 +105,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-11-04T05:07:49Z"
+    "generated_at": "2026-11-04T11:45:17Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -118,16 +118,16 @@
     "claimable_amount": "349.95",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-D34982B90F46B30B",
+    "zkp_proof_hash": "SM-PROOF-SHA256-A7B549D2671C68E7",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-11-04T05:07:49.182720+00:00"
+    "anchored_at": "2026-11-04T11:45:17.117829+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "dataco_real_008_atlanta_underarmour_shoes",
-    "courtroom_session_id": "CRT-1024E31E",
+    "courtroom_session_id": "CRT-721E0718",
     "disputed_amount": "349.95",
     "justified_amount": "0.00",
     "claimable_amount": "349.95",
@@ -254,5 +254,6 @@
   "deduction_type": null,
   "adversarial_critique": null,
   "mcts_negotiation_plan": null,
-  "cross_border_assessment": null
+  "cross_border_assessment": null,
+  "failure_diagnostics": null
 }

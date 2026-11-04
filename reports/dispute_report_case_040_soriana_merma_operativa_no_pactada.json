@@ -35,11 +35,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-11-04T05:06:25.829872+00:00"
+    "generated_at": "2026-11-04T11:48:48.885430+00:00"
   },
   "financial_proof": {
     "case_id": "case_040_soriana_merma_operativa_no_pactada",
-    "proof_hash": "SM-PROOF-SHA256-8B60D3F32A6375EA",
+    "proof_hash": "SM-PROOF-SHA256-CC3EF5F91F3E152B",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -53,7 +53,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-11-04T05:06:26.474926+00:00"
+    "tamper_proof_timestamp": "2026-11-04T11:48:49.366115+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_040_soriana_merma_operativa_no_pactada",
@@ -106,7 +106,7 @@
     ],
     "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
     "confidence_penalty": 0.1,
-    "generated_at": "2026-11-04T05:06:26Z"
+    "generated_at": "2026-11-04T11:48:49Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -119,16 +119,16 @@
     "claimable_amount": "5500.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-8B60D3F32A6375EA",
+    "zkp_proof_hash": "SM-PROOF-SHA256-CC3EF5F91F3E152B",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 93.75,
-    "anchored_at": "2026-11-04T05:06:26.516441+00:00"
+    "anchored_at": "2026-11-04T11:48:49.404292+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_040_soriana_merma_operativa_no_pactada",
-    "courtroom_session_id": "CRT-88C7C87A",
+    "courtroom_session_id": "CRT-B96669BB",
     "disputed_amount": "5500.0",
     "justified_amount": "0.00",
     "claimable_amount": "5500.00",
@@ -255,5 +255,16 @@
   "deduction_type": null,
   "adversarial_critique": null,
   "mcts_negotiation_plan": null,
-  "cross_border_assessment": null
+  "cross_border_assessment": null,
+  "failure_diagnostics": {
+    "case_id": "case_040_soriana_merma_operativa_no_pactada",
+    "is_fully_autonomous": true,
+    "requires_human_in_the_loop": false,
+    "detected_failure_modes": [],
+    "failure_severity": "NORMAL_RESOLUTION",
+    "error_analysis_explanation": "Conciliación cuantitativa completada con precisión Decimal exacta. Sin anomalías de corrupción ni contaminación documental.",
+    "prevented_harm_description": "Se documentó el rechazo formal de $5,500.00 USD en retenciones sin sustento, y se reconoció honestamente $0.00 USD de faltante/avería comprobada.",
+    "human_escalation_protocol": "No requerida; el dictamen cuenta con respaldo probatorio pleno.",
+    "lesson_learned_record": "Separación estricta entre cálculo numérico en Python y razonamiento semántico en Grok."
+  }
 }

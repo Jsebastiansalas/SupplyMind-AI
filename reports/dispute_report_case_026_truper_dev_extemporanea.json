@@ -34,11 +34,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-11-04T05:06:17.985912+00:00"
+    "generated_at": "2026-11-04T11:48:41.253523+00:00"
   },
   "financial_proof": {
     "case_id": "case_026_truper_dev_extemporanea",
-    "proof_hash": "SM-PROOF-SHA256-CE909C97F16C472E",
+    "proof_hash": "SM-PROOF-SHA256-C2F59EF3FA54B00C",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -52,7 +52,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-11-04T05:06:17.989887+00:00"
+    "tamper_proof_timestamp": "2026-11-04T11:48:41.257770+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_026_truper_dev_extemporanea",
@@ -105,7 +105,7 @@
     ],
     "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
     "confidence_penalty": 0.13,
-    "generated_at": "2026-11-04T05:06:17Z"
+    "generated_at": "2026-11-04T11:48:41Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -118,16 +118,16 @@
     "claimable_amount": "19500.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-CE909C97F16C472E",
+    "zkp_proof_hash": "SM-PROOF-SHA256-C2F59EF3FA54B00C",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 82.89,
-    "anchored_at": "2026-11-04T05:06:18.006748+00:00"
+    "anchored_at": "2026-11-04T11:48:41.278781+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_026_truper_dev_extemporanea",
-    "courtroom_session_id": "CRT-132F0C16",
+    "courtroom_session_id": "CRT-502D8E77",
     "disputed_amount": "19500.00",
     "justified_amount": "0.00",
     "claimable_amount": "19500.00",
@@ -256,5 +256,16 @@
   "deduction_type": null,
   "adversarial_critique": null,
   "mcts_negotiation_plan": null,
-  "cross_border_assessment": null
+  "cross_border_assessment": null,
+  "failure_diagnostics": {
+    "case_id": "case_026_truper_dev_extemporanea",
+    "is_fully_autonomous": true,
+    "requires_human_in_the_loop": false,
+    "detected_failure_modes": [],
+    "failure_severity": "NORMAL_RESOLUTION",
+    "error_analysis_explanation": "Conciliación cuantitativa completada con precisión Decimal exacta. Sin anomalías de corrupción ni contaminación documental.",
+    "prevented_harm_description": "Se documentó el rechazo formal de $19,500.00 USD en retenciones sin sustento, y se reconoció honestamente $0.00 USD de faltante/avería comprobada.",
+    "human_escalation_protocol": "No requerida; el dictamen cuenta con respaldo probatorio pleno.",
+    "lesson_learned_record": "Separación estricta entre cálculo numérico en Python y razonamiento semántico en Grok."
+  }
 }

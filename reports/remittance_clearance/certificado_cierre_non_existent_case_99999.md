@@ -2,14 +2,14 @@
 **CONCILIACIÓN BANCARIA 3-WAY (EDI 820 / NIF C-3)**
 
 ---
-- **Folio de Certificado:** `CERT-O2C-NON_EXISTE-17CD4A3C`
+- **Folio de Certificado:** `CERT-O2C-NON_EXISTE-B294A2F5`
 - **Expediente Auditado:** `non_existent_case_99999`
 - **Cadena Comercial Pagadora:** Cadena Comercial Mayorista B2B
 - **Factura Comercial Liquidada:** `INV-NON_EXISTENT`
 - **Referencia Bancaria SPEI / ACH (TRN):** `SPEI820202611047E81D3B9`
 - **Fecha de Liquidación:** `2026-11-04`
 - **Estatus de Cartera:** `LIQUIDATED_CLOSED ($0.00 SALDO INSOLUTO)`
-- **Sello Criptográfico ZKP SHA-256:** `17cd4a3ce9a0688306904b2e960524485c69228f76fe1cfc04efb07bd3164435`
+- **Sello Criptográfico ZKP SHA-256:** `b294a2f582f1911a10d1c017f095973223f0bcf5ff5723004731f4352d219739`
 
 ---
 

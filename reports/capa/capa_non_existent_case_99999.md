@@ -9,7 +9,7 @@
 - **Líder Operativo Asignado:** **Coordinador de Tráfico y Líneas Transportistas 3PL**
 - **Severidad / Prioridad:** `MEDIUM` (SLA de Implementación: `72 horas`)
 - **Impacto Financiero en Disputa:** **$0.00 USD** (Fuga Justificada: `$0.00 USD`)
-- **Fecha de Emisión UTC:** `2026-11-04T05:07:26.714153+00:00`
+- **Fecha de Emisión UTC:** `2026-11-04T11:50:18.035006+00:00`
 
 ---
 

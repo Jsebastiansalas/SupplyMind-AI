@@ -36,11 +36,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-11-04T05:07:55.493957+00:00"
+    "generated_at": "2026-11-04T11:45:22.233634+00:00"
   },
   "financial_proof": {
     "case_id": "dataco_real_028_louisville_slugger_baseball_bats",
-    "proof_hash": "SM-PROOF-SHA256-EF713FBC1B410B1C",
+    "proof_hash": "SM-PROOF-SHA256-8DDEFBBFE097FFE6",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -54,7 +54,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-11-04T05:07:55.509586+00:00"
+    "tamper_proof_timestamp": "2026-11-04T11:45:22.240332+00:00"
   },
   "evidence_manifest": {
     "case_id": "dataco_real_028_louisville_slugger_baseball_bats",
@@ -105,7 +105,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-11-04T05:07:55Z"
+    "generated_at": "2026-11-04T11:45:22Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -118,16 +118,16 @@
     "claimable_amount": "499.90",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-EF713FBC1B410B1C",
+    "zkp_proof_hash": "SM-PROOF-SHA256-8DDEFBBFE097FFE6",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-11-04T05:07:55.617055+00:00"
+    "anchored_at": "2026-11-04T11:45:22.264771+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "dataco_real_028_louisville_slugger_baseball_bats",
-    "courtroom_session_id": "CRT-A350C70F",
+    "courtroom_session_id": "CRT-A1079195",
     "disputed_amount": "499.90",
     "justified_amount": "0.00",
     "claimable_amount": "499.90",
@@ -254,5 +254,6 @@
   "deduction_type": null,
   "adversarial_critique": null,
   "mcts_negotiation_plan": null,
-  "cross_border_assessment": null
+  "cross_border_assessment": null,
+  "failure_diagnostics": null
 }

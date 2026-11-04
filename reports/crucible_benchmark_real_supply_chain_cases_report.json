@@ -1,6 +1,6 @@
 {
   "benchmark_name": "The Crucible Suite — 30 Casos B2B (fast_no_cache)",
-  "timestamp": "2026-11-04T05:07:57Z",
+  "timestamp": "2026-11-04T11:45:22Z",
   "mode": "fast_no_cache",
   "cases_dir": "data\\real_supply_chain_cases",
   "total_cases": 30,
@@ -34,7 +34,7 @@
   },
   "total_audited_usd": 326237.4,
   "total_recovered_usd": 19243.81,
-  "total_time_seconds": 9.9,
+  "total_time_seconds": 8.66,
   "cases_results": [
     {
       "case_id": "dataco_real_001_caguas_pelican_kayak",
@@ -51,7 +51,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 871.22
+      "latency_ms": 744.52
     },
     {
       "case_id": "dataco_real_002_cleveland_diamondback_cycling",
@@ -68,7 +68,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 187.5
+      "latency_ms": 244.28
     },
     {
       "case_id": "dataco_real_003_los_angeles_field_stream_hunting",
@@ -85,7 +85,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 178.78
+      "latency_ms": 317.52
     },
     {
       "case_id": "dataco_real_004_chicago_nike_footwear_overcharge",
@@ -102,7 +102,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 153.98
+      "latency_ms": 377.7
     },
     {
       "case_id": "dataco_real_005_miami_perfect_fitness_multiformat",
@@ -119,7 +119,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 188.34
+      "latency_ms": 284.48
     },
     {
       "case_id": "dataco_real_006_dallas_nike_golf_polo",
@@ -136,7 +136,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 197.18
+      "latency_ms": 261.16
     },
     {
       "case_id": "dataco_real_007_austin_dell_optiplex_hardware",
@@ -153,7 +153,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 231.1
+      "latency_ms": 272.19
     },
     {
       "case_id": "dataco_real_008_atlanta_underarmour_shoes",
@@ -170,7 +170,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 196.49
+      "latency_ms": 319.72
     },
     {
       "case_id": "dataco_real_009_denver_coleman_tents",
@@ -187,7 +187,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 213.64
+      "latency_ms": 283.09
     },
     {
       "case_id": "dataco_real_010_sandiego_titleist_golf_balls",
@@ -204,7 +204,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 205.28
+      "latency_ms": 263.42
     },
     {
       "case_id": "dataco_real_011_sanjose_gopro_cameras",
@@ -221,7 +221,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 208.02
+      "latency_ms": 237.7
     },
     {
       "case_id": "dataco_real_012_phoenix_bushnell_rangefinders",
@@ -238,7 +238,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 227.24
+      "latency_ms": 216.01
     },
     {
       "case_id": "dataco_real_013_houston_yeti_coolers",
@@ -255,7 +255,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 224.22
+      "latency_ms": 188.06
     },
     {
       "case_id": "dataco_real_014_minneapolis_bowflex_dumbbells",
@@ -272,7 +272,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 227.85
+      "latency_ms": 221.74
     },
     {
       "case_id": "dataco_real_015_seattle_garmin_running_watch",
@@ -289,7 +289,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 190.28
+      "latency_ms": 220.96
     },
     {
       "case_id": "dataco_real_016_kansascity_weber_grills",
@@ -306,7 +306,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 281.72
+      "latency_ms": 262.6
     },
     {
       "case_id": "dataco_real_017_tampa_shimano_reels",
@@ -323,7 +323,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 254.0
+      "latency_ms": 267.92
     },
     {
       "case_id": "dataco_real_018_indianapolis_spalding_basketball",
@@ -340,7 +340,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 244.96
+      "latency_ms": 259.86
     },
     {
       "case_id": "dataco_real_019_charlotte_taylormade_drivers",
@@ -357,7 +357,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 246.93
+      "latency_ms": 230.12
     },
     {
       "case_id": "dataco_real_020_pittsburgh_dewalt_drill_kits",
@@ -374,7 +374,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 245.08
+      "latency_ms": 225.46
     },
     {
       "case_id": "dataco_real_021_sanfrancisco_fitbit_wristbands",
@@ -391,7 +391,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 288.13
+      "latency_ms": 190.71
     },
     {
       "case_id": "dataco_real_022_boston_bose_speakers",
@@ -408,7 +408,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 396.79
+      "latency_ms": 363.93
     },
     {
       "case_id": "dataco_real_023_portland_northface_backpacks",
@@ -425,7 +425,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 332.41
+      "latency_ms": 228.07
     },
     {
       "case_id": "dataco_real_024_orlando_callaway_golf_balls",
@@ -442,7 +442,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 388.5
+      "latency_ms": 214.9
     },
     {
       "case_id": "dataco_real_025_milwaukee_wilson_basketballs",
@@ -459,7 +459,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 695.84
+      "latency_ms": 230.24
     },
     {
       "case_id": "dataco_real_026_saltlakecity_columbia_fleeces",
@@ -476,7 +476,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 508.74
+      "latency_ms": 260.29
     },
     {
       "case_id": "dataco_real_027_honolulu_hydroflask_bottles",
@@ -493,7 +493,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 608.25
+      "latency_ms": 194.38
     },
     {
       "case_id": "dataco_real_028_louisville_slugger_baseball_bats",
@@ -510,7 +510,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 482.32
+      "latency_ms": 184.49
     },
     {
       "case_id": "dataco_real_029_oklahomacity_easton_softball_bats",
@@ -527,7 +527,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 436.34
+      "latency_ms": 215.35
     },
     {
       "case_id": "dataco_real_030_caguas_multicategory_obrien_vests",
@@ -544,7 +544,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 542.74
+      "latency_ms": 184.65
     }
   ]
 }

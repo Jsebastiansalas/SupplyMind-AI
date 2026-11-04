@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `case_014_soriana_rebate_unilateral` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-11-04 05:06:15 UTC | **Nivel de Confianza:** 87.0%
+> **Fecha de Emisión:** 2026-11-04 11:48:38 UTC | **Nivel de Confianza:** 87.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO

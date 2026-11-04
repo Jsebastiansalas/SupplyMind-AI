@@ -175,6 +175,7 @@ class DisputeAnalysisReport(_Base):
     adversarial_critique: Optional[Any] = Field(default=None)  # Dictamen del Subagente Crítico Reflexivo (Sprint 5.2)
     mcts_negotiation_plan: Optional[Any] = Field(default=None)  # Plan MCTS de Negociación Estratégica (Sprint 5.2)
     cross_border_assessment: Optional[Any] = Field(default=None)  # Dictamen de Tratados CISG/T-MEC (Sprint 5.2)
+    failure_diagnostics: Optional[Any] = Field(default=None)  # Diagnóstico transparente de fallos y límites operacionales (Hito S3)
 
 
     def formatted_display(self) -> str:

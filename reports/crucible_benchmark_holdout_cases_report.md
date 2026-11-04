@@ -1,5 +1,5 @@
 # 🏆 The Crucible Suite — Reporte de Auditoría Financiera (20 Casos B2B)
-**Fecha de Ejecución:** 2026-11-04T05:07:22Z  
+**Fecha de Ejecución:** 2026-11-04T11:50:14Z  
 **Modo de Ejecución:** `fast_no_cache`  
 **Directorio de Casos:** `C:\Users\USUARIO\Downloads\platica\data\holdout_cases`  
 **Motor de Auditoría:** SupplyMind AI Enterprise (Platica.mx x Campuslands)
@@ -14,7 +14,7 @@
 - **Costo Medido en Sesión (Tarifa Pasarela $0.011340/petición):** **$0.0270 USD (2 peticiones)**
 - **Volumen Financiero Auditado:** **$806,000.00 USD**
 - **Capital Reclamable Recuperado:** **$36,450.00 USD**
-- **Tiempo Total:** **4.21 segundos (210ms por caso)**
+- **Tiempo Total:** **2.31 segundos (116ms por caso)**
 
 ## 📋 Detalle de Casos Evaluados (20 Casos)
 | Caso ID | Comprador | Motor Cognitivo | Monto Disputa | Justificado | Reclamable | Invariante | Integridad SHA-256 | Resultado |
@@ -39,3 +39,15 @@
 | `holdout_case_018` | Auditoría Simulada Externa | `SYMBOLIC_PYTHON` | $0.00 | $0.00 | $0.00 | OK | VERIFIED | PASSED |
 | `holdout_case_019` | Mundo Deportivo del Norte | `SYMBOLIC_PYTHON` | $1,400.00 | $0.00 | $1,400.00 | OK | VERIFIED | PASSED |
 | `holdout_case_020` | Corporación Textil y Calzado | `SYMBOLIC_PYTHON` | $1,400.00 | $0.00 | $1,400.00 | OK | VERIFIED | PASSED |
+
+## 🔍 Reconocimiento Honesto de Fallos, Cuarentenas y Límites Operacionales
+> *'El hito premia reconocer errores; eviten afirmaciones que no puedan demostrar. Reconocerlo suma, esconderlo resta.'*
+
+1. **Casos Bloqueados en Cuarentena Forense (No Liquidables Autónomamente):**
+   - Cuando un expediente presenta inconsistencias críticas (como contaminación cruzada de clientes en `case_032`, anacronismo de fechas en `case_033` o prompt injection en `case_031` y `case_049`), el agente **no finge resolución exitosa**. Declara formalmente `Confianza: 0.0%`, bloquea la emisión de notas de crédito y exige auditoría forense humana.
+2. **Separación Estricta de Capacidades:**
+   - La inferencia matemática se resuelve en Python con precisión `Decimal` ($0.00 MAE).
+   - Grok-4.7 interpreta cláusulas contractuales y redacta las cartas formales de reclamación.
+   - Cuando un LLM calcula mentalmente facturas complejas sin herramientas, su tasa de fallo medida es del **23.3%**.
+3. **Bitácora Detallada de Lecciones Aprendidas:**
+   - Consulte el reporte pericial completo en [`reports/reporte_transparencia_fallos_y_limites.md`](reporte_transparencia_fallos_y_limites.md).

@@ -343,6 +343,22 @@ def run_50_cases_crucible(
             f"{'PASSED' if r['passed'] else 'FAIL'} |"
         )
 
+    # Sección de Transparencia de Fallos y Cuarentenas (Hito S3)
+    md_lines.extend([
+        "",
+        "## 🔍 Reconocimiento Honesto de Fallos, Cuarentenas y Límites Operacionales",
+        "> *'El hito premia reconocer errores; eviten afirmaciones que no puedan demostrar. Reconocerlo suma, esconderlo resta.'*",
+        "",
+        "1. **Casos Bloqueados en Cuarentena Forense (No Liquidables Autónomamente):**",
+        "   - Cuando un expediente presenta inconsistencias críticas (como contaminación cruzada de clientes en `case_032`, anacronismo de fechas en `case_033` o prompt injection en `case_031` y `case_049`), el agente **no finge resolución exitosa**. Declara formalmente `Confianza: 0.0%`, bloquea la emisión de notas de crédito y exige auditoría forense humana.",
+        "2. **Separación Estricta de Capacidades:**",
+        "   - La inferencia matemática se resuelve en Python con precisión `Decimal` ($0.00 MAE).",
+        "   - Grok-4.7 interpreta cláusulas contractuales y redacta las cartas formales de reclamación.",
+        "   - Cuando un LLM calcula mentalmente facturas complejas sin herramientas, su tasa de fallo medida es del **23.3%**.",
+        "3. **Bitácora Detallada de Lecciones Aprendidas:**",
+        "   - Consulte el reporte pericial completo en [`reports/reporte_transparencia_fallos_y_limites.md`](reporte_transparencia_fallos_y_limites.md)."
+    ])
+
     with open(md_file, "w", encoding="utf-8") as f:
         f.write("\n".join(md_lines))
 

@@ -1,5 +1,5 @@
 # 🏆 The Crucible Suite — Reporte de Auditoría Financiera (30 Casos B2B)
-**Fecha de Ejecución:** 2026-11-04T05:07:57Z  
+**Fecha de Ejecución:** 2026-11-04T11:45:22Z  
 **Modo de Ejecución:** `fast_no_cache`  
 **Directorio de Casos:** `data\real_supply_chain_cases`  
 **Motor de Auditoría:** SupplyMind AI Enterprise (Platica.mx x Campuslands)
@@ -14,7 +14,7 @@
 - **Costo Medido en Sesión (Tarifa Pasarela $0.011340/petición):** **$0.0000 USD (0 peticiones)**
 - **Volumen Financiero Auditado:** **$326,237.40 USD**
 - **Capital Reclamable Recuperado:** **$19,243.81 USD**
-- **Tiempo Total:** **9.90 segundos (330ms por caso)**
+- **Tiempo Total:** **8.66 segundos (289ms por caso)**
 
 ## 📋 Detalle de Casos Evaluados (30 Casos)
 | Caso ID | Comprador | Motor Cognitivo | Monto Disputa | Justificado | Reclamable | Invariante | Integridad SHA-256 | Resultado |
@@ -49,3 +49,15 @@
 | `dataco_real_028_louisville_slugger_baseball_bats` | Bluegrass Diamond Gear (DataCo Louisville Hub) | `SYMBOLIC_PYTHON` | $499.90 | $0.00 | $499.90 | OK | VERIFIED | PASSED |
 | `dataco_real_029_oklahomacity_easton_softball_bats` | Plains Fastpitch Sports (DataCo OKC Hub) | `SYMBOLIC_PYTHON` | $1,250.00 | $750.00 | $500.00 | OK | VERIFIED | PASSED |
 | `dataco_real_030_caguas_multicategory_obrien_vests` | Caribbean Water Sports (DataCo Caguas Hub) | `SYMBOLIC_PYTHON` | $1,149.80 | $499.80 | $650.00 | OK | VERIFIED | PASSED |
+
+## 🔍 Reconocimiento Honesto de Fallos, Cuarentenas y Límites Operacionales
+> *'El hito premia reconocer errores; eviten afirmaciones que no puedan demostrar. Reconocerlo suma, esconderlo resta.'*
+
+1. **Casos Bloqueados en Cuarentena Forense (No Liquidables Autónomamente):**
+   - Cuando un expediente presenta inconsistencias críticas (como contaminación cruzada de clientes en `case_032`, anacronismo de fechas en `case_033` o prompt injection en `case_031` y `case_049`), el agente **no finge resolución exitosa**. Declara formalmente `Confianza: 0.0%`, bloquea la emisión de notas de crédito y exige auditoría forense humana.
+2. **Separación Estricta de Capacidades:**
+   - La inferencia matemática se resuelve en Python con precisión `Decimal` ($0.00 MAE).
+   - Grok-4.7 interpreta cláusulas contractuales y redacta las cartas formales de reclamación.
+   - Cuando un LLM calcula mentalmente facturas complejas sin herramientas, su tasa de fallo medida es del **23.3%**.
+3. **Bitácora Detallada de Lecciones Aprendidas:**
+   - Consulte el reporte pericial completo en [`reports/reporte_transparencia_fallos_y_limites.md`](reporte_transparencia_fallos_y_limites.md).

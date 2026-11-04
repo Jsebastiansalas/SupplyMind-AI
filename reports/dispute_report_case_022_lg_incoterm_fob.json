@@ -34,11 +34,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-11-04T05:06:17.197038+00:00"
+    "generated_at": "2026-11-04T11:48:40.263550+00:00"
   },
   "financial_proof": {
     "case_id": "case_022_lg_incoterm_fob",
-    "proof_hash": "SM-PROOF-SHA256-3579A851D914D745",
+    "proof_hash": "SM-PROOF-SHA256-51E589E77A079E90",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -52,7 +52,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-11-04T05:06:17.206703+00:00"
+    "tamper_proof_timestamp": "2026-11-04T11:48:40.281886+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_022_lg_incoterm_fob",
@@ -105,7 +105,7 @@
     ],
     "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
     "confidence_penalty": 0.13,
-    "generated_at": "2026-11-04T05:06:17Z"
+    "generated_at": "2026-11-04T11:48:40Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -118,16 +118,16 @@
     "claimable_amount": "28000.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-3579A851D914D745",
+    "zkp_proof_hash": "SM-PROOF-SHA256-51E589E77A079E90",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 83.53,
-    "anchored_at": "2026-11-04T05:06:17.247924+00:00"
+    "anchored_at": "2026-11-04T11:48:40.326356+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_022_lg_incoterm_fob",
-    "courtroom_session_id": "CRT-06893A06",
+    "courtroom_session_id": "CRT-484FE60A",
     "disputed_amount": "28000.00",
     "justified_amount": "0.00",
     "claimable_amount": "28000.00",
@@ -253,5 +253,16 @@
   "deduction_type": null,
   "adversarial_critique": null,
   "mcts_negotiation_plan": null,
-  "cross_border_assessment": null
+  "cross_border_assessment": null,
+  "failure_diagnostics": {
+    "case_id": "case_022_lg_incoterm_fob",
+    "is_fully_autonomous": true,
+    "requires_human_in_the_loop": false,
+    "detected_failure_modes": [],
+    "failure_severity": "NORMAL_RESOLUTION",
+    "error_analysis_explanation": "Conciliación cuantitativa completada con precisión Decimal exacta. Sin anomalías de corrupción ni contaminación documental.",
+    "prevented_harm_description": "Se documentó el rechazo formal de $28,000.00 USD en retenciones sin sustento, y se reconoció honestamente $0.00 USD de faltante/avería comprobada.",
+    "human_escalation_protocol": "No requerida; el dictamen cuenta con respaldo probatorio pleno.",
+    "lesson_learned_record": "Separación estricta entre cálculo numérico en Python y razonamiento semántico en Grok."
+  }
 }

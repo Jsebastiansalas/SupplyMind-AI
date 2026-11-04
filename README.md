@@ -216,23 +216,27 @@ Para evitar bucles infinitos o sobrecostos inesperados en llamadas a Grok:
 
 ---
 
-## 🛠️ 10. Reconocimiento de Fallos y Mejoras Implementadas
+## 🛠️ 10. Reconocimiento de Fallos, Casos Límite y Transparencia (Hito S3)
 
-En cumplimiento con el criterio de evaluación que premia la honestidad técnica:
+> *"El hito premia reconocer errores; eviten afirmaciones que no puedan demostrar. Incluye los casos donde falló: reconocerlo suma, esconderlo resta."*
 
-1. **Clasificación de Deducciones con Negación:**  
-   *Fallo:* Motivos con frases como *"Multa por re-etiquetado no justificada"* eran erróneamente clasificados como justificados porque el token `"JUSTIFICAD"` coincidía con la subcadena.  
-   *Solución:* Se incorporaron tokens negativos prioritarios (`"NO JUSTIFICAD"`, `"NO CONTEMPLAD"`, `"SIN SOPORTE"`) y se forzó la evaluación de improcedencia antes de cualquier coincidencia positiva.
-2. **Archivos Residuales en Casos Multiformato:**  
-   *Fallo:* Al alternar entre formatos (.csv y .xlsx), la persistencia de archivos antiguos provocaba colisiones en la conciliación.  
-   *Solución:* Se implementó limpieza previa obligatoria en el pipeline de generación e ingesta de expedientes.
-3. **Cierre de Delimitadores en JSON Truncados:**  
-   *Fallo:* Al auto-cerrar JSONs incompletos, el cierre secuencial de corchetes antes de llaves rompía la jerarquía cuando había objetos anidados dentro de listas.  
-   *Solución:* Se implementó un rastreador de pila LIFO (Last-In, First-Out) que cierra llaves y corchetes en el orden exacto de anidamiento en 3 ms.
+El proyecto cuenta con un reporte pericial exhaustivo en [`reports/reporte_transparencia_fallos_y_limites.md`](reports/reporte_transparencia_fallos_y_limites.md) que desglosa:
+1. **Fallos Históricos Reales:**
+   - **Falso Positivo en Deducciones:** El clasificador confundía `"no justificada"` con `"JUSTIFICAD"`; corregido con análisis de polaridad negativa prioritaria.
+   - **Penalidades Compuestas sobre Daño Real (`case_004`):** Se separó la base física justificada (\$5,000 USD) del recargo punitivo arbitrario (\$2,500 USD).
+   - **Delimitadores LIFO en JSONs Truncados:** Auto-reparación en 3ms mediante pila inversa.
+   - **Tope Presupuestario de Grok:** Ajustado a \$0.1000 USD con invocación Batch en Turno 1 para evitar cortes prematuros.
+2. **Experimento de Alucinación Aritmética de Grok Solo:** Un LLM sin herramientas falla en el **23.3%** de facturas complejas; SupplyMind AI delega obligatoriamente la matemática a Python (`Decimal`), logrando **0.00% de error ($0.00 MAE)**.
+3. **Casos Límite No Liquidables (Cuarentena Forense):** En casos de fraude o contaminación (`case_031`, `case_032`, `case_033`, `case_049`), el agente **declara honestamente Confianza 0.0%** y bloquea la liquidación para exigir revisión humana.
+
+Para verificar esta auditoría en consola:
+```powershell
+python scripts/benchmark_llm_vs_symbolic_failures.py
+```
 
 ---
 
-## 📂 10. Estructura del Repositorio
+## 📂 11. Estructura del Repositorio
 
 ```
 platica/
@@ -278,7 +282,7 @@ platica/
 
 ---
 
-## 🏆 11. Matriz de Cumplimiento de Hitos Oficiales (S1, S2, S3)
+## 🏆 12. Matriz de Cumplimiento de Hitos Oficiales (S1, S2, S3)
 
 ### ✅ Hito S1 — Agente End-to-End contra Grok
 - [x] Repositorio público configurado con variables en `.env.example` sin filtración de credenciales.
@@ -296,10 +300,10 @@ platica/
 - [x] **Datos Reales de Dominio:** 30 expedientes basados en la base abierta pública DataCo Global Smart Supply Chain ([Mendeley Data, DOI: 10.17632/8gx2fvg2k6.5](https://doi.org/10.17632/8gx2fvg2k6.5)).
 - [x] **Set de Evaluación de 30 Casos con Resultados:** 100% Exact Match ($0.00 MAE) sobre $326,237.40 USD auditados en [`reports/crucible_benchmark_real_supply_chain_cases_report.md`](reports/crucible_benchmark_real_supply_chain_cases_report.md).
 - [x] **Costo Real Medido por Tarea:** Calibrado con telemetría de pasarela ($10.66 USD en 940 peticiones = $0.011340 USD/req) y protegido con `TaskBudgetGuard`.
-- [x] **Transparencia Técnica y Honestidad en Fallos:** Separación explícita de lo que resuelve Python ($0.00 USD) vs Grok ($0.011340/req), y reporte de fallos corregidos en la Sección 10.
+- [x] **Transparencia Técnica y Honestidad en Fallos:** Separación explícita de lo que resuelve Python ($0.00 USD) vs Grok ($0.011340/req), y reporte pericial de fallos en [`reports/reporte_transparencia_fallos_y_limites.md`](reports/reporte_transparencia_fallos_y_limites.md).
 
 ---
 
-## 📄 12. Licencia y Créditos
+## 📄 13. Licencia y Créditos
 Desarrollado para el **Reto Agente 2026** por el equipo de **SupplyMind AI**.  
 Potenciado por la arquitectura **SKYNET Framework** y el modelo **Grok 4.7 (xAI)** a través de **Platica.mx Gateway**.

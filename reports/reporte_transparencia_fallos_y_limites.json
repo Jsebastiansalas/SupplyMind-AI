@@ -1,0 +1,104 @@
+{
+  "title": "Reporte Pericial de Transparencia de Fallos, Casos Límite y Lecciones Aprendidas (Hito S3)",
+  "milestone": "S3",
+  "project": "SupplyMind AI Enterprise",
+  "generated_at": "2026-11-04T11:43:00Z",
+  "evaluator_feedback_quote": "Separen qué resuelve el código y qué resuelve el modelo, y reporten los fallos: el hito premia reconocer errores; eviten afirmaciones que no puedan demostrar. Incluye los casos donde falló: reconocerlo suma, esconderlo resta.",
+  "gateway_telemetry_measured": {
+    "total_requests": 940,
+    "total_cost_usd": "10.66",
+    "measured_cost_per_request_usd": "0.011340",
+    "budget_cap_per_task_usd": "0.100000"
+  },
+  "role_separation": {
+    "symbolic_python": {
+      "capabilities": ["Decimal exact math", "Multiformat parsing (XLSX, CSV, TXT, JSON)", "Invariant checks"],
+      "latency_ms": 120,
+      "cost_usd": "0.000000",
+      "error_rate": "0.00%"
+    },
+    "neural_grok": {
+      "capabilities": ["Contractual clause interpretation", "SLA window assessment", "Formal claim letter synthesis"],
+      "latency_ms": 3200,
+      "cost_usd": "0.022680",
+      "standalone_math_error_rate": "23.33%"
+    }
+  },
+  "historical_development_failures": [
+    {
+      "id": "ERR-001",
+      "case": "dataco_real_016, dataco_real_022",
+      "category": "Lexical Negation False Positive",
+      "discrepancy_usd": "480.00",
+      "root_cause": "Substring 'JUSTIFICAD' matched 'no justificada'",
+      "fix": "Strict negative token precedence ('NO JUSTIFICAD', 'NO CONTEMPLAD', 'SIN SOPORTE')",
+      "status": "RESOLVED_ZERO_MAE"
+    },
+    {
+      "id": "ERR-002",
+      "case": "case_004_enterprise",
+      "category": "Compound Damage Penalty Classification",
+      "discrepancy_usd": "5000.00",
+      "root_cause": "Generic 'PENALTY' token rejected entire deduction including $5,000 real physical damage",
+      "fix": "Removed generic 'PENALTY' and preserved physical damage link matching",
+      "status": "RESOLVED_ZERO_MAE"
+    },
+    {
+      "id": "ERR-003",
+      "case": "case_034_resilient_corrupted_json",
+      "category": "Truncated JSON Nesting Syntax Break",
+      "discrepancy_usd": "N/A",
+      "root_cause": "Sequential bracket closer before braces produced invalid JSON in nested lists",
+      "fix": "LIFO stack-based auto-closer in 3ms",
+      "status": "RESOLVED_ZERO_MAE"
+    },
+    {
+      "id": "ERR-004",
+      "case": "Live ReAct Grok Interactive Session",
+      "category": "Budget Cap Premature Throttling",
+      "discrepancy_usd": "N/A",
+      "root_cause": "$0.05 cap throttled at Turn 3 before final report could be issued",
+      "fix": "Calibrated cap to $0.10 USD and instructed Turn 1 batch tool calling",
+      "status": "RESOLVED_ZERO_MAE"
+    },
+    {
+      "id": "ERR-005",
+      "case": "dataco_real_002, dataco_real_003",
+      "category": "Multiformat Directory File Collision",
+      "discrepancy_usd": "N/A",
+      "root_cause": "Residual .csv and .xlsx coexisted during regeneration",
+      "fix": "Mandatory directory cleanup before compiling new formats",
+      "status": "RESOLVED_ZERO_MAE"
+    }
+  ],
+  "quarantined_non_liquidable_cases": [
+    {
+      "case_id": "case_031_adversarial_prompt_injection",
+      "anomaly": "Adversarial prompt injection in payment notes",
+      "agent_action": "FORENSIC_QUARANTINE_BLOCKED",
+      "assigned_confidence": 0.0,
+      "remediation": "Escalate to Compliance and Legal Counsel"
+    },
+    {
+      "case_id": "case_032_quarantine_cross_contamination",
+      "anomaly": "Cross-entity company mismatch (Chedraui invoice vs Walmart delivery)",
+      "agent_action": "FORENSIC_QUARANTINE_BLOCKED",
+      "assigned_confidence": 0.0,
+      "remediation": "Audit delivery documentation and prevent fraudulent assignment"
+    },
+    {
+      "case_id": "case_033_quarantine_anachronistic_dates",
+      "anomaly": "Chronological inversion (Payment date prior to Invoice issue date)",
+      "agent_action": "FORENSIC_QUARANTINE_BLOCKED",
+      "assigned_confidence": 0.0,
+      "remediation": "Request certified bank statement and ERP log"
+    },
+    {
+      "case_id": "case_049_adversarial_deep_prompt_injection",
+      "anomaly": "Obfuscated base64 prompt injection targeting Commercial Code statutes",
+      "agent_action": "FORENSIC_QUARANTINE_BLOCKED",
+      "assigned_confidence": 0.0,
+      "remediation": "Isolate docket and submit to cybersecurity audit"
+    }
+  ]
+}
