@@ -257,6 +257,30 @@ TOOL_DEFINITIONS = [
     {
         "type": "function",
         "function": {
+            "name": "audit_retailer_leakage_radar",
+            "description": "Audita el Radar de Fuga de Capital y Perfilado de Retailers (Eje 4). Analiza patrones de deducción abusivos sistemáticos por cadena comercial (Walmart, Amazon, Cisco, Home Depot, Soriana, Liverpool, Chedraui), calcula el volumen disputado y el capital recuperable en la cartera completa con precisión Decimal, y genera checklists preventivos pre-despacho y evaluación DVI.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "retailer_id": {
+                        "type": "string",
+                        "description": "Identificador o nombre de la cadena comercial (WALMART, AMAZON, CISCO, HOMEDEPOT, SORIANA, LIVERPOOL, CHEDRAUI, ALL o PORTFOLIO)."
+                    },
+                    "scan_portfolio": {
+                        "type": "boolean",
+                        "description": "Si es True, escanea todos los expedientes de la cartera y agrega métricas globales de fuga de capital."
+                    },
+                    "include_pre_dispatch_checklist": {
+                        "type": "boolean",
+                        "description": "Si es True, incluye el checklist operacional mandatorio antes de despachar mercancía."
+                    }
+                }
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
             "name": "optimize_working_capital_portfolio",
             "description": "Optimiza la cartera de controversias B2B de capital de trabajo, priorizando casos por Valor Presente Neto (NPV con WACC anual), riesgo de caducidad SLA (DTP) y salud relacional (RHI).",
             "parameters": {
@@ -720,6 +744,47 @@ class ToolExecutor:
                     "netsuite_journal_lines": pkg.netsuite_journal_lines,
                     "exported_files_dir": f"reports/erp_{case_id}/"
                 }
+
+            elif tool_name == "audit_retailer_leakage_radar":
+                retailer_id = arguments.get("retailer_id")
+                scan_portfolio = arguments.get("scan_portfolio", False)
+                include_chk = arguments.get("include_pre_dispatch_checklist", True)
+
+                from agent.core.fx_and_leakage_engine import RetailerLeakageProfiler
+                if scan_portfolio or not retailer_id or str(retailer_id).upper() in ["ALL", "PORTFOLIO", "CARTERA"]:
+                    radar_rep = RetailerLeakageProfiler.scan_portfolio_leakage_radar()
+                    paths = RetailerLeakageProfiler.export_portfolio_radar_report(radar_rep)
+                    result = {
+                        "status": "success",
+                        "mode": "PORTFOLIO_SCAN",
+                        "total_cases_scanned": radar_rep.total_cases_scanned,
+                        "total_disputed_volume_usd": float(radar_rep.total_disputed_volume),
+                        "total_recovered_capital_usd": float(radar_rep.total_recovered_capital),
+                        "total_leakage_at_risk_usd": float(radar_rep.total_leakage_at_risk),
+                        "portfolio_win_rate_pct": radar_rep.portfolio_win_rate_pct,
+                        "top_retailers": [r.model_dump(mode="json") for r in radar_rep.retailer_summaries[:5]],
+                        "high_risk_hubs": [h.model_dump(mode="json") for h in radar_rep.high_risk_hubs[:3]],
+                        "pre_dispatch_safeguards": radar_rep.pre_dispatch_safeguards_mandatory,
+                        "exported_reports": paths
+                    }
+                else:
+                    prof = RetailerLeakageProfiler.get_profile(str(retailer_id))
+                    chk = RetailerLeakageProfiler.generate_pre_dispatch_checklist(str(retailer_id)) if include_chk else []
+                    result = {
+                        "status": "success",
+                        "mode": "SINGLE_RETAILER_PROFILE",
+                        "retailer_id": prof.retailer_id,
+                        "retailer_name": prof.retailer_name,
+                        "risk_tier": prof.risk_tier,
+                        "win_rate_pct": prof.win_rate_pct,
+                        "recovery_ratio_pct": prof.recovery_ratio_pct,
+                        "total_disputed_volume_usd": float(prof.total_disputed_volume),
+                        "total_recovered_amount_usd": float(prof.total_recovered_amount),
+                        "recommended_incoterm": prof.recommended_incoterm,
+                        "cedis_alert": prof.cedis_alert_summary,
+                        "systematic_patterns": [p.model_dump(mode="json") for p in prof.systematic_patterns],
+                        "pre_dispatch_checklist": [c.model_dump(mode="json") for c in chk]
+                    }
 
             elif tool_name == "optimize_working_capital_portfolio":
                 from agent.core.portfolio_optimizer import WorkingCapitalPortfolioOptimizer

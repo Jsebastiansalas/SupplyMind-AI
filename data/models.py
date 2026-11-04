@@ -358,6 +358,53 @@ class RetailerLeakageProfile(BaseModel):
     cedis_alert_summary: Optional[str] = None
 
 
+class RetailerRiskSummary(BaseModel):
+    """Resumen de riesgo y fuga de un comprador comercial en el radar de cartera."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    retailer_id: str
+    retailer_name: str
+    risk_tier: str = "MEDIO"                    # "PREDATORIO", "ALTO", "MEDIO", "BAJO"
+    win_rate_pct: float = Field(default=0.0, ge=0.0, le=100.0)
+    recovery_ratio_pct: float = Field(default=0.0, ge=0.0, le=100.0)
+    total_disputed_volume: Decimal = Field(default=Decimal("0.00"), ge=0)
+    total_recovered_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    primary_abusive_pattern: str = ""
+    recommended_incoterm: str = "FOB"
+
+
+class HighRiskHubSummary(BaseModel):
+    """Resumen de centro de distribución o muelle con alta fricción y tasa de merma."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    hub_id: str
+    hub_name: str
+    location: str
+    risk_rating: str = "HIGH"                  # "CRITICAL", "HIGH", "MODERATE", "LOW"
+    historical_merma_rate: float = 0.0
+    top_deduction_types: List[str] = Field(default_factory=list)
+    critical_safeguard: str = ""
+
+
+class PortfolioLeakageRadarReport(BaseModel):
+    """Reporte consolidado del Radar de Fuga de Capital y Perfilado de la Cartera (Eje 4)."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    generated_at: str
+    total_cases_scanned: int
+    total_disputed_volume: Decimal = Field(default=Decimal("0.00"), ge=0)
+    total_recovered_capital: Decimal = Field(default=Decimal("0.00"), ge=0)
+    total_leakage_at_risk: Decimal = Field(default=Decimal("0.00"), ge=0)
+    portfolio_win_rate_pct: float = Field(default=0.0, ge=0.0, le=100.0)
+    portfolio_recovery_ratio_pct: float = Field(default=0.0, ge=0.0, le=100.0)
+    risk_tier_distribution: Dict[str, int] = Field(default_factory=dict)
+    top_deduction_categories: Dict[str, Decimal] = Field(default_factory=dict)
+    retailer_summaries: List[RetailerRiskSummary] = Field(default_factory=list)
+    high_risk_hubs: List[HighRiskHubSummary] = Field(default_factory=list)
+    pre_dispatch_safeguards_mandatory: List[str] = Field(default_factory=list)
+    executive_recommendations: List[str] = Field(default_factory=list)
+
+
 # ==========================================
 # 11. Auditoría de Integridad y Resiliencia Documental (Pilar 1)
 # ==========================================

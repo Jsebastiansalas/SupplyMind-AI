@@ -1,0 +1,189 @@
+{
+  "generated_at": "2026-11-04T21:28:31.324841+00:00",
+  "total_cases_scanned": 82,
+  "total_disputed_volume": "798216.54",
+  "total_recovered_capital": "458332.31",
+  "total_leakage_at_risk": "339884.23",
+  "portfolio_win_rate_pct": 57.4,
+  "portfolio_recovery_ratio_pct": 57.4,
+  "risk_tier_distribution": {
+    "PREDATORIO": 1,
+    "ALTO": 3,
+    "MEDIO": 5,
+    "BAJO": 0
+  },
+  "top_deduction_categories": {
+    "SHORTAGE_DOCK": "750141.54",
+    "LATE_DELIVERY_OTIF": "29150.00",
+    "PRICING_DISCREPANCY": "3000.00",
+    "UNAUTHORIZED_PENALTY": "15925.00",
+    "DAMAGED_GOODS": "0.00"
+  },
+  "retailer_summaries": [
+    {
+      "retailer_id": "AMAZON",
+      "retailer_name": "Amazon Fulfillment Services (CUST-RETAIL-AMZN)",
+      "risk_tier": "ALTO",
+      "win_rate_pct": 92.4,
+      "recovery_ratio_pct": 88.5,
+      "total_disputed_volume": "14800.00",
+      "total_recovered_amount": "9320.08",
+      "primary_abusive_pattern": "Penalización Automatizada de ASN EDI 856",
+      "recommended_incoterm": "FCA"
+    },
+    {
+      "retailer_id": "WALMART",
+      "retailer_name": "Walmart Inc. & Retail Link (CUST-RETAIL-WMT)",
+      "risk_tier": "PREDATORIO",
+      "win_rate_pct": 89.1,
+      "recovery_ratio_pct": 84.7,
+      "total_disputed_volume": "460540.00",
+      "total_recovered_amount": "284488.50",
+      "primary_abusive_pattern": "Deducción Extemporánea de Pronto Pago (Fin de Mes)",
+      "recommended_incoterm": "FOB"
+    },
+    {
+      "retailer_id": "CISCO",
+      "retailer_name": "Cisco Systems Global Supply (CUST-RETAIL-CSCO)",
+      "risk_tier": "MEDIO",
+      "win_rate_pct": 95.0,
+      "recovery_ratio_pct": 93.2,
+      "total_disputed_volume": "42949.88",
+      "total_recovered_amount": "28650.00",
+      "primary_abusive_pattern": "Deducción de Margen por Desglose de Bundles",
+      "recommended_incoterm": "CIP"
+    },
+    {
+      "retailer_id": "HOMEDEPOT",
+      "retailer_name": "The Home Depot Supply Chain (CUST-RETAIL-HD)",
+      "risk_tier": "MEDIO",
+      "win_rate_pct": 91.5,
+      "recovery_ratio_pct": 87.0,
+      "total_disputed_volume": "11349.95",
+      "total_recovered_amount": "7149.95",
+      "primary_abusive_pattern": "Rechazo por Daño Cosmético de Empaque Exterior",
+      "recommended_incoterm": "FOB"
+    },
+    {
+      "retailer_id": "MEGA_RETAILER",
+      "retailer_name": "Mega Retailer Global Corp (CUST-RETAIL-MEGA)",
+      "risk_tier": "ALTO",
+      "win_rate_pct": 94.8,
+      "recovery_ratio_pct": 91.0,
+      "total_disputed_volume": "187500.00",
+      "total_recovered_amount": "70500.00",
+      "primary_abusive_pattern": "Retención Cautelar por Auditoría Masiva Multi-SKU",
+      "recommended_incoterm": "FOB"
+    },
+    {
+      "retailer_id": "SORIANA",
+      "retailer_name": "Organización Soriana S.A.B. de C.V. (CUST-RETAIL-SOR)",
+      "risk_tier": "ALTO",
+      "win_rate_pct": 88.5,
+      "recovery_ratio_pct": 85.0,
+      "total_disputed_volume": "16850.00",
+      "total_recovered_amount": "15850.00",
+      "primary_abusive_pattern": "Deducción Unilateral de Rebate Extracontractual",
+      "recommended_incoterm": "FOB"
+    },
+    {
+      "retailer_id": "CHEDRAUI",
+      "retailer_name": "Grupo Comercial Chedraui S.A.B. de C.V. (CUST-RETAIL-CHED)",
+      "risk_tier": "MEDIO",
+      "win_rate_pct": 92.0,
+      "recovery_ratio_pct": 89.4,
+      "total_disputed_volume": "14699.98",
+      "total_recovered_amount": "12399.98",
+      "primary_abusive_pattern": "Retención por Flete Compartido en Maniobra",
+      "recommended_incoterm": "FCA"
+    },
+    {
+      "retailer_id": "LIVERPOOL",
+      "retailer_name": "El Puerto de Liverpool S.A.B. de C.V. (CUST-RETAIL-LIV)",
+      "risk_tier": "MEDIO",
+      "win_rate_pct": 93.4,
+      "recovery_ratio_pct": 90.1,
+      "total_disputed_volume": "23649.99",
+      "total_recovered_amount": "15950.00",
+      "primary_abusive_pattern": "Multa por Defecto Óptico en Etiqueta de Colgado",
+      "recommended_incoterm": "FOB"
+    },
+    {
+      "retailer_id": "DATACO_GLOBAL",
+      "retailer_name": "DataCo Global Smart Supply Chain (Real Dataset Benchmark)",
+      "risk_tier": "MEDIO",
+      "win_rate_pct": 94.0,
+      "recovery_ratio_pct": 91.5,
+      "total_disputed_volume": "25876.74",
+      "total_recovered_amount": "14023.80",
+      "primary_abusive_pattern": "Penalización por Retraso Transfronterizo no Imputable",
+      "recommended_incoterm": "FOB"
+    }
+  ],
+  "high_risk_hubs": [
+    {
+      "hub_id": "WALMART_DC_6014",
+      "hub_name": "Walmart México (WALMART_DC_6014)",
+      "location": "San Martín Obispo / Cuautitlán",
+      "risk_rating": "CRITICAL",
+      "historical_merma_rate": 0.048,
+      "top_deduction_types": [
+        "OTIF_LATE_DELIVERY",
+        "ASN_EXTEMPORANEO",
+        "FALTANTE_TARIMA"
+      ],
+      "critical_safeguard": "Ventana de muelle estricta de 2 horas. Si el transportista llega 15 minutos tarde, cancelan cita y aplican multa del 3%."
+    },
+    {
+      "hub_id": "AMAZON_FC_DFW",
+      "hub_name": "Amazon Fulfillment Services (AMAZON_FC_DFW)",
+      "location": "Dallas-Fort Worth FC (DFW)",
+      "risk_rating": "HIGH",
+      "historical_merma_rate": 0.038,
+      "top_deduction_types": [
+        "RECEIVING_SHORTAGE",
+        "BARCODE_UNREADABLE",
+        "CARTON_OVERSIZED"
+      ],
+      "critical_safeguard": "Escaneo automatizado por bandas transportadoras. Alta tasa de falsos faltantes en tarimas multi-SKU."
+    },
+    {
+      "hub_id": "SORIANA_DC_TULTITLAN",
+      "hub_name": "Tiendas Soriana (SORIANA_DC_TULTITLAN)",
+      "location": "Tultitlán, Edo. Mex.",
+      "risk_rating": "HIGH",
+      "historical_merma_rate": 0.042,
+      "top_deduction_types": [
+        "REBATE_UNILATERAL",
+        "MERMA_OPERATIVA_NO_PACTADA",
+        "PALLET_DEFECTUOSO"
+      ],
+      "critical_safeguard": "Rechazo de tarimas por astillamiento leve o falta de precinto térmico."
+    },
+    {
+      "hub_id": "LIVERPOOL_CUAUTITLAN",
+      "hub_name": "El Puerto de Liverpool (LIVERPOOL_CUAUTITLAN)",
+      "location": "Cuautitlán Izcalli",
+      "risk_rating": "MODERATE",
+      "historical_merma_rate": 0.025,
+      "top_deduction_types": [
+        "ETIQUETA_COLGADO_ERRONEA",
+        "DESCUENTO_FINANCIERO_ABUSIVO"
+      ],
+      "critical_safeguard": "Penalización por código de barras GS1 no centrado o fuera de altura reglamentaria."
+    }
+  ],
+  "pre_dispatch_safeguards_mandatory": [
+    "Protocolo Fotográfico 4 Ángulos: Registro obligatorio de estiba y precinto C-TPAT antes de cierre de remolque.",
+    "Transmisión Anticipada EDI 856: Emisión del ASN al menos 4 a 6 horas antes de la cita de muelle con acuse EDI 997.",
+    "Sello Limpio de Caseta (Gate-In Time): Registrar hora de arribo a patio para invalidar penalizaciones OTIF indebidas.",
+    "Certificación de Tarimas CHEP Grado A: Cero astillamiento y sin salientes de caja (Zero Pallet Overhang).",
+    "Leyenda Contractual Anti-Extemporánea: Cláusula expresa de caducidad de descuento por pronto pago al día 10 natural."
+  ],
+  "executive_recommendations": [
+    "Migrar términos de contratación con retailers de nivel PREDATORIO (ej. Walmart) hacia Incoterm FOB/FCA en origen.",
+    "Blindar el 57.4% de tasa de recuperación mediante contestación legal inmediata dentro de los primeros 15 días.",
+    "Instalar escaneo RFID de tarima completa para anular la deducción por auditoría masiva en órdenes multi-SKU.",
+    "Exigir a transportistas el sellado de la carta porte bajo el Art. 88 del Código de Comercio."
+  ]
+}

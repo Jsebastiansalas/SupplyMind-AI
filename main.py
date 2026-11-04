@@ -253,6 +253,104 @@ def run_fiscal_erp_export(case_id: str):
     console.print(table)
     console.print(f"\n[bold green]✓ Paquete fiscal y ERP generado exitosamente en 'reports/erp_{case_id}/'[/bold green]\n")
 
+def run_leakage_radar_cli(target: Optional[str] = None):
+    """Ejecuta el visor e informe del Radar de Fuga de Capital y Perfilado de Retailers (Eje 4)."""
+    from agent.core.fx_and_leakage_engine import RetailerLeakageProfiler
+    console.print(Panel(
+        "[bold cyan]SupplyMind AI — Radar de Fuga de Capital & Perfilado Predictivo (Eje 4)[/bold cyan]\n"
+        "[dim]Minería de patrones de deducción abusivos en retailers y salvaguardas operativas pre-despacho.[/dim]",
+        border_style="cyan"
+    ))
+
+    if target and target.lower() not in ["all", "cartera", "portfolio", "todos"]:
+        prof = RetailerLeakageProfiler.get_profile(target)
+        checklist = RetailerLeakageProfiler.generate_pre_dispatch_checklist(prof.retailer_id)
+
+        tier_color = "bold red" if prof.risk_tier in ["PREDATORIO", "CRITICO"] else ("bold yellow" if prof.risk_tier == "ALTO" else "bold green")
+        
+        info_panel = Panel(
+            f"[bold white]Cadena Comercial:[/bold white] {prof.retailer_name}\n"
+            f"[bold white]Nivel de Riesgo:[/bold white] [{tier_color}]{prof.risk_tier}[/{tier_color}]\n"
+            f"[bold white]Tasa de Victoria (Win Rate):[/bold white] [bold green]{prof.win_rate_pct:.1f}%[/bold green] | "
+            f"[bold white]Ratio Recuperación:[/bold white] [bold green]{prof.recovery_ratio_pct:.1f}%[/bold green]\n"
+            f"[bold white]Incoterm Recomendado:[/bold white] [bold cyan]{prof.recommended_incoterm}[/bold cyan] (ICC Incoterms 2020)\n"
+            f"[bold white]Alerta Operativa CEDIS:[/bold white] {prof.cedis_alert_summary or 'Sin alertas activas.'}\n",
+            title=f"[bold green]Perfil Predictivo — {prof.retailer_id}[/bold green]",
+            border_style="green"
+        )
+        console.print(info_panel)
+
+        chk_table = Table(title=f"Checklist Pre-Despacho Mandatorio — {prof.retailer_id}", border_style="cyan", show_header=True)
+        chk_table.add_column("Código", style="yellow", width=12)
+        chk_table.add_column("Obligatorio", justify="center", style="bold red", width=12)
+        chk_table.add_column("Salvaguarda Operativa / Acción", style="bold white")
+        chk_table.add_column("Riesgo Mitigado", style="cyan")
+
+        for chk in checklist:
+            mand = "SÍ" if chk.mandatory else "NO"
+            chk_table.add_row(chk.check_id, mand, f"{chk.title}\n[dim]{chk.description}[/dim]", chk.risk_mitigated)
+
+        console.print(chk_table)
+    else:
+        with console.status("[bold cyan]Escaneando cartera institucional de clientes y CEDIS...[/bold cyan]"):
+            report = RetailerLeakageProfiler.scan_portfolio_leakage_radar()
+            exported = RetailerLeakageProfiler.export_portfolio_radar_report(report)
+
+        kpi_table = Table(title="Métricas Consolidadas de Capital en la Cartera B2B", border_style="green", show_header=True)
+        kpi_table.add_column("Métrica Financiera", style="cyan", width=35)
+        kpi_table.add_column("Valor Consolidado (USD)", justify="right", style="bold white", width=25)
+        kpi_table.add_column("Interpretación Operativa", style="dim white")
+
+        kpi_table.add_row("Total Expedientes Auditados", f"{report.total_cases_scanned:,} casos", "Cobertura 100% de la cartera de expedientes")
+        kpi_table.add_row("Volumen Total Disputado", f"${report.total_disputed_volume:,.2f} USD", "Monto retenido o deducido unilateralmente")
+        kpi_table.add_row("Capital Recuperable Ganable", f"${report.total_recovered_capital:,.2f} USD", "Fondos rescatables con fundamento legal Art. 88")
+        kpi_table.add_row("Fuga Neta de Capital en Riesgo", f"${report.total_leakage_at_risk:,.2f} USD", "Exposición financiera ante inacción procesal")
+        kpi_table.add_row("Tasa de Victoria Proyectada", f"{report.portfolio_win_rate_pct:.1f}%", "Efectividad defensiva colegiada")
+
+        console.print(kpi_table)
+
+        ret_table = Table(title="Ranking de Fricción y Riesgo por Cadena Comercial", border_style="cyan", show_header=True)
+        ret_table.add_column("Retailer", style="bold white")
+        ret_table.add_column("Riesgo", justify="center")
+        ret_table.add_column("Win Rate", justify="right", style="green")
+        ret_table.add_column("Disputado", justify="right", style="cyan")
+        ret_table.add_column("Recuperable", justify="right", style="bold green")
+        ret_table.add_column("Patrón Sistemático Principal", style="dim white")
+        ret_table.add_column("Incoterm", justify="center", style="yellow")
+
+        for r in report.retailer_summaries:
+            color = "bold red" if r.risk_tier in ["PREDATORIO", "CRITICO"] else ("bold yellow" if r.risk_tier == "ALTO" else "green")
+            ret_table.add_row(
+                r.retailer_name.split("(")[0].strip(),
+                f"[{color}]{r.risk_tier}[/{color}]",
+                f"{r.win_rate_pct:.1f}%",
+                f"${r.total_disputed_volume:,.2f}",
+                f"${r.total_recovered_amount:,.2f}",
+                r.primary_abusive_pattern,
+                r.recommended_incoterm
+            )
+        console.print(ret_table)
+
+        hub_table = Table(title="Centros de Distribución (CEDIS) y Muelles de Alto Riesgo", border_style="red", show_header=True)
+        hub_table.add_column("Hub / CEDIS", style="bold white")
+        hub_table.add_column("Ubicación", style="cyan")
+        hub_table.add_column("Riesgo", justify="center")
+        hub_table.add_column("Tasa Merma", justify="right", style="bold red")
+        hub_table.add_column("Salvaguarda Mandatoria", style="dim white")
+
+        for h in report.high_risk_hubs:
+            h_col = "bold red" if h.risk_rating in ["CRITICAL", "HIGH"] else "yellow"
+            hub_table.add_row(
+                h.hub_name,
+                h.location,
+                f"[{h_col}]{h.risk_rating}[/{h_col}]",
+                f"{h.historical_merma_rate*100:.1f}%",
+                h.critical_safeguard
+            )
+        console.print(hub_table)
+
+        console.print(f"\n[bold green]✓ Reporte consolidado exportado a:[/bold green] {exported['markdown_report']}\n")
+
 def main():
     args = sys.argv[1:]
     
@@ -265,6 +363,7 @@ def main():
     is_batch = any(a.lower() in ["batch", "--batch", "lote", "--lote", "masivo"] for a in args)
     is_careo = any(a.lower() in ["--careo", "careo", "--duel", "duel", "negociacion", "--negociacion"] for a in args)
     is_export_erp = any(a.lower() in ["--export-erp", "--fiscal", "fiscal", "--edi", "--cfdi"] for a in args)
+    is_radar = any(a.lower() in ["--radar", "-r", "radar", "--leakage", "leakage", "--fugas"] for a in args)
 
     # 0. Modo Batch Masivo Desatendido
     if is_batch:
@@ -361,6 +460,20 @@ def main():
         run_fiscal_erp_export(case_id=case_id)
         return
 
+    # 0.4 Modo Radar de Fuga de Capital y Perfilado de Retailers (Eje 4)
+    if is_radar:
+        target_retailer = None
+        for i, a in enumerate(args):
+            if a.lower() in ["--radar", "-r", "radar", "--leakage", "leakage", "--fugas"] and i + 1 < len(args):
+                cand = args[i + 1]
+                if not cand.startswith("-"):
+                    target_retailer = cand
+                    break
+        if not target_retailer and explicit_case:
+            target_retailer = case_id
+        run_leakage_radar_cli(target=target_retailer)
+        return
+
     # 1. Modo Interactivo Conversacional continuo
     if is_interactive:
         if not explicit_case:
@@ -378,7 +491,7 @@ def main():
                 "  [bold green][8][/bold green] [bold white]case_007_cisco_large_bundle[/bold white] : [bold cyan]PDF Masivo Multi-Pág.[/bold cyan] (Cisco $125k, Nombres Arbitrarios y Clasificación Autónoma)\n"
                 "  [bold green][9][/bold green] [bold white]case_008_homedepot_damaged_scanned[/bold white] : [bold cyan]Visión OCR Multimodal[/bold cyan] (Home Depot $42k, Remisión Papel Escaneada con Sello de Muelle)\n"
                 "  [bold yellow][C][/bold yellow] [bold white]Careo de Negociación en Vivo[/bold white] : [bold yellow]Simulador interactivo comprador vs agente (Eje 2)[/bold yellow]\n"
-                "  [bold yellow][F][/bold yellow] [bold white]Exportador Fiscal CFDI 4.0 & EDI 812[/bold white] : [bold yellow]Generar paquetes listos para SAP, NetSuite y Retailers (Eje 3)[/bold yellow]\n"
+                "  [bold yellow][F][/bold yellow] [bold white]Exportador Fiscal CFDI 4.0 & EDI 812[/bold white] : [bold yellow]Generar paquetes listos para SAP, NetSuite y Retailers (Eje 3)[/bold yellow]\n  [bold yellow][R][/bold yellow] [bold white]Radar de Fuga de Capital (Leakage Radar)[/bold white] : [bold yellow]Perfilado de retailers y alerta pre-despacho (Eje 4)[/bold yellow]\n"
                 "  [bold yellow][N][/bold yellow] [bold white]Poner / Importar Nuevo Caso[/bold white] : [bold yellow]Cargar tus propios documentos o crear caso guiado[/bold yellow]\n"
                 "  [bold red][0][/bold red] Salir\n",
                 title="[bold green]Menú de Selección de Caso[/bold green]",
@@ -426,6 +539,14 @@ def main():
                 except (EOFError, KeyboardInterrupt):
                     return
                 run_fiscal_erp_export(case_id=c_fisc)
+                return
+            elif choice.lower() in ["r", "radar", "leakage", "fuga", "fugas"]:
+                console.print("[bold yellow]Ingresa el retailer o caso [ej. WALMART, AMAZON o Enter para toda la cartera]: [/bold yellow]", end="")
+                try:
+                    c_rad = input().strip() or None
+                except (EOFError, KeyboardInterrupt):
+                    return
+                run_leakage_radar_cli(target=c_rad)
                 return
             elif choice == "4":
                 runner_temp = SkynetRunner(case_id="case_001")
