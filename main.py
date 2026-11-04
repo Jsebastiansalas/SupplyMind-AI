@@ -177,19 +177,31 @@ def main():
     else:
         case_id = "case_001"
         explicit_case = False
-    for a in args:
-        if Path(a).is_dir():
+    for i, a in enumerate(args):
+        if a in ["--case", "-c"] and i + 1 < len(args):
+            case_id = args[i + 1]
+            explicit_case = True
+            break
+        elif Path(a).is_dir():
             # Si el argumento es un directorio existente (ej. ruta absoluta o relativa)
             case_id = str(Path(a).resolve())
             explicit_case = True
             break
-        elif a.startswith("case_"):
+        elif (Path("data/real_supply_chain_cases") / a).is_dir():
+            case_id = a
+            explicit_case = True
+            break
+        elif (Path("data/cases") / a).is_dir() or (Path("data/holdout_cases") / a).is_dir():
+            case_id = a
+            explicit_case = True
+            break
+        elif a.startswith("case_") or a.startswith("dataco_") or a.startswith("holdout_"):
             case_id = a
             explicit_case = True
             break
         elif "case_" in a:
             for part in a.split():
-                if part.startswith("case_"):
+                if part.startswith("case_") or part.startswith("dataco_"):
                     case_id = part
                     explicit_case = True
                     break

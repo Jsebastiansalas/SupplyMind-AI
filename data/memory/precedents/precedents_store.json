@@ -1741,30 +1741,6 @@
     "precedent_summary": "Resolución PARTIAL_CONCESSION: $20,000.00 USD recuperados de $35,000.00 USD disputados."
   },
   {
-    "precedent_id": "PREC-BUYE-DATACO_REAL_001_CAGUAS_PELICAN_KAYAK",
-    "case_id": "dataco_real_001_caguas_pelican_kayak",
-    "date_resolved": "2026-11-04",
-    "retailer_id": "BUYER-DC-ORD-68914",
-    "retailer_name": "Buyer-Dc-Ord-68914",
-    "dispute_type": "Discrepancia mixta en expediente dataco_real_001_caguas_pelican_kayak: Faltante ",
-    "deduction_code": "SHORTAGE",
-    "governing_clause": "CL-POD-01",
-    "billed_amount": "9999.50",
-    "disputed_amount": "1099.97",
-    "justified_amount": "599.97",
-    "recovered_amount": "500.00",
-    "outcome": "PARTIAL_CONCESSION",
-    "success_rate_ratio": 0.4545578515777703,
-    "key_evidence_cited": [
-      "Faltante físico comprobado en DC-1360 (Pelican Sunstream 100 Kayak (DataCo DC-1360)): 3 unidades faltantes s/ remisión BOL-DC-ORD-68914 valoradas en $599.97",
-      "Deducción aplicada en comprobante PAY-DC-ORD-68914: código SHORTAGE, motivo 'Faltante fisico en muelle de 3 uds SKU DC-1360', monto $599.97",
-      "Deducción aplicada en comprobante PAY-DC-ORD-68914: código COOP_PROMO_UNAUTH, motivo 'Cargo unilateral por folleto de verano no pactado en MSA', monto $500.00",
-      "Respaldo contractual: La CL-UNAUTH-02 ('Prohibicion de Deducciones Unilaterales') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo."
-    ],
-    "binding_argument": "En el caso dataco_real_001_caguas_pelican_kayak, se acreditó la improcedencia de la deducción 'SHORTAGE' conforme a CL-POD-01, logrando la restitución de $500.00 USD.",
-    "precedent_summary": "Resolución PARTIAL_CONCESSION: $500.00 USD recuperados de $1,099.97 USD disputados."
-  },
-  {
     "precedent_id": "PREC-BUYE-DATACO_REAL_002_CLEVELAND_DIAMONDBACK_CYCLING",
     "case_id": "dataco_real_002_cleveland_diamondback_cycling",
     "date_resolved": "2026-11-04",
@@ -2414,30 +2390,6 @@
     "precedent_summary": "Resolución LOST: $0.00 USD recuperados de $0.00 USD disputados."
   },
   {
-    "precedent_id": "PREC-CUST-CASE_001",
-    "case_id": "case_001",
-    "date_resolved": "2026-11-04",
-    "retailer_id": "CUST-RETAIL-101",
-    "retailer_name": "Cust-Retail-101",
-    "dispute_type": "Faltante físico en entrega valorado en $800.00 USD, constatado en remisión de en",
-    "deduction_code": "DED-MISSING-ITEM",
-    "governing_clause": "CLAUSE-3.1",
-    "billed_amount": "9000.0",
-    "disputed_amount": "800.0",
-    "justified_amount": "800.00",
-    "recovered_amount": "0.00",
-    "outcome": "LOST",
-    "success_rate_ratio": 0.0,
-    "key_evidence_cited": [
-      "Faltante físico comprobado en PROD-002 (Caja Café Gourmet Tostado 24x500g): 10 unidades faltantes s/ remisión DEL-9912 valoradas en $800.00",
-      "Deducción aplicada en comprobante PAY-7710: código DED-MISSING-ITEM, motivo 'Deducción por 10 cajas faltantes PROD-002 s/ remisión DEL-9912', monto $800.00",
-      "Respaldo contractual: La CLAUSE-4.2 autoriza la deducción por faltantes físicos acreditados en remisión de entrega.",
-      "[Factura INV-40102 §Total $9,000.00 USD]"
-    ],
-    "binding_argument": "En el caso case_001, se acreditó la improcedencia de la deducción 'DED-MISSING-ITEM' conforme a CLAUSE-3.1, logrando la restitución de $0.00 USD.",
-    "precedent_summary": "Resolución LOST: $0.00 USD recuperados de $800.00 USD disputados."
-  },
-  {
     "precedent_id": "PREC-CUST-CASE_002",
     "case_id": "case_002",
     "date_resolved": "2026-11-04",
@@ -2580,6 +2532,54 @@
     ],
     "binding_argument": "En el caso case_021_samsung_fx_variance, se acreditó la improcedencia de la deducción 'AJUSTE-COMERCIAL-PROMO' conforme a CLAUSE-6.5, logrando la restitución de $15,000.00 USD.",
     "precedent_summary": "Resolución PARTIAL_CONCESSION: $15,000.00 USD recuperados de $45,000.00 USD disputados."
+  },
+  {
+    "precedent_id": "PREC-BUYE-DATACO_REAL_001_CAGUAS_PELICAN_KAYAK",
+    "case_id": "dataco_real_001_caguas_pelican_kayak",
+    "date_resolved": "2026-11-04",
+    "retailer_id": "BUYER-DC-ORD-68914",
+    "retailer_name": "Buyer-Dc-Ord-68914",
+    "dispute_type": "Discrepancia mixta en expediente dataco_real_001_caguas_pelican_kayak: Faltante ",
+    "deduction_code": "SHORTAGE",
+    "governing_clause": "CL-POD-01",
+    "billed_amount": "9999.50",
+    "disputed_amount": "1099.97",
+    "justified_amount": "599.97",
+    "recovered_amount": "500.00",
+    "outcome": "PARTIAL_CONCESSION",
+    "success_rate_ratio": 0.4545578515777703,
+    "key_evidence_cited": [
+      "Faltante físico comprobado en DC-1360 (Pelican Sunstream 100 Kayak (DataCo DC-1360)): 3 unidades faltantes s/ remisión BOL-DC-ORD-68914 valoradas en $599.97",
+      "Deducción aplicada en comprobante PAY-DC-ORD-68914: código SHORTAGE, motivo 'Faltante fisico en muelle de 3 uds SKU DC-1360', monto $599.97",
+      "Deducción aplicada en comprobante PAY-DC-ORD-68914: código COOP_PROMO_UNAUTH, motivo 'Cargo unilateral por folleto de verano no pactado en MSA', monto $500.00",
+      "Respaldo contractual: La CL-UNAUTH-02 ('Prohibicion de Deducciones Unilaterales') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo."
+    ],
+    "binding_argument": "En el caso dataco_real_001_caguas_pelican_kayak, se acreditó la improcedencia de la deducción 'SHORTAGE' conforme a CL-POD-01, logrando la restitución de $500.00 USD.",
+    "precedent_summary": "Resolución PARTIAL_CONCESSION: $500.00 USD recuperados de $1,099.97 USD disputados."
+  },
+  {
+    "precedent_id": "PREC-CUST-CASE_001",
+    "case_id": "case_001",
+    "date_resolved": "2026-11-04",
+    "retailer_id": "CUST-RETAIL-101",
+    "retailer_name": "Cust-Retail-101",
+    "dispute_type": "Faltante físico en entrega valorado en $800.00 USD, constatado en remisión de en",
+    "deduction_code": "DED-MISSING-ITEM",
+    "governing_clause": "CLAUSE-3.1",
+    "billed_amount": "9000.0",
+    "disputed_amount": "800.0",
+    "justified_amount": "800.00",
+    "recovered_amount": "0.00",
+    "outcome": "LOST",
+    "success_rate_ratio": 0.0,
+    "key_evidence_cited": [
+      "Faltante físico comprobado en PROD-002 (Caja Café Gourmet Tostado 24x500g): 10 unidades faltantes s/ remisión DEL-9912 valoradas en $800.00",
+      "Deducción aplicada en comprobante PAY-7710: código DED-MISSING-ITEM, motivo 'Deducción por 10 cajas faltantes PROD-002 s/ remisión DEL-9912', monto $800.00",
+      "Respaldo contractual: La CLAUSE-4.2 autoriza la deducción por faltantes físicos acreditados en remisión de entrega.",
+      "[Factura INV-40102 §Total $9,000.00 USD]"
+    ],
+    "binding_argument": "En el caso case_001, se acreditó la improcedencia de la deducción 'DED-MISSING-ITEM' conforme a CLAUSE-3.1, logrando la restitución de $0.00 USD.",
+    "precedent_summary": "Resolución LOST: $0.00 USD recuperados de $800.00 USD disputados."
   },
   {
     "precedent_id": "PREC-RETA-CASE_MOCK_ADVERSARIAL",

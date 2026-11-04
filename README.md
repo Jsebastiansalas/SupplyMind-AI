@@ -268,6 +268,10 @@ platica/
 │   ├── contract_analyzer/             # Evaluador de cláusulas contractuales
 │   └── telemetry/                     # Rastreador de consumo de tokens y costos
 │
+├── data/real_supply_chain_cases/     # Dataset Real DataCo (30 expedientes reales multiformato .xlsx, .csv, .txt)
+│   ├── dataco_real_001_caguas_pelican_kayak/ ... dataco_real_030/
+│   └── dataco_open_supply_chain_source_records.csv # Registros fuente públicos (DOI: 10.17632/8gx2fvg2k6.5)
+│
 ├── data/cases/                        # Dataset The Crucible (50 expedientes de estrés)
 │   ├── case_001/ ... case_050/        # Expedientes completos con facturas, remisiones y contratos
 │   └── ...
