@@ -263,6 +263,10 @@ class ErpExportPackage(BaseModel):
     netsuite_journal_lines: List[Dict[str, Any]] = Field(default_factory=list)
     cfdi_uuid: str = ""
     cfdi_xml: str = ""
+    cfdi_timbrado_xml: Optional[str] = None
+    edi_812_x12: Optional[str] = None
+    edifact_message: Optional[str] = None
+    qr_verification_url: Optional[str] = None
     generated_at: str = ""
 
 

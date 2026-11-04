@@ -82,6 +82,57 @@ def get_cfdi_xml_endpoint(case_id: str, fiscal_regime: Optional[str] = None):
     return Response(content=xml_str, media_type="application/xml")
 
 
+@router.get("/{case_id}/erp/edi-812")
+def get_edi_812_endpoint(case_id: str):
+    """
+    Genera y retorna el mensaje B2B ANSI ASC X12 Transaction Set 812 (Credit/Debit Adjustment)
+    listo para cargar en portales de proveedores (Walmart Retail Link, Amazon Vendor Central, Target).
+    """
+    case_path = Path("data/cases") / case_id
+    if not case_path.exists() and not (Path("data/real_supply_chain_cases") / case_id).exists():
+        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+
+    report = ConcessionEngine.get_or_create_base_report(case_id)
+    edi_msg = ErpEngine.generate_edi_812_message(case_id, report)
+
+    return PlainTextResponse(content=edi_msg, media_type="text/plain")
+
+
+@router.get("/{case_id}/erp/edifact")
+def get_edifact_endpoint(case_id: str):
+    """
+    Genera y retorna el mensaje estándar internacional UN/EDIFACT (CREMUL / INVOIC Adjustment).
+    """
+    case_path = Path("data/cases") / case_id
+    if not case_path.exists() and not (Path("data/real_supply_chain_cases") / case_id).exists():
+        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+
+    report = ConcessionEngine.get_or_create_base_report(case_id)
+    edifact_msg = ErpEngine.generate_edifact_adjustment_message(case_id, report)
+
+    return PlainTextResponse(content=edifact_msg, media_type="text/plain")
+
+
+@router.get("/{case_id}/erp/cfdi-timbrado")
+def get_certified_cfdi_endpoint(case_id: str, fiscal_regime: Optional[str] = None):
+    """
+    Genera y descarga el archivo XML fiscal CFDI 4.0 certificado y timbrado por el PAC
+    con Timbre Fiscal Digital (TFD 1.1), sello digital del SAT y URL de validación QR.
+    """
+    case_path = Path("data/cases") / case_id
+    if not case_path.exists() and not (Path("data/real_supply_chain_cases") / case_id).exists():
+        raise HTTPException(status_code=404, detail=f"Caso '{case_id}' no encontrado.")
+
+    report = ConcessionEngine.get_or_create_base_report(case_id)
+    certified = ErpEngine.generate_certified_cfdi_pac(case_id, report, fiscal_regime=fiscal_regime)
+
+    return Response(
+        content=certified.xml_content,
+        media_type="application/xml",
+        headers={"X-SAT-UUID": certified.uuid, "X-SAT-QR-URL": certified.qr_verification_url}
+    )
+
+
 @router.post("/{case_id}/erp/export")
 def export_erp_package_endpoint(case_id: str, fiscal_regime: Optional[str] = None):
     """

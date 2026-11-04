@@ -244,7 +244,7 @@ TOOL_DEFINITIONS = [
         "type": "function",
         "function": {
             "name": "generate_erp_accounting_and_cfdi_payload",
-            "description": "Genera la póliza contable de partida doble bajo NIF C-3 para SAP S/4HANA (BAPI_ACC_DOCUMENT_POST), Oracle NetSuite (Journal CSV) y el XML CFDI 4.0 Tipo E (Nota de Crédito SAT).",
+            "description": "Genera la póliza contable de partida doble (NIF C-3) para SAP S/4HANA (BAPI/IDoc), Oracle NetSuite (CSV), el CFDI 4.0 certificado por PAC SAT con Timbre TFD 1.1 y QR, y el mensaje EDI 812 (Credit/Debit Adjustment) para Walmart Retail Link y Amazon Vendor Central.",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -702,17 +702,23 @@ class ToolExecutor:
                 }
 
             elif tool_name == "generate_erp_accounting_and_cfdi_payload":
-                from agent.core.erp_engine import ErpEngine, get_case_fiscal_profile
+                from agent.core.erp_engine import ErpEngine
                 from agent.core.concession_engine import ConcessionEngine
                 rep = self.state.final_report or ConcessionEngine.get_or_create_base_report(case_id)
-                lines = ErpEngine.build_erp_posting_lines(rep)
-                fiscal_prof = get_case_fiscal_profile(case_id)
-                sap_bapi = ErpEngine.generate_sap_bapi_payload(case_id, rep, lines)
-                cfdi_xml = ErpEngine.generate_cfdi_40_xml(case_id, rep, fiscal_prof)
+                pkg = ErpEngine.export_full_erp_package(case_id)
                 result = {
                     "status": "success",
-                    "sap_bapi_payload": sap_bapi,
-                    "cfdi_xml_preview": cfdi_xml[:500]
+                    "case_id": case_id,
+                    "accounting_standard": pkg.accounting_standard,
+                    "cfdi_uuid": pkg.cfdi_uuid,
+                    "cfdi_xml": pkg.cfdi_xml,
+                    "cfdi_timbrado_xml": pkg.cfdi_timbrado_xml,
+                    "qr_verification_url": pkg.qr_verification_url,
+                    "edi_812_x12": pkg.edi_812_x12,
+                    "edifact_message": pkg.edifact_message,
+                    "sap_bapi_payload": pkg.sap_bapi,
+                    "netsuite_journal_lines": pkg.netsuite_journal_lines,
+                    "exported_files_dir": f"reports/erp_{case_id}/"
                 }
 
             elif tool_name == "optimize_working_capital_portfolio":

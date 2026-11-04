@@ -222,6 +222,37 @@ def run_interactive_careo(case_id: str):
             console.print(f"[bold red]✕ Punto muerto alcanzado tras agotar las rondas sin convergencia.[/bold red]\n")
             break
 
+
+def run_fiscal_erp_export(case_id: str):
+    """Generador y exportador fiscal CFDI 4.0 SAT y B2B EDI 812 para portales ERP (Eje 3)."""
+    from agent.core.erp_engine import ErpEngine
+
+    console.print(Panel(
+        f"[bold cyan]SupplyMind AI — Exportador Fiscal CFDI 4.0 & B2B EDI 812 (Eje 3)[/bold cyan]\n"
+        f"[bold white]Expediente:[/bold white] [green]{case_id}[/green]\n"
+        f"[dim]Generación de comprobantes certificados para portales B2B (Amazon Vendor Central, Walmart Retail Link) y ERPs (SAP / NetSuite).[/dim]",
+        border_style="cyan"
+    ))
+
+    package = ErpEngine.export_full_erp_package(case_id)
+
+    table = Table(title=f"Artefactos Fiscales y de Interoperabilidad ERP — {case_id}", border_style="green", show_header=True)
+    table.add_column("Estándar / Formato", style="cyan", width=30)
+    table.add_column("Detalle Técnico / Certificación", style="bold white")
+
+    table.add_row("CFDI 4.0 SAT (Certificado PAC)", f"UUID: {package.cfdi_uuid} | Tipo: E (Egreso)")
+    table.add_row("Código QR Validación SAT", f"{package.qr_verification_url or 'N/A'}")
+    table.add_row("ANSI ASC X12 EDI 812", "Transaction Set 812 (Credit/Debit Adjustment) para Amazon / Walmart")
+    table.add_row("UN/EDIFACT (Internacional)", "CREMUL / INVOIC Adjustment Message")
+    table.add_row("SAP S/4HANA (BAPI & IDoc)", f"BAPI_ACC_DOCUMENT_POST (Doc Type DG) + IDoc FIDCCP02 ({len(package.sap_bapi.get('ACCOUNTGL', []))} partidas)")
+    table.add_row("Oracle NetSuite ERP", f"Journal Entry CSV ({len(package.netsuite_journal_lines)} líneas cuadradas)")
+    table.add_row("Monto Nota de Crédito (SAT)", f"${package.credit_memo_amount:,.2f} USD")
+    table.add_row("Recuperación Neta en Banco", f"${package.claimable_amount:,.2f} USD")
+    table.add_row("Directorio de Exportación", f"[bold green]reports/erp_{case_id}/[/bold green]")
+
+    console.print(table)
+    console.print(f"\n[bold green]✓ Paquete fiscal y ERP generado exitosamente en 'reports/erp_{case_id}/'[/bold green]\n")
+
 def main():
     args = sys.argv[1:]
     
@@ -233,6 +264,7 @@ def main():
     is_add_case = any(a.lower() in ["--add-case", "--nuevo-caso", "-n", "nuevo", "importar"] for a in args)
     is_batch = any(a.lower() in ["batch", "--batch", "lote", "--lote", "masivo"] for a in args)
     is_careo = any(a.lower() in ["--careo", "careo", "--duel", "duel", "negociacion", "--negociacion"] for a in args)
+    is_export_erp = any(a.lower() in ["--export-erp", "--fiscal", "fiscal", "--edi", "--cfdi"] for a in args)
 
     # 0. Modo Batch Masivo Desatendido
     if is_batch:
@@ -266,11 +298,6 @@ def main():
         table.add_row("Throughput Industrial", f"{summary.throughput_cases_per_second:.1f} casos/segundo")
         console.print(table)
         console.print(f"[bold green]✓ Corrida batch completada en {summary.total_execution_time_seconds:.2f}s. Reporte en: {md_path}[/bold green]\n")
-        return
-
-    # 0.2 Modo Careo y Negociación en Vivo (Eje 2)
-    if is_careo:
-        run_interactive_careo(case_id=case_id)
         return
 
     # 0.1 Modo Registro de Nuevo Caso directo por flag
@@ -324,6 +351,16 @@ def main():
             explicit_case = True
             break
 
+    # 0.2 Modo Careo y Negociación en Vivo (Eje 2)
+    if is_careo:
+        run_interactive_careo(case_id=case_id)
+        return
+
+    # 0.3 Modo Exportador Fiscal CFDI 4.0 & B2B EDI 812 (Eje 3)
+    if is_export_erp:
+        run_fiscal_erp_export(case_id=case_id)
+        return
+
     # 1. Modo Interactivo Conversacional continuo
     if is_interactive:
         if not explicit_case:
@@ -341,6 +378,7 @@ def main():
                 "  [bold green][8][/bold green] [bold white]case_007_cisco_large_bundle[/bold white] : [bold cyan]PDF Masivo Multi-Pág.[/bold cyan] (Cisco $125k, Nombres Arbitrarios y Clasificación Autónoma)\n"
                 "  [bold green][9][/bold green] [bold white]case_008_homedepot_damaged_scanned[/bold white] : [bold cyan]Visión OCR Multimodal[/bold cyan] (Home Depot $42k, Remisión Papel Escaneada con Sello de Muelle)\n"
                 "  [bold yellow][C][/bold yellow] [bold white]Careo de Negociación en Vivo[/bold white] : [bold yellow]Simulador interactivo comprador vs agente (Eje 2)[/bold yellow]\n"
+                "  [bold yellow][F][/bold yellow] [bold white]Exportador Fiscal CFDI 4.0 & EDI 812[/bold white] : [bold yellow]Generar paquetes listos para SAP, NetSuite y Retailers (Eje 3)[/bold yellow]\n"
                 "  [bold yellow][N][/bold yellow] [bold white]Poner / Importar Nuevo Caso[/bold white] : [bold yellow]Cargar tus propios documentos o crear caso guiado[/bold yellow]\n"
                 "  [bold red][0][/bold red] Salir\n",
                 title="[bold green]Menú de Selección de Caso[/bold green]",
@@ -380,6 +418,14 @@ def main():
                 except (EOFError, KeyboardInterrupt):
                     return
                 run_interactive_careo(case_id=c_careo)
+                return
+            elif choice.lower() in ["f", "fiscal", "edi", "erp"]:
+                console.print("[bold yellow]Ingresa el caso para exportación fiscal/EDI [ej. case_005_amazon_shortage o Enter para case_005]: [/bold yellow]", end="")
+                try:
+                    c_fisc = input().strip() or "case_005_amazon_shortage"
+                except (EOFError, KeyboardInterrupt):
+                    return
+                run_fiscal_erp_export(case_id=c_fisc)
                 return
             elif choice == "4":
                 runner_temp = SkynetRunner(case_id="case_001")

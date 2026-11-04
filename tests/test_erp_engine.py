@@ -212,3 +212,106 @@ def test_api_chat_erp_query():
     assert "120000" in reply
     assert "SAP S/4HANA" in reply
     assert "CFDI 4.0" in reply
+
+
+
+# ============================================================================
+# 6. PRUEBAS DEL EXPORTADOR FISCAL CFDI 4.0 TIMBRADO & B2B EDI 812 (Eje 3)
+# ============================================================================
+
+def test_edi_812_message_structure_and_compliance():
+    """Valida la generación del mensaje ANSI ASC X12 812 (Credit/Debit Adjustment) para retailers (Eje 3)."""
+    case_id = "case_005_amazon_shortage"
+    report = ConcessionEngine.get_or_create_base_report(case_id)
+    edi_msg = ErpEngine.generate_edi_812_message(case_id, report)
+
+    assert "ISA*00*" in edi_msg
+    assert "GS*CD*SUPPLYMIND" in edi_msg
+    assert "ST*812*0001~" in edi_msg
+    assert f"BCD*20" in edi_msg
+    assert "*CR*" in edi_msg
+    assert "CUR*SE*USD~" in edi_msg
+    assert "REF*IV*" in edi_msg
+    assert "REF*TN*CASE_005_AMAZON_SHORTAGE~" in edi_msg
+    assert "N1*SE*SUPPLYMIND" in edi_msg
+    assert "N1*BY*AMAZON" in edi_msg
+    assert "CDD*C*" in edi_msg
+    assert f"AMT*TT*{abs(report.difference):.2f}~" in edi_msg
+    assert f"AMT*JD*{report.justified_amount:.2f}~" in edi_msg
+    assert f"AMT*RC*{report.claimable_amount:.2f}~" in edi_msg
+    assert "SE*14*0001~" in edi_msg
+    assert "IEA*1*" in edi_msg
+
+
+def test_edifact_adjustment_message_structure():
+    """Valida el mensaje internacional UN/EDIFACT CREMUL / INVOIC Adjustment (Eje 3)."""
+    case_id = "case_006_walmart_otif_pricing"
+    report = ConcessionEngine.get_or_create_base_report(case_id)
+    edifact_msg = ErpEngine.generate_edifact_adjustment_message(case_id, report)
+
+    assert "UNB+UNOA:3+SUPPLYMIND:ZZ+WALMART:ZZ+" in edifact_msg
+    assert "UNH+1+CREMUL:D:03B:UN:EAN008'" in edifact_msg
+    assert "BGM+451+NC-CASE_006_WALMART_OTIF_PRICING+9'" in edifact_msg
+    assert f"MOA+9:{report.justified_amount:.2f}:USD'" in edifact_msg
+    assert "UNT+10+1'" in edifact_msg
+    assert "UNZ+1+" in edifact_msg
+
+
+def test_certified_cfdi_pac_with_sat_timbre():
+    """Valida la certificación del CFDI 4.0 con Timbre Fiscal Digital (TFD 1.1) y QR SAT (Eje 3)."""
+    case_id = "case_005_amazon_shortage"
+    report = ConcessionEngine.get_or_create_base_report(case_id)
+    stamped = ErpEngine.generate_certified_cfdi_pac(case_id, report)
+
+    assert stamped.uuid != ""
+    assert stamped.tipo_comprobante == "E"
+    assert "tfd:TimbreFiscalDigital" in stamped.xml_content
+    assert stamped.sello_cfd != ""
+    assert stamped.sello_sat != ""
+    assert stamped.no_certificado_sat == "00001000000504465028"
+    assert stamped.qr_verification_url.startswith("https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?id=")
+
+
+def test_export_full_erp_package_includes_edi_and_certified_cfdi():
+    """Valida que export_full_erp_package persista físicamente todos los 9 artefactos del Eje 3."""
+    case_id = "case_005_amazon_shortage"
+    pkg = ErpEngine.export_full_erp_package(case_id)
+
+    assert pkg.edi_812_x12 is not None
+    assert pkg.edifact_message is not None
+    assert pkg.cfdi_timbrado_xml is not None
+    assert pkg.qr_verification_url is not None
+
+    erp_dir = ROOT_DIR / "reports" / f"erp_{case_id}"
+    assert (erp_dir / "edi_812_credit_debit_adjustment.x12").exists()
+    assert (erp_dir / "edifact_credit_advice.edi").exists()
+    assert (erp_dir / "cfdi_40_timbrado_sat.xml").exists()
+    assert (erp_dir / "cfdi_40_nota_credito.xml").exists()
+    assert (erp_dir / "sap_bapi_post.json").exists()
+    assert (erp_dir / "sap_idoc_fidccp02.txt").exists()
+    assert (erp_dir / "netsuite_journal_entry.csv").exists()
+    assert (erp_dir / "netsuite_journal_entry.json").exists()
+    assert (erp_dir / "poliza_contable_nif_c3.md").exists()
+
+
+def test_api_edi_and_certified_cfdi_endpoints():
+    """Valida los nuevos endpoints REST para descarga directa de EDI 812, EDIFACT y CFDI timbrado (Eje 3)."""
+    case_id = "case_005_amazon_shortage"
+
+    # 1. Endpoint EDI 812
+    res_edi = client.get(f"/api/cases/{case_id}/erp/edi-812")
+    assert res_edi.status_code == 200
+    assert "ST*812*0001~" in res_edi.text
+    assert "BCD*" in res_edi.text
+
+    # 2. Endpoint EDIFACT
+    res_edifact = client.get(f"/api/cases/{case_id}/erp/edifact")
+    assert res_edifact.status_code == 200
+    assert "CREMUL" in res_edifact.text
+
+    # 3. Endpoint CFDI Timbrado SAT
+    res_cfdi = client.get(f"/api/cases/{case_id}/erp/cfdi-timbrado")
+    assert res_cfdi.status_code == 200
+    assert "TimbreFiscalDigital" in res_cfdi.text
+    assert res_cfdi.headers.get("X-SAT-UUID") is not None
+    assert "https://verificacfdi.facturaelectronica.sat.gob.mx" in res_cfdi.headers.get("X-SAT-QR-URL", "")
