@@ -145,8 +145,14 @@ class SkynetRunner:
                 from agent.guardrails.session_watchdog import SessionAnchorManager
                 if getattr(report, "session_anchor", None) is None:
                     report.session_anchor = SessionAnchorManager.build_session_anchor(self.case_id, report=report)
-                if getattr(report, "watchdog_metrics", None) is None and getattr(self.state, "watchdog_metrics", None):
-                    report.watchdog_metrics = self.state.watchdog_metrics
+                if getattr(report, "watchdog_metrics", None) is None:
+                    if getattr(self.state, "watchdog_metrics", None):
+                        report.watchdog_metrics = self.state.watchdog_metrics
+                    else:
+                        from agent.guardrails.session_watchdog import ReActExecutionWatchdog
+                        w = ReActExecutionWatchdog()
+                        self.state.watchdog_metrics = w.metrics
+                        report.watchdog_metrics = w.metrics
             except Exception:
                 pass
 

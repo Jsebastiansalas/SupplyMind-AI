@@ -217,20 +217,25 @@ class DocumentClassifier:
         standard_keys = {
             "invoice": [
                 "invoice.pdf", "invoice.json", "invoice.csv", "invoice.xlsx", "invoice.txt",
-                "factura.pdf", "factura.json", "factura.csv", "factura.xlsx", "cfdi.xml", "cfdi.json"
+                "invoice.png", "invoice.jpg", "invoice.jpeg", "invoice.webp",
+                "factura.pdf", "factura.json", "factura.csv", "factura.xlsx", "cfdi.xml", "cfdi.json",
+                "factura.png", "factura.jpg", "factura.jpeg", "factura.webp"
             ],
             "purchase_order": [
                 "purchase_order.pdf", "purchase_order.json", "purchase_order.csv", "purchase_order.xlsx",
-                "po.json", "po.pdf", "po.csv", "po.xlsx", "oc.json", "oc.pdf", "orden_compra.json", "orden_compra.pdf"
+                "purchase_order.png", "purchase_order.jpg", "purchase_order.jpeg", "purchase_order.webp",
+                "po.json", "po.pdf", "po.csv", "po.xlsx", "po.png", "po.jpg",
+                "oc.json", "oc.pdf", "oc.png", "oc.jpg", "orden_compra.json", "orden_compra.pdf", "orden_compra.png", "orden_compra.jpg"
             ],
             "delivery": [
                 "delivery.pdf", "delivery.json", "delivery.csv", "delivery.xlsx", "delivery.txt",
-                "delivery.png", "delivery.jpg", "delivery.jpeg", "remision.pdf", "remision.json",
-                "remision.csv", "remision.xlsx", "pod.pdf", "pod.png", "pod.csv", "manifest.csv"
+                "delivery.png", "delivery.jpg", "delivery.jpeg", "delivery.webp", "remision.pdf", "remision.json",
+                "remision.csv", "remision.xlsx", "remision.png", "remision.jpg", "pod.pdf", "pod.png", "pod.jpg", "pod.csv", "manifest.csv"
             ],
             "payment": [
                 "payment.pdf", "payment.json", "payment.csv", "payment.xlsx", "payment.txt", "payment.eml",
-                "pago.pdf", "pago.json", "pago.csv", "pago.xlsx", "remittance.xlsx", "settlement.xlsx"
+                "payment.png", "payment.jpg", "payment.jpeg", "payment.webp",
+                "pago.pdf", "pago.json", "pago.csv", "pago.xlsx", "pago.png", "pago.jpg", "remittance.xlsx", "settlement.xlsx"
             ],
             "contract": [
                 "contract.pdf", "contract.json", "contract.md", "contract.txt", "contract.csv", "contract.xlsx",
@@ -293,6 +298,15 @@ class DocumentClassifier:
                     ocr = OCREngine()
                     img_text = ocr.transcribe_image(candidate)
                     scores = cls.score_document(img_text)
+                    stem = candidate.stem.lower()
+                    for role in ["invoice", "purchase_order", "delivery", "payment", "contract"]:
+                        if (role in stem or 
+                            (role == "payment" and any(k in stem for k in ["pago", "remittance", "settlement", "wire"])) or 
+                            (role == "delivery" and any(k in stem for k in ["remision", "pod", "manifest", "dispatch", "bol"])) or
+                            (role == "purchase_order" and any(k in stem for k in ["po", "oc", "orden_compra", "order"])) or
+                            (role == "invoice" and any(k in stem for k in ["factura", "cfdi", "inv"])) or
+                            (role == "contract" and any(k in stem for k in ["msa", "contrato", "agreement", "terms"]))):
+                            scores[role] = scores.get(role, 0.0) + 25.0
                     best_type = max(scores, key=scores.get) if any(scores.values()) else "delivery"
                     conf = scores[best_type] / max(1.0, sum(scores.values())) if any(scores.values()) else 0.90
                     scored_candidates.append((candidate, best_type, max(0.85, conf)))

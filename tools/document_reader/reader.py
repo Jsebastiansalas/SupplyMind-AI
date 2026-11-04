@@ -136,6 +136,10 @@ def load_case_documents(case_id: str) -> Dict[str, Any]:
                 documents["invoice"] = MultiFormatParser.parse_tabular_document(inv_file, "invoice")
             elif inv_ext in (".txt", ".eml"):
                 documents["invoice"] = MultiFormatParser.parse_text_document(inv_file, "invoice")
+            elif inv_ext in (".png", ".jpg", ".jpeg", ".webp"):
+                from tools.ocr_engine.vision import OCREngine
+                ocr = OCREngine()
+                documents["invoice"] = ocr.extract_invoice(inv_file)
         except Exception as e:
             raise DocumentReaderError(f"Error al procesar factura '{inv_file.name}' en '{case_id}': {str(e)}")
     else:
@@ -162,6 +166,10 @@ def load_case_documents(case_id: str) -> Dict[str, Any]:
                 documents["purchase_order"] = MultiFormatParser.parse_tabular_document(po_file, "purchase_order")
             elif po_ext in (".txt", ".eml"):
                 documents["purchase_order"] = MultiFormatParser.parse_text_document(po_file, "purchase_order")
+            elif po_ext in (".png", ".jpg", ".jpeg", ".webp"):
+                from tools.ocr_engine.vision import OCREngine
+                ocr = OCREngine()
+                documents["purchase_order"] = ocr.extract_purchase_order(po_file)
         except Exception as e:
             raise DocumentReaderError(f"Error al procesar orden de compra '{po_file.name}' en '{case_id}': {str(e)}")
     else:
@@ -188,6 +196,10 @@ def load_case_documents(case_id: str) -> Dict[str, Any]:
                 documents["payment"] = MultiFormatParser.parse_tabular_document(pay_file, "payment")
             elif pay_ext in (".txt", ".eml"):
                 documents["payment"] = MultiFormatParser.parse_text_document(pay_file, "payment")
+            elif pay_ext in (".png", ".jpg", ".jpeg", ".webp"):
+                from tools.ocr_engine.vision import OCREngine
+                ocr = OCREngine()
+                documents["payment"] = ocr.extract_payment_receipt(pay_file)
         except Exception as e:
             raise DocumentReaderError(f"Error al procesar comprobante de pago '{pay_file.name}' en '{case_id}': {str(e)}")
     else:

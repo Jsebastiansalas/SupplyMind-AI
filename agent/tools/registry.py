@@ -309,7 +309,29 @@ TOOL_DEFINITIONS = [
                 "required": ["case_id"]
             }
         }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "audit_visual_dock_evidence",
+            "description": "Audita pericialmente evidencia visual de sellos de muelle, firmas manuscritas, precintos de seguridad C-TPAT y anotaciones de daño en remisiones/fotografías del caso mediante visión multimodal y OCR.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "case_id": {
+                        "type": "string",
+                        "description": "Identificador del caso."
+                    },
+                    "image_filename": {
+                        "type": "string",
+                        "description": "Nombre de archivo opcional de la imagen o remisión a auditar (ej. 'delivery.png', 'tarima_descarga_01.jpg'). Si se omite, busca automáticamente remisiones o fotos en el expediente."
+                    }
+                },
+                "required": ["case_id"]
+            }
+        }
     }
+
 ]
 
 class ToolExecutor:
@@ -727,6 +749,60 @@ class ToolExecutor:
                     "sap_bapi_payload": sap_bapi,
                     "cfdi_xml_preview": cfdi_xml[:500]
                 }
+            elif tool_name == "audit_visual_dock_evidence":
+                from tools.ocr_engine.vision import OCREngine
+                from agent.vision.pallet_vision_auditor import PalletVisionAuditor
+                from config.settings import settings
+                from pathlib import Path
+                
+                case_dir = settings.DATA_DIR / case_id
+                if not case_dir.exists():
+                    for alt_root in ["data/holdout_cases", "data/real_supply_chain_cases", "data/cases"]:
+                        alt_p = Path(alt_root) / case_id
+                        if alt_p.exists():
+                            case_dir = alt_p
+                            break
+
+                img_file = None
+                img_name_arg = arguments.get("image_filename")
+                if img_name_arg and (case_dir / img_name_arg).exists():
+                    img_file = case_dir / img_name_arg
+                else:
+                    img_candidates = list(case_dir.glob("*.png")) + list(case_dir.glob("*.jpg")) + list(case_dir.glob("*.jpeg")) + list(case_dir.glob("*.webp"))
+                    if img_candidates:
+                        del_imgs = [f for f in img_candidates if "delivery" in f.name.lower() or "remision" in f.name.lower() or "tarima" in f.name.lower() or "sello" in f.name.lower()]
+                        img_file = del_imgs[0] if del_imgs else img_candidates[0]
+                    elif (case_dir / "delivery.pdf").exists():
+                        img_file = case_dir / "delivery.pdf"
+
+                if not img_file or not img_file.exists():
+                    result = {
+                        "status": "error",
+                        "message": f"No se encontraron imágenes o remisiones escaneadas en el caso '{case_id}'.",
+                        "dock_audit": None
+                    }
+                else:
+                    ocr = OCREngine()
+                    audit_res = ocr.audit_dock_stamp_and_damage(img_file)
+                    
+                    pallet_cert = None
+                    if any(k in img_file.name.lower() for k in ["tarima", "pallet", "foto", "descarga"]):
+                        po_ref = self.state.loaded_documents["delivery"].po_reference if self.state.loaded_documents and "delivery" in self.state.loaded_documents else f"PO-{case_id}"
+                        pallet_cert = PalletVisionAuditor.inspect_pallet(
+                            image_name=img_file.name,
+                            po_reference=po_ref,
+                            case_id=case_id,
+                            simulate_damage=audit_res.get("discrepancy_reported", False)
+                        ).model_dump(mode="json")
+
+                    result = {
+                        "status": "success",
+                        "analyzed_file": img_file.name,
+                        "dock_audit": audit_res,
+                        "pallet_certificate": pallet_cert,
+                        "evidentiary_verdict": audit_res.get("evidentiary_summary", "Evidencia pericial de muelle analizada.")
+                    }
+
 
             else:
                 result = {"status": "error", "message": f"Herramienta desconocida: {tool_name}"}

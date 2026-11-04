@@ -287,11 +287,13 @@ def main():
             else:
                 case_id = "case_001"
 
-        runner = SkynetRunner(case_id=case_id)
+        is_fast = any(a.lower() in ["--fast", "-f", "fast"] for a in args)
+        runner = SkynetRunner(case_id=case_id, fast_path=is_fast, auto_route=not is_fast)
         runner.interactive_chat()
         return
 
-    runner = SkynetRunner(case_id=case_id)
+    is_fast = any(a.lower() in ["--fast", "-f", "fast"] for a in args)
+    runner = SkynetRunner(case_id=case_id, fast_path=is_fast, auto_route=not is_fast)
 
     # 2. Modo Calibración y Benchmark de Criterio
     if is_calibrate:
@@ -302,7 +304,7 @@ def main():
 
     # 3. Modo Consulta Puntual (CLI)
     if is_ask:
-        question_parts = [a for a in args if a.lower() not in ["ask", "--ask", "-q", "pregunta"] and not a.startswith("case_")]
+        question_parts = [a for a in args if a.lower() not in ["ask", "--ask", "-q", "pregunta", "--fast", "-f", "fast"] and not a.startswith("case_") and not a.startswith("dataco_")]
         question = " ".join(question_parts) or "¿Por qué existe una diferencia en el pago?"
         console.print(Panel.fit(
             f"[bold cyan]SupplyMind AI - Consulta Puntual[/bold cyan]\n"
@@ -320,9 +322,21 @@ def main():
         border_style="cyan"
     ))
     
-    objective = None
-    if args:
-        joined_args = " ".join(args)
+    filtered_args = []
+    skip_next = False
+    for a in args:
+        if skip_next:
+            skip_next = False
+            continue
+        if a in ["-c", "--case"]:
+            skip_next = True
+            continue
+        if a.lower() in ["--fast", "-f", "fast"] or a.startswith("case_") or a.startswith("dataco_") or a.startswith("holdout_"):
+            continue
+        filtered_args.append(a)
+
+    if filtered_args:
+        joined_args = " ".join(filtered_args)
         if "analiza" in joined_args.lower() or len(joined_args) > 15:
             objective = joined_args
         else:

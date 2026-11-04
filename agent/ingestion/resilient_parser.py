@@ -747,9 +747,17 @@ class ResilientDocumentLoader:
                 elif suffix in (".txt", ".eml"):
                     return MultiFormatParser.parse_text_document(f_path, doc_key)
 
-                elif suffix in [".png", ".jpg", ".jpeg", ".webp"] and doc_key == "delivery":
+                elif suffix in [".png", ".jpg", ".jpeg", ".webp"]:
                     from tools.ocr_engine.vision import OCREngine
-                    return OCREngine().extract_delivery_note(f_path)
+                    ocr = OCREngine()
+                    if doc_key == "delivery":
+                        return ocr.extract_delivery_note(f_path)
+                    elif doc_key == "invoice":
+                        return ocr.extract_invoice(f_path)
+                    elif doc_key == "purchase_order":
+                        return ocr.extract_purchase_order(f_path)
+                    elif doc_key == "payment":
+                        return ocr.extract_payment_receipt(f_path)
 
                 elif suffix == ".md" and doc_key == "contract":
                     from tools.contract_analyzer.rag import ContractRAG
