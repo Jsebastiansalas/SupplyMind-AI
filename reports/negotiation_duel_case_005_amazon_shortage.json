@@ -1,5 +1,5 @@
 {
-  "session_id": "DUEL-CASE_005_AMAZON_SHORTAGE-949FBD75",
+  "session_id": "DUEL-CASE_005_AMAZON_SHORTAGE-2473CBD7",
   "case_id": "case_005_amazon_shortage",
   "retailer_name": "Amazon Fulfillment Services LLC",
   "archetype": {
@@ -17,8 +17,8 @@
     "tone": "Frío, algorítmico, automatizado y despersonalizado"
   },
   "governance_mode": "FULL_AUTONOMY",
-  "status": "IN_PROGRESS",
-  "current_round": 1,
+  "status": "AGREEMENT_REACHED",
+  "current_round": 4,
   "max_rounds": 5,
   "delegation_limit_pct": 50.0,
   "delegation_limit_amount": "1250.00",
@@ -35,19 +35,80 @@
       "supplier_offer_credit_memo": "5000.00",
       "supplier_claim_cash": "2500.00",
       "evidence_exhibited": [
+        "Faltante físico comprobado en SKU-NVME-4TB (Enterprise PCIe Gen5 NVMe 4TB SSD): 20 unidades faltantes s/ remisión BOL-POD-77319 valoradas en $5,000.00",
         "Factura Comercial Oficial INV por $48,000.00 USD",
         "Orden de Compra aprobada sin variaciones de precio unitario"
       ],
       "spread": "2500.00",
       "convergence_pct": 66.7,
       "round_status": "IN_PROGRESS"
+    },
+    {
+      "round_number": 2,
+      "buyer_message": "Tomamos nota de la remisión y telemetría electrónica que exhiben. Sin embargo, nuestros registros de patio aún indican demoras y gastos operativos de descarga. Como muestra de buena fe, estamos dispuestos a liberar $625.00 USD en transferencia si aceptan una Nota de Crédito por $6,875.00 USD.",
+      "buyer_stance": "DEFENSIVE",
+      "buyer_demand_credit_memo": "6875.00",
+      "buyer_cash_payout_offer": "625.00",
+      "supplier_message": "Exhibimos la constancia sellada en muelle y el sello de seguridad C-TPAT ISO 17712 intacto al momento del arribo. Para coadyuvar con sus procesos administrativos sin perjudicar la relación de suministro, podemos autorizar una bonificación comercial complementaria de $250.00 USD, totalizando una Nota de Crédito por $5,250.00 USD, condicionado al pago expedito de $2,250.00 USD en 5 días. (Sujeto a compromiso recíproco de volumen en próximas órdenes de compra Tier-1).",
+      "supplier_stance": "COUNTER_OFFER",
+      "supplier_offer_credit_memo": "5250.00",
+      "supplier_claim_cash": "2250.00",
+      "evidence_exhibited": [
+        "Deducción aplicada en comprobante REM-AMZ-99120: código DED-SHRT-20, motivo 'Dock Shortage - 20x SKU-NVME-4TB en muelle', monto $5,000.00",
+        "Remisión física de recibo con firma y sello de personal de muelle",
+        "Certificado de sello de alta seguridad ISO 17712 e inspección C-TPAT intacta"
+      ],
+      "spread": "1625.00",
+      "convergence_pct": 78.3,
+      "round_status": "CONVERGING"
+    },
+    {
+      "round_number": 3,
+      "buyer_message": "Aceptamos reconsiderar parcialmente las partidas objetadas. Nuestra contraoferta es liquidar $875.00 USD si ustedes absorben $6,625.00 USD mediante Nota de Crédito.",
+      "buyer_stance": "PARTIAL_CONCESSION",
+      "buyer_demand_credit_memo": "6625.00",
+      "buyer_cash_payout_offer": "875.00",
+      "supplier_message": "Cotejando la telemetría EDI 856 ASN transmitida con antelación y confirmada por su sistema con el acuse EDI 997, su centro de distribución contaba con el inventario exacto previo al descargue. En un esfuerzo de conciliación equilibrada, elevamos nuestra concesión a $5,625.00 USD en Nota de Crédito. Exigimos liquidar en banco $1,875.00 USD. (Sujeto a compromiso recíproco de volumen en próximas órdenes de compra Tier-1).",
+      "supplier_stance": "PROPORTIONAL_CONCESSION",
+      "supplier_offer_credit_memo": "5625.00",
+      "supplier_claim_cash": "1875.00",
+      "evidence_exhibited": [
+        "Deducción aplicada en comprobante REM-AMZ-99120: código DED-ASN-PENALTY, motivo 'Late Inbound EDI ASN Defect Fee (No autorizad', monto $2,500.00",
+        "Transmisión electrónica Advance Ship Notice (ASN EDI 856) con timestamp UTC previo al descargue",
+        "Acuse Funcional EDI 997 Aceptado (Status A) sin excepción operativa"
+      ],
+      "spread": "1000.00",
+      "convergence_pct": 86.7,
+      "round_status": "CONVERGING"
+    },
+    {
+      "round_number": 4,
+      "buyer_message": "Para evitar elevar esta controversia a un arbitraje comercial formal bajo reglas ICC, nuestra gerencia autoriza un desembolso bancario de $1,875.00 USD. Únicamente requerimos la Nota de Crédito por el faltante real en muelle y una deducción administrativa reducida por $5,625.00 USD.",
+      "buyer_stance": "PARTIAL_CONCESSION",
+      "buyer_demand_credit_memo": "5625.00",
+      "buyer_cash_payout_offer": "1875.00",
+      "supplier_message": "Reiteramos que legalmente operó la preclusión mercantil del Art. 88 del Código de Comercio al no protestar averías en el plazo legal de 5 días. Conforme a las directrices de nuestra dirección financiera, nuestra penúltima contraoferta es una Nota de Crédito por $6,000.00 USD. Cualquier retención adicional carece de amparo legal y obligará a iniciar formalmente el arbitraje CANACO. (Sujeto a compromiso recíproco de volumen en próximas órdenes de compra Tier-1).",
+      "supplier_stance": "PROPORTIONAL_CONCESSION",
+      "supplier_offer_credit_memo": "6000.00",
+      "supplier_claim_cash": "1500.00",
+      "evidence_exhibited": [
+        "Respaldo contractual: La 4.1 autoriza la deducción por faltantes físicos acreditados en remisión de entrega.",
+        "Código de Comercio (Art. 88): Preclusión de 5 días para reclamo de vicios aparentes",
+        "Tesis Jurisprudencial SCJN Registro 178234 (Pleno valor probatorio de remisión sellada)"
+      ],
+      "spread": "375.00",
+      "convergence_pct": 95.0,
+      "round_status": "AGREED"
     }
   ],
-  "final_agreed_credit_memo": null,
-  "final_agreed_cash_recovery": null,
-  "settlement_minutes_hash": null,
-  "minutes_markdown_path": null,
-  "started_at": "2026-10-30T13:27:35.625115+00:00",
-  "completed_at": null,
-  "summary_verdict": "Careo iniciado. Posturas preliminares bajo política TIER_1_STRATEGIC."
+  "final_agreed_credit_memo": "5625.00",
+  "final_agreed_cash_recovery": "1875.00",
+  "settlement_minutes_hash": "af0554f269e4fddf483a74b6fb4d29fe3ffa4b7e56ea124bacc17d5ab477c37f",
+  "minutes_markdown_path": "C:\\Users\\USUARIO\\Downloads\\platica\\reports\\convenio_finiquito_case_005_amazon_shortage.md",
+  "started_at": "2026-11-03T12:39:44.752731+00:00",
+  "completed_at": "2026-11-03T12:39:44.773023+00:00",
+  "summary_verdict": "Acuerdo bilateral formalizado con éxito en Ronda 4. Recuperación neta en banco: $1,875.00 USD | Nota de Crédito autorizada: $5,625.00 USD.",
+  "rhi_score": 84.5,
+  "modulation_mode": "DIPLOMATIC_PRESERVATION",
+  "churn_risk_level": "LOW_STRATEGIC"
 }

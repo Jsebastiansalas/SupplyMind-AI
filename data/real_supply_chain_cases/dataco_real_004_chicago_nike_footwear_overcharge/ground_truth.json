@@ -3,6 +3,7 @@
   "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
   "buyer_name": "Great Lakes Footwear (DataCo Chicago Hub)",
   "industry": "Footwear & Apparel",
+  "hub": "Chicago, IL",
   "file_formats": [
     ".xlsx",
     ".csv",

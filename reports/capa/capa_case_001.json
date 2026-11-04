@@ -1,0 +1,28 @@
+{
+  "ticket_id": "CAPA-2026-50C608",
+  "case_id": "case_001",
+  "retailer_name": "Cadena Comercial Mayorista B2B",
+  "department_code": "WAREHOUSE_CEDIS",
+  "department_name": "Almacén / CEDIS Propio",
+  "assigned_owner_role": "Jefe de Almacén y Embarques - Turno B",
+  "severity": "MEDIUM",
+  "financial_impact_usd": "800.00",
+  "root_cause_summary": "Faltante físico en entrega valorado en $800.00 USD, constatado en remisión de entrega firmada con sello de recepción en bodega.",
+  "detected_anomaly_detail": "Incidencia en empaque / paletizado TI-HI o etiqueta GS1-128 en origen que detonó reporte de faltante aparente o merma durante la descarga en andén.",
+  "corrective_actions": [
+    "Re-etiquetar lotes con impresora térmica calibrada a 300 DPI verificando grado ANSI 'A' en código GS1-128 / SSCC-18.",
+    "Instalar báscula de patín hidráulico en andén de carga y adjuntar ticket de peso bruto de tarima al expediente POD.",
+    "Capturar fotografía 360° de cada tarima emplayada antes de ingresar a la caja seca con sello visible."
+  ],
+  "pre_dispatch_checklist": [
+    "[ ] Escaneo exitoso de código de barras GS1-128 en las 4 caras de la tarima.",
+    "[ ] Validación de patrón de estiba TI-HI acorde al manual logístico del Retailer.",
+    "[ ] Certificado de peso en rampa coincidente con Packing List (±0.2 kg tolerancia).",
+    "[ ] Evidencia fotográfica de emplayado y esquineros rígidos archivada en DMS."
+  ],
+  "sla_resolution_hours": 72,
+  "status": "OPEN_ASSIGNED",
+  "created_at": "2026-11-03T12:40:37.145243+00:00",
+  "markdown_content": "# ORDEN DE INGENIERÍA PREVENTIVA — TICKET CAPA `CAPA-2026-50C608`\n**SISTEMA DE GESTIÓN DE CALIDAD Y PREVENCIÓN DE FUGAS B2B (CLOSED-LOOP RCA)**\n\n---\n- **ID de Ticket CAPA:** `CAPA-2026-50C608`\n- **Expediente Origen:** `case_001` (Factura: `INV-CASE_001`)\n- **Cliente / Retailer Afectado:** Cadena Comercial Mayorista B2B\n- **Departamento Interno Responsable:** **Almacén / CEDIS Propio** (`WAREHOUSE_CEDIS`)\n- **Líder Operativo Asignado:** **Jefe de Almacén y Embarques - Turno B**\n- **Severidad / Prioridad:** `MEDIUM` (SLA de Implementación: `72 horas`)\n- **Impacto Financiero en Disputa:** **$800.00 USD** (Fuga Justificada: `$800.00 USD`)\n- **Fecha de Emisión UTC:** `2026-11-03T12:40:37.145243+00:00`\n\n---\n\n### I. DIAGNÓSTICO DE CAUSA RAÍZ (HALLAZGO DE AUDITORÍA)\n\n- **Dictamen del Agente SupplyMind:** Faltante físico en entrega valorado en $800.00 USD, constatado en remisión de entrega firmada con sello de recepción en bodega.\n- **Anomalía Operativa Detectada:** Incidencia en empaque / paletizado TI-HI o etiqueta GS1-128 en origen que detonó reporte de faltante aparente o merma durante la descarga en andén.\n\n### II. PLAN DE ACCIÓN CORRECTIVA INMEDIATA (CAPA)\n\n1. Re-etiquetar lotes con impresora térmica calibrada a 300 DPI verificando grado ANSI 'A' en código GS1-128 / SSCC-18.\n2. Instalar báscula de patín hidráulico en andén de carga y adjuntar ticket de peso bruto de tarima al expediente POD.\n3. Capturar fotografía 360° de cada tarima emplayada antes de ingresar a la caja seca con sello visible.\n\n### III. CHECKLIST MANDATORIO PRE-DESPACHO (CANDADO DE SALIDA)\n\n- [ ] Escaneo exitoso de código de barras GS1-128 en las 4 caras de la tarima.\n- [ ] Validación de patrón de estiba TI-HI acorde al manual logístico del Retailer.\n- [ ] Certificado de peso en rampa coincidente con Packing List (±0.2 kg tolerancia).\n- [ ] Evidencia fotográfica de emplayado y esquineros rígidos archivada en DMS.\n\n---\n**Estado del Ticket:** `OPEN_ASSIGNED`  \n**Generado Automáticamente por:** SupplyMind AI — Motor Preventivo RCA (Fase 7)\n",
+  "file_path": "C:\\Users\\USUARIO\\Downloads\\platica\\reports\\capa\\capa_case_001.md"
+}

@@ -1,0 +1,10 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-124690
+invoice_reference: INV-DC-ORD-124690
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 7245.00
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=SHORTAGE | amount=225.00 | reason=Faltante fisico en muelle de 5 uds SKU DC-1630 | ref=BOL-DC-ORD-124690
+DEDUCTION | code=UNAGREED_TICKETING_FEE | amount=630.00 | reason=Penalidad por colocacion de etiquetas de precio | ref=MEMO-FEE

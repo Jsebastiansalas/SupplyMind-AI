@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-75890
+# vendor_id: DATACO-CHICAGO
+# customer_id: BUYER-DC-ORD-75890
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 9999.00
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-191,Nike Men's Free 5.0+ Running Shoe (DataCo DC-191),100,99.99,9999.00

@@ -24,6 +24,7 @@ from agent.core.retailer_buyer_simulator import RetailerBuyerSimulator, ARCHETYP
 from agent.core.concession_engine import ConcessionEngine, ConcessionIntent
 from agent.core.delegation_matrix_engine import DelegationMatrixEngine
 from agent.core.settlement_agreement_generator import SettlementAgreementGenerator
+from agent.core.relational_health_engine import RelationalHealthEngine
 from config.settings import settings
 
 ROOT_DIR = Path(__file__).resolve().parent.parent.parent
@@ -63,15 +64,18 @@ class BilateralNegotiationEngine:
         cls,
         case_id: str,
         governance_mode: str = "HUMAN_GATEKEEPER",
-        delegation_limit_pct: Optional[float] = None
+        delegation_limit_pct: Optional[float] = None,
+        override_rhi_score: Optional[float] = None
     ) -> NegotiationDuelSession:
         """
         Inicia una nueva sesión de careo bilateral entre SupplyMind y el Comprador Retailer.
-        Aplica los límites y salvaguardas de la Matriz de Delegación Financiera (Sprint 6.2).
+        Aplica los límites y salvaguardas de la Matriz de Delegación Financiera (Sprint 6.2)
+        y la Modulación Relacional LTV / RHI (Sprint 7.3).
         Ejecuta de inmediato la Ronda 1 de apertura de posturas.
         """
         report = ConcessionEngine.get_or_create_base_report(case_id)
         archetype = RetailerBuyerSimulator.resolve_archetype(case_id)
+        rhi_report = RelationalHealthEngine.evaluate_relational_health(case_id, override_rhi_score=override_rhi_score)
 
         # Evaluar contra la Matriz de Delegación Corporativa
         delegation_eval = DelegationMatrixEngine.evaluate_case_delegation(case_id, requested_mode=governance_mode)
@@ -91,6 +95,10 @@ class BilateralNegotiationEngine:
             effective_limit_pct = min(float(delegation_limit_pct), max_matrix_pct)
         else:
             effective_limit_pct = max_matrix_pct
+
+        # Si se especifica explícitamente un RHI < 50 en override (ASSERTIVE_LITIGIOUS), bloquear concesiones
+        if override_rhi_score is not None and rhi_report.modulation_mode == "ASSERTIVE_LITIGIOUS":
+            effective_limit_pct = 0.0
 
         limit_pct_decimal = (Decimal(str(effective_limit_pct)) / Decimal("100.0")).quantize(Decimal("0.01"))
         calculated_limit_amount = (claimable * limit_pct_decimal).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
@@ -115,7 +123,13 @@ class BilateralNegotiationEngine:
             total_disputed_amount=total_dispute,
             rounds=[],
             started_at=now_iso,
-            summary_verdict=f"Careo iniciado. Posturas preliminares bajo política {delegation_eval['account_tier']}.{safeguard_note}"
+            summary_verdict=(
+                f"Careo iniciado. Posturas preliminares bajo política {delegation_eval['account_tier']} "
+                f"| Salud Relacional RHI {rhi_report.rhi_score}/100 ({rhi_report.modulation_mode}).{safeguard_note}"
+            ),
+            rhi_score=rhi_report.rhi_score,
+            modulation_mode=rhi_report.modulation_mode,
+            churn_risk_level=rhi_report.churn_risk_level,
         )
 
         # Generar Ronda 1 de inmediato
@@ -314,7 +328,18 @@ class BilateralNegotiationEngine:
             ]
         }
 
-        evidences = evidences_pool.get(round_num, evidences_pool[1])
+        evidences = list(evidences_pool.get(round_num, evidences_pool[1]))
+        if report.evidence:
+            real_ev = report.evidence[min(round_num - 1, len(report.evidence) - 1)]
+            if real_ev not in evidences:
+                evidences.insert(0, real_ev)
+
+        mod_mode = getattr(session, "modulation_mode", None) or "FIRM_COMMERCIAL"
+        mod_suffix = ""
+        if mod_mode == "DIPLOMATIC_PRESERVATION" and round_num >= 2:
+            mod_suffix = " (Sujeto a compromiso recíproco de volumen en próximas órdenes de compra Tier-1)."
+        elif mod_mode == "ASSERTIVE_LITIGIOUS":
+            mod_suffix = " [Directriz RHI < 50: Cero concesiones sobre retenciones sin soporte físico]."
 
         if round_num == 1:
             stance = "EVIDENCE_FIRMNESS"
@@ -322,7 +347,7 @@ class BilateralNegotiationEngine:
                 f"Estimado {session.archetype.buyer_title}: Rechazamos categóricamente la retención unilateral de "
                 f"${claimable:,.2f} USD. Exhibimos la factura y remisión debidamente autorizadas. Reconocemos "
                 f"únicamente ${justified:,.2f} USD por faltante físico real mediante Nota de Crédito comercial, "
-                f"y requerimos la transferencia inmediata del saldo restante de ${supplier_claim_cash:,.2f} USD."
+                f"y requerimos la transferencia inmediata del saldo restante de ${supplier_claim_cash:,.2f} USD.{mod_suffix}"
             )
         elif round_num == 2:
             stance = "COUNTER_OFFER"
@@ -330,7 +355,7 @@ class BilateralNegotiationEngine:
                 f"Exhibimos la constancia sellada en muelle y el sello de seguridad C-TPAT ISO 17712 intacto al momento del arribo. "
                 f"Para coadyuvar con sus procesos administrativos sin perjudicar la relación de suministro, podemos autorizar "
                 f"una bonificación comercial complementaria de ${concession_offered:,.2f} USD, totalizando una Nota de Crédito "
-                f"por ${supplier_offer_cm:,.2f} USD, condicionado al pago expedito de ${supplier_claim_cash:,.2f} USD en 5 días."
+                f"por ${supplier_offer_cm:,.2f} USD, condicionado al pago expedito de ${supplier_claim_cash:,.2f} USD en 5 días.{mod_suffix}"
             )
         elif round_num == 3:
             stance = "PROPORTIONAL_CONCESSION"
@@ -338,7 +363,7 @@ class BilateralNegotiationEngine:
                 f"Cotejando la telemetría EDI 856 ASN transmitida con antelación y confirmada por su sistema con el acuse EDI 997, "
                 f"su centro de distribución contaba con el inventario exacto previo al descargue. En un esfuerzo de conciliación "
                 f"equilibrada, elevamos nuestra concesión a ${supplier_offer_cm:,.2f} USD en Nota de Crédito. Exigimos liquidar en banco "
-                f"${supplier_claim_cash:,.2f} USD."
+                f"${supplier_claim_cash:,.2f} USD.{mod_suffix}"
             )
         elif round_num == 4:
             stance = "PROPORTIONAL_CONCESSION"
@@ -346,14 +371,14 @@ class BilateralNegotiationEngine:
                 f"Reiteramos que legalmente operó la preclusión mercantil del Art. 88 del Código de Comercio al no protestar "
                 f"averías en el plazo legal de 5 días. Conforme a las directrices de nuestra dirección financiera, nuestra "
                 f"penúltima contraoferta es una Nota de Crédito por ${supplier_offer_cm:,.2f} USD. Cualquier retención adicional carece "
-                f"de amparo legal y obligará a iniciar formalmente el arbitraje CANACO."
+                f"de amparo legal y obligará a iniciar formalmente el arbitraje CANACO.{mod_suffix}"
             )
         else: # round_num == 5
             stance = "CLOSING_AGREEMENT"
             msg = (
                 f"Propuesta final e integral de conciliación extrajudicial: Concedemos hasta ${supplier_offer_cm:,.2f} USD en Nota "
                 f"de Crédito comercial para cerrar definitivamente el expediente `{session.case_id}` sin litigio, a cambio de la transferencia "
-                f"inmediata de ${supplier_claim_cash:,.2f} USD. De no aceptarse, daremos por concluida la negociación extrajudicial."
+                f"inmediata de ${supplier_claim_cash:,.2f} USD. De no aceptarse, daremos por concluida la negociación extrajudicial.{mod_suffix}"
             )
 
         return msg, stance, supplier_offer_cm, supplier_claim_cash, evidences
@@ -452,6 +477,18 @@ class BilateralNegotiationEngine:
         )
         session.settlement_minutes_hash = agreement.zkp_seal_hash
         session.minutes_markdown_path = str(ROOT_DIR / "reports" / f"convenio_finiquito_{session.case_id}.md")
+
+        # Registrar precedente de negociación bilateral en la Red de Memoria SQLite (Sprint 8.5)
+        try:
+            from agent.memory.precedent_graph import DisputeMemoryNetwork
+            mem_net = DisputeMemoryNetwork()
+            mem_net.record_case_resolution(
+                case_id=session.case_id,
+                report=report,
+                deduction_code=f"SETTLEMENT-{session.archetype.archetype_id}"
+            )
+        except Exception:
+            pass
 
     @classmethod
     def _save_session(cls, session: NegotiationDuelSession):

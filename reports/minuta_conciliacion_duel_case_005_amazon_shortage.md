@@ -1,14 +1,14 @@
 # CONVENIO JUDICIAL-EXTRAJUDICIAL DE TRANSACCIÓN MERCANTIL Y FINIQUITO DEFINITIVO
-**Folio Oficial:** `AGR-CASE_005_AMAZON_SHORTAGE-C3B7FFDE`  
+**Folio Oficial:** `AGR-CASE_005_AMAZON_SHORTAGE-701D08C0`  
 **Expediente Vinculado:** `case_005_amazon_shortage`  
-**Fecha de Suscripción:** 30 de October de 2026 a las 13:27:35 UTC  
-**Sello Criptográfico ZKP SHA-256:** `15fc00d6c6895d882ba07590838d1f2639506740b890da3be68839b0ec360656`  
-**Suscrito por:** Auditor B2B / SupplyMind AI  
+**Fecha de Suscripción:** 03 de November de 2026 a las 12:39:44 UTC  
+**Sello Criptográfico ZKP SHA-256:** `af0554f269e4fddf483a74b6fb4d29fe3ffa4b7e56ea124bacc17d5ab477c37f`  
+**Suscrito por:** Director Comercial B2B / SupplyMind AI  
 
 ---
 
 ### COMPARECENCIA Y DECLARACIONES
-Comparecen por una parte el **Proveedor Autorizado de Suministro** (en adelante "El Proveedor"), representado en este acto por **Auditor B2B / SupplyMind AI** y asistido por la plataforma autónoma **SupplyMind AI**, y por la otra parte **Amazon Fulfillment Services LLC** (en adelante "El Comprador"), representada por su **Marcus Vance (Vendor Chargeback Resolution Manager)**.
+Comparecen por una parte el **Proveedor Autorizado de Suministro** (en adelante "El Proveedor"), representado en este acto por **Director Comercial B2B / SupplyMind AI** y asistido por la plataforma autónoma **SupplyMind AI**, y por la otra parte **Amazon Fulfillment Services LLC** (en adelante "El Comprador"), representada por su **Marcus Vance (Vendor Chargeback Resolution Manager)**.
 
 Ambas partes declaran y reconocen expresamente:
 1. Que derivado de las operaciones de entrega y facturación correspondientes al expediente `case_005_amazon_shortage`, existía una controversia por deducciones y cargos no conciliados por la cantidad total de **$7,500.00 USD**.
@@ -17,7 +17,7 @@ Ambas partes declaran y reconocen expresamente:
 | Ronda | Postura Comprador | Demanda NC | Oferta Efectivo | Postura Proveedor | Concesión NC | Reclamo Efectivo | Spread | Convergencia |
 | :---: | :--- | :---: | :---: | :--- | :---: | :---: | :---: | :---: |
 | R1 | INTRANSIGENT | $7,500.00 | $0.00 | EVIDENCE_FIRMNESS | $5,000.00 | $2,500.00 | $2,500.00 | 66.7% |
-| R2 | DEFENSIVE | $6,750.00 | $750.00 | COUNTER_OFFER | $5,250.00 | $2,250.00 | $1,500.00 | 80.0% |
+| R2 | DEFENSIVE | $6,875.00 | $625.00 | COUNTER_OFFER | $5,250.00 | $2,250.00 | $1,625.00 | 78.3% |
 | R3 | PARTIAL_CONCESSION | $6,625.00 | $875.00 | PROPORTIONAL_CONCESSION | $5,625.00 | $1,875.00 | $1,000.00 | 86.7% |
 | R4 | PARTIAL_CONCESSION | $5,625.00 | $1,875.00 | PROPORTIONAL_CONCESSION | $6,000.00 | $1,500.00 | $375.00 | 95.0% |
 
@@ -56,11 +56,11 @@ El presente instrumento se rige e interpreta de conformidad con el marco jurídi
 Las partes renuncian expresamente a cualquier acción civil, mercantil o penal que pudiera derivar de los hechos materia de este acuerdo, quedando prohibida la reapertura del expediente o la aplicación de deducciones retroactivas por estos mismos conceptos.
 
 #### SEXTA. FE ELECTRÓNICA Y FIRMA CRIPTOGRÁFICA
-El presente convenio ha sido sellado criptográficamente mediante algoritmo ZKP SHA-256 (`15fc00d6c6895d882ba07590838d1f2639506740b890da3be68839b0ec360656`), garantizando la inmutabilidad de los montos y compromisos suscritos.
+El presente convenio ha sido sellado criptográficamente mediante algoritmo ZKP SHA-256 (`af0554f269e4fddf483a74b6fb4d29fe3ffa4b7e56ea124bacc17d5ab477c37f`), garantizando la inmutabilidad de los montos y compromisos suscritos.
 
 ---
 **POR EL PROVEEDOR:**  
-*Auditor B2B / SupplyMind AI*  
+*Director Comercial B2B / SupplyMind AI*  
 Dirección de Finanzas & Tesorería B2B  
 
 **POR EL COMPRADOR:**  

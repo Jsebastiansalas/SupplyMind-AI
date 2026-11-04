@@ -1,8 +1,8 @@
 # CONVENIO JUDICIAL-EXTRAJUDICIAL DE TRANSACCIÓN MERCANTIL Y FINIQUITO DEFINITIVO
-**Folio Oficial:** `AGR-CASE_001-E873AA85`  
+**Folio Oficial:** `AGR-CASE_001-4F5A1FB6`  
 **Expediente Vinculado:** `case_001`  
-**Fecha de Suscripción:** 30 de October de 2026 a las 13:27:35 UTC  
-**Sello Criptográfico ZKP SHA-256:** `b581a19e4066149703c55d1c5c7fd6079f53eb7b9013ed28e784d73cb184ca1c`  
+**Fecha de Suscripción:** 03 de November de 2026 a las 12:39:44 UTC  
+**Sello Criptográfico ZKP SHA-256:** `e3691d90a5e733da092fe03ad5b75224161987aff223e9c943f2e46f317e50d1`  
 **Suscrito por:** Director Comercial B2B / SupplyMind AI  
 
 ---
@@ -52,7 +52,7 @@ El presente instrumento se rige e interpreta de conformidad con el marco jurídi
 Las partes renuncian expresamente a cualquier acción civil, mercantil o penal que pudiera derivar de los hechos materia de este acuerdo, quedando prohibida la reapertura del expediente o la aplicación de deducciones retroactivas por estos mismos conceptos.
 
 #### SEXTA. FE ELECTRÓNICA Y FIRMA CRIPTOGRÁFICA
-El presente convenio ha sido sellado criptográficamente mediante algoritmo ZKP SHA-256 (`b581a19e4066149703c55d1c5c7fd6079f53eb7b9013ed28e784d73cb184ca1c`), garantizando la inmutabilidad de los montos y compromisos suscritos.
+El presente convenio ha sido sellado criptográficamente mediante algoritmo ZKP SHA-256 (`e3691d90a5e733da092fe03ad5b75224161987aff223e9c943f2e46f317e50d1`), garantizando la inmutabilidad de los montos y compromisos suscritos.
 
 ---
 **POR EL PROVEEDOR:**  

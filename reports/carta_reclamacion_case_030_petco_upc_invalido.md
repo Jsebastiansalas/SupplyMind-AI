@@ -1,6 +1,6 @@
 # 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
 **Ref: Expediente de Cartera case_030_petco_upc_invalido / Factura INV-CASE_030-7B67**  
-**Fecha:** 28 de October de 2026  
+**Fecha:** 04 de November de 2026  
 **De:** Departamento de Cartera y Asuntos Comerciales — VEN-001  
 **Para:** Gerencia de Cuentas por Pagar y Conciliación — CUST-PETCO_MX  
 
@@ -23,10 +23,15 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_030_petco_upc_invalido — 2026-10-29):**
+**Precedente 1 (Expediente case_030_petco_upc_invalido — 2026-11-04):**
 - **Criterio Acreditado:** En el caso case_030_petco_upc_invalido, se acreditó la improcedencia de la deducción 'MANIOBRA-REPALETIZADO' conforme a CLAUSE-4.6, logrando la restitución de $2,900.00 USD.
 - **Resultado Previo:** Restitución de **$2,900.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CLAUSE-4.6.
+
+**Precedente 2 (Expediente holdout_case_002 — 2026-11-04):**
+- **Criterio Acreditado:** En el caso holdout_case_002, se acreditó la improcedencia de la deducción 'ALLEGED_DAMAGE_UNILATERAL' conforme a CL-02, logrando la restitución de $1,500.00 USD.
+- **Resultado Previo:** Restitución de **$1,500.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** CL-02.
 
 Por tanto, en observancia del principio de coherencia comercial y buena fe contractual, solicitamos la aplicación del mismo criterio para el reintegro de la presente retención.
 

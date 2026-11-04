@@ -1,0 +1,10 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-93750
+invoice_reference: INV-DC-ORD-93750
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 9499.66
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=DAMAGED | amount=299.99 | reason=Averia en muelle de 1 uds SKU DC-842 constatada en POD | ref=BOL-DC-ORD-93750
+DEDUCTION | code=EDI_TRANSMISSION_FEE | amount=700.00 | reason=Cargo recurrente por integracion EDI no autorizado | ref=MEMO-ADMIN

@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `case_020_modelo_tarimas_retornables` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-10-29 01:01:13 UTC | **Nivel de Confianza:** 76.0%
+> **Fecha de Emisión:** 2026-11-04 05:06:16 UTC | **Nivel de Confianza:** 76.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO
@@ -58,13 +58,13 @@ Discrepancia mixta en expediente case_020_modelo_tarimas_retornables: Faltante f
 
 - **Fuerza Probatoria del Proveedor:** 87.5%
 
-- **Dictamen del Magistrado Arbitral:** VISTO el careo de autos en el expediente case_020_modelo_tarimas_retornables: Se condena al comprador al reintegro inmediato de $18,000.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $14,000.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%.
+- **Dictamen del Magistrado Arbitral:** VISTO el careo de autos en el expediente case_020_modelo_tarimas_retornables (Factura: INV-CASE_020-45DB, Remisión: DEL-CASE_020-A052, Liquidación: PAY-CASE_020-3BDB): Se condena al comprador al reintegro inmediato de $18,000.00 USD por carecer de título legal habilitante en CTR-GRUPO_MODELO-2026, y se valida la emisión de Nota de Crédito por $14,000.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%. Reloj SLA: 7 días restantes (HIGH_IMMINENT).
 
 **Objeciones del Retailer Desestimadas:**
-> - 🛡️ Retención unilateral de $18,000.00 USD declarada IMPROCEDENTE y 100% RECLAMABLE.
+> - 🛡️ Retención unilateral de $18,000.00 USD en PAY-CASE_020-3BDB declarada IMPROCEDENTE y 100% RECLAMABLE.
 
 **Objeciones Concedidas en Muelle:**
-> - ⚖️ Deducción de faltante físico por $14,000.00 USD declarada PROCEDENTE.
+> - ⚖️ Deducción de faltante físico por $14,000.00 USD amparada en DEL-CASE_020-A052 declarada PROCEDENTE.
 
 ---
 ## 4.2 SANITY GATE DE CUÁDRUPLE AUDITORÍA (SEMANA 4)

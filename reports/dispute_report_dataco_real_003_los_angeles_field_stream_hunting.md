@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `dataco_real_003_los_angeles_field_stream_hunting` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-11-03 20:57:24 UTC | **Nivel de Confianza:** 98.0%
+> **Fecha de Emisión:** 2026-11-04 05:07:48 UTC | **Nivel de Confianza:** 98.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO
@@ -22,10 +22,11 @@ Discrepancia mixta en expediente dataco_real_003_los_angeles_field_stream_huntin
 ---
 ## 3. TRAZABILIDAD Y CADENA DE EVIDENCIAS DOCUMENTALES
 
-1. Deducción aplicada en comprobante PAY-DC-73419: código ALLEGED_SHORTAGE_UNILATERAL, motivo 'Retencion unilateral improcedente por supuesto faltante de 3 cajas fuertes SKU DC-1004 no reportado en muelle', monto $1,199.94
-2. [Factura INV-DC-73419 §Total $9,999.50 USD]
-3. [Comprobante PAY-DC-73419 §Liquidación $8,799.56 USD]
-4. [Contrato MSA-DC-73419 §Cláusula CL-POD-01 'Prevalencia del Comprobante de Entrega Firmado' | Deducción ALLEGED_SHORTAGE_UNILATERAL $1,199.94]
+1. Deducción aplicada en comprobante PAY-DC-ORD-73419: código ALLEGED_SHORTAGE_UNILATERAL, motivo 'Retencion unilateral por supuesto faltante de 3 uds no reportado en muelle', monto $1,199.94
+2. Respaldo contractual: La CL-UNAUTH-02 ('Prohibición de Cargos Administrativos Unilaterales') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.
+3. [Factura INV-DC-ORD-73419 §Total $9,999.50 USD]
+4. [Comprobante PAY-DC-ORD-73419 §Liquidación $8,799.56 USD]
+5. [Contrato MSA-DC-ORD-73419 §Cláusula CL-POD-01 'Prevalencia de Remisión Firmada en Muelle' | Deducción ALLEGED_SHORTAGE_UNILATERAL $1,199.94]
 
 ---
 ## 3.1. CERTIFICACIÓN DE ANCLAJE FÁCTICO (PILAR 3 - ZERO UNCITED CLAIMS)
@@ -36,8 +37,8 @@ Discrepancia mixta en expediente dataco_real_003_los_angeles_field_stream_huntin
 
 | ID Puntero | Documento | SKU / Concepto | Monto | Estatus Probatorio |
 | :--- | :--- | :---: | :---: | :--- |
-| `PTR-INV-INV-DC-73419-TOTAL` | INVOICE | `total_amount` | $9,999.50 | ✅ ACREDITADO |
-| `PTR-PAY-PAY-DC-73419-AMOUNT` | PAYMENT | `amount_paid` | $8,799.56 | ✅ ACREDITADO |
+| `PTR-INV-INV-DC-ORD-73419-TOTAL` | INVOICE | `total_amount` | $9,999.50 | ✅ ACREDITADO |
+| `PTR-PAY-PAY-DC-ORD-73419-AMOUNT` | PAYMENT | `amount_paid` | $8,799.56 | ✅ ACREDITADO |
 | `PTR-DED-ALLEGED_SHORTAGE_UNILATERAL-1` | CONTRACT | `clause_CL-POD-01` | $1,199.94 | ✅ ACREDITADO |
 
 ---
@@ -47,16 +48,17 @@ Discrepancia mixta en expediente dataco_real_003_los_angeles_field_stream_huntin
 - **Acción Contractual Sugerida:** Revisar evidencia y cláusulas RAG para determinar validez total.
 
 **Cláusulas Invocadas:**
+- **CL-UNAUTH-02 (Prohibición de Cargos Administrativos Unilaterales)** [NO AUTORIZADA / OBJETABLE]: La CL-UNAUTH-02 ('Prohibición de Cargos Administrativos Unilaterales') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.
 
 ---
 ## 4.1 DEBATE DIALÉCTICO MULTI-AGENTE (ADVERSARIAL COURTROOM)
 
 - **Fuerza Probatoria del Proveedor:** 87.5%
 
-- **Dictamen del Magistrado Arbitral:** VISTO el careo de autos en el expediente dataco_real_003_los_angeles_field_stream_hunting (Factura: INV-DC-73419, Remisión: BOL-DC-73419, Liquidación: PAY-DC-73419): Se condena al comprador al reintegro inmediato de $1,199.94 USD por carecer de título legal habilitante en MSA-DC-73419, y se valida la emisión de Nota de Crédito por $0.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%. Reloj SLA: 7 días restantes (HIGH_IMMINENT).
+- **Dictamen del Magistrado Arbitral:** VISTO el careo de autos en el expediente dataco_real_003_los_angeles_field_stream_hunting (Factura: INV-DC-ORD-73419, Remisión: BOL-DC-ORD-73419, Liquidación: PAY-DC-ORD-73419): Se condena al comprador al reintegro inmediato de $1,199.94 USD por carecer de título legal habilitante en MSA-DC-ORD-73419, y se valida la emisión de Nota de Crédito por $0.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%. Reloj SLA: 7 días restantes (HIGH_IMMINENT).
 
 **Objeciones del Retailer Desestimadas:**
-> - 🛡️ Retención unilateral de $1,199.94 USD en PAY-DC-73419 declarada IMPROCEDENTE y 100% RECLAMABLE.
+> - 🛡️ Retención unilateral de $1,199.94 USD en PAY-DC-ORD-73419 declarada IMPROCEDENTE y 100% RECLAMABLE.
 
 ---
 ## 4.2 SANITY GATE DE CUÁDRUPLE AUDITORÍA (SEMANA 4)
@@ -69,6 +71,7 @@ Discrepancia mixta en expediente dataco_real_003_los_angeles_field_stream_huntin
 
 **Notas de la Auditoría Cuádruple:**
 > - 🛡️ Invarianza aritmética perfecta verificada al centavo ($0.00 MAE).
+> - 🛡️ Jerarquía de Prelación: El Contrato Marco prohíbe deducciones unilaterales sin acuerdo mutuo. Cualquier guía o manual operativo del comprador queda subordinado perentoriamente (Art. 88 CCom).
 
 ---
 ## 5. PLAN DE ACCIÓN OPERATIVO Y COMERCIAL RECOMENDADO

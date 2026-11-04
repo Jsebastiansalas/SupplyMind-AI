@@ -33,9 +33,9 @@ CALIBRATED_PROMPT_1K_USD = Decimal("0.005000")
 CALIBRATED_COMPLETION_1K_USD = Decimal("0.015000")
 MIN_GATEWAY_REQUEST_FLOOR_USD = Decimal("0.002500")
 
-# Presupuesto máximo predeterminado por expediente/tarea ($0.05 USD ~= 4 llamadas reales a Grok)
-DEFAULT_TASK_BUDGET_CAP_USD = Decimal("0.0500")
-DEFAULT_MAX_LLM_CALLS_PER_TASK = 4
+# Presupuesto máximo predeterminado por expediente/tarea ($0.10 USD ~= 6-8 llamadas reales a Grok)
+DEFAULT_TASK_BUDGET_CAP_USD = Decimal("0.1000")
+DEFAULT_MAX_LLM_CALLS_PER_TASK = 6
 
 
 class BudgetExceededException(Exception):

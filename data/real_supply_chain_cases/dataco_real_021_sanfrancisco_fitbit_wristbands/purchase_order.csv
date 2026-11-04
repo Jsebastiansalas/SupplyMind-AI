@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-113640
+# vendor_id: DATACO-SAN FRANCISCO
+# customer_id: BUYER-DC-ORD-113640
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 13495.50
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-1350,Fitbit Charge 2 Heart Rate Wristband (DataCo DC-1350),90,149.95,13495.50

@@ -1,5 +1,5 @@
 {
-  "session_id": "DUEL-CASE_009_MEGA_RETAILER_DISPUTE-0127AB9C",
+  "session_id": "DUEL-CASE_009_MEGA_RETAILER_DISPUTE-8AFEE352",
   "case_id": "case_009_mega_retailer_dispute",
   "retailer_name": "Cadena Comercial Mayorista B2B",
   "archetype": {
@@ -34,6 +34,7 @@
       "supplier_offer_credit_memo": "12000.00",
       "supplier_claim_cash": "13000.00",
       "evidence_exhibited": [
+        "Faltante físico comprobado en SKU-IND-010 (Industrial Grade PCIe Gen5 4TB SSD): 20 unidades faltantes s/ remisión DEL-MULTI-DOCK-7701 valoradas en $5,000.00",
         "Factura Comercial Oficial INV por $385,000.00 USD",
         "Orden de Compra aprobada sin variaciones de precio unitario"
       ],
@@ -46,7 +47,10 @@
   "final_agreed_cash_recovery": null,
   "settlement_minutes_hash": null,
   "minutes_markdown_path": null,
-  "started_at": "2026-10-30T13:27:35.668933+00:00",
+  "started_at": "2026-11-03T12:39:38.567672+00:00",
   "completed_at": null,
-  "summary_verdict": "Careo iniciado. Posturas preliminares bajo política TIER_1_STRATEGIC."
+  "summary_verdict": "Careo iniciado. Posturas preliminares bajo política TIER_1_STRATEGIC | Salud Relacional RHI 59.5/100 (FIRM_COMMERCIAL).",
+  "rhi_score": 59.5,
+  "modulation_mode": "FIRM_COMMERCIAL",
+  "churn_risk_level": "MODERATE_MANAGED"
 }

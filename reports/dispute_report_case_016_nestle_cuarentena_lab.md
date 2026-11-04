@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `case_016_nestle_cuarentena_lab` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-10-29 01:01:13 UTC | **Nivel de Confianza:** 98.0%
+> **Fecha de Emisión:** 2026-11-04 05:07:28 UTC | **Nivel de Confianza:** 98.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO
@@ -56,13 +56,13 @@ Discrepancia mixta en expediente case_016_nestle_cuarentena_lab: Faltante físic
 
 - **Fuerza Probatoria del Proveedor:** 87.5%
 
-- **Dictamen del Magistrado Arbitral:** VISTO el careo de autos en el expediente case_016_nestle_cuarentena_lab: Se condena al comprador al reintegro inmediato de $7,000.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $14,000.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%.
+- **Dictamen del Magistrado Arbitral:** VISTO el careo de autos en el expediente case_016_nestle_cuarentena_lab (Factura: INV-CASE_016-9734, Remisión: DEL-CASE_016-9C21, Liquidación: PAY-CASE_016-3094): Se condena al comprador al reintegro inmediato de $7,000.00 USD por carecer de título legal habilitante en CTR-NESTLE_MX-2026, y se valida la emisión de Nota de Crédito por $14,000.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%. Reloj SLA: 40 días restantes (LOW_HEALTHY).
 
 **Objeciones del Retailer Desestimadas:**
-> - 🛡️ Retención unilateral de $7,000.00 USD declarada IMPROCEDENTE y 100% RECLAMABLE.
+> - 🛡️ Retención unilateral de $7,000.00 USD en PAY-CASE_016-3094 declarada IMPROCEDENTE y 100% RECLAMABLE.
 
 **Objeciones Concedidas en Muelle:**
-> - ⚖️ Deducción de faltante físico por $14,000.00 USD declarada PROCEDENTE.
+> - ⚖️ Deducción de faltante físico por $14,000.00 USD amparada en DEL-CASE_016-9C21 declarada PROCEDENTE.
 
 ---
 ## 4.2 SANITY GATE DE CUÁDRUPLE AUDITORÍA (SEMANA 4)

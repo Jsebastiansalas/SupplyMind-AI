@@ -1,0 +1,18 @@
+{
+  "case_id": "dataco_real_029_oklahomacity_easton_softball_bats",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Plains Fastpitch Sports (DataCo OKC Hub)",
+  "industry": "Softball Equipment",
+  "hub": "Oklahoma City, OK",
+  "file_formats": [
+    ".xlsx",
+    ".csv",
+    ".txt",
+    ".json"
+  ],
+  "billed_amount": "11248.50",
+  "received_amount": "9998.50",
+  "difference": "-1250.00",
+  "expected_justified_amount": "750.00",
+  "expected_claimable_amount": "500.00"
+}

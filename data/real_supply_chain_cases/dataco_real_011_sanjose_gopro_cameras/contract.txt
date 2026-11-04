@@ -1,0 +1,11 @@
+MASTER SUPPLY AGREEMENT — DATACO NETWORK (San Jose, CA)
+contract_id: MSA-DC-ORD-91540
+vendor_id: DATACO-SAN JOSE
+customer_id: BUYER-DC-ORD-91540
+valid_from: 2025-01-01
+valid_to: 2026-12-31
+
+[CLAUSE CL-POD-01|Prevalencia de Remision Firmada|STRICT_POD_REQUIRED|0.00]
+Las discrepancias fisicas por faltantes o averias asentadas en la remision de muelle autorizan deduccion al costo unitario pactado.
+[CLAUSE CL-UNAUTH-02|Prohibicion de Deducciones Unilaterales|NO_UNILATERAL_PENALTIES|0.00]
+Queda estrictamente prohibido aplicar retenciones comerciales o logisticas que no esten amparadas en adenda firmada.

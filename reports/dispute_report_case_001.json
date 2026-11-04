@@ -38,11 +38,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-30T13:27:34.987757+00:00"
+    "generated_at": "2026-11-04T05:07:27.614288+00:00"
   },
   "financial_proof": {
     "case_id": "case_001",
-    "proof_hash": "SM-PROOF-SHA256-23CE9C2CAA67A60B",
+    "proof_hash": "SM-PROOF-SHA256-AC4D0F9771663951",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -54,7 +54,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-30T13:27:34.993682+00:00"
+    "tamper_proof_timestamp": "2026-11-04T05:07:27.620151+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_001",
@@ -117,7 +117,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-10-30T13:27:34Z"
+    "generated_at": "2026-11-04T05:07:27Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -130,16 +130,16 @@
     "claimable_amount": "0.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-23CE9C2CAA67A60B",
+    "zkp_proof_hash": "SM-PROOF-SHA256-AC4D0F9771663951",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-10-30T13:27:35.003622+00:00"
+    "anchored_at": "2026-11-04T05:07:27.635569+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_001",
-    "courtroom_session_id": "CRT-7B329E79",
+    "courtroom_session_id": "CRT-DC89272B",
     "disputed_amount": "800.0",
     "justified_amount": "800.00",
     "claimable_amount": "0.00",
@@ -148,11 +148,12 @@
         "role": "PROSECUTOR",
         "speaker_name": "Lic. Gustavo Méndez (Fiscal Forense Retail B2B)",
         "topic": "Faltante Físico en Muelle",
-        "argument_text": "El comprador reportó válidamente un faltante de mercancía valorado en $800.00 USD. Las unidades recibidas en patio fueron inferiores a las facturadas.",
-        "legal_or_contractual_ground": "Cláusula de Recepción e Integridad de Entrega",
+        "argument_text": "El comprador reportó válidamente un faltante de mercancía valorado en $800.00 USD (10x PROD-002) en la remisión DEL-9912 (Bodega Central RetailCorp - Muelle 4). Las unidades recibidas en patio fueron inferiores a las amparadas en factura INV-40102.",
+        "legal_or_contractual_ground": "Cláusula CLAUSE-3.1",
         "strength_score": 0.95,
         "evidence_referenced": [
-          "DEL-9912"
+          "DEL-9912",
+          "INV-40102"
         ]
       }
     ],
@@ -161,19 +162,20 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Allanamiento de Faltante Acreditado",
-        "argument_text": "Verificada la remisión con sello y firma física de recepción con discrepancia, reconocemos la exactitud del faltante de $800.00 USD y allanamos la deducción mediante emisión de Nota de Crédito comercial conforme a la ley.",
+        "argument_text": "Verificada la remisión DEL-9912 con sello y firma física de recepción en Bodega Central RetailCorp - Muelle 4 con discrepancia asentada (10x PROD-002), reconocemos la exactitud del faltante de $800.00 USD y allanamos la deducción mediante emisión de Nota de Crédito comercial conforme a la ley.",
         "legal_or_contractual_ground": "Art. 1043 Código de Comercio (Reconocimiento Expreso)",
         "strength_score": 0.98,
         "evidence_referenced": [
-          "Remisión firmada con sello de discrepancia"
+          "Remisión DEL-9912 con salvedad en muelle",
+          "INV-40102"
         ]
       }
     ],
     "sustained_objections": [
-      "Deducción de faltante físico por $800.00 USD declarada PROCEDENTE."
+      "Deducción de faltante físico por $800.00 USD amparada en DEL-9912 declarada PROCEDENTE."
     ],
     "dismissed_objections": [],
-    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente case_001: Se condena al comprador al reintegro inmediato de $0.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $800.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 95.0%.",
+    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente case_001 (Factura: INV-40102, Remisión: DEL-9912, Liquidación: PAY-7710): Se condena al comprador al reintegro inmediato de $0.00 USD por carecer de título legal habilitante en CTR-RETAIL-2026, y se valida la emisión de Nota de Crédito por $800.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 95.0%. Reloj SLA: 68 días restantes (LOW_HEALTHY).",
     "probative_force_supplier_pct": 95.0,
     "final_legal_doctrine": "DOCTRINA COMERCIAL VINCULANTE: Ninguna guía operativa o portal B2B puede modificar o imponer sanciones financieras no contenidas en el contrato marco bilateral suscrito. Las remisiones firmadas con sello de muelle hacen fe pública comercial plena e inmutable entre las partes."
   },
@@ -241,7 +243,10 @@
       "Invarianza aritmética perfecta verificada al centavo ($0.00 MAE)."
     ],
     "verified_claimable_amount": "0.00",
-    "verified_justified_amount": "800.00"
+    "verified_justified_amount": "800.00",
+    "contractual_cap_enforced": false,
+    "contractual_cap_excess_claimed": "0.00",
+    "contractual_cap_details": []
   },
   "resolution_notes": [],
   "deduction_type": null,

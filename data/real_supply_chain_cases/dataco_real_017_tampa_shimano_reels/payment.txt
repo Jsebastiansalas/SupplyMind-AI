@@ -1,0 +1,10 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-104800
+invoice_reference: INV-DC-ORD-104800
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 11889.43
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=DAMAGED | amount=659.97 | reason=Averia en muelle de 3 uds SKU DC-1044 constatada en POD | ref=BOL-DC-ORD-104800
+DEDUCTION | code=AUDIT_SERVICE_CHARGE | amount=650.00 | reason=Deduccion por servicio de auditoria de patio unilateral | ref=MEMO-ADMIN

@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-109220
+# vendor_id: DATACO-CHARLOTTE
+# customer_id: BUYER-DC-ORD-109220
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 11999.70
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-1215,TaylorMade M2 Driver (DataCo DC-1215),30,399.99,11999.70

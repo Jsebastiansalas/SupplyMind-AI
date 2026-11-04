@@ -1,0 +1,10 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-80115
+invoice_reference: INV-DC-ORD-80115
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 6450.00
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=SHORTAGE | amount=300.00 | reason=Faltante fisico en muelle de 6 uds SKU DC-502 | ref=BOL-DC-ORD-80115
+DEDUCTION | code=UNAUTHORIZED_ASN_CHARGE | amount=750.00 | reason=Cargo por retraso ASN sin soporte en adenda bilateral | ref=MEMO-FEE

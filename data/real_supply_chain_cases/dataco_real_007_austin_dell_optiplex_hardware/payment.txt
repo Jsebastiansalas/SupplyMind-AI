@@ -1,0 +1,10 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-82450
+invoice_reference: INV-DC-ORD-82450
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 12799.72
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=DAMAGED | amount=999.98 | reason=Averia en muelle de 2 uds SKU DC-403 constatada en POD | ref=BOL-DC-ORD-82450
+DEDUCTION | code=CROSSDOCK_UNILATERAL_FEE | amount=1200.00 | reason=Deduccion por maniobra crossdock no autorizada | ref=MEMO-ADMIN

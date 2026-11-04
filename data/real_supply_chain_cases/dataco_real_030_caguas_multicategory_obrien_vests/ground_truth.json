@@ -1,0 +1,18 @@
+{
+  "case_id": "dataco_real_030_caguas_multicategory_obrien_vests",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Caribbean Water Sports (DataCo Caguas Hub)",
+  "industry": "Water Sports & Safety",
+  "hub": "Caguas, PR",
+  "file_formats": [
+    ".csv",
+    ".json",
+    ".xlsx",
+    ".txt"
+  ],
+  "billed_amount": "9996.00",
+  "received_amount": "8846.20",
+  "difference": "-1149.80",
+  "expected_justified_amount": "499.80",
+  "expected_claimable_amount": "650.00"
+}

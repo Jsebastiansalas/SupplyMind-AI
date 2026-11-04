@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-95960
+po_reference: PO-DC-ORD-95960
+delivery_date: 2026-01-30
+received_by: Supervisor Houston Dock
+warehouse_location: Houston, TX Distribution Hub
+signed: true
+discrepancy_reported: false
+
+ITEM | sku=DC-539 | delivered=45 | received=45 | missing=0 | damaged=0 | notes=Full shipment of 45 units received and signed clean at dock

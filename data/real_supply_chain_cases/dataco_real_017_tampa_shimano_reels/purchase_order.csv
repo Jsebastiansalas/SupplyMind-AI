@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-104800
+# vendor_id: DATACO-TAMPA
+# customer_id: BUYER-DC-ORD-104800
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 13199.40
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-1044,Shimano Stradic CI4+ Spinning Reel (DataCo DC-1044),60,219.99,13199.40

@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-102590
+# vendor_id: DATACO-KANSAS CITY
+# customer_id: BUYER-DC-ORD-102590
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 11550.00
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-921,Weber Original Kettle 22-Inch Charcoal Grill (DataCo DC-921),70,165.00,11550.00

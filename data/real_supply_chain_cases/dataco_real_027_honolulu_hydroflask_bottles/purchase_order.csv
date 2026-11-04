@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-126900
+# vendor_id: DATACO-HONOLULU
+# customer_id: BUYER-DC-ORD-126900
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 6392.00
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-1695,Hydro Flask 32 oz Wide Mouth Bottle (DataCo DC-1695),160,39.95,6392.00

@@ -215,10 +215,11 @@ if "current_report" in st.session_state:
     report = st.session_state.current_report
     
     st.markdown(f"<h2>📊 RESULTADOS: {Path(report.case_id).name.upper()}</h2>", unsafe_allow_html=True)
-    tab1, tab_neg, tab_duel, tab_fx, tab_fugas, tab2, tab_pdf, tab3, tab4, tab5 = st.tabs([
+    tab1, tab_neg, tab_duel, tab_phase7, tab_fx, tab_fugas, tab2, tab_pdf, tab3, tab4, tab5 = st.tabs([
         "💵 PANEL FINANCIERO", 
         "🤝 ESCENARIOS B2B", 
         "⚔️ MESA DE CAREO & DESPACHO",
+        "🏛️ TESORERÍA, SLA & CAPA",
         "🌐 FX & INCOTERMS", 
         "🛡️ FUGAS RETAILERS", 
         "⚖️ VEREDICTO LEGAL", 
@@ -359,6 +360,34 @@ if "current_report" in st.session_state:
                 new_rcpt = PortalDispatcherEngine.dispatch_case_to_portal(report.case_id)
                 st.success(f"¡Radicación completada! Ticket emitido: {new_rcpt.tracking_ticket}")
                 st.rerun()
+
+    with tab_phase7:
+        from agent.core.dispute_sla_watchdog import DisputeSlaWatchdog
+        from agent.core.bank_remittance_reconciler import BankRemittanceReconciler
+        from agent.core.relational_health_engine import RelationalHealthEngine
+        from agent.core.root_cause_analyzer import RootCauseAnalyzer
+        from agent.core.capa_ticket_generator import CapaTicketGenerator
+
+        st.markdown("### 🏛️ Tesorería Order-to-Cash (EDI 820), Prescripción SLA & Prevención CAPA (Fase 7)")
+        sla_st = DisputeSlaWatchdog.evaluate_case_sla(report.case_id)
+        rhi_st = RelationalHealthEngine.evaluate_relational_health(report.case_id)
+        remit_obj, match_obj, cert_obj = BankRemittanceReconciler.execute_three_way_settlement_match(report.case_id)
+        capa_obj = CapaTicketGenerator.generate_capa_ticket(report.case_id)
+        rca_fleet = RootCauseAnalyzer.analyze_fleet_root_causes(50)
+
+        s1, s2, s3, s4 = st.columns(4)
+        s1.metric("Days-to-Prescription (DTP)", f"{sla_st.days_to_expiration} días", delta=sla_st.urgency_level)
+        s2.metric("Salud Relacional (RHI)", f"{rhi_st.rhi_score}/100", delta=rhi_st.modulation_mode)
+        s3.metric("Depósito Neto EDI 820", f"${match_obj.actual_bank_remittance_cash:,.2f}")
+        s4.metric("Saldo Insoluto Cartera", f"${cert_obj.final_open_balance:,.2f}", delta="MAE $0.00")
+
+        if st.button("⚖️ Emitir Notificación de Interrupción Art. 1041 CCom", use_container_width=True):
+            notice = DisputeSlaWatchdog.issue_prescription_interruption_notice(report.case_id)
+            st.success(f"Prescripción congelada bajo Art. 1041 CCom: Folio `{notice.notice_id}` | Hash `{notice.forensic_hash_sha256[:16]}...`")
+            st.rerun()
+
+        st.markdown(f"**Ecuación 3-Way Verificada:** `{match_obj.formula_verification_str}`")
+        st.markdown(f"**Ticket CAPA Generado:** `{capa_obj.ticket_id}` asignado a **{capa_obj.assigned_owner_role}** ({capa_obj.department_name}) | Fuga Flota Prevenible (50 casos): **${rca_fleet.total_preventable_leakage_usd:,.2f} USD**")
 
     with tab_fx:
         from agent.core.fx_and_leakage_engine import FxAndIncotermsEngine, INCOTERM_RULES_REGISTRY

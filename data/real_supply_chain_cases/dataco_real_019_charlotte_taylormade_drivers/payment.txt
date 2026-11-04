@@ -1,0 +1,10 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-109220
+invoice_reference: INV-DC-ORD-109220
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 11199.70
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=PRICE_DIFF | amount=750.00 | reason=Ajuste a precio pactado en OC ($399.99 vs $424.99 en 30 uds) | ref=PO-DC-ORD-109220
+DEDUCTION | code=MARKETING_COOP_UNAUTHORIZED | amount=800.00 | reason=Retencion de mercadotecnia coop sin convenio firmado | ref=SLOT-FEE

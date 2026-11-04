@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `case_038_amazon_carrier_damaged_freight` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-10-29 01:01:16 UTC | **Nivel de Confianza:** 88.0%
+> **Fecha de Emisión:** 2026-11-04 05:06:23 UTC | **Nivel de Confianza:** 88.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO
@@ -57,10 +57,10 @@ Discrepancia mixta en expediente case_038_amazon_carrier_damaged_freight: Faltan
 
 - **Fuerza Probatoria del Proveedor:** 87.5%
 
-- **Dictamen del Magistrado Arbitral:** VISTO el careo de autos en el expediente case_038_amazon_carrier_damaged_freight: Se condena al comprador al reintegro inmediato de $6,200.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $0.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%.
+- **Dictamen del Magistrado Arbitral:** VISTO el careo de autos en el expediente case_038_amazon_carrier_damaged_freight (Factura: INV-AUTO-001, Remisión: REM-AMZ-3801, Liquidación: PAY-AMZ-3801): Se condena al comprador al reintegro inmediato de $6,200.00 USD por carecer de título legal habilitante en case_038_amazon_carrier_damaged_freight, y se valida la emisión de Nota de Crédito por $0.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%. Reloj SLA: 22 días restantes (MEDIUM_ATTENTION).
 
 **Objeciones del Retailer Desestimadas:**
-> - 🛡️ Retención unilateral de $6,200.00 USD declarada IMPROCEDENTE y 100% RECLAMABLE.
+> - 🛡️ Retención unilateral de $6,200.00 USD en PAY-AMZ-3801 declarada IMPROCEDENTE y 100% RECLAMABLE.
 
 ---
 ## 4.2 SANITY GATE DE CUÁDRUPLE AUDITORÍA (SEMANA 4)

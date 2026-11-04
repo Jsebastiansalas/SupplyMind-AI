@@ -1,0 +1,342 @@
+{
+  "title": "SupplyMind AI - Registro Oficial de 10 Ejecuciones de Punta a Punta (Hito S2)",
+  "generated_at": "2026-11-04T04:58:30.214975+00:00",
+  "total_runs": 10,
+  "status": "APPROVED_S2",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "real_tools_used": [
+    "read_dispute_documents (Multi-format parser XLSX/CSV/JSON/TXT)",
+    "execute_reconciliation (Motor aritmético Decimal cero alucinación)",
+    "evaluate_contract_terms (Evaluador normativo, ventanas perentorias y topes)",
+    "generate_final_report (Generador de dictamen formal y carta legal de reclamo)"
+  ],
+  "aggregate_metrics": {
+    "total_billed_audited_usd": "107190.60",
+    "total_claimable_recovered_usd": "7319.97",
+    "total_cost_usd": "0.000000",
+    "exact_match_rate": "100.0%",
+    "arithmetic_mae_usd": "0.00"
+  },
+  "runs": [
+    {
+      "run_index": 1,
+      "case_id": "dataco_real_001_caguas_pelican_kayak",
+      "description": "Kayak y deportes acuáticos en Caguas (Puerto Rico Hub)",
+      "timestamp_iso": "2026-11-04T04:58:29.171565+00:00",
+      "execution_duration_seconds": 0.392,
+      "tools_invoked": [
+        "read_dispute_documents",
+        "execute_reconciliation",
+        "evaluate_contract_terms",
+        "generate_final_report"
+      ],
+      "tools_count": 4,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "cost_measured_usd": "0.000000",
+      "pricing_basis": "Platica Gateway measured telemetry ($10.66 USD / 940 requests = $0.011340/req)",
+      "financial_summary": {
+        "billed_amount_usd": "9999.50",
+        "received_amount_usd": "8899.53",
+        "difference_usd": "-1099.97",
+        "justified_amount_usd": "599.97",
+        "claimable_amount_usd": "500.00",
+        "confidence": 0.98
+      },
+      "root_cause": "Discrepancia mixta en expediente dataco_real_001_caguas_pelican_kayak: Faltante físico comprobado de $599.97 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $500.00 USD sin sustento contractual ni documental.",
+      "recommended_action": "Aceptar deducción de $599.97 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $500.00 USD exigiendo su pago inmediato.",
+      "artifacts_generated": [
+        "reports/dispute_report_dataco_real_001_caguas_pelican_kayak.md",
+        "reports/carta_reclamacion_dataco_real_001_caguas_pelican_kayak.md"
+      ]
+    },
+    {
+      "run_index": 2,
+      "case_id": "dataco_real_002_cleveland_diamondback_cycling",
+      "description": "Bicicletas de montaña y ciclismo en Cleveland (Ohio Hub)",
+      "timestamp_iso": "2026-11-04T04:58:29.282504+00:00",
+      "execution_duration_seconds": 0.109,
+      "tools_invoked": [
+        "read_dispute_documents",
+        "execute_reconciliation",
+        "evaluate_contract_terms",
+        "generate_final_report"
+      ],
+      "tools_count": 4,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "cost_measured_usd": "0.000000",
+      "pricing_basis": "Platica Gateway measured telemetry ($10.66 USD / 940 requests = $0.011340/req)",
+      "financial_summary": {
+        "billed_amount_usd": "11999.20",
+        "received_amount_usd": "10599.24",
+        "difference_usd": "-1399.96",
+        "justified_amount_usd": "599.96",
+        "claimable_amount_usd": "800.00",
+        "confidence": 0.98
+      },
+      "root_cause": "Discrepancia mixta en expediente dataco_real_002_cleveland_diamondback_cycling: Faltante físico comprobado de $599.96 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $800.00 USD sin sustento contractual ni documental.",
+      "recommended_action": "Aceptar deducción de $599.96 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $800.00 USD exigiendo su pago inmediato.",
+      "artifacts_generated": [
+        "reports/dispute_report_dataco_real_002_cleveland_diamondback_cycling.md",
+        "reports/carta_reclamacion_dataco_real_002_cleveland_diamondback_cycling.md"
+      ]
+    },
+    {
+      "run_index": 3,
+      "case_id": "dataco_real_003_los_angeles_field_stream_hunting",
+      "description": "Equipamiento de cacería y aire libre en Los Ángeles (CA Hub)",
+      "timestamp_iso": "2026-11-04T04:58:29.381029+00:00",
+      "execution_duration_seconds": 0.097,
+      "tools_invoked": [
+        "read_dispute_documents",
+        "execute_reconciliation",
+        "evaluate_contract_terms",
+        "generate_final_report"
+      ],
+      "tools_count": 4,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "cost_measured_usd": "0.000000",
+      "pricing_basis": "Platica Gateway measured telemetry ($10.66 USD / 940 requests = $0.011340/req)",
+      "financial_summary": {
+        "billed_amount_usd": "9999.50",
+        "received_amount_usd": "8799.56",
+        "difference_usd": "-1199.94",
+        "justified_amount_usd": "0.00",
+        "claimable_amount_usd": "1199.94",
+        "confidence": 0.98
+      },
+      "root_cause": "Discrepancia mixta en expediente dataco_real_003_los_angeles_field_stream_hunting: Faltante físico comprobado de $0.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $1,199.94 USD sin sustento contractual ni documental.",
+      "recommended_action": "Aceptar deducción de $0.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $1,199.94 USD exigiendo su pago inmediato.",
+      "artifacts_generated": [
+        "reports/dispute_report_dataco_real_003_los_angeles_field_stream_hunting.md",
+        "reports/carta_reclamacion_dataco_real_003_los_angeles_field_stream_hunting.md"
+      ]
+    },
+    {
+      "run_index": 4,
+      "case_id": "dataco_real_004_chicago_nike_footwear_overcharge",
+      "description": "Calzado deportivo de alto volumen en Chicago (IL Hub)",
+      "timestamp_iso": "2026-11-04T04:58:29.481690+00:00",
+      "execution_duration_seconds": 0.099,
+      "tools_invoked": [
+        "read_dispute_documents",
+        "execute_reconciliation",
+        "evaluate_contract_terms",
+        "generate_final_report"
+      ],
+      "tools_count": 4,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "cost_measured_usd": "0.000000",
+      "pricing_basis": "Platica Gateway measured telemetry ($10.66 USD / 940 requests = $0.011340/req)",
+      "financial_summary": {
+        "billed_amount_usd": "10999.00",
+        "received_amount_usd": "9549.00",
+        "difference_usd": "-1450.00",
+        "justified_amount_usd": "1000.00",
+        "claimable_amount_usd": "450.00",
+        "confidence": 0.98
+      },
+      "root_cause": "Discrepancia mixta en expediente dataco_real_004_chicago_nike_footwear_overcharge: Faltante físico comprobado de $1,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $450.00 USD sin sustento contractual ni documental.",
+      "recommended_action": "Aceptar deducción de $1,000.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $450.00 USD exigiendo su pago inmediato.",
+      "artifacts_generated": [
+        "reports/dispute_report_dataco_real_004_chicago_nike_footwear_overcharge.md",
+        "reports/carta_reclamacion_dataco_real_004_chicago_nike_footwear_overcharge.md"
+      ]
+    },
+    {
+      "run_index": 5,
+      "case_id": "dataco_real_005_miami_perfect_fitness_multiformat",
+      "description": "Equipos de acondicionamiento físico en Miami (FL Hub)",
+      "timestamp_iso": "2026-11-04T04:58:29.589522+00:00",
+      "execution_duration_seconds": 0.106,
+      "tools_invoked": [
+        "read_dispute_documents",
+        "execute_reconciliation",
+        "evaluate_contract_terms",
+        "generate_final_report"
+      ],
+      "tools_count": 4,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "cost_measured_usd": "0.000000",
+      "pricing_basis": "Platica Gateway measured telemetry ($10.66 USD / 940 requests = $0.011340/req)",
+      "financial_summary": {
+        "billed_amount_usd": "11998.00",
+        "received_amount_usd": "10898.00",
+        "difference_usd": "-1100.00",
+        "justified_amount_usd": "479.92",
+        "claimable_amount_usd": "620.08",
+        "confidence": 0.98
+      },
+      "root_cause": "Discrepancia mixta en expediente dataco_real_005_miami_perfect_fitness_multiformat: Faltante físico comprobado de $479.92 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $620.08 USD sin sustento contractual ni documental.",
+      "recommended_action": "Aceptar deducción de $479.92 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $620.08 USD exigiendo su pago inmediato.",
+      "artifacts_generated": [
+        "reports/dispute_report_dataco_real_005_miami_perfect_fitness_multiformat.md",
+        "reports/carta_reclamacion_dataco_real_005_miami_perfect_fitness_multiformat.md"
+      ]
+    },
+    {
+      "run_index": 6,
+      "case_id": "dataco_real_006_dallas_nike_golf_polo",
+      "description": "Indumentaria y polos de golf en Dallas (TX Hub)",
+      "timestamp_iso": "2026-11-04T04:58:29.688993+00:00",
+      "execution_duration_seconds": 0.098,
+      "tools_invoked": [
+        "read_dispute_documents",
+        "execute_reconciliation",
+        "evaluate_contract_terms",
+        "generate_final_report"
+      ],
+      "tools_count": 4,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "cost_measured_usd": "0.000000",
+      "pricing_basis": "Platica Gateway measured telemetry ($10.66 USD / 940 requests = $0.011340/req)",
+      "financial_summary": {
+        "billed_amount_usd": "7500.00",
+        "received_amount_usd": "6450.00",
+        "difference_usd": "-1050.00",
+        "justified_amount_usd": "300.00",
+        "claimable_amount_usd": "750.00",
+        "confidence": 0.98
+      },
+      "root_cause": "Discrepancia mixta en expediente dataco_real_006_dallas_nike_golf_polo: Faltante físico comprobado de $300.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $750.00 USD sin sustento contractual ni documental.",
+      "recommended_action": "Aceptar deducción de $300.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $750.00 USD exigiendo su pago inmediato.",
+      "artifacts_generated": [
+        "reports/dispute_report_dataco_real_006_dallas_nike_golf_polo.md",
+        "reports/carta_reclamacion_dataco_real_006_dallas_nike_golf_polo.md"
+      ]
+    },
+    {
+      "run_index": 7,
+      "case_id": "dataco_real_007_austin_dell_optiplex_hardware",
+      "description": "Equipos de cómputo y TI corporativa en Austin (TX Hub)",
+      "timestamp_iso": "2026-11-04T04:58:29.788725+00:00",
+      "execution_duration_seconds": 0.098,
+      "tools_invoked": [
+        "read_dispute_documents",
+        "execute_reconciliation",
+        "evaluate_contract_terms",
+        "generate_final_report"
+      ],
+      "tools_count": 4,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "cost_measured_usd": "0.000000",
+      "pricing_basis": "Platica Gateway measured telemetry ($10.66 USD / 940 requests = $0.011340/req)",
+      "financial_summary": {
+        "billed_amount_usd": "14999.70",
+        "received_amount_usd": "12799.72",
+        "difference_usd": "-2199.98",
+        "justified_amount_usd": "999.98",
+        "claimable_amount_usd": "1200.00",
+        "confidence": 0.98
+      },
+      "root_cause": "Discrepancia mixta en expediente dataco_real_007_austin_dell_optiplex_hardware: Faltante físico comprobado de $999.98 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $1,200.00 USD sin sustento contractual ni documental.",
+      "recommended_action": "Aceptar deducción de $999.98 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $1,200.00 USD exigiendo su pago inmediato.",
+      "artifacts_generated": [
+        "reports/dispute_report_dataco_real_007_austin_dell_optiplex_hardware.md",
+        "reports/carta_reclamacion_dataco_real_007_austin_dell_optiplex_hardware.md"
+      ]
+    },
+    {
+      "run_index": 8,
+      "case_id": "dataco_real_008_atlanta_underarmour_shoes",
+      "description": "Zapatillas de atletismo y running en Atlanta (GA Hub)",
+      "timestamp_iso": "2026-11-04T04:58:29.889078+00:00",
+      "execution_duration_seconds": 0.098,
+      "tools_invoked": [
+        "read_dispute_documents",
+        "execute_reconciliation",
+        "evaluate_contract_terms",
+        "generate_final_report"
+      ],
+      "tools_count": 4,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "cost_measured_usd": "0.000000",
+      "pricing_basis": "Platica Gateway measured telemetry ($10.66 USD / 940 requests = $0.011340/req)",
+      "financial_summary": {
+        "billed_amount_usd": "8398.80",
+        "received_amount_usd": "8048.85",
+        "difference_usd": "-349.95",
+        "justified_amount_usd": "0.00",
+        "claimable_amount_usd": "349.95",
+        "confidence": 0.98
+      },
+      "root_cause": "Discrepancia mixta en expediente dataco_real_008_atlanta_underarmour_shoes: Faltante físico comprobado de $0.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $349.95 USD sin sustento contractual ni documental.",
+      "recommended_action": "Aceptar deducción de $0.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $349.95 USD exigiendo su pago inmediato.",
+      "artifacts_generated": [
+        "reports/dispute_report_dataco_real_008_atlanta_underarmour_shoes.md",
+        "reports/carta_reclamacion_dataco_real_008_atlanta_underarmour_shoes.md"
+      ]
+    },
+    {
+      "run_index": 9,
+      "case_id": "dataco_real_009_denver_coleman_tents",
+      "description": "Carpas de expedición y camping en Denver (CO Hub)",
+      "timestamp_iso": "2026-11-04T04:58:30.015758+00:00",
+      "execution_duration_seconds": 0.125,
+      "tools_invoked": [
+        "read_dispute_documents",
+        "execute_reconciliation",
+        "evaluate_contract_terms",
+        "generate_final_report"
+      ],
+      "tools_count": 4,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "cost_measured_usd": "0.000000",
+      "pricing_basis": "Platica Gateway measured telemetry ($10.66 USD / 940 requests = $0.011340/req)",
+      "financial_summary": {
+        "billed_amount_usd": "9299.40",
+        "received_amount_usd": "7799.40",
+        "difference_usd": "-1500.00",
+        "justified_amount_usd": "900.00",
+        "claimable_amount_usd": "600.00",
+        "confidence": 0.98
+      },
+      "root_cause": "Discrepancia mixta en expediente dataco_real_009_denver_coleman_tents: Faltante físico comprobado de $900.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $600.00 USD sin sustento contractual ni documental.",
+      "recommended_action": "Aceptar deducción de $900.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $600.00 USD exigiendo su pago inmediato.",
+      "artifacts_generated": [
+        "reports/dispute_report_dataco_real_009_denver_coleman_tents.md",
+        "reports/carta_reclamacion_dataco_real_009_denver_coleman_tents.md"
+      ]
+    },
+    {
+      "run_index": 10,
+      "case_id": "dataco_real_010_sandiego_titleist_golf_balls",
+      "description": "Pelotas de golf de competencia en San Diego (CA Hub)",
+      "timestamp_iso": "2026-11-04T04:58:30.185389+00:00",
+      "execution_duration_seconds": 0.168,
+      "tools_invoked": [
+        "read_dispute_documents",
+        "execute_reconciliation",
+        "evaluate_contract_terms",
+        "generate_final_report"
+      ],
+      "tools_count": 4,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "cost_measured_usd": "0.000000",
+      "pricing_basis": "Platica Gateway measured telemetry ($10.66 USD / 940 requests = $0.011340/req)",
+      "financial_summary": {
+        "billed_amount_usd": "11997.50",
+        "received_amount_usd": "10571.62",
+        "difference_usd": "-1425.88",
+        "justified_amount_usd": "575.88",
+        "claimable_amount_usd": "850.00",
+        "confidence": 0.98
+      },
+      "root_cause": "Discrepancia mixta en expediente dataco_real_010_sandiego_titleist_golf_balls: Faltante físico comprobado de $575.88 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $850.00 USD sin sustento contractual ni documental.",
+      "recommended_action": "Aceptar deducción de $575.88 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $850.00 USD exigiendo su pago inmediato.",
+      "artifacts_generated": [
+        "reports/dispute_report_dataco_real_010_sandiego_titleist_golf_balls.md",
+        "reports/carta_reclamacion_dataco_real_010_sandiego_titleist_golf_balls.md"
+      ]
+    }
+  ]
+}

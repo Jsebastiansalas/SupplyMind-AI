@@ -1,23 +1,23 @@
 {
-  "receipt_id": "RCPT-AMAZ-7E1CB399",
+  "receipt_id": "RCPT-AMAZ-5F9B2FB0",
   "case_id": "case_005_amazon_shortage",
   "portal_type": "AMAZON_VENDOR_CENTRAL",
   "retailer_name": "Amazon Vendor Central (AP Financials & Co-Op)",
-  "tracking_ticket": "AMZN-CASE-2026-58C889",
+  "tracking_ticket": "AMZN-CASE-2026-AE5C62",
   "status": "CONFIRMED_ACCEPTED",
   "http_status_code": 201,
   "claimable_amount": "2500.00",
   "currency": "USD",
-  "confirmation_seal_sha256": "6d369e4788023600d5a07820465343accdb50c3326b8540bd6017237399f9290",
+  "confirmation_seal_sha256": "65bf2ce105a7062f845a1462f4a027ac01624d57971b3762087ccf0bd6c81954",
   "estimated_sla_days": 10,
   "log_trace": [
-    "[13:27:35.804] [INIT] Iniciando agente despachador robótico para Amazon Vendor Central (AP Financials & Co-Op)...",
-    "[13:27:35.804] [AUTH] Estableciendo apretón de manos TLS 1.3 y autenticación federada (OAUTH2_AMAZON_COGNITO (Vendor Code))...",
-    "[13:27:35.804] [DOSSIER] Validando integridad del expediente pericial con 4 evidencias foliadas (Digest: 19a4d73063d2cf2a...)...",
-    "[13:27:35.804] [UPLOAD] Transfiriendo lote probatorio cifrado y telemetría EDI al bucket pericial del portal...",
-    "[13:27:35.804] [ADAPTER] Mapeando payload normativo AMAZON_VENDOR_CENTRAL con código de reclamo 'SHORTAGE_FC_DOCK'...",
-    "[13:27:35.804] [SUBMIT] Radicación transmitida a https://vendorcentral.amazon.com/financials/claims/api/v2. Código de respuesta HTTP 201 Created recibido...",
-    "[13:27:35.804] [CONFIRMED] Ticket oficial emitido: AMZN-CASE-2026-58C889. SLA de resolución: 10 días hábiles."
+    "[12:40:01.593] [INIT] Iniciando agente despachador robótico para Amazon Vendor Central (AP Financials & Co-Op)...",
+    "[12:40:01.593] [AUTH] Estableciendo apretón de manos TLS 1.3 y autenticación federada (OAUTH2_AMAZON_COGNITO (Vendor Code))...",
+    "[12:40:01.593] [DOSSIER] Validando integridad del expediente pericial con 5 evidencias foliadas (Digest: 67ad7434d7cb6e06...)...",
+    "[12:40:01.593] [UPLOAD] Transfiriendo lote probatorio cifrado y telemetría EDI al bucket pericial del portal...",
+    "[12:40:01.593] [ADAPTER] Mapeando payload normativo AMAZON_VENDOR_CENTRAL con código de reclamo 'SHORTAGE_FC_DOCK'...",
+    "[12:40:01.593] [SUBMIT] Radicación transmitida a https://vendorcentral.amazon.com/financials/claims/api/v2. Código de respuesta HTTP 201 Created recibido...",
+    "[12:40:01.593] [CONFIRMED] Ticket oficial emitido: AMZN-CASE-2026-AE5C62. SLA de resolución: 10 días hábiles."
   ],
-  "submitted_at": "2026-10-30T13:27:35.804993+00:00"
+  "submitted_at": "2026-11-03T12:40:01.593587+00:00"
 }

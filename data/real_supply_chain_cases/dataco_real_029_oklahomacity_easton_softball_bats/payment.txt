@@ -1,0 +1,10 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-131320
+invoice_reference: INV-DC-ORD-131320
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 9998.50
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=PRICE_DIFF | amount=750.00 | reason=Ajuste a precio pactado en OC ($349.95 vs $374.95 en 30 uds) | ref=PO-DC-ORD-131320
+DEDUCTION | code=PORTAL_MAINTENANCE_SURCHARGE | amount=500.00 | reason=Cargo administrativo por mantenimiento de servidor EDI | ref=SLOT-FEE

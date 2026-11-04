@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-131320
+po_reference: PO-DC-ORD-131320
+delivery_date: 2026-01-30
+received_by: Supervisor Oklahoma City Dock
+warehouse_location: Oklahoma City, OK Distribution Hub
+signed: true
+discrepancy_reported: false
+
+ITEM | sku=DC-1805 | delivered=30 | received=30 | missing=0 | damaged=0 | notes=30 units received intact with matching barcodes

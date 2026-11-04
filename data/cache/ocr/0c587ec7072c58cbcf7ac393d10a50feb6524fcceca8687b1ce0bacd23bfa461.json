@@ -1,0 +1,6 @@
+{
+  "sha256": "0c587ec7072c58cbcf7ac393d10a50feb6524fcceca8687b1ce0bacd23bfa461",
+  "text": "HOME DEPOT - REMITTANCE ADVICE / WIRE TRANSFER\nReferencia Pago: WIRE-HD-2026-33910\nFactura Cancelada: INV-HD-2026-9041\nFecha de Dispersion: 2026-03-25\nMoneda: USD\nMonto Efectivo Pagado: $33,800.00\nDeducciones y Retenciones:\nCodigo Deduccion / Motivo / Doc Referencia / Monto\nDED-DAMAGED-DOCK Retencion por 20 unidades averiadas en muelle DEL-HD-2026-8812 $4,200.00\nDED-UNILAT-DOCK-FEE Penalizacion administrativa descarga no programada N/A $4,000.00\nTOTAL DEDUCCIONES: $8,200.00",
+  "structured": null,
+  "metadata": {}
+}

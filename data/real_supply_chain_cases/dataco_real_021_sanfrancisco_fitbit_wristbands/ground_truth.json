@@ -1,0 +1,17 @@
+{
+  "case_id": "dataco_real_021_sanfrancisco_fitbit_wristbands",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Silicon Valley Wearables (DataCo SF Hub)",
+  "industry": "Wearables",
+  "hub": "San Francisco, CA",
+  "file_formats": [
+    ".xlsx",
+    ".csv",
+    ".txt"
+  ],
+  "billed_amount": "13495.50",
+  "received_amount": "12745.60",
+  "difference": "-749.90",
+  "expected_justified_amount": "299.90",
+  "expected_claimable_amount": "450.00"
+}

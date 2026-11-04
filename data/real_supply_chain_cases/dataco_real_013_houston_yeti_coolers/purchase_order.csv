@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-95960
+# vendor_id: DATACO-HOUSTON
+# customer_id: BUYER-DC-ORD-95960
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 13499.55
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-539,Yeti Tundra 45 Cooler (DataCo DC-539),45,299.99,13499.55

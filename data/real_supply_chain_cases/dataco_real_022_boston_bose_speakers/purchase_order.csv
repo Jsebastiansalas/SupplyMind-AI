@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-115850
+# vendor_id: DATACO-BOSTON
+# customer_id: BUYER-DC-ORD-115850
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 9845.00
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-1412,Bose SoundLink Mini Bluetooth Speaker II (DataCo DC-1412),55,179.00,9845.00

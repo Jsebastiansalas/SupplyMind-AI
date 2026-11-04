@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-120270
+# vendor_id: DATACO-ORLANDO
+# customer_id: BUYER-DC-ORD-120270
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 6597.00
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-1520,Callaway 2017 Supersoft Golf Balls (Dozen) (DataCo DC-1520),300,21.99,6597.00

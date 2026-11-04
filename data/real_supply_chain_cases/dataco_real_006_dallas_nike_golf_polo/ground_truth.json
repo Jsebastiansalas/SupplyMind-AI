@@ -1,0 +1,17 @@
+{
+  "case_id": "dataco_real_006_dallas_nike_golf_polo",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Lone Star Sports Supply (DataCo Dallas Hub)",
+  "industry": "Apparel & Golf",
+  "hub": "Dallas, TX",
+  "file_formats": [
+    ".xlsx",
+    ".csv",
+    ".txt"
+  ],
+  "billed_amount": "7500.00",
+  "received_amount": "6450.00",
+  "difference": "-1050.00",
+  "expected_justified_amount": "300.00",
+  "expected_claimable_amount": "750.00"
+}

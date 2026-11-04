@@ -1,29 +1,34 @@
 # 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
-**Ref: Expediente de Cartera dataco_real_004_chicago_nike_footwear_overcharge / Factura INV-DC-75890**  
-**Fecha:** 03 de November de 2026  
-**De:** Departamento de Cartera y Asuntos Comerciales — DATACO-CHICAGO-IL  
-**Para:** Gerencia de Cuentas por Pagar y Conciliación — GREAT-LAKES-FOOTWEAR  
+**Ref: Expediente de Cartera dataco_real_004_chicago_nike_footwear_overcharge / Factura INV-DC-ORD-75890**  
+**Fecha:** 04 de November de 2026  
+**De:** Departamento de Cartera y Asuntos Comerciales — DATACO-CHICAGO  
+**Para:** Gerencia de Cuentas por Pagar y Conciliación — BUYER-DC-ORD-75890  
 
 ---
 
-### Estimados señores de GREAT-LAKES-FOOTWEAR:
+### Estimados señores de BUYER-DC-ORD-75890:
 
-Por medio de la presente, acusamos recibo del comprobante de liquidación y pago **PAY-DC-75890** por valor de **$9,549.00 USD**, aplicado contra nuestra factura comercial **INV-DC-75890** emitida por **$10,999.00 USD**.
+Por medio de la presente, acusamos recibo del comprobante de liquidación y pago **PAY-DC-ORD-75890** por valor de **$9,549.00 USD**, aplicado contra nuestra factura comercial **INV-DC-ORD-75890** emitida por **$10,999.00 USD**.
 
 Habiendo realizado la auditoría técnica y contractual correspondiente, les comunicamos que existe una diferencia no conciliada de **$1,450.00 USD**, respecto de la cual fijamos nuestra posición formal:
 
 #### 1. Deducciones Aceptadas y Justificadas: **$1,000.00 USD**
-Aceptamos de plena conformidad la deducción por valor de **$1,000.00 USD**, debidamente amparada en las constancias físicas de entrega del documento **BOL-DC-75890** y conforme a lo pactado contractualmente. Para sanear este importe, estaremos emitiendo a su favor la respectiva **Nota de Crédito comercial**.
+Aceptamos de plena conformidad la deducción por valor de **$1,000.00 USD**, debidamente amparada en las constancias físicas de entrega del documento **BOL-DC-ORD-75890** y conforme a lo pactado contractualmente. Para sanear este importe, estaremos emitiendo a su favor la respectiva **Nota de Crédito comercial**.
 
 #### 2. Deducciones Objetadas y Saldo Reclamable: **$450.00 USD**
-Rechazamos formalmente las deducciones adicionales aplicadas por un importe total de **$450.00 USD**, por carecer de soporte probatorio y contrariar los términos del contrato comercial **MSA-DC-75890**:
+Rechazamos formalmente las deducciones adicionales aplicadas por un importe total de **$450.00 USD**, por carecer de soporte probatorio y contrariar los términos del contrato comercial **MSA-DC-ORD-75890**:
 - **Causa Raíz:** Discrepancia mixta en expediente dataco_real_004_chicago_nike_footwear_overcharge: Faltante físico comprobado de $1,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $450.00 USD sin sustento contractual ni documental.
 - **Fundamentación Contractual:** Evaluación algorítmica y semántica completada. Posible deducción de $450.00 requiere análisis final por el Agente.
 
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente dataco_real_004_chicago_nike_footwear_overcharge — 2026-11-03):**
+**Precedente 1 (Expediente dataco_real_004_chicago_nike_footwear_overcharge — 2026-11-04):**
+- **Criterio Acreditado:** En el caso dataco_real_004_chicago_nike_footwear_overcharge, se acreditó la improcedencia de la deducción 'PRICE_DIFF' conforme a CL-POD-01, logrando la restitución de $450.00 USD.
+- **Resultado Previo:** Restitución de **$450.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** CL-POD-01.
+
+**Precedente 2 (Expediente dataco_real_004_chicago_nike_footwear_overcharge — 2026-11-04):**
 - **Criterio Acreditado:** En el caso dataco_real_004_chicago_nike_footwear_overcharge, se acreditó la improcedencia de la deducción 'PRICE_DIFF' conforme a CL-PRICE-01, logrando la restitución de $450.00 USD.
 - **Resultado Previo:** Restitución de **$450.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CL-PRICE-01.
@@ -42,5 +47,5 @@ Anexamos a la presente el informe técnico pormenorizado y las copias de la remi
 Atentamente,
 
 **ÁREA DE CONCILIACIÓN DE CARTERA Y DISPUTAS COMERCIALES**  
-*DATACO-CHICAGO-IL*  
+*DATACO-CHICAGO*  
 *Trazabilidad auditable respaldada por SupplyMind AI*

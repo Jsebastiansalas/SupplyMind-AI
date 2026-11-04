@@ -1,0 +1,17 @@
+{
+  "case_id": "dataco_real_026_saltlakecity_columbia_fleeces",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Wasatch Mountain Outfitters (DataCo Salt Lake Hub)",
+  "industry": "Winter Apparel",
+  "hub": "Salt Lake City, UT",
+  "file_formats": [
+    ".xlsx",
+    ".csv",
+    ".txt"
+  ],
+  "billed_amount": "8100.00",
+  "received_amount": "7245.00",
+  "difference": "-855.00",
+  "expected_justified_amount": "225.00",
+  "expected_claimable_amount": "630.00"
+}

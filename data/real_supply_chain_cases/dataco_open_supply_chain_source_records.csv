@@ -1,7 +1,31 @@
-dataco_order_id,product_card_id,product_name,category_name,department_name,origin_hub,order_item_product_price,delivery_status,dataset_doi
-DC-ORD-68914,DC-1360,Pelican Sunstream 100 Kayak,Water Sports,Outdoors,"Caguas, PR",199.99,Shipping shortage reported,10.17632/8gx2fvg2k6.5
-DC-ORD-68915,DC-1073,O'Brien Men's Neoprene Life Vest,Indoor/Outdoor Games,Fan Shop,"Caguas, PR",49.98,Advance shipping complete,10.17632/8gx2fvg2k6.5
-DC-ORD-71204,DC-957,Diamondback Women's Serene Classic Comfort Bike,Camping & Hiking,Apparel,"Cleveland, OH",299.98,Dock transit damage reported,10.17632/8gx2fvg2k6.5
-DC-ORD-73419,DC-1004,Field & Stream Sportsman 16 Gun Fire Safe,Fishing,Fan Shop,"Los Angeles, CA",399.98,Shipping on time (POD signed),10.17632/8gx2fvg2k6.5
-DC-ORD-75890,DC-191,Nike Men's Free 5.0+ Running Shoe,Cardio Equipment,Footwear,"Chicago, IL",99.99,Shipping on time (Invoice price variance),10.17632/8gx2fvg2k6.5
-DC-ORD-78112,DC-365,Perfect Fitness Perfect Rip Deck,Cleats,Fitness,"Miami, FL",59.99,Partial shortage and dock damage,10.17632/8gx2fvg2k6.5
+dataco_order_id,product_card_id,product_name,origin_hub,order_item_product_price,category_name,dataset_doi
+DC-ORD-68914,DC-1360,Pelican Sunstream 100 Kayak,"Caguas, PR",199.99,Outdoors & Water Sports,10.17632/8gx2fvg2k6.5
+DC-ORD-71204,DC-957,Diamondback Women's Serene Classic Comfort Bike,"Cleveland, OH",299.98,Apparel & Cycling,10.17632/8gx2fvg2k6.5
+DC-ORD-73419,DC-1004,Field & Stream Sportsman 16 Gun Fire Safe,"Los Angeles, CA",399.98,Camping & Security Hardware,10.17632/8gx2fvg2k6.5
+DC-ORD-75890,DC-191,Nike Men's Free 5.0+ Running Shoe,"Chicago, IL",99.99,Footwear & Apparel,10.17632/8gx2fvg2k6.5
+DC-ORD-78112,DC-365,Perfect Fitness Perfect Rip Deck,"Miami, FL",59.99,Fitness Equipment,10.17632/8gx2fvg2k6.5
+DC-ORD-80115,DC-502,Nike Men's Dri-FIT Victory Golf Polo,"Dallas, TX",50.00,Apparel & Golf,10.17632/8gx2fvg2k6.5
+DC-ORD-82450,DC-403,Dell OptiPlex 7020 Desktop Computer,"Austin, TX",499.99,IT & Electronics,10.17632/8gx2fvg2k6.5
+DC-ORD-84910,DC-627,Under Armour Men's Micro G Assert 6 Running Shoes,"Atlanta, GA",69.99,Footwear,10.17632/8gx2fvg2k6.5
+DC-ORD-87120,DC-804,Coleman 8-Person Red Canyon Tent,"Denver, CO",139.99,Camping Gear,10.17632/8gx2fvg2k6.5
+DC-ORD-89330,DC-226,Titleist Pro V1 Golf Balls (Dozen),"San Diego, CA",47.99,Golf Accessories,10.17632/8gx2fvg2k6.5
+DC-ORD-91540,DC-715,GoPro HERO4 Silver Camera,"San Jose, CA",399.99,Consumer Electronics,10.17632/8gx2fvg2k6.5
+DC-ORD-93750,DC-842,Bushnell Tour V3 Jolt Laser Rangefinder,"Phoenix, AZ",299.99,Hunting & Optics,10.17632/8gx2fvg2k6.5
+DC-ORD-95960,DC-539,Yeti Tundra 45 Cooler,"Houston, TX",299.99,Outdoor Equipment,10.17632/8gx2fvg2k6.5
+DC-ORD-98170,DC-601,Bowflex SelectTech 552 Dumbbells (Pair),"Minneapolis, MN",349.00,Strength Training,10.17632/8gx2fvg2k6.5
+DC-ORD-100380,DC-788,Garmin Forerunner 235 GPS Running Watch,"Seattle, WA",249.99,Wearable Tech,10.17632/8gx2fvg2k6.5
+DC-ORD-102590,DC-921,Weber Original Kettle 22-Inch Charcoal Grill,"Kansas City, MO",165.00,Grills & Cooking,10.17632/8gx2fvg2k6.5
+DC-ORD-104800,DC-1044,Shimano Stradic CI4+ Spinning Reel,"Tampa, FL",219.99,Fishing Hardware,10.17632/8gx2fvg2k6.5
+DC-ORD-107010,DC-1130,Spalding NBA Official Game Ball,"Indianapolis, IN",149.99,Team Sports,10.17632/8gx2fvg2k6.5
+DC-ORD-109220,DC-1215,TaylorMade M2 Driver,"Charlotte, NC",399.99,Golf Clubs,10.17632/8gx2fvg2k6.5
+DC-ORD-111430,DC-1288,DeWalt 20V MAX Cordless Drill Combo Kit,"Pittsburgh, PA",199.00,Power Tools,10.17632/8gx2fvg2k6.5
+DC-ORD-113640,DC-1350,Fitbit Charge 2 Heart Rate Wristband,"San Francisco, CA",149.95,Wearables,10.17632/8gx2fvg2k6.5
+DC-ORD-115850,DC-1412,Bose SoundLink Mini Bluetooth Speaker II,"Boston, MA",179.00,Audio Electronics,10.17632/8gx2fvg2k6.5
+DC-ORD-118060,DC-1475,The North Face Recon Backpack,"Portland, OR",99.00,Outdoor Bags,10.17632/8gx2fvg2k6.5
+DC-ORD-120270,DC-1520,Callaway 2017 Supersoft Golf Balls (Dozen),"Orlando, FL",21.99,Golf Accessories,10.17632/8gx2fvg2k6.5
+DC-ORD-122480,DC-1588,Wilson Evolution Indoor Game Basketball,"Milwaukee, WI",64.95,Team Sports,10.17632/8gx2fvg2k6.5
+DC-ORD-124690,DC-1630,Columbia Men's Steens Mountain Full Zip Fleece,"Salt Lake City, UT",45.00,Winter Apparel,10.17632/8gx2fvg2k6.5
+DC-ORD-126900,DC-1695,Hydro Flask 32 oz Wide Mouth Bottle,"Honolulu, HI",39.95,Drinkware & Outdoor,10.17632/8gx2fvg2k6.5
+DC-ORD-129110,DC-1740,Louisville Slugger 2018 Solo 618 Baseball Bat,"Louisville, KY",249.95,Baseball Equipment,10.17632/8gx2fvg2k6.5
+DC-ORD-131320,DC-1805,Easton Ghost Double Barrel Fastpitch Softball Bat,"Oklahoma City, OK",349.95,Softball Equipment,10.17632/8gx2fvg2k6.5
+DC-ORD-133530,DC-1073,O'Brien Men's Neoprene Life Vest,"Caguas, PR",49.98,Water Sports & Safety,10.17632/8gx2fvg2k6.5

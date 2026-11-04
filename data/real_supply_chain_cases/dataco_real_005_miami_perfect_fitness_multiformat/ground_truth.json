@@ -3,6 +3,7 @@
   "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
   "buyer_name": "Atlantic Fitness Dist (DataCo Miami Hub)",
   "industry": "Fitness Equipment",
+  "hub": "Miami, FL",
   "file_formats": [
     ".csv",
     ".json",

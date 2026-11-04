@@ -1,0 +1,24 @@
+{
+  "sha256": "0353ca09adcd63fb8a8dcfa2f775c764e44a1ec4b79ee179a2af6ed59351cfa5",
+  "text": "REMISIÓN DE ENTREGA FÍSICA (BILL OF LADING / PROOF OF DELIVERY)\nTHE HOME DEPOT MÉXICO - LOGISTICS HUB & MUELLE DE DESCARGA\nFolio Remision: DEL-HD-2026-8812\nPO Referencia: PO-HD-44091\nFecha de Recepcion: 2026-03-15\nBodega / Hub: HUB_CENTRAL_MONTERREY\nTransportista: Transportes Rápidos del Norte S.A.\nSKU / ITEM DESPACHADO RECIBIDO FALTANTE AVERIADO\nSKU-CERAMIC-60X60 200 180 0 20\nSELLO OFICIAL DE MUELLE - RECEPCIÓN CON AVERÍA TÉCNICA\nSe constatan 20 cajas de SKU-CERAMIC-60X60 aplastadas por caída en patio.\nPorcelanato totalmente quebrado e inservible. Se rechazan 20 unidades.\nFirma y Sello Receptor: Roberto Gomez (Inspector Muelle) - Cédula: 94812",
+  "structured": {
+    "delivery_id": "DEL-HD-2026-8812",
+    "po_reference": "PO-HD-44091",
+    "delivery_date": "2026-03-15",
+    "received_by": "RECEIVER",
+    "warehouse_location": "HUB_CENTRAL_MONTERREY",
+    "signed": true,
+    "discrepancy_reported": false,
+    "items": [
+      {
+        "item_id": "SKU-CERAMIC-60X60",
+        "quantity_delivered": 200,
+        "quantity_received": 180,
+        "missing_quantity": 0,
+        "damaged_quantity": 20,
+        "notes": null
+      }
+    ]
+  },
+  "metadata": {}
+}

@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `case_042_farma_caducidad_menor_75pct` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-10-29 01:01:20 UTC | **Nivel de Confianza:** 98.0%
+> **Fecha de Emisión:** 2026-11-04 05:06:29 UTC | **Nivel de Confianza:** 98.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO
@@ -50,7 +50,7 @@ Faltante físico en entrega valorado en $0.00 USD, constatado en remisión de en
 
 - **Fuerza Probatoria del Proveedor:** 95.0%
 
-- **Dictamen del Magistrado Arbitral:** VISTO el careo de autos en el expediente case_042_farma_caducidad_menor_75pct: Se condena al comprador al reintegro inmediato de $0.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $0.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 95.0%.
+- **Dictamen del Magistrado Arbitral:** VISTO el careo de autos en el expediente case_042_farma_caducidad_menor_75pct (Factura: INV-AUTO-001, Remisión: REM-OR_75PCT, Liquidación: PAY-OR_75PCT): Se condena al comprador al reintegro inmediato de $0.00 USD por carecer de título legal habilitante en case_042_farma_caducidad_menor_75pct, y se valida la emisión de Nota de Crédito por $0.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 95.0%. Reloj SLA: 40 días restantes (LOW_HEALTHY).
 
 
 ---

@@ -1,0 +1,6 @@
+{
+  "sha256": "fcb43a923672e0b7777a357589e6c0be6655c72dc49e4568edbb2387ef2e6408",
+  "text": "CISCO_SYSTEMS_GLOBALFACTURA COMERCIAL / COMMERCIAL INVOICE: INV-CISCO-CORP-99214\nEmisor / Proveedor: CISCO_SYSTEMS_GLOBAL Factura No: INV-CISCO-CORP-99214\nCliente / Receptor: TELCO_ENTERPRISE_NETWORK Fecha Emision: 2026-03-05\nOrden de Compra Ref: PO-TELCO-2026-8810 Moneda: USD\nItem ID Descripcion Cant. P. Unitario Total\nSKU-ROUTER-CORECarrier-Grade Core Router 400G Module 10 $5,000.00 $50,000.00\nSKU-FIREWALL-NG Next-Gen Enterprise Security Appliance 100G 5 $6,000.00 $30,000.00\nSKU-FIBER-TRANS 100GbE QSFP28 Single-Mode Optical Transceiver 50 $400.00 $20,000.00\nSKU-SFP-MODULE Multi-Mode Fiber Gigabit SFP+ Transceiver Pack 40 $300.00 $12,000.00\nSKU-POWER-RACK Redundant High-Efficiency Server Rack Power Supply 20 $400.00 $8,000.00\nSKU-CABLING-CAT6 Industrial Shielded Cat6A High-Density Patch Bundle 50 $100.00 $5,000.00\nSubtotal: $125,000.00\nImpuestos: $0.00\nTOTAL: $125,000.00\nValidez fiscal y comercial certificada para procesamiento y conciliacion contable.\nDocumento Comercial Oficial B2B - Folio INV-CISCO-CORP-99214 | Página 1",
+  "structured": null,
+  "metadata": {}
+}

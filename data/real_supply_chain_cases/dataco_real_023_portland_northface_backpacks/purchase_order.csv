@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-118060
+# vendor_id: DATACO-PORTLAND
+# customer_id: BUYER-DC-ORD-118060
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 10890.00
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-1475,The North Face Recon Backpack (DataCo DC-1475),110,99.00,10890.00

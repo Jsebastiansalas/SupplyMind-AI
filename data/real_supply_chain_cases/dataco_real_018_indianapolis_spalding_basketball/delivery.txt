@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-107010
+po_reference: PO-DC-ORD-107010
+delivery_date: 2026-01-30
+received_by: Supervisor Indianapolis Dock
+warehouse_location: Indianapolis, IN Distribution Hub
+signed: true
+discrepancy_reported: false
+
+ITEM | sku=DC-1130 | delivered=80 | received=80 | missing=0 | damaged=0 | notes=Full shipment of 80 units received and signed clean at dock

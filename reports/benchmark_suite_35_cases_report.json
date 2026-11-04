@@ -1,5 +1,5 @@
 {
-  "benchmark_timestamp": "2026-10-28T16:21:48Z",
+  "benchmark_timestamp": "2026-11-03T12:38:12Z",
   "total_cases_evaluated": 35,
   "cases_passed": 35,
   "exact_match_accuracy_pct": 100.0,
@@ -10,8 +10,8 @@
   "total_disputed_volume_usd": 627400.0,
   "total_claimable_volume_usd": 329900.0,
   "total_justified_volume_usd": 297500.0,
-  "execution_time_total_seconds": 69.08,
-  "average_case_latency_ms": 1973.62,
+  "execution_time_total_seconds": 60.26,
+  "average_case_latency_ms": 1721.71,
   "cases": [
     {
       "case_id": "case_001",
@@ -26,7 +26,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 320.96
+      "latency_ms": 140.9
     },
     {
       "case_id": "case_002",
@@ -41,7 +41,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 51.76
+      "latency_ms": 190.56
     },
     {
       "case_id": "case_003",
@@ -56,7 +56,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 65.66
+      "latency_ms": 136.55
     },
     {
       "case_id": "case_004_enterprise",
@@ -71,7 +71,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 17910.53
+      "latency_ms": 11621.55
     },
     {
       "case_id": "case_005_amazon_shortage",
@@ -86,7 +86,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 163.62
+      "latency_ms": 262.61
     },
     {
       "case_id": "case_006_walmart_otif_pricing",
@@ -101,7 +101,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 139.35
+      "latency_ms": 256.07
     },
     {
       "case_id": "case_007_cisco_large_bundle",
@@ -116,7 +116,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 292.72
+      "latency_ms": 363.12
     },
     {
       "case_id": "case_008_homedepot_damaged_scanned",
@@ -131,7 +131,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 47558.81
+      "latency_ms": 43906.91
     },
     {
       "case_id": "case_009_mega_retailer_dispute",
@@ -146,7 +146,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 90.91
+      "latency_ms": 119.18
     },
     {
       "case_id": "case_010_mercadolibre_crossdock",
@@ -161,7 +161,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 81.76
+      "latency_ms": 102.31
     },
     {
       "case_id": "case_011_oxxo_caducidad_corta",
@@ -176,7 +176,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 88.58
+      "latency_ms": 119.91
     },
     {
       "case_id": "case_012_liverpool_colgado_etiqueta",
@@ -191,7 +191,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 85.97
+      "latency_ms": 151.39
     },
     {
       "case_id": "case_013_chedraui_flete_compartido",
@@ -206,7 +206,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 103.15
+      "latency_ms": 179.37
     },
     {
       "case_id": "case_014_soriana_rebate_unilateral",
@@ -221,7 +221,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 88.32
+      "latency_ms": 115.24
     },
     {
       "case_id": "case_015_costco_tarima_danada",
@@ -236,7 +236,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 87.6
+      "latency_ms": 173.84
     },
     {
       "case_id": "case_016_nestle_cuarentena_lab",
@@ -251,7 +251,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 55.01
+      "latency_ms": 110.99
     },
     {
       "case_id": "case_017_unilever_despacho_fuera_cita",
@@ -266,7 +266,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 88.45
+      "latency_ms": 120.87
     },
     {
       "case_id": "case_018_farma_ahorro_descuento_especial",
@@ -281,7 +281,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 67.3
+      "latency_ms": 105.24
     },
     {
       "case_id": "case_019_sanborns_devolucion_temporada",
@@ -296,7 +296,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 82.09
+      "latency_ms": 127.14
     },
     {
       "case_id": "case_020_modelo_tarimas_retornables",
@@ -311,7 +311,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 116.42
+      "latency_ms": 122.87
     },
     {
       "case_id": "case_021_samsung_fx_variance",
@@ -326,7 +326,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 99.22
+      "latency_ms": 121.08
     },
     {
       "case_id": "case_022_lg_incoterm_fob",
@@ -341,7 +341,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 101.28
+      "latency_ms": 132.51
     },
     {
       "case_id": "case_023_apple_garantias_usuario",
@@ -356,7 +356,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 111.94
+      "latency_ms": 111.68
     },
     {
       "case_id": "case_024_pepsico_coop_publicitaria",
@@ -371,7 +371,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 76.51
+      "latency_ms": 126.42
     },
     {
       "case_id": "case_025_miniso_faltante_cif",
@@ -386,7 +386,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 79.93
+      "latency_ms": 131.93
     },
     {
       "case_id": "case_026_truper_dev_extemporanea",
@@ -401,7 +401,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 86.56
+      "latency_ms": 119.48
     },
     {
       "case_id": "case_027_biofarma_cadena_frio",
@@ -416,7 +416,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 71.29
+      "latency_ms": 100.55
     },
     {
       "case_id": "case_028_inditex_curva_tallas",
@@ -431,7 +431,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 87.13
+      "latency_ms": 109.83
     },
     {
       "case_id": "case_029_sony_calibracion_destino",
@@ -446,7 +446,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 96.53
+      "latency_ms": 150.76
     },
     {
       "case_id": "case_030_petco_upc_invalido",
@@ -461,7 +461,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 98.29
+      "latency_ms": 96.53
     },
     {
       "case_id": "case_031_adversarial_prompt_injection",
@@ -476,7 +476,7 @@
       "math_invariant_ok": true,
       "is_quarantine": true,
       "passed": true,
-      "latency_ms": 64.46
+      "latency_ms": 44.93
     },
     {
       "case_id": "case_032_quarantine_cross_contamination",
@@ -491,7 +491,7 @@
       "math_invariant_ok": true,
       "is_quarantine": true,
       "passed": true,
-      "latency_ms": 73.24
+      "latency_ms": 56.71
     },
     {
       "case_id": "case_033_quarantine_anachronistic_dates",
@@ -506,7 +506,7 @@
       "math_invariant_ok": true,
       "is_quarantine": true,
       "passed": true,
-      "latency_ms": 56.34
+      "latency_ms": 61.9
     },
     {
       "case_id": "case_034_resilient_corrupted_json",
@@ -521,7 +521,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 92.84
+      "latency_ms": 101.63
     },
     {
       "case_id": "case_035_mega_multimodal_60_skus",
@@ -536,7 +536,7 @@
       "math_invariant_ok": true,
       "is_quarantine": false,
       "passed": true,
-      "latency_ms": 109.5
+      "latency_ms": 320.16
     }
   ]
 }

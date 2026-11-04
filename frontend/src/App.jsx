@@ -20,6 +20,7 @@ import CourtroomView from './components/CourtroomView';
 import PortalCrawlerView from './components/PortalCrawlerView';
 import PalletVisionView from './components/PalletVisionView';
 import NegotiationDuelView from './components/NegotiationDuelView';
+import ClosurePreventionView from './components/ClosurePreventionView';
 import { apiClient } from './api/client';
 import { 
   DollarSign, 
@@ -46,7 +47,8 @@ import {
   Binary, 
   Bot, 
   Camera,
-  Swords
+  Swords,
+  Landmark
 } from 'lucide-react';
 
 function Workspace() {
@@ -154,6 +156,9 @@ function Workspace() {
         setForceShowSummary(false);
       } else if (e.key === '8') {
         setActiveTab('vision');
+        setForceShowSummary(false);
+      } else if (e.key === '9') {
+        setActiveTab('closure');
         setForceShowSummary(false);
       } else if (e.key === 'b' || e.key === 'B') {
         setIsSidebarOpen(prev => !prev);
@@ -489,6 +494,23 @@ function Workspace() {
                   </button>
 
                   <button
+                    onClick={() => {
+                      setActiveTab('closure');
+                      setForceShowSummary(false);
+                    }}
+                    className={`btn-tactile px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors flex items-center space-x-1.5 ${
+                      activeTab === 'closure'
+                        ? 'bg-[#262012] text-[#eed98d] border border-[#d4af37]/70 shadow-tactile font-bold'
+                        : 'text-zinc-400 hover:text-white hover:bg-[#12131a]'
+                    }`}
+                    title="Tesorería EDI 820, Watchdog de Prescripción SLA Art. 1041 CCom & Prevención CAPA (Fase 7)"
+                  >
+                    <Landmark className="w-3.5 h-3.5 text-[#d4af37]" />
+                    <span>Tesorería & CAPA</span>
+                    <span className="text-[9px] px-1 py-0.2 rounded bg-[#101117] text-zinc-500 font-mono hidden md:inline">9</span>
+                  </button>
+
+                  <button
                     onClick={() => setActiveTab('benchmark')}
                     className={`btn-tactile px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors flex items-center space-x-1.5 ${
                       activeTab === 'benchmark'
@@ -607,6 +629,17 @@ function Workspace() {
                     <button
                       onClick={() => {
                         setShowToolsMenu(false);
+                        setActiveTab('closure');
+                      }}
+                      className="btn-tactile w-full text-left px-3 py-2 rounded hover:bg-[#181a24] text-[#eed98d] hover:text-white flex items-center space-x-2"
+                    >
+                      <Landmark className="w-3.5 h-3.5 text-[#d4af37]" />
+                      <span>Tesorería EDI 820 & CAPA</span>
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        setShowToolsMenu(false);
                         setActiveTab('courtroom');
                       }}
                       className="btn-tactile w-full text-left px-3 py-2 rounded hover:bg-[#181a24] text-zinc-300 hover:text-white flex items-center space-x-2"
@@ -686,6 +719,8 @@ function Workspace() {
             <PortalCrawlerView />
           ) : activeTab === 'duel' ? (
             <NegotiationDuelView caseId={selectedCaseId} />
+          ) : activeTab === 'closure' ? (
+            <ClosurePreventionView caseId={selectedCaseId} />
           ) : activeTab === 'vision' ? (
             <PalletVisionView />
           ) : (!report || forceShowSummary) ? (

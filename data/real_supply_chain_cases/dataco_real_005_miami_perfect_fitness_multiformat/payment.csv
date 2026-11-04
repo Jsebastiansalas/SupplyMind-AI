@@ -1,9 +1,0 @@
-# payment_id: PAY-DC-78112
-# invoice_reference: INV-DC-78112
-# payment_date: 2026-02-22
-# currency: USD
-# amount_paid: 10898.00
-code,reason,amount,reference_doc
-SHORTAGE,Faltante fisico en muelle de 5 uds SKU DC-365 Perfect Rip Deck,299.95,BOL-DC-78112
-DAMAGED,Averia verificada en muelle de 3 uds SKU DC-365 Perfect Rip Deck,179.97,BOL-DC-78112
-MKT_REBATE_UNAUTH,Retencion por rebaja estacional no pactada en MSA,620.08,REB-2026

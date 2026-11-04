@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-133530
+po_reference: PO-DC-ORD-133530
+delivery_date: 2026-01-30
+received_by: Supervisor Caguas Dock
+warehouse_location: Caguas, PR Distribution Hub
+signed: true
+discrepancy_reported: true
+
+ITEM | sku=DC-1073 | delivered=200 | received=194 | missing=6 | damaged=4 | notes=6 units missing and 4 units crushed on arrival

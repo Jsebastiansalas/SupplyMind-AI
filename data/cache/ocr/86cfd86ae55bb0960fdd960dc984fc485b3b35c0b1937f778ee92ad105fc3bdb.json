@@ -1,0 +1,32 @@
+{
+  "sha256": "86cfd86ae55bb0960fdd960dc984fc485b3b35c0b1937f778ee92ad105fc3bdb",
+  "text": "MEGAMART_DC_12_CHICAGO REMISION DE ENTREGA / RECEIVING SLIP: REC-MMN-33019\nFolio Remision: REC-MMN-33019 PO Referencia: PO-MMN-77102\nFecha de Recepcion: 2026-03-15 Bodega / Hub: MEGAMART_DC_12_CHICAGO\nRecibido por: M_RODRIGUEZ_RECEIVING_MGR Estado en Muelle: CONFORME / SIN NOVEDAD\nItem ID Despachado Recibido Faltante Averiado Notas de Inspeccion de Muelle\nSKU-WHEY-2KG 1500 1500 0 0 Recepcion completa y conforme en pallets sell\nSKU-BAR-PLANT 800 800 0 0 Recepcion conforme.\nConstancia de Recepcion Fisica: Sello de Bodega y Seguridad:\n[FIRMADO DIGITALMENTE POR: M_RODRIGUEZ_RECEIVING_MGR][SELLO MUELLE: MEGAMART_DC_12_CHICAGO - VERIFICADO]\nDocumento Comercial Oficial B2B - Folio REC-MMN-33019 | Página 1",
+  "structured": {
+    "delivery_id": "REC-MMN-33019",
+    "po_reference": "PO-MMN-77102",
+    "delivery_date": "2026-03-15",
+    "received_by": "M_RODRIGUEZ_RECEIVING_MGR",
+    "warehouse_location": "MEGAMART_DC_12_CHICAGO",
+    "signed": true,
+    "discrepancy_reported": false,
+    "items": [
+      {
+        "item_id": "SKU-WHEY-2KG",
+        "quantity_delivered": 1500,
+        "quantity_received": 1500,
+        "missing_quantity": 0,
+        "damaged_quantity": 0,
+        "notes": "Recepcion completa y conforme en pallets sell"
+      },
+      {
+        "item_id": "SKU-BAR-PLANT",
+        "quantity_delivered": 800,
+        "quantity_received": 800,
+        "missing_quantity": 0,
+        "damaged_quantity": 0,
+        "notes": "Recepcion conforme."
+      }
+    ]
+  },
+  "metadata": {}
+}

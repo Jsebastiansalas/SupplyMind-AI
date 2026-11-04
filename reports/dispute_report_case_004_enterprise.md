@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `case_004_enterprise` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-10-29 01:00:27 UTC | **Nivel de Confianza:** 88.0%
+> **Fecha de Emisión:** 2026-11-04 05:07:24 UTC | **Nivel de Confianza:** 88.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO
@@ -62,13 +62,13 @@ Discrepancia mixta en expediente case_004_enterprise: Faltante físico comprobad
 
 - **Fuerza Probatoria del Proveedor:** 87.5%
 
-- **Dictamen del Magistrado Arbitral:** VISTO el careo de autos en el expediente case_004_enterprise: Se condena al comprador al reintegro inmediato de $2,500.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $5,000.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%.
+- **Dictamen del Magistrado Arbitral:** VISTO el careo de autos en el expediente case_004_enterprise (Factura: INV-ENT-001, Remisión: DEL-ENT-999, Liquidación: PAY-ENT-001): Se condena al comprador al reintegro inmediato de $2,500.00 USD por carecer de título legal habilitante en case_004_enterprise, y se valida la emisión de Nota de Crédito por $5,000.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%. Reloj SLA: -3 días restantes (CRITICAL_EXPIRED).
 
 **Objeciones del Retailer Desestimadas:**
-> - 🛡️ Retención unilateral de $2,500.00 USD declarada IMPROCEDENTE y 100% RECLAMABLE.
+> - 🛡️ Retención unilateral de $2,500.00 USD en PAY-ENT-001 declarada IMPROCEDENTE y 100% RECLAMABLE.
 
 **Objeciones Concedidas en Muelle:**
-> - ⚖️ Deducción de faltante físico por $5,000.00 USD declarada PROCEDENTE.
+> - ⚖️ Deducción de faltante físico por $5,000.00 USD amparada en DEL-ENT-999 declarada PROCEDENTE.
 
 ---
 ## 4.2 SANITY GATE DE CUÁDRUPLE AUDITORÍA (SEMANA 4)

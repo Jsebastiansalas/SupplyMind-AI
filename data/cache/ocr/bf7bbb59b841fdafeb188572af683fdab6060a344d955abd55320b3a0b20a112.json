@@ -1,0 +1,6 @@
+{
+  "sha256": "bf7bbb59b841fdafeb188572af683fdab6060a344d955abd55320b3a0b20a112",
+  "text": "CUENTAS POR PAGAR / APCOMPROBANTE DE PAGO / REMITTANCE ADVICE: REM-AMZ-99120\nReferencia Pago: REM-AMZ-99120 Factura Cancelada: INV-PAC-2026-4402\nFecha de Dispersion: 2026-03-25 Moneda: USD\nMonto Efectivo Pagado: $40,500.00\nDeducciones y Retenciones Aplicadas al Pago:\nCodigo Deduccion Motivo Comercial / Operativo Doc. Referencia Monto Deducido\nDED-SHRT-20 Dock Shortage - 20x SKU-NVME-4TB en muelle BOL-POD-77319 $5,000.00\nDED-ASN-PENALTY Late Inbound EDI ASN Defect Fee (No autorizad CLAIM-ASN-990 $2,500.00\nTOTAL DEDUCCIONES: $7,500.00\nDocumento Comercial Oficial B2B - Folio REM-AMZ-99120 | Página 1",
+  "structured": null,
+  "metadata": {}
+}

@@ -1,0 +1,6 @@
+{
+  "sha256": "b60fb75b01e56e73312fdda9d675b3dcaeb52627f2f06dae4c0986c8c49e692a",
+  "text": "ACUERDO LEGAL VINCULANTECONTRATO MARCO DE SUMINISTRO / MASTER AGREEMENT: MSA-AMZ-PAC-2026\nContrato No: MSA-AMZ-PAC-2026 Vigencia: 2026-01-01 a 2026-12-31\nParte Proveedora: PACIFIC_TECH_CORP Parte Compradora: AMAZON_RETAIL_LLC\nTERMINOS Y CONDICIONES GENERALES DE OPERACION\nCLAUSULA 4.1: Ajuste por Faltantes Fisicos en Muelle\nTexto: El Comprador podra deducir el valor de los bienes no entregados siempre que conste en remision de entrega sellada.\nPolitica Operativa: DEDUCTION_ALLOWED_ON_SIGNED_DISCREPANCY | Tolerancia Permitida: 0.0%\nCLAUSULA 5.3: Penalidades Operativas y Transmision ASN\nTexto: Las penalizaciones operativas por discrepancias logisticas requieren notificacion formal previa y estan limitadas a maximo\n$250.00 USD por evento.\nPolitica Operativa: LIMIT_PENALTY_OR_FORBIDDEN | Tolerancia Permitida: 0.0%\nDocumento Comercial Oficial B2B - Folio MSA-AMZ-PAC-2026 | Página 1",
+  "structured": null,
+  "metadata": {}
+}

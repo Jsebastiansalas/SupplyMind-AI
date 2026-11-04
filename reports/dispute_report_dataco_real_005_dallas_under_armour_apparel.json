@@ -1,0 +1,90 @@
+{
+  "case_id": "dataco_real_005_dallas_under_armour_apparel",
+  "currency": "USD",
+  "billed_amount": "0.00",
+  "received_amount": "0.00",
+  "difference": "0.00",
+  "root_cause": "TECHNICAL_ERROR: Datos corruptos o esquema inválido.",
+  "evidence": [
+    "Trace técnico de Pydantic/Motor: Fallo en lectura de documentos: Expediente 'dataco_real_005_dallas_under_armour_apparel' no encontrado en C:\\Users\\USUARIO\\Downloads\\platica\\data\\cases\\dataco_real_005_dallas_under_armour_apparel"
+  ],
+  "justified_amount": "0.00",
+  "claimable_amount": "0.00",
+  "confidence": 0.0,
+  "recommended_action": "Rechazar expediente. Los archivos JSON base carecen de integridad estructural y fallaron la validación de Esquemas (Pydantic). Verifique los datos de entrada.",
+  "concessions": [],
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "dataco_real_005_dallas_under_armour_apparel",
+    "health_score": 0.0,
+    "status": "QUARANTINE",
+    "is_healthy": false,
+    "repaired_issues": [],
+    "imputed_documents": [],
+    "documents_present": [],
+    "documents_missing": [
+      "unrecoverable_corrupt_files"
+    ],
+    "schema_warnings": [
+      "Fallo en lectura de documentos: Expediente 'dataco_real_005_dallas_under_armour_apparel' no encontrado en C:\\Users\\USUARIO\\Downloads\\platica\\data\\cases\\dataco_real_005_dallas_under_armour_apparel"
+    ],
+    "execution_safety_level": "HOLD_SETTLEMENT_DOCUMENT_AUDIT_REQUIRED",
+    "quarantine_docket": null,
+    "generated_at": "2026-11-04T04:57:56.284428+00:00"
+  },
+  "financial_proof": {
+    "case_id": "dataco_real_005_dallas_under_armour_apparel",
+    "proof_hash": "SM-PROOF-QUARANTINE-dataco_real_005_dallas_under_armour_apparel",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": false,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [],
+    "confidence_penalty": 0.0,
+    "audit_status": "ARITHMETIC_MISMATCH",
+    "tamper_proof_timestamp": "2026-11-04T04:57:56.284499+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "dataco_real_005_dallas_under_armour_apparel",
+    "total_claims_audited": 0,
+    "backed_claims_count": 0,
+    "unbacked_claims_count": 0,
+    "total_backed_amount": "0.00",
+    "total_unbacked_amount": "0.00",
+    "backing_ratio_pct": 0.0,
+    "evidence_pointers": [],
+    "cautelar_items": [
+      "Expediente en cuarentena: Bloqueo cautelar de liquidación activado."
+    ],
+    "binding_verdict": "CRITICAL_UNBACKED_DEFICIT",
+    "confidence_penalty": 1.0,
+    "generated_at": "2026-11-04T04:57:56.284529+00:00"
+  },
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "dataco_real_005_dallas_under_armour_apparel",
+    "currency": "USD",
+    "billed_amount": "0.00",
+    "received_amount": "0.00",
+    "difference": "0.00",
+    "justified_amount": "0.00",
+    "claimable_amount": "0.00",
+    "health_status": "QUARANTINE",
+    "health_score": 0.0,
+    "zkp_proof_hash": "SM-PROOF-QUARANTINE-dataco_real_005_dallas_under_armour_apparel",
+    "zkp_status": "ARITHMETIC_MISMATCH",
+    "is_quarantined": true,
+    "evidence_backing_ratio": 0.0,
+    "anchored_at": "2026-11-04T04:57:56.284630+00:00"
+  },
+  "watchdog_metrics": null,
+  "adversarial_verdict": null,
+  "recovery_prediction": null,
+  "sanity_gate_audit": null,
+  "resolution_notes": [],
+  "deduction_type": null,
+  "adversarial_critique": null,
+  "mcts_negotiation_plan": null,
+  "cross_border_assessment": null
+}

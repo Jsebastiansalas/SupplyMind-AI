@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-89330
+# vendor_id: DATACO-SAN DIEGO
+# customer_id: BUYER-DC-ORD-89330
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 11997.50
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-226,Titleist Pro V1 Golf Balls (Dozen) (DataCo DC-226),250,47.99,11997.50

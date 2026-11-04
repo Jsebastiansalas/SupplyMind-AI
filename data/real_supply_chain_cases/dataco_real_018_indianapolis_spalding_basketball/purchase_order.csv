@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-107010
+# vendor_id: DATACO-INDIANAPOLIS
+# customer_id: BUYER-DC-ORD-107010
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 11999.20
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-1130,Spalding NBA Official Game Ball (DataCo DC-1130),80,149.99,11999.20

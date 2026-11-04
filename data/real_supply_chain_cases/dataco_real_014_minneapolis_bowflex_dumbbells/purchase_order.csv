@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-98170
+# vendor_id: DATACO-MINNEAPOLIS
+# customer_id: BUYER-DC-ORD-98170
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 13960.00
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-601,Bowflex SelectTech 552 Dumbbells (Pair) (DataCo DC-601),40,349.00,13960.00

@@ -6,19 +6,19 @@
   "difference": "-1100.00",
   "root_cause": "Discrepancia mixta en expediente dataco_real_005_miami_perfect_fitness_multiformat: Faltante físico comprobado de $479.92 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $620.08 USD sin sustento contractual ni documental.",
   "evidence": [
-    "Faltante físico comprobado en DC-365 (Perfect Fitness Perfect Rip Deck (DataCo SKU 365)): 5 unidades faltantes s/ remisión BOL-DC-78112 valoradas en $299.95",
+    "Faltante físico comprobado en DC-365 (Perfect Fitness Perfect Rip Deck (DataCo DC-365)): 5 unidades faltantes s/ remisión BOL-DC-ORD-78112 valoradas en $299.95",
     "Mercancía averiada en DC-365: 3 unidades valoradas en $179.97",
-    "Deducción aplicada en comprobante PAY-DC-78112: código SHORTAGE, motivo 'Faltante fisico en muelle de 5 uds SKU DC-365 Perfect Rip Deck', monto $299.95",
-    "Deducción aplicada en comprobante PAY-DC-78112: código DAMAGED, motivo 'Averia verificada en muelle de 3 uds SKU DC-365 Perfect Rip Deck', monto $179.97",
-    "Deducción aplicada en comprobante PAY-DC-78112: código MKT_REBATE_UNAUTH, motivo 'Retencion por rebaja estacional no pactada en MSA', monto $620.08",
-    "Respaldo contractual: La CL-01 autoriza la deducción por faltantes físicos acreditados en remisión de entrega.",
-    "[Factura INV-DC-78112 §Total $11,998.00 USD]",
-    "[Comprobante PAY-DC-78112 §Liquidación $10,898.00 USD]",
-    "[Contrato MSA-DC-78112 §Cláusula CL-01 'Faltantes y Averías en Muelle' | Deducción SHORTAGE $299.95]",
-    "[Contrato MSA-DC-78112 §Cláusula CL-01 'Faltantes y Averías en Muelle' | Deducción DAMAGED $179.97]",
-    "[Contrato MSA-DC-78112 §Cláusula CL-01 'Faltantes y Averías en Muelle' | Deducción MKT_REBATE_UNAUTH $620.08]",
-    "[Remisión BOL-DC-78112 §SKU DC-365 | Faltante: 5 uds | $299.95]",
-    "[Remisión BOL-DC-78112 §SKU DC-365 | Avería: 3 uds | $179.97]"
+    "Deducción aplicada en comprobante PAY-DC-ORD-78112: código SHORTAGE, motivo 'Faltante fisico en muelle de 5 uds SKU DC-365', monto $299.95",
+    "Deducción aplicada en comprobante PAY-DC-ORD-78112: código DAMAGED, motivo 'Averia verificada en muelle de 3 uds SKU DC-365', monto $179.97",
+    "Deducción aplicada en comprobante PAY-DC-ORD-78112: código MKT_REBATE_UNAUTH, motivo 'Retencion por rebaja estacional no pactada en MSA', monto $620.08",
+    "Respaldo contractual: La CL-UNAUTH-02 ('Prohibición de Cargos Administrativos Unilaterales') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.",
+    "[Factura INV-DC-ORD-78112 §Total $11,998.00 USD]",
+    "[Comprobante PAY-DC-ORD-78112 §Liquidación $10,898.00 USD]",
+    "[Contrato MSA-DC-ORD-78112 §Cláusula CL-POD-01 'Prevalencia de Remisión Firmada en Muelle' | Deducción SHORTAGE $299.95]",
+    "[Contrato MSA-DC-ORD-78112 §Cláusula CL-POD-01 'Prevalencia de Remisión Firmada en Muelle' | Deducción DAMAGED $179.97]",
+    "[Contrato MSA-DC-ORD-78112 §Cláusula CL-POD-01 'Prevalencia de Remisión Firmada en Muelle' | Deducción MKT_REBATE_UNAUTH $620.08]",
+    "[Remisión BOL-DC-ORD-78112 §SKU DC-365 | Faltante: 5 uds | $299.95]",
+    "[Remisión BOL-DC-ORD-78112 §SKU DC-365 | Avería: 3 uds | $179.97]"
   ],
   "justified_amount": "479.92",
   "claimable_amount": "620.08",
@@ -44,11 +44,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-11-03T20:57:24.746262+00:00"
+    "generated_at": "2026-11-04T05:07:48.513906+00:00"
   },
   "financial_proof": {
     "case_id": "dataco_real_005_miami_perfect_fitness_multiformat",
-    "proof_hash": "SM-PROOF-SHA256-0D29590EC25D8A91",
+    "proof_hash": "SM-PROOF-SHA256-050C132FDBFE57D0",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -62,7 +62,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-11-03T20:57:24.757907+00:00"
+    "tamper_proof_timestamp": "2026-11-04T05:07:48.525684+00:00"
   },
   "evidence_manifest": {
     "case_id": "dataco_real_005_miami_perfect_fitness_multiformat",
@@ -74,25 +74,25 @@
     "backing_ratio_pct": 100.0,
     "evidence_pointers": [
       {
-        "pointer_id": "PTR-INV-INV-DC-78112-TOTAL",
+        "pointer_id": "PTR-INV-INV-DC-ORD-78112-TOTAL",
         "doc_type": "INVOICE",
-        "doc_id": "INV-DC-78112",
+        "doc_id": "INV-DC-ORD-78112",
         "field_ref": "total_amount",
         "item_sku": null,
         "amount": "11998.00",
-        "citation_tag": "[Factura INV-DC-78112 §Total $11,998.00 USD]",
+        "citation_tag": "[Factura INV-DC-ORD-78112 §Total $11,998.00 USD]",
         "is_backed_by_physical_proof": true,
         "status": "ACREDITADO",
         "detail": "Factura comercial fiscalmente válida por $11,998.00 USD."
       },
       {
-        "pointer_id": "PTR-PAY-PAY-DC-78112-AMOUNT",
+        "pointer_id": "PTR-PAY-PAY-DC-ORD-78112-AMOUNT",
         "doc_type": "PAYMENT",
-        "doc_id": "PAY-DC-78112",
+        "doc_id": "PAY-DC-ORD-78112",
         "field_ref": "amount_paid",
         "item_sku": null,
         "amount": "10898.00",
-        "citation_tag": "[Comprobante PAY-DC-78112 §Liquidación $10,898.00 USD]",
+        "citation_tag": "[Comprobante PAY-DC-ORD-78112 §Liquidación $10,898.00 USD]",
         "is_backed_by_physical_proof": true,
         "status": "ACREDITADO",
         "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $10,898.00."
@@ -100,68 +100,68 @@
       {
         "pointer_id": "PTR-DED-SHORTAGE-1",
         "doc_type": "CONTRACT",
-        "doc_id": "MSA-DC-78112",
-        "field_ref": "clause_CL-01",
+        "doc_id": "MSA-DC-ORD-78112",
+        "field_ref": "clause_CL-POD-01",
         "item_sku": null,
         "amount": "299.95",
-        "citation_tag": "[Contrato MSA-DC-78112 §Cláusula CL-01 'Faltantes y Averías en Muelle' | Deducción SHORTAGE $299.95]",
+        "citation_tag": "[Contrato MSA-DC-ORD-78112 §Cláusula CL-POD-01 'Prevalencia de Remisión Firmada en Muelle' | Deducción SHORTAGE $299.95]",
         "is_backed_by_physical_proof": true,
         "status": "ACREDITADO",
-        "detail": "Deducción 'SHORTAGE' normada por la cláusula CL-01 de MSA-DC-78112."
+        "detail": "Deducción 'SHORTAGE' normada por la cláusula CL-POD-01 de MSA-DC-ORD-78112."
       },
       {
         "pointer_id": "PTR-DED-DAMAGED-2",
         "doc_type": "CONTRACT",
-        "doc_id": "MSA-DC-78112",
-        "field_ref": "clause_CL-01",
+        "doc_id": "MSA-DC-ORD-78112",
+        "field_ref": "clause_CL-POD-01",
         "item_sku": null,
         "amount": "179.97",
-        "citation_tag": "[Contrato MSA-DC-78112 §Cláusula CL-01 'Faltantes y Averías en Muelle' | Deducción DAMAGED $179.97]",
+        "citation_tag": "[Contrato MSA-DC-ORD-78112 §Cláusula CL-POD-01 'Prevalencia de Remisión Firmada en Muelle' | Deducción DAMAGED $179.97]",
         "is_backed_by_physical_proof": true,
         "status": "ACREDITADO",
-        "detail": "Deducción 'DAMAGED' normada por la cláusula CL-01 de MSA-DC-78112."
+        "detail": "Deducción 'DAMAGED' normada por la cláusula CL-POD-01 de MSA-DC-ORD-78112."
       },
       {
         "pointer_id": "PTR-DED-MKT_REBATE_UNAUTH-3",
         "doc_type": "CONTRACT",
-        "doc_id": "MSA-DC-78112",
-        "field_ref": "clause_CL-01",
+        "doc_id": "MSA-DC-ORD-78112",
+        "field_ref": "clause_CL-POD-01",
         "item_sku": null,
         "amount": "620.08",
-        "citation_tag": "[Contrato MSA-DC-78112 §Cláusula CL-01 'Faltantes y Averías en Muelle' | Deducción MKT_REBATE_UNAUTH $620.08]",
+        "citation_tag": "[Contrato MSA-DC-ORD-78112 §Cláusula CL-POD-01 'Prevalencia de Remisión Firmada en Muelle' | Deducción MKT_REBATE_UNAUTH $620.08]",
         "is_backed_by_physical_proof": true,
         "status": "ACREDITADO",
-        "detail": "Deducción 'MKT_REBATE_UNAUTH' normada por la cláusula CL-01 de MSA-DC-78112."
+        "detail": "Deducción 'MKT_REBATE_UNAUTH' normada por la cláusula CL-POD-01 de MSA-DC-ORD-78112."
       },
       {
-        "pointer_id": "PTR-DEL-BOL-DC-78112-DC-365-SHORT",
+        "pointer_id": "PTR-DEL-BOL-DC-ORD-78112-DC-365-SHORT",
         "doc_type": "DELIVERY",
-        "doc_id": "BOL-DC-78112",
+        "doc_id": "BOL-DC-ORD-78112",
         "field_ref": "missing_quantity",
         "item_sku": "DC-365",
         "amount": "299.95",
-        "citation_tag": "[Remisión BOL-DC-78112 §SKU DC-365 | Faltante: 5 uds | $299.95]",
+        "citation_tag": "[Remisión BOL-DC-ORD-78112 §SKU DC-365 | Faltante: 5 uds | $299.95]",
         "is_backed_by_physical_proof": true,
         "status": "ACREDITADO",
-        "detail": "Faltante físico de 5 unidades registrado en remisión BOL-DC-78112 (Firma POD: Sí)."
+        "detail": "Faltante físico de 5 unidades registrado en remisión BOL-DC-ORD-78112 (Firma POD: Sí)."
       },
       {
-        "pointer_id": "PTR-DEL-BOL-DC-78112-DC-365-DAMAGED",
+        "pointer_id": "PTR-DEL-BOL-DC-ORD-78112-DC-365-DAMAGED",
         "doc_type": "DELIVERY",
-        "doc_id": "BOL-DC-78112",
+        "doc_id": "BOL-DC-ORD-78112",
         "field_ref": "damaged_quantity",
         "item_sku": "DC-365",
         "amount": "179.97",
-        "citation_tag": "[Remisión BOL-DC-78112 §SKU DC-365 | Avería: 3 uds | $179.97]",
+        "citation_tag": "[Remisión BOL-DC-ORD-78112 §SKU DC-365 | Avería: 3 uds | $179.97]",
         "is_backed_by_physical_proof": true,
         "status": "ACREDITADO",
-        "detail": "Mercancía averiada (3 unidades) en remisión BOL-DC-78112."
+        "detail": "Mercancía averiada (3 unidades) en remisión BOL-DC-ORD-78112."
       }
     ],
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-11-03T20:57:24Z"
+    "generated_at": "2026-11-04T05:07:48Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -174,16 +174,16 @@
     "claimable_amount": "620.08",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-0D29590EC25D8A91",
+    "zkp_proof_hash": "SM-PROOF-SHA256-050C132FDBFE57D0",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-11-03T20:57:24.814833+00:00"
+    "anchored_at": "2026-11-04T05:07:48.549828+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "dataco_real_005_miami_perfect_fitness_multiformat",
-    "courtroom_session_id": "CRT-CF788D98",
+    "courtroom_session_id": "CRT-5F1FD847",
     "disputed_amount": "1100.00",
     "justified_amount": "479.92",
     "claimable_amount": "620.08",
@@ -192,23 +192,23 @@
         "role": "PROSECUTOR",
         "speaker_name": "Lic. Gustavo Méndez (Fiscal Forense Retail B2B)",
         "topic": "Faltante Físico en Muelle",
-        "argument_text": "El comprador reportó válidamente un faltante de mercancía valorado en $479.92 USD (5x DC-365) en la remisión BOL-DC-78112 (Doral Free Trade Zone Hub). Las unidades recibidas en patio fueron inferiores a las amparadas en factura INV-DC-78112.",
-        "legal_or_contractual_ground": "Cláusula CL-01",
+        "argument_text": "El comprador reportó válidamente un faltante de mercancía valorado en $479.92 USD (5x DC-365) en la remisión BOL-DC-ORD-78112 (Miami, FL Distribution Hub). Las unidades recibidas en patio fueron inferiores a las amparadas en factura INV-DC-ORD-78112.",
+        "legal_or_contractual_ground": "Cláusula CL-POD-01",
         "strength_score": 0.95,
         "evidence_referenced": [
-          "BOL-DC-78112",
-          "INV-DC-78112"
+          "BOL-DC-ORD-78112",
+          "INV-DC-ORD-78112"
         ]
       },
       {
         "role": "PROSECUTOR",
         "speaker_name": "Lic. Gustavo Méndez (Fiscal Forense Retail B2B)",
         "topic": "Aplicación de Políticas Operativas y Guías del Comprador",
-        "argument_text": "El retailer retuvo $620.08 USD bajo conceptos SHORTAGE ($299.95), DAMAGED ($179.97), MKT_REBATE_UNAUTH ($620.08) en liquidación PAY-DC-78112 con base en sus manuales internos de logística, penalizaciones por aviso anticipado ASN o descuentos comerciales por pronto pago.",
+        "argument_text": "El retailer retuvo $620.08 USD bajo conceptos SHORTAGE ($299.95), DAMAGED ($179.97), MKT_REBATE_UNAUTH ($620.08) en liquidación PAY-DC-ORD-78112 con base en sus manuales internos de logística, penalizaciones por aviso anticipado ASN o descuentos comerciales por pronto pago.",
         "legal_or_contractual_ground": "Manual Operativo de Proveedores del Retailer & Portal B2B",
         "strength_score": 0.15,
         "evidence_referenced": [
-          "Comprobante de Retención PAY-DC-78112"
+          "Comprobante de Retención PAY-DC-ORD-78112"
         ]
       }
     ],
@@ -217,36 +217,36 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Allanamiento de Faltante Acreditado",
-        "argument_text": "Verificada la remisión BOL-DC-78112 con sello y firma física de recepción en Doral Free Trade Zone Hub con discrepancia asentada (5x DC-365), reconocemos la exactitud del faltante de $479.92 USD y allanamos la deducción mediante emisión de Nota de Crédito comercial conforme a la ley.",
+        "argument_text": "Verificada la remisión BOL-DC-ORD-78112 con sello y firma física de recepción en Miami, FL Distribution Hub con discrepancia asentada (5x DC-365), reconocemos la exactitud del faltante de $479.92 USD y allanamos la deducción mediante emisión de Nota de Crédito comercial conforme a la ley.",
         "legal_or_contractual_ground": "Art. 1043 Código de Comercio (Reconocimiento Expreso)",
         "strength_score": 0.98,
         "evidence_referenced": [
-          "Remisión BOL-DC-78112 con salvedad en muelle",
-          "INV-DC-78112"
+          "Remisión BOL-DC-ORD-78112 con salvedad en muelle",
+          "INV-DC-ORD-78112"
         ]
       },
       {
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria sobre factura INV-DC-78112 y liquidación PAY-DC-78112: El contrato marco bilateral MSA-DC-78112 prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $620.08 USD. La retención constituye incumplimiento de pago. RELOJ SLA: Restan 22 días de ventana perentoria (MEDIUM_ATTENTION). Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente dataco_real_005_miami_perfect_fitness_multiformat (fecha 2026-11-03), donde Atlantic-Fitness-Dist acordó el reintegro de $620.08 USD ante una deducción análoga por 'SHORTAGE', amparada en la cláusula contractual CL-01..",
+        "argument_text": "Objeción perentoria sobre factura INV-DC-ORD-78112 y liquidación PAY-DC-ORD-78112: El contrato marco bilateral MSA-DC-ORD-78112 prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $620.08 USD. La retención constituye incumplimiento de pago. RELOJ SLA: Restan 22 días de ventana perentoria (MEDIUM_ATTENTION). Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente dataco_real_005_miami_perfect_fitness_multiformat (fecha 2026-11-04), donde Buyer-Dc-Ord-78112 acordó el reintegro de $620.08 USD ante una deducción análoga por 'SHORTAGE', amparada en la cláusula contractual CL-POD-01..",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [
-          "MSA-DC-78112",
-          "INV-DC-78112",
-          "PAY-DC-78112",
-          "Conforme al precedente formalizado en el expediente dataco_real_005_miami_perfect_fitness_multiformat (fecha 2026-11-03), donde Atlantic-Fitness-Dist acordó el reintegro de $620.08 USD ante una deducción análoga por 'SHORTAGE', amparada en la cláusula contractual CL-01."
+          "MSA-DC-ORD-78112",
+          "INV-DC-ORD-78112",
+          "PAY-DC-ORD-78112",
+          "Conforme al precedente formalizado en el expediente dataco_real_005_miami_perfect_fitness_multiformat (fecha 2026-11-04), donde Buyer-Dc-Ord-78112 acordó el reintegro de $620.08 USD ante una deducción análoga por 'SHORTAGE', amparada en la cláusula contractual CL-POD-01."
         ]
       }
     ],
     "sustained_objections": [
-      "Deducción de faltante físico por $479.92 USD amparada en BOL-DC-78112 declarada PROCEDENTE."
+      "Deducción de faltante físico por $479.92 USD amparada en BOL-DC-ORD-78112 declarada PROCEDENTE."
     ],
     "dismissed_objections": [
-      "Retención unilateral de $620.08 USD en PAY-DC-78112 declarada IMPROCEDENTE y 100% RECLAMABLE."
+      "Retención unilateral de $620.08 USD en PAY-DC-ORD-78112 declarada IMPROCEDENTE y 100% RECLAMABLE."
     ],
-    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente dataco_real_005_miami_perfect_fitness_multiformat (Factura: INV-DC-78112, Remisión: BOL-DC-78112, Liquidación: PAY-DC-78112): Se condena al comprador al reintegro inmediato de $620.08 USD por carecer de título legal habilitante en MSA-DC-78112, y se valida la emisión de Nota de Crédito por $479.92 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%. Reloj SLA: 22 días restantes (MEDIUM_ATTENTION).",
+    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente dataco_real_005_miami_perfect_fitness_multiformat (Factura: INV-DC-ORD-78112, Remisión: BOL-DC-ORD-78112, Liquidación: PAY-DC-ORD-78112): Se condena al comprador al reintegro inmediato de $620.08 USD por carecer de título legal habilitante en MSA-DC-ORD-78112, y se valida la emisión de Nota de Crédito por $479.92 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%. Reloj SLA: 22 días restantes (MEDIUM_ATTENTION).",
     "probative_force_supplier_pct": 87.5,
     "final_legal_doctrine": "DOCTRINA COMERCIAL VINCULANTE: Ninguna guía operativa o portal B2B puede modificar o imponer sanciones financieras no contenidas en el contrato marco bilateral suscrito. Las remisiones firmadas con sello de muelle hacen fe pública comercial plena e inmutable entre las partes."
   },
@@ -262,7 +262,7 @@
       "Remisión de entrega debidamente firmada en muelle receptor (+20%)",
       "Discrepancia física allanada con sello formal de muelle (+10%)",
       "Contrato marco comercial vigente con cláusulas de prevalencia (+15%)",
-      "Historial altamente favorable con Atlantic-Fitness-Dist (100.0% de éxito histórico) (+12%)",
+      "Historial altamente favorable con Buyer-Dc-Ord-78112 (100.0% de éxito histórico) (+12%)",
       "Dictamen judicial favorable con fuerza probatoria del 87.5% (+10%)"
     ],
     "risk_drivers": [],

@@ -1,5 +1,5 @@
 {
-  "session_id": "DUEL-CASE_002-E737B67B",
+  "session_id": "DUEL-CASE_002-7641C058",
   "case_id": "case_002",
   "retailer_name": "Cadena Comercial Mayorista B2B",
   "archetype": {
@@ -29,11 +29,12 @@
       "buyer_stance": "INTRANSIGENT",
       "buyer_demand_credit_memo": "16500.00",
       "buyer_cash_payout_offer": "0.00",
-      "supplier_message": "Estimado Lic. Fernando Mora (Gerente de Cuentas por Pagar y Abastecimiento): Rechazamos categóricamente la retención unilateral de $12,500.00 USD. Exhibimos la factura y remisión debidamente autorizadas. Reconocemos únicamente $4,000.00 USD por faltante físico real mediante Nota de Crédito comercial, y requerimos la transferencia inmediata del saldo restante de $12,500.00 USD.",
+      "supplier_message": "Estimado Lic. Fernando Mora (Gerente de Cuentas por Pagar y Abastecimiento): Rechazamos categóricamente la retención unilateral de $12,500.00 USD. Exhibimos la factura y remisión debidamente autorizadas. Reconocemos únicamente $4,000.00 USD por faltante físico real mediante Nota de Crédito comercial, y requerimos la transferencia inmediata del saldo restante de $12,500.00 USD. [Directriz RHI < 50: Cero concesiones sobre retenciones sin soporte físico].",
       "supplier_stance": "EVIDENCE_FIRMNESS",
       "supplier_offer_credit_memo": "4000.00",
       "supplier_claim_cash": "12500.00",
       "evidence_exhibited": [
+        "Faltante físico comprobado en PROD-102 (Caja Aceite de Oliva Extra Virgen 12x500ml): 50 unidades faltantes s/ remisión DEL-12044 valoradas en $4,000.00",
         "Factura Comercial Oficial INV por $54,200.00 USD",
         "Orden de Compra aprobada sin variaciones de precio unitario"
       ],
@@ -43,28 +44,32 @@
     },
     {
       "round_number": 2,
-      "buyer_message": "Sus argumentos carecen de respaldo técnico contundente en nuestro sistema. A lo sumo podemos liberar $1,650.00 USD si formalizan la Nota de Crédito por $14,850.00 USD.",
+      "buyer_message": "Tomamos nota de la remisión y telemetría electrónica que exhiben. Sin embargo, nuestros registros de patio aún indican demoras y gastos operativos de descarga. Como muestra de buena fe, estamos dispuestos a liberar $3,125.00 USD en transferencia si aceptan una Nota de Crédito por $13,375.00 USD.",
       "buyer_stance": "DEFENSIVE",
-      "buyer_demand_credit_memo": "14850.00",
-      "buyer_cash_payout_offer": "1650.00",
-      "supplier_message": "Exhibimos la constancia sellada en muelle y el sello de seguridad C-TPAT ISO 17712 intacto al momento del arribo. Para coadyuvar con sus procesos administrativos sin perjudicar la relación de suministro, podemos autorizar una bonificación comercial complementaria de $1,250.00 USD, totalizando una Nota de Crédito por $5,250.00 USD, condicionado al pago expedito de $11,250.00 USD en 5 días.",
+      "buyer_demand_credit_memo": "13375.00",
+      "buyer_cash_payout_offer": "3125.00",
+      "supplier_message": "Exhibimos la constancia sellada en muelle y el sello de seguridad C-TPAT ISO 17712 intacto al momento del arribo. Para coadyuvar con sus procesos administrativos sin perjudicar la relación de suministro, podemos autorizar una bonificación comercial complementaria de $1,250.00 USD, totalizando una Nota de Crédito por $5,250.00 USD, condicionado al pago expedito de $11,250.00 USD en 5 días. [Directriz RHI < 50: Cero concesiones sobre retenciones sin soporte físico].",
       "supplier_stance": "COUNTER_OFFER",
       "supplier_offer_credit_memo": "5250.00",
       "supplier_claim_cash": "11250.00",
       "evidence_exhibited": [
+        "Deducción aplicada en comprobante PAY-9931: código DED-MISSING-PHYSICAL, motivo 'Deducción por 50 cajas faltantes PROD-102 s/ remisión DEL-12044', monto $4,000.00",
         "Remisión física de recibo con firma y sello de personal de muelle",
         "Certificado de sello de alta seguridad ISO 17712 e inspección C-TPAT intacta"
       ],
-      "spread": "9600.00",
-      "convergence_pct": 41.8,
+      "spread": "8125.00",
+      "convergence_pct": 50.8,
       "round_status": "IN_PROGRESS"
     }
   ],
   "final_agreed_credit_memo": null,
   "final_agreed_cash_recovery": null,
-  "settlement_minutes_hash": "39835de58a13f91f6fc3d76269e32583d333764ece40b734e2806c8760c208cf",
+  "settlement_minutes_hash": "a8a603eee95190ac8737519d5ef6daa676c133203f1173667eebe51c0cd280ad",
   "minutes_markdown_path": "C:\\Users\\USUARIO\\Downloads\\platica\\reports\\convenio_finiquito_case_002.md",
-  "started_at": "2026-10-30T13:27:35.307164+00:00",
-  "completed_at": "2026-10-30T13:27:35.341443+00:00",
-  "summary_verdict": "Acuerdo bilateral rubricado y aprobado por el operador (Auditor Senior B2B). Recuperación neta en banco: $12,500.00 USD | Nota de Crédito: $4,000.00 USD."
+  "started_at": "2026-11-03T12:39:45.254528+00:00",
+  "completed_at": "2026-11-03T12:39:45.306733+00:00",
+  "summary_verdict": "Acuerdo bilateral rubricado y aprobado por el operador (Auditor Senior B2B). Recuperación neta en banco: $12,500.00 USD | Nota de Crédito: $4,000.00 USD.",
+  "rhi_score": 30.5,
+  "modulation_mode": "ASSERTIVE_LITIGIOUS",
+  "churn_risk_level": "HIGH_EXPENDABLE"
 }

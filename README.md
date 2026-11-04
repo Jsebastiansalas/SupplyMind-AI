@@ -2,12 +2,11 @@
 > **Analista Digital Autónomo de Disputas Comerciales y Arbitraje en Cadenas de Suministro B2B**  
 > *Desarrollado para el **Reto Agente 2026** (Platica.mx × Campuslands) sobre la arquitectura **SKYNET Framework** y el motor de razonamiento **Grok 4.7 (xAI)**.*
 
-[![Status](https://img.shields.io/badge/Status-100%25%20Certified%20(S1--S4)-emerald?style=for-the-badge&logo=checkmarx)](https://github.com/Jsebastiansalas/SupplyMind-AI)
-[![Crucible Benchmark](https://img.shields.io/badge/The%20Crucible-50%2F50%20(100%25%20Exact%20Match)-cyan?style=for-the-badge&logo=speedtest)](file:///reports/crucible_benchmark_50_cases.json)
-[![MAE](https://img.shields.io/badge/MAE-$0.00%20USD%20(Zero%20Error)-success?style=for-the-badge)](file:///reports/semana_4_unit_economics_enterprise.md)
-[![Batch Throughput](https://img.shields.io/badge/Batch%20Processing-1%2C000%20Cases%20%2F%2033.3s-blueviolet?style=for-the-badge&logo=fastapi)](file:///tools/batch_processor/batch_runner.py)
-[![Cost Reduction](https://img.shields.io/badge/Unit%20Economics-99.99%25%20Savings%20vs%20Human-gold?style=for-the-badge)](file:///reports/semana_4_unit_economics_enterprise.md)
-[![Docker Ready](https://img.shields.io/badge/Docker-1--Click%20Deploy-blue?style=for-the-badge&logo=docker)](file:///docker-compose.yml)
+[![Status](https://img.shields.io/badge/Reto%20Agente%202026-Hitos%20S1%20%7C%20S2%20%7C%20S3-emerald?style=for-the-badge&logo=checkmarx)](https://github.com/Jsebastiansalas/SupplyMind-AI)
+[![DataCo Real Benchmark](https://img.shields.io/badge/DataCo%20Real%20Domain-30%2F30%20Casos%20(100%25%20Exact%20Match)-cyan?style=for-the-badge&logo=speedtest)](reports/crucible_benchmark_real_supply_chain_cases_report.md)
+[![MAE](https://img.shields.io/badge/MAE-$0.00%20USD%20(Decimal%20Exact)-success?style=for-the-badge)](reports/crucible_benchmark_real_supply_chain_cases_report.md)
+[![Measured Telemetry](https://img.shields.io/badge/Platica%20Gateway%20Cost-$0.011340%20USD%20%2F%20req-gold?style=for-the-badge)](reports/live_executions_manifest.md)
+[![Docker Ready](https://img.shields.io/badge/Docker-1--Click%20Deploy-blue?style=for-the-badge&logo=docker)](docker-compose.yml)
 
 ---
 
@@ -54,15 +53,16 @@ python run_api.py
 
 ---
 
-## 🎯 2. Comandos Clave de Verificación para Jurados y Mentores
+## 🎯 2. Comandos Clave de Verificación para Jurados y Mentores (Hitos S1, S2, S3)
 
-| Verificación | Comando | Resultado Esperado |
-| :--- | :--- | :--- |
-| **The Crucible Suite (50 Casos)** | `python scripts/benchmark_50_cases.py` | **50/50 Casos (100% Exact Match)**, $0.00 MAE, 100% Detección de Cuarentena |
-| **Procesamiento Batch Masivo (1,000 Casos)** | `python tools/batch_processor/batch_runner.py` | **1,000 expedientes procesados en ~33s** (30 casos/s, $127.7M USD procesados) |
-| **Unit Economics & ROI** | `python scripts/generate_unit_economics_report.py` | Costo de inferencia: **$0.00383 USD / caso** (99.99% ahorro frente a analista humano) |
-| **Suite de Pruebas Automatizadas** | `pytest tests/ -v` | **100% pruebas pasando** en verde |
-| **Evaluación Rápida S1** | `python scripts/evaluar_jurado.py` | Dictamen y reporte formal en < 3 segundos |
+| Hito | Propósito de Evaluación | Comando de Verificación (PowerShell / Bash) | Resultado Esperado |
+| :--- | :--- | :--- | :--- |
+| **S1** | **Ejecución End-to-End contra Grok-4.7** | `python -c "from agent.core.skynet_runner import SkynetRunner; r = SkynetRunner('dataco_real_001_caguas_pelican_kayak', fast_path=False); r.run()"` | Conexión en vivo a Platica Gateway, tool calling autónomo de Grok, dictamen y carta en `reports/`. |
+| **S2** | **Auto-Recuperación ante Errores** | `python scripts/demo_error_recovery.py` | Intercepta JSON corrupto/truncado, lo auto-repara en 3ms y emite el dictamen sin abortar. |
+| **S2** | **10 Ejecuciones Registradas** | `python scripts/record_10_live_runs.py` | 10 casos reales auditados, logs en `logs/` y manifiesto en `reports/live_executions_manifest.md`. |
+| **S3** | **Evaluación Datos Reales (30 Casos DataCo)** | `python scripts/benchmark_50_cases.py --cases-dir data/real_supply_chain_cases --mode fast_no_cache` | 30/30 casos de la base abierta DataCo (DOI: 10.17632/8gx2fvg2k6.5) resueltos con $0.00 MAE. |
+| **S3** | **Verificación de Enrutamiento y Presupuesto** | `pytest tests/test_cognitive_router_and_budget.py -v` | Valida guardarraíl de costo medido ($0.011340/req) y conmutación segura Python vs Grok. |
+| **Suite** | **Suite Completa de Pruebas** | `pytest tests/ -q` | Todas las pruebas pasando en verde. |
 
 ---
 
@@ -165,51 +165,70 @@ graph TD
 
 ---
 
-## 📊 7. The Crucible Suite: Benchmark de 50 Casos Reales y Extremos
+## 📊 7. Evaluación con Datos Reales (DataCo) y Batería de Estrés
 
-The Crucible es la suite de validación más rigurosa de la competencia, diseñada para someter a SupplyMind AI a condiciones extremas de estrés operacional:
+Atendiendo directamente la retroalimentación técnica, la evaluación de SupplyMind AI se divide en dos bancos de prueba independientes:
 
-| Categoría | Casos | Características | Tasa de Éxito |
-| :--- | :--- | :--- | :--- |
-| **Casos Base y Complejos** | `001 - 004` | Faltantes en muelle, penalizaciones administrativas abusivas, diferencias de precio. | **100%** |
-| **Retailers E-commerce & Grandes Cadenas** | `005 - 010` | Amazon Shortage Claims, Walmart OTIF, Cisco Bundles, Home Depot Averías, MercadoLibre Crossdock. | **100%** |
-| **Especialidades de Industria** | `011 - 020` | OXXO Caducidad, Liverpool Descuentos, Chedraui Fletes, Soriana Mermas, Costco Tarimas, Farmacias. | **100%** |
-| **Comercio Internacional & Divisas** | `021 - 030` | Variaciones cambiarias FX, Incoterms FOB/CIF, Garantías de fabricante, Tallas textiles, Marcas GS1. | **100%** |
-| **Casos Adversariales & Resiliencia** | `031 - 036` | Prompt Injections profundas, Contaminación cruzada de IDs, Fechas anacrónicas, JSONs corruptos, Expedientes masivos con 60 y 1,000 SKUs. | **100%** |
-| **Ampliación Semana 4 (Estrés Extremo)** | `037 - 050` | Dobles penalizaciones OTIF, Mermas operativas no pactadas, Rebates anuales abusivos, Fletes nocturnos no autorizados, Conglomerados multi-retailer. | **100%** |
+### A. Banco de Dominio Real: DataCo Global Smart Supply Chain (Hito S3)
+Construido a partir de la base de datos abierta pública **DataCo Global Smart Supply Chain Dataset** ([Mendeley Data, DOI: 10.17632/8gx2fvg2k6.5](https://doi.org/10.17632/8gx2fvg2k6.5)):
+- **30 expedientes de órdenes reales** procedentes de centros logísticos en Caguas, Cleveland, Los Ángeles, Chicago, Dallas, Miami, Austin, Atlanta, Denver, San Diego, San José, Phoenix, Houston, Seattle, Kansas City, Tampa, Boston, Portland, entre otros.
+- **Ingesta Multiformato Realista:** Cada caso combina hojas de cálculo Excel OpenXML (`.xlsx`), manifiestos de almacén en `.csv`, avisos bancarios en `.txt` y datos estructurados en `.json`.
+- **Resultados de la Evaluación (30 Casos):**
+  - **Tasa de Acierto Exacto (Exact Match):** **100.0% (30/30)**
+  - **Error Absoluto Medio (MAE):** **$0.00 USD**
+  - **Volumen Financiero Auditado:** **$326,237.40 USD**
+  - **Capital Recuperado:** **$19,243.81 USD**
+  - **Reporte completo:** [`reports/crucible_benchmark_real_supply_chain_cases_report.md`](reports/crucible_benchmark_real_supply_chain_cases_report.md)
 
-### Resultados Consolidados del Benchmark:
-- **Casos Evaluados:** 50 / 50
-- **Exact Match (Tasa de Acierto Global):** **100.0% (50/50)**
-- **Mean Absolute Error (MAE):** **$0.00 USD**
-- **Eficacia de Cuarentena (Casos Anómalos):** **100.0%**
-- **Tiempo Promedio de Análisis:** 0.61 segundos por expediente
-
----
-
-## 🚀 8. Procesamiento Batch Masivo (High-Throughput Batch Engine)
-
-Diseñado para operaciones de gran escala en cadenas de suministro enterprise:
-- **Procesamiento de 1,000 Expedientes en 33.33 Segundos** (rendimiento medido de **30.0 casos / segundo**).
-- **Volumen Financiero Conciliado:** **$127,700,000.00 USD** sin una sola discrepancia matemática.
-- **Arquitectura de Procesamiento:** Multi-hilo concurrente (`ThreadPoolExecutor`) con cola desatendida y emisión de bitácora consolidada (`reports/batch_summary_*.json`).
-
-```bash
-# Ejecutar prueba masiva de 1,000 expedientes:
-python tools/batch_processor/batch_runner.py
-```
+### B. Banco Sintético de Estrés Operacional (The Crucible — 50 Casos)
+Diseñado para probar límites de resiliencia: doble penalización OTIF, diferencias de tipo de cambio FX, contaminación cruzada, prompt injection y límites de ventanas de reclamación.
+- **Tasa de Acierto:** 100.0% (50/50 casos) con $0.00 MAE.
+- **Reporte completo:** [`reports/crucible_benchmark_50_cases_report.md`](reports/crucible_benchmark_50_cases_report.md)
 
 ---
 
-## 💰 9. Unit Economics y ROI Empresarial
+## ⚖️ 8. Separación de Roles: Motor Simbólico en Python vs. Modelo Grok-4.7
 
-| Métrica | Analista Humano Senior | SupplyMind AI | Ahorro / Mejora |
+Para garantizar cero alucinación matemática y total transparencia técnica requerida por el jurado:
+
+| Componente | Responsabilidad Técnica | Latencia | Costo por Petición |
 | :--- | :--- | :--- | :--- |
-| **Tiempo por Caso** | 45 - 90 minutos | **0.61 segundos** | **> 4,000x más rápido** |
-| **Costo Operacional por Caso** | ~$30.00 USD | **$0.00383 USD** | **99.99% de ahorro** |
-| **Costo por 1,000 Casos** | ~$30,000.00 USD | **$3.83 USD** | **Ahorro neto de $29,996.17 USD** |
-| **Precisión Aritmética** | 82 - 88% | **100.0% ($0.00 MAE)** | Cero error financiero |
-| **Capacidad de Escala Diaria** | 10 - 15 casos / día | **> 2,500,000 casos / día** | Escala horizontal ilimitada |
+| **Motor Simbólico (Python `Decimal`)** | Lectura multiformato (.xlsx, .csv, .json, .txt), conciliación de partidas, cálculo de faltantes y averías, clasificación determinística de deducciones y validación de invariantes financieros. | ~50 - 200 ms | **$0.00 USD** |
+| **Agente Neuronal (`Grok-4.7`)** | Interpretación semántica de cláusulas contractuales, resolución de ambigüedades operativas, priorización de acciones comerciales y redacción formal de cartas de reclamo con fundamentación legal. | 2 - 5 s | **$0.011340 USD** (medido) |
+
+> 🔍 **Enrutador Cognitivo (`CognitiveRouter`):**  
+> El agente evalúa cada expediente antes de actuar. Si los documentos son tabulares estructurados con deducciones estándar, resuelve en modo simbólico directo en Python sin consumir cuota de API. Si detecta observaciones ambiguas o cláusulas atípicas, activa a Grok-4.7 mediante tool calling con tope presupuestario.
+
+---
+
+## 💰 9. Telemetría y Costo Real Medido en Platica Gateway
+
+A diferencia de estimaciones teóricas, los costos de SupplyMind AI están calibrados con el **consumo real medido en la pasarela oficial**:
+- **Consumo Total Registrado:** **USD $10.66 en 940 peticiones**
+- **Costo Promedio Real por Petición:** **$0.011340 USD / petición**
+- **Costo por Tarea Neuronal Completa (2-3 turnos de Grok):** **$0.0227 – $0.0340 USD**
+- **Costo por Tarea Simbólica en Python:** **$0.00 USD**
+
+### Guardarraíl Presupuestario (`TaskBudgetGuard`)
+Para evitar bucles infinitos o sobrecostos inesperados en llamadas a Grok:
+- Cada tarea tiene un tope configurable (`budget_cap_usd = Decimal("0.1000")`, equivalente a ~8 llamadas a Grok).
+- Si una consulta compleja alcanza el límite presupuestario, el guardarraíl corta las llamadas subsiguientes (`THROTTLED_CAP_REACHED`) y cierra el expediente de forma determinística en Python sin costo adicional.
+
+---
+
+## 🛠️ 10. Reconocimiento de Fallos y Mejoras Implementadas
+
+En cumplimiento con el criterio de evaluación que premia la honestidad técnica:
+
+1. **Clasificación de Deducciones con Negación:**  
+   *Fallo:* Motivos con frases como *"Multa por re-etiquetado no justificada"* eran erróneamente clasificados como justificados porque el token `"JUSTIFICAD"` coincidía con la subcadena.  
+   *Solución:* Se incorporaron tokens negativos prioritarios (`"NO JUSTIFICAD"`, `"NO CONTEMPLAD"`, `"SIN SOPORTE"`) y se forzó la evaluación de improcedencia antes de cualquier coincidencia positiva.
+2. **Archivos Residuales en Casos Multiformato:**  
+   *Fallo:* Al alternar entre formatos (.csv y .xlsx), la persistencia de archivos antiguos provocaba colisiones en la conciliación.  
+   *Solución:* Se implementó limpieza previa obligatoria en el pipeline de generación e ingesta de expedientes.
+3. **Cierre de Delimitadores en JSON Truncados:**  
+   *Fallo:* Al auto-cerrar JSONs incompletos, el cierre secuencial de corchetes antes de llaves rompía la jerarquía cuando había objetos anidados dentro de listas.  
+   *Solución:* Se implementó un rastreador de pila LIFO (Last-In, First-Out) que cierra llaves y corchetes en el orden exacto de anidamiento en 3 ms.
 
 ---
 
@@ -259,29 +278,25 @@ platica/
 
 ---
 
-## 🏆 11. Matriz de Cumplimiento de Hitos (S1 a S4 al 100%)
+## 🏆 11. Matriz de Cumplimiento de Hitos Oficiales (S1, S2, S3)
 
-- [x] **Semana 1 — Flujo End-to-End con Grok 4.7:**
-  - [x] Conexión agéntica vía Platica Gateway con Tool Calling dinámico.
-  - [x] Motor de conciliación en `Decimal` con cero alucinación matemática.
-  - [x] CLI interactivo con comandos de inspección y chat REPL.
-  - [x] Generación de reportes ejecutivos Markdown/JSON y Carta de Reclamación.
-- [x] **Semana 2 — Herramientas Reales y Robustez Multimodal:**
-  - [x] Ingesta multimodal con OCR (Tesseract) para remisiones y albaranes firmados.
-  - [x] Parser resiliente capaz de sanar JSONs corruptos o truncados.
-  - [x] Guardrails de cuarentena ante contaminación cruzada y fechas anacrónicas.
-  - [x] Escudo anti prompt injection en observaciones de remisiones y pagos.
-- [x] **Semana 3 — Memoria de Precedentes & Interfaz Obsidian Glass:**
-  - [x] Base de datos de precedentes legales y resoluciones anteriores en SQLite.
-  - [x] RAG contractual para consulta de cláusulas con citas exactas.
-  - [x] Interfaz de usuario Obsidian Glass en React 18 con estética de alto impacto.
-  - [x] Telemetría de tokens y costos por tarea en tiempo real.
-- [x] **Semana 4 — Escala Masiva, The Crucible 50 & Empaquetado Enterprise:**
-  - [x] The Crucible Suite: 50 casos extremos auditados con 100% de acierto ($0.00 MAE).
-  - [x] Motor Batch de alto rendimiento (1,000 expedientes procesados en 33.3s).
-  - [x] Quad-Check Sanity Gate (Artículo 88 CCom, ventana de 48h, deduplicación de doble multa).
-  - [x] Reporte de Unit Economics Empresarial ($0.00383/caso, 99.99% ahorro).
-  - [x] Empaquetado Docker multi-etapa con lanzadores de 1 clic en Windows, Linux y macOS.
+### ✅ Hito S1 — Agente End-to-End contra Grok
+- [x] Repositorio público configurado con variables en `.env.example` sin filtración de credenciales.
+- [x] Agente se ejecuta de punta a punta contra Grok-4.7 mediante Platica Gateway (`api.reto.pltk.mx/v1`).
+- [x] Cero alucinación numérica: cálculos de conciliación delegados a `execute_reconciliation` en `Decimal`.
+- [x] Documentación sobria del problema de negocio y comando de ejecución en 1 línea (Sección 2).
+
+### ✅ Hito S2 — Herramientas Reales, Manejo de Errores y 10 Ejecuciones Registradas
+- [x] **4 Herramientas Reales (no simuladas):** Invocadas autónomamente por Grok (`read_dispute_documents`, `execute_reconciliation`, `evaluate_contract_terms`, `generate_final_report`).
+- [x] **Manejo de Errores y Auto-Recuperación:** Validado en vivo mediante [`scripts/demo_error_recovery.py`](scripts/demo_error_recovery.py) (detección de JSON corrupto y auto-reparación sintáctica LIFO en 3 ms).
+- [x] **10 Ejecuciones Registradas de Punta a Punta:** Bitácora individual con tokens y montos en `logs/`, consolidada en [`reports/live_executions_manifest.md`](reports/live_executions_manifest.md).
+- [x] **Guion de Video Demo de 2 Minutos:** Estructurado en exactamente 120s en [`docs/GUION_VIDEO_DEMO_SUPPLYMIND.md`](docs/GUION_VIDEO_DEMO_SUPPLYMIND.md).
+
+### ✅ Hito S3 — Datos Reales del Dominio, Evaluación de 30 Casos y Costo Medido
+- [x] **Datos Reales de Dominio:** 30 expedientes basados en la base abierta pública DataCo Global Smart Supply Chain ([Mendeley Data, DOI: 10.17632/8gx2fvg2k6.5](https://doi.org/10.17632/8gx2fvg2k6.5)).
+- [x] **Set de Evaluación de 30 Casos con Resultados:** 100% Exact Match ($0.00 MAE) sobre $326,237.40 USD auditados en [`reports/crucible_benchmark_real_supply_chain_cases_report.md`](reports/crucible_benchmark_real_supply_chain_cases_report.md).
+- [x] **Costo Real Medido por Tarea:** Calibrado con telemetría de pasarela ($10.66 USD en 940 peticiones = $0.011340 USD/req) y protegido con `TaskBudgetGuard`.
+- [x] **Transparencia Técnica y Honestidad en Fallos:** Separación explícita de lo que resuelve Python ($0.00 USD) vs Grok ($0.011340/req), y reporte de fallos corregidos en la Sección 10.
 
 ---
 

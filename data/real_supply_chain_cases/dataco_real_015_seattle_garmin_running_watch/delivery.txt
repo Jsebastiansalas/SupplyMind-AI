@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-100380
+po_reference: PO-DC-ORD-100380
+delivery_date: 2026-01-30
+received_by: Supervisor Seattle Dock
+warehouse_location: Seattle, WA Distribution Hub
+signed: true
+discrepancy_reported: true
+
+ITEM | sku=DC-788 | delivered=50 | received=48 | missing=2 | damaged=1 | notes=2 units missing and 1 units crushed on arrival

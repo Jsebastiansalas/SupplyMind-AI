@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-122480
+po_reference: PO-DC-ORD-122480
+delivery_date: 2026-01-30
+received_by: Supervisor Milwaukee Dock
+warehouse_location: Milwaukee, WI Distribution Hub
+signed: true
+discrepancy_reported: true
+
+ITEM | sku=DC-1588 | delivered=140 | received=136 | missing=4 | damaged=2 | notes=4 units missing and 2 units crushed on arrival

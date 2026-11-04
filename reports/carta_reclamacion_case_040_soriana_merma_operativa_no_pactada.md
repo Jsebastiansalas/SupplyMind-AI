@@ -1,6 +1,6 @@
 # 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
 **Ref: Expediente de Cartera case_040_soriana_merma_operativa_no_pactada / Factura INV-AUTO-001**  
-**Fecha:** 28 de October de 2026  
+**Fecha:** 04 de November de 2026  
 **De:** Departamento de Cartera y Asuntos Comerciales — VEN-DEFAULT  
 **Para:** Gerencia de Cuentas por Pagar y Conciliación — SORIANA_MX  
 
@@ -23,12 +23,12 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_040_soriana_merma_operativa_no_pactada — 2026-10-29):**
+**Precedente 1 (Expediente case_040_soriana_merma_operativa_no_pactada — 2026-11-04):**
 - **Criterio Acreditado:** En el caso case_040_soriana_merma_operativa_no_pactada, se acreditó la improcedencia de la deducción 'DED-MERMA-ESTIMADA' conforme a CTR-GENERAL-TERMS, logrando la restitución de $5,500.00 USD.
 - **Resultado Previo:** Restitución de **$5,500.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CTR-GENERAL-TERMS.
 
-**Precedente 2 (Expediente case_014_soriana_rebate_unilateral — 2026-10-29):**
+**Precedente 2 (Expediente case_014_soriana_rebate_unilateral — 2026-11-04):**
 - **Criterio Acreditado:** En el caso case_014_soriana_rebate_unilateral, se acreditó la improcedencia de la deducción 'REBATE-UNILATERAL' conforme a CLAUSE-11.2, logrando la restitución de $9,800.00 USD.
 - **Resultado Previo:** Restitución de **$9,800.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CLAUSE-11.2.

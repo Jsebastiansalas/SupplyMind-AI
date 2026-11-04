@@ -1,10 +1,10 @@
-RECEIVING SLIP / REMISIÓN DE ENTREGA EN MUELLE
-delivery_id: BOL-DC-71204
-po_reference: PO-DC-71204
-delivery_date: 2026-02-02
-received_by: J. Kowalski (Cleveland Hub Receiving)
-warehouse_location: Columbus Distribution Dock B
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-71204
+po_reference: PO-DC-ORD-71204
+delivery_date: 2026-01-30
+received_by: Supervisor Cleveland Dock
+warehouse_location: Cleveland, OH Distribution Hub
 signed: true
 discrepancy_reported: true
 
-ITEM | sku=DC-957 | delivered=40 | received=40 | missing=0 | damaged=2 | notes=2 frames bent during carrier unloading, signed on POD
+ITEM | sku=DC-957 | delivered=40 | received=40 | missing=0 | damaged=2 | notes=2 units damaged during carrier transit, signed on POD

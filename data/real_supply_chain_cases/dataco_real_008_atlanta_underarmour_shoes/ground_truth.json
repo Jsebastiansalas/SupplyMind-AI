@@ -1,0 +1,18 @@
+{
+  "case_id": "dataco_real_008_atlanta_underarmour_shoes",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Southeast Athletics (DataCo Atlanta Hub)",
+  "industry": "Footwear",
+  "hub": "Atlanta, GA",
+  "file_formats": [
+    ".json",
+    ".csv",
+    ".xlsx",
+    ".txt"
+  ],
+  "billed_amount": "8398.80",
+  "received_amount": "8048.85",
+  "difference": "-349.95",
+  "expected_justified_amount": "0.00",
+  "expected_claimable_amount": "349.95"
+}

@@ -6,10 +6,11 @@
   "difference": "-1199.94",
   "root_cause": "Discrepancia mixta en expediente dataco_real_003_los_angeles_field_stream_hunting: Faltante físico comprobado de $0.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $1,199.94 USD sin sustento contractual ni documental.",
   "evidence": [
-    "Deducción aplicada en comprobante PAY-DC-73419: código ALLEGED_SHORTAGE_UNILATERAL, motivo 'Retencion unilateral improcedente por supuesto faltante de 3 cajas fuertes SKU DC-1004 no reportado en muelle', monto $1,199.94",
-    "[Factura INV-DC-73419 §Total $9,999.50 USD]",
-    "[Comprobante PAY-DC-73419 §Liquidación $8,799.56 USD]",
-    "[Contrato MSA-DC-73419 §Cláusula CL-POD-01 'Prevalencia del Comprobante de Entrega Firmado' | Deducción ALLEGED_SHORTAGE_UNILATERAL $1,199.94]"
+    "Deducción aplicada en comprobante PAY-DC-ORD-73419: código ALLEGED_SHORTAGE_UNILATERAL, motivo 'Retencion unilateral por supuesto faltante de 3 uds no reportado en muelle', monto $1,199.94",
+    "Respaldo contractual: La CL-UNAUTH-02 ('Prohibición de Cargos Administrativos Unilaterales') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.",
+    "[Factura INV-DC-ORD-73419 §Total $9,999.50 USD]",
+    "[Comprobante PAY-DC-ORD-73419 §Liquidación $8,799.56 USD]",
+    "[Contrato MSA-DC-ORD-73419 §Cláusula CL-POD-01 'Prevalencia de Remisión Firmada en Muelle' | Deducción ALLEGED_SHORTAGE_UNILATERAL $1,199.94]"
   ],
   "justified_amount": "0.00",
   "claimable_amount": "1199.94",
@@ -35,11 +36,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-11-03T20:57:24.066677+00:00"
+    "generated_at": "2026-11-04T05:07:48.157766+00:00"
   },
   "financial_proof": {
     "case_id": "dataco_real_003_los_angeles_field_stream_hunting",
-    "proof_hash": "SM-PROOF-SHA256-1281E992FF3BA40C",
+    "proof_hash": "SM-PROOF-SHA256-123D388D0A88D50B",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -53,7 +54,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-11-03T20:57:24.075687+00:00"
+    "tamper_proof_timestamp": "2026-11-04T05:07:48.163181+00:00"
   },
   "evidence_manifest": {
     "case_id": "dataco_real_003_los_angeles_field_stream_hunting",
@@ -65,25 +66,25 @@
     "backing_ratio_pct": 100.0,
     "evidence_pointers": [
       {
-        "pointer_id": "PTR-INV-INV-DC-73419-TOTAL",
+        "pointer_id": "PTR-INV-INV-DC-ORD-73419-TOTAL",
         "doc_type": "INVOICE",
-        "doc_id": "INV-DC-73419",
+        "doc_id": "INV-DC-ORD-73419",
         "field_ref": "total_amount",
         "item_sku": null,
         "amount": "9999.50",
-        "citation_tag": "[Factura INV-DC-73419 §Total $9,999.50 USD]",
+        "citation_tag": "[Factura INV-DC-ORD-73419 §Total $9,999.50 USD]",
         "is_backed_by_physical_proof": true,
         "status": "ACREDITADO",
         "detail": "Factura comercial fiscalmente válida por $9,999.50 USD."
       },
       {
-        "pointer_id": "PTR-PAY-PAY-DC-73419-AMOUNT",
+        "pointer_id": "PTR-PAY-PAY-DC-ORD-73419-AMOUNT",
         "doc_type": "PAYMENT",
-        "doc_id": "PAY-DC-73419",
+        "doc_id": "PAY-DC-ORD-73419",
         "field_ref": "amount_paid",
         "item_sku": null,
         "amount": "8799.56",
-        "citation_tag": "[Comprobante PAY-DC-73419 §Liquidación $8,799.56 USD]",
+        "citation_tag": "[Comprobante PAY-DC-ORD-73419 §Liquidación $8,799.56 USD]",
         "is_backed_by_physical_proof": true,
         "status": "ACREDITADO",
         "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $8,799.56."
@@ -91,20 +92,20 @@
       {
         "pointer_id": "PTR-DED-ALLEGED_SHORTAGE_UNILATERAL-1",
         "doc_type": "CONTRACT",
-        "doc_id": "MSA-DC-73419",
+        "doc_id": "MSA-DC-ORD-73419",
         "field_ref": "clause_CL-POD-01",
         "item_sku": null,
         "amount": "1199.94",
-        "citation_tag": "[Contrato MSA-DC-73419 §Cláusula CL-POD-01 'Prevalencia del Comprobante de Entrega Firmado' | Deducción ALLEGED_SHORTAGE_UNILATERAL $1,199.94]",
+        "citation_tag": "[Contrato MSA-DC-ORD-73419 §Cláusula CL-POD-01 'Prevalencia de Remisión Firmada en Muelle' | Deducción ALLEGED_SHORTAGE_UNILATERAL $1,199.94]",
         "is_backed_by_physical_proof": true,
         "status": "ACREDITADO",
-        "detail": "Deducción 'ALLEGED_SHORTAGE_UNILATERAL' normada por la cláusula CL-POD-01 de MSA-DC-73419."
+        "detail": "Deducción 'ALLEGED_SHORTAGE_UNILATERAL' normada por la cláusula CL-POD-01 de MSA-DC-ORD-73419."
       }
     ],
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-11-03T20:57:24Z"
+    "generated_at": "2026-11-04T05:07:48Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -117,16 +118,16 @@
     "claimable_amount": "1199.94",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-1281E992FF3BA40C",
+    "zkp_proof_hash": "SM-PROOF-SHA256-123D388D0A88D50B",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-11-03T20:57:24.126158+00:00"
+    "anchored_at": "2026-11-04T05:07:48.191535+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "dataco_real_003_los_angeles_field_stream_hunting",
-    "courtroom_session_id": "CRT-D788D73A",
+    "courtroom_session_id": "CRT-0B1868BC",
     "disputed_amount": "1199.94",
     "justified_amount": "0.00",
     "claimable_amount": "1199.94",
@@ -135,11 +136,11 @@
         "role": "PROSECUTOR",
         "speaker_name": "Lic. Gustavo Méndez (Fiscal Forense Retail B2B)",
         "topic": "Aplicación de Políticas Operativas y Guías del Comprador",
-        "argument_text": "El retailer retuvo $1,199.94 USD bajo conceptos ALLEGED_SHORTAGE_UNILATERAL ($1,199.94) en liquidación PAY-DC-73419 con base en sus manuales internos de logística, penalizaciones por aviso anticipado ASN o descuentos comerciales por pronto pago.",
+        "argument_text": "El retailer retuvo $1,199.94 USD bajo conceptos ALLEGED_SHORTAGE_UNILATERAL ($1,199.94) en liquidación PAY-DC-ORD-73419 con base en sus manuales internos de logística, penalizaciones por aviso anticipado ASN o descuentos comerciales por pronto pago.",
         "legal_or_contractual_ground": "Manual Operativo de Proveedores del Retailer & Portal B2B",
         "strength_score": 0.15,
         "evidence_referenced": [
-          "Comprobante de Retención PAY-DC-73419"
+          "Comprobante de Retención PAY-DC-ORD-73419"
         ]
       }
     ],
@@ -148,33 +149,33 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Prueba Plena de Entrega Íntegra",
-        "argument_text": "La remisión BOL-DC-73419 fue firmada de plena conformidad en muelle Ontario CA Distribution Center sin sello de salvedad ni faltantes. Cualquier reclamo posterior de faltante carece de valor probatorio conforme a la ley comercial.",
+        "argument_text": "La remisión BOL-DC-ORD-73419 fue firmada de plena conformidad en muelle Los Angeles, CA Distribution Hub sin sello de salvedad ni faltantes. Cualquier reclamo posterior de faltante carece de valor probatorio conforme a la ley comercial.",
         "legal_or_contractual_ground": "Eficacia Probatoria de Remisión Limpia (Prueba Plena Art. 88 CCom)",
         "strength_score": 0.95,
         "evidence_referenced": [
-          "BOL-DC-73419"
+          "BOL-DC-ORD-73419"
         ]
       },
       {
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria sobre factura INV-DC-73419 y liquidación PAY-DC-73419: El contrato marco bilateral MSA-DC-73419 prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $1,199.94 USD. La retención constituye incumplimiento de pago. RELOJ SLA: Restan 7 días de ventana perentoria (HIGH_IMMINENT). Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente dataco_real_003_los_angeles_field_stream_hunting (fecha 2026-11-03), donde Western-Field-Stream acordó el reintegro de $1,199.94 USD ante una deducción análoga por 'ALLEGED_SHORTAGE_UNILATERAL', amparada en la cláusula contractual CL-POD-01..",
+        "argument_text": "Objeción perentoria sobre factura INV-DC-ORD-73419 y liquidación PAY-DC-ORD-73419: El contrato marco bilateral MSA-DC-ORD-73419 prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $1,199.94 USD. La retención constituye incumplimiento de pago. RELOJ SLA: Restan 7 días de ventana perentoria (HIGH_IMMINENT). Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente dataco_real_003_los_angeles_field_stream_hunting (fecha 2026-11-04), donde Buyer-Dc-Ord-73419 acordó el reintegro de $1,199.94 USD ante una deducción análoga por 'ALLEGED_SHORTAGE_UNILATERAL', amparada en la cláusula contractual CL-POD-01..",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [
-          "MSA-DC-73419",
-          "INV-DC-73419",
-          "PAY-DC-73419",
-          "Conforme al precedente formalizado en el expediente dataco_real_003_los_angeles_field_stream_hunting (fecha 2026-11-03), donde Western-Field-Stream acordó el reintegro de $1,199.94 USD ante una deducción análoga por 'ALLEGED_SHORTAGE_UNILATERAL', amparada en la cláusula contractual CL-POD-01."
+          "MSA-DC-ORD-73419",
+          "INV-DC-ORD-73419",
+          "PAY-DC-ORD-73419",
+          "Conforme al precedente formalizado en el expediente dataco_real_003_los_angeles_field_stream_hunting (fecha 2026-11-04), donde Buyer-Dc-Ord-73419 acordó el reintegro de $1,199.94 USD ante una deducción análoga por 'ALLEGED_SHORTAGE_UNILATERAL', amparada en la cláusula contractual CL-POD-01."
         ]
       }
     ],
     "sustained_objections": [],
     "dismissed_objections": [
-      "Retención unilateral de $1,199.94 USD en PAY-DC-73419 declarada IMPROCEDENTE y 100% RECLAMABLE."
+      "Retención unilateral de $1,199.94 USD en PAY-DC-ORD-73419 declarada IMPROCEDENTE y 100% RECLAMABLE."
     ],
-    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente dataco_real_003_los_angeles_field_stream_hunting (Factura: INV-DC-73419, Remisión: BOL-DC-73419, Liquidación: PAY-DC-73419): Se condena al comprador al reintegro inmediato de $1,199.94 USD por carecer de título legal habilitante en MSA-DC-73419, y se valida la emisión de Nota de Crédito por $0.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%. Reloj SLA: 7 días restantes (HIGH_IMMINENT).",
+    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente dataco_real_003_los_angeles_field_stream_hunting (Factura: INV-DC-ORD-73419, Remisión: BOL-DC-ORD-73419, Liquidación: PAY-DC-ORD-73419): Se condena al comprador al reintegro inmediato de $1,199.94 USD por carecer de título legal habilitante en MSA-DC-ORD-73419, y se valida la emisión de Nota de Crédito por $0.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%. Reloj SLA: 7 días restantes (HIGH_IMMINENT).",
     "probative_force_supplier_pct": 87.5,
     "final_legal_doctrine": "DOCTRINA COMERCIAL VINCULANTE: Ninguna guía operativa o portal B2B puede modificar o imponer sanciones financieras no contenidas en el contrato marco bilateral suscrito. Las remisiones firmadas con sello de muelle hacen fe pública comercial plena e inmutable entre las partes."
   },
@@ -189,7 +190,7 @@
     "positive_drivers": [
       "Remisión de entrega debidamente firmada en muelle receptor (+20%)",
       "Contrato marco comercial vigente con cláusulas de prevalencia (+15%)",
-      "Historial altamente favorable con Western-Field-Stream (100.0% de éxito histórico) (+12%)",
+      "Historial altamente favorable con Buyer-Dc-Ord-73419 (100.0% de éxito histórico) (+12%)",
       "Existen precedentes ganados al 100% con este cliente corporativo (+5%)",
       "Dictamen judicial favorable con fuerza probatoria del 87.5% (+10%)"
     ],
@@ -240,7 +241,8 @@
     "irrefutability_grade": "A1_IRREFUTABLE",
     "corrective_actions_applied": [],
     "audit_notes": [
-      "Invarianza aritmética perfecta verificada al centavo ($0.00 MAE)."
+      "Invarianza aritmética perfecta verificada al centavo ($0.00 MAE).",
+      "Jerarquía de Prelación: El Contrato Marco prohíbe deducciones unilaterales sin acuerdo mutuo. Cualquier guía o manual operativo del comprador queda subordinado perentoriamente (Art. 88 CCom)."
     ],
     "verified_claimable_amount": "1199.94",
     "verified_justified_amount": "0.00",

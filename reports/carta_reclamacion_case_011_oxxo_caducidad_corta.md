@@ -1,6 +1,6 @@
 # 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
 **Ref: Expediente de Cartera case_011_oxxo_caducidad_corta / Factura INV-CASE_011-EFE5**  
-**Fecha:** 28 de October de 2026  
+**Fecha:** 04 de November de 2026  
 **De:** Departamento de Cartera y Asuntos Comerciales — VEN-001  
 **Para:** Gerencia de Cuentas por Pagar y Conciliación — CUST-OXXO_FEMSA  
 
@@ -23,10 +23,15 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_011_oxxo_caducidad_corta — 2026-10-29):**
+**Precedente 1 (Expediente case_011_oxxo_caducidad_corta — 2026-11-04):**
 - **Criterio Acreditado:** En el caso case_011_oxxo_caducidad_corta, se acreditó la improcedencia de la deducción 'CADUCIDAD-CORTA' conforme a CLAUSE-4.4, logrando la restitución de $3,200.00 USD.
 - **Resultado Previo:** Restitución de **$3,200.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CLAUSE-4.4.
+
+**Precedente 2 (Expediente holdout_case_010 — 2026-11-04):**
+- **Criterio Acreditado:** En el caso holdout_case_010, se acreditó la improcedencia de la deducción 'CADUCIDAD-CORTA_UNILATERAL' conforme a CL-10, logrando la restitución de $3,500.00 USD.
+- **Resultado Previo:** Restitución de **$3,500.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** CL-10.
 
 Por tanto, en observancia del principio de coherencia comercial y buena fe contractual, solicitamos la aplicación del mismo criterio para el reintegro de la presente retención.
 

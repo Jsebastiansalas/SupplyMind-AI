@@ -1,0 +1,10 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-113640
+invoice_reference: INV-DC-ORD-113640
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 12745.60
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=SHORTAGE | amount=299.90 | reason=Faltante fisico en muelle de 2 uds SKU DC-1350 | ref=BOL-DC-ORD-113640
+DEDUCTION | code=FREIGHT_SURCHARGE_UNAUTHORIZED | amount=450.00 | reason=Sobrecargo de flete deducido en condicion DDP acordada | ref=MEMO-FEE

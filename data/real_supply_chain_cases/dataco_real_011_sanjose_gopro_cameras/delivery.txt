@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-91540
+po_reference: PO-DC-ORD-91540
+delivery_date: 2026-01-30
+received_by: Supervisor San Jose Dock
+warehouse_location: San Jose, CA Distribution Hub
+signed: true
+discrepancy_reported: true
+
+ITEM | sku=DC-715 | delivered=20 | received=19 | missing=1 | damaged=0 | notes=Shortage of 1 units verified and signed on dock manifest

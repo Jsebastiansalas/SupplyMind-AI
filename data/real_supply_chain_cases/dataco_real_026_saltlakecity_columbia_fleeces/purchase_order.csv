@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-124690
+# vendor_id: DATACO-SALT LAKE CITY
+# customer_id: BUYER-DC-ORD-124690
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 8100.00
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-1630,Columbia Men's Steens Mountain Full Zip Fleece (DataCo DC-1630),180,45.00,8100.00

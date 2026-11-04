@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-93750
+# vendor_id: DATACO-PHOENIX
+# customer_id: BUYER-DC-ORD-93750
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 10499.65
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-842,Bushnell Tour V3 Jolt Laser Rangefinder (DataCo DC-842),35,299.99,10499.65

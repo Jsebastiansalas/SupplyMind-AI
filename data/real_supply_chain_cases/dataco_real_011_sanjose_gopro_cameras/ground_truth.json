@@ -1,0 +1,17 @@
+{
+  "case_id": "dataco_real_011_sanjose_gopro_cameras",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Bay Area Action Cameras (DataCo San Jose Hub)",
+  "industry": "Consumer Electronics",
+  "hub": "San Jose, CA",
+  "file_formats": [
+    ".xlsx",
+    ".csv",
+    ".txt"
+  ],
+  "billed_amount": "7999.80",
+  "received_amount": "7099.81",
+  "difference": "-899.99",
+  "expected_justified_amount": "399.99",
+  "expected_claimable_amount": "500.00"
+}

@@ -35,11 +35,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-29T01:01:24.669989+00:00"
+    "generated_at": "2026-11-04T05:06:35.885299+00:00"
   },
   "financial_proof": {
     "case_id": "case_046_oxxo_flete_nocturno_unilateral",
-    "proof_hash": "SM-PROOF-SHA256-8976713E1B1B16FC",
+    "proof_hash": "SM-PROOF-SHA256-AED7CA837DB3ECA3",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -53,7 +53,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-29T01:01:25.222863+00:00"
+    "tamper_proof_timestamp": "2026-11-04T05:06:36.855611+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_046_oxxo_flete_nocturno_unilateral",
@@ -106,7 +106,7 @@
     ],
     "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
     "confidence_penalty": 0.1,
-    "generated_at": "2026-10-29T01:01:25Z"
+    "generated_at": "2026-11-04T05:06:36Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -119,16 +119,16 @@
     "claimable_amount": "2400.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-8976713E1B1B16FC",
+    "zkp_proof_hash": "SM-PROOF-SHA256-AED7CA837DB3ECA3",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 93.33,
-    "anchored_at": "2026-10-29T01:01:25.240784+00:00"
+    "anchored_at": "2026-11-04T05:06:36.923001+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_046_oxxo_flete_nocturno_unilateral",
-    "courtroom_session_id": "CRT-707142DB",
+    "courtroom_session_id": "CRT-790AAE07",
     "disputed_amount": "2400.0",
     "justified_amount": "0.00",
     "claimable_amount": "2400.00",
@@ -137,11 +137,11 @@
         "role": "PROSECUTOR",
         "speaker_name": "Lic. Gustavo Méndez (Fiscal Forense Retail B2B)",
         "topic": "Aplicación de Políticas Operativas y Guías del Comprador",
-        "argument_text": "El retailer retuvo $2,400.00 USD con base en sus manuales internos de logística, penalizaciones por aviso anticipado ASN o descuentos comerciales por pronto pago.",
-        "legal_or_contractual_ground": "Manual Operativo de Proveedores del Retailer",
+        "argument_text": "El retailer retuvo $2,400.00 USD bajo conceptos DED-UNAUTHORIZED ($2,400.00) en liquidación PAY-ILATERAL con base en sus manuales internos de logística, penalizaciones por aviso anticipado ASN o descuentos comerciales por pronto pago.",
+        "legal_or_contractual_ground": "Manual Operativo de Proveedores del Retailer & Portal B2B",
         "strength_score": 0.15,
         "evidence_referenced": [
-          "Comprobante de Retención Bancaria"
+          "Comprobante de Retención PAY-ILATERAL"
         ]
       }
     ],
@@ -150,8 +150,8 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Prueba Plena de Entrega Íntegra",
-        "argument_text": "La remisión fue firmada de plena conformidad en muelle sin sello de salvedad. Cualquier reclamo posterior de faltante carece de valor probatorio.",
-        "legal_or_contractual_ground": "Eficacia Probatoria de Remisión Limpia (Prueba Plena)",
+        "argument_text": "La remisión REM-ILATERAL fue firmada de plena conformidad en muelle CEDIS Muelle Central sin sello de salvedad ni faltantes. Cualquier reclamo posterior de faltante carece de valor probatorio conforme a la ley comercial.",
+        "legal_or_contractual_ground": "Eficacia Probatoria de Remisión Limpia (Prueba Plena Art. 88 CCom)",
         "strength_score": 0.95,
         "evidence_referenced": [
           "REM-ILATERAL"
@@ -161,20 +161,22 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $2,400.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_046_oxxo_flete_nocturno_unilateral (fecha 2026-10-29), donde Oxxo Mx acordó el reintegro de $2,400.00 USD ante una deducción análoga por 'DED-UNAUTHORIZED', amparada en la cláusula contractual CTR-GENERAL-TERMS.",
+        "argument_text": "Objeción perentoria sobre factura INV-AUTO-001 y liquidación PAY-ILATERAL: El contrato marco bilateral case_046_oxxo_flete_nocturno_unilateral prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $2,400.00 USD. La retención constituye incumplimiento de pago. RELOJ SLA: Restan 22 días de ventana perentoria (MEDIUM_ATTENTION). Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_046_oxxo_flete_nocturno_unilateral (fecha 2026-11-04), donde Oxxo Mx acordó el reintegro de $2,400.00 USD ante una deducción análoga por 'DED-UNAUTHORIZED', amparada en la cláusula contractual CTR-GENERAL-TERMS..",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [
-          "Contrato Marco Maestro",
-          "Criterio de Nulidad Unilateral"
+          "case_046_oxxo_flete_nocturno_unilateral",
+          "INV-AUTO-001",
+          "PAY-ILATERAL",
+          "Conforme al precedente formalizado en el expediente case_046_oxxo_flete_nocturno_unilateral (fecha 2026-11-04), donde Oxxo Mx acordó el reintegro de $2,400.00 USD ante una deducción análoga por 'DED-UNAUTHORIZED', amparada en la cláusula contractual CTR-GENERAL-TERMS."
         ]
       }
     ],
     "sustained_objections": [],
     "dismissed_objections": [
-      "Retención unilateral de $2,400.00 USD declarada IMPROCEDENTE y 100% RECLAMABLE."
+      "Retención unilateral de $2,400.00 USD en PAY-ILATERAL declarada IMPROCEDENTE y 100% RECLAMABLE."
     ],
-    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente case_046_oxxo_flete_nocturno_unilateral: Se condena al comprador al reintegro inmediato de $2,400.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $0.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%.",
+    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente case_046_oxxo_flete_nocturno_unilateral (Factura: INV-AUTO-001, Remisión: REM-ILATERAL, Liquidación: PAY-ILATERAL): Se condena al comprador al reintegro inmediato de $2,400.00 USD por carecer de título legal habilitante en case_046_oxxo_flete_nocturno_unilateral, y se valida la emisión de Nota de Crédito por $0.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%. Reloj SLA: 22 días restantes (MEDIUM_ATTENTION).",
     "probative_force_supplier_pct": 87.5,
     "final_legal_doctrine": "DOCTRINA COMERCIAL VINCULANTE: Ninguna guía operativa o portal B2B puede modificar o imponer sanciones financieras no contenidas en el contrato marco bilateral suscrito. Las remisiones firmadas con sello de muelle hacen fe pública comercial plena e inmutable entre las partes."
   },
@@ -244,6 +246,14 @@
       "Invarianza aritmética perfecta verificada al centavo ($0.00 MAE)."
     ],
     "verified_claimable_amount": "2400.00",
-    "verified_justified_amount": "0.00"
-  }
+    "verified_justified_amount": "0.00",
+    "contractual_cap_enforced": false,
+    "contractual_cap_excess_claimed": "0.00",
+    "contractual_cap_details": []
+  },
+  "resolution_notes": [],
+  "deduction_type": null,
+  "adversarial_critique": null,
+  "mcts_negotiation_plan": null,
+  "cross_border_assessment": null
 }

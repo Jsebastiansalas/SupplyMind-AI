@@ -1,0 +1,18 @@
+{
+  "case_id": "dataco_real_022_boston_bose_speakers",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "New England Audio Gear (DataCo Boston Hub)",
+  "industry": "Audio Electronics",
+  "hub": "Boston, MA",
+  "file_formats": [
+    ".csv",
+    ".xlsx",
+    ".txt",
+    ".json"
+  ],
+  "billed_amount": "9845.00",
+  "received_amount": "8807.00",
+  "difference": "-1038.00",
+  "expected_justified_amount": "358.00",
+  "expected_claimable_amount": "680.00"
+}

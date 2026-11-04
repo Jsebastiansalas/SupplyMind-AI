@@ -1,0 +1,6 @@
+{
+  "sha256": "93eeb9a39db0abbf594d0ea10fb5b172891e5e0084a20347b23e0e8c60cc4459",
+  "text": "CUENTAS POR PAGAR / APCOMPROBANTE DE PAGO / REMITTANCE ADVICE: REM-MMN-10294\nReferencia Pago: REM-MMN-10294 Factura Cancelada: INV-NDP-88301\nFecha de Dispersion: 2026-03-28 Moneda: USD\nMonto Efectivo Pagado: $56,500.00\nDeducciones y Retenciones Aplicadas al Pago:\nCodigo Deduccion Motivo Comercial / Operativo Doc. Referencia Monto Deducido\nDED-PRICE-CORR Price Variance Adjustment SKU-WHEY-2KG to PO PO-MMN-77102 $4,500.00\nDED-EARLY-PAY Unauthorized Early Settlement Discount 5% FIN-DISC-002 $3,500.00\nTOTAL DEDUCCIONES: $8,000.00\nDocumento Comercial Oficial B2B - Folio REM-MMN-10294 | Página 1",
+  "structured": null,
+  "metadata": {}
+}

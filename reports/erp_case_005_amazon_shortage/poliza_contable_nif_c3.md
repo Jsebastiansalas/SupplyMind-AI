@@ -1,5 +1,5 @@
 # PÓLIZA CONTABLE DE SANEAMIENTO Y REGULARIZACIÓN FISCAL
-**Expediente:** `case_005_amazon_shortage` | **Norma:** NIF C-3 / US GAAP | **Fecha:** 2026-11-03 01:13:04 UTC  
+**Expediente:** `case_005_amazon_shortage` | **Norma:** NIF C-3 / US GAAP | **Fecha:** 2026-11-03 12:39:39 UTC  
 **Contraparte:** AMAZON FULFILLMENT SERVICES LLC DE MEXICO (RFC: `AMA120401BB2`)  
 **Régimen Tributario:** Régimen General IVA 16% (Art. 1 LIVA) (Código SAT: `STANDARD_VAT_16`)  
 **Factor Impositivo:** `1.16` | **Objeto de Impuesto SAT:** `02`  

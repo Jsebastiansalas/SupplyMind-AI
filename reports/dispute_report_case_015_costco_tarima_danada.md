@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `case_015_costco_tarima_danada` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-10-29 01:01:12 UTC | **Nivel de Confianza:** 79.0%
+> **Fecha de Emisión:** 2026-11-04 05:06:15 UTC | **Nivel de Confianza:** 79.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO
@@ -64,13 +64,13 @@ Discrepancia mixta en expediente case_015_costco_tarima_danada: Faltante físico
 
 - **Fuerza Probatoria del Proveedor:** 87.5%
 
-- **Dictamen del Magistrado Arbitral:** VISTO el careo de autos en el expediente case_015_costco_tarima_danada: Se condena al comprador al reintegro inmediato de $4,200.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $10,000.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%.
+- **Dictamen del Magistrado Arbitral:** VISTO el careo de autos en el expediente case_015_costco_tarima_danada (Factura: INV-CASE_015-D7F7, Remisión: DEL-CASE_015-A6B6, Liquidación: PAY-CASE_015-AAC0): Se condena al comprador al reintegro inmediato de $4,200.00 USD por carecer de título legal habilitante en CTR-COSTCO_MX-2026, y se valida la emisión de Nota de Crédito por $10,000.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%. Reloj SLA: 40 días restantes (LOW_HEALTHY).
 
 **Objeciones del Retailer Desestimadas:**
-> - 🛡️ Retención unilateral de $4,200.00 USD declarada IMPROCEDENTE y 100% RECLAMABLE.
+> - 🛡️ Retención unilateral de $4,200.00 USD en PAY-CASE_015-AAC0 declarada IMPROCEDENTE y 100% RECLAMABLE.
 
 **Objeciones Concedidas en Muelle:**
-> - ⚖️ Deducción de faltante físico por $10,000.00 USD declarada PROCEDENTE.
+> - ⚖️ Deducción de faltante físico por $10,000.00 USD amparada en DEL-CASE_015-A6B6 declarada PROCEDENTE.
 
 ---
 ## 4.2 SANITY GATE DE CUÁDRUPLE AUDITORÍA (SEMANA 4)

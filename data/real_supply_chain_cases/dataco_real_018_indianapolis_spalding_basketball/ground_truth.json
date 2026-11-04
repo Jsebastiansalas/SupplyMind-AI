@@ -1,0 +1,18 @@
+{
+  "case_id": "dataco_real_018_indianapolis_spalding_basketball",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Midwest Hoops Supply (DataCo Indianapolis Hub)",
+  "industry": "Team Sports",
+  "hub": "Indianapolis, IN",
+  "file_formats": [
+    ".json",
+    ".csv",
+    ".xlsx",
+    ".txt"
+  ],
+  "billed_amount": "11999.20",
+  "received_amount": "11399.24",
+  "difference": "-599.96",
+  "expected_justified_amount": "0.00",
+  "expected_claimable_amount": "599.96"
+}

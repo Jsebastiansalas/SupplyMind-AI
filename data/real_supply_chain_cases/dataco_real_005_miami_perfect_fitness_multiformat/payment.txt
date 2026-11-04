@@ -1,0 +1,11 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-78112
+invoice_reference: INV-DC-ORD-78112
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 10898.00
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=SHORTAGE | amount=299.95 | reason=Faltante fisico en muelle de 5 uds SKU DC-365 | ref=BOL-DC-ORD-78112
+DEDUCTION | code=DAMAGED | amount=179.97 | reason=Averia verificada en muelle de 3 uds SKU DC-365 | ref=BOL-DC-ORD-78112
+DEDUCTION | code=MKT_REBATE_UNAUTH | amount=620.08 | reason=Retencion por rebaja estacional no pactada en MSA | ref=REB-UNAUTH

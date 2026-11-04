@@ -1,0 +1,11 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-133530
+invoice_reference: INV-DC-ORD-133530
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 8846.20
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=SHORTAGE | amount=299.88 | reason=Faltante fisico en muelle de 6 uds SKU DC-1073 | ref=BOL-DC-ORD-133530
+DEDUCTION | code=DAMAGED | amount=199.92 | reason=Averia verificada en muelle de 4 uds SKU DC-1073 | ref=BOL-DC-ORD-133530
+DEDUCTION | code=UNAUTHORIZED_MARKDOWN_REBATE | amount=650.00 | reason=Retencion por remate de inventario sin autorizacion | ref=REB-UNAUTH

@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-84910
+# vendor_id: DATACO-ATLANTA
+# customer_id: BUYER-DC-ORD-84910
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 8398.80
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-627,Under Armour Men's Micro G Assert 6 Running Shoes (DataCo DC-627),120,69.99,8398.80

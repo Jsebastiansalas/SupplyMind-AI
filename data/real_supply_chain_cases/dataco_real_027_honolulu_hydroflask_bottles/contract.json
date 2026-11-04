@@ -1,0 +1,23 @@
+{
+  "contract_id": "MSA-DC-ORD-126900",
+  "vendor_id": "DATACO-HONOLULU",
+  "customer_id": "BUYER-DC-ORD-126900",
+  "valid_from": "2025-01-01",
+  "valid_to": "2026-12-31",
+  "clauses": [
+    {
+      "clause_id": "CL-POD-01",
+      "title": "Prevalencia de Remisi\u00f3n Firmada en Muelle",
+      "text": "Las discrepancias f\u00edsicas por faltantes o aver\u00edas registradas en la remisi\u00f3n firmada de muelle son deducibles al precio unitario autorizado.",
+      "policy": "STRICT_POD_REQUIRED",
+      "tolerance_percentage": "0.00"
+    },
+    {
+      "clause_id": "CL-UNAUTH-02",
+      "title": "Prohibici\u00f3n de Cargos Administrativos Unilaterales",
+      "text": "Se prohibe aplicar deducciones por mercadeo, portal EDI, fletes o penalidades operativas que no cuenten con adenda bilateral.",
+      "policy": "NO_UNILATERAL_PENALTIES",
+      "tolerance_percentage": "0.00"
+    }
+  ]
+}

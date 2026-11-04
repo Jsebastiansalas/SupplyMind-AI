@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-133530
+# vendor_id: DATACO-CAGUAS
+# customer_id: BUYER-DC-ORD-133530
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 9996.00
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-1073,O'Brien Men's Neoprene Life Vest (DataCo DC-1073),200,49.98,9996.00

@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-80115
+po_reference: PO-DC-ORD-80115
+delivery_date: 2026-01-30
+received_by: Supervisor Dallas Dock
+warehouse_location: Dallas, TX Distribution Hub
+signed: true
+discrepancy_reported: true
+
+ITEM | sku=DC-502 | delivered=150 | received=144 | missing=6 | damaged=0 | notes=Shortage of 6 units verified and signed on dock manifest

@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-115850
+po_reference: PO-DC-ORD-115850
+delivery_date: 2026-01-30
+received_by: Supervisor Boston Dock
+warehouse_location: Boston, MA Distribution Hub
+signed: true
+discrepancy_reported: true
+
+ITEM | sku=DC-1412 | delivered=55 | received=55 | missing=0 | damaged=2 | notes=2 units damaged during carrier transit, signed on POD

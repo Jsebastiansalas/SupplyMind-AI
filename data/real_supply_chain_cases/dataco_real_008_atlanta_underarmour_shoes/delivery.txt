@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-84910
+po_reference: PO-DC-ORD-84910
+delivery_date: 2026-01-30
+received_by: Supervisor Atlanta Dock
+warehouse_location: Atlanta, GA Distribution Hub
+signed: true
+discrepancy_reported: false
+
+ITEM | sku=DC-627 | delivered=120 | received=120 | missing=0 | damaged=0 | notes=Full shipment of 120 units received and signed clean at dock

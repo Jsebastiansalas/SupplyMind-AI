@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-68914
+po_reference: PO-DC-ORD-68914
+delivery_date: 2026-01-30
+received_by: Supervisor Caguas Dock
+warehouse_location: Caguas, PR Distribution Hub
+signed: true
+discrepancy_reported: true
+
+ITEM | sku=DC-1360 | delivered=50 | received=47 | missing=3 | damaged=0 | notes=Shortage of 3 units verified and signed on dock manifest

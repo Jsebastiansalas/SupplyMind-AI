@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-113640
+po_reference: PO-DC-ORD-113640
+delivery_date: 2026-01-30
+received_by: Supervisor San Francisco Dock
+warehouse_location: San Francisco, CA Distribution Hub
+signed: true
+discrepancy_reported: true
+
+ITEM | sku=DC-1350 | delivered=90 | received=88 | missing=2 | damaged=0 | notes=Shortage of 2 units verified and signed on dock manifest

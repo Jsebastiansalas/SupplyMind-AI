@@ -1,0 +1,10 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-126900
+invoice_reference: INV-DC-ORD-126900
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 5702.30
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=DAMAGED | amount=239.70 | reason=Averia en muelle de 6 uds SKU DC-1695 constatada en POD | ref=BOL-DC-ORD-126900
+DEDUCTION | code=OCEAN_FREIGHT_DIFFERENTIAL | amount=450.00 | reason=Diferencial de flete maritimo retenido sin acuerdo | ref=MEMO-ADMIN

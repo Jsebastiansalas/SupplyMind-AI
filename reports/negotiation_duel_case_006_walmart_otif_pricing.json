@@ -1,5 +1,5 @@
 {
-  "session_id": "DUEL-CASE_006_WALMART_OTIF_PRICING-29285D79",
+  "session_id": "DUEL-CASE_006_WALMART_OTIF_PRICING-DFE9F34F",
   "case_id": "case_006_walmart_otif_pricing",
   "retailer_name": "Walmart Inc. Retail Operations",
   "archetype": {
@@ -17,11 +17,11 @@
     "tone": "Intransigente, corporativo, escudado en métricas de logística"
   },
   "governance_mode": "HUMAN_GATEKEEPER",
-  "status": "AGREEMENT_REACHED",
-  "current_round": 4,
+  "status": "IN_PROGRESS",
+  "current_round": 2,
   "max_rounds": 5,
-  "delegation_limit_pct": 40.0,
-  "delegation_limit_amount": "1400.00",
+  "delegation_limit_pct": 50.0,
+  "delegation_limit_amount": "1750.00",
   "total_disputed_amount": "8000.00",
   "rounds": [
     {
@@ -35,6 +35,7 @@
       "supplier_offer_credit_memo": "4500.00",
       "supplier_claim_cash": "3500.00",
       "evidence_exhibited": [
+        "Discrepancia de precio en SKU-WHEY-2KG: facturado $35.00 vs acordado $32.00",
         "Factura Comercial Oficial INV por $64,500.00 USD",
         "Orden de Compra aprobada sin variaciones de precio unitario"
       ],
@@ -48,60 +49,28 @@
       "buyer_stance": "DEFENSIVE",
       "buyer_demand_credit_memo": "7200.00",
       "buyer_cash_payout_offer": "800.00",
-      "supplier_message": "Exhibimos la constancia sellada en muelle y el sello de seguridad C-TPAT ISO 17712 intacto al momento del arribo. Para coadyuvar con sus procesos administrativos sin perjudicar la relación de suministro, podemos autorizar una bonificación comercial complementaria de $280.00 USD, totalizando una Nota de Crédito por $4,780.00 USD, condicionado al pago expedito de $3,220.00 USD en 5 días.",
+      "supplier_message": "Exhibimos la constancia sellada en muelle y el sello de seguridad C-TPAT ISO 17712 intacto al momento del arribo. Para coadyuvar con sus procesos administrativos sin perjudicar la relación de suministro, podemos autorizar una bonificación comercial complementaria de $350.00 USD, totalizando una Nota de Crédito por $4,850.00 USD, condicionado al pago expedito de $3,150.00 USD en 5 días. (Sujeto a compromiso recíproco de volumen en próximas órdenes de compra Tier-1).",
       "supplier_stance": "COUNTER_OFFER",
-      "supplier_offer_credit_memo": "4780.00",
-      "supplier_claim_cash": "3220.00",
+      "supplier_offer_credit_memo": "4850.00",
+      "supplier_claim_cash": "3150.00",
       "evidence_exhibited": [
+        "Deducción aplicada en comprobante REM-MMN-10294: código DED-PRICE-CORR, motivo 'Price Variance Adjustment SKU-WHEY-2KG to PO', monto $4,500.00",
         "Remisión física de recibo con firma y sello de personal de muelle",
         "Certificado de sello de alta seguridad ISO 17712 e inspección C-TPAT intacta"
       ],
-      "spread": "2420.00",
-      "convergence_pct": 69.8,
-      "round_status": "IN_PROGRESS"
-    },
-    {
-      "round_number": 3,
-      "buyer_message": "Aceptamos reconsiderar parcialmente las partidas objetadas. Nuestra contraoferta es liquidar $1,225.00 USD si ustedes absorben $6,775.00 USD mediante Nota de Crédito.",
-      "buyer_stance": "PARTIAL_CONCESSION",
-      "buyer_demand_credit_memo": "6775.00",
-      "buyer_cash_payout_offer": "1225.00",
-      "supplier_message": "Cotejando la telemetría EDI 856 ASN transmitida con antelación y confirmada por su sistema con el acuse EDI 997, su centro de distribución contaba con el inventario exacto previo al descargue. En un esfuerzo de conciliación equilibrada, elevamos nuestra concesión a $5,200.00 USD en Nota de Crédito. Exigimos liquidar en banco $2,800.00 USD.",
-      "supplier_stance": "PROPORTIONAL_CONCESSION",
-      "supplier_offer_credit_memo": "5200.00",
-      "supplier_claim_cash": "2800.00",
-      "evidence_exhibited": [
-        "Transmisión electrónica Advance Ship Notice (ASN EDI 856) con timestamp UTC previo al descargue",
-        "Acuse Funcional EDI 997 Aceptado (Status A) sin excepción operativa"
-      ],
-      "spread": "1575.00",
-      "convergence_pct": 80.3,
+      "spread": "2350.00",
+      "convergence_pct": 70.6,
       "round_status": "CONVERGING"
-    },
-    {
-      "round_number": 4,
-      "buyer_message": "Para evitar elevar esta controversia a un arbitraje comercial formal bajo reglas ICC, nuestra gerencia autoriza un desembolso bancario de $2,625.00 USD. Únicamente requerimos la Nota de Crédito por el faltante real en muelle y una deducción administrativa reducida por $5,375.00 USD.",
-      "buyer_stance": "PARTIAL_CONCESSION",
-      "buyer_demand_credit_memo": "5375.00",
-      "buyer_cash_payout_offer": "2625.00",
-      "supplier_message": "Reiteramos que legalmente operó la preclusión mercantil del Art. 88 del Código de Comercio al no protestar averías en el plazo legal de 5 días. Conforme a las directrices de nuestra dirección financiera, nuestra penúltima contraoferta es una Nota de Crédito por $5,620.00 USD. Cualquier retención adicional carece de amparo legal y obligará a iniciar formalmente el arbitraje CANACO.",
-      "supplier_stance": "PROPORTIONAL_CONCESSION",
-      "supplier_offer_credit_memo": "5620.00",
-      "supplier_claim_cash": "2380.00",
-      "evidence_exhibited": [
-        "Código de Comercio (Art. 88): Preclusión de 5 días para reclamo de vicios aparentes",
-        "Tesis Jurisprudencial SCJN Registro 178234 (Pleno valor probatorio de remisión sellada)"
-      ],
-      "spread": "245.00",
-      "convergence_pct": 96.9,
-      "round_status": "AGREED"
     }
   ],
-  "final_agreed_credit_memo": "5375.00",
-  "final_agreed_cash_recovery": "2625.00",
-  "settlement_minutes_hash": "df0fc6ad14a39a4d77b8e2970d57cb5ba534ca624fa2590863f63a3c32b1296a",
-  "minutes_markdown_path": "C:\\Users\\USUARIO\\Downloads\\platica\\reports\\convenio_finiquito_case_006_walmart_otif_pricing.md",
-  "started_at": "2026-10-30T13:27:34.953603+00:00",
-  "completed_at": "2026-10-30T13:27:34.970091+00:00",
-  "summary_verdict": "Acuerdo bilateral rubricado y aprobado por el operador (Lic. Javier Treviño (CFO)). Recuperación neta en banco: $2,625.00 USD | Nota de Crédito: $5,375.00 USD."
+  "final_agreed_credit_memo": null,
+  "final_agreed_cash_recovery": null,
+  "settlement_minutes_hash": null,
+  "minutes_markdown_path": null,
+  "started_at": "2026-11-03T12:39:59.538520+00:00",
+  "completed_at": null,
+  "summary_verdict": "Careo iniciado. Posturas preliminares bajo política TIER_1_STRATEGIC | Salud Relacional RHI 88.0/100 (DIPLOMATIC_PRESERVATION).",
+  "rhi_score": 88.0,
+  "modulation_mode": "DIPLOMATIC_PRESERVATION",
+  "churn_risk_level": "LOW_STRATEGIC"
 }

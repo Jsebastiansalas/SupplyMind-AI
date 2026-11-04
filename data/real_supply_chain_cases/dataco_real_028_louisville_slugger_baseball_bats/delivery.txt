@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-129110
+po_reference: PO-DC-ORD-129110
+delivery_date: 2026-01-30
+received_by: Supervisor Louisville Dock
+warehouse_location: Louisville, KY Distribution Hub
+signed: true
+discrepancy_reported: false
+
+ITEM | sku=DC-1740 | delivered=40 | received=40 | missing=0 | damaged=0 | notes=Full shipment of 40 units received and signed clean at dock

@@ -1,9 +1,0 @@
-# delivery_id: BOL-DC-75890
-# po_reference: PO-DC-75890
-# delivery_date: 2026-02-06
-# received_by: D. Miller (Chicago Logistics Hub)
-# warehouse_location: O'Hare Distribution Center #2
-# signed: true
-# discrepancy_reported: false
-item_id,quantity_delivered,quantity_received,missing_quantity,damaged_quantity,notes
-DC-191,100,100,0,0,100 pairs received intact

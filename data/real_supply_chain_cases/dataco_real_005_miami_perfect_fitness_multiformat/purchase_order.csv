@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-78112
+# vendor_id: DATACO-MIAMI
+# customer_id: BUYER-DC-ORD-78112
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 11998.00
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-365,Perfect Fitness Perfect Rip Deck (DataCo DC-365),200,59.99,11998.00

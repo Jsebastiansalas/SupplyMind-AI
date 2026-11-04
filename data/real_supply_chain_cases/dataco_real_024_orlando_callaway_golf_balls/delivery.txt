@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-120270
+po_reference: PO-DC-ORD-120270
+delivery_date: 2026-01-30
+received_by: Supervisor Orlando Dock
+warehouse_location: Orlando, FL Distribution Hub
+signed: true
+discrepancy_reported: false
+
+ITEM | sku=DC-1520 | delivered=300 | received=300 | missing=0 | damaged=0 | notes=300 units received intact with matching barcodes

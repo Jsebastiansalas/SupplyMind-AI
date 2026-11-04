@@ -287,6 +287,14 @@ export default function NegotiationDuelView({ caseId = 'case_005_amazon_shortage
             <span className="text-emerald-400 font-bold">${session?.delegation_limit_amount?.toLocaleString()} USD</span>
             <span className="text-zinc-500 text-[10px]">({session?.delegation_limit_pct}%)</span>
           </div>
+
+          {session?.rhi_score !== undefined && session?.rhi_score !== null && (
+            <div className="px-3 py-1.5 rounded-xl bg-[#12131a] border border-[#d4af37]/30 text-xs font-mono text-zinc-200 flex items-center space-x-1.5" title="Índice de Salud Relacional (LTV & Churn Index - Sprint 7.3)">
+              <span className="text-zinc-400">RHI:</span>
+              <span className="text-[#eed98d] font-bold">{session.rhi_score}/100</span>
+              <span className="text-[10px] text-emerald-400">({session.modulation_mode || 'FIRM_COMMERCIAL'})</span>
+            </div>
+          )}
         </div>
       </div>
 

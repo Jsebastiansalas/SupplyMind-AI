@@ -1,0 +1,10 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-91540
+invoice_reference: INV-DC-ORD-91540
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 7099.81
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=SHORTAGE | amount=399.99 | reason=Faltante fisico en muelle de 1 uds SKU DC-715 | ref=BOL-DC-ORD-91540
+DEDUCTION | code=UNAUTHORIZED_RECALL_CHARGE | amount=500.00 | reason=Retencion por inspeccion preventiva no acordada | ref=MEMO-FEE

@@ -1,0 +1,11 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-122480
+invoice_reference: INV-DC-ORD-122480
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 8153.30
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=SHORTAGE | amount=259.80 | reason=Faltante fisico en muelle de 4 uds SKU DC-1588 | ref=BOL-DC-ORD-122480
+DEDUCTION | code=DAMAGED | amount=129.90 | reason=Averia verificada en muelle de 2 uds SKU DC-1588 | ref=BOL-DC-ORD-122480
+DEDUCTION | code=CROSSDOCKING_SERVICE_CHARGE | amount=550.00 | reason=Deduccion por transbordo en anden sin soporte | ref=REB-UNAUTH

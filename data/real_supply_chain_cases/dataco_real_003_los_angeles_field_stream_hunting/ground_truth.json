@@ -3,6 +3,7 @@
   "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
   "buyer_name": "Western Field & Stream (DataCo LA Hub)",
   "industry": "Camping & Security Hardware",
+  "hub": "Los Angeles, CA",
   "file_formats": [
     ".json",
     ".csv",

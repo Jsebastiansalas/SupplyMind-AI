@@ -1,5 +1,5 @@
 {
-  "session_id": "DUEL-CASE_001-438B4766",
+  "session_id": "DUEL-CASE_001-D9C76ADC",
   "case_id": "case_001",
   "retailer_name": "Cadena Comercial Mayorista B2B",
   "archetype": {
@@ -34,6 +34,7 @@
       "supplier_offer_credit_memo": "800.00",
       "supplier_claim_cash": "0.00",
       "evidence_exhibited": [
+        "Faltante físico comprobado en PROD-002 (Caja Café Gourmet Tostado 24x500g): 10 unidades faltantes s/ remisión DEL-9912 valoradas en $800.00",
         "Factura Comercial Oficial INV por $9,000.00 USD",
         "Orden de Compra aprobada sin variaciones de precio unitario"
       ],
@@ -44,9 +45,12 @@
   ],
   "final_agreed_credit_memo": "800.00",
   "final_agreed_cash_recovery": "0.00",
-  "settlement_minutes_hash": "b581a19e4066149703c55d1c5c7fd6079f53eb7b9013ed28e784d73cb184ca1c",
+  "settlement_minutes_hash": "e3691d90a5e733da092fe03ad5b75224161987aff223e9c943f2e46f317e50d1",
   "minutes_markdown_path": "C:\\Users\\USUARIO\\Downloads\\platica\\reports\\convenio_finiquito_case_001.md",
-  "started_at": "2026-10-30T13:27:35.053860+00:00",
-  "completed_at": "2026-10-30T13:27:35.054114+00:00",
-  "summary_verdict": "Acuerdo bilateral formalizado con éxito en Ronda 1. Recuperación neta en banco: $0.00 USD | Nota de Crédito autorizada: $800.00 USD."
+  "started_at": "2026-11-03T12:39:44.972386+00:00",
+  "completed_at": "2026-11-03T12:39:44.973066+00:00",
+  "summary_verdict": "Acuerdo bilateral formalizado con éxito en Ronda 1. Recuperación neta en banco: $0.00 USD | Nota de Crédito autorizada: $800.00 USD.",
+  "rhi_score": 88.0,
+  "modulation_mode": "DIPLOMATIC_PRESERVATION",
+  "churn_risk_level": "LOW_STRATEGIC"
 }

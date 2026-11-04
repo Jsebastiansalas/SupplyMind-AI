@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `case_024_pepsico_coop_publicitaria` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-10-29 01:01:13 UTC | **Nivel de Confianza:** 86.0%
+> **Fecha de Emisión:** 2026-11-04 05:06:17 UTC | **Nivel de Confianza:** 86.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO
@@ -55,10 +55,10 @@ Discrepancia mixta en expediente case_024_pepsico_coop_publicitaria: Faltante f�
 
 - **Fuerza Probatoria del Proveedor:** 87.5%
 
-- **Dictamen del Magistrado Arbitral:** VISTO el careo de autos en el expediente case_024_pepsico_coop_publicitaria: Se condena al comprador al reintegro inmediato de $13,600.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $0.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%.
+- **Dictamen del Magistrado Arbitral:** VISTO el careo de autos en el expediente case_024_pepsico_coop_publicitaria (Factura: INV-CASE_024-4919, Remisión: DEL-CASE_024-5181, Liquidación: PAY-CASE_024-8164): Se condena al comprador al reintegro inmediato de $13,600.00 USD por carecer de título legal habilitante en CTR-PEPSICO_MX-2026, y se valida la emisión de Nota de Crédito por $0.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%. Reloj SLA: 22 días restantes (MEDIUM_ATTENTION).
 
 **Objeciones del Retailer Desestimadas:**
-> - 🛡️ Retención unilateral de $13,600.00 USD declarada IMPROCEDENTE y 100% RECLAMABLE.
+> - 🛡️ Retención unilateral de $13,600.00 USD en PAY-CASE_024-8164 declarada IMPROCEDENTE y 100% RECLAMABLE.
 
 ---
 ## 4.2 SANITY GATE DE CUÁDRUPLE AUDITORÍA (SEMANA 4)

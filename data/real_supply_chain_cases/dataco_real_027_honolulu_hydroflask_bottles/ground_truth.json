@@ -1,0 +1,18 @@
+{
+  "case_id": "dataco_real_027_honolulu_hydroflask_bottles",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Islands Hydration Co (DataCo Honolulu Hub)",
+  "industry": "Drinkware & Outdoor",
+  "hub": "Honolulu, HI",
+  "file_formats": [
+    ".csv",
+    ".xlsx",
+    ".txt",
+    ".json"
+  ],
+  "billed_amount": "6392.00",
+  "received_amount": "5702.30",
+  "difference": "-689.70",
+  "expected_justified_amount": "239.70",
+  "expected_claimable_amount": "450.00"
+}

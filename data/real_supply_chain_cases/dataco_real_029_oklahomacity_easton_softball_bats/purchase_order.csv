@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-131320
+# vendor_id: DATACO-OKLAHOMA CITY
+# customer_id: BUYER-DC-ORD-131320
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 10498.50
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-1805,Easton Ghost Double Barrel Fastpitch Softball Bat (DataCo DC-1805),30,349.95,10498.50

@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-98170
+po_reference: PO-DC-ORD-98170
+delivery_date: 2026-01-30
+received_by: Supervisor Minneapolis Dock
+warehouse_location: Minneapolis, MN Distribution Hub
+signed: true
+discrepancy_reported: false
+
+ITEM | sku=DC-601 | delivered=40 | received=40 | missing=0 | damaged=0 | notes=40 units received intact with matching barcodes

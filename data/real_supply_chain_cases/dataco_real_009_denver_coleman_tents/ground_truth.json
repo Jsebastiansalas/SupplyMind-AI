@@ -1,0 +1,18 @@
+{
+  "case_id": "dataco_real_009_denver_coleman_tents",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Rocky Mountain Outfitter (DataCo Denver Hub)",
+  "industry": "Camping Gear",
+  "hub": "Denver, CO",
+  "file_formats": [
+    ".xlsx",
+    ".csv",
+    ".txt",
+    ".json"
+  ],
+  "billed_amount": "9299.40",
+  "received_amount": "7799.40",
+  "difference": "-1500.00",
+  "expected_justified_amount": "900.00",
+  "expected_claimable_amount": "600.00"
+}

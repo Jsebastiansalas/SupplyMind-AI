@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-111430
+# vendor_id: DATACO-PITTSBURGH
+# customer_id: BUYER-DC-ORD-111430
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 12935.00
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-1288,DeWalt 20V MAX Cordless Drill Combo Kit (DataCo DC-1288),65,199.00,12935.00

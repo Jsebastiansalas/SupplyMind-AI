@@ -1,0 +1,10 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-71204
+invoice_reference: INV-DC-ORD-71204
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 10599.24
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=DAMAGED | amount=599.96 | reason=Averia en muelle de 2 uds SKU DC-957 constatada en POD | ref=BOL-DC-ORD-71204
+DEDUCTION | code=ADMIN_PORTAL_FEE | amount=800.00 | reason=Comision administrativa por portal EDI no pactada | ref=MEMO-ADMIN

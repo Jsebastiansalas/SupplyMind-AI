@@ -1,0 +1,18 @@
+{
+  "case_id": "dataco_real_020_pittsburgh_dewalt_drill_kits",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Steel City Hardware & Tools (DataCo Pittsburgh Hub)",
+  "industry": "Power Tools",
+  "hub": "Pittsburgh, PA",
+  "file_formats": [
+    ".csv",
+    ".json",
+    ".xlsx",
+    ".txt"
+  ],
+  "billed_amount": "12935.00",
+  "received_amount": "11220.00",
+  "difference": "-1715.00",
+  "expected_justified_amount": "995.00",
+  "expected_claimable_amount": "720.00"
+}

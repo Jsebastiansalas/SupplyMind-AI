@@ -40,11 +40,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-29T01:01:14.181027+00:00"
+    "generated_at": "2026-11-04T05:07:25.732159+00:00"
   },
   "financial_proof": {
     "case_id": "case_035_mega_multimodal_60_skus",
-    "proof_hash": "SM-PROOF-SHA256-FECFA5F5FAFBC567",
+    "proof_hash": "SM-PROOF-SHA256-1C22A64E5655D682",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -58,7 +58,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-29T01:01:14.195147+00:00"
+    "tamper_proof_timestamp": "2026-11-04T05:07:25.752833+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_035_mega_multimodal_60_skus",
@@ -123,7 +123,7 @@
     ],
     "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
     "confidence_penalty": 0.08,
-    "generated_at": "2026-10-29T01:01:14Z"
+    "generated_at": "2026-11-04T05:07:25Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -136,16 +136,16 @@
     "claimable_amount": "35000.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-FECFA5F5FAFBC567",
+    "zkp_proof_hash": "SM-PROOF-SHA256-1C22A64E5655D682",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-10-29T01:01:14.210881+00:00"
+    "anchored_at": "2026-11-04T05:07:25.814537+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_035_mega_multimodal_60_skus",
-    "courtroom_session_id": "CRT-6E3CFECA",
+    "courtroom_session_id": "CRT-2A1A2FB7",
     "disputed_amount": "120000.00",
     "justified_amount": "85000.00",
     "claimable_amount": "35000.00",
@@ -154,22 +154,23 @@
         "role": "PROSECUTOR",
         "speaker_name": "Lic. Gustavo Méndez (Fiscal Forense Retail B2B)",
         "topic": "Faltante Físico en Muelle",
-        "argument_text": "El comprador reportó válidamente un faltante de mercancía valorado en $85,000.00 USD. Las unidades recibidas en patio fueron inferiores a las facturadas.",
-        "legal_or_contractual_ground": "Cláusula de Recepción e Integridad de Entrega",
+        "argument_text": "El comprador reportó válidamente un faltante de mercancía valorado en $85,000.00 USD en la remisión DEL-CASE_035-2BA8 (MEX3 - Prologis Park Grande, Cuautitlán Izcalli Muelle 44). Las unidades recibidas en patio fueron inferiores a las amparadas en factura INV-CASE_035-35C5.",
+        "legal_or_contractual_ground": "Cláusula CLAUSE-3.1",
         "strength_score": 0.95,
         "evidence_referenced": [
-          "DEL-CASE_035-2BA8"
+          "DEL-CASE_035-2BA8",
+          "INV-CASE_035-35C5"
         ]
       },
       {
         "role": "PROSECUTOR",
         "speaker_name": "Lic. Gustavo Méndez (Fiscal Forense Retail B2B)",
         "topic": "Aplicación de Políticas Operativas y Guías del Comprador",
-        "argument_text": "El retailer retuvo $35,000.00 USD con base en sus manuales internos de logística, penalizaciones por aviso anticipado ASN o descuentos comerciales por pronto pago.",
-        "legal_or_contractual_ground": "Manual Operativo de Proveedores del Retailer",
+        "argument_text": "El retailer retuvo $35,000.00 USD bajo conceptos REBATE-ANUAL-CONVENIDO ($85,000.00), RETENCION-UNILATERAL-EDI ($35,000.00) en liquidación PAY-CASE_035-3C9A con base en sus manuales internos de logística, penalizaciones por aviso anticipado ASN o descuentos comerciales por pronto pago.",
+        "legal_or_contractual_ground": "Manual Operativo de Proveedores del Retailer & Portal B2B",
         "strength_score": 0.15,
         "evidence_referenced": [
-          "Comprobante de Retención Bancaria"
+          "Comprobante de Retención PAY-CASE_035-3C9A"
         ]
       }
     ],
@@ -178,33 +179,36 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Allanamiento de Faltante Acreditado",
-        "argument_text": "Verificada la remisión con sello y firma física de recepción con discrepancia, reconocemos la exactitud del faltante de $85,000.00 USD y allanamos la deducción mediante emisión de Nota de Crédito comercial conforme a la ley.",
+        "argument_text": "Verificada la remisión DEL-CASE_035-2BA8 con sello y firma física de recepción en MEX3 - Prologis Park Grande, Cuautitlán Izcalli Muelle 44 con discrepancia asentada, reconocemos la exactitud del faltante de $85,000.00 USD y allanamos la deducción mediante emisión de Nota de Crédito comercial conforme a la ley.",
         "legal_or_contractual_ground": "Art. 1043 Código de Comercio (Reconocimiento Expreso)",
         "strength_score": 0.98,
         "evidence_referenced": [
-          "Remisión firmada con sello de discrepancia"
+          "Remisión DEL-CASE_035-2BA8 con salvedad en muelle",
+          "INV-CASE_035-35C5"
         ]
       },
       {
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $35,000.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_035_mega_multimodal_60_skus (fecha 2026-10-29), donde Cust-Amazon Mx acordó el reintegro de $35,000.00 USD ante una deducción análoga por 'REBATE-ANUAL-CONVENIDO', amparada en la cláusula contractual CLAUSE-3.1.",
+        "argument_text": "Objeción perentoria sobre factura INV-CASE_035-35C5 y liquidación PAY-CASE_035-3C9A: El contrato marco bilateral CTR-AMAZON_MX-2026 prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $35,000.00 USD. La retención constituye incumplimiento de pago. RELOJ SLA: Restan 40 días de ventana perentoria (LOW_HEALTHY). Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_035_mega_multimodal_60_skus (fecha 2026-11-04), donde Cust-Amazon Mx acordó el reintegro de $35,000.00 USD ante una deducción análoga por 'REBATE-ANUAL-CONVENIDO', amparada en la cláusula contractual CLAUSE-3.1..",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [
-          "Contrato Marco Maestro",
-          "Criterio de Nulidad Unilateral"
+          "CTR-AMAZON_MX-2026",
+          "INV-CASE_035-35C5",
+          "PAY-CASE_035-3C9A",
+          "Conforme al precedente formalizado en el expediente case_035_mega_multimodal_60_skus (fecha 2026-11-04), donde Cust-Amazon Mx acordó el reintegro de $35,000.00 USD ante una deducción análoga por 'REBATE-ANUAL-CONVENIDO', amparada en la cláusula contractual CLAUSE-3.1."
         ]
       }
     ],
     "sustained_objections": [
-      "Deducción de faltante físico por $85,000.00 USD declarada PROCEDENTE."
+      "Deducción de faltante físico por $85,000.00 USD amparada en DEL-CASE_035-2BA8 declarada PROCEDENTE."
     ],
     "dismissed_objections": [
-      "Retención unilateral de $35,000.00 USD declarada IMPROCEDENTE y 100% RECLAMABLE."
+      "Retención unilateral de $35,000.00 USD en PAY-CASE_035-3C9A declarada IMPROCEDENTE y 100% RECLAMABLE."
     ],
-    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente case_035_mega_multimodal_60_skus: Se condena al comprador al reintegro inmediato de $35,000.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $85,000.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%.",
+    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente case_035_mega_multimodal_60_skus (Factura: INV-CASE_035-35C5, Remisión: DEL-CASE_035-2BA8, Liquidación: PAY-CASE_035-3C9A): Se condena al comprador al reintegro inmediato de $35,000.00 USD por carecer de título legal habilitante en CTR-AMAZON_MX-2026, y se valida la emisión de Nota de Crédito por $85,000.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%. Reloj SLA: 40 días restantes (LOW_HEALTHY).",
     "probative_force_supplier_pct": 87.5,
     "final_legal_doctrine": "DOCTRINA COMERCIAL VINCULANTE: Ninguna guía operativa o portal B2B puede modificar o imponer sanciones financieras no contenidas en el contrato marco bilateral suscrito. Las remisiones firmadas con sello de muelle hacen fe pública comercial plena e inmutable entre las partes."
   },
@@ -272,6 +276,14 @@
       "Jerarquía de Prelación: El Contrato Marco prohíbe deducciones unilaterales sin acuerdo mutuo. Cualquier guía o manual operativo del comprador queda subordinado perentoriamente (Art. 88 CCom)."
     ],
     "verified_claimable_amount": "35000.00",
-    "verified_justified_amount": "85000.00"
-  }
+    "verified_justified_amount": "85000.00",
+    "contractual_cap_enforced": false,
+    "contractual_cap_excess_claimed": "0.00",
+    "contractual_cap_details": []
+  },
+  "resolution_notes": [],
+  "deduction_type": null,
+  "adversarial_critique": null,
+  "mcts_negotiation_plan": null,
+  "cross_border_assessment": null
 }

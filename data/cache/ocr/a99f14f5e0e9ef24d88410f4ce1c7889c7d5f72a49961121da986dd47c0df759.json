@@ -1,0 +1,6 @@
+{
+  "sha256": "a99f14f5e0e9ef24d88410f4ce1c7889c7d5f72a49961121da986dd47c0df759",
+  "text": "TELCO_ENTERPRISE_NETWORKORDEN DE COMPRA / PURCHASE ORDER: PO-TELCO-2026-8810\nComprador / Retailer: TELCO_ENTERPRISE_NETWORK PO ID: PO-TELCO-2026-8810\nProveedor Autorizado: CISCO_SYSTEMS_GLOBAL Fecha de Orden: 2026-02-20\nCondicion de Pago: Net 30 / Pactado Moneda: USD\nItem ID Descripcion Aprobada Cant. Pedida Precio Pactado Total Pactado\nSKU-ROUTER-CORECarrier-Grade Core Router 400G Module 10 $4,500.00 $45,000.00\nSKU-FIREWALL-NG Next-Gen Enterprise Security Appliance 100G 5 $5,500.00 $27,500.00\nSKU-FIBER-TRANS 100GbE QSFP28 Single-Mode Optical Transceiver 50 $400.00 $20,000.00\nSKU-SFP-MODULE Multi-Mode Fiber Gigabit SFP+ Transceiver Pack 40 $300.00 $12,000.00\nSKU-POWER-RACK Redundant High-Efficiency Server Rack Power Supply 20 $400.00 $8,000.00\nSKU-CABLING-CAT6 Industrial Shielded Cat6A High-Density Patch Bundle 50 $100.00 $5,000.00\nTOTAL PO: $117,500.00\nAceptacion vinculante sujeta a las condiciones generales de suministro y SLA.\nDocumento Comercial Oficial B2B - Folio PO-TELCO-2026-8810 | Página 1",
+  "structured": null,
+  "metadata": {}
+}

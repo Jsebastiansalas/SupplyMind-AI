@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-82450
+# vendor_id: DATACO-AUSTIN
+# customer_id: BUYER-DC-ORD-82450
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 14999.70
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-403,Dell OptiPlex 7020 Desktop Computer (DataCo DC-403),30,499.99,14999.70

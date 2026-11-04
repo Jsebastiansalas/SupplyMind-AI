@@ -1,6 +1,6 @@
 # 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
 **Ref: Expediente de Cartera case_035_mega_multimodal_60_skus / Factura INV-CASE_035-35C5**  
-**Fecha:** 28 de October de 2026  
+**Fecha:** 04 de November de 2026  
 **De:** Departamento de Cartera y Asuntos Comerciales — VEN-001  
 **Para:** Gerencia de Cuentas por Pagar y Conciliación — CUST-AMAZON_MX  
 
@@ -23,12 +23,12 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_035_mega_multimodal_60_skus — 2026-10-29):**
+**Precedente 1 (Expediente case_035_mega_multimodal_60_skus — 2026-11-04):**
 - **Criterio Acreditado:** En el caso case_035_mega_multimodal_60_skus, se acreditó la improcedencia de la deducción 'REBATE-ANUAL-CONVENIDO' conforme a CLAUSE-3.1, logrando la restitución de $35,000.00 USD.
 - **Resultado Previo:** Restitución de **$35,000.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CLAUSE-3.1.
 
-**Precedente 2 (Expediente case_005_amazon_shortage — 2026-10-29):**
+**Precedente 2 (Expediente case_005_amazon_shortage — 2026-11-04):**
 - **Criterio Acreditado:** En el caso case_005_amazon_shortage, se acreditó la improcedencia de la deducción 'DED-SHRT-20' conforme a 4.1, logrando la restitución de $2,500.00 USD.
 - **Resultado Previo:** Restitución de **$2,500.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** 4.1.

@@ -1,9 +1,10 @@
-REMITTANCE ADVICE — GREAT LAKES ATHLETIC FOOTWEAR
-payment_id: PAY-DC-75890
-invoice_reference: INV-DC-75890
-payment_date: 2026-02-20
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-75890
+invoice_reference: INV-DC-ORD-75890
+payment_date: 2026-02-15
 currency: USD
 amount_paid: 9549.00
 
-DEDUCTION | code=PRICE_DIFF | amount=1000.00 | reason=Ajuste a precio pactado en OC PO-DC-75890 ($99.99 vs $109.99 facturado en 100 uds) | ref=PO-DC-75890
-DEDUCTION | code=SLOTTING_FEE_UNAPPROVED | amount=450.00 | reason=Cargo unilateral por exhibicion en anaquel no autorizado en contrato | ref=SLOT-2026
+DEDUCTIONS APPLIED:
+DEDUCTION | code=PRICE_DIFF | amount=1000.00 | reason=Ajuste a precio pactado en OC ($99.99 vs $109.99 en 100 uds) | ref=PO-DC-ORD-75890
+DEDUCTION | code=SLOTTING_FEE_UNAPPROVED | amount=450.00 | reason=Cargo unilateral por exhibicion en anaquel no pactado | ref=SLOT-FEE

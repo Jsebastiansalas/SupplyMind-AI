@@ -1,0 +1,18 @@
+{
+  "case_id": "dataco_real_019_charlotte_taylormade_drivers",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Carolina Pro Golf Shop (DataCo Charlotte Hub)",
+  "industry": "Golf Clubs",
+  "hub": "Charlotte, NC",
+  "file_formats": [
+    ".xlsx",
+    ".csv",
+    ".txt",
+    ".json"
+  ],
+  "billed_amount": "12749.70",
+  "received_amount": "11199.70",
+  "difference": "-1550.00",
+  "expected_justified_amount": "750.00",
+  "expected_claimable_amount": "800.00"
+}

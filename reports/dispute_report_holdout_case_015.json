@@ -1,0 +1,241 @@
+{
+  "case_id": "holdout_case_015",
+  "currency": "USD",
+  "billed_amount": "35000.0",
+  "received_amount": "31500.0",
+  "difference": "-3500.0",
+  "root_cause": "Faltante físico en entrega valorado en $3,500.00 USD, constatado en remisión de entrega firmada con sello de recepción en bodega.",
+  "evidence": [
+    "Deducción aplicada en comprobante PAY-HOLDOUT_CASE_015: código DICTAMEN_CALIDAD_JUSTIFICAD, motivo 'Muestreo técnico con 10% de impurezas documentado por laboratorio acreditado', monto $3,500.00",
+    "[Factura INV-HOLDOUT_CASE_015 §Total $35,000.00 USD]",
+    "[Comprobante PAY-HOLDOUT_CASE_015 §Liquidación $31,500.00 USD]"
+  ],
+  "justified_amount": "3500.00",
+  "claimable_amount": "0.00",
+  "confidence": 0.88,
+  "recommended_action": "Aceptar deducción de $3,500.00 USD en cuentas por cobrar y emitir Nota de Crédito comercial por dicho valor a favor del cliente para conciliar y cerrar la cuenta.",
+  "concessions": [],
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "holdout_case_015",
+    "health_score": 100.0,
+    "status": "PRISTINE",
+    "is_healthy": true,
+    "repaired_issues": [],
+    "imputed_documents": [],
+    "documents_present": [
+      "invoice",
+      "purchase_order",
+      "delivery",
+      "payment",
+      "contract"
+    ],
+    "documents_missing": [],
+    "schema_warnings": [],
+    "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
+    "quarantine_docket": null,
+    "generated_at": "2026-11-04T05:07:21.115207+00:00"
+  },
+  "financial_proof": {
+    "case_id": "holdout_case_015",
+    "proof_hash": "SM-PROOF-SHA256-87301C3545A6A4A2",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$3,500.00 USD (Validado)",
+      "$3,500.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-11-04T05:07:21.122938+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "holdout_case_015",
+    "total_claims_audited": 3,
+    "backed_claims_count": 2,
+    "unbacked_claims_count": 1,
+    "total_backed_amount": "66500.00",
+    "total_unbacked_amount": "3500.00",
+    "backing_ratio_pct": 95.0,
+    "evidence_pointers": [
+      {
+        "pointer_id": "PTR-INV-INV-HOLDOUT_CASE_015-TOTAL",
+        "doc_type": "INVOICE",
+        "doc_id": "INV-HOLDOUT_CASE_015",
+        "field_ref": "total_amount",
+        "item_sku": null,
+        "amount": "35000.0",
+        "citation_tag": "[Factura INV-HOLDOUT_CASE_015 §Total $35,000.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Factura comercial fiscalmente válida por $35,000.00 USD."
+      },
+      {
+        "pointer_id": "PTR-PAY-PAY-HOLDOUT_CASE_015-AMOUNT",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-HOLDOUT_CASE_015",
+        "field_ref": "amount_paid",
+        "item_sku": null,
+        "amount": "31500.0",
+        "citation_tag": "[Comprobante PAY-HOLDOUT_CASE_015 §Liquidación $31,500.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $31,500.00."
+      },
+      {
+        "pointer_id": "PTR-DED-DICTAMEN_CALIDAD_JUSTIFICAD-1-UNBACKED",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-HOLDOUT_CASE_015",
+        "field_ref": "deduction_DICTAMEN_CALIDAD_JUSTIFICAD",
+        "item_sku": null,
+        "amount": "3500.0",
+        "citation_tag": "[Comprobante PAY-HOLDOUT_CASE_015 §Deducción Unilateral DICTAMEN_CALIDAD_JUSTIFICAD | $3,500.00 SIN CLÁUSULA EN CTR-HOLDOUT_CASE_015]",
+        "is_backed_by_physical_proof": false,
+        "status": "CAUTELAR_NO_ACREDITADA",
+        "detail": "El retailer retuvo $3,500.00 bajo el código 'DICTAMEN_CALIDAD_JUSTIFICAD', pero el contrato CTR-HOLDOUT_CASE_015 no contiene cláusula habilitante."
+      }
+    ],
+    "cautelar_items": [
+      "Deducción DICTAMEN_CALIDAD_JUSTIFICAD ($3,500.00): Sin cláusula contractual que autorice retención."
+    ],
+    "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
+    "confidence_penalty": 0.1,
+    "generated_at": "2026-11-04T05:07:21Z"
+  },
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "holdout_case_015",
+    "currency": "USD",
+    "billed_amount": "35000.0",
+    "received_amount": "31500.0",
+    "difference": "-3500.0",
+    "justified_amount": "3500.00",
+    "claimable_amount": "0.00",
+    "health_status": "PRISTINE",
+    "health_score": 100.0,
+    "zkp_proof_hash": "SM-PROOF-SHA256-87301C3545A6A4A2",
+    "zkp_status": "MATHEMATICALLY_PROVEN",
+    "is_quarantined": false,
+    "evidence_backing_ratio": 95.0,
+    "anchored_at": "2026-11-04T05:07:21.144675+00:00"
+  },
+  "watchdog_metrics": null,
+  "adversarial_verdict": {
+    "case_id": "holdout_case_015",
+    "courtroom_session_id": "CRT-91B2AF61",
+    "disputed_amount": "3500.0",
+    "justified_amount": "3500.00",
+    "claimable_amount": "0.00",
+    "prosecutor_arguments": [
+      {
+        "role": "PROSECUTOR",
+        "speaker_name": "Lic. Gustavo Méndez (Fiscal Forense Retail B2B)",
+        "topic": "Faltante Físico en Muelle",
+        "argument_text": "El comprador reportó válidamente un faltante de mercancía valorado en $3,500.00 USD en la remisión REM-HOLDOUT_CASE_015 (CEDIS Central Muelle 4). Las unidades recibidas en patio fueron inferiores a las amparadas en factura INV-HOLDOUT_CASE_015.",
+        "legal_or_contractual_ground": "Cláusula CL-15",
+        "strength_score": 0.95,
+        "evidence_referenced": [
+          "REM-HOLDOUT_CASE_015",
+          "INV-HOLDOUT_CASE_015"
+        ]
+      }
+    ],
+    "advocate_counterarguments": [
+      {
+        "role": "DEFENDER",
+        "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
+        "topic": "Allanamiento de Faltante Acreditado",
+        "argument_text": "Verificada la remisión REM-HOLDOUT_CASE_015 con sello y firma física de recepción en CEDIS Central Muelle 4 con discrepancia asentada, reconocemos la exactitud del faltante de $3,500.00 USD y allanamos la deducción mediante emisión de Nota de Crédito comercial conforme a la ley.",
+        "legal_or_contractual_ground": "Art. 1043 Código de Comercio (Reconocimiento Expreso)",
+        "strength_score": 0.98,
+        "evidence_referenced": [
+          "Remisión REM-HOLDOUT_CASE_015 con salvedad en muelle",
+          "INV-HOLDOUT_CASE_015"
+        ]
+      }
+    ],
+    "sustained_objections": [
+      "Deducción de faltante físico por $3,500.00 USD amparada en REM-HOLDOUT_CASE_015 declarada PROCEDENTE."
+    ],
+    "dismissed_objections": [],
+    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente holdout_case_015 (Factura: INV-HOLDOUT_CASE_015, Remisión: REM-HOLDOUT_CASE_015, Liquidación: PAY-HOLDOUT_CASE_015): Se condena al comprador al reintegro inmediato de $0.00 USD por carecer de título legal habilitante en CTR-HOLDOUT_CASE_015, y se valida la emisión de Nota de Crédito por $3,500.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 95.0%. Reloj SLA: 7 días restantes (HIGH_IMMINENT).",
+    "probative_force_supplier_pct": 95.0,
+    "final_legal_doctrine": "DOCTRINA COMERCIAL VINCULANTE: Ninguna guía operativa o portal B2B puede modificar o imponer sanciones financieras no contenidas en el contrato marco bilateral suscrito. Las remisiones firmadas con sello de muelle hacen fe pública comercial plena e inmutable entre las partes."
+  },
+  "recovery_prediction": {
+    "case_id": "holdout_case_015",
+    "recovery_probability_pct": 95.0,
+    "confidence_grade": "ALTA_CERTEZA",
+    "recommended_track": "FAST_TRACK_B2B_PORTAL",
+    "target_claimable_amount": "0.00",
+    "expected_net_recovery_usd": "0.00",
+    "estimated_days_to_cash": 10,
+    "positive_drivers": [
+      "Remisión de entrega debidamente firmada en muelle receptor (+20%)",
+      "Contrato marco comercial vigente con cláusulas de prevalencia (+15%)",
+      "Dictamen judicial favorable con fuerza probatoria del 95.0% (+10%)"
+    ],
+    "risk_drivers": [],
+    "scenarios": [
+      {
+        "scenario_name": "Ruta Rápida — Cobro Íntegro en Portal B2B",
+        "description": "Reclamación directa del 100% del saldo insoluto con base documental plena.",
+        "projected_recovery_amount": "0.00",
+        "concession_granted_amount": "0.00",
+        "recovery_rate_pct": 100.0,
+        "estimated_days_to_cash": 10,
+        "legal_risk_level": "BAJO",
+        "recommended": true
+      },
+      {
+        "scenario_name": "Acuerdo Estructurado — Concesión Comercial del 15%",
+        "description": "Oferta de descuento por pronto pago/relación para cierre garantizado en menos de 7 días.",
+        "projected_recovery_amount": "0.00",
+        "concession_granted_amount": "0.00",
+        "recovery_rate_pct": 85.0,
+        "estimated_days_to_cash": 5,
+        "legal_risk_level": "BAJO",
+        "recommended": false
+      },
+      {
+        "scenario_name": "Escalamiento Legal — Póliza Contable NIF C-3",
+        "description": "Exigencia formal y cobro coactivo con causación de intereses moratorios comerciales.",
+        "projected_recovery_amount": "0.00",
+        "concession_granted_amount": "0.00",
+        "recovery_rate_pct": 100.0,
+        "estimated_days_to_cash": 45,
+        "legal_risk_level": "MEDIO",
+        "recommended": false
+      }
+    ],
+    "executive_summary": "El expediente presenta una probabilidad de recuperación del 95.0% (ALTA_CERTEZA). Se proyecta recuperar un valor neto ponderado de $0.00 USD dentro de un plazo estimado de 10 días naturales vía 'FAST_TRACK_B2B_PORTAL'."
+  },
+  "sanity_gate_audit": {
+    "is_bulletproof": true,
+    "arithmetic_invariant_passed": true,
+    "precedence_hierarchy_passed": true,
+    "notice_window_passed": true,
+    "notice_window_days_allowed": null,
+    "notice_window_days_elapsed": null,
+    "double_penalty_detected": false,
+    "double_penalty_details": [],
+    "irrefutability_grade": "B1_ALLANAMIENTO",
+    "corrective_actions_applied": [],
+    "audit_notes": [
+      "Invarianza aritmética perfecta verificada al centavo ($0.00 MAE)."
+    ],
+    "verified_claimable_amount": "0.00",
+    "verified_justified_amount": "3500.00",
+    "contractual_cap_enforced": false,
+    "contractual_cap_excess_claimed": "0.00",
+    "contractual_cap_details": []
+  },
+  "resolution_notes": [],
+  "deduction_type": null,
+  "adversarial_critique": null,
+  "mcts_negotiation_plan": null,
+  "cross_border_assessment": null
+}

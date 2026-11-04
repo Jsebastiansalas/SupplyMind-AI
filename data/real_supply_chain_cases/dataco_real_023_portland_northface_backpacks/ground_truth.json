@@ -1,0 +1,18 @@
+{
+  "case_id": "dataco_real_023_portland_northface_backpacks",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Cascadia Adventure Supplies (DataCo Portland Hub)",
+  "industry": "Outdoor Bags",
+  "hub": "Portland, OR",
+  "file_formats": [
+    ".json",
+    ".csv",
+    ".xlsx",
+    ".txt"
+  ],
+  "billed_amount": "10890.00",
+  "received_amount": "10296.00",
+  "difference": "-594.00",
+  "expected_justified_amount": "0.00",
+  "expected_claimable_amount": "594.00"
+}

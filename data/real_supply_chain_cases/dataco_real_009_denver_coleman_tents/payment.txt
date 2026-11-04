@@ -1,0 +1,10 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-87120
+invoice_reference: INV-DC-ORD-87120
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 7799.40
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=PRICE_DIFF | amount=900.00 | reason=Ajuste a precio pactado en OC ($139.99 vs $154.99 en 60 uds) | ref=PO-DC-ORD-87120
+DEDUCTION | code=PALLET_DISPOSAL_FEE | amount=600.00 | reason=Cobro unilateral por desecho de tarimas de madera | ref=SLOT-FEE

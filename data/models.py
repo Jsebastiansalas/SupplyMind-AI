@@ -556,6 +556,9 @@ class NegotiationDuelSession(BaseModel):
     started_at: str = ""
     completed_at: Optional[str] = None
     summary_verdict: str = ""
+    rhi_score: Optional[float] = None
+    modulation_mode: Optional[str] = None
+    churn_risk_level: Optional[str] = None
 
 
 # ==========================================
@@ -676,9 +679,208 @@ class PortalDispatchReceipt(BaseModel):
     submitted_at: str = ""
 
 
+# ==========================================
+# 19. Watchdog de Prescripción Legal y Caducidad SLA (Fase 7 - Sprint 7.1)
+# ==========================================
+class DisputeSlaStatus(BaseModel):
+    """Estado del reloj de prescripción y ventana contractual SLA por expediente."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    case_id: str
+    retailer_name: str
+    invoice_id: str
+    invoice_date: str
+    deduction_date: str
+    contractual_sla_days: int = 60         # 30, 60, 90, 120 días según Retailer / CCom
+    elapsed_days: int = 0
+    days_to_expiration: int = 60           # DTP (Days-to-Prescription)
+    urgency_level: str = "LOW_HEALTHY"     # "CRITICAL_EXPIRED", "HIGH_IMMINENT", "MEDIUM_ATTENTION", "LOW_HEALTHY"
+    is_prescription_interrupted: bool = False
+    interruption_folio: Optional[str] = None
+    claimable_at_risk: Decimal = Field(default=Decimal("0.00"), ge=0)
+    currency: str = "USD"
+    legal_basis: str = "Art. 1041 del Código de Comercio y Cláusula SLA de Portal B2B"
+    recommended_immediate_action: str = ""
 
 
+class PrescriptionInterruptionNotice(BaseModel):
+    """Aviso formal de interrupción de prescripción mercantil (Art. 1041 CCom) con sello forense."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    notice_id: str                         # "NOTICE-1041-CASE_001-XXXX"
+    case_id: str
+    retailer_name: str
+    invoice_id: str
+    claimable_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    currency: str = "USD"
+    legal_basis: str = "Artículo 1041 del Código de Comercio (Interrupción de Prescripción por Interpelación)"
+    days_remaining_at_issuance: int = 0
+    frozen_at_timestamp: str = ""
+    forensic_hash_sha256: str = ""
+    notice_markdown: str = ""
+    file_path: str = ""
 
 
+# ==========================================
+# 20. Conciliación de Remesas Bancarias EDI 820 & Cierre Order-to-Cash (Fase 7 - Sprint 7.2)
+# ==========================================
+class RemittanceLineItem(BaseModel):
+    """Partida individual liquidada dentro de un aviso de remesa bancaria EDI 820 / CAMT.053."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
 
+    invoice_reference: str
+    gross_billed_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    retailer_deduction_applied: Decimal = Field(default=Decimal("0.00"), ge=0)
+    credit_memo_applied: Decimal = Field(default=Decimal("0.00"), ge=0)
+    settlement_recovery_paid: Decimal = Field(default=Decimal("0.00"), ge=0)
+    net_deposit_line: Decimal = Field(default=Decimal("0.00"), ge=0)
+    adjustment_reason_code: str = "CS"     # "CS" (Shortage), "PR" (Pricing), "OTIF", "SETTLEMENT"
+    description: str = ""
+
+
+class Edi820RemittanceAdvice(BaseModel):
+    """Estructura normalizada de un estado de remesa bancaria (EDI 820 / CAMT.053 / CSV)."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    remittance_id: str                     # "REM-820-XXXX"
+    case_id: str
+    payer_name: str
+    payee_name: str = "Proveedor Corporativo SupplyMind S.A. de C.V."
+    bank_reference_trn: str                # "SPEI-2026-XXXX" o "ACH-TRN-XXXX"
+    payment_method: str = "ACH_SPEI_WIRE"
+    settlement_date: str = ""
+    currency: str = "USD"
+    total_gross_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    total_deductions_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    total_credit_memos: Decimal = Field(default=Decimal("0.00"), ge=0)
+    total_settlement_recovered: Decimal = Field(default=Decimal("0.00"), ge=0)
+    net_bank_deposit: Decimal = Field(default=Decimal("0.00"), ge=0)
+    line_items: List[RemittanceLineItem] = Field(default_factory=list)
+    raw_format: str = "EDI_820"            # "EDI_820", "CAMT_053", "BANK_CSV"
+    raw_payload_preview: str = ""
+
+
+class ThreeWaySettlementMatch(BaseModel):
+    """Resultado del empatador de liquidación 3-Way Settlement Matcher ($0.00 MAE)."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    match_id: str                          # "3WAY-CASE_001-XXXX"
+    case_id: str
+    retailer_name: str
+    invoice_id: str
+    original_invoice_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    initial_payment_received: Decimal = Field(default=Decimal("0.00"), ge=0)
+    total_disputed_deduction: Decimal = Field(default=Decimal("0.00"), ge=0)
+    justified_credit_memo: Decimal = Field(default=Decimal("0.00"), ge=0)
+    agreed_settlement_recovery: Decimal = Field(default=Decimal("0.00"), ge=0)
+    expected_net_total_cash: Decimal = Field(default=Decimal("0.00"), ge=0)
+    actual_bank_remittance_cash: Decimal = Field(default=Decimal("0.00"), ge=0)
+    residual_balance_variance: Decimal = Field(default=Decimal("0.00"))
+    mae_precision: Decimal = Field(default=Decimal("0.00"))
+    is_perfect_match: bool = True
+    match_status: str = "CLOSED_ZERO_BALANCE"  # "CLOSED_ZERO_BALANCE", "VARIANCE_DETECTED"
+    formula_verification_str: str = ""
+
+
+class PortfolioClearanceCertificate(BaseModel):
+    """Certificado oficial de Cierre y Liquidación de Cartera Order-to-Cash ($0.00 saldo insoluto)."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    certificate_id: str                    # "CERT-O2C-CASE_001-XXXX"
+    case_id: str
+    retailer_name: str
+    invoice_id: str
+    bank_reference_trn: str
+    original_billed_amount: Decimal = Field(default=Decimal("0.00"), ge=0)
+    credit_memo_absorbed: Decimal = Field(default=Decimal("0.00"), ge=0)
+    cash_recovered_in_bank: Decimal = Field(default=Decimal("0.00"), ge=0)
+    total_cash_settled: Decimal = Field(default=Decimal("0.00"), ge=0)
+    final_open_balance: Decimal = Field(default=Decimal("0.00"))
+    currency: str = "USD"
+    status: str = "LIQUIDATED_CLOSED"
+    zkp_clearance_hash_sha256: str = ""
+    issued_at: str = ""
+    certificate_markdown: str = ""
+    file_path: str = ""
+
+
+# ==========================================
+# 21. Guardrail de Salud Relacional & Riesgo de Deserción LTV / RHI (Fase 7 - Sprint 7.3)
+# ==========================================
+class RelationalHealthIndexReport(BaseModel):
+    """Índice de Salud Relacional (RHI 0-100) y modulación de agresividad comercial."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    case_id: str
+    retailer_name: str
+    account_tier: str                      # "TIER_1_STRATEGIC", "TIER_2_REGULAR", "TIER_3_HIGH_RISK"
+    rhi_score: float = Field(default=75.0, ge=0.0, le=100.0)
+    ltv_annual_usd: Decimal = Field(default=Decimal("0.00"), ge=0)
+    ltv_score_component: float = 0.0       # Max 30 pts
+    share_of_wallet_pct: float = 0.0       # % de facturación anual del proveedor
+    wallet_score_component: float = 0.0    # Max 25 pts
+    gross_margin_pct: float = 0.0          # % de margen bruto comercial
+    margin_score_component: float = 0.0    # Max 25 pts
+    reciprocity_score_component: float = 0.0  # Max 20 pts
+    churn_risk_level: str = "MODERATE_MANAGED" # "LOW_STRATEGIC", "MODERATE_MANAGED", "HIGH_EXPENDABLE"
+    modulation_mode: str = "FIRM_COMMERCIAL"   # "DIPLOMATIC_PRESERVATION", "FIRM_COMMERCIAL", "ASSERTIVE_LITIGIOUS"
+    recommended_max_concession_pct: float = 35.0
+    tone_directive: str = ""
+    commercial_tradeoff_proposal: str = ""
+    rationale: str = ""
+
+
+# ==========================================
+# 22. Inteligencia Preventiva de Causa Raíz (RCA) & Tickets CAPA (Fase 7 - Sprint 7.4)
+# ==========================================
+class DepartmentRootCauseAttribution(BaseModel):
+    """Atribución de fugas financieras y defectos operativos por departamento interno."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    department_code: str                   # "WAREHOUSE_CEDIS", "TRANSPORT_LOGISTICS", "SYSTEMS_EDI", "SALES_COMMERCIAL"
+    department_name: str
+    responsible_role: str
+    incident_count: int = 0
+    affected_cases: List[str] = Field(default_factory=list)
+    total_financial_leakage_usd: Decimal = Field(default=Decimal("0.00"), ge=0)
+    leakage_share_pct: float = 0.0
+    primary_failure_modes: List[str] = Field(default_factory=list)
+    corrective_protocol: str = ""
+
+
+class LongitudinalRcaReport(BaseModel):
+    """Reporte longitudinal de Análisis de Causa Raíz (RCA) a través de la flota de casos."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    report_id: str
+    total_cases_analyzed: int = 0
+    total_fleet_disputed_usd: Decimal = Field(default=Decimal("0.00"), ge=0)
+    total_preventable_leakage_usd: Decimal = Field(default=Decimal("0.00"), ge=0)
+    top_offending_department: str = ""
+    department_attributions: List[DepartmentRootCauseAttribution] = Field(default_factory=list)
+    case_level_map: Dict[str, str] = Field(default_factory=dict)
+    generated_at: str = ""
+
+
+class CapaPreventiveTicket(BaseModel):
+    """Ticket de Acción Correctiva y Preventiva (CAPA) dirigido a responsables internos."""
+    model_config = ConfigDict(extra="allow", populate_by_name=True)
+
+    ticket_id: str                         # "CAPA-2026-XXXX"
+    case_id: str
+    retailer_name: str
+    department_code: str                   # "WAREHOUSE_CEDIS", "TRANSPORT_LOGISTICS", "SYSTEMS_EDI", "SALES_COMMERCIAL"
+    department_name: str
+    assigned_owner_role: str               # "Jefe de Almacén - Turno B", etc.
+    severity: str = "HIGH"                 # "CRITICAL", "HIGH", "MEDIUM"
+    financial_impact_usd: Decimal = Field(default=Decimal("0.00"), ge=0)
+    root_cause_summary: str = ""
+    detected_anomaly_detail: str = ""
+    corrective_actions: List[str] = Field(default_factory=list)
+    pre_dispatch_checklist: List[str] = Field(default_factory=list)
+    sla_resolution_hours: int = 48
+    status: str = "OPEN_ASSIGNED"
+    created_at: str = ""
+    markdown_content: str = ""
+    file_path: str = ""
 

@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-78112
+po_reference: PO-DC-ORD-78112
+delivery_date: 2026-01-30
+received_by: Supervisor Miami Dock
+warehouse_location: Miami, FL Distribution Hub
+signed: true
+discrepancy_reported: true
+
+ITEM | sku=DC-365 | delivered=200 | received=195 | missing=5 | damaged=3 | notes=5 units missing and 3 units crushed on arrival

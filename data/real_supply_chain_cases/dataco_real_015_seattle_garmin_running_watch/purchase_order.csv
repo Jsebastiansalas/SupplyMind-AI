@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-100380
+# vendor_id: DATACO-SEATTLE
+# customer_id: BUYER-DC-ORD-100380
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 12499.50
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-788,Garmin Forerunner 235 GPS Running Watch (DataCo DC-788),50,249.99,12499.50

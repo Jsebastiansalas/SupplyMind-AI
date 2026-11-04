@@ -427,6 +427,88 @@ export const apiClient = {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return res.json();
   },
+
+  // --- FASE 7: SLA Watchdog, Conciliación EDI 820, Salud Relacional RHI & CAPA ---
+  async getSlaFleetMonitor(limit = 15) {
+    const res = await fetch(`${BASE_URL}/remittance/sla-fleet?limit=${limit}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async getCaseSlaStatus(caseId, simulatedElapsedDays = null) {
+    const url = simulatedElapsedDays !== null
+      ? `${BASE_URL}/remittance/sla/${caseId}?simulated_elapsed_days=${simulatedElapsedDays}`
+      : `${BASE_URL}/remittance/sla/${caseId}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async interruptCasePrescription(caseId, payload = {}) {
+    const res = await fetch(`${BASE_URL}/remittance/sla/${caseId}/interrupt`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: 'Error al emitir interrupción Art. 1041 CCom' }));
+      throw new Error(err.detail || `HTTP ${res.status}`);
+    }
+    return res.json();
+  },
+
+  async getCaseEdi820(caseId) {
+    const res = await fetch(`${BASE_URL}/remittance/edi820/${caseId}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async reconcileThreeWaySettlement(caseId, payload = {}) {
+    const res = await fetch(`${BASE_URL}/remittance/reconcile/${caseId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: 'Error en conciliación 3-Way EDI 820' }));
+      throw new Error(err.detail || `HTTP ${res.status}`);
+    }
+    return res.json();
+  },
+
+  async getRelationalHealthIndex(caseId, overrideRhiScore = null) {
+    const url = overrideRhiScore !== null
+      ? `${BASE_URL}/remittance/relational-health/${caseId}?override_rhi_score=${overrideRhiScore}`
+      : `${BASE_URL}/remittance/relational-health/${caseId}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async getLongitudinalRcaReport(targetBenchmarkSize = 50) {
+    const res = await fetch(`${BASE_URL}/remittance/rca-fleet?target_benchmark_size=${targetBenchmarkSize}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async getCapaTicket(caseId) {
+    const res = await fetch(`${BASE_URL}/remittance/capa/${caseId}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async generateCapaTicket(caseId, payload = {}) {
+    const res = await fetch(`${BASE_URL}/remittance/capa/${caseId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: 'Error al generar ticket CAPA' }));
+      throw new Error(err.detail || `HTTP ${res.status}`);
+    }
+    return res.json();
+  },
 };
 
 

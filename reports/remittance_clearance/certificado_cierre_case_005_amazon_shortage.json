@@ -1,0 +1,18 @@
+{
+  "certificate_id": "CERT-O2C-CASE_005_A-EFA8A2AE",
+  "case_id": "case_005_amazon_shortage",
+  "retailer_name": "Amazon Fulfillment Services LLC",
+  "invoice_id": "INV-CASE_005_AMA",
+  "bank_reference_trn": "SPEI82020261104E3597B09",
+  "original_billed_amount": "48000.00",
+  "credit_memo_absorbed": "5625.00",
+  "cash_recovered_in_bank": "1875.00",
+  "total_cash_settled": "42375.00",
+  "final_open_balance": "0.00",
+  "currency": "USD",
+  "status": "LIQUIDATED_CLOSED",
+  "zkp_clearance_hash_sha256": "efa8a2ae706b1548f6b7c710196bc3045e4a902ffb35999fe0c71b52cbff542e",
+  "issued_at": "2026-11-04T05:07:26.041947+00:00",
+  "certificate_markdown": "# CERTIFICADO OFICIAL DE CIERRE Y LIQUIDACIÓN DE CARTERA (ORDER-TO-CASH)\n**CONCILIACIÓN BANCARIA 3-WAY (EDI 820 / NIF C-3)**\n\n---\n- **Folio de Certificado:** `CERT-O2C-CASE_005_A-EFA8A2AE`\n- **Expediente Auditado:** `case_005_amazon_shortage`\n- **Cadena Comercial Pagadora:** Amazon Fulfillment Services LLC\n- **Factura Comercial Liquidada:** `INV-CASE_005_AMA`\n- **Referencia Bancaria SPEI / ACH (TRN):** `SPEI82020261104E3597B09`\n- **Fecha de Liquidación:** `2026-11-04`\n- **Estatus de Cartera:** `LIQUIDATED_CLOSED ($0.00 SALDO INSOLUTO)`\n- **Sello Criptográfico ZKP SHA-256:** `efa8a2ae706b1548f6b7c710196bc3045e4a902ffb35999fe0c71b52cbff542e`\n\n---\n\n### I. ECUACIÓN CONTABLE DE LIQUIDACIÓN 3-WAY (`Decimal $0.00 MAE`)\n\n| Concepto Financiero | Importe (USD) | Referencia Documental |\n| :--- | :---: | :--- |\n| **1. Factura Comercial Original (+)** | **$48,000.00** | Factura `INV-CASE_005_AMA` |\n| **2. Deducción Inicial Retailer (-)** | **-$7,500.00** | Retención unilateral previa (`Pago inicial: $40,500.00`) |\n| **3. Monto Recuperado por Convenio (+)** | **+$1,875.00** | Restitución líquida en remesa `REM-820-E3597B09` |\n| **4. Depósito Neto Total en Banco (=)** | **$42,375.00** | Confirmación Tesorería TRN `SPEI82020261104E3597B09` |\n| **5. Nota de Crédito Comercial Aplicada** | **$5,625.00** | CFDI 4.0 Tipo E (Egreso) autorizado |\n| **6. SALDO INSOLUTO EN CARTERA (RESIDUAL)** | **$0.00** | **MAE = `$0.00` (Cero Alucinación Aritmética)** |\n\n---\n\n### II. VERIFICACIÓN MATEMÁTICA DETERMINÍSTICA\n\n> `$48,000.00 (Factura Original) - $7,500.00 (Deducción Retailer) + $1,875.00 (Recuperado Convenio) = $42,375.00 (Depósito Neto Bancario)`\n\nSe certifica para todos los efectos contables, fiscales (NIF C-3 / CFDI 4.0) y de tesorería corporativa que la cuenta por cobrar asociada al expediente `case_005_amazon_shortage` ha quedado **100% conciliada y saldada en efectivo y nota de crédito**, registrando una varianza residual de **$0.00 USD**.\n",
+  "file_path": "C:\\Users\\USUARIO\\Downloads\\platica\\reports\\remittance_clearance\\certificado_cierre_case_005_amazon_shortage.md"
+}

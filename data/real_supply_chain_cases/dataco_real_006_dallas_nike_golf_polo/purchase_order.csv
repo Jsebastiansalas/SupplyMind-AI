@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-80115
+# vendor_id: DATACO-DALLAS
+# customer_id: BUYER-DC-ORD-80115
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 7500.00
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-502,Nike Men's Dri-FIT Victory Golf Polo (DataCo DC-502),150,50.00,7500.00

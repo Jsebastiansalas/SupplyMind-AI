@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-104800
+po_reference: PO-DC-ORD-104800
+delivery_date: 2026-01-30
+received_by: Supervisor Tampa Dock
+warehouse_location: Tampa, FL Distribution Hub
+signed: true
+discrepancy_reported: true
+
+ITEM | sku=DC-1044 | delivered=60 | received=60 | missing=0 | damaged=3 | notes=3 units damaged during carrier transit, signed on POD

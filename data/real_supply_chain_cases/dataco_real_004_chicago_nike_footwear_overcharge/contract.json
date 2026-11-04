@@ -1,22 +1,22 @@
 {
-  "contract_id": "MSA-DC-75890",
-  "vendor_id": "DATACO-CHICAGO-IL",
-  "customer_id": "GREAT-LAKES-FOOTWEAR",
+  "contract_id": "MSA-DC-ORD-75890",
+  "vendor_id": "DATACO-CHICAGO",
+  "customer_id": "BUYER-DC-ORD-75890",
   "valid_from": "2025-01-01",
   "valid_to": "2026-12-31",
   "clauses": [
     {
-      "clause_id": "CL-PRICE-01",
-      "title": "Prevalencia del Precio Pactado en Orden de Compra",
-      "text": "Todo sobreprecio en factura respecto al precio unitario autorizado en la Orden de Compra faculta al comprador a descontar exactamente la diferencia aritmética.",
-      "policy": "PO_PRICE_PREVAILS",
+      "clause_id": "CL-POD-01",
+      "title": "Prevalencia de Remisi\u00f3n Firmada en Muelle",
+      "text": "Las discrepancias f\u00edsicas por faltantes o aver\u00edas registradas en la remisi\u00f3n firmada de muelle son deducibles al precio unitario autorizado.",
+      "policy": "STRICT_POD_REQUIRED",
       "tolerance_percentage": "0.00"
     },
     {
-      "clause_id": "CL-SLOT-02",
-      "title": "Improcedencia de Cargos de Exhibición (Slotting Fees)",
-      "text": "No se admiten retenciones por posicionamiento de anaquel sin convenio comercial específico.",
-      "policy": "NO_SLOTTING_FEES",
+      "clause_id": "CL-UNAUTH-02",
+      "title": "Prohibici\u00f3n de Cargos Administrativos Unilaterales",
+      "text": "Se prohibe aplicar deducciones por mercadeo, portal EDI, fletes o penalidades operativas que no cuenten con adenda bilateral.",
+      "policy": "NO_UNILATERAL_PENALTIES",
       "tolerance_percentage": "0.00"
     }
   ]

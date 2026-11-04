@@ -1,0 +1,18 @@
+{
+  "case_id": "dataco_real_012_phoenix_bushnell_rangefinders",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Desert Sports Dist (DataCo Phoenix Hub)",
+  "industry": "Hunting & Optics",
+  "hub": "Phoenix, AZ",
+  "file_formats": [
+    ".csv",
+    ".xlsx",
+    ".txt",
+    ".json"
+  ],
+  "billed_amount": "10499.65",
+  "received_amount": "9499.66",
+  "difference": "-999.99",
+  "expected_justified_amount": "299.99",
+  "expected_claimable_amount": "700.00"
+}

@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `case_005_amazon_shortage` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-10-30 13:28:59 UTC | **Nivel de Confianza:** 98.0%
+> **Fecha de Emisión:** 2026-11-04 05:07:28 UTC | **Nivel de Confianza:** 98.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO
@@ -63,13 +63,13 @@ Discrepancia mixta en expediente case_005_amazon_shortage: Faltante físico comp
 
 - **Fuerza Probatoria del Proveedor:** 87.5%
 
-- **Dictamen del Magistrado Arbitral:** VISTO el careo de autos en el expediente case_005_amazon_shortage: Se condena al comprador al reintegro inmediato de $2,500.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $5,000.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%.
+- **Dictamen del Magistrado Arbitral:** VISTO el careo de autos en el expediente case_005_amazon_shortage (Factura: INV-PAC-2026-4402, Remisión: BOL-POD-77319, Liquidación: REM-AMZ-99120): Se condena al comprador al reintegro inmediato de $2,500.00 USD por carecer de título legal habilitante en MSA-AMZ-PAC-2026, y se valida la emisión de Nota de Crédito por $5,000.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%. Reloj SLA: 7 días restantes (HIGH_IMMINENT).
 
 **Objeciones del Retailer Desestimadas:**
-> - 🛡️ Retención unilateral de $2,500.00 USD declarada IMPROCEDENTE y 100% RECLAMABLE.
+> - 🛡️ Retención unilateral de $2,500.00 USD en REM-AMZ-99120 declarada IMPROCEDENTE y 100% RECLAMABLE.
 
 **Objeciones Concedidas en Muelle:**
-> - ⚖️ Deducción de faltante físico por $5,000.00 USD declarada PROCEDENTE.
+> - ⚖️ Deducción de faltante físico por $5,000.00 USD amparada en BOL-POD-77319 declarada PROCEDENTE.
 
 ---
 ## 4.2 SANITY GATE DE CUÁDRUPLE AUDITORÍA (SEMANA 4)

@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-75890
+po_reference: PO-DC-ORD-75890
+delivery_date: 2026-01-30
+received_by: Supervisor Chicago Dock
+warehouse_location: Chicago, IL Distribution Hub
+signed: true
+discrepancy_reported: false
+
+ITEM | sku=DC-191 | delivered=100 | received=100 | missing=0 | damaged=0 | notes=100 units received intact with matching barcodes

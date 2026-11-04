@@ -1,0 +1,64 @@
+{
+  "sha256": "231860bf19bcbc3de1c7029fd63b7761e3a461976373e02c8e149626d6f9dd15",
+  "text": "TELCO_DALLAS_SUPER_HUB_TXREMISION DE ENTREGA / RECEIVING SLIP: ACTA-REC-DALLAS-4410\nFolio Remision: ACTA-REC-DALLAS-4410 PO Referencia: PO-TELCO-2026-8810\nFecha de Recepcion: 2026-03-12 Bodega / Hub: TELCO_DALLAS_SUPER_HUB_TX\nRecibido por: CHIEF_ING_CARLOS_MENDEZ Estado en Muelle: DISCREPANCIA REPORTADA\nItem ID Despachado Recibido Faltante Averiado Notas de Inspeccion de Muelle\nSKU-ROUTER-CORE 10 10 0 0 Recibido completo en bastidor.\nSKU-FIREWALL-NG 5 5 0 0 Inspeccionado conforme con sello intacto.\nSKU-FIBER-TRANS 50 40 10 0 Faltante fisico en tarima 3. Caja abierta.\nSKU-SFP-MODULE 40 35 0 5 Caja aplastada por montacargas.\nSKU-POWER-RACK 20 20 0 0 Recibido en orden.\nSKU-CABLING-CAT6 50 50 0 0 Recibido en orden.\nConstancia de Recepcion Fisica: Sello de Bodega y Seguridad:\n[FIRMADO DIGITALMENTE POR: CHIEF_ING_CARLOS_MENDEZ][SELLO MUELLE: TELCO_DALLAS_SUPER_HUB_TX - VERIFICADO]\nDocumento Comercial Oficial B2B - Folio ACTA-REC-DALLAS-4410 | Página 1",
+  "structured": {
+    "delivery_id": "ACTA-REC-DALLAS-4410",
+    "po_reference": "PO-TELCO-2026-8810",
+    "delivery_date": "2026-03-12",
+    "received_by": "CHIEF_ING_CARLOS_MENDEZ",
+    "warehouse_location": "TELCO_DALLAS_SUPER_HUB_TX",
+    "signed": true,
+    "discrepancy_reported": true,
+    "items": [
+      {
+        "item_id": "SKU-ROUTER-CORE",
+        "quantity_delivered": 10,
+        "quantity_received": 10,
+        "missing_quantity": 0,
+        "damaged_quantity": 0,
+        "notes": "Recibido completo en bastidor."
+      },
+      {
+        "item_id": "SKU-FIREWALL-NG",
+        "quantity_delivered": 5,
+        "quantity_received": 5,
+        "missing_quantity": 0,
+        "damaged_quantity": 0,
+        "notes": "Inspeccionado conforme con sello intacto."
+      },
+      {
+        "item_id": "SKU-FIBER-TRANS",
+        "quantity_delivered": 50,
+        "quantity_received": 40,
+        "missing_quantity": 10,
+        "damaged_quantity": 0,
+        "notes": "Faltante fisico en tarima 3. Caja abierta."
+      },
+      {
+        "item_id": "SKU-SFP-MODULE",
+        "quantity_delivered": 40,
+        "quantity_received": 35,
+        "missing_quantity": 0,
+        "damaged_quantity": 5,
+        "notes": "Caja aplastada por montacargas."
+      },
+      {
+        "item_id": "SKU-POWER-RACK",
+        "quantity_delivered": 20,
+        "quantity_received": 20,
+        "missing_quantity": 0,
+        "damaged_quantity": 0,
+        "notes": "Recibido en orden."
+      },
+      {
+        "item_id": "SKU-CABLING-CAT6",
+        "quantity_delivered": 50,
+        "quantity_received": 50,
+        "missing_quantity": 0,
+        "damaged_quantity": 0,
+        "notes": "Recibido en orden."
+      }
+    ]
+  },
+  "metadata": {}
+}

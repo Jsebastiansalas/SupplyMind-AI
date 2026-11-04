@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-111430
+po_reference: PO-DC-ORD-111430
+delivery_date: 2026-01-30
+received_by: Supervisor Pittsburgh Dock
+warehouse_location: Pittsburgh, PA Distribution Hub
+signed: true
+discrepancy_reported: true
+
+ITEM | sku=DC-1288 | delivered=65 | received=62 | missing=3 | damaged=2 | notes=3 units missing and 2 units crushed on arrival

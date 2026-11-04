@@ -1,0 +1,17 @@
+{
+  "case_id": "dataco_real_016_kansascity_weber_grills",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Heartland BBQ & Patio (DataCo Kansas City Hub)",
+  "industry": "Grills & Cooking",
+  "hub": "Kansas City, MO",
+  "file_formats": [
+    ".xlsx",
+    ".csv",
+    ".txt"
+  ],
+  "billed_amount": "11550.00",
+  "received_amount": "10410.00",
+  "difference": "-1140.00",
+  "expected_justified_amount": "660.00",
+  "expected_claimable_amount": "480.00"
+}

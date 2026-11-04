@@ -1,8 +1,8 @@
 # CONVENIO JUDICIAL-EXTRAJUDICIAL DE TRANSACCIÓN MERCANTIL Y FINIQUITO DEFINITIVO
-**Folio Oficial:** `AGR-CASE_006_WALMART_OTIF_PRICING-C617616D`  
+**Folio Oficial:** `AGR-CASE_006_WALMART_OTIF_PRICING-9910E844`  
 **Expediente Vinculado:** `case_006_walmart_otif_pricing`  
-**Fecha de Suscripción:** 30 de October de 2026 a las 13:27:34 UTC  
-**Sello Criptográfico ZKP SHA-256:** `df0fc6ad14a39a4d77b8e2970d57cb5ba534ca624fa2590863f63a3c32b1296a`  
+**Fecha de Suscripción:** 03 de November de 2026 a las 12:39:44 UTC  
+**Sello Criptográfico ZKP SHA-256:** `bd894824e9a8f514eb87e5e39172ed5620706f3493850e573f85846c77ac15c0`  
 **Suscrito por:** Lic. Javier Treviño (CFO)  
 
 ---
@@ -56,7 +56,7 @@ El presente instrumento se rige e interpreta de conformidad con el marco jurídi
 Las partes renuncian expresamente a cualquier acción civil, mercantil o penal que pudiera derivar de los hechos materia de este acuerdo, quedando prohibida la reapertura del expediente o la aplicación de deducciones retroactivas por estos mismos conceptos.
 
 #### SEXTA. FE ELECTRÓNICA Y FIRMA CRIPTOGRÁFICA
-El presente convenio ha sido sellado criptográficamente mediante algoritmo ZKP SHA-256 (`df0fc6ad14a39a4d77b8e2970d57cb5ba534ca624fa2590863f63a3c32b1296a`), garantizando la inmutabilidad de los montos y compromisos suscritos.
+El presente convenio ha sido sellado criptográficamente mediante algoritmo ZKP SHA-256 (`bd894824e9a8f514eb87e5e39172ed5620706f3493850e573f85846c77ac15c0`), garantizando la inmutabilidad de los montos y compromisos suscritos.
 
 ---
 **POR EL PROVEEDOR:**  

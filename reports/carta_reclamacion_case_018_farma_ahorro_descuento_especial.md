@@ -1,6 +1,6 @@
 # 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
 **Ref: Expediente de Cartera case_018_farma_ahorro_descuento_especial / Factura INV-CASE_018-D05C**  
-**Fecha:** 28 de October de 2026  
+**Fecha:** 04 de November de 2026  
 **De:** Departamento de Cartera y Asuntos Comerciales — VEN-001  
 **Para:** Gerencia de Cuentas por Pagar y Conciliación — CUST-FARMACIAS_AHORRO  
 
@@ -23,7 +23,7 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_018_farma_ahorro_descuento_especial — 2026-10-29):**
+**Precedente 1 (Expediente case_018_farma_ahorro_descuento_especial — 2026-11-04):**
 - **Criterio Acreditado:** En el caso case_018_farma_ahorro_descuento_especial, se acreditó la improcedencia de la deducción 'BONIFICACION-CATALOGO' conforme a CLAUSE-5.5, logrando la restitución de $4,900.00 USD.
 - **Resultado Previo:** Restitución de **$4,900.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CLAUSE-5.5.

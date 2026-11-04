@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-87120
+# vendor_id: DATACO-DENVER
+# customer_id: BUYER-DC-ORD-87120
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 8399.40
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-804,Coleman 8-Person Red Canyon Tent (DataCo DC-804),60,139.99,8399.40

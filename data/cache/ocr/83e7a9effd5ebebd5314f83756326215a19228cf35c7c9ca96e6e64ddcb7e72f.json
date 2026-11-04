@@ -1,0 +1,24 @@
+{
+  "sha256": "83e7a9effd5ebebd5314f83756326215a19228cf35c7c9ca96e6e64ddcb7e72f",
+  "text": "REMISIÓN DE ENTREGA - COMPROBANTE DE RECEPCIÓN EN MUELLE\nFolio Remisión: DEL-ENT-999\nFecha de Recepción: 2026-06-03\nBodega / Hub: BODEGA CENTRAL\nRecibido por: Juan Perez\nPO Referencia: PO-ENT-555\nItems:\nSRV-X9 Servidor Rack X9 10 9 0 1\nDISCREPANCIA REPORTADA EN MUELLE: 1 caja aplastada y destruida en descargue. Se rechaza 1 unidad SRV-X9. Firma: Juan Perez.",
+  "structured": {
+    "delivery_id": "DEL-ENT-999",
+    "po_reference": "r",
+    "delivery_date": "2026-06-03",
+    "received_by": "Juan Perez\nPO Referencia",
+    "warehouse_location": "",
+    "signed": true,
+    "discrepancy_reported": true,
+    "items": [
+      {
+        "item_id": "SRV-X9",
+        "quantity_delivered": 10,
+        "quantity_received": 9,
+        "missing_quantity": 0,
+        "damaged_quantity": 1,
+        "notes": "Anotación registrada en muelle por OCR."
+      }
+    ]
+  },
+  "metadata": {}
+}

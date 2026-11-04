@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-87120
+po_reference: PO-DC-ORD-87120
+delivery_date: 2026-01-30
+received_by: Supervisor Denver Dock
+warehouse_location: Denver, CO Distribution Hub
+signed: true
+discrepancy_reported: false
+
+ITEM | sku=DC-804 | delivered=60 | received=60 | missing=0 | damaged=0 | notes=60 units received intact with matching barcodes

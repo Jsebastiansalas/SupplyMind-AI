@@ -1,0 +1,6 @@
+{
+  "sha256": "51499d3b0a402579719f9f65c406912501c71f07dea9cbf85af171b68713d41a",
+  "text": "CUENTAS POR PAGAR / APCOMPROBANTE DE PAGO / REMITTANCE ADVICE: WIRE-TELCO-2026-99014\nReferencia Pago: WIRE-TELCO-2026-99014 Factura Cancelada: INV-CISCO-CORP-99214\nFecha de Dispersion: 2026-03-26 Moneda: USD\nMonto Efectivo Pagado: $98,000.00\nDeducciones y Retenciones Aplicadas al Pago:\nCodigo Deduccion Motivo Comercial / Operativo Doc. Referencia Monto Deducido\nDED-PRC-VAR Price variance correction to agreed Purchase PO-TELCO-2026-8810 $7,500.00\nDED-SHORTAGE Physical dock shortage 10x SKU-FIBER-TRANS ACTA-REC-DALLAS-4410 $4,000.00\nDED-DAMAGE Damaged goods 5x SKU-SFP-MODULE crushed ACTA-REC-DALLAS-4410 $1,500.00\nDED-UNAUTH-PENALTYArbitrary unannounced freight unloading penal CLAIM-INT-881 $14,000.00\nTOTAL DEDUCCIONES: $27,000.00\nDocumento Comercial Oficial B2B - Folio WIRE-TELCO-2026-99014 | Página 1",
+  "structured": null,
+  "metadata": {}
+}

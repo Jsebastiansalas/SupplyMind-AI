@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `case_014_soriana_rebate_unilateral` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-10-29 01:01:12 UTC | **Nivel de Confianza:** 87.0%
+> **Fecha de Emisión:** 2026-11-04 05:06:15 UTC | **Nivel de Confianza:** 87.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO
@@ -55,10 +55,10 @@ Discrepancia mixta en expediente case_014_soriana_rebate_unilateral: Faltante f�
 
 - **Fuerza Probatoria del Proveedor:** 87.5%
 
-- **Dictamen del Magistrado Arbitral:** VISTO el careo de autos en el expediente case_014_soriana_rebate_unilateral: Se condena al comprador al reintegro inmediato de $9,800.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $0.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%.
+- **Dictamen del Magistrado Arbitral:** VISTO el careo de autos en el expediente case_014_soriana_rebate_unilateral (Factura: INV-CASE_014-1AE8, Remisión: DEL-CASE_014-CEC5, Liquidación: PAY-CASE_014-E6CC): Se condena al comprador al reintegro inmediato de $9,800.00 USD por carecer de título legal habilitante en CTR-SORIANA_MX-2026, y se valida la emisión de Nota de Crédito por $0.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%. Reloj SLA: -3 días restantes (CRITICAL_EXPIRED).
 
 **Objeciones del Retailer Desestimadas:**
-> - 🛡️ Retención unilateral de $9,800.00 USD declarada IMPROCEDENTE y 100% RECLAMABLE.
+> - 🛡️ Retención unilateral de $9,800.00 USD en PAY-CASE_014-E6CC declarada IMPROCEDENTE y 100% RECLAMABLE.
 
 ---
 ## 4.2 SANITY GATE DE CUÁDRUPLE AUDITORÍA (SEMANA 4)

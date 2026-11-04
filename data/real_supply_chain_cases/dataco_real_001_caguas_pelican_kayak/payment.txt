@@ -1,10 +1,10 @@
-REMITTANCE ADVICE / COMPROBANTE DE PAGO BANCARIO
-payment_id: PAY-DC-68914
-invoice_reference: INV-DC-68914
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-68914
+invoice_reference: INV-DC-ORD-68914
 payment_date: 2026-02-15
 currency: USD
-amount_paid: 13897.53
+amount_paid: 8899.53
 
 DEDUCTIONS APPLIED:
-DEDUCTION | code=SHORTAGE | amount=599.97 | reason=Faltante fisico en muelle de 3 uds SKU DC-1360 Pelican Kayak | ref=BOL-DC-68914
-DEDUCTION | code=COOP_PROMO_UNAUTH | amount=500.00 | reason=Cargo unilateral por folleto promocional de verano no pactado en contrato | ref=MEMO-MKT-99
+DEDUCTION | code=SHORTAGE | amount=599.97 | reason=Faltante fisico en muelle de 3 uds SKU DC-1360 | ref=BOL-DC-ORD-68914
+DEDUCTION | code=COOP_PROMO_UNAUTH | amount=500.00 | reason=Cargo unilateral por folleto de verano no pactado en MSA | ref=MEMO-FEE

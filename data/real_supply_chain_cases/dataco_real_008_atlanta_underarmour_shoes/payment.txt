@@ -1,0 +1,9 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-84910
+invoice_reference: INV-DC-ORD-84910
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 8048.85
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=ALLEGED_SHORTAGE_UNILATERAL | amount=349.95 | reason=Retencion unilateral por supuesto faltante de 5 uds no reportado en muelle | ref=INV-DC-ORD-84910

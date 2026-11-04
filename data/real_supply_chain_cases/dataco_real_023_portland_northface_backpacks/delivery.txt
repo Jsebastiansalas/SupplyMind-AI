@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-118060
+po_reference: PO-DC-ORD-118060
+delivery_date: 2026-01-30
+received_by: Supervisor Portland Dock
+warehouse_location: Portland, OR Distribution Hub
+signed: true
+discrepancy_reported: false
+
+ITEM | sku=DC-1475 | delivered=110 | received=110 | missing=0 | damaged=0 | notes=Full shipment of 110 units received and signed clean at dock

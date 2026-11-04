@@ -1,0 +1,11 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-89330
+invoice_reference: INV-DC-ORD-89330
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 10571.62
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=SHORTAGE | amount=383.92 | reason=Faltante fisico en muelle de 8 uds SKU DC-226 | ref=BOL-DC-ORD-89330
+DEDUCTION | code=DAMAGED | amount=191.96 | reason=Averia verificada en muelle de 4 uds SKU DC-226 | ref=BOL-DC-ORD-89330
+DEDUCTION | code=EARLY_PAY_DISCOUNT_UNAGREED | amount=850.00 | reason=Descuento financiero por pronto pago no estipulado | ref=REB-UNAUTH

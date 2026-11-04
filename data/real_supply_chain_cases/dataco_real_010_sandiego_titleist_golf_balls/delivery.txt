@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-89330
+po_reference: PO-DC-ORD-89330
+delivery_date: 2026-01-30
+received_by: Supervisor San Diego Dock
+warehouse_location: San Diego, CA Distribution Hub
+signed: true
+discrepancy_reported: true
+
+ITEM | sku=DC-226 | delivered=250 | received=242 | missing=8 | damaged=4 | notes=8 units missing and 4 units crushed on arrival

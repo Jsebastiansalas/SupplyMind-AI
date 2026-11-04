@@ -1,0 +1,32 @@
+{
+  "sha256": "5698e4b765bacb60a888e3bf143e0a010fe35642ceeae7418130b623830063d1",
+  "text": "AMAZON_ONT8_FULFILLMENT_CENTERREMISION DE ENTREGA / RECEIVING SLIP: BOL-POD-77319\nFolio Remision: BOL-POD-77319 PO Referencia: PO-AMZ-2026-9041\nFecha de Recepcion: 2026-03-14 Bodega / Hub: AMAZON_ONT8_FULFILLMENT_CENTER\nRecibido por: J_RAMIREZ_FC_SUPERVISOR Estado en Muelle: DISCREPANCIA REPORTADA\nItem ID Despachado Recibido Faltante Averiado Notas de Inspeccion de Muelle\nSKU-NVME-4TB 120 100 20 0 Faltante físico en muelle. Tarima con cinta v\nSKU-SW-100G 40 40 0 0 Recibido completo y conforme.\nConstancia de Recepcion Fisica: Sello de Bodega y Seguridad:\n[FIRMADO DIGITALMENTE POR: J_RAMIREZ_FC_SUPERVISOR][SELLO MUELLE: AMAZON_ONT8_FULFILLMENT_CENTER - VERIFICADO]\nDocumento Comercial Oficial B2B - Folio BOL-POD-77319 | Página 1",
+  "structured": {
+    "delivery_id": "BOL-POD-77319",
+    "po_reference": "PO-AMZ-2026-9041",
+    "delivery_date": "2026-03-14",
+    "received_by": "J_RAMIREZ_FC_SUPERVISOR",
+    "warehouse_location": "AMAZON_ONT8_FULFILLMENT_CENTER",
+    "signed": true,
+    "discrepancy_reported": true,
+    "items": [
+      {
+        "item_id": "SKU-NVME-4TB",
+        "quantity_delivered": 120,
+        "quantity_received": 100,
+        "missing_quantity": 20,
+        "damaged_quantity": 0,
+        "notes": "Faltante físico en muelle. Tarima con cinta v"
+      },
+      {
+        "item_id": "SKU-SW-100G",
+        "quantity_delivered": 40,
+        "quantity_received": 40,
+        "missing_quantity": 0,
+        "damaged_quantity": 0,
+        "notes": "Recibido completo y conforme."
+      }
+    ]
+  },
+  "metadata": {}
+}

@@ -1,0 +1,6 @@
+{
+  "sha256": "c282db890769c07758b33737f84f6d80e2de798e805977c9408b73abf3e1cfb8",
+  "text": "ACUERDO LEGAL VINCULANTECONTRATO MARCO DE SUMINISTRO / MASTER AGREEMENT: MSA-MMN-NDP-2026\nContrato No: MSA-MMN-NDP-2026 Vigencia: 2026-01-01 a 2026-12-31\nParte Proveedora: NORDIC_DAIRY_LTD Parte Compradora: MEGAMART_STORES_INC\nTERMINOS Y CONDICIONES GENERALES DE OPERACION\nCLAUSULA 3.1: Ajuste Estricto a Precios de Orden de Compra\nTexto: Los precios facturados por el Proveedor deben corresponder exactamente a los precios fijados en la Orden de Compra.\nCualquier exceso podra ser deducido unilateralmente.\nPolitica Operativa: STRICT_MATCH | Tolerancia Permitida: 0.0%\nCLAUSULA 7.2: Condiciones de Descuento por Pronto Pago\nTexto: Todo descuento por pronto pago requiere pago dentro de los primeros 10 dias naturales. Pagos posteriores al dia 10 perderan\nderecho a deduccion por este concepto.\nPolitica Operativa: DISCOUNT_WINDOW_STRICT | Tolerancia Permitida: 0.0%\nDocumento Comercial Oficial B2B - Folio MSA-MMN-NDP-2026 | Página 1",
+  "structured": null,
+  "metadata": {}
+}

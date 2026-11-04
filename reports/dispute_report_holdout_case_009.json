@@ -1,0 +1,257 @@
+{
+  "case_id": "holdout_case_009",
+  "currency": "USD",
+  "billed_amount": "60000.0",
+  "received_amount": "58200.0",
+  "difference": "-1800.0",
+  "root_cause": "Discrepancia mixta en expediente holdout_case_009: Faltante físico comprobado de $0.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $1,800.00 USD sin sustento contractual ni documental.",
+  "evidence": [
+    "Deducción aplicada en comprobante PAY-HOLDOUT_CASE_009: código MERMA_OPERATIVA_UNILATERAL, motivo 'Retención por merma estadística en anaquel sin pacto expreso', monto $1,800.00",
+    "[Factura INV-HOLDOUT_CASE_009 §Total $60,000.00 USD]",
+    "[Comprobante PAY-HOLDOUT_CASE_009 §Liquidación $58,200.00 USD]"
+  ],
+  "justified_amount": "0.00",
+  "claimable_amount": "1800.00",
+  "confidence": 0.9,
+  "recommended_action": "Aceptar deducción de $0.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $1,800.00 USD exigiendo su pago inmediato.",
+  "concessions": [],
+  "active_scenario": null,
+  "health_audit": {
+    "case_id": "holdout_case_009",
+    "health_score": 100.0,
+    "status": "PRISTINE",
+    "is_healthy": true,
+    "repaired_issues": [],
+    "imputed_documents": [],
+    "documents_present": [
+      "invoice",
+      "purchase_order",
+      "delivery",
+      "payment",
+      "contract"
+    ],
+    "documents_missing": [],
+    "schema_warnings": [],
+    "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
+    "quarantine_docket": null,
+    "generated_at": "2026-11-04T05:07:19.933132+00:00"
+  },
+  "financial_proof": {
+    "case_id": "holdout_case_009",
+    "proof_hash": "SM-PROOF-SHA256-946126253C24D57A",
+    "invariant_conservation_ok": true,
+    "invariant_deductions_ok": true,
+    "invariant_line_items_ok": true,
+    "text_hallucination_detected": false,
+    "detected_hallucinated_figures": [],
+    "verified_figures": [
+      "$0.00 USD (Validado)",
+      "$1,800.00 USD (Validado)",
+      "$0.00 USD (Validado)",
+      "$1,800.00 USD (Validado)"
+    ],
+    "confidence_penalty": 0.0,
+    "audit_status": "MATHEMATICALLY_PROVEN",
+    "tamper_proof_timestamp": "2026-11-04T05:07:19.941784+00:00"
+  },
+  "evidence_manifest": {
+    "case_id": "holdout_case_009",
+    "total_claims_audited": 3,
+    "backed_claims_count": 2,
+    "unbacked_claims_count": 1,
+    "total_backed_amount": "118200.00",
+    "total_unbacked_amount": "1800.00",
+    "backing_ratio_pct": 98.5,
+    "evidence_pointers": [
+      {
+        "pointer_id": "PTR-INV-INV-HOLDOUT_CASE_009-TOTAL",
+        "doc_type": "INVOICE",
+        "doc_id": "INV-HOLDOUT_CASE_009",
+        "field_ref": "total_amount",
+        "item_sku": null,
+        "amount": "60000.0",
+        "citation_tag": "[Factura INV-HOLDOUT_CASE_009 §Total $60,000.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Factura comercial fiscalmente válida por $60,000.00 USD."
+      },
+      {
+        "pointer_id": "PTR-PAY-PAY-HOLDOUT_CASE_009-AMOUNT",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-HOLDOUT_CASE_009",
+        "field_ref": "amount_paid",
+        "item_sku": null,
+        "amount": "58200.0",
+        "citation_tag": "[Comprobante PAY-HOLDOUT_CASE_009 §Liquidación $58,200.00 USD]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $58,200.00."
+      },
+      {
+        "pointer_id": "PTR-DED-MERMA_OPERATIVA_UNILATERAL-1-UNBACKED",
+        "doc_type": "PAYMENT",
+        "doc_id": "PAY-HOLDOUT_CASE_009",
+        "field_ref": "deduction_MERMA_OPERATIVA_UNILATERAL",
+        "item_sku": null,
+        "amount": "1800.0",
+        "citation_tag": "[Comprobante PAY-HOLDOUT_CASE_009 §Deducción Unilateral MERMA_OPERATIVA_UNILATERAL | $1,800.00 SIN CLÁUSULA EN CTR-HOLDOUT_CASE_009]",
+        "is_backed_by_physical_proof": false,
+        "status": "CAUTELAR_NO_ACREDITADA",
+        "detail": "El retailer retuvo $1,800.00 bajo el código 'MERMA_OPERATIVA_UNILATERAL', pero el contrato CTR-HOLDOUT_CASE_009 no contiene cláusula habilitante."
+      }
+    ],
+    "cautelar_items": [
+      "Deducción MERMA_OPERATIVA_UNILATERAL ($1,800.00): Sin cláusula contractual que autorice retención."
+    ],
+    "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
+    "confidence_penalty": 0.08,
+    "generated_at": "2026-11-04T05:07:19Z"
+  },
+  "quarantine_docket": null,
+  "session_anchor": {
+    "case_id": "holdout_case_009",
+    "currency": "USD",
+    "billed_amount": "60000.0",
+    "received_amount": "58200.0",
+    "difference": "-1800.0",
+    "justified_amount": "0.00",
+    "claimable_amount": "1800.00",
+    "health_status": "PRISTINE",
+    "health_score": 100.0,
+    "zkp_proof_hash": "SM-PROOF-SHA256-946126253C24D57A",
+    "zkp_status": "MATHEMATICALLY_PROVEN",
+    "is_quarantined": false,
+    "evidence_backing_ratio": 98.5,
+    "anchored_at": "2026-11-04T05:07:19.992822+00:00"
+  },
+  "watchdog_metrics": null,
+  "adversarial_verdict": {
+    "case_id": "holdout_case_009",
+    "courtroom_session_id": "CRT-05E35253",
+    "disputed_amount": "1800.0",
+    "justified_amount": "0.00",
+    "claimable_amount": "1800.00",
+    "prosecutor_arguments": [
+      {
+        "role": "PROSECUTOR",
+        "speaker_name": "Lic. Gustavo Méndez (Fiscal Forense Retail B2B)",
+        "topic": "Aplicación de Políticas Operativas y Guías del Comprador",
+        "argument_text": "El retailer retuvo $1,800.00 USD bajo conceptos MERMA_OPERATIVA_UNILATERAL ($1,800.00) en liquidación PAY-HOLDOUT_CASE_009 con base en sus manuales internos de logística, penalizaciones por aviso anticipado ASN o descuentos comerciales por pronto pago.",
+        "legal_or_contractual_ground": "Manual Operativo de Proveedores del Retailer & Portal B2B",
+        "strength_score": 0.15,
+        "evidence_referenced": [
+          "Comprobante de Retención PAY-HOLDOUT_CASE_009"
+        ]
+      }
+    ],
+    "advocate_counterarguments": [
+      {
+        "role": "DEFENDER",
+        "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
+        "topic": "Prueba Plena de Entrega Íntegra",
+        "argument_text": "La remisión REM-HOLDOUT_CASE_009 fue firmada de plena conformidad en muelle CEDIS Central Muelle 4 sin sello de salvedad ni faltantes. Cualquier reclamo posterior de faltante carece de valor probatorio conforme a la ley comercial.",
+        "legal_or_contractual_ground": "Eficacia Probatoria de Remisión Limpia (Prueba Plena Art. 88 CCom)",
+        "strength_score": 0.95,
+        "evidence_referenced": [
+          "REM-HOLDOUT_CASE_009"
+        ]
+      },
+      {
+        "role": "DEFENDER",
+        "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
+        "topic": "Nulidad Absoluta de Cargos Unilaterales",
+        "argument_text": "Objeción perentoria sobre factura INV-HOLDOUT_CASE_009 y liquidación PAY-HOLDOUT_CASE_009: El contrato marco bilateral CTR-HOLDOUT_CASE_009 prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $1,800.00 USD. La retención constituye incumplimiento de pago. RELOJ SLA: Restan 7 días de ventana perentoria (HIGH_IMMINENT). Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente holdout_case_009 (fecha 2026-11-04), donde Cust-Tas-09 acordó el reintegro de $1,800.00 USD ante una deducción análoga por 'MERMA_OPERATIVA_UNILATERAL', amparada en la cláusula contractual CL-09..",
+        "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
+        "strength_score": 0.99,
+        "evidence_referenced": [
+          "CTR-HOLDOUT_CASE_009",
+          "INV-HOLDOUT_CASE_009",
+          "PAY-HOLDOUT_CASE_009",
+          "Conforme al precedente formalizado en el expediente holdout_case_009 (fecha 2026-11-04), donde Cust-Tas-09 acordó el reintegro de $1,800.00 USD ante una deducción análoga por 'MERMA_OPERATIVA_UNILATERAL', amparada en la cláusula contractual CL-09."
+        ]
+      }
+    ],
+    "sustained_objections": [],
+    "dismissed_objections": [
+      "Retención unilateral de $1,800.00 USD en PAY-HOLDOUT_CASE_009 declarada IMPROCEDENTE y 100% RECLAMABLE."
+    ],
+    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente holdout_case_009 (Factura: INV-HOLDOUT_CASE_009, Remisión: REM-HOLDOUT_CASE_009, Liquidación: PAY-HOLDOUT_CASE_009): Se condena al comprador al reintegro inmediato de $1,800.00 USD por carecer de título legal habilitante en CTR-HOLDOUT_CASE_009, y se valida la emisión de Nota de Crédito por $0.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%. Reloj SLA: 7 días restantes (HIGH_IMMINENT).",
+    "probative_force_supplier_pct": 87.5,
+    "final_legal_doctrine": "DOCTRINA COMERCIAL VINCULANTE: Ninguna guía operativa o portal B2B puede modificar o imponer sanciones financieras no contenidas en el contrato marco bilateral suscrito. Las remisiones firmadas con sello de muelle hacen fe pública comercial plena e inmutable entre las partes."
+  },
+  "recovery_prediction": {
+    "case_id": "holdout_case_009",
+    "recovery_probability_pct": 98.5,
+    "confidence_grade": "ALTA_CERTEZA",
+    "recommended_track": "FAST_TRACK_B2B_PORTAL",
+    "target_claimable_amount": "1800.00",
+    "expected_net_recovery_usd": "1773.00",
+    "estimated_days_to_cash": 10,
+    "positive_drivers": [
+      "Remisión de entrega debidamente firmada en muelle receptor (+20%)",
+      "Contrato marco comercial vigente con cláusulas de prevalencia (+15%)",
+      "Historial altamente favorable con Cust-Tas-09 (100.0% de éxito histórico) (+12%)",
+      "Existen precedentes ganados al 100% con este cliente corporativo (+5%)",
+      "Dictamen judicial favorable con fuerza probatoria del 87.5% (+10%)"
+    ],
+    "risk_drivers": [],
+    "scenarios": [
+      {
+        "scenario_name": "Ruta Rápida — Cobro Íntegro en Portal B2B",
+        "description": "Reclamación directa del 100% del saldo insoluto con base documental plena.",
+        "projected_recovery_amount": "1800.00",
+        "concession_granted_amount": "0.00",
+        "recovery_rate_pct": 100.0,
+        "estimated_days_to_cash": 10,
+        "legal_risk_level": "BAJO",
+        "recommended": true
+      },
+      {
+        "scenario_name": "Acuerdo Estructurado — Concesión Comercial del 15%",
+        "description": "Oferta de descuento por pronto pago/relación para cierre garantizado en menos de 7 días.",
+        "projected_recovery_amount": "1530.00",
+        "concession_granted_amount": "270.00",
+        "recovery_rate_pct": 85.0,
+        "estimated_days_to_cash": 5,
+        "legal_risk_level": "BAJO",
+        "recommended": false
+      },
+      {
+        "scenario_name": "Escalamiento Legal — Póliza Contable NIF C-3",
+        "description": "Exigencia formal y cobro coactivo con causación de intereses moratorios comerciales.",
+        "projected_recovery_amount": "1800.00",
+        "concession_granted_amount": "0.00",
+        "recovery_rate_pct": 100.0,
+        "estimated_days_to_cash": 45,
+        "legal_risk_level": "MEDIO",
+        "recommended": false
+      }
+    ],
+    "executive_summary": "El expediente presenta una probabilidad de recuperación del 98.5% (ALTA_CERTEZA). Se proyecta recuperar un valor neto ponderado de $1,773.00 USD dentro de un plazo estimado de 10 días naturales vía 'FAST_TRACK_B2B_PORTAL'."
+  },
+  "sanity_gate_audit": {
+    "is_bulletproof": true,
+    "arithmetic_invariant_passed": true,
+    "precedence_hierarchy_passed": true,
+    "notice_window_passed": true,
+    "notice_window_days_allowed": null,
+    "notice_window_days_elapsed": null,
+    "double_penalty_detected": false,
+    "double_penalty_details": [],
+    "irrefutability_grade": "A1_IRREFUTABLE",
+    "corrective_actions_applied": [],
+    "audit_notes": [
+      "Invarianza aritmética perfecta verificada al centavo ($0.00 MAE)."
+    ],
+    "verified_claimable_amount": "1800.00",
+    "verified_justified_amount": "0.00",
+    "contractual_cap_enforced": false,
+    "contractual_cap_excess_claimed": "0.00",
+    "contractual_cap_details": []
+  },
+  "resolution_notes": [],
+  "deduction_type": null,
+  "adversarial_critique": null,
+  "mcts_negotiation_plan": null,
+  "cross_border_assessment": null
+}

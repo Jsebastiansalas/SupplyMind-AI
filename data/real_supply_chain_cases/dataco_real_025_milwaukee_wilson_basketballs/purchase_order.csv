@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-122480
+# vendor_id: DATACO-MILWAUKEE
+# customer_id: BUYER-DC-ORD-122480
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 9093.00
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-1588,Wilson Evolution Indoor Game Basketball (DataCo DC-1588),140,64.95,9093.00

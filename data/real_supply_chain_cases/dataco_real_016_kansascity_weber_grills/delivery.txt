@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-102590
+po_reference: PO-DC-ORD-102590
+delivery_date: 2026-01-30
+received_by: Supervisor Kansas City Dock
+warehouse_location: Kansas City, MO Distribution Hub
+signed: true
+discrepancy_reported: true
+
+ITEM | sku=DC-921 | delivered=70 | received=66 | missing=4 | damaged=0 | notes=Shortage of 4 units verified and signed on dock manifest

@@ -1,0 +1,10 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-102590
+invoice_reference: INV-DC-ORD-102590
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 10410.00
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=SHORTAGE | amount=660.00 | reason=Faltante fisico en muelle de 4 uds SKU DC-921 | ref=BOL-DC-ORD-102590
+DEDUCTION | code=BARCODE_RELABELING_PENALTY | amount=480.00 | reason=Multa por re-etiquetado de codigo GS1 no justificada | ref=MEMO-FEE

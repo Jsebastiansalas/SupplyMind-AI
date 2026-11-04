@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-73419
+po_reference: PO-DC-ORD-73419
+delivery_date: 2026-01-30
+received_by: Supervisor Los Angeles Dock
+warehouse_location: Los Angeles, CA Distribution Hub
+signed: true
+discrepancy_reported: false
+
+ITEM | sku=DC-1004 | delivered=25 | received=25 | missing=0 | damaged=0 | notes=Full shipment of 25 units received and signed clean at dock

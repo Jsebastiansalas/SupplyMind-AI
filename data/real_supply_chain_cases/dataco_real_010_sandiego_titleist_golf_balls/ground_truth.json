@@ -1,0 +1,18 @@
+{
+  "case_id": "dataco_real_010_sandiego_titleist_golf_balls",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Pacific Coast Golf Club (DataCo San Diego Hub)",
+  "industry": "Golf Accessories",
+  "hub": "San Diego, CA",
+  "file_formats": [
+    ".csv",
+    ".json",
+    ".xlsx",
+    ".txt"
+  ],
+  "billed_amount": "11997.50",
+  "received_amount": "10571.62",
+  "difference": "-1425.88",
+  "expected_justified_amount": "575.88",
+  "expected_claimable_amount": "850.00"
+}

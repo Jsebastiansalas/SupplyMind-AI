@@ -1,6 +1,6 @@
 # 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
 **Ref: Expediente de Cartera case_012_liverpool_colgado_etiqueta / Factura INV-CASE_012-8F70**  
-**Fecha:** 28 de October de 2026  
+**Fecha:** 04 de November de 2026  
 **De:** Departamento de Cartera y Asuntos Comerciales — VEN-001  
 **Para:** Gerencia de Cuentas por Pagar y Conciliación — CUST-LIVERPOOL_MX  
 
@@ -23,12 +23,12 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_012_liverpool_colgado_etiqueta — 2026-10-29):**
+**Precedente 1 (Expediente case_012_liverpool_colgado_etiqueta — 2026-11-04):**
 - **Criterio Acreditado:** En el caso case_012_liverpool_colgado_etiqueta, se acreditó la improcedencia de la deducción 'COLGADO-SERVICIOS' conforme a CLAUSE-5.2, logrando la restitución de $11,000.00 USD.
 - **Resultado Previo:** Restitución de **$11,000.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CLAUSE-5.2.
 
-**Precedente 2 (Expediente case_039_liverpool_descuento_financiero_abusivo — 2026-10-29):**
+**Precedente 2 (Expediente case_039_liverpool_descuento_financiero_abusivo — 2026-11-04):**
 - **Criterio Acreditado:** En el caso case_039_liverpool_descuento_financiero_abusivo, se acreditó la improcedencia de la deducción 'DED-EARLY-PAY-5PCT' conforme a CTR-GENERAL-TERMS, logrando la restitución de $4,250.00 USD.
 - **Resultado Previo:** Restitución de **$4,250.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CTR-GENERAL-TERMS.

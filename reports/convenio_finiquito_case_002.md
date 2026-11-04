@@ -1,8 +1,8 @@
 # CONVENIO JUDICIAL-EXTRAJUDICIAL DE TRANSACCIÓN MERCANTIL Y FINIQUITO DEFINITIVO
-**Folio Oficial:** `AGR-CASE_002-C99AA043`  
+**Folio Oficial:** `AGR-CASE_002-D52F6434`  
 **Expediente Vinculado:** `case_002`  
-**Fecha de Suscripción:** 30 de October de 2026 a las 13:27:35 UTC  
-**Sello Criptográfico ZKP SHA-256:** `39835de58a13f91f6fc3d76269e32583d333764ece40b734e2806c8760c208cf`  
+**Fecha de Suscripción:** 03 de November de 2026 a las 12:39:45 UTC  
+**Sello Criptográfico ZKP SHA-256:** `a8a603eee95190ac8737519d5ef6daa676c133203f1173667eebe51c0cd280ad`  
 **Suscrito por:** Auditor Senior B2B  
 
 ---
@@ -17,7 +17,7 @@ Ambas partes declaran y reconocen expresamente:
 | Ronda | Postura Comprador | Demanda NC | Oferta Efectivo | Postura Proveedor | Concesión NC | Reclamo Efectivo | Spread | Convergencia |
 | :---: | :--- | :---: | :---: | :--- | :---: | :---: | :---: | :---: |
 | R1 | INTRANSIGENT | $16,500.00 | $0.00 | EVIDENCE_FIRMNESS | $4,000.00 | $12,500.00 | $12,500.00 | 24.2% |
-| R2 | DEFENSIVE | $14,850.00 | $1,650.00 | COUNTER_OFFER | $5,250.00 | $11,250.00 | $9,600.00 | 41.8% |
+| R2 | DEFENSIVE | $13,375.00 | $3,125.00 | COUNTER_OFFER | $5,250.00 | $11,250.00 | $8,125.00 | 50.8% |
 
 
 ---
@@ -54,7 +54,7 @@ El presente instrumento se rige e interpreta de conformidad con el marco jurídi
 Las partes renuncian expresamente a cualquier acción civil, mercantil o penal que pudiera derivar de los hechos materia de este acuerdo, quedando prohibida la reapertura del expediente o la aplicación de deducciones retroactivas por estos mismos conceptos.
 
 #### SEXTA. FE ELECTRÓNICA Y FIRMA CRIPTOGRÁFICA
-El presente convenio ha sido sellado criptográficamente mediante algoritmo ZKP SHA-256 (`39835de58a13f91f6fc3d76269e32583d333764ece40b734e2806c8760c208cf`), garantizando la inmutabilidad de los montos y compromisos suscritos.
+El presente convenio ha sido sellado criptográficamente mediante algoritmo ZKP SHA-256 (`a8a603eee95190ac8737519d5ef6daa676c133203f1173667eebe51c0cd280ad`), garantizando la inmutabilidad de los montos y compromisos suscritos.
 
 ---
 **POR EL PROVEEDOR:**  

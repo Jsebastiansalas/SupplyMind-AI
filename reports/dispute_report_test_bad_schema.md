@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `test_bad_schema` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-10-28 13:09:53 UTC | **Nivel de Confianza:** 0.0%
+> **Fecha de Emisión:** 2026-11-03 12:41:21 UTC | **Nivel de Confianza:** 0.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO

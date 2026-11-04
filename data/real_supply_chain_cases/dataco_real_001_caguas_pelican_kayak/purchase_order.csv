@@ -1,9 +1,8 @@
-# po_id: PO-DC-68914
-# vendor_id: DATACO-CAGUAS-PR
-# customer_id: PACIFIC-NW-OUTDOOR
+# po_id: PO-DC-ORD-68914
+# vendor_id: DATACO-CAGUAS
+# customer_id: BUYER-DC-ORD-68914
 # order_date: 2026-01-25
 # currency: USD
-# total_amount: 14997.50
+# total_amount: 9999.50
 item_id,description,ordered_quantity,agreed_unit_price,total_price
-DC-1360,Pelican Sunstream 100 Kayak (DataCo SKU 1360),50,199.99,9999.50
-DC-1073,O'Brien Men's Neoprene Life Vest (DataCo SKU 1073),100,49.98,4998.00
+DC-1360,Pelican Sunstream 100 Kayak (DataCo DC-1360),50,199.99,9999.50

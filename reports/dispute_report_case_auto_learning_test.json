@@ -22,5 +22,10 @@
   "watchdog_metrics": null,
   "adversarial_verdict": null,
   "recovery_prediction": null,
-  "sanity_gate_audit": null
+  "sanity_gate_audit": null,
+  "resolution_notes": [],
+  "deduction_type": null,
+  "adversarial_critique": null,
+  "mcts_negotiation_plan": null,
+  "cross_border_assessment": null
 }

@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-124690
+po_reference: PO-DC-ORD-124690
+delivery_date: 2026-01-30
+received_by: Supervisor Salt Lake City Dock
+warehouse_location: Salt Lake City, UT Distribution Hub
+signed: true
+discrepancy_reported: true
+
+ITEM | sku=DC-1630 | delivered=180 | received=175 | missing=5 | damaged=0 | notes=Shortage of 5 units verified and signed on dock manifest

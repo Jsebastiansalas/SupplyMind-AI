@@ -1,0 +1,18 @@
+{
+  "case_id": "dataco_real_017_tampa_shimano_reels",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Sunshine Coastal Tackle (DataCo Tampa Hub)",
+  "industry": "Fishing Hardware",
+  "hub": "Tampa, FL",
+  "file_formats": [
+    ".csv",
+    ".xlsx",
+    ".txt",
+    ".json"
+  ],
+  "billed_amount": "13199.40",
+  "received_amount": "11889.43",
+  "difference": "-1309.97",
+  "expected_justified_amount": "659.97",
+  "expected_claimable_amount": "650.00"
+}

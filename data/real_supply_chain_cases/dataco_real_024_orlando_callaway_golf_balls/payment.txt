@@ -1,0 +1,10 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-120270
+invoice_reference: INV-DC-ORD-120270
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 6177.00
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=PRICE_DIFF | amount=1500.00 | reason=Ajuste a precio pactado en OC ($21.99 vs $26.99 en 300 uds) | ref=PO-DC-ORD-120270
+DEDUCTION | code=PROMOTIONAL_ALLOWANCE_UNAUTH | amount=420.00 | reason=Bonificacion promocional descontada sin orden aprobada | ref=SLOT-FEE

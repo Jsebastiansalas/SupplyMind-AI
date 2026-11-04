@@ -1,5 +1,5 @@
 {
-  "dossier_id": "DOSSIER-CASE_005_AMAZON_SHORTAGE-1ED30E",
+  "dossier_id": "DOSSIER-CASE_005_AMAZON_SHORTAGE-43D59F",
   "case_id": "case_005_amazon_shortage",
   "portal_type": "AMAZON_VENDOR_CENTRAL",
   "retailer_name": "Amazon Vendor Central (AP Financials & Co-Op)",
@@ -42,6 +42,15 @@
       "sha256_hash": "8da6575809227371bf7968ca3721cd6e70a7bef48bd1b54b1b7faaca3fec98e9",
       "description": "Inspección de 17 puntos y sello perimetral de alta seguridad ISO 17712 verificado intacto.",
       "status": "VERIFIED_VALID"
+    },
+    {
+      "doc_id": "DOC-AGR-CASE_005",
+      "doc_type": "SETTLEMENT_AGREEMENT",
+      "file_name": "convenio_finiquito_case_005_amazon_shortage.md",
+      "file_size_bytes": 5600,
+      "sha256_hash": "af0554f269e4fddf483a74b6fb4d29fe3ffa4b7e56ea124bacc17d5ab477c37f",
+      "description": "Convenio de Transacción Mercantil sellado con hash ZKP `af0554f269e4fddf...`",
+      "status": "VERIFIED_VALID"
     }
   ],
   "adapter_payload": {
@@ -49,9 +58,9 @@
     "retailer_name": "Amazon Fulfillment Services LLC",
     "claim_code": "SHORTAGE_FC_DOCK",
     "invoice_uuid_or_folio": "INV-AMZ-CASE_005",
-    "po_reference": "PO-AMZ-081431",
+    "po_reference": "PO-AMZ-85131C",
     "dc_or_fc_code": "DAL3 (Dallas Fulfillment Center)",
-    "receipt_folio": "BOL-AMZ-2CAB5E",
+    "receipt_folio": "BOL-AMZ-FB1CA2",
     "dispute_reason": "Shipment verified intact under C-TPAT ISO 17712 security seal. Carton variance is unsubstantiated.",
     "claimable_amount": "2500.00",
     "currency": "USD",
@@ -59,7 +68,8 @@
       "factura_cfdi_case_005_amazon_shortage.xml",
       "remision_sellada_muelle_case_005_amazon_shortage.pdf",
       "transmision_edi_856_997_case_005_amazon_shortage.txt",
-      "certificado_sello_ctpat_case_005_amazon_shortage.pdf"
+      "certificado_sello_ctpat_case_005_amazon_shortage.pdf",
+      "convenio_finiquito_case_005_amazon_shortage.md"
     ],
     "portal_specific_fields": {
       "vendor_code": "AMZMX-4401",
@@ -68,6 +78,6 @@
       "edi_997_status": "ACCEPTED_CONFIRMED"
     }
   },
-  "zkp_dossier_digest": "a3c5b0f5bf60df861c8e975a2fa85aae8fdafad6c245a98abda7de5eb719dca4",
-  "generated_at": "2026-10-30T13:28:59.318381+00:00"
+  "zkp_dossier_digest": "67ad7434d7cb6e06fe064fb184fcea9895357d9fb7a01f7bdbfac24658a6f8fa",
+  "generated_at": "2026-11-03T12:40:01.592130+00:00"
 }

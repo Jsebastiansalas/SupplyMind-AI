@@ -47,11 +47,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-10-29T01:01:14.297113+00:00"
+    "generated_at": "2026-11-04T05:06:19.488155+00:00"
   },
   "financial_proof": {
     "case_id": "case_036_massive_1000_skus",
-    "proof_hash": "SM-PROOF-SHA256-1D7014764B494D98",
+    "proof_hash": "SM-PROOF-SHA256-06F934A6AA07350B",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -65,7 +65,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-10-29T01:01:14.333757+00:00"
+    "tamper_proof_timestamp": "2026-11-04T05:06:19.542615+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_036_massive_1000_skus",
@@ -188,7 +188,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-10-29T01:01:14Z"
+    "generated_at": "2026-11-04T05:06:19Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -201,16 +201,16 @@
     "claimable_amount": "5000.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-1D7014764B494D98",
+    "zkp_proof_hash": "SM-PROOF-SHA256-06F934A6AA07350B",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-10-29T01:01:14.342832+00:00"
+    "anchored_at": "2026-11-04T05:06:19.581829+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_036_massive_1000_skus",
-    "courtroom_session_id": "CRT-7AC1C8A0",
+    "courtroom_session_id": "CRT-BD777BFC",
     "disputed_amount": "7190.00",
     "justified_amount": "2190.00",
     "claimable_amount": "5000.00",
@@ -219,22 +219,23 @@
         "role": "PROSECUTOR",
         "speaker_name": "Lic. Gustavo Méndez (Fiscal Forense Retail B2B)",
         "topic": "Faltante Físico en Muelle",
-        "argument_text": "El comprador reportó válidamente un faltante de mercancía valorado en $2,190.00 USD. Las unidades recibidas en patio fueron inferiores a las facturadas.",
-        "legal_or_contractual_ground": "Cláusula de Recepción e Integridad de Entrega",
+        "argument_text": "El comprador reportó válidamente un faltante de mercancía valorado en $2,190.00 USD (5x SKU-IND-0010, 8x SKU-IND-0050, 10x SKU-IND-0200, 4x SKU-IND-0500, 6x SKU-IND-0950) en la remisión DEL-MASSIVE-LOG-8812 (Centro de Distribución Nacional - Muelles 1 al 12). Las unidades recibidas en patio fueron inferiores a las amparadas en factura INV-MASSIVE-1000-01.",
+        "legal_or_contractual_ground": "Cláusula CLAUSE-1.1",
         "strength_score": 0.95,
         "evidence_referenced": [
-          "DEL-MASSIVE-LOG-8812"
+          "DEL-MASSIVE-LOG-8812",
+          "INV-MASSIVE-1000-01"
         ]
       },
       {
         "role": "PROSECUTOR",
         "speaker_name": "Lic. Gustavo Méndez (Fiscal Forense Retail B2B)",
         "topic": "Aplicación de Políticas Operativas y Guías del Comprador",
-        "argument_text": "El retailer retuvo $5,000.00 USD con base en sus manuales internos de logística, penalizaciones por aviso anticipado ASN o descuentos comerciales por pronto pago.",
-        "legal_or_contractual_ground": "Manual Operativo de Proveedores del Retailer",
+        "argument_text": "El retailer retuvo $5,000.00 USD bajo conceptos DED-SHORTAGE-SIGNED ($2,190.00), DED-ASN-UNILATERAL-PENALTY ($5,000.00) en liquidación PAY-MASSIVE-FIN-7710 con base en sus manuales internos de logística, penalizaciones por aviso anticipado ASN o descuentos comerciales por pronto pago.",
+        "legal_or_contractual_ground": "Manual Operativo de Proveedores del Retailer & Portal B2B",
         "strength_score": 0.15,
         "evidence_referenced": [
-          "Comprobante de Retención Bancaria"
+          "Comprobante de Retención PAY-MASSIVE-FIN-7710"
         ]
       }
     ],
@@ -243,34 +244,37 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Allanamiento de Faltante Acreditado",
-        "argument_text": "Verificada la remisión con sello y firma física de recepción con discrepancia, reconocemos la exactitud del faltante de $2,190.00 USD y allanamos la deducción mediante emisión de Nota de Crédito comercial conforme a la ley.",
+        "argument_text": "Verificada la remisión DEL-MASSIVE-LOG-8812 con sello y firma física de recepción en Centro de Distribución Nacional - Muelles 1 al 12 con discrepancia asentada (5x SKU-IND-0010, 8x SKU-IND-0050, 10x SKU-IND-0200, 4x SKU-IND-0500, 6x SKU-IND-0950), reconocemos la exactitud del faltante de $2,190.00 USD y allanamos la deducción mediante emisión de Nota de Crédito comercial conforme a la ley.",
         "legal_or_contractual_ground": "Art. 1043 Código de Comercio (Reconocimiento Expreso)",
         "strength_score": 0.98,
         "evidence_referenced": [
-          "Remisión firmada con sello de discrepancia"
+          "Remisión DEL-MASSIVE-LOG-8812 con salvedad en muelle",
+          "INV-MASSIVE-1000-01"
         ]
       },
       {
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria: El contrato marco comercial bilateral suscrito prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $5,000.00 USD. La retención constituye incumplimiento de pago. Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_036_massive_1000_skus (fecha 2026-10-29), donde Cust-Mega-Retail-Corp acordó el reintegro de $5,000.00 USD ante una deducción análoga por 'DED-SHORTAGE-SIGNED', amparada en la cláusula contractual CLAUSE-1.1.",
+        "argument_text": "Objeción perentoria sobre factura INV-MASSIVE-1000-01 y liquidación PAY-MASSIVE-FIN-7710: El contrato marco bilateral CTR-MASSIVE-2026-X1 prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $5,000.00 USD. La retención constituye incumplimiento de pago. PRECLUSIÓN TEMPORAL: Notificación extemporánea a los 27 días (máximo contractual: 1 días), extinguiendo el derecho de retención. RELOJ SLA: Restan 22 días de ventana perentoria (MEDIUM_ATTENTION). Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_036_massive_1000_skus (fecha 2026-11-04), donde Cust-Mega-Retail-Corp acordó el reintegro de $5,000.00 USD ante una deducción análoga por 'DED-SHORTAGE-SIGNED', amparada en la cláusula contractual CLAUSE-1.1..",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [
-          "Contrato Marco Maestro",
-          "Criterio de Nulidad Unilateral"
+          "CTR-MASSIVE-2026-X1",
+          "INV-MASSIVE-1000-01",
+          "PAY-MASSIVE-FIN-7710",
+          "Conforme al precedente formalizado en el expediente case_036_massive_1000_skus (fecha 2026-11-04), donde Cust-Mega-Retail-Corp acordó el reintegro de $5,000.00 USD ante una deducción análoga por 'DED-SHORTAGE-SIGNED', amparada en la cláusula contractual CLAUSE-1.1."
         ]
       }
     ],
     "sustained_objections": [
-      "Deducción de faltante físico por $2,190.00 USD declarada PROCEDENTE."
+      "Deducción de faltante físico por $2,190.00 USD amparada en DEL-MASSIVE-LOG-8812 declarada PROCEDENTE."
     ],
     "dismissed_objections": [
-      "Retención unilateral de $5,000.00 USD declarada IMPROCEDENTE y 100% RECLAMABLE."
+      "Retención unilateral de $5,000.00 USD en PAY-MASSIVE-FIN-7710 declarada IMPROCEDENTE y 100% RECLAMABLE."
     ],
-    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente case_036_massive_1000_skus: Se condena al comprador al reintegro inmediato de $5,000.00 USD por carecer de título legal habilitante, y se valida la emisión de Nota de Crédito por $2,190.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%.",
-    "probative_force_supplier_pct": 87.5,
+    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente case_036_massive_1000_skus (Factura: INV-MASSIVE-1000-01, Remisión: DEL-MASSIVE-LOG-8812, Liquidación: PAY-MASSIVE-FIN-7710): Se condena al comprador al reintegro inmediato de $5,000.00 USD por carecer de título legal habilitante en CTR-MASSIVE-2026-X1, y se valida la emisión de Nota de Crédito por $2,190.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 88.0%. Reloj SLA: 22 días restantes (MEDIUM_ATTENTION).",
+    "probative_force_supplier_pct": 88.0,
     "final_legal_doctrine": "DOCTRINA COMERCIAL VINCULANTE: Ninguna guía operativa o portal B2B puede modificar o imponer sanciones financieras no contenidas en el contrato marco bilateral suscrito. Las remisiones firmadas con sello de muelle hacen fe pública comercial plena e inmutable entre las partes."
   },
   "recovery_prediction": {
@@ -286,7 +290,7 @@
       "Discrepancia física allanada con sello formal de muelle (+10%)",
       "Contrato marco comercial vigente con cláusulas de prevalencia (+15%)",
       "Historial altamente favorable con Cust-Mega-Retail-Corp (100.0% de éxito histórico) (+12%)",
-      "Dictamen judicial favorable con fuerza probatoria del 87.5% (+10%)"
+      "Dictamen judicial favorable con fuerza probatoria del 88.0% (+10%)"
     ],
     "risk_drivers": [],
     "scenarios": [
@@ -342,6 +346,14 @@
       "EXTEMPORANEIDAD CONFIRMADA: El comprador notificó/retuvo a los 27 días naturales, excediendo el plazo perentorio contractual de 1 días. La deducción es legalmente extemporánea y nula de pleno derecho."
     ],
     "verified_claimable_amount": "5000.00",
-    "verified_justified_amount": "2190.00"
-  }
+    "verified_justified_amount": "2190.00",
+    "contractual_cap_enforced": false,
+    "contractual_cap_excess_claimed": "0.00",
+    "contractual_cap_details": []
+  },
+  "resolution_notes": [],
+  "deduction_type": null,
+  "adversarial_critique": null,
+  "mcts_negotiation_plan": null,
+  "cross_border_assessment": null
 }

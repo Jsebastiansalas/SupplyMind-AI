@@ -1,0 +1,10 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-98170
+invoice_reference: INV-DC-ORD-98170
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 13410.00
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=PRICE_DIFF | amount=1000.00 | reason=Ajuste a precio pactado en OC ($349.00 vs $374.00 en 40 uds) | ref=PO-DC-ORD-98170
+DEDUCTION | code=DEMURRAGE_CARRIER_FEE | amount=550.00 | reason=Cargo por estadia de transporte imputado al proveedor | ref=SLOT-FEE

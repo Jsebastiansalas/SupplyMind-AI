@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-126900
+po_reference: PO-DC-ORD-126900
+delivery_date: 2026-01-30
+received_by: Supervisor Honolulu Dock
+warehouse_location: Honolulu, HI Distribution Hub
+signed: true
+discrepancy_reported: true
+
+ITEM | sku=DC-1695 | delivered=160 | received=160 | missing=0 | damaged=6 | notes=6 units damaged during carrier transit, signed on POD

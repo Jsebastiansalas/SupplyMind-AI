@@ -1,0 +1,10 @@
+RECEIVING SLIP / COMPROBANTE DE ENTREGA EN MUELLE
+delivery_id: BOL-DC-ORD-109220
+po_reference: PO-DC-ORD-109220
+delivery_date: 2026-01-30
+received_by: Supervisor Charlotte Dock
+warehouse_location: Charlotte, NC Distribution Hub
+signed: true
+discrepancy_reported: false
+
+ITEM | sku=DC-1215 | delivered=30 | received=30 | missing=0 | damaged=0 | notes=30 units received intact with matching barcodes

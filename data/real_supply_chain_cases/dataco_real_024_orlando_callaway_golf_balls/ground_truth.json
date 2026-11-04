@@ -1,0 +1,18 @@
+{
+  "case_id": "dataco_real_024_orlando_callaway_golf_balls",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Citrus Golf Distribution (DataCo Orlando Hub)",
+  "industry": "Golf Accessories",
+  "hub": "Orlando, FL",
+  "file_formats": [
+    ".xlsx",
+    ".csv",
+    ".txt",
+    ".json"
+  ],
+  "billed_amount": "8097.00",
+  "received_amount": "6177.00",
+  "difference": "-1920.00",
+  "expected_justified_amount": "1500.00",
+  "expected_claimable_amount": "420.00"
+}

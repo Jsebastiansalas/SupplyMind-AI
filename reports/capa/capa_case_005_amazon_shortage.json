@@ -1,0 +1,28 @@
+{
+  "ticket_id": "CAPA-2026-1C59BD",
+  "case_id": "case_005_amazon_shortage",
+  "retailer_name": "Amazon Fulfillment Services LLC",
+  "department_code": "SYSTEMS_EDI",
+  "department_name": "Sistemas / Integración EDI B2B",
+  "assigned_owner_role": "Arquitecto Senior de Integración EDI X12 / ERP",
+  "severity": "HIGH",
+  "financial_impact_usd": "7500.00",
+  "root_cause_summary": "Discrepancia mixta en expediente case_005_amazon_shortage: Faltante físico comprobado de $5,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $2,500.00 USD sin sustento contractual ni documental.",
+  "detected_anomaly_detail": "Desfase entre la confirmación del ASN EDI 856 y el escaneo automatizado en muelle del Fulfillment Center, aunado a discrepancia de unidad de medida Master Case.",
+  "corrective_actions": [
+    "Configurar trigger automático en ERP para transmitir el ASN EDI 856 en el instante de cierre de embarque (mínimo 2h antes de arribo).",
+    "Implementar bloqueo de salida en caseta de vigilancia si no se ha recibido el Acuse Funcional EDI 997 Status 'A' (Aceptado).",
+    "Auditar y homologar la tabla de equivalencias SKU / GTIN-14 / Inner-Pack contra el catálogo EDI 832 vigente del Retailer."
+  ],
+  "pre_dispatch_checklist": [
+    "[ ] Transmisión ASN EDI 856 enviada con estructura jerárquica Shipment -> Order -> Tare (Pallet) -> Pack -> Item.",
+    "[ ] Recepción confirmada de Acuse Funcional EDI 997 Status 'A' sin segmentos AK4 de error.",
+    "[ ] Coincidencia exacta 1:1 entre SSCC-18 físico impreso en tarima y segmento MAN*GM del ASN 856.",
+    "[ ] Validación de unidades de facturación (EA vs CA) sincronizada con la Orden de Compra EDI 850."
+  ],
+  "sla_resolution_hours": 48,
+  "status": "OPEN_ASSIGNED",
+  "created_at": "2026-11-03T12:39:58.894836+00:00",
+  "markdown_content": "# ORDEN DE INGENIERÍA PREVENTIVA — TICKET CAPA `CAPA-2026-1C59BD`\n**SISTEMA DE GESTIÓN DE CALIDAD Y PREVENCIÓN DE FUGAS B2B (CLOSED-LOOP RCA)**\n\n---\n- **ID de Ticket CAPA:** `CAPA-2026-1C59BD`\n- **Expediente Origen:** `case_005_amazon_shortage` (Factura: `INV-CASE_005_AMA`)\n- **Cliente / Retailer Afectado:** Amazon Fulfillment Services LLC\n- **Departamento Interno Responsable:** **Sistemas / Integración EDI B2B** (`SYSTEMS_EDI`)\n- **Líder Operativo Asignado:** **Arquitecto Senior de Integración EDI X12 / ERP**\n- **Severidad / Prioridad:** `HIGH` (SLA de Implementación: `48 horas`)\n- **Impacto Financiero en Disputa:** **$7,500.00 USD** (Fuga Justificada: `$5,000.00 USD`)\n- **Fecha de Emisión UTC:** `2026-11-03T12:39:58.894836+00:00`\n\n---\n\n### I. DIAGNÓSTICO DE CAUSA RAÍZ (HALLAZGO DE AUDITORÍA)\n\n- **Dictamen del Agente SupplyMind:** Discrepancia mixta en expediente case_005_amazon_shortage: Faltante físico comprobado de $5,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $2,500.00 USD sin sustento contractual ni documental.\n- **Anomalía Operativa Detectada:** Desfase entre la confirmación del ASN EDI 856 y el escaneo automatizado en muelle del Fulfillment Center, aunado a discrepancia de unidad de medida Master Case.\n\n### II. PLAN DE ACCIÓN CORRECTIVA INMEDIATA (CAPA)\n\n1. Configurar trigger automático en ERP para transmitir el ASN EDI 856 en el instante de cierre de embarque (mínimo 2h antes de arribo).\n2. Implementar bloqueo de salida en caseta de vigilancia si no se ha recibido el Acuse Funcional EDI 997 Status 'A' (Aceptado).\n3. Auditar y homologar la tabla de equivalencias SKU / GTIN-14 / Inner-Pack contra el catálogo EDI 832 vigente del Retailer.\n\n### III. CHECKLIST MANDATORIO PRE-DESPACHO (CANDADO DE SALIDA)\n\n- [ ] Transmisión ASN EDI 856 enviada con estructura jerárquica Shipment -> Order -> Tare (Pallet) -> Pack -> Item.\n- [ ] Recepción confirmada de Acuse Funcional EDI 997 Status 'A' sin segmentos AK4 de error.\n- [ ] Coincidencia exacta 1:1 entre SSCC-18 físico impreso en tarima y segmento MAN*GM del ASN 856.\n- [ ] Validación de unidades de facturación (EA vs CA) sincronizada con la Orden de Compra EDI 850.\n\n---\n**Estado del Ticket:** `OPEN_ASSIGNED`  \n**Generado Automáticamente por:** SupplyMind AI — Motor Preventivo RCA (Fase 7)\n",
+  "file_path": "C:\\Users\\USUARIO\\Downloads\\platica\\reports\\capa\\capa_case_005_amazon_shortage.md"
+}

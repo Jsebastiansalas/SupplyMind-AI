@@ -7,17 +7,18 @@
   "root_cause": "Discrepancia mixta en expediente dataco_real_004_chicago_nike_footwear_overcharge: Faltante físico comprobado de $1,000.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $450.00 USD sin sustento contractual ni documental.",
   "evidence": [
     "Discrepancia de precio en DC-191: facturado $109.99 vs acordado $99.99",
-    "Deducción aplicada en comprobante PAY-DC-75890: código PRICE_DIFF, motivo 'Ajuste a precio pactado en OC PO-DC-75890 ($99.99 vs $109.99 facturado en 100 uds)', monto $1,000.00",
-    "Deducción aplicada en comprobante PAY-DC-75890: código SLOTTING_FEE_UNAPPROVED, motivo 'Cargo unilateral por exhibicion en anaquel no autorizado en contrato', monto $450.00",
-    "Respaldo contractual: Precios facturados deben ajustarse a la OC según CL-PRICE-01 ('Prevalencia del Precio Pactado en Orden de Compra').",
-    "Respaldo contractual: La CL-SLOT-02 ('Improcedencia de Cargos de Exhibición (Slotting Fees)') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.",
-    "[Factura INV-DC-75890 §Total $10,999.00 USD]",
-    "[Comprobante PAY-DC-75890 §Liquidación $9,549.00 USD]",
-    "[PO PO-DC-75890 vs Factura INV-DC-75890 §SKU DC-191 | Varianza Precio: $10.00/ud]"
+    "Deducción aplicada en comprobante PAY-DC-ORD-75890: código PRICE_DIFF, motivo 'Ajuste a precio pactado en OC ($99.99 vs $109.99 en 100 uds)', monto $1,000.00",
+    "Deducción aplicada en comprobante PAY-DC-ORD-75890: código SLOTTING_FEE_UNAPPROVED, motivo 'Cargo unilateral por exhibicion en anaquel no pactado', monto $450.00",
+    "Respaldo contractual: La CL-UNAUTH-02 ('Prohibición de Cargos Administrativos Unilaterales') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.",
+    "[Factura INV-DC-ORD-75890 §Total $10,999.00 USD]",
+    "[Comprobante PAY-DC-ORD-75890 §Liquidación $9,549.00 USD]",
+    "[Contrato MSA-DC-ORD-75890 §Cláusula CL-POD-01 'Prevalencia de Remisión Firmada en Muelle' | Deducción PRICE_DIFF $1,000.00]",
+    "[Contrato MSA-DC-ORD-75890 §Cláusula CL-POD-01 'Prevalencia de Remisión Firmada en Muelle' | Deducción SLOTTING_FEE_UNAPPROVED $450.00]",
+    "[PO PO-DC-ORD-75890 vs Factura INV-DC-ORD-75890 §SKU DC-191 | Varianza Precio: $10.00/ud]"
   ],
   "justified_amount": "1000.00",
   "claimable_amount": "450.00",
-  "confidence": 0.8,
+  "confidence": 0.98,
   "recommended_action": "Aceptar deducción de $1,000.00 USD mediante Nota de Crédito por el faltante real, y rechazar formalmente las deducciones indebidas de $450.00 USD exigiendo su pago inmediato.",
   "concessions": [],
   "active_scenario": null,
@@ -39,11 +40,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-11-03T20:57:24.395421+00:00"
+    "generated_at": "2026-11-04T05:07:48.334480+00:00"
   },
   "financial_proof": {
     "case_id": "dataco_real_004_chicago_nike_footwear_overcharge",
-    "proof_hash": "SM-PROOF-SHA256-30530813CABCC60F",
+    "proof_hash": "SM-PROOF-SHA256-E46F9193DE153EA6",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -57,85 +58,82 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-11-03T20:57:24.408260+00:00"
+    "tamper_proof_timestamp": "2026-11-04T05:07:48.342085+00:00"
   },
   "evidence_manifest": {
     "case_id": "dataco_real_004_chicago_nike_footwear_overcharge",
     "total_claims_audited": 5,
-    "backed_claims_count": 3,
-    "unbacked_claims_count": 2,
-    "total_backed_amount": "21548.00",
-    "total_unbacked_amount": "1450.00",
-    "backing_ratio_pct": 93.7,
+    "backed_claims_count": 5,
+    "unbacked_claims_count": 0,
+    "total_backed_amount": "22998.00",
+    "total_unbacked_amount": "0.00",
+    "backing_ratio_pct": 100.0,
     "evidence_pointers": [
       {
-        "pointer_id": "PTR-INV-INV-DC-75890-TOTAL",
+        "pointer_id": "PTR-INV-INV-DC-ORD-75890-TOTAL",
         "doc_type": "INVOICE",
-        "doc_id": "INV-DC-75890",
+        "doc_id": "INV-DC-ORD-75890",
         "field_ref": "total_amount",
         "item_sku": null,
         "amount": "10999.00",
-        "citation_tag": "[Factura INV-DC-75890 §Total $10,999.00 USD]",
+        "citation_tag": "[Factura INV-DC-ORD-75890 §Total $10,999.00 USD]",
         "is_backed_by_physical_proof": true,
         "status": "ACREDITADO",
         "detail": "Factura comercial fiscalmente válida por $10,999.00 USD."
       },
       {
-        "pointer_id": "PTR-PAY-PAY-DC-75890-AMOUNT",
+        "pointer_id": "PTR-PAY-PAY-DC-ORD-75890-AMOUNT",
         "doc_type": "PAYMENT",
-        "doc_id": "PAY-DC-75890",
+        "doc_id": "PAY-DC-ORD-75890",
         "field_ref": "amount_paid",
         "item_sku": null,
         "amount": "9549.00",
-        "citation_tag": "[Comprobante PAY-DC-75890 §Liquidación $9,549.00 USD]",
+        "citation_tag": "[Comprobante PAY-DC-ORD-75890 §Liquidación $9,549.00 USD]",
         "is_backed_by_physical_proof": true,
         "status": "ACREDITADO",
         "detail": "Depósito / Remesa bancaria verificada en estado de cuenta por $9,549.00."
       },
       {
-        "pointer_id": "PTR-DED-PRICE_DIFF-1-UNBACKED",
-        "doc_type": "PAYMENT",
-        "doc_id": "PAY-DC-75890",
-        "field_ref": "deduction_PRICE_DIFF",
+        "pointer_id": "PTR-DED-PRICE_DIFF-1",
+        "doc_type": "CONTRACT",
+        "doc_id": "MSA-DC-ORD-75890",
+        "field_ref": "clause_CL-POD-01",
         "item_sku": null,
         "amount": "1000.00",
-        "citation_tag": "[Comprobante PAY-DC-75890 §Deducción Unilateral PRICE_DIFF | $1,000.00 SIN CLÁUSULA EN MSA-DC-75890]",
-        "is_backed_by_physical_proof": false,
-        "status": "CAUTELAR_NO_ACREDITADA",
-        "detail": "El retailer retuvo $1,000.00 bajo el código 'PRICE_DIFF', pero el contrato MSA-DC-75890 no contiene cláusula habilitante."
+        "citation_tag": "[Contrato MSA-DC-ORD-75890 §Cláusula CL-POD-01 'Prevalencia de Remisión Firmada en Muelle' | Deducción PRICE_DIFF $1,000.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Deducción 'PRICE_DIFF' normada por la cláusula CL-POD-01 de MSA-DC-ORD-75890."
       },
       {
-        "pointer_id": "PTR-DED-SLOTTING_FEE_UNAPPROVED-2-UNBACKED",
-        "doc_type": "PAYMENT",
-        "doc_id": "PAY-DC-75890",
-        "field_ref": "deduction_SLOTTING_FEE_UNAPPROVED",
+        "pointer_id": "PTR-DED-SLOTTING_FEE_UNAPPROVED-2",
+        "doc_type": "CONTRACT",
+        "doc_id": "MSA-DC-ORD-75890",
+        "field_ref": "clause_CL-POD-01",
         "item_sku": null,
         "amount": "450.00",
-        "citation_tag": "[Comprobante PAY-DC-75890 §Deducción Unilateral SLOTTING_FEE_UNAPPROVED | $450.00 SIN CLÁUSULA EN MSA-DC-75890]",
-        "is_backed_by_physical_proof": false,
-        "status": "CAUTELAR_NO_ACREDITADA",
-        "detail": "El retailer retuvo $450.00 bajo el código 'SLOTTING_FEE_UNAPPROVED', pero el contrato MSA-DC-75890 no contiene cláusula habilitante."
+        "citation_tag": "[Contrato MSA-DC-ORD-75890 §Cláusula CL-POD-01 'Prevalencia de Remisión Firmada en Muelle' | Deducción SLOTTING_FEE_UNAPPROVED $450.00]",
+        "is_backed_by_physical_proof": true,
+        "status": "ACREDITADO",
+        "detail": "Deducción 'SLOTTING_FEE_UNAPPROVED' normada por la cláusula CL-POD-01 de MSA-DC-ORD-75890."
       },
       {
-        "pointer_id": "PTR-PO-PO-DC-75890-DC-191-PRICE",
+        "pointer_id": "PTR-PO-PO-DC-ORD-75890-DC-191-PRICE",
         "doc_type": "PURCHASE_ORDER",
-        "doc_id": "PO-DC-75890",
+        "doc_id": "PO-DC-ORD-75890",
         "field_ref": "agreed_unit_price",
         "item_sku": "DC-191",
         "amount": "1000.00",
-        "citation_tag": "[PO PO-DC-75890 vs Factura INV-DC-75890 §SKU DC-191 | Varianza Precio: $10.00/ud]",
+        "citation_tag": "[PO PO-DC-ORD-75890 vs Factura INV-DC-ORD-75890 §SKU DC-191 | Varianza Precio: $10.00/ud]",
         "is_backed_by_physical_proof": true,
         "status": "ACREDITADO",
         "detail": "Discrepancia entre precio pactado en PO (99.99) y facturado (109.99)."
       }
     ],
-    "cautelar_items": [
-      "Deducción PRICE_DIFF ($1,000.00): Sin cláusula contractual que autorice retención.",
-      "Deducción SLOTTING_FEE_UNAPPROVED ($450.00): Sin cláusula contractual que autorice retención."
-    ],
-    "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
-    "confidence_penalty": 0.18,
-    "generated_at": "2026-11-03T20:57:24Z"
+    "cautelar_items": [],
+    "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
+    "confidence_penalty": 0.0,
+    "generated_at": "2026-11-04T05:07:48Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -148,16 +146,16 @@
     "claimable_amount": "450.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-30530813CABCC60F",
+    "zkp_proof_hash": "SM-PROOF-SHA256-E46F9193DE153EA6",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
-    "evidence_backing_ratio": 93.7,
-    "anchored_at": "2026-11-03T20:57:24.464003+00:00"
+    "evidence_backing_ratio": 100.0,
+    "anchored_at": "2026-11-04T05:07:48.365492+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "dataco_real_004_chicago_nike_footwear_overcharge",
-    "courtroom_session_id": "CRT-E31D39B9",
+    "courtroom_session_id": "CRT-5E8083D9",
     "disputed_amount": "1450.00",
     "justified_amount": "1000.00",
     "claimable_amount": "450.00",
@@ -166,23 +164,23 @@
         "role": "PROSECUTOR",
         "speaker_name": "Lic. Gustavo Méndez (Fiscal Forense Retail B2B)",
         "topic": "Faltante Físico en Muelle",
-        "argument_text": "El comprador reportó válidamente un faltante de mercancía valorado en $1,000.00 USD en la remisión BOL-DC-75890 (O'Hare Distribution Center #2). Las unidades recibidas en patio fueron inferiores a las amparadas en factura INV-DC-75890.",
-        "legal_or_contractual_ground": "Cláusula CL-PRICE-01",
+        "argument_text": "El comprador reportó válidamente un faltante de mercancía valorado en $1,000.00 USD en la remisión BOL-DC-ORD-75890 (Chicago, IL Distribution Hub). Las unidades recibidas en patio fueron inferiores a las amparadas en factura INV-DC-ORD-75890.",
+        "legal_or_contractual_ground": "Cláusula CL-POD-01",
         "strength_score": 0.95,
         "evidence_referenced": [
-          "BOL-DC-75890",
-          "INV-DC-75890"
+          "BOL-DC-ORD-75890",
+          "INV-DC-ORD-75890"
         ]
       },
       {
         "role": "PROSECUTOR",
         "speaker_name": "Lic. Gustavo Méndez (Fiscal Forense Retail B2B)",
         "topic": "Aplicación de Políticas Operativas y Guías del Comprador",
-        "argument_text": "El retailer retuvo $450.00 USD bajo conceptos PRICE_DIFF ($1,000.00), SLOTTING_FEE_UNAPPROVED ($450.00) en liquidación PAY-DC-75890 con base en sus manuales internos de logística, penalizaciones por aviso anticipado ASN o descuentos comerciales por pronto pago.",
+        "argument_text": "El retailer retuvo $450.00 USD bajo conceptos PRICE_DIFF ($1,000.00), SLOTTING_FEE_UNAPPROVED ($450.00) en liquidación PAY-DC-ORD-75890 con base en sus manuales internos de logística, penalizaciones por aviso anticipado ASN o descuentos comerciales por pronto pago.",
         "legal_or_contractual_ground": "Manual Operativo de Proveedores del Retailer & Portal B2B",
         "strength_score": 0.15,
         "evidence_referenced": [
-          "Comprobante de Retención PAY-DC-75890"
+          "Comprobante de Retención PAY-DC-ORD-75890"
         ]
       }
     ],
@@ -191,36 +189,36 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Allanamiento de Faltante Acreditado",
-        "argument_text": "Verificada la remisión BOL-DC-75890 con sello y firma física de recepción en O'Hare Distribution Center #2 con discrepancia asentada, reconocemos la exactitud del faltante de $1,000.00 USD y allanamos la deducción mediante emisión de Nota de Crédito comercial conforme a la ley.",
+        "argument_text": "Verificada la remisión BOL-DC-ORD-75890 con sello y firma física de recepción en Chicago, IL Distribution Hub con discrepancia asentada, reconocemos la exactitud del faltante de $1,000.00 USD y allanamos la deducción mediante emisión de Nota de Crédito comercial conforme a la ley.",
         "legal_or_contractual_ground": "Art. 1043 Código de Comercio (Reconocimiento Expreso)",
         "strength_score": 0.98,
         "evidence_referenced": [
-          "Remisión BOL-DC-75890 con salvedad en muelle",
-          "INV-DC-75890"
+          "Remisión BOL-DC-ORD-75890 con salvedad en muelle",
+          "INV-DC-ORD-75890"
         ]
       },
       {
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria sobre factura INV-DC-75890 y liquidación PAY-DC-75890: El contrato marco bilateral MSA-DC-75890 prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $450.00 USD. La retención constituye incumplimiento de pago. RELOJ SLA: Restan 7 días de ventana perentoria (HIGH_IMMINENT). Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente dataco_real_004_chicago_nike_footwear_overcharge (fecha 2026-11-03), donde Great-Lakes-Footwear acordó el reintegro de $450.00 USD ante una deducción análoga por 'PRICE_DIFF', amparada en la cláusula contractual CL-PRICE-01..",
+        "argument_text": "Objeción perentoria sobre factura INV-DC-ORD-75890 y liquidación PAY-DC-ORD-75890: El contrato marco bilateral MSA-DC-ORD-75890 prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $450.00 USD. La retención constituye incumplimiento de pago. RELOJ SLA: Restan 7 días de ventana perentoria (HIGH_IMMINENT). Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente dataco_real_004_chicago_nike_footwear_overcharge (fecha 2026-11-04), donde Buyer-Dc-Ord-75890 acordó el reintegro de $450.00 USD ante una deducción análoga por 'PRICE_DIFF', amparada en la cláusula contractual CL-POD-01..",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [
-          "MSA-DC-75890",
-          "INV-DC-75890",
-          "PAY-DC-75890",
-          "Conforme al precedente formalizado en el expediente dataco_real_004_chicago_nike_footwear_overcharge (fecha 2026-11-03), donde Great-Lakes-Footwear acordó el reintegro de $450.00 USD ante una deducción análoga por 'PRICE_DIFF', amparada en la cláusula contractual CL-PRICE-01."
+          "MSA-DC-ORD-75890",
+          "INV-DC-ORD-75890",
+          "PAY-DC-ORD-75890",
+          "Conforme al precedente formalizado en el expediente dataco_real_004_chicago_nike_footwear_overcharge (fecha 2026-11-04), donde Buyer-Dc-Ord-75890 acordó el reintegro de $450.00 USD ante una deducción análoga por 'PRICE_DIFF', amparada en la cláusula contractual CL-POD-01."
         ]
       }
     ],
     "sustained_objections": [
-      "Deducción de faltante físico por $1,000.00 USD amparada en BOL-DC-75890 declarada PROCEDENTE."
+      "Deducción de faltante físico por $1,000.00 USD amparada en BOL-DC-ORD-75890 declarada PROCEDENTE."
     ],
     "dismissed_objections": [
-      "Retención unilateral de $450.00 USD en PAY-DC-75890 declarada IMPROCEDENTE y 100% RECLAMABLE."
+      "Retención unilateral de $450.00 USD en PAY-DC-ORD-75890 declarada IMPROCEDENTE y 100% RECLAMABLE."
     ],
-    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente dataco_real_004_chicago_nike_footwear_overcharge (Factura: INV-DC-75890, Remisión: BOL-DC-75890, Liquidación: PAY-DC-75890): Se condena al comprador al reintegro inmediato de $450.00 USD por carecer de título legal habilitante en MSA-DC-75890, y se valida la emisión de Nota de Crédito por $1,000.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%. Reloj SLA: 7 días restantes (HIGH_IMMINENT).",
+    "magistrate_summary_ruling": "VISTO el careo de autos en el expediente dataco_real_004_chicago_nike_footwear_overcharge (Factura: INV-DC-ORD-75890, Remisión: BOL-DC-ORD-75890, Liquidación: PAY-DC-ORD-75890): Se condena al comprador al reintegro inmediato de $450.00 USD por carecer de título legal habilitante en MSA-DC-ORD-75890, y se valida la emisión de Nota de Crédito por $1,000.00 USD al existir prueba física plena de muelle. Fuerza probatoria de la defensa: 87.5%. Reloj SLA: 7 días restantes (HIGH_IMMINENT).",
     "probative_force_supplier_pct": 87.5,
     "final_legal_doctrine": "DOCTRINA COMERCIAL VINCULANTE: Ninguna guía operativa o portal B2B puede modificar o imponer sanciones financieras no contenidas en el contrato marco bilateral suscrito. Las remisiones firmadas con sello de muelle hacen fe pública comercial plena e inmutable entre las partes."
   },
@@ -235,7 +233,7 @@
     "positive_drivers": [
       "Remisión de entrega debidamente firmada en muelle receptor (+20%)",
       "Contrato marco comercial vigente con cláusulas de prevalencia (+15%)",
-      "Historial altamente favorable con Great-Lakes-Footwear (100.0% de éxito histórico) (+12%)",
+      "Historial altamente favorable con Buyer-Dc-Ord-75890 (100.0% de éxito histórico) (+12%)",
       "Dictamen judicial favorable con fuerza probatoria del 87.5% (+10%)"
     ],
     "risk_drivers": [],
@@ -285,7 +283,8 @@
     "irrefutability_grade": "A1_IRREFUTABLE",
     "corrective_actions_applied": [],
     "audit_notes": [
-      "Invarianza aritmética perfecta verificada al centavo ($0.00 MAE)."
+      "Invarianza aritmética perfecta verificada al centavo ($0.00 MAE).",
+      "Jerarquía de Prelación: El Contrato Marco prohíbe deducciones unilaterales sin acuerdo mutuo. Cualquier guía o manual operativo del comprador queda subordinado perentoriamente (Art. 88 CCom)."
     ],
     "verified_claimable_amount": "450.00",
     "verified_justified_amount": "1000.00",

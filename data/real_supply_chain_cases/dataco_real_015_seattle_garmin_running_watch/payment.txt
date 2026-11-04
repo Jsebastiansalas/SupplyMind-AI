@@ -1,0 +1,11 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-100380
+invoice_reference: INV-DC-ORD-100380
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 10849.53
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=SHORTAGE | amount=499.98 | reason=Faltante fisico en muelle de 2 uds SKU DC-788 | ref=BOL-DC-ORD-100380
+DEDUCTION | code=DAMAGED | amount=249.99 | reason=Averia verificada en muelle de 1 uds SKU DC-788 | ref=BOL-DC-ORD-100380
+DEDUCTION | code=ANNUAL_VOLUME_REBATE_DISPUTED | amount=900.00 | reason=Rebate anual deducido sin cumplir umbral de compra | ref=REB-UNAUTH

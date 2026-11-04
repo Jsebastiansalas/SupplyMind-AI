@@ -1,0 +1,23 @@
+{
+  "receipt_id": "RCPT-WALM-126780F7",
+  "case_id": "non_existent_case_99999",
+  "portal_type": "WALMART_RETAIL_LINK",
+  "retailer_name": "Walmart Retail Link / Luminate AP Claims",
+  "tracking_ticket": "WLMT-TK-2026-452CD8",
+  "status": "CONFIRMED_ACCEPTED",
+  "http_status_code": 201,
+  "claimable_amount": "0.00",
+  "currency": "USD",
+  "confirmation_seal_sha256": "d1349dfde321044f5db10c48dfdecdc11138ad17833a4f983bcef000371b462d",
+  "estimated_sla_days": 15,
+  "log_trace": [
+    "[05:07:26.792] [INIT] Iniciando agente despachador robótico para Walmart Retail Link / Luminate AP Claims...",
+    "[05:07:26.792] [AUTH] Estableciendo apretón de manos TLS 1.3 y autenticación federada (SSO_SAML2_OIDC (Luminate Supplier ID))...",
+    "[05:07:26.792] [DOSSIER] Validando integridad del expediente pericial con 4 evidencias foliadas (Digest: b6ce6b6661b432cb...)...",
+    "[05:07:26.792] [UPLOAD] Transfiriendo lote probatorio cifrado y telemetría EDI al bucket pericial del portal...",
+    "[05:07:26.792] [ADAPTER] Mapeando payload normativo WALMART_RETAIL_LINK con código de reclamo '21 (Shortage en Muelle)'...",
+    "[05:07:26.792] [SUBMIT] Radicación transmitida a https://retaillink.wal-mart.com/api/ap/claims/v3/disputes. Código de respuesta HTTP 201 Created recibido...",
+    "[05:07:26.792] [CONFIRMED] Ticket oficial emitido: WLMT-TK-2026-452CD8. SLA de resolución: 15 días hábiles."
+  ],
+  "submitted_at": "2026-11-04T05:07:26.792543+00:00"
+}

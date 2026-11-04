@@ -1,0 +1,8 @@
+# po_id: PO-DC-ORD-71204
+# vendor_id: DATACO-CLEVELAND
+# customer_id: BUYER-DC-ORD-71204
+# order_date: 2026-01-25
+# currency: USD
+# total_amount: 11999.20
+item_id,description,ordered_quantity,agreed_unit_price,total_price
+DC-957,Diamondback Women's Serene Classic Comfort Bike (DataCo DC-957),40,299.98,11999.20

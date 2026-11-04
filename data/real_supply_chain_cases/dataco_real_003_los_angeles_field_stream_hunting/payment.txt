@@ -1,0 +1,9 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-73419
+invoice_reference: INV-DC-ORD-73419
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 8799.56
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=ALLEGED_SHORTAGE_UNILATERAL | amount=1199.94 | reason=Retencion unilateral por supuesto faltante de 3 uds no reportado en muelle | ref=INV-DC-ORD-73419

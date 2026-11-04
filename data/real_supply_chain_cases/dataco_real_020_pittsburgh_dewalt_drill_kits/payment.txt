@@ -1,0 +1,11 @@
+REMITTANCE ADVICE / AVISO DE PAGO BANCARIO
+payment_id: PAY-DC-ORD-111430
+invoice_reference: INV-DC-ORD-111430
+payment_date: 2026-02-15
+currency: USD
+amount_paid: 11220.00
+
+DEDUCTIONS APPLIED:
+DEDUCTION | code=SHORTAGE | amount=597.00 | reason=Faltante fisico en muelle de 3 uds SKU DC-1288 | ref=BOL-DC-ORD-111430
+DEDUCTION | code=DAMAGED | amount=398.00 | reason=Averia verificada en muelle de 2 uds SKU DC-1288 | ref=BOL-DC-ORD-111430
+DEDUCTION | code=LATE_DELIVERY_OTIF_PENALTY | amount=720.00 | reason=Penalidad OTIF improcedente con POD dentro de ventana | ref=REB-UNAUTH

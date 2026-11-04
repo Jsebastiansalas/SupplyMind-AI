@@ -101,24 +101,56 @@ def repair_json_string(raw_text: str) -> Tuple[Dict[str, Any], List[str]]:
         pass
 
     # 9. Reparación de JSON truncado (desbalance de llaves y corchetes)
-    open_curly = text.count("{") - text.count("}")
-    open_square = text.count("[") - text.count("]")
+    if text.count('"') % 2 != 0:
+        text += '"'
+        repaired_warnings.append("Cerrada cadena de texto interrumpida a final de archivo")
 
-    if open_curly > 0 or open_square > 0:
-        # Cerrar cadenas abiertas si terminó a mitad de string
-        if text.count('"') % 2 != 0:
-            text += '"'
-            repaired_warnings.append("Cerrada cadena de texto interrumpida a final de archivo")
+    text = re.sub(r",\s*$", "", text.strip())
 
-        # Quitar coma colgante al final
-        text = re.sub(r",\s*$", "", text.strip())
+    # Rastrear la pila de anidamiento LIFO ignorando delimitadores dentro de cadenas
+    stack = []
+    in_string = False
+    escape = False
+    for ch in text:
+        if escape:
+            escape = False
+            continue
+        if ch == '\\':
+            escape = True
+            continue
+        if ch == '"':
+            in_string = not in_string
+            continue
+        if not in_string:
+            if ch == '{':
+                stack.append('}')
+            elif ch == '[':
+                stack.append(']')
+            elif ch == '}':
+                if stack and stack[-1] == '}':
+                    stack.pop()
+            elif ch == ']':
+                if stack and stack[-1] == ']':
+                    stack.pop()
 
-        # Anexar cierres faltantes
-        closers = ("]" * max(0, open_square)) + ("}" * max(0, open_curly))
-        text_healed = text + closers
+    if stack:
+        closers = "".join(reversed(stack))
+        text_clean_end = re.sub(r",\s*$", "", text.strip())
+        text_healed = text_clean_end + closers
         try:
             parsed = json.loads(text_healed)
-            repaired_warnings.append(f"Auto-cerradas {open_curly} llaves y {open_square} corchetes desbalanceados")
+            repaired_warnings.append(f"Auto-cerrados delimitadores desbalanceados en orden LIFO: '{closers}'")
+            return parsed, repaired_warnings
+        except json.JSONDecodeError:
+            pass
+
+        # Fallback simple
+        open_curly = text.count("{") - text.count("}")
+        open_square = text.count("[") - text.count("]")
+        closers_fb = ("]" * max(0, open_square)) + ("}" * max(0, open_curly))
+        try:
+            parsed = json.loads(text_clean_end + closers_fb)
+            repaired_warnings.append(f"Auto-cerradas llaves y corchetes desbalanceados con fallback: '{closers_fb}'")
             return parsed, repaired_warnings
         except json.JSONDecodeError:
             pass

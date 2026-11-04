@@ -1,0 +1,18 @@
+{
+  "case_id": "dataco_real_015_seattle_garmin_running_watch",
+  "dataset_source": "DataCo Global Smart Supply Chain Dataset (DOI: 10.17632/8gx2fvg2k6.5)",
+  "buyer_name": "Sound Running Supply (DataCo Seattle Hub)",
+  "industry": "Wearable Tech",
+  "hub": "Seattle, WA",
+  "file_formats": [
+    ".csv",
+    ".json",
+    ".xlsx",
+    ".txt"
+  ],
+  "billed_amount": "12499.50",
+  "received_amount": "10849.53",
+  "difference": "-1649.97",
+  "expected_justified_amount": "749.97",
+  "expected_claimable_amount": "900.00"
+}

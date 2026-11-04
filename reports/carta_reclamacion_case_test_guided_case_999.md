@@ -1,6 +1,6 @@
 # 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
 **Ref: Expediente de Cartera case_test_guided_case_999 / Factura INV-TEST_G-101**  
-**Fecha:** 28 de October de 2026  
+**Fecha:** 03 de November de 2026  
 **De:** Departamento de Cartera y Asuntos Comerciales — VEN-TEST  
 **Para:** Gerencia de Cuentas por Pagar y Conciliación — CUST-TEST  
 
@@ -19,6 +19,16 @@ Aceptamos de plena conformidad la deducción por valor de **$500.00 USD**, debid
 Rechazamos formalmente las deducciones adicionales aplicadas por un importe total de **$200.00 USD**, por carecer de soporte probatorio y contrariar los términos del contrato comercial **CTR-TEST_G-2026**:
 - **Causa Raíz:** Discrepancia mixta en expediente case_test_guided_case_999: Faltante físico comprobado de $500.00 USD amparado en remisión firmada con sello, y retenciones no autorizadas por $200.00 USD sin sustento contractual ni documental.
 - **Fundamentación Contractual:** Evaluación algorítmica y semántica completada. Posible deducción de $200.00 requiere análisis final por el Agente.
+
+#### 4. Antecedentes y Precedentes Comerciales Vinculantes
+Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
+
+**Precedente 1 (Expediente case_test_guided_case_999 — 2026-11-03):**
+- **Criterio Acreditado:** En el caso case_test_guided_case_999, se acreditó la improcedencia de la deducción 'DED-FALTANTE' conforme a CLAUSE-3.1, logrando la restitución de $200.00 USD.
+- **Resultado Previo:** Restitución de **$200.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** CLAUSE-3.1.
+
+Por tanto, en observancia del principio de coherencia comercial y buena fe contractual, solicitamos la aplicación del mismo criterio para el reintegro de la presente retención.
 
 #### 3. Requerimiento de Pago
 En virtud de lo anterior, solicitamos comedidamente realizar la programación y transferencia del saldo retenido injustificadamente por valor de:
