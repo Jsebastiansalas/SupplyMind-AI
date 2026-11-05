@@ -95,12 +95,20 @@ class BatchResilienceVerifier:
                     anomaly_description=desc,
                 )
                 rec = orch.process_work_unit(unit)
-                if (
-                    rec.status == "RECOVERED_QUARANTINE"
-                    and anom in rec.error_encountered
-                    and "cuarentena" in rec.recovery_action.lower()
-                ):
-                    recovered_count += 1
+                if anom == "IRRECONCILABLE_MISSING_POD":
+                    if (
+                        rec.status == "FAILED"
+                        and "FileNotFoundError" in rec.error_encountered
+                        and "cuarentena" in rec.recovery_action.lower()
+                    ):
+                        recovered_count += 1
+                else:
+                    if (
+                        rec.status == "RECOVERED_QUARANTINE"
+                        and anom in rec.error_encountered
+                        and "cuarentena" in rec.recovery_action.lower()
+                    ):
+                        recovered_count += 1
 
                 b = Decimal(str(round(rec.billed_amount, 2)))
                 r = Decimal(str(round(rec.received_amount, 2)))

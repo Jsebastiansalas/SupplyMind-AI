@@ -356,7 +356,11 @@ class WorkUnitQueueGenerator:
         qty_ordered = 50 + ((unit.unit_index * 15) % 250)
         qty_invoiced = qty_ordered
         qty_received = max(10, qty_ordered - (qty_ordered // 10)) if "SHORTAGE" in unit.category else qty_ordered
-        unit_price = (unit.billed_amount / Decimal(str(qty_invoiced))).quantize(TWO_PLACES)
+        agreed_unit_price = (unit.billed_amount / Decimal(str(qty_invoiced))).quantize(TWO_PLACES)
+        if unit.anomaly_type == "PRICE_DISCREPANCY_OVERCHARGE":
+            invoiced_unit_price = (agreed_unit_price * Decimal("1.15")).quantize(TWO_PLACES)
+        else:
+            invoiced_unit_price = agreed_unit_price
 
         carriers = [
             "Transportes Castores de Baja California S.A. de C.V.",
@@ -387,7 +391,7 @@ class WorkUnitQueueGenerator:
                     "sku": sku_code,
                     "description": sku_desc,
                     "quantity": qty_invoiced,
-                    "unit_price": str(unit_price),
+                    "unit_price": str(invoiced_unit_price),
                     "subtotal": str(unit.billed_amount),
                     "tax": "0.00",
                     "total": str(unit.billed_amount)
@@ -412,7 +416,7 @@ class WorkUnitQueueGenerator:
                 {
                     "sku": sku_code,
                     "quantity": qty_ordered,
-                    "agreed_price": str(unit_price),
+                    "agreed_price": str(agreed_unit_price),
                     "subtotal": str(unit.billed_amount)
                 }
             ],

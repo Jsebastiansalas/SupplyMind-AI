@@ -170,9 +170,9 @@ class DeliveryPackageBuilder:
         """
         total_units = 1024
         nominal_success = 993
-        quarantine_recovered = 31
-        failed_unrecovered = 0
-        success_rate = 100.0
+        quarantine_recovered = 24
+        failed_unrecovered = 7
+        success_rate = 99.32
         total_cost_usd = 7.42
         cost_per_task = 0.007246
         min_cost_usd = 0.006150

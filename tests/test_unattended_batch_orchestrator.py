@@ -285,3 +285,68 @@ def test_orchestrator_real_three_way_match_and_no_prebaked_prompt(tmp_path):
     assert "1735.50" not in prompt_sent
     assert record.financial_delta == 0.00
 
+
+def test_orchestrator_honest_failure_on_missing_pod_and_real_json_repair(tmp_path):
+    """
+    Valida la Mejora 2 (Honestidad sobre los fallos):
+    1. Si falta físicamente delivery.json (IRRECONCILABLE_MISSING_POD), el agente declara
+       honestamente status='FAILED' con FileNotFoundError y escala a revisión humana.
+    2. Si payment.json está truncado (CORRUPT_JSON_SYNTAX), el agente captura el JSONDecodeError
+       real al leer el archivo, lo repara y clasifica en 'RECOVERED_QUARANTINE'.
+    """
+    orchestrator = UnattendedBatchOrchestrator(
+        output_dir=tmp_path,
+        total_units=2,
+        dry_run=True,
+    )
+
+    missing_pod_unit = WorkUnit(
+        unit_index=8,
+        task_id="work_unit_0008",
+        case_id="case_missing_pod_008",
+        source_origin="ANOMALY_CONTROLLED",
+        retailer_id="SORIANA_MX",
+        retailer_name="Organización Soriana",
+        category="ANOMALY_IRRECONCILABLE_MISSING_POD",
+        billed_amount=Decimal("18000.00"),
+        received_amount=Decimal("16200.00"),
+        disputed_amount=Decimal("1800.00"),
+        expected_claimable=Decimal("0.00"),
+        expected_justified=Decimal("1800.00"),
+        expected_action="QUARANTINE_FORENSIC_AUDIT_REQUIRED",
+        has_anomaly=True,
+        anomaly_type="IRRECONCILABLE_MISSING_POD",
+        anomaly_description="Remisión física ausente sin sello de muelle.",
+    )
+    rec_failed = orchestrator.process_work_unit(missing_pod_unit)
+    assert rec_failed.status == "FAILED"
+    assert "FileNotFoundError" in rec_failed.error_encountered
+    assert "delivery.json" in rec_failed.error_encountered
+    assert rec_failed.financial_delta == 0.00
+    assert rec_failed.tokens_total > 900
+
+    corrupt_json_unit = WorkUnit(
+        unit_index=9,
+        task_id="work_unit_0009",
+        case_id="case_corrupt_json_009",
+        source_origin="ANOMALY_CONTROLLED",
+        retailer_id="AMAZON_MX",
+        retailer_name="Amazon México",
+        category="ANOMALY_CORRUPT_JSON_SYNTAX",
+        billed_amount=Decimal("22000.00"),
+        received_amount=Decimal("19800.00"),
+        disputed_amount=Decimal("2200.00"),
+        expected_claimable=Decimal("0.00"),
+        expected_justified=Decimal("2200.00"),
+        expected_action="AUTO_REPAIR_JSON_AND_PROCEED",
+        has_anomaly=True,
+        anomaly_type="CORRUPT_JSON_SYNTAX",
+        anomaly_description="Archivo JSON de pago con llave truncada.",
+    )
+    rec_repaired = orchestrator.process_work_unit(corrupt_json_unit)
+    assert rec_repaired.status == "RECOVERED_QUARANTINE"
+    assert "JSONDecodeError" in rec_repaired.error_encountered
+    assert rec_repaired.financial_delta == 0.00
+    assert rec_repaired.tokens_total > 900
+
+
