@@ -107,6 +107,7 @@ class UnattendedBatchOrchestrator:
         # Rutas de artefactos de bitácora
         self.stream_path = self.output_dir / "unattended_batch_execution_stream.jsonl"
         self.checkpoint_path = self.output_dir / "unattended_batch_checkpoint.json"
+        self.heartbeat_path = self.output_dir / "unattended_batch_heartbeat.json"
         self.csv_log_path = self.output_dir / "unattended_batch_execution_log.csv"
         self.json_log_path = self.output_dir / "unattended_batch_execution_log.json"
         self.summary_md_path = self.output_dir / "unattended_batch_executive_summary.md"
@@ -198,6 +199,36 @@ class UnattendedBatchOrchestrator:
 
         self.completed_records.append(record)
         self.completed_task_ids.add(record.task_id)
+
+    def update_heartbeat(
+        self,
+        current_unit_index: int,
+        total_units: int,
+        current_task_id: str,
+        status: str = "RUNNING",
+    ) -> None:
+        """Actualiza atómicamente el latido (heartbeat) de supervisión en disco."""
+        data = {
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "pid": os.getpid(),
+            "status": status,
+            "current_unit_index": current_unit_index,
+            "total_units": total_units,
+            "current_task_id": current_task_id,
+            "completed_count": len(self.completed_records),
+            "total_cost_usd": float(sum(r.cost_usd for r in self.completed_records)),
+            "success_count": sum(1 for r in self.completed_records if r.status == "SUCCESS"),
+            "quarantine_count": sum(1 for r in self.completed_records if r.status == "RECOVERED_QUARANTINE"),
+            "failed_count": sum(1 for r in self.completed_records if r.status == "FAILED"),
+        }
+        tmp_path = self.heartbeat_path.with_suffix(".tmp")
+        try:
+            with open(tmp_path, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=2, ensure_ascii=False)
+            if tmp_path.exists():
+                os.replace(tmp_path, self.heartbeat_path)
+        except Exception:
+            pass
 
     def _execute_unit_with_gateway(self, unit: WorkUnit) -> Dict[str, Any]:
         """
@@ -578,6 +609,7 @@ class UnattendedBatchOrchestrator:
             # Ejecución de la unidad de trabajo
             record = self.process_work_unit(unit)
             self.append_record_to_stream(record)
+            self.update_heartbeat(i, total_to_process, unit.task_id, "RUNNING")
 
             unit_duration = time.time() - unit_start
 
@@ -599,6 +631,7 @@ class UnattendedBatchOrchestrator:
                     time.sleep(sleep_needed)
 
         # Exportación final definitiva
+        self.update_heartbeat(len(self.completed_records), total_to_process, "COMPLETED", "COMPLETED")
         export_paths = self.export_logs()
 
         return {
