@@ -140,11 +140,14 @@ class DeliveryPackageBuilder:
 
 ---
 
-### 2. Enlaces Directos a las Bitácoras en el Repositorio
+### 2. Enlaces Directos a las Bitácoras y Certificación Criptográfica en el Repositorio
 - **Bitácora Completa en CSV:** `{repo_url}/blob/develop/reports/unattended_batch_execution_log.csv`
 - **Bitácora Completa en JSON:** `{repo_url}/blob/develop/reports/unattended_batch_execution_log.json`
 - **Registro Streaming en JSONL:** `{repo_url}/blob/develop/reports/unattended_batch_execution_stream.jsonl`
 - **Resumen Ejecutivo Detallado:** `{repo_url}/blob/develop/reports/unattended_batch_executive_summary.md`
+- **Manifiesto Criptográfico SHA-256 (Merkle Root):** `{repo_url}/blob/develop/reports/unattended_batch_audit_manifest.json`
+- **Sumas de Verificación SHA-256:** `{repo_url}/blob/develop/reports/unattended_batch_audit_manifest.sha256`
+- **Tablero Visual de Telemetría (HTML/SVG):** `{repo_url}/blob/develop/reports/unattended_batch_analytics_dashboard.html`
 
 ---
 

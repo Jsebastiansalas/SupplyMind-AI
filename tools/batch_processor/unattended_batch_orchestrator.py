@@ -27,6 +27,8 @@ from typing import Any, Dict, List, Optional
 
 from config.settings import settings
 from agent.guardrails.budget_guard import TaskBudgetGuard
+from tools.batch_processor.batch_analytics_visualizer import BatchAnalyticsVisualizer
+from tools.batch_processor.batch_audit_sealer import BatchAuditSealer
 from tools.batch_processor.work_unit_queue_generator import WorkUnit, WorkUnitQueueGenerator
 
 
@@ -537,10 +539,27 @@ class UnattendedBatchOrchestrator:
         with open(self.summary_md_path, "w", encoding="utf-8") as f:
             f.write(summary_md)
 
+        # 4. Sellar criptográficamente la bitácora (SHA-256 Hash Chain + Merkle Root)
+        records_dicts = [r.to_dict() for r in self.completed_records]
+        sealer = BatchAuditSealer(reports_dir=self.output_dir)
+        seal_info = sealer.seal_records(records_dicts)
+
+        # 5. Generar Tablero Visual HTML/SVG y Resumen Analítico JSON
+        visualizer = BatchAnalyticsVisualizer(reports_dir=self.output_dir)
+        analytics_paths = visualizer.export_visual_dashboard(
+            records=records_dicts,
+            seal_info=seal_info,
+        )
+
         return {
             "csv_log": str(self.csv_log_path),
             "json_log": str(self.json_log_path),
-            "summary_md": str(self.summary_md_path)
+            "summary_md": str(self.summary_md_path),
+            "audit_manifest_json": seal_info["manifest_json"],
+            "audit_manifest_sha256": seal_info["manifest_sha256"],
+            "merkle_root": seal_info["merkle_root"],
+            "analytics_json": analytics_paths["analytics_json"],
+            "analytics_html": analytics_paths["analytics_html"],
         }
 
     def generate_executive_summary(self) -> str:
@@ -619,10 +638,13 @@ class UnattendedBatchOrchestrator:
             f"- **Acción de Recuperación:** Auto-cuarentena forense conforme a NIF C-3 y NIA 240, aislando expedientes corruptos o con campos faltantes sin frenar el flujo del orquestador.",
             f"- **Recuperación ante Caídas de Red / Rate Limits:** Interruptor de circuito con retroceso exponencial que reintentó solicitudes a Platica Gateway mitigando el 100% de contingencias de red.",
             "",
-            "## 6. Enlaces a Bitácoras Oficiales",
+            "## 6. Enlaces a Bitácoras Oficiales y Certificación Criptográfica",
             f"- Bitácora CSV: `reports/unattended_batch_execution_log.csv`",
             f"- Bitácora JSON: `reports/unattended_batch_execution_log.json`",
             f"- Flujo Streaming JSONL: `reports/unattended_batch_execution_stream.jsonl`",
+            f"- Manifiesto Criptográfico SHA-256 (Merkle Root): `reports/unattended_batch_audit_manifest.json`",
+            f"- Sumas de Verificación SHA-256: `reports/unattended_batch_audit_manifest.sha256`",
+            f"- Tablero Visual Interactivo HTML/SVG: `reports/unattended_batch_analytics_dashboard.html`",
             "",
             "> Dictamen emitido por SupplyMind AI con motor Grok-4.7 en pasarela oficial Platica.",
         ])
