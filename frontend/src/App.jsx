@@ -21,6 +21,7 @@ import PortalCrawlerView from './components/PortalCrawlerView';
 import PalletVisionView from './components/PalletVisionView';
 import NegotiationDuelView from './components/NegotiationDuelView';
 import ClosurePreventionView from './components/ClosurePreventionView';
+import UnattendedBatchView from './components/UnattendedBatchView';
 import { apiClient } from './api/client';
 import { 
   DollarSign, 
@@ -42,6 +43,7 @@ import {
   Eye, 
   CheckCircle2, 
   Clock, 
+  Activity, 
   Trophy, 
   Gavel, 
   Binary, 
@@ -159,6 +161,9 @@ function Workspace() {
         setForceShowSummary(false);
       } else if (e.key === '9') {
         setActiveTab('closure');
+        setForceShowSummary(false);
+      } else if (e.key === '0') {
+        setActiveTab('unattended');
         setForceShowSummary(false);
       } else if (e.key === 'b' || e.key === 'B') {
         setIsSidebarOpen(prev => !prev);
@@ -511,6 +516,23 @@ function Workspace() {
                   </button>
 
                   <button
+                    onClick={() => {
+                      setActiveTab('unattended');
+                      setForceShowSummary(false);
+                    }}
+                    className={`btn-tactile px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors flex items-center space-x-1.5 ${
+                      activeTab === 'unattended'
+                        ? 'bg-[#12241b] text-emerald-300 border border-emerald-500/70 shadow-tactile font-bold'
+                        : 'text-zinc-400 hover:text-white hover:bg-[#12131a]'
+                    }`}
+                    title="Jornada Desatendida de 1,024 Unidades, 12 Horas, Sello Criptográfico Merkle SHA-256 y Smoke Test"
+                  >
+                    <Activity className="w-3.5 h-3.5 text-emerald-400" />
+                    <span>Carga 1,024 (12h)</span>
+                    <span className="text-[9px] px-1 py-0.2 rounded bg-emerald-950 text-emerald-300 font-mono hidden md:inline">0</span>
+                  </button>
+
+                  <button
                     onClick={() => setActiveTab('benchmark')}
                     className={`btn-tactile px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors flex items-center space-x-1.5 ${
                       activeTab === 'benchmark'
@@ -535,6 +557,24 @@ function Workspace() {
                   </button>
                 </div>
               )}
+
+              {/* Dedicated Unattended 1024 Batch Button */}
+              <button
+                onClick={() => {
+                  setActiveTab(activeTab === 'unattended' ? 'financial' : 'unattended');
+                  setForceShowSummary(false);
+                }}
+                className={`btn-tactile px-2.5 py-1.5 rounded bg-[#111218] hover:bg-[#161822] border text-xs font-mono font-bold transition-all flex items-center space-x-1.5 shadow-tactile ${
+                  activeTab === 'unattended'
+                    ? 'bg-[#12241b] border-emerald-500 text-emerald-300'
+                    : 'border-[#222432] text-zinc-300 hover:text-white'
+                }`}
+                title="Auditoría de Carga Desatendida de 1,024 Unidades / 12 Horas"
+              >
+                <Activity className="w-3.5 h-3.5 text-emerald-400" />
+                <span className="hidden sm:inline">Carga 1,024 (12h)</span>
+                <span className="text-[9px] px-1 py-0.2 rounded bg-emerald-950 text-emerald-300 font-mono">100%</span>
+              </button>
 
               {/* Dedicated Benchmark 35 Button */}
               <button
@@ -662,6 +702,17 @@ function Workspace() {
                     <button
                       onClick={() => {
                         setShowToolsMenu(false);
+                        setActiveTab('unattended');
+                      }}
+                      className="btn-tactile w-full text-left px-3 py-2 rounded hover:bg-[#181a24] text-emerald-300 hover:text-white flex items-center space-x-2"
+                    >
+                      <Activity className="w-3.5 h-3.5 text-emerald-400" />
+                      <span>Jornada 12h Desatendida (1,024u)</span>
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        setShowToolsMenu(false);
                         setActiveTab('benchmark');
                       }}
                       className="btn-tactile w-full text-left px-3 py-2 rounded hover:bg-[#181a24] text-zinc-300 hover:text-white flex items-center space-x-2"
@@ -700,8 +751,10 @@ function Workspace() {
 
           </div>
 
-          {/* Active View: Benchmark View OR EDI Inspector OR Courtroom View OR Portals OR Vision OR Summary when not resolved OR Full Financial Workspace */}
-          {activeTab === 'benchmark' ? (
+          {/* Active View: Unattended 1024 Batch OR Benchmark View OR EDI Inspector OR Courtroom View OR Portals OR Vision OR Summary when not resolved OR Full Financial Workspace */}
+          {activeTab === 'unattended' ? (
+            <UnattendedBatchView />
+          ) : activeTab === 'benchmark' ? (
             <BenchmarkView 
               onSelectCase={(cId) => {
                 setSelectedCaseId(cId);

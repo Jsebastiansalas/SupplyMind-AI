@@ -1,0 +1,23 @@
+{
+  "invoice_id": "INV-SMOKE_UNIT_0003",
+  "po_reference": "PO-SMOKE_UNIT_0003",
+  "vendor_id": "SUPPLIER-PACIFIC-CORP",
+  "customer_id": "CUST-SORIANA_MX",
+  "issue_date": "2026-10-15",
+  "due_date": "2026-11-14",
+  "currency": "MXN",
+  "items": [
+    {
+      "sku": "SKU-SOR-1003",
+      "description": "Lote Comercial ANOMALY_IRRECONCILABLE_MISSING_POD — Embarque #3 (1 pallets consolidados para SORIANA_MX)",
+      "quantity": 95,
+      "unit_price": "402.27",
+      "subtotal": "38216.00",
+      "tax": "0.00",
+      "total": "38216.00"
+    }
+  ],
+  "subtotal": "38216.00",
+  "tax_total": "0.00",
+  "total": "38216.00"
+}

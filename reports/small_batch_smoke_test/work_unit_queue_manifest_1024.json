@@ -1,0 +1,61 @@
+{
+  "manifest_version": "MASSIVE_UNATTENDED_BATCH_1024",
+  "total_units": 3,
+  "generated_seed": 2026,
+  "units": [
+    {
+      "unit_index": 1,
+      "task_id": "smoke_unit_0001",
+      "case_id": "dataco_real_017_tampa_shimano_reels_var_0001",
+      "source_origin": "DATACO_REAL",
+      "retailer_id": "DATACO_GLOBAL",
+      "retailer_name": "DataCo Global Smart Supply Chain (Real Dataset)",
+      "category": "DATACO_TRANSIT_DELAY",
+      "billed_amount": "21271.00",
+      "received_amount": "17442.22",
+      "disputed_amount": "3828.78",
+      "expected_claimable": "3254.46",
+      "expected_justified": "574.32",
+      "expected_action": "DEMAND_FULL_RECOVERY_CARRIER_FOB",
+      "has_anomaly": false,
+      "anomaly_type": null,
+      "anomaly_description": null
+    },
+    {
+      "unit_index": 2,
+      "task_id": "smoke_unit_0002",
+      "case_id": "anomaly_batch_corrupt_json_syntax_0039",
+      "source_origin": "ANOMALY_CONTROLLED",
+      "retailer_id": "LIVERPOOL_MX",
+      "retailer_name": "LIVERPOOL_MX",
+      "category": "ANOMALY_CORRUPT_JSON_SYNTAX",
+      "billed_amount": "12812.00",
+      "received_amount": "11530.80",
+      "disputed_amount": "1281.20",
+      "expected_claimable": "1281.20",
+      "expected_justified": "0.00",
+      "expected_action": "AUTO_REPAIR_JSON_AND_PROCEED",
+      "has_anomaly": true,
+      "anomaly_type": "CORRUPT_JSON_SYNTAX",
+      "anomaly_description": "Archivo JSON de pago con llave truncada para auto-recuperación sintáctica."
+    },
+    {
+      "unit_index": 3,
+      "task_id": "smoke_unit_0003",
+      "case_id": "anomaly_batch_irreconcilable_missing_pod_0010",
+      "source_origin": "ANOMALY_CONTROLLED",
+      "retailer_id": "SORIANA_MX",
+      "retailer_name": "SORIANA_MX",
+      "category": "ANOMALY_IRRECONCILABLE_MISSING_POD",
+      "billed_amount": "38216.00",
+      "received_amount": "34394.40",
+      "disputed_amount": "3821.60",
+      "expected_claimable": "0.00",
+      "expected_justified": "0.00",
+      "expected_action": "QUARANTINE_FORENSIC_AUDIT_REQUIRED",
+      "has_anomaly": true,
+      "anomaly_type": "IRRECONCILABLE_MISSING_POD",
+      "anomaly_description": "Remisión física ausente sin sello de muelle que obliga a cuarentena forense."
+    }
+  ]
+}

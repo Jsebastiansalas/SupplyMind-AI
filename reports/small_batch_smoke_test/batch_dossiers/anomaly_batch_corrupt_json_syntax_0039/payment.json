@@ -1,0 +1,15 @@
+{
+  "payment_id": "REM-SMOKE_UNIT_0002",
+  "invoice_reference": "INV-SMOKE_UNIT_0002",
+  "payment_date": "2026-10-30",
+  "gross_amount": "12812.00",
+  "deductions": [
+    {
+      "deduction_id": "DED-SMOKE_UNIT_0002",
+      "code": "DED-ANOMALY_",
+      "reason": "Deducci\u00f3n aplicada por ANOMALY_CORRUPT_JSON_SYNTAX",
+      "amount": "1281.20",
+      "clause_reference": "CLAUSE-4.1"
+    }
+  ],
+  "net_paid": "11530.8

@@ -1,0 +1,19 @@
+{
+  "po_id": "PO-SMOKE_UNIT_0001",
+  "vendor_id": "SUPPLIER-PACIFIC-CORP",
+  "customer_id": "CUST-DATACO_GLOBAL",
+  "issue_date": "2026-10-01",
+  "delivery_window": {
+    "start": "2026-10-10",
+    "end": "2026-10-12"
+  },
+  "items": [
+    {
+      "sku": "SKU-DAT-1001",
+      "quantity": 65,
+      "agreed_price": "327.25",
+      "subtotal": "21271.00"
+    }
+  ],
+  "total_amount": "21271.00"
+}

@@ -1,0 +1,23 @@
+{
+  "invoice_id": "INV-SMOKE_UNIT_0001",
+  "po_reference": "PO-SMOKE_UNIT_0001",
+  "vendor_id": "SUPPLIER-PACIFIC-CORP",
+  "customer_id": "CUST-DATACO_GLOBAL",
+  "issue_date": "2026-10-15",
+  "due_date": "2026-11-14",
+  "currency": "MXN",
+  "items": [
+    {
+      "sku": "SKU-DAT-1001",
+      "description": "Lote Comercial DATACO_TRANSIT_DELAY — Embarque #1 (2 pallets consolidados para DataCo Global Smart Supply Chain (Real Dataset))",
+      "quantity": 65,
+      "unit_price": "327.25",
+      "subtotal": "21271.00",
+      "tax": "0.00",
+      "total": "21271.00"
+    }
+  ],
+  "subtotal": "21271.00",
+  "tax_total": "0.00",
+  "total": "21271.00"
+}

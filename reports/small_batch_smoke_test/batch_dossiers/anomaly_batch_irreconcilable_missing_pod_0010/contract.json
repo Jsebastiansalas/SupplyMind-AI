@@ -1,0 +1,24 @@
+{
+  "contract_id": "CTR-SORIANA_MX-2026",
+  "buyer_id": "SORIANA_MX",
+  "buyer_name": "SORIANA_MX",
+  "effective_date": "2026-01-01",
+  "governing_law": "Código de Comercio México (Art. 88)",
+  "clauses": [
+    {
+      "clause_id": "CLAUSE-3.1",
+      "title": "Precios y Catálogo",
+      "text": "Los precios unitarios no podrán ser modificados unilateralmente sin addendum firmado."
+    },
+    {
+      "clause_id": "CLAUSE-4.1",
+      "title": "Averías y Faltantes",
+      "text": "El comprador deberá notificar cualquier merma física en un plazo no mayor a 15 días naturales posteriores a la entrega."
+    },
+    {
+      "clause_id": "CLAUSE-5.1",
+      "title": "Ventana de Tolerancia OTIF",
+      "text": "Se concede una tolerancia de sesenta (60) minutos posteriores a la hora de cita antes de considerar demora imputable."
+    }
+  ]
+}

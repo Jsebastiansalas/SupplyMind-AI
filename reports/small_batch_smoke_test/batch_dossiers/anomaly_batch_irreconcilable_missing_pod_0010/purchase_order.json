@@ -1,0 +1,19 @@
+{
+  "po_id": "PO-SMOKE_UNIT_0003",
+  "vendor_id": "SUPPLIER-PACIFIC-CORP",
+  "customer_id": "CUST-SORIANA_MX",
+  "issue_date": "2026-10-01",
+  "delivery_window": {
+    "start": "2026-10-10",
+    "end": "2026-10-12"
+  },
+  "items": [
+    {
+      "sku": "SKU-SOR-1003",
+      "quantity": 95,
+      "agreed_price": "402.27",
+      "subtotal": "38216.00"
+    }
+  ],
+  "total_amount": "38216.00"
+}

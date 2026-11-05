@@ -1,0 +1,4 @@
+unit_index,task_id,case_id,source_origin,retailer_id,retailer_name,category,billed_amount,received_amount,disputed_amount,expected_claimable,expected_justified,expected_action,has_anomaly,anomaly_type
+1,smoke_unit_0001,dataco_real_017_tampa_shimano_reels_var_0001,DATACO_REAL,DATACO_GLOBAL,DataCo Global Smart Supply Chain (Real Dataset),DATACO_TRANSIT_DELAY,21271.00,17442.22,3828.78,3254.46,574.32,DEMAND_FULL_RECOVERY_CARRIER_FOB,False,
+2,smoke_unit_0002,anomaly_batch_corrupt_json_syntax_0039,ANOMALY_CONTROLLED,LIVERPOOL_MX,LIVERPOOL_MX,ANOMALY_CORRUPT_JSON_SYNTAX,12812.00,11530.80,1281.20,1281.20,0.00,AUTO_REPAIR_JSON_AND_PROCEED,True,CORRUPT_JSON_SYNTAX
+3,smoke_unit_0003,anomaly_batch_irreconcilable_missing_pod_0010,ANOMALY_CONTROLLED,SORIANA_MX,SORIANA_MX,ANOMALY_IRRECONCILABLE_MISSING_POD,38216.00,34394.40,3821.60,0.00,0.00,QUARANTINE_FORENSIC_AUDIT_REQUIRED,True,IRRECONCILABLE_MISSING_POD

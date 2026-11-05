@@ -1,0 +1,114 @@
+{
+  "generated_at": "2026-11-05T16:11:21.134510+00:00",
+  "total_units": 3,
+  "status_breakdown": {
+    "SUCCESS": 1,
+    "RECOVERED_QUARANTINE": 1,
+    "FAILED": 1
+  },
+  "success_rate_pct": 66.67,
+  "financials": {
+    "total_billed_mxn": 72299.0,
+    "total_received_mxn": 63367.42,
+    "total_disputed_mxn": 8931.58,
+    "total_recovered_mxn": 3254.46,
+    "total_justified_mxn": 5677.12,
+    "recovery_rate_pct": 36.44,
+    "mae_zero_verified": true
+  },
+  "telemetry": {
+    "total_cost_usd": 0.02192,
+    "avg_cost_usd": 0.007307,
+    "min_cost_usd": 0.006825,
+    "max_cost_usd": 0.007645,
+    "total_tokens": 3382,
+    "avg_tokens_per_unit": 1127.3,
+    "total_duration_seconds": 0.04,
+    "total_duration_hours": 0.0,
+    "avg_latency_seconds": 0.015,
+    "p50_latency_seconds": 0.015,
+    "p95_latency_seconds": 0.015
+  },
+  "cryptographic_seal": {
+    "manifest_json": "reports\\small_batch_smoke_test\\unattended_batch_audit_manifest.json",
+    "manifest_sha256": "reports\\small_batch_smoke_test\\unattended_batch_audit_manifest.sha256",
+    "merkle_root": "909cd93d712e0add7748c4d071ecb8a4928c5705be2602d2b1ef1214ab522e7a",
+    "tip_chain_hash": "14a4e8e0678b9256aa406ff87c0d17a743ff4f0ce46176e7ec507abba20ae0a0",
+    "total_units_sealed": 3
+  },
+  "retailer_breakdown": [
+    {
+      "retailer_id": "DATACO_GLOBAL",
+      "retailer_name": "DataCo Global Smart Supply Chain (Real Dataset)",
+      "units_count": 1,
+      "disputed_mxn": 3828.78,
+      "recovered_mxn": 3254.46,
+      "cost_usd": 0.007645
+    },
+    {
+      "retailer_id": "LIVERPOOL_MX",
+      "retailer_name": "LIVERPOOL_MX",
+      "units_count": 1,
+      "disputed_mxn": 1281.2,
+      "recovered_mxn": 0.0,
+      "cost_usd": 0.00745
+    },
+    {
+      "retailer_id": "SORIANA_MX",
+      "retailer_name": "SORIANA_MX",
+      "units_count": 1,
+      "disputed_mxn": 3821.6,
+      "recovered_mxn": 0.0,
+      "cost_usd": 0.006825
+    }
+  ],
+  "category_breakdown": [
+    {
+      "category": "DATACO_TRANSIT_DELAY",
+      "units_count": 1,
+      "disputed_mxn": 3828.78,
+      "recovered_mxn": 3254.46,
+      "share_pct": 33.33
+    },
+    {
+      "category": "ANOMALY_CORRUPT_JSON_SYNTAX",
+      "units_count": 1,
+      "disputed_mxn": 1281.2,
+      "recovered_mxn": 0.0,
+      "share_pct": 33.33
+    },
+    {
+      "category": "ANOMALY_IRRECONCILABLE_MISSING_POD",
+      "units_count": 1,
+      "disputed_mxn": 3821.6,
+      "recovered_mxn": 0.0,
+      "share_pct": 33.33
+    }
+  ],
+  "cumulative_series": [
+    {
+      "unit_index": 1,
+      "task_id": "smoke_unit_0001",
+      "cumulative_cost_usd": 0.007645,
+      "cumulative_recovered_mxn": 3254.46,
+      "cumulative_tokens": 1145,
+      "timestamp_end": "2026-11-05T16:11:20.993783+00:00"
+    },
+    {
+      "unit_index": 2,
+      "task_id": "smoke_unit_0002",
+      "cumulative_cost_usd": 0.015095,
+      "cumulative_recovered_mxn": 3254.46,
+      "cumulative_tokens": 2255,
+      "timestamp_end": "2026-11-05T16:11:21.018518+00:00"
+    },
+    {
+      "unit_index": 3,
+      "task_id": "smoke_unit_0003",
+      "cumulative_cost_usd": 0.02192,
+      "cumulative_recovered_mxn": 3254.46,
+      "cumulative_tokens": 3382,
+      "timestamp_end": "2026-11-05T16:11:21.038817+00:00"
+    }
+  ]
+}

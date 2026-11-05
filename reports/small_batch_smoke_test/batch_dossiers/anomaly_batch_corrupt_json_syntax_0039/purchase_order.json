@@ -1,0 +1,19 @@
+{
+  "po_id": "PO-SMOKE_UNIT_0002",
+  "vendor_id": "SUPPLIER-PACIFIC-CORP",
+  "customer_id": "CUST-LIVERPOOL_MX",
+  "issue_date": "2026-10-01",
+  "delivery_window": {
+    "start": "2026-10-10",
+    "end": "2026-10-12"
+  },
+  "items": [
+    {
+      "sku": "SKU-LIV-1002",
+      "quantity": 80,
+      "agreed_price": "160.15",
+      "subtotal": "12812.00"
+    }
+  ],
+  "total_amount": "12812.00"
+}

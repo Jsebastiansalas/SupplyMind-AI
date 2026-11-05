@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-11-05T16:04:25.274514+00:00",
+  "pid": 29728,
+  "status": "COMPLETED",
+  "current_unit_index": 1024,
+  "total_units": 1024,
+  "current_task_id": "COMPLETED",
+  "completed_count": 1024,
+  "total_cost_usd": 8.14464,
+  "success_count": 993,
+  "quarantine_count": 24,
+  "failed_count": 7
+}

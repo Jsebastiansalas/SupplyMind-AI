@@ -1,0 +1,16 @@
+{
+  "payment_id": "REM-SMOKE_UNIT_0001",
+  "invoice_reference": "INV-SMOKE_UNIT_0001",
+  "payment_date": "2026-10-30",
+  "gross_amount": "21271.00",
+  "deductions": [
+    {
+      "deduction_id": "DED-SMOKE_UNIT_0001",
+      "code": "DED-DATACO_T",
+      "reason": "Deducción aplicada por DATACO_TRANSIT_DELAY",
+      "amount": "3828.78",
+      "clause_reference": "CLAUSE-4.1"
+    }
+  ],
+  "net_paid": "17442.22"
+}

@@ -1,0 +1,16 @@
+{
+  "payment_id": "REM-SMOKE_UNIT_0003",
+  "invoice_reference": "INV-SMOKE_UNIT_0003",
+  "payment_date": "2026-10-30",
+  "gross_amount": "38216.00",
+  "deductions": [
+    {
+      "deduction_id": "DED-SMOKE_UNIT_0003",
+      "code": "DED-ANOMALY_",
+      "reason": "Deducción aplicada por ANOMALY_IRRECONCILABLE_MISSING_POD",
+      "amount": "3821.60",
+      "clause_reference": "CLAUSE-4.1"
+    }
+  ],
+  "net_paid": "34394.40"
+}

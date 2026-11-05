@@ -1,0 +1,23 @@
+{
+  "invoice_id": "INV-SMOKE_UNIT_0002",
+  "po_reference": "PO-SMOKE_UNIT_0002",
+  "vendor_id": "SUPPLIER-PACIFIC-CORP",
+  "customer_id": "CUST-LIVERPOOL_MX",
+  "issue_date": "2026-10-15",
+  "due_date": "2026-11-14",
+  "currency": "MXN",
+  "items": [
+    {
+      "sku": "SKU-LIV-1002",
+      "description": "Lote Comercial ANOMALY_CORRUPT_JSON_SYNTAX — Embarque #2 (3 pallets consolidados para LIVERPOOL_MX)",
+      "quantity": 80,
+      "unit_price": "160.15",
+      "subtotal": "12812.00",
+      "tax": "0.00",
+      "total": "12812.00"
+    }
+  ],
+  "subtotal": "12812.00",
+  "tax_total": "0.00",
+  "total": "12812.00"
+}

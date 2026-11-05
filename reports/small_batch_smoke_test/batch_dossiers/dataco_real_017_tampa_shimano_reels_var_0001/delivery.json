@@ -1,0 +1,21 @@
+{
+  "delivery_id": "BOL-SMOKE_UNIT_0001",
+  "po_reference": "PO-SMOKE_UNIT_0001",
+  "invoice_reference": "INV-SMOKE_UNIT_0001",
+  "carrier_name": "Autotransportes de Carga Tresguerras S.A. de C.V.",
+  "delivery_date": "2026-10-12",
+  "dock_stamp": {
+    "seal_verified": true,
+    "clean_receipt": true,
+    "timestamp": "2026-10-12T14:30:00Z"
+  },
+  "items": [
+    {
+      "sku": "SKU-DAT-1001",
+      "quantity_shipped": 65,
+      "quantity_received": 65,
+      "quantity_damaged": 0
+    }
+  ],
+  "observations": "Entrega en muelle DataCo Global Smart Supply Chain (Real Dataset) por Autotransportes de Carga Tresguerras S.A. de C.V.. Recepción de 65/65 unidades para orden PO-SMOKE_UNIT_0001."
+}

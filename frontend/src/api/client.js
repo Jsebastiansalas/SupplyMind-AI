@@ -509,7 +509,54 @@ export const apiClient = {
     }
     return res.json();
   },
+
+  async getUnattendedBatchSummary() {
+    const res = await fetch(`${BASE_URL}/batch/unattended/summary`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async getUnattendedBatchHeartbeat() {
+    const res = await fetch(`${BASE_URL}/batch/unattended/heartbeat`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async verifyUnattendedBatchSeal() {
+    const res = await fetch(`${BASE_URL}/batch/unattended/verify-seal`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async runSmallBatchSmokeTest(units = 6, dryRun = true) {
+    const res = await fetch(`${BASE_URL}/batch/unattended/run-smoke-test`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ units, dry_run: dryRun }),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async getUnattendedBatchCases(page = 1, pageSize = 25, status = 'ALL', search = '') {
+    const params = new URLSearchParams({
+      page: page.toString(),
+      page_size: pageSize.toString(),
+    });
+    if (status && status !== 'ALL') params.append('status', status);
+    if (search) params.append('search', search);
+
+    const res = await fetch(`${BASE_URL}/batch/unattended/cases?${params.toString()}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async getUnattendedCaseDossier(caseId) {
+    const res = await fetch(`${BASE_URL}/batch/unattended/dossier/${caseId}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
 };
-
-
-
