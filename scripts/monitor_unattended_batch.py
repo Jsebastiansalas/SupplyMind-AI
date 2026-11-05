@@ -114,6 +114,12 @@ def render_dashboard(supervisor: BatchSupervisor) -> None:
     else:
         console.print("[dim yellow]No se han registrado tareas en la bitácora streaming aún.[/dim yellow]")
 
+    console.print(
+        "\n[dim cyan]💡 Tip: Para ver el detalle completo de cualquier expediente (dictamen legal, contabilidad $0.00 MAE, tokens y costo):\n"
+        "   python scripts/view_task_detail.py <Índice_o_Task_ID>  (ej. python scripts/view_task_detail.py 1)\n"
+        "📁 Bitácoras completas en disco: reports/unattended_batch_execution_log.csv y .json[/dim cyan]\n"
+    )
+
 
 def run_watchdog_loop(supervisor: BatchSupervisor, check_interval_seconds: float = 30.0) -> None:
     """Bucle del daemon supervisor guardián con auto-recuperación activa."""
@@ -141,7 +147,18 @@ def main():
     parser.add_argument("--watch", action="store_true", help="Modo refresco continuo cada 5 segundos.")
     parser.add_argument("--watchdog", action="store_true", help="Modo supervisor activo con auto-recuperación ante caídas.")
     parser.add_argument("--interval", type=float, default=5.0, help="Intervalo de refresco en segundos.")
+    parser.add_argument("--task", type=str, default=None, help="Ver detalle de una tarea específica por índice o ID.")
     args = parser.parse_args()
+
+    if args.task:
+        from scripts.view_task_detail import load_all_records, find_record, render_task_detail
+        records = load_all_records()
+        rec = find_record(records, args.task)
+        if rec:
+            render_task_detail(rec)
+        else:
+            console.print(f"[red]No se encontró la tarea '{args.task}'.[/red]")
+        return
 
     supervisor = BatchSupervisor()
 
