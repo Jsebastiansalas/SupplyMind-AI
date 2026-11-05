@@ -151,6 +151,10 @@ class SkynetRunner:
                     else:
                         from agent.guardrails.session_watchdog import ReActExecutionWatchdog
                         w = ReActExecutionWatchdog()
+                        tool_count = sum(1 for e in self.audit_logger.entries if e.action_type == "TOOL_EXECUTION") if hasattr(self, "audit_logger") and self.audit_logger else 0
+                        if tool_count > 0:
+                            w.metrics.total_tool_calls = tool_count
+                            w.metrics.unique_tool_calls = min(tool_count, 3)
                         self.state.watchdog_metrics = w.metrics
                         report.watchdog_metrics = w.metrics
             except Exception:
@@ -344,6 +348,7 @@ class SkynetRunner:
                 )
             except Exception as e:
                 console.print(f"[bold red][CIRCUIT BREAKER][/bold red] Fallo o apertura de circuito en llamada LLM ({e}). Conmutando a pipeline determinístico seguro...")
+                self.state.watchdog_metrics = watchdog.metrics
                 return self._run_fast_path_skynet()
             
             if response.choices and response.choices[0].message.tool_calls:
