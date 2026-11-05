@@ -197,3 +197,91 @@ def test_orchestrator_export_artifacts(tmp_path):
     assert "Tasa de Éxito Operativo" in md_text
     assert "Costo Total Acumulado" in md_text
     assert "$0.00 MAE" in md_text
+
+
+def test_orchestrator_real_three_way_match_and_no_prebaked_prompt(tmp_path):
+    """
+    Valida que el orquestador materialice los 5 archivos reales del expediente,
+    ejecute el cruce 3-Way Match en disco, envíe un prompt productivo sin respuestas
+    pre-sopladas y persista el artefacto audit_resolution_docket.json.
+    """
+    orchestrator = UnattendedBatchOrchestrator(
+        output_dir=tmp_path,
+        total_units=1,
+        dry_run=False,
+    )
+    unit = WorkUnit(
+        unit_index=7,
+        task_id="work_unit_0007",
+        case_id="case_real_3way_007",
+        source_origin="RETAILER_CATALOG",
+        retailer_id="WALMART_MX",
+        retailer_name="Walmart México y Centroamérica",
+        category="PRICING_DISCREPANCY",
+        billed_amount=Decimal("12450.00"),
+        received_amount=Decimal("10450.00"),
+        disputed_amount=Decimal("2000.00"),
+        expected_claimable=Decimal("1735.50"),
+        expected_justified=Decimal("264.50"),
+        expected_action="DEMAND_FULL_RECOVERY_PO_MATCH",
+        has_anomaly=False,
+    )
+
+    captured_prompts = []
+
+    class DummyUsage:
+        prompt_tokens = 810
+        completion_tokens = 195
+
+    class DummyMessage:
+        content = json.dumps({
+            "veredicto": "PROCEDENTE",
+            "monto_recuperable": 1735.50,
+            "monto_justificado": 264.50,
+            "fundamento_legal": "CLAUSE-3.1 y Art. 383 Código de Comercio.",
+            "accion_erp": "BAPI_ACC_DOCUMENT_POST / NC-WORK_UNIT_0007",
+        })
+
+    class DummyChoice:
+        message = DummyMessage()
+
+    class DummyResponse:
+        choices = [DummyChoice()]
+        usage = DummyUsage()
+        model = "grok-4.7"
+
+    class CapturingCompletions:
+        def create(self, **kwargs):
+            messages = kwargs.get("messages", [])
+            user_msg = next((m["content"] for m in messages if m["role"] == "user"), "")
+            captured_prompts.append(user_msg)
+            return DummyResponse()
+
+    class CapturingChat:
+        completions = CapturingCompletions()
+
+    class CapturingClient:
+        chat = CapturingChat()
+
+    orchestrator._openai_client = CapturingClient()
+    record = orchestrator.process_work_unit(unit)
+
+    case_dir = orchestrator.dossiers_dir / unit.case_id
+    assert (case_dir / "invoice.json").exists()
+    assert (case_dir / "purchase_order.json").exists()
+    assert (case_dir / "delivery.json").exists()
+    assert (case_dir / "payment.json").exists()
+    assert (case_dir / "contract.json").exists()
+    assert (case_dir / "audit_resolution_docket.json").exists()
+
+    assert len(captured_prompts) == 1
+    prompt_sent = captured_prompts[0]
+    assert "DOCUMENTO 1 — FACTURA FISCAL (invoice.json)" in prompt_sent
+    assert "DOCUMENTO 3 — COMPROBANTE DE ENTREGA POD / BOL (delivery.json)" in prompt_sent
+    assert "CLAUSE-3.1" in prompt_sent
+    # Verificar que NO se haya soplado la respuesta esperada en el prompt
+    assert "Importe Pre-evaluado Reclamable" not in prompt_sent
+    assert "1,735.50" not in prompt_sent
+    assert "1735.50" not in prompt_sent
+    assert record.financial_delta == 0.00
+

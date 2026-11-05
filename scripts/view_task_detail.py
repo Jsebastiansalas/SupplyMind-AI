@@ -256,6 +256,27 @@ def render_task_detail(record: Dict[str, Any]) -> None:
         )
     )
 
+    # 4.5. Evidencia Documental Física 3-Way Match en Disco (si fue materializada)
+    case_id = str(record.get("case_id", ""))
+    docket_path = WORKSPACE_ROOT / "reports" / "batch_dossiers" / case_id / "audit_resolution_docket.json"
+    if docket_path.exists():
+        try:
+            docket_data = json.loads(docket_path.read_text(encoding="utf-8"))
+            twm = docket_data.get("three_way_match", {})
+            console.print(
+                Panel(
+                    f"• [bold]Carpeta del Expediente:[/bold] [cyan]{twm.get('case_dir')}[/cyan]\n"
+                    f"• [bold]Factura (invoice.json):[/bold] {twm.get('invoice_id')} | [bold]Orden de Compra (purchase_order.json):[/bold] {twm.get('po_id')}\n"
+                    f"• [bold]Guía POD/BOL (delivery.json):[/bold] {twm.get('delivery_id')} ({twm.get('carrier_name')}) | OTIF: {'SÍ' if twm.get('otif_window_ok') else 'NO'}\n"
+                    f"• [bold]SKU Auditado:[/bold] {twm.get('sku')} ({twm.get('qty_received')}/{twm.get('qty_ordered')} u. recibidas) | Match Precio: {'EXACTO' if twm.get('price_match_ok') else 'DISCREPANTE'}\n"
+                    f"• [bold]Remesa (payment.json):[/bold] {twm.get('payment_id')} | [bold]Contrato (contract.json):[/bold] {twm.get('contract_id')} ({twm.get('invoked_clause_id')})",
+                    title="[bold white]5. ARCHIVOS FÍSICOS DEL EXPEDIENTE Y CRUCE 3-WAY MATCH[/bold white]",
+                    border_style="magenta",
+                )
+            )
+        except Exception:
+            pass
+
     # 5. Si hubo error o cuarentena, mostrar bitácora forense
     if record.get("error_encountered") and record.get("error_encountered") != "None":
         console.print(
