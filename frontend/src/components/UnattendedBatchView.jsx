@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ChaosSandboxView from './ChaosSandboxView';
 import { apiClient } from '../api/client';
 import {
   Activity,
@@ -61,6 +62,7 @@ export default function UnattendedBatchView() {
   const [dossierData, setDossierData] = useState(null);
   const [loadingDossier, setLoadingDossier] = useState(false);
   const [activeDossierTab, setActiveDossierTab] = useState('invoice');
+  const [showChaosModal, setShowChaosModal] = useState(false);
 
   // 1. Cargar datos iniciales
   useEffect(() => {
@@ -204,6 +206,15 @@ export default function UnattendedBatchView() {
 
           {/* Quick Action Badges */}
           <div className="flex flex-wrap items-center gap-2">
+            <button
+              onClick={() => setShowChaosModal(true)}
+              className="btn-tactile px-3 py-2 rounded bg-[#251515] hover:bg-[#331c1c] border border-red-500/60 text-xs font-mono font-bold text-red-200 hover:text-white flex items-center space-x-2 transition-all shadow-tactile"
+              title="Inyectar fallos, trampas y probar la auto-recuperación en tiempo real"
+            >
+              <Zap className="w-4 h-4 text-red-400" />
+              <span>Laboratorio de Caos ⚡</span>
+            </button>
+
             <button
               onClick={handleVerifySeal}
               disabled={verifyingSeal}
@@ -889,6 +900,38 @@ export default function UnattendedBatchView() {
               </button>
             </div>
 
+          </div>
+        </div>
+      )}
+
+      {/* 7. Modal del Laboratorio de Caos y Resiliencia en Vivo */}
+      {showChaosModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm p-4 overflow-y-auto">
+          <div className="bg-[#0f1118] border border-[#222738] rounded-xl shadow-2xl w-full max-w-5xl max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-4 border-b border-[#1b1f2d] flex items-center justify-between bg-[#131620]">
+              <div className="flex items-center space-x-2.5">
+                <div className="p-1.5 rounded bg-red-950/80 border border-red-500/40 text-red-400">
+                  <Zap className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold font-mono text-white">
+                    Laboratorio de Caos y Resiliencia en Vivo (Chaos Sandbox)
+                  </h3>
+                  <p className="text-xs text-zinc-400">
+                    Inyección de cargas hostiles y validación de auto-cuarentena en &lt;200ms.
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowChaosModal(false)}
+                className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-[#1c202e] transition-colors"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="p-6 overflow-y-auto max-h-[82vh]">
+              <ChaosSandboxView />
+            </div>
           </div>
         </div>
       )}

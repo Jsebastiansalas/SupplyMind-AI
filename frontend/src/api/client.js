@@ -559,4 +559,20 @@ export const apiClient = {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return res.json();
   },
+
+  async getChaosScenarios() {
+    const res = await fetch(`${BASE_URL}/sandbox/chaos/scenarios`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
+  async injectChaosScenario(payload = {}) {
+    const res = await fetch(`${BASE_URL}/sandbox/chaos/inject`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
 };
