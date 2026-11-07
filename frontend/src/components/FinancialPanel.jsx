@@ -29,6 +29,7 @@ import {
   Building2
 } from 'lucide-react';
 import { apiClient } from '../api/client';
+import ExecutiveAudioBriefing from './ExecutiveAudioBriefing';
 
 export default function FinancialPanel({ 
   report, 
@@ -479,21 +480,26 @@ export default function FinancialPanel({
             <span>🛡️ Fugas Retailers & Checklist</span>
           </button>
 
-          {onOpenOfficialDossier && (
-            <button
-              onClick={onOpenOfficialDossier}
-              className="btn-tactile ml-auto flex items-center space-x-1.5 px-3 py-1.5 rounded bg-[#1f1d14] hover:bg-[#282518] border border-[#d4af37]/60 text-xs font-mono text-[#eed98d] font-semibold transition-colors shadow-tactile"
-              title="Descargar Dictamen Pericial Oficial con Validez Probatoria"
-            >
-              <Printer className="w-3.5 h-3.5 text-[#d4af37]" />
-              <span>Dictamen Pericial Oficial PDF</span>
-            </button>
-          )}
+          <div className="ml-auto flex items-center space-x-2">
+            <ExecutiveAudioBriefing caseId={report?.case_id} report={report} compact={true} />
+            {onOpenOfficialDossier && (
+              <button
+                onClick={onOpenOfficialDossier}
+                className="btn-tactile flex items-center space-x-1.5 px-3 py-1.5 rounded bg-[#1f1d14] hover:bg-[#282518] border border-[#d4af37]/60 text-xs font-mono text-[#eed98d] font-semibold transition-colors shadow-tactile"
+                title="Descargar Dictamen Pericial Oficial con Validez Probatoria"
+              >
+                <Printer className="w-3.5 h-3.5 text-[#d4af37]" />
+                <span>Dictamen Pericial Oficial PDF</span>
+              </button>
+            )}
+          </div>
         </div>
 
         {/* SUB-TAB 1: RESUMEN EJECUTIVO & FUNDAMENTO LEGAL */}
         {activeSubTab === 'summary' && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="space-y-4">
+            <ExecutiveAudioBriefing caseId={report?.case_id} report={report} compact={false} />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <div className="bg-[#121317] border border-[#23242c] rounded-xl p-5 space-y-3">
               <div className="flex items-center space-x-2 text-zinc-300">
                 <FileText className="w-4 h-4 text-[#d4af37]" />
@@ -531,6 +537,7 @@ export default function FinancialPanel({
                 </span>
               </div>
             </div>
+          </div>
           </div>
         )}
 
