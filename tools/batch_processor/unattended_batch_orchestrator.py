@@ -124,6 +124,7 @@ class UnattendedBatchOrchestrator:
                 self._openai_client = OpenAI(
                     base_url=settings.PLATICA_BASE_URL,
                     api_key=settings.RETO_KEY,
+                    timeout=15.0,
                 )
             except Exception:
                 self._openai_client = None

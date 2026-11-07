@@ -1,723 +1,843 @@
 {
-  "generated_at": "2026-11-05T16:04:37.019453+00:00",
-  "total_units": 1024,
+  "generated_at": "2026-11-07T23:19:09.799119+00:00",
+  "total_units": 238,
   "status_breakdown": {
-    "SUCCESS": 993,
-    "RECOVERED_QUARANTINE": 24,
-    "FAILED": 7
+    "SUCCESS": 230,
+    "RECOVERED_QUARANTINE": 7,
+    "FAILED": 1
   },
-  "success_rate_pct": 99.32,
+  "success_rate_pct": 99.58,
   "financials": {
-    "total_billed_mxn": 26939891.0,
-    "total_received_mxn": 24771041.55,
-    "total_disputed_mxn": 2168849.45,
-    "total_recovered_mxn": 1461511.7,
-    "total_justified_mxn": 707337.75,
-    "recovery_rate_pct": 67.39,
+    "total_billed_mxn": 6588470.0,
+    "total_received_mxn": 6084240.2,
+    "total_disputed_mxn": 504229.8,
+    "total_recovered_mxn": 343557.1,
+    "total_justified_mxn": 160672.7,
+    "recovery_rate_pct": 68.14,
     "mae_zero_verified": true
   },
   "telemetry": {
-    "total_cost_usd": 8.14464,
-    "avg_cost_usd": 0.007954,
-    "min_cost_usd": 0.00627,
-    "max_cost_usd": 0.009115,
-    "total_tokens": 1212018,
-    "avg_tokens_per_unit": 1183.6,
-    "total_duration_seconds": 86.17,
-    "total_duration_hours": 0.0239,
-    "avg_latency_seconds": 0.084,
-    "p50_latency_seconds": 0.076,
-    "p95_latency_seconds": 0.134
+    "total_cost_usd": 3.300555,
+    "avg_cost_usd": 0.013868,
+    "min_cost_usd": 0.006645,
+    "max_cost_usd": 0.01724,
+    "total_tokens": 517339,
+    "avg_tokens_per_unit": 2173.7,
+    "total_duration_seconds": 19020.26,
+    "total_duration_hours": 5.2834,
+    "avg_latency_seconds": 79.917,
+    "p50_latency_seconds": 33.681,
+    "p95_latency_seconds": 150.915
   },
   "cryptographic_seal": {
     "manifest_json": "C:\\Users\\USUARIO\\Downloads\\platica\\reports\\unattended_batch_audit_manifest.json",
     "manifest_sha256": "C:\\Users\\USUARIO\\Downloads\\platica\\reports\\unattended_batch_audit_manifest.sha256",
-    "merkle_root": "ca06b65522b9893f3c4ee3ca2d18629bdba42c4cdcb8681f650123eff7fc954d",
-    "tip_chain_hash": "f2c458844013d6f809136a00f19051e81abefaaf1dd2edb81134fa93fb327909",
-    "total_units_sealed": 1024
+    "merkle_root": "e0b7203bad34b808824ffe8f870f968d9af2b5253e86145e28640bb36920cad0",
+    "tip_chain_hash": "60acfdc1ad8d16f10e04066e32fad71321266d543001c5b4c7e91b35f77cfb2f",
+    "total_units_sealed": 238
   },
   "retailer_breakdown": [
     {
       "retailer_id": "DATACO_GLOBAL",
       "retailer_name": "DataCo Global Smart Supply Chain (Real Dataset)",
-      "units_count": 371,
-      "disputed_mxn": 1065473.8,
-      "recovered_mxn": 735553.53,
-      "cost_usd": 2.9559
+      "units_count": 75,
+      "disputed_mxn": 234930.05,
+      "recovered_mxn": 158022.09,
+      "cost_usd": 1.061125
     },
     {
       "retailer_id": "WALMART_MX",
       "retailer_name": "Walmart México y Centroamérica",
-      "units_count": 139,
-      "disputed_mxn": 310330.71,
-      "recovered_mxn": 210227.58,
-      "cost_usd": 1.11651
-    },
-    {
-      "retailer_id": "AMAZON_MX",
-      "retailer_name": "Amazon México",
-      "units_count": 117,
-      "disputed_mxn": 164659.28,
-      "recovered_mxn": 102814.49,
-      "cost_usd": 0.922975
-    },
-    {
-      "retailer_id": "COSTCO_MX",
-      "retailer_name": "Costco Wholesale México",
-      "units_count": 48,
-      "disputed_mxn": 115111.9,
-      "recovered_mxn": 82088.41,
-      "cost_usd": 0.379895
+      "units_count": 36,
+      "disputed_mxn": 76857.32,
+      "recovered_mxn": 56003.54,
+      "cost_usd": 0.464485
     },
     {
       "retailer_id": "SORIANA_MX",
       "retailer_name": "SORIANA_MX",
-      "units_count": 91,
-      "disputed_mxn": 127071.83,
-      "recovered_mxn": 72332.58,
-      "cost_usd": 0.723675
+      "units_count": 29,
+      "disputed_mxn": 46533.69,
+      "recovered_mxn": 24313.19,
+      "cost_usd": 0.37395
     },
     {
-      "retailer_id": "CISCO_MX",
-      "retailer_name": "Cisco Systems México",
-      "units_count": 33,
-      "disputed_mxn": 92672.0,
-      "recovered_mxn": 59830.79,
-      "cost_usd": 0.26152
+      "retailer_id": "COSTCO_MX",
+      "retailer_name": "Costco Wholesale México",
+      "units_count": 13,
+      "disputed_mxn": 30134.94,
+      "recovered_mxn": 24280.54,
+      "cost_usd": 0.202385
     },
     {
-      "retailer_id": "CHEDRAUI_MX",
-      "retailer_name": "Grupo Comercial Chedraui",
-      "units_count": 57,
-      "disputed_mxn": 75654.76,
-      "recovered_mxn": 52564.47,
-      "cost_usd": 0.458885
+      "retailer_id": "AMAZON_MX",
+      "retailer_name": "Amazon México",
+      "units_count": 24,
+      "disputed_mxn": 32729.28,
+      "recovered_mxn": 20377.37,
+      "cost_usd": 0.318985
     },
     {
       "retailer_id": "LIVERPOOL_MX",
       "retailer_name": "Liverpool Departamental",
-      "units_count": 51,
-      "disputed_mxn": 80770.95,
-      "recovered_mxn": 47286.18,
-      "cost_usd": 0.40147
+      "units_count": 13,
+      "disputed_mxn": 22252.81,
+      "recovered_mxn": 14962.38,
+      "cost_usd": 0.180765
+    },
+    {
+      "retailer_id": "CISCO_MX",
+      "retailer_name": "Cisco Systems México",
+      "units_count": 8,
+      "disputed_mxn": 18853.66,
+      "recovered_mxn": 14272.79,
+      "cost_usd": 0.115445
     },
     {
       "retailer_id": "HOMEDEPOT_MX",
       "retailer_name": "The Home Depot México",
-      "units_count": 51,
-      "disputed_mxn": 55330.52,
-      "recovered_mxn": 38796.13,
-      "cost_usd": 0.40596
+      "units_count": 17,
+      "disputed_mxn": 14912.83,
+      "recovered_mxn": 10659.82,
+      "cost_usd": 0.250595
     },
     {
       "retailer_id": "OXXO_FEMSA",
       "retailer_name": "OXXO / FEMSA Comercio",
-      "units_count": 35,
-      "disputed_mxn": 44198.29,
-      "recovered_mxn": 31877.64,
-      "cost_usd": 0.271385
+      "units_count": 6,
+      "disputed_mxn": 10443.9,
+      "recovered_mxn": 8801.68,
+      "cost_usd": 0.092265
+    },
+    {
+      "retailer_id": "CHEDRAUI_MX",
+      "retailer_name": "Grupo Comercial Chedraui",
+      "units_count": 12,
+      "disputed_mxn": 11296.32,
+      "recovered_mxn": 7685.46,
+      "cost_usd": 0.174485
     },
     {
       "retailer_id": "MERCADOLIBRE_MX",
       "retailer_name": "Mercado Libre México",
-      "units_count": 31,
-      "disputed_mxn": 37575.41,
-      "recovered_mxn": 28139.9,
-      "cost_usd": 0.246465
+      "units_count": 5,
+      "disputed_mxn": 5285.0,
+      "recovered_mxn": 4178.24,
+      "cost_usd": 0.06607
     }
   ],
   "category_breakdown": [
     {
       "category": "DATACO_TRANSIT_DELAY",
-      "units_count": 371,
-      "disputed_mxn": 1065473.8,
-      "recovered_mxn": 735553.53,
-      "share_pct": 36.23
-    },
-    {
-      "category": "UNAUTHORIZED_PENALTY",
-      "units_count": 133,
-      "disputed_mxn": 85244.32,
-      "recovered_mxn": 85244.32,
-      "share_pct": 12.99
+      "units_count": 75,
+      "disputed_mxn": 234930.05,
+      "recovered_mxn": 158022.09,
+      "share_pct": 31.51
     },
     {
       "category": "DAMAGED_GOODS",
-      "units_count": 128,
-      "disputed_mxn": 212833.7,
-      "recovered_mxn": 127700.21,
-      "share_pct": 12.5
+      "units_count": 43,
+      "disputed_mxn": 73776.82,
+      "recovered_mxn": 44266.06,
+      "share_pct": 18.07
     },
     {
       "category": "PRICE_MISMATCH",
-      "units_count": 127,
-      "disputed_mxn": 257908.32,
-      "recovered_mxn": 257908.32,
-      "share_pct": 12.4
+      "units_count": 34,
+      "disputed_mxn": 71521.52,
+      "recovered_mxn": 71521.52,
+      "share_pct": 14.29
     },
     {
-      "category": "SHORTAGE_DOCK",
-      "units_count": 119,
-      "disputed_mxn": 362091.84,
-      "recovered_mxn": 144836.75,
-      "share_pct": 11.62
+      "category": "UNAUTHORIZED_PENALTY",
+      "units_count": 31,
+      "disputed_mxn": 20327.72,
+      "recovered_mxn": 20327.72,
+      "share_pct": 13.03
     },
     {
       "category": "LATE_DELIVERY_OTIF",
-      "units_count": 115,
-      "disputed_mxn": 110268.57,
-      "recovered_mxn": 110268.57,
-      "share_pct": 11.23
+      "units_count": 27,
+      "disputed_mxn": 27214.71,
+      "recovered_mxn": 27214.71,
+      "share_pct": 11.34
+    },
+    {
+      "category": "SHORTAGE_DOCK",
+      "units_count": 20,
+      "disputed_mxn": 55512.48,
+      "recovered_mxn": 22205.0,
+      "share_pct": 8.4
     },
     {
       "category": "ANOMALY_PROMPT_INJECTION_REMARK",
-      "units_count": 9,
-      "disputed_mxn": 21922.3,
+      "units_count": 3,
+      "disputed_mxn": 6706.3,
       "recovered_mxn": 0.0,
-      "share_pct": 0.88
+      "share_pct": 1.26
     },
     {
       "category": "ANOMALY_CORRUPT_JSON_SYNTAX",
-      "units_count": 8,
-      "disputed_mxn": 18111.3,
+      "units_count": 2,
+      "disputed_mxn": 4246.7,
       "recovered_mxn": 0.0,
-      "share_pct": 0.78
-    },
-    {
-      "category": "ANOMALY_IRRECONCILABLE_MISSING_POD",
-      "units_count": 7,
-      "disputed_mxn": 18262.9,
-      "recovered_mxn": 0.0,
-      "share_pct": 0.68
+      "share_pct": 0.84
     },
     {
       "category": "ANOMALY_PRICE_DISCREPANCY_OVERCHARGE",
-      "units_count": 7,
-      "disputed_mxn": 16732.4,
+      "units_count": 2,
+      "disputed_mxn": 6171.9,
       "recovered_mxn": 0.0,
-      "share_pct": 0.68
+      "share_pct": 0.84
+    },
+    {
+      "category": "ANOMALY_IRRECONCILABLE_MISSING_POD",
+      "units_count": 1,
+      "disputed_mxn": 3821.6,
+      "recovered_mxn": 0.0,
+      "share_pct": 0.42
     }
   ],
   "cumulative_series": [
     {
       "unit_index": 1,
       "task_id": "work_unit_0001",
-      "cumulative_cost_usd": 0.00862,
+      "cumulative_cost_usd": 0.017235,
       "cumulative_recovered_mxn": 3254.46,
-      "cumulative_tokens": 1252,
-      "timestamp_end": "2026-11-05T16:02:15.056349+00:00"
+      "cumulative_tokens": 2687,
+      "timestamp_end": "2026-11-07T03:23:32.525108+00:00"
     },
     {
-      "unit_index": 17,
-      "task_id": "work_unit_0017",
-      "cumulative_cost_usd": 0.134985,
-      "cumulative_recovered_mxn": 22295.32,
-      "cumulative_tokens": 19867,
-      "timestamp_end": "2026-11-05T16:02:24.992638+00:00"
+      "unit_index": 4,
+      "task_id": "work_unit_0004",
+      "cumulative_cost_usd": 0.06844,
+      "cumulative_recovered_mxn": 5628.27,
+      "cumulative_tokens": 10648,
+      "timestamp_end": "2026-11-07T03:25:19.591695+00:00"
     },
     {
-      "unit_index": 33,
-      "task_id": "work_unit_0033",
-      "cumulative_cost_usd": 0.260005,
-      "cumulative_recovered_mxn": 48717.33,
-      "cumulative_tokens": 38437,
-      "timestamp_end": "2026-11-05T16:02:26.056758+00:00"
+      "unit_index": 7,
+      "task_id": "work_unit_0007",
+      "cumulative_cost_usd": 0.11979,
+      "cumulative_recovered_mxn": 9658.14,
+      "cumulative_tokens": 18638,
+      "timestamp_end": "2026-11-07T03:27:30.376648+00:00"
+    },
+    {
+      "unit_index": 10,
+      "task_id": "work_unit_0010",
+      "cumulative_cost_usd": 0.170405,
+      "cumulative_recovered_mxn": 15134.24,
+      "cumulative_tokens": 26543,
+      "timestamp_end": "2026-11-07T03:30:10.922243+00:00"
+    },
+    {
+      "unit_index": 13,
+      "task_id": "work_unit_0013",
+      "cumulative_cost_usd": 0.22151,
+      "cumulative_recovered_mxn": 18418.78,
+      "cumulative_tokens": 34484,
+      "timestamp_end": "2026-11-07T03:31:58.371616+00:00"
+    },
+    {
+      "unit_index": 16,
+      "task_id": "work_unit_0016",
+      "cumulative_cost_usd": 0.272305,
+      "cumulative_recovered_mxn": 20495.32,
+      "cumulative_tokens": 42417,
+      "timestamp_end": "2026-11-07T04:07:29.575915+00:00"
+    },
+    {
+      "unit_index": 19,
+      "task_id": "work_unit_0019",
+      "cumulative_cost_usd": 0.323225,
+      "cumulative_recovered_mxn": 26213.48,
+      "cumulative_tokens": 50321,
+      "timestamp_end": "2026-11-07T04:09:51.960398+00:00"
+    },
+    {
+      "unit_index": 22,
+      "task_id": "work_unit_0022",
+      "cumulative_cost_usd": 0.374475,
+      "cumulative_recovered_mxn": 31844.76,
+      "cumulative_tokens": 58291,
+      "timestamp_end": "2026-11-07T04:11:08.048851+00:00"
+    },
+    {
+      "unit_index": 25,
+      "task_id": "work_unit_0025",
+      "cumulative_cost_usd": 0.42553,
+      "cumulative_recovered_mxn": 35040.44,
+      "cumulative_tokens": 66222,
+      "timestamp_end": "2026-11-07T04:12:34.622350+00:00"
+    },
+    {
+      "unit_index": 28,
+      "task_id": "work_unit_0028",
+      "cumulative_cost_usd": 0.476845,
+      "cumulative_recovered_mxn": 41038.04,
+      "cumulative_tokens": 74205,
+      "timestamp_end": "2026-11-07T04:13:40.955180+00:00"
+    },
+    {
+      "unit_index": 31,
+      "task_id": "work_unit_0031",
+      "cumulative_cost_usd": 0.528175,
+      "cumulative_recovered_mxn": 45752.75,
+      "cumulative_tokens": 82191,
+      "timestamp_end": "2026-11-07T04:15:25.419631+00:00"
+    },
+    {
+      "unit_index": 34,
+      "task_id": "work_unit_0034",
+      "cumulative_cost_usd": 0.57947,
+      "cumulative_recovered_mxn": 48964.09,
+      "cumulative_tokens": 90170,
+      "timestamp_end": "2026-11-07T04:16:48.476372+00:00"
+    },
+    {
+      "unit_index": 37,
+      "task_id": "work_unit_0037",
+      "cumulative_cost_usd": 0.6307,
+      "cumulative_recovered_mxn": 52030.94,
+      "cumulative_tokens": 98152,
+      "timestamp_end": "2026-11-07T04:18:29.666238+00:00"
+    },
+    {
+      "unit_index": 40,
+      "task_id": "work_unit_0040",
+      "cumulative_cost_usd": 0.68181,
+      "cumulative_recovered_mxn": 56365.73,
+      "cumulative_tokens": 106106,
+      "timestamp_end": "2026-11-07T05:26:40.035771+00:00"
+    },
+    {
+      "unit_index": 43,
+      "task_id": "work_unit_0043",
+      "cumulative_cost_usd": 0.733165,
+      "cumulative_recovered_mxn": 58173.86,
+      "cumulative_tokens": 114097,
+      "timestamp_end": "2026-11-07T05:28:14.960786+00:00"
+    },
+    {
+      "unit_index": 46,
+      "task_id": "work_unit_0046",
+      "cumulative_cost_usd": 0.78448,
+      "cumulative_recovered_mxn": 61335.32,
+      "cumulative_tokens": 122080,
+      "timestamp_end": "2026-11-07T05:31:57.754720+00:00"
     },
     {
       "unit_index": 49,
       "task_id": "work_unit_0049",
-      "cumulative_cost_usd": 0.388735,
+      "cumulative_cost_usd": 0.83567,
       "cumulative_recovered_mxn": 67391.86,
-      "cumulative_tokens": 57551,
-      "timestamp_end": "2026-11-05T16:02:27.136704+00:00"
+      "cumulative_tokens": 130038,
+      "timestamp_end": "2026-11-07T05:33:42.951074+00:00"
     },
     {
-      "unit_index": 65,
-      "task_id": "work_unit_0065",
-      "cumulative_cost_usd": 0.51764,
-      "cumulative_recovered_mxn": 91751.86,
-      "cumulative_tokens": 76570,
-      "timestamp_end": "2026-11-05T16:02:28.280135+00:00"
+      "unit_index": 52,
+      "task_id": "work_unit_0052",
+      "cumulative_cost_usd": 0.886985,
+      "cumulative_recovered_mxn": 73025.83,
+      "cumulative_tokens": 138021,
+      "timestamp_end": "2026-11-07T05:35:31.943991+00:00"
     },
     {
-      "unit_index": 81,
-      "task_id": "work_unit_0081",
-      "cumulative_cost_usd": 0.645935,
-      "cumulative_recovered_mxn": 112204.1,
-      "cumulative_tokens": 95677,
-      "timestamp_end": "2026-11-05T16:02:29.511248+00:00"
+      "unit_index": 55,
+      "task_id": "work_unit_0055",
+      "cumulative_cost_usd": 0.93802,
+      "cumulative_recovered_mxn": 75695.03,
+      "cumulative_tokens": 145948,
+      "timestamp_end": "2026-11-07T05:37:10.089079+00:00"
+    },
+    {
+      "unit_index": 58,
+      "task_id": "work_unit_0058",
+      "cumulative_cost_usd": 0.98925,
+      "cumulative_recovered_mxn": 78168.93,
+      "cumulative_tokens": 153914,
+      "timestamp_end": "2026-11-07T05:38:39.836486+00:00"
+    },
+    {
+      "unit_index": 61,
+      "task_id": "work_unit_0061",
+      "cumulative_cost_usd": 1.039925,
+      "cumulative_recovered_mxn": 82494.67,
+      "cumulative_tokens": 161829,
+      "timestamp_end": "2026-11-07T05:40:05.428266+00:00"
+    },
+    {
+      "unit_index": 64,
+      "task_id": "work_unit_0064",
+      "cumulative_cost_usd": 1.091085,
+      "cumulative_recovered_mxn": 89465.78,
+      "cumulative_tokens": 169781,
+      "timestamp_end": "2026-11-07T05:41:31.949867+00:00"
+    },
+    {
+      "unit_index": 67,
+      "task_id": "work_unit_0067",
+      "cumulative_cost_usd": 1.142365,
+      "cumulative_recovered_mxn": 92731.74,
+      "cumulative_tokens": 177757,
+      "timestamp_end": "2026-11-07T05:46:20.114049+00:00"
+    },
+    {
+      "unit_index": 70,
+      "task_id": "work_unit_0070",
+      "cumulative_cost_usd": 1.1936,
+      "cumulative_recovered_mxn": 96988.13,
+      "cumulative_tokens": 185724,
+      "timestamp_end": "2026-11-07T05:48:01.790831+00:00"
+    },
+    {
+      "unit_index": 73,
+      "task_id": "work_unit_0073",
+      "cumulative_cost_usd": 1.24461,
+      "cumulative_recovered_mxn": 101667.4,
+      "cumulative_tokens": 193646,
+      "timestamp_end": "2026-11-07T05:50:30.984482+00:00"
+    },
+    {
+      "unit_index": 76,
+      "task_id": "work_unit_0076",
+      "cumulative_cost_usd": 1.29585,
+      "cumulative_recovered_mxn": 105804.95,
+      "cumulative_tokens": 201614,
+      "timestamp_end": "2026-11-07T05:55:16.385782+00:00"
+    },
+    {
+      "unit_index": 79,
+      "task_id": "work_unit_0079",
+      "cumulative_cost_usd": 1.34706,
+      "cumulative_recovered_mxn": 110248.94,
+      "cumulative_tokens": 209576,
+      "timestamp_end": "2026-11-07T05:58:08.058466+00:00"
+    },
+    {
+      "unit_index": 82,
+      "task_id": "work_unit_0082",
+      "cumulative_cost_usd": 1.39849,
+      "cumulative_recovered_mxn": 113722.94,
+      "cumulative_tokens": 217582,
+      "timestamp_end": "2026-11-07T05:59:33.758968+00:00"
+    },
+    {
+      "unit_index": 85,
+      "task_id": "work_unit_0085",
+      "cumulative_cost_usd": 1.449435,
+      "cumulative_recovered_mxn": 116172.9,
+      "cumulative_tokens": 225491,
+      "timestamp_end": "2026-11-07T06:01:08.533569+00:00"
+    },
+    {
+      "unit_index": 88,
+      "task_id": "work_unit_0088",
+      "cumulative_cost_usd": 1.500685,
+      "cumulative_recovered_mxn": 121183.84,
+      "cumulative_tokens": 233461,
+      "timestamp_end": "2026-11-07T06:02:41.530926+00:00"
+    },
+    {
+      "unit_index": 91,
+      "task_id": "work_unit_0091",
+      "cumulative_cost_usd": 1.55199,
+      "cumulative_recovered_mxn": 127133.14,
+      "cumulative_tokens": 241442,
+      "timestamp_end": "2026-11-07T06:04:39.370617+00:00"
+    },
+    {
+      "unit_index": 94,
+      "task_id": "work_unit_0094",
+      "cumulative_cost_usd": 1.60329,
+      "cumulative_recovered_mxn": 130893.97,
+      "cumulative_tokens": 249422,
+      "timestamp_end": "2026-11-07T06:06:52.100487+00:00"
     },
     {
       "unit_index": 97,
       "task_id": "work_unit_0097",
-      "cumulative_cost_usd": 0.773345,
+      "cumulative_cost_usd": 1.65461,
       "cumulative_recovered_mxn": 134898.59,
-      "cumulative_tokens": 114563,
-      "timestamp_end": "2026-11-05T16:02:30.586984+00:00"
+      "cumulative_tokens": 257406,
+      "timestamp_end": "2026-11-07T06:09:53.512949+00:00"
     },
     {
-      "unit_index": 113,
-      "task_id": "work_unit_0113",
-      "cumulative_cost_usd": 0.897085,
-      "cumulative_recovered_mxn": 159081.87,
-      "cumulative_tokens": 133343,
-      "timestamp_end": "2026-11-05T16:02:31.865918+00:00"
+      "unit_index": 100,
+      "task_id": "work_unit_0100",
+      "cumulative_cost_usd": 1.705825,
+      "cumulative_recovered_mxn": 139459.51,
+      "cumulative_tokens": 265369,
+      "timestamp_end": "2026-11-07T06:12:04.789075+00:00"
     },
     {
-      "unit_index": 129,
-      "task_id": "work_unit_0129",
-      "cumulative_cost_usd": 1.023075,
-      "cumulative_recovered_mxn": 190488.6,
-      "cumulative_tokens": 152107,
-      "timestamp_end": "2026-11-05T16:02:33.315147+00:00"
+      "unit_index": 103,
+      "task_id": "work_unit_0103",
+      "cumulative_cost_usd": 1.757185,
+      "cumulative_recovered_mxn": 143178.11,
+      "cumulative_tokens": 273363,
+      "timestamp_end": "2026-11-07T06:13:48.041725+00:00"
+    },
+    {
+      "unit_index": 106,
+      "task_id": "work_unit_0106",
+      "cumulative_cost_usd": 1.8086,
+      "cumulative_recovered_mxn": 147065.57,
+      "cumulative_tokens": 281366,
+      "timestamp_end": "2026-11-07T06:15:36.309486+00:00"
+    },
+    {
+      "unit_index": 109,
+      "task_id": "work_unit_0109",
+      "cumulative_cost_usd": 1.85976,
+      "cumulative_recovered_mxn": 153170.94,
+      "cumulative_tokens": 289318,
+      "timestamp_end": "2026-11-07T06:17:19.402860+00:00"
+    },
+    {
+      "unit_index": 112,
+      "task_id": "work_unit_0112",
+      "cumulative_cost_usd": 1.911375,
+      "cumulative_recovered_mxn": 157731.55,
+      "cumulative_tokens": 297361,
+      "timestamp_end": "2026-11-07T06:18:54.740337+00:00"
+    },
+    {
+      "unit_index": 115,
+      "task_id": "work_unit_0115",
+      "cumulative_cost_usd": 1.962735,
+      "cumulative_recovered_mxn": 170008.67,
+      "cumulative_tokens": 305353,
+      "timestamp_end": "2026-11-07T06:20:51.291361+00:00"
+    },
+    {
+      "unit_index": 118,
+      "task_id": "work_unit_0118",
+      "cumulative_cost_usd": 2.013925,
+      "cumulative_recovered_mxn": 173746.33,
+      "cumulative_tokens": 313311,
+      "timestamp_end": "2026-11-07T06:22:16.568517+00:00"
+    },
+    {
+      "unit_index": 121,
+      "task_id": "work_unit_0121",
+      "cumulative_cost_usd": 2.0654,
+      "cumulative_recovered_mxn": 179469.2,
+      "cumulative_tokens": 321326,
+      "timestamp_end": "2026-11-07T06:23:55.816099+00:00"
+    },
+    {
+      "unit_index": 124,
+      "task_id": "work_unit_0124",
+      "cumulative_cost_usd": 2.116635,
+      "cumulative_recovered_mxn": 182780.72,
+      "cumulative_tokens": 329293,
+      "timestamp_end": "2026-11-07T06:25:41.486056+00:00"
+    },
+    {
+      "unit_index": 127,
+      "task_id": "work_unit_0127",
+      "cumulative_cost_usd": 2.167965,
+      "cumulative_recovered_mxn": 185964.22,
+      "cumulative_tokens": 337279,
+      "timestamp_end": "2026-11-07T06:27:32.107190+00:00"
+    },
+    {
+      "unit_index": 130,
+      "task_id": "work_unit_0130",
+      "cumulative_cost_usd": 2.21934,
+      "cumulative_recovered_mxn": 194079.66,
+      "cumulative_tokens": 345274,
+      "timestamp_end": "2026-11-07T06:29:48.975215+00:00"
+    },
+    {
+      "unit_index": 133,
+      "task_id": "work_unit_0133",
+      "cumulative_cost_usd": 2.27066,
+      "cumulative_recovered_mxn": 196620.53,
+      "cumulative_tokens": 353258,
+      "timestamp_end": "2026-11-07T06:40:19.881212+00:00"
+    },
+    {
+      "unit_index": 136,
+      "task_id": "work_unit_0136",
+      "cumulative_cost_usd": 2.32191,
+      "cumulative_recovered_mxn": 200384.08,
+      "cumulative_tokens": 361228,
+      "timestamp_end": "2026-11-07T06:42:22.004843+00:00"
+    },
+    {
+      "unit_index": 139,
+      "task_id": "work_unit_0139",
+      "cumulative_cost_usd": 2.37309,
+      "cumulative_recovered_mxn": 201994.51,
+      "cumulative_tokens": 369184,
+      "timestamp_end": "2026-11-07T06:43:52.686573+00:00"
+    },
+    {
+      "unit_index": 142,
+      "task_id": "work_unit_0142",
+      "cumulative_cost_usd": 2.424165,
+      "cumulative_recovered_mxn": 206562.51,
+      "cumulative_tokens": 377119,
+      "timestamp_end": "2026-11-07T06:45:14.486634+00:00"
     },
     {
       "unit_index": 145,
       "task_id": "work_unit_0145",
-      "cumulative_cost_usd": 1.15235,
+      "cumulative_cost_usd": 2.47548,
       "cumulative_recovered_mxn": 208029.37,
-      "cumulative_tokens": 171216,
-      "timestamp_end": "2026-11-05T16:02:34.338137+00:00"
+      "cumulative_tokens": 385102,
+      "timestamp_end": "2026-11-07T06:47:16.955191+00:00"
     },
     {
-      "unit_index": 161,
-      "task_id": "work_unit_0161",
-      "cumulative_cost_usd": 1.28047,
-      "cumulative_recovered_mxn": 235489.06,
-      "cumulative_tokens": 190066,
-      "timestamp_end": "2026-11-05T16:02:35.868515+00:00"
+      "unit_index": 148,
+      "task_id": "work_unit_0148",
+      "cumulative_cost_usd": 2.526445,
+      "cumulative_recovered_mxn": 214185.02,
+      "cumulative_tokens": 393053,
+      "timestamp_end": "2026-11-07T06:49:01.727748+00:00"
     },
     {
-      "unit_index": 177,
-      "task_id": "work_unit_0177",
-      "cumulative_cost_usd": 1.40611,
-      "cumulative_recovered_mxn": 258153.13,
-      "cumulative_tokens": 208646,
-      "timestamp_end": "2026-11-05T16:02:37.152991+00:00"
+      "unit_index": 151,
+      "task_id": "work_unit_0151",
+      "cumulative_cost_usd": 2.576915,
+      "cumulative_recovered_mxn": 217935.57,
+      "cumulative_tokens": 400949,
+      "timestamp_end": "2026-11-07T06:51:12.169270+00:00"
+    },
+    {
+      "unit_index": 154,
+      "task_id": "work_unit_0154",
+      "cumulative_cost_usd": 2.62801,
+      "cumulative_recovered_mxn": 218809.21,
+      "cumulative_tokens": 408888,
+      "timestamp_end": "2026-11-07T06:54:24.353157+00:00"
+    },
+    {
+      "unit_index": 157,
+      "task_id": "work_unit_0157",
+      "cumulative_cost_usd": 2.66951,
+      "cumulative_recovered_mxn": 228210.59,
+      "cumulative_tokens": 415420,
+      "timestamp_end": "2026-11-07T20:52:38.841764+00:00"
+    },
+    {
+      "unit_index": 160,
+      "task_id": "work_unit_0160",
+      "cumulative_cost_usd": 2.690425,
+      "cumulative_recovered_mxn": 234425.37,
+      "cumulative_tokens": 418865,
+      "timestamp_end": "2026-11-07T21:00:12.810838+00:00"
+    },
+    {
+      "unit_index": 163,
+      "task_id": "work_unit_0163",
+      "cumulative_cost_usd": 2.712095,
+      "cumulative_recovered_mxn": 237610.44,
+      "cumulative_tokens": 422395,
+      "timestamp_end": "2026-11-07T21:07:42.155988+00:00"
+    },
+    {
+      "unit_index": 166,
+      "task_id": "work_unit_0166",
+      "cumulative_cost_usd": 2.73292,
+      "cumulative_recovered_mxn": 244156.64,
+      "cumulative_tokens": 425846,
+      "timestamp_end": "2026-11-07T21:15:10.693304+00:00"
+    },
+    {
+      "unit_index": 169,
+      "task_id": "work_unit_0169",
+      "cumulative_cost_usd": 2.754885,
+      "cumulative_recovered_mxn": 247929.51,
+      "cumulative_tokens": 429431,
+      "timestamp_end": "2026-11-07T21:22:39.598683+00:00"
+    },
+    {
+      "unit_index": 172,
+      "task_id": "work_unit_0172",
+      "cumulative_cost_usd": 2.78594,
+      "cumulative_recovered_mxn": 251381.25,
+      "cumulative_tokens": 434318,
+      "timestamp_end": "2026-11-07T21:29:15.441699+00:00"
+    },
+    {
+      "unit_index": 175,
+      "task_id": "work_unit_0175",
+      "cumulative_cost_usd": 2.808365,
+      "cumulative_recovered_mxn": 255900.07,
+      "cumulative_tokens": 437951,
+      "timestamp_end": "2026-11-07T21:36:46.576361+00:00"
+    },
+    {
+      "unit_index": 178,
+      "task_id": "work_unit_0178",
+      "cumulative_cost_usd": 2.829195,
+      "cumulative_recovered_mxn": 258906.03,
+      "cumulative_tokens": 441349,
+      "timestamp_end": "2026-11-07T21:44:14.697216+00:00"
+    },
+    {
+      "unit_index": 181,
+      "task_id": "work_unit_0181",
+      "cumulative_cost_usd": 2.85065,
+      "cumulative_recovered_mxn": 265699.3,
+      "cumulative_tokens": 444858,
+      "timestamp_end": "2026-11-07T21:51:48.051205+00:00"
+    },
+    {
+      "unit_index": 184,
+      "task_id": "work_unit_0184",
+      "cumulative_cost_usd": 2.8726,
+      "cumulative_recovered_mxn": 270693.38,
+      "cumulative_tokens": 448370,
+      "timestamp_end": "2026-11-07T21:59:19.155016+00:00"
+    },
+    {
+      "unit_index": 187,
+      "task_id": "work_unit_0187",
+      "cumulative_cost_usd": 2.90396,
+      "cumulative_recovered_mxn": 274482.89,
+      "cumulative_tokens": 453356,
+      "timestamp_end": "2026-11-07T22:04:49.629417+00:00"
+    },
+    {
+      "unit_index": 190,
+      "task_id": "work_unit_0190",
+      "cumulative_cost_usd": 2.92512,
+      "cumulative_recovered_mxn": 277018.78,
+      "cumulative_tokens": 456848,
+      "timestamp_end": "2026-11-07T22:12:14.688117+00:00"
     },
     {
       "unit_index": 193,
       "task_id": "work_unit_0193",
-      "cumulative_cost_usd": 1.53536,
+      "cumulative_cost_usd": 2.956185,
       "cumulative_recovered_mxn": 280339.19,
-      "cumulative_tokens": 227794,
-      "timestamp_end": "2026-11-05T16:02:38.233754+00:00"
+      "cumulative_tokens": 461833,
+      "timestamp_end": "2026-11-07T22:17:42.754596+00:00"
     },
     {
-      "unit_index": 209,
-      "task_id": "work_unit_0209",
-      "cumulative_cost_usd": 1.661595,
-      "cumulative_recovered_mxn": 307351.99,
-      "cumulative_tokens": 246679,
-      "timestamp_end": "2026-11-05T16:02:39.517679+00:00"
+      "unit_index": 196,
+      "task_id": "work_unit_0196",
+      "cumulative_cost_usd": 2.97748,
+      "cumulative_recovered_mxn": 283887.25,
+      "cumulative_tokens": 465288,
+      "timestamp_end": "2026-11-07T22:25:08.846250+00:00"
     },
     {
-      "unit_index": 225,
-      "task_id": "work_unit_0225",
-      "cumulative_cost_usd": 1.788245,
-      "cumulative_recovered_mxn": 325948.15,
-      "cumulative_tokens": 265699,
-      "timestamp_end": "2026-11-05T16:02:40.654971+00:00"
+      "unit_index": 199,
+      "task_id": "work_unit_0199",
+      "cumulative_cost_usd": 2.99975,
+      "cumulative_recovered_mxn": 290517.51,
+      "cumulative_tokens": 468866,
+      "timestamp_end": "2026-11-07T23:00:19.716425+00:00"
     },
     {
-      "unit_index": 241,
-      "task_id": "work_unit_0241",
-      "cumulative_cost_usd": 1.915415,
-      "cumulative_recovered_mxn": 348416.1,
-      "cumulative_tokens": 284561,
-      "timestamp_end": "2026-11-05T16:02:42.123739+00:00"
+      "unit_index": 202,
+      "task_id": "work_unit_0202",
+      "cumulative_cost_usd": 3.02101,
+      "cumulative_recovered_mxn": 292259.32,
+      "cumulative_tokens": 472300,
+      "timestamp_end": "2026-11-07T23:01:05.404935+00:00"
     },
     {
-      "unit_index": 257,
-      "task_id": "work_unit_0257",
-      "cumulative_cost_usd": 2.04298,
-      "cumulative_recovered_mxn": 364510.35,
-      "cumulative_tokens": 303570,
-      "timestamp_end": "2026-11-05T16:02:43.634662+00:00"
+      "unit_index": 205,
+      "task_id": "work_unit_0205",
+      "cumulative_cost_usd": 3.042295,
+      "cumulative_recovered_mxn": 299007.52,
+      "cumulative_tokens": 475773,
+      "timestamp_end": "2026-11-07T23:01:35.363184+00:00"
     },
     {
-      "unit_index": 273,
-      "task_id": "work_unit_0273",
-      "cumulative_cost_usd": 2.172155,
-      "cumulative_recovered_mxn": 389733.63,
-      "cumulative_tokens": 322575,
-      "timestamp_end": "2026-11-05T16:02:45.334204+00:00"
+      "unit_index": 208,
+      "task_id": "work_unit_0208",
+      "cumulative_cost_usd": 3.064225,
+      "cumulative_recovered_mxn": 305533.21,
+      "cumulative_tokens": 479305,
+      "timestamp_end": "2026-11-07T23:02:05.822684+00:00"
     },
     {
-      "unit_index": 289,
-      "task_id": "work_unit_0289",
-      "cumulative_cost_usd": 2.30282,
-      "cumulative_recovered_mxn": 413257.56,
-      "cumulative_tokens": 341960,
-      "timestamp_end": "2026-11-05T16:02:46.918711+00:00"
+      "unit_index": 211,
+      "task_id": "work_unit_0211",
+      "cumulative_cost_usd": 3.08567,
+      "cumulative_recovered_mxn": 308559.83,
+      "cumulative_tokens": 482834,
+      "timestamp_end": "2026-11-07T23:02:35.785042+00:00"
     },
     {
-      "unit_index": 305,
-      "task_id": "work_unit_0305",
-      "cumulative_cost_usd": 2.43225,
-      "cumulative_recovered_mxn": 437360.98,
-      "cumulative_tokens": 361098,
-      "timestamp_end": "2026-11-05T16:02:48.516839+00:00"
+      "unit_index": 214,
+      "task_id": "work_unit_0214",
+      "cumulative_cost_usd": 3.107325,
+      "cumulative_recovered_mxn": 311609.84,
+      "cumulative_tokens": 486317,
+      "timestamp_end": "2026-11-07T23:03:06.093607+00:00"
     },
     {
-      "unit_index": 321,
-      "task_id": "work_unit_0321",
-      "cumulative_cost_usd": 2.556915,
-      "cumulative_recovered_mxn": 469486.58,
-      "cumulative_tokens": 379853,
-      "timestamp_end": "2026-11-05T16:02:49.606630+00:00"
+      "unit_index": 217,
+      "task_id": "work_unit_0217",
+      "cumulative_cost_usd": 3.128855,
+      "cumulative_recovered_mxn": 314579.74,
+      "cumulative_tokens": 489863,
+      "timestamp_end": "2026-11-07T23:03:36.182994+00:00"
     },
     {
-      "unit_index": 337,
-      "task_id": "work_unit_0337",
-      "cumulative_cost_usd": 2.685295,
-      "cumulative_recovered_mxn": 494164.63,
-      "cumulative_tokens": 398909,
-      "timestamp_end": "2026-11-05T16:02:51.056213+00:00"
+      "unit_index": 220,
+      "task_id": "work_unit_0220",
+      "cumulative_cost_usd": 3.151045,
+      "cumulative_recovered_mxn": 318178.78,
+      "cumulative_tokens": 493469,
+      "timestamp_end": "2026-11-07T23:04:06.822910+00:00"
     },
     {
-      "unit_index": 353,
-      "task_id": "work_unit_0353",
-      "cumulative_cost_usd": 2.81245,
-      "cumulative_recovered_mxn": 522157.03,
-      "cumulative_tokens": 417602,
-      "timestamp_end": "2026-11-05T16:02:52.568968+00:00"
+      "unit_index": 223,
+      "task_id": "work_unit_0223",
+      "cumulative_cost_usd": 3.173265,
+      "cumulative_recovered_mxn": 322284.66,
+      "cumulative_tokens": 497063,
+      "timestamp_end": "2026-11-07T23:04:37.152993+00:00"
     },
     {
-      "unit_index": 369,
-      "task_id": "work_unit_0369",
-      "cumulative_cost_usd": 2.936255,
-      "cumulative_recovered_mxn": 542037.92,
-      "cumulative_tokens": 436107,
-      "timestamp_end": "2026-11-05T16:02:54.435950+00:00"
+      "unit_index": 226,
+      "task_id": "work_unit_0226",
+      "cumulative_cost_usd": 3.194355,
+      "cumulative_recovered_mxn": 326338.95,
+      "cumulative_tokens": 500451,
+      "timestamp_end": "2026-11-07T23:05:07.646463+00:00"
     },
     {
-      "unit_index": 385,
-      "task_id": "work_unit_0385",
-      "cumulative_cost_usd": 3.06051,
-      "cumulative_recovered_mxn": 562974.35,
-      "cumulative_tokens": 454678,
-      "timestamp_end": "2026-11-05T16:02:56.405838+00:00"
+      "unit_index": 229,
+      "task_id": "work_unit_0229",
+      "cumulative_cost_usd": 3.216015,
+      "cumulative_recovered_mxn": 329697.49,
+      "cumulative_tokens": 503889,
+      "timestamp_end": "2026-11-07T23:05:37.864010+00:00"
     },
     {
-      "unit_index": 401,
-      "task_id": "work_unit_0401",
-      "cumulative_cost_usd": 3.188865,
-      "cumulative_recovered_mxn": 580715.41,
-      "cumulative_tokens": 473555,
-      "timestamp_end": "2026-11-05T16:02:58.570484+00:00"
+      "unit_index": 232,
+      "task_id": "work_unit_0232",
+      "cumulative_cost_usd": 3.23778,
+      "cumulative_recovered_mxn": 331374.48,
+      "cumulative_tokens": 507396,
+      "timestamp_end": "2026-11-07T23:06:07.634060+00:00"
     },
     {
-      "unit_index": 417,
-      "task_id": "work_unit_0417",
-      "cumulative_cost_usd": 3.31683,
-      "cumulative_recovered_mxn": 599444.92,
-      "cumulative_tokens": 492576,
-      "timestamp_end": "2026-11-05T16:02:59.906939+00:00"
+      "unit_index": 235,
+      "task_id": "work_unit_0235",
+      "cumulative_cost_usd": 3.259285,
+      "cumulative_recovered_mxn": 337484.56,
+      "cumulative_tokens": 510879,
+      "timestamp_end": "2026-11-07T23:13:08.795242+00:00"
     },
     {
-      "unit_index": 433,
-      "task_id": "work_unit_0433",
-      "cumulative_cost_usd": 3.441585,
-      "cumulative_recovered_mxn": 626379.59,
-      "cumulative_tokens": 511197,
-      "timestamp_end": "2026-11-05T16:03:01.559532+00:00"
-    },
-    {
-      "unit_index": 449,
-      "task_id": "work_unit_0449",
-      "cumulative_cost_usd": 3.5669,
-      "cumulative_recovered_mxn": 649869.39,
-      "cumulative_tokens": 529874,
-      "timestamp_end": "2026-11-05T16:03:02.706093+00:00"
-    },
-    {
-      "unit_index": 465,
-      "task_id": "work_unit_0465",
-      "cumulative_cost_usd": 3.696695,
-      "cumulative_recovered_mxn": 672500.21,
-      "cumulative_tokens": 549035,
-      "timestamp_end": "2026-11-05T16:03:04.368244+00:00"
-    },
-    {
-      "unit_index": 481,
-      "task_id": "work_unit_0481",
-      "cumulative_cost_usd": 3.82559,
-      "cumulative_recovered_mxn": 692747.25,
-      "cumulative_tokens": 568288,
-      "timestamp_end": "2026-11-05T16:03:06.067153+00:00"
-    },
-    {
-      "unit_index": 497,
-      "task_id": "work_unit_0497",
-      "cumulative_cost_usd": 3.952425,
-      "cumulative_recovered_mxn": 714581.2,
-      "cumulative_tokens": 587061,
-      "timestamp_end": "2026-11-05T16:03:08.581597+00:00"
-    },
-    {
-      "unit_index": 513,
-      "task_id": "work_unit_0513",
-      "cumulative_cost_usd": 4.079515,
-      "cumulative_recovered_mxn": 739191.7,
-      "cumulative_tokens": 606089,
-      "timestamp_end": "2026-11-05T16:03:11.871148+00:00"
-    },
-    {
-      "unit_index": 529,
-      "task_id": "work_unit_0529",
-      "cumulative_cost_usd": 4.205145,
-      "cumulative_recovered_mxn": 759605.91,
-      "cumulative_tokens": 624977,
-      "timestamp_end": "2026-11-05T16:03:15.317963+00:00"
-    },
-    {
-      "unit_index": 545,
-      "task_id": "work_unit_0545",
-      "cumulative_cost_usd": 4.32899,
-      "cumulative_recovered_mxn": 783305.75,
-      "cumulative_tokens": 643484,
-      "timestamp_end": "2026-11-05T16:03:16.923781+00:00"
-    },
-    {
-      "unit_index": 561,
-      "task_id": "work_unit_0561",
-      "cumulative_cost_usd": 4.453655,
-      "cumulative_recovered_mxn": 803719.46,
-      "cumulative_tokens": 662323,
-      "timestamp_end": "2026-11-05T16:03:18.891005+00:00"
-    },
-    {
-      "unit_index": 577,
-      "task_id": "work_unit_0577",
-      "cumulative_cost_usd": 4.583155,
-      "cumulative_recovered_mxn": 820757.51,
-      "cumulative_tokens": 681443,
-      "timestamp_end": "2026-11-05T16:03:20.666277+00:00"
-    },
-    {
-      "unit_index": 593,
-      "task_id": "work_unit_0593",
-      "cumulative_cost_usd": 4.709475,
-      "cumulative_recovered_mxn": 846581.64,
-      "cumulative_tokens": 700289,
-      "timestamp_end": "2026-11-05T16:03:22.146056+00:00"
-    },
-    {
-      "unit_index": 609,
-      "task_id": "work_unit_0609",
-      "cumulative_cost_usd": 4.835095,
-      "cumulative_recovered_mxn": 861165.54,
-      "cumulative_tokens": 719207,
-      "timestamp_end": "2026-11-05T16:03:24.009112+00:00"
-    },
-    {
-      "unit_index": 625,
-      "task_id": "work_unit_0625",
-      "cumulative_cost_usd": 4.96332,
-      "cumulative_recovered_mxn": 884867.08,
-      "cumulative_tokens": 738494,
-      "timestamp_end": "2026-11-05T16:03:25.353700+00:00"
-    },
-    {
-      "unit_index": 641,
-      "task_id": "work_unit_0641",
-      "cumulative_cost_usd": 5.090905,
-      "cumulative_recovered_mxn": 915972.17,
-      "cumulative_tokens": 757515,
-      "timestamp_end": "2026-11-05T16:03:27.210125+00:00"
-    },
-    {
-      "unit_index": 657,
-      "task_id": "work_unit_0657",
-      "cumulative_cost_usd": 5.219965,
-      "cumulative_recovered_mxn": 947299.45,
-      "cumulative_tokens": 776657,
-      "timestamp_end": "2026-11-05T16:03:29.128326+00:00"
-    },
-    {
-      "unit_index": 673,
-      "task_id": "work_unit_0673",
-      "cumulative_cost_usd": 5.35116,
-      "cumulative_recovered_mxn": 972646.87,
-      "cumulative_tokens": 796030,
-      "timestamp_end": "2026-11-05T16:03:30.324466+00:00"
-    },
-    {
-      "unit_index": 689,
-      "task_id": "work_unit_0689",
-      "cumulative_cost_usd": 5.477255,
-      "cumulative_recovered_mxn": 992177.79,
-      "cumulative_tokens": 814611,
-      "timestamp_end": "2026-11-05T16:03:32.496550+00:00"
-    },
-    {
-      "unit_index": 705,
-      "task_id": "work_unit_0705",
-      "cumulative_cost_usd": 5.60753,
-      "cumulative_recovered_mxn": 1015799.14,
-      "cumulative_tokens": 833980,
-      "timestamp_end": "2026-11-05T16:03:34.276741+00:00"
-    },
-    {
-      "unit_index": 721,
-      "task_id": "work_unit_0721",
-      "cumulative_cost_usd": 5.73526,
-      "cumulative_recovered_mxn": 1044010.42,
-      "cumulative_tokens": 853012,
-      "timestamp_end": "2026-11-05T16:03:35.689836+00:00"
-    },
-    {
-      "unit_index": 737,
-      "task_id": "work_unit_0737",
-      "cumulative_cost_usd": 5.86149,
-      "cumulative_recovered_mxn": 1067157.79,
-      "cumulative_tokens": 871992,
-      "timestamp_end": "2026-11-05T16:03:38.209475+00:00"
-    },
-    {
-      "unit_index": 753,
-      "task_id": "work_unit_0753",
-      "cumulative_cost_usd": 5.989055,
-      "cumulative_recovered_mxn": 1090197.38,
-      "cumulative_tokens": 890975,
-      "timestamp_end": "2026-11-05T16:03:41.228362+00:00"
-    },
-    {
-      "unit_index": 769,
-      "task_id": "work_unit_0769",
-      "cumulative_cost_usd": 6.115935,
-      "cumulative_recovered_mxn": 1115467.14,
-      "cumulative_tokens": 909849,
-      "timestamp_end": "2026-11-05T16:03:43.504984+00:00"
-    },
-    {
-      "unit_index": 785,
-      "task_id": "work_unit_0785",
-      "cumulative_cost_usd": 6.243755,
-      "cumulative_recovered_mxn": 1136433.63,
-      "cumulative_tokens": 928889,
-      "timestamp_end": "2026-11-05T16:03:46.591604+00:00"
-    },
-    {
-      "unit_index": 801,
-      "task_id": "work_unit_0801",
-      "cumulative_cost_usd": 6.373385,
-      "cumulative_recovered_mxn": 1153383.67,
-      "cumulative_tokens": 948107,
-      "timestamp_end": "2026-11-05T16:03:49.417534+00:00"
-    },
-    {
-      "unit_index": 817,
-      "task_id": "work_unit_0817",
-      "cumulative_cost_usd": 6.503125,
-      "cumulative_recovered_mxn": 1179858.27,
-      "cumulative_tokens": 967147,
-      "timestamp_end": "2026-11-05T16:03:51.368496+00:00"
-    },
-    {
-      "unit_index": 833,
-      "task_id": "work_unit_0833",
-      "cumulative_cost_usd": 6.629085,
-      "cumulative_recovered_mxn": 1202583.06,
-      "cumulative_tokens": 985975,
-      "timestamp_end": "2026-11-05T16:03:54.378814+00:00"
-    },
-    {
-      "unit_index": 849,
-      "task_id": "work_unit_0849",
-      "cumulative_cost_usd": 6.75454,
-      "cumulative_recovered_mxn": 1224569.84,
-      "cumulative_tokens": 1004812,
-      "timestamp_end": "2026-11-05T16:03:56.127493+00:00"
-    },
-    {
-      "unit_index": 865,
-      "task_id": "work_unit_0865",
-      "cumulative_cost_usd": 6.87999,
-      "cumulative_recovered_mxn": 1244861.0,
-      "cumulative_tokens": 1023746,
-      "timestamp_end": "2026-11-05T16:03:58.954221+00:00"
-    },
-    {
-      "unit_index": 881,
-      "task_id": "work_unit_0881",
-      "cumulative_cost_usd": 7.00687,
-      "cumulative_recovered_mxn": 1268910.17,
-      "cumulative_tokens": 1042874,
-      "timestamp_end": "2026-11-05T16:04:01.600261+00:00"
-    },
-    {
-      "unit_index": 897,
-      "task_id": "work_unit_0897",
-      "cumulative_cost_usd": 7.13347,
-      "cumulative_recovered_mxn": 1288360.91,
-      "cumulative_tokens": 1061824,
-      "timestamp_end": "2026-11-05T16:04:03.520312+00:00"
-    },
-    {
-      "unit_index": 913,
-      "task_id": "work_unit_0913",
-      "cumulative_cost_usd": 7.26319,
-      "cumulative_recovered_mxn": 1311983.51,
-      "cumulative_tokens": 1080888,
-      "timestamp_end": "2026-11-05T16:04:06.364628+00:00"
-    },
-    {
-      "unit_index": 929,
-      "task_id": "work_unit_0929",
-      "cumulative_cost_usd": 7.389825,
-      "cumulative_recovered_mxn": 1331217.32,
-      "cumulative_tokens": 1099721,
-      "timestamp_end": "2026-11-05T16:04:09.583281+00:00"
-    },
-    {
-      "unit_index": 945,
-      "task_id": "work_unit_0945",
-      "cumulative_cost_usd": 7.51676,
-      "cumulative_recovered_mxn": 1350184.23,
-      "cumulative_tokens": 1118780,
-      "timestamp_end": "2026-11-05T16:04:11.323578+00:00"
-    },
-    {
-      "unit_index": 961,
-      "task_id": "work_unit_0961",
-      "cumulative_cost_usd": 7.645535,
-      "cumulative_recovered_mxn": 1373888.58,
-      "cumulative_tokens": 1137901,
-      "timestamp_end": "2026-11-05T16:04:14.280142+00:00"
-    },
-    {
-      "unit_index": 977,
-      "task_id": "work_unit_0977",
-      "cumulative_cost_usd": 7.769675,
-      "cumulative_recovered_mxn": 1390903.12,
-      "cumulative_tokens": 1156433,
-      "timestamp_end": "2026-11-05T16:04:17.405807+00:00"
-    },
-    {
-      "unit_index": 993,
-      "task_id": "work_unit_0993",
-      "cumulative_cost_usd": 7.89856,
-      "cumulative_recovered_mxn": 1416736.7,
-      "cumulative_tokens": 1175588,
-      "timestamp_end": "2026-11-05T16:04:19.173380+00:00"
-    },
-    {
-      "unit_index": 1009,
-      "task_id": "work_unit_1009",
-      "cumulative_cost_usd": 8.0264,
-      "cumulative_recovered_mxn": 1434697.9,
-      "cumulative_tokens": 1194526,
-      "timestamp_end": "2026-11-05T16:04:22.389480+00:00"
-    },
-    {
-      "unit_index": 1024,
-      "task_id": "work_unit_1024",
-      "cumulative_cost_usd": 8.14464,
-      "cumulative_recovered_mxn": 1461511.7,
-      "cumulative_tokens": 1212018,
-      "timestamp_end": "2026-11-05T16:04:24.048459+00:00"
+      "unit_index": 238,
+      "task_id": "work_unit_0238",
+      "cumulative_cost_usd": 3.300555,
+      "cumulative_recovered_mxn": 343557.1,
+      "cumulative_tokens": 517339,
+      "timestamp_end": "2026-11-07T23:18:23.446948+00:00"
     }
   ]
 }

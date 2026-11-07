@@ -277,6 +277,30 @@ def analyze_case(case_id: str, request: AnalyzeRequest = AnalyzeRequest()):
         except Exception:
             pass
 
+        # Inyectar traza de deliberación cognitiva profunda (Chain-of-Thought) y honestidad de límites
+        try:
+            from tools.cognitive_deliberation import build_deliberation_trace
+            fd = clean_dict.get("failure_diagnostics") or {}
+            window_label = clean_dict.get("notice_window_audit", {}).get("status_label", "EN PLAZO")
+            cust_name = "MegaRetail Corp México"
+            if inv_d and "customer_id" in inv_d:
+                cust_name = str(inv_d["customer_id"])
+
+            clean_dict["deliberation_trace"] = build_deliberation_trace(
+                case_id=case_id,
+                billed_amount=float(clean_dict.get("billed_amount") or 0.0),
+                received_amount=float(clean_dict.get("received_amount") or 0.0),
+                justified_amount=float(clean_dict.get("justified_amount") or 0.0),
+                claimable_amount=float(clean_dict.get("claimable_amount") or 0.0),
+                root_cause=str(clean_dict.get("root_cause") or ""),
+                recommended_action=str(clean_dict.get("recommended_action") or ""),
+                retailer_name=cust_name,
+                failure_diagnostics=fd,
+                notice_window_label=window_label
+            )
+        except Exception as err:
+            pass
+
         return clean_dict
     except HTTPException:
         raise

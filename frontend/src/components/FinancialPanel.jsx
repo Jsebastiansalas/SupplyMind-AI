@@ -26,8 +26,10 @@ import {
   CheckCircle2,
   Cpu,
   Zap,
-  Building2
+  Building2,
+  Brain
 } from 'lucide-react';
+import DeliberationTraceView from './DeliberationTraceView';
 import { apiClient } from '../api/client';
 import ExecutiveAudioBriefing from './ExecutiveAudioBriefing';
 
@@ -480,6 +482,19 @@ export default function FinancialPanel({
             <span>🛡️ Fugas Retailers & Checklist</span>
           </button>
 
+          <button
+            onClick={() => setActiveSubTab('deliberation')}
+            className={`btn-tactile px-3 py-1.5 rounded text-xs font-mono font-medium transition-colors flex items-center gap-1.5 ${
+              activeSubTab === 'deliberation'
+                ? 'bg-[#171822] text-[#eed98d] border border-[#d4af37]/60 shadow-tactile font-bold'
+                : 'text-zinc-400 hover:text-white hover:bg-[#121319]'
+            }`}
+          >
+            <Brain className="w-3.5 h-3.5 text-[#d4af37]" />
+            <span>🧠 Razonamiento & Límites (Platica)</span>
+          </button>
+
+
           <div className="ml-auto flex items-center space-x-2">
             <ExecutiveAudioBriefing caseId={report?.case_id} report={report} compact={true} />
             {onOpenOfficialDossier && (
@@ -537,7 +552,24 @@ export default function FinancialPanel({
                 </span>
               </div>
             </div>
+          
+            <DeliberationTraceView 
+              trace={report.deliberation_trace} 
+              failureDiagnostics={report.failure_diagnostics} 
+              report={report} 
+            />
+</div>
           </div>
+        )}
+
+        {/* SUB-TAB: DELIBERACIÓN COGNITIVA & LÍMITES OPERATIVOS (Platica) */}
+        {activeSubTab === 'deliberation' && (
+          <div className="space-y-4">
+            <DeliberationTraceView 
+              trace={report.deliberation_trace} 
+              failureDiagnostics={report.failure_diagnostics} 
+              report={report} 
+            />
           </div>
         )}
 

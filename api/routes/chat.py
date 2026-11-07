@@ -1308,6 +1308,47 @@ def _deterministic_chat_response(case_id: str, prompt: str, role: str, ctx: Dict
             f"- **Acción Inmediata:** Intervención humana y auditoría forense antes de cualquier acuerdo comercial."
         )
 
+    # 0.05 Deliberación Cognitiva, Autocrítica Forense y Reconocimiento de Límites (Platica Feedback)
+    if any(k in p for k in ["deliberaci", "pensamiento", "razonamiento", "como piensas", "cómo piensas", "como razonaste", "cómo razonaste", "como llegaste", "cómo llegaste", "proceso de pensamiento", "autocritica", "autocrítica", "errores", "imperfeccion", "imperfección", "limites", "límites", "por que no eres perfecto", "por qué no eres perfecto", "human in the loop", "duda", "escepticismo"]):
+        from tools.cognitive_deliberation import build_deliberation_trace
+        fd = getattr(report, "failure_diagnostics", {}) or {}
+        dt = build_deliberation_trace(
+            case_id=case_id,
+            billed_amount=float(report.billed_amount or 0.0),
+            received_amount=float(report.received_amount or 0.0),
+            justified_amount=float(report.justified_amount or 0.0),
+            claimable_amount=float(report.claimable_amount or 0.0),
+            root_cause=str(report.root_cause or ""),
+            recommended_action=str(report.recommended_action or ""),
+            retailer_name=str(ctx.get("invoice_id", "Cliente")),
+            failure_diagnostics=fd,
+            notice_window_label="EN PLAZO"
+        )
+        steps_md = ""
+        for s in dt["deliberation_steps"]:
+            steps_md += f"> **Paso {s['step_number']} — {s['title']}:** {s.get('narrative', s.get('thought_process', ''))}\n"
+            if s.get("self_doubt"):
+                steps_md += f"> *⚖️ Auto-Duda / Escepticismo:* {s['self_doubt']}\n"
+            steps_md += ">\n"
+
+        loss_str = ""
+        if dt["is_provider_loss"]:
+            loss_str = (
+                f"\n\n### ⚖️ Dictamen de Honestidad Intelectual: Derrota Justificada del Proveedor\n"
+                f"En este caso (`{case_id}`), **el proveedor NO tiene la razón**. La remisión de recibo confirma "
+                f"que existió un faltante real imputable a nuestra propia logística. El agente rechaza objetar de manera temeraria "
+                f"y dictamina absorber la pérdida de **${dt.get('loss_absorbed_usd', 0.0):,.2f} USD** mediante Nota de Crédito."
+            )
+
+        return f"""### 🧠 Proceso de Deliberación Cognitiva & Límites Operativos (`{case_id}`)
+
+> 🧠 **Cadena de Metacognición Forense (5 Pasos Deliberativos):**
+{steps_md}
+- **Nivel de Autonomía:** `{dt['autonomy_tier']}`
+- **Severidad Diagnóstica:** `{dt['failure_severity']}`
+- **Requiere Intervención Humana (HITL):** `{'SÍ (Requiere validación de analista)' if dt['requires_human_in_the_loop'] else 'NO (Resolución Determinística Autónoma)'}`
+- **Aceptación de Pérdida Justificada:** `{'SÍ - Pérdida de $' + f"{dt.get('loss_absorbed_usd', 0.0):,.2f} USD reconocida" if dt['is_provider_loss'] else 'NO - Saldo reclamable con mérito legal'}`{loss_str}"""
+
     # 0.1 Didáctica Pericial del Caso: ¿Quién tiene la razón? / ¿Qué pasó? / ¿Por qué retuvieron?
     if any(k in p for k in ["quien tiene la razon", "quién tiene la razón", "que paso", "qué pasó", "por que retuvo", "por qué retuvo", "por que me retuvieron", "por qué me retuvieron", "por que retuvieron", "por qué retuvieron", "explicame el caso", "explícame el caso", "entender el caso", "de que trata", "de qué trata", "por que la retencion", "por qué la retención", "resumen del caso"]):
         deliv_id = delivery.get('delivery_id', 'DEL-REF')

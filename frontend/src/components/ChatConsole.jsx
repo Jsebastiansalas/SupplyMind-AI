@@ -17,7 +17,11 @@ import {
   Briefcase,
   FileText,
   ChevronRight,
-  Info
+  Info,
+  Brain,
+  ChevronDown,
+  ChevronUp,
+  AlertTriangle
 } from 'lucide-react';
 
 // ==============================================================================
@@ -63,6 +67,46 @@ function formatInlineText(text) {
       });
     });
   });
+}
+
+// Componente de Pensamiento y Deliberación Cognitiva Estilizado
+function CognitiveThoughtBlock({ text }) {
+  const [isOpen, setIsOpen] = useState(true);
+  const lines = text.split('\n').filter(l => l.trim().length > 0);
+
+  return (
+    <div className="my-3 rounded-lg border border-amber-500/30 bg-[#121118] overflow-hidden shadow-subtle">
+      <button 
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between px-3 py-2 bg-[#181622] hover:bg-[#1e1c2a] border-b border-amber-500/20 text-left transition-colors select-none"
+      >
+        <div className="flex items-center space-x-2">
+          <Brain className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
+          <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-amber-300">
+            Deliberación Interna & Autocrítica Forense
+          </span>
+          <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-amber-950/60 text-amber-400 border border-amber-800/40">
+            CoT 5 Pasos
+          </span>
+        </div>
+        <div className="text-zinc-400 hover:text-white">
+          {isOpen ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+        </div>
+      </button>
+
+      {isOpen && (
+        <div className="p-3 space-y-1.5 text-xs text-zinc-300 font-sans leading-relaxed border-l-2 border-amber-500/50 bg-[#0d0e14]/60">
+          {lines.map((l, idx) => (
+            <div key={idx} className="flex items-start space-x-1.5">
+              <span className="text-amber-500/70 font-mono text-[10px] mt-0.5">•</span>
+              <span className="flex-1">{formatInlineText(l.replace(/^[•\-\*]\s*/, ''))}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 function RichMarkdownMessage({ content }) {
@@ -160,14 +204,29 @@ function RichMarkdownMessage({ content }) {
       continue;
     }
 
-    // 3. Citas en bloque (Blockquotes)
+    // 3. Citas en bloque y Deliberación Cognitiva (Blockquotes & CoT)
     if (line.startsWith('> ')) {
-      elements.push(
-        <blockquote key={`bq-${i}`} className="my-2 pl-3 py-1 border-l-2 border-cyan-400 bg-cyan-950/20 text-xs italic text-cyan-100/90 rounded-r-lg">
-          {formatInlineText(line.replace('> ', ''))}
-        </blockquote>
-      );
-      i++;
+      const bqLines = [];
+      while (i < lines.length && lines[i].startsWith('> ')) {
+        bqLines.push(lines[i].replace(/^>\s?/, ''));
+        i++;
+      }
+      const bqText = bqLines.join('\n');
+      const isDeliberation = bqText.includes('🧠') || bqText.toLowerCase().includes('deliberaci') || bqText.toLowerCase().includes('cadena de razonamiento') || bqText.toLowerCase().includes('metacognici');
+      
+      if (isDeliberation) {
+        elements.push(
+          <CognitiveThoughtBlock key={`cot-${i}`} text={bqText} />
+        );
+      } else {
+        elements.push(
+          <blockquote key={`bq-${i}`} className="my-2 pl-3 py-1.5 border-l-2 border-cyan-400 bg-cyan-950/20 text-xs text-cyan-100/90 rounded-r-lg space-y-1">
+            {bqLines.map((bql, bqIdx) => (
+              <div key={bqIdx}>{formatInlineText(bql)}</div>
+            ))}
+          </blockquote>
+        );
+      }
       continue;
     }
 
