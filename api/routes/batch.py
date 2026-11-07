@@ -6,7 +6,9 @@ Endpoints para Procesamiento Batch Masivo Desatendido (Semana 4 - Sprint 4.2).
 from pathlib import Path
 import json
 from typing import Optional, List, Dict, Any
-from fastapi import APIRouter, HTTPException, BackgroundTasks, Query
+import asyncio
+from fastapi import APIRouter, HTTPException, BackgroundTasks, Query, WebSocket, WebSocketDisconnect
+from tools.batch_processor.telemetry_ws import telemetry_broadcaster
 from pydantic import BaseModel, Field
 
 from tools.batch_processor.batch_runner import EnterpriseBatchProcessor
@@ -308,3 +310,40 @@ def get_unattended_case_dossier(case_id: str):
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al leer expediente: {str(e)}")
+
+
+
+# ==============================================================================
+# Mejora 4: Telemetría en Vivo por WebSockets para la Jornada Desatendida
+# ==============================================================================
+
+@router.websocket("/ws/telemetry")
+async def batch_telemetry_websocket(websocket: WebSocket):
+    """
+    Canal dúplex WebSocket de alta frecuencia para transmisión en vivo de la
+    supervisión desatendida, latidos de salud, eventos de auditoría y métricas de tokens.
+    """
+    await telemetry_broadcaster.connect(websocket)
+    try:
+        initial_hb = telemetry_broadcaster.get_heartbeat_payload()
+        await websocket.send_json({
+            "type": "INIT_STATE",
+            "timestamp": initial_hb.get("last_heartbeat_at"),
+            "data": initial_hb
+        })
+
+        while True:
+            try:
+                msg_text = await asyncio.wait_for(websocket.receive_text(), timeout=2.0)
+                if msg_text == "ping":
+                    await websocket.send_json({"type": "PONG", "data": {"status": "alive"}})
+                elif msg_text == "heartbeat":
+                    hb = telemetry_broadcaster.get_heartbeat_payload()
+                    await websocket.send_json({"type": "HEARTBEAT", "data": hb})
+            except asyncio.TimeoutError:
+                hb = telemetry_broadcaster.get_heartbeat_payload()
+                await websocket.send_json({"type": "HEARTBEAT", "data": hb})
+    except WebSocketDisconnect:
+        telemetry_broadcaster.disconnect(websocket)
+    except Exception:
+        telemetry_broadcaster.disconnect(websocket)

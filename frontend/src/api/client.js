@@ -6,6 +6,14 @@
 const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 
 export const apiClient = {
+  getWebSocketUrl(path) {
+    let wsBase = BASE_URL.replace(/^http/, 'ws');
+    if (path.startsWith('/api') && wsBase.endsWith('/api')) {
+      wsBase = wsBase.slice(0, -4);
+    }
+    return `${wsBase}${path.startsWith('/') ? path : '/' + path}`;
+  },
+
   async getHealth() {
     const res = await fetch(`${BASE_URL}/health`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);

@@ -231,6 +231,11 @@ class UnattendedBatchOrchestrator:
                 json.dump(data, f, indent=2, ensure_ascii=False)
             if tmp_path.exists():
                 os.replace(tmp_path, self.heartbeat_path)
+            try:
+                from tools.batch_processor.telemetry_ws import telemetry_broadcaster
+                telemetry_broadcaster.broadcast_sync("HEARTBEAT", data)
+            except Exception:
+                pass
         except Exception:
             pass
 

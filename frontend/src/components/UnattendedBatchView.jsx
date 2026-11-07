@@ -63,8 +63,62 @@ export default function UnattendedBatchView() {
   const [loadingDossier, setLoadingDossier] = useState(false);
   const [activeDossierTab, setActiveDossierTab] = useState('invoice');
   const [showChaosModal, setShowChaosModal] = useState(false);
+  const [wsConnected, setWsConnected] = useState(false);
+  const [liveEvents, setLiveEvents] = useState([]);
 
-  // 1. Cargar datos iniciales
+  // 1. Conexión WebSocket para Telemetría en Vivo de Alta Frecuencia (Mejora 4)
+  useEffect(() => {
+    let ws = null;
+    let reconnectTimeout = null;
+
+    function connectWs() {
+      try {
+        const wsUrl = apiClient.getWebSocketUrl('/api/batch/ws/telemetry');
+        ws = new WebSocket(wsUrl);
+
+        ws.onopen = () => {
+          setWsConnected(true);
+        };
+
+        ws.onmessage = (event) => {
+          try {
+            const msg = JSON.parse(event.data);
+            if (msg.type === 'INIT_STATE' || msg.type === 'HEARTBEAT') {
+              if (msg.data) setHeartbeat(prev => ({ ...(prev || {}), ...msg.data }));
+            } else if (msg.type === 'CASE_PROCESSED') {
+              setLiveEvents(prev => [msg.data, ...prev].slice(0, 30));
+            } else if (msg.type === 'SMOKE_TEST_COMPLETED') {
+              loadInitialData();
+              fetchCases(casesPage, statusFilter, searchTerm);
+            }
+          } catch (e) {
+            console.warn('WS message parse error:', e);
+          }
+        };
+
+        ws.onclose = () => {
+          setWsConnected(false);
+          reconnectTimeout = setTimeout(connectWs, 3000);
+        };
+
+        ws.onerror = () => {
+          setWsConnected(false);
+        };
+      } catch (err) {
+        setWsConnected(false);
+        reconnectTimeout = setTimeout(connectWs, 5000);
+      }
+    }
+
+    connectWs();
+
+    return () => {
+      if (ws) ws.close();
+      if (reconnectTimeout) clearTimeout(reconnectTimeout);
+    };
+  }, []);
+
+  // 2. Cargar datos iniciales
   useEffect(() => {
     loadInitialData();
   }, []);
@@ -188,6 +242,19 @@ export default function UnattendedBatchView() {
               <span className="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold uppercase tracking-wider bg-emerald-950/80 text-emerald-400 border border-emerald-500/40">
                 {heartbeat?.status === 'RUNNING' ? 'Jornada en Ejecución Continua' : 'Jornada Desatendida Sellada (12 Horas)'}
               </span>
+
+              {wsConnected ? (
+                <span className="flex items-center space-x-1.5 px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950/90 text-emerald-300 border border-emerald-500/50 shadow-sm" title="Canal dúplex WebSocket de baja latencia activo">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                  <span className="font-bold">⚡ WEBSOCKET EN VIVO</span>
+                </span>
+              ) : (
+                <span className="flex items-center space-x-1.5 px-2 py-0.5 rounded text-[10px] font-mono bg-[#1c1d28] text-zinc-400 border border-[#2d3040]" title="Conectando WebSocket / Sondeo HTTP activo">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                  <span>🔄 HTTP SONDEO</span>
+                </span>
+              )}
+
               <span className="text-xs font-mono text-zinc-500">
                 Orquestador Autónomo v4.2 • Platica Grok-4.7
               </span>
