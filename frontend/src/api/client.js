@@ -65,6 +65,12 @@ export const apiClient = {
     return res.json();
   },
 
+  async getOfficialDossier(caseId) {
+    const res = await fetch(`${BASE_URL}/cases/${caseId}/official-dossier`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+
   async simulateDispute(payload) {
     const res = await fetch(`${BASE_URL}/sandbox/simulate`, {
       method: 'POST',
