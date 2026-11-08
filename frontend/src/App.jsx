@@ -186,9 +186,17 @@ function Workspace() {
         if (!isCancelled) setCaseDetails(details);
 
         if (!isCancelled) {
-          const existingReport = solvedReports[selectedCaseId] || null;
+          let existingReport = solvedReports[selectedCaseId] || null;
+          if (!existingReport) {
+            try {
+              existingReport = await apiClient.analyzeCase(selectedCaseId, fastPath, useCache);
+              setSolvedReports(prev => ({ ...prev, [selectedCaseId]: existingReport }));
+            } catch (e) {
+              console.warn("Auto-analyze error:", e);
+            }
+          }
           setReport(existingReport);
-          setForceShowSummary(!existingReport);
+          setForceShowSummary(false);
 
           if (existingReport) {
             const trib = await apiClient.getTribunalEvaluation(selectedCaseId).catch(() => null);
