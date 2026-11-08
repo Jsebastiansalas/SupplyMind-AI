@@ -15,16 +15,16 @@
         },
         "hashedMessage": "3175b96a157dd34b3f67131a2627ac302458491655d632ab1fe2dfec4807109c"
       },
-      "serialNumber": 12721288413259101684,
-      "genTime": "20261108050014Z",
-      "genTimeIso": "2026-11-08T05:00:14.948175+00:00",
+      "serialNumber": 10286131086208960792,
+      "genTime": "20261108053135Z",
+      "genTimeIso": "2026-11-08T05:31:35.702656+00:00",
       "accuracy": {
         "seconds": 1,
         "millis": 0,
         "micros": 0
       },
       "ordering": true,
-      "nonce": 204321246,
+      "nonce": 1040371708,
       "tsa": {
         "distinguishedName": "CN=Platica Autonomous Legal TSA, O=Platica AI Hackathon 2026, C=MX",
         "keyIdentifier": "4ac3ac08837b7cd15d3e8dd8367eedeb75315fa8"
@@ -33,7 +33,7 @@
     "signerInfo": {
       "version": 1,
       "signatureAlgorithm": "1.2.840.113549.1.1.11 (sha256WithRSAEncryption)",
-      "signatureHex": "34af5ff10f8edb14d8f369406556333cc05ec6ce88d0135cd32345d33a29644f0bbf9892f24aeb933bf3ee51a28da5b06c17c84377e1ed7cca79cc906962f25e",
+      "signatureHex": "7ea39c92f6416c303859d89fcd3cd3f01be3a12e5c6cf31f9b74a650a5f8b4398e368693950a71d922385f73d1b3c527775d4f00e144318a85d771e87398ffc3",
       "certificateChain": [
         "Platica Root CA 2026 G1 (Root)",
         "Platica Time Stamping Intermediate CA G2",

@@ -3,10 +3,10 @@
 ## 1. Métricas Principales de Entrega
 - **Total de Unidades de Trabajo Procesadas:** 3
 - **Tasa de Éxito Operativo (Resolución + Auto-Recuperación):** 66.67% (Éxito nominal directo: 33.33% con 1 unidades; 1 anomalías auto-recuperadas en cuarentena; 1 fallos irreconciliables por falta física de POD escalados a humano)
-- **Costo Total Acumulado en Pasarela Platica:** $0.0219 USD
-- **Costo Promedio por Unidad de Trabajo:** $0.007307 USD
-- **Total de Tokens Procesados (Grok-4.7):** 3,382
-- **Tiempo Total de Corrida Desatendida:** 0.00 horas (0.0 segundos)
+- **Costo Total Acumulado en Pasarela Platica:** $0.0228 USD
+- **Costo Promedio por Unidad de Trabajo:** $0.007592 USD
+- **Total de Tokens Procesados (Grok-4.7):** 3,437
+- **Tiempo Total de Corrida Desatendida:** 0.00 horas (0.1 segundos)
 - **Invariante Financiero ($0.00 MAE):** 100% de expedientes reconciliados con exactitud aritmética estricta.
 
 ## 2. Impacto Financiero y Recuperación de Capital

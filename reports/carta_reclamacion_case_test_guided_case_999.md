@@ -1,6 +1,6 @@
 # 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
 **Ref: Expediente de Cartera case_test_guided_case_999 / Factura INV-TEST_G-101**  
-**Fecha:** 03 de November de 2026  
+**Fecha:** 04 de November de 2026  
 **De:** Departamento de Cartera y Asuntos Comerciales — VEN-TEST  
 **Para:** Gerencia de Cuentas por Pagar y Conciliación — CUST-TEST  
 
@@ -23,10 +23,15 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_test_guided_case_999 — 2026-11-03):**
+**Precedente 1 (Expediente case_test_guided_case_999 — 2026-11-05):**
 - **Criterio Acreditado:** En el caso case_test_guided_case_999, se acreditó la improcedencia de la deducción 'DED-FALTANTE' conforme a CLAUSE-3.1, logrando la restitución de $200.00 USD.
 - **Resultado Previo:** Restitución de **$200.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CLAUSE-3.1.
+
+**Precedente 2 (Expediente holdout_case_002 — 2026-11-05):**
+- **Criterio Acreditado:** En el caso holdout_case_002, se acreditó la improcedencia de la deducción 'ALLEGED_DAMAGE_UNILATERAL' conforme a CL-02, logrando la restitución de $1,500.00 USD.
+- **Resultado Previo:** Restitución de **$1,500.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** CL-02.
 
 Por tanto, en observancia del principio de coherencia comercial y buena fe contractual, solicitamos la aplicación del mismo criterio para el reintegro de la presente retención.
 

@@ -23,12 +23,12 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_006_walmart_otif_pricing — 2026-11-04):**
+**Precedente 1 (Expediente case_006_walmart_otif_pricing — 2026-11-05):**
 - **Criterio Acreditado:** En el caso case_006_walmart_otif_pricing, se acreditó la improcedencia de la deducción 'DED-PRICE-CORR' conforme a 3.1, logrando la restitución de $3,500.00 USD.
 - **Resultado Previo:** Restitución de **$3,500.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** 3.1.
 
-**Precedente 2 (Expediente case_006_walmart_otif_pricing — 2026-11-03):**
+**Precedente 2 (Expediente case_006_walmart_otif_pricing — 2026-11-05):**
 - **Criterio Acreditado:** En el caso case_006_walmart_otif_pricing, se acreditó la improcedencia de la deducción 'SETTLEMENT-WALMART_OTIF' conforme a CTR-GENERAL-TERMS, logrando la restitución de $3,500.00 USD.
 - **Resultado Previo:** Restitución de **$3,500.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CTR-GENERAL-TERMS.

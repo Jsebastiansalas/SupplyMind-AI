@@ -1,8 +1,8 @@
 # 🛰️ Radar de Fuga de Capital y Perfilado de Retailers (Eje 4)
 ## SupplyMind AI Enterprise — Inteligencia de Cartera y Prevención Pre-Despacho
-**Fecha de Emisión:** 2026-11-04T21:28:31.324841+00:00  
+**Fecha de Emisión:** 2026-11-05T00:19:15.746931+00:00  
 **Expedientes Totales Auditados:** 82 casos  
-**Tasa de Efectividad Proyectada (Win Rate):** 57.4%  
+**Tasa de Efectividad Proyectada (Win Rate):** 57.3%  
 
 ---
 
@@ -11,9 +11,9 @@
 | Métrica Financiera | Monto (USD) | Interpretación Operativa |
 | :--- | :---: | :--- |
 | **Volumen Total Disputado** | **$798,216.54 USD** | Monto retenido o descontado unilateralmente en remesas |
-| **Capital Recuperable (Ganable)** | **$458,332.31 USD** | Fondos recuperables con sustento documental y legal |
-| **Fuga Neta en Riesgo** | **$339,884.23 USD** | Capital expuesto a pérdida si no se actúa dentro del plazo |
-| **Ratio de Recuperación Global** | **57.4%** | Eficiencia defensiva calculada en partida doble |
+| **Capital Recuperable (Ganable)** | **$457,707.31 USD** | Fondos recuperables con sustento documental y legal |
+| **Fuga Neta en Riesgo** | **$340,509.23 USD** | Capital expuesto a pérdida si no se actúa dentro del plazo |
+| **Ratio de Recuperación Global** | **57.3%** | Eficiencia defensiva calculada en partida doble |
 
 ---
 
@@ -21,7 +21,7 @@
 
 | Retailer / Cadena Comercial | Nivel de Riesgo | Win Rate | Vol. Disputado | Capital Recuperable | Patrón Sistemático Principal | Incoterm Sugerido |
 | :--- | :---: | :---: | :---: | :---: | :--- | :---: |
-| **Amazon Fulfillment Services (CUST-RETAIL-AMZN)** | 🟠 ALTO | 92.4% | $14,800.00 | $9,320.08 | Penalización Automatizada de ASN EDI 856 | `FCA` |
+| **Amazon Fulfillment Services (CUST-RETAIL-AMZN)** | 🟠 ALTO | 92.4% | $14,800.00 | $8,695.08 | Penalización Automatizada de ASN EDI 856 | `FCA` |
 | **Walmart Inc. & Retail Link (CUST-RETAIL-WMT)** | 🔴 PREDATORIO | 89.1% | $460,540.00 | $284,488.50 | Deducción Extemporánea de Pronto Pago (Fin de Mes) | `FOB` |
 | **Cisco Systems Global Supply (CUST-RETAIL-CSCO)** | 🟡 MEDIO | 95.0% | $42,949.88 | $28,650.00 | Deducción de Margen por Desglose de Bundles | `CIP` |
 | **The Home Depot Supply Chain (CUST-RETAIL-HD)** | 🟡 MEDIO | 91.5% | $11,349.95 | $7,149.95 | Rechazo por Daño Cosmético de Empaque Exterior | `FOB` |
@@ -57,6 +57,6 @@
 ### ⚖️ 5. Directivas Ejecutivas para Dirección de Finanzas y Cobranza
 
 - **Directiva 1:** Migrar términos de contratación con retailers de nivel PREDATORIO (ej. Walmart) hacia Incoterm FOB/FCA en origen.
-- **Directiva 2:** Blindar el 57.4% de tasa de recuperación mediante contestación legal inmediata dentro de los primeros 15 días.
+- **Directiva 2:** Blindar el 57.3% de tasa de recuperación mediante contestación legal inmediata dentro de los primeros 15 días.
 - **Directiva 3:** Instalar escaneo RFID de tarima completa para anular la deducción por auditoría masiva en órdenes multi-SKU.
 - **Directiva 4:** Exigir a transportistas el sellado de la carta porte bajo el Art. 88 del Código de Comercio.

@@ -1,5 +1,5 @@
 {
-  "session_id": "DUEL-CASE_004-B0F6F957",
+  "session_id": "DUEL-CASE_004-AA3C594D",
   "case_id": "case_004",
   "retailer_name": "Cadena Comercial Mayorista B2B",
   "archetype": {
@@ -47,7 +47,7 @@
   "final_agreed_cash_recovery": "0.00",
   "settlement_minutes_hash": null,
   "minutes_markdown_path": null,
-  "started_at": "2026-11-03T12:39:54.531916+00:00",
+  "started_at": "2026-11-05T00:19:26.519445+00:00",
   "completed_at": null,
   "summary_verdict": "Punto de equilibrio alcanzado en Ronda 1 ($0.00 USD en banco vs $0.00 USD NC). En espera de confirmación y rúbrica final del operador (Human Gatekeeper).",
   "rhi_score": 30.0,

@@ -1,8 +1,8 @@
 # CONVENIO JUDICIAL-EXTRAJUDICIAL DE TRANSACCIÓN MERCANTIL Y FINIQUITO DEFINITIVO
-**Folio Oficial:** `AGR-CASE_005_AMAZON_SHORTAGE-701D08C0`  
+**Folio Oficial:** `AGR-CASE_005_AMAZON_SHORTAGE-485CC2D2`  
 **Expediente Vinculado:** `case_005_amazon_shortage`  
-**Fecha de Suscripción:** 03 de November de 2026 a las 12:39:44 UTC  
-**Sello Criptográfico ZKP SHA-256:** `af0554f269e4fddf483a74b6fb4d29fe3ffa4b7e56ea124bacc17d5ab477c37f`  
+**Fecha de Suscripción:** 05 de November de 2026 a las 00:19:20 UTC  
+**Sello Criptográfico ZKP SHA-256:** `ea41cd010acb80471e9865c6a8961339799555629925472d207cf02cfa02d548`  
 **Suscrito por:** Director Comercial B2B / SupplyMind AI  
 
 ---
@@ -56,7 +56,7 @@ El presente instrumento se rige e interpreta de conformidad con el marco jurídi
 Las partes renuncian expresamente a cualquier acción civil, mercantil o penal que pudiera derivar de los hechos materia de este acuerdo, quedando prohibida la reapertura del expediente o la aplicación de deducciones retroactivas por estos mismos conceptos.
 
 #### SEXTA. FE ELECTRÓNICA Y FIRMA CRIPTOGRÁFICA
-El presente convenio ha sido sellado criptográficamente mediante algoritmo ZKP SHA-256 (`af0554f269e4fddf483a74b6fb4d29fe3ffa4b7e56ea124bacc17d5ab477c37f`), garantizando la inmutabilidad de los montos y compromisos suscritos.
+El presente convenio ha sido sellado criptográficamente mediante algoritmo ZKP SHA-256 (`ea41cd010acb80471e9865c6a8961339799555629925472d207cf02cfa02d548`), garantizando la inmutabilidad de los montos y compromisos suscritos.
 
 ---
 **POR EL PROVEEDOR:**  

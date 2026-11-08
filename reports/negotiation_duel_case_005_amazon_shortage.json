@@ -1,5 +1,5 @@
 {
-  "session_id": "DUEL-CASE_005_AMAZON_SHORTAGE-2473CBD7",
+  "session_id": "DUEL-CASE_005_AMAZON_SHORTAGE-C869D4CD",
   "case_id": "case_005_amazon_shortage",
   "retailer_name": "Amazon Fulfillment Services LLC",
   "archetype": {
@@ -17,8 +17,8 @@
     "tone": "Frío, algorítmico, automatizado y despersonalizado"
   },
   "governance_mode": "FULL_AUTONOMY",
-  "status": "AGREEMENT_REACHED",
-  "current_round": 4,
+  "status": "IMPASSE_REACHED",
+  "current_round": 8,
   "max_rounds": 5,
   "delegation_limit_pct": 50.0,
   "delegation_limit_amount": "1250.00",
@@ -99,15 +99,91 @@
       "spread": "375.00",
       "convergence_pct": 95.0,
       "round_status": "AGREED"
+    },
+    {
+      "round_number": 5,
+      "buyer_message": "Amazon rechaza tu carta porque el transportista llegó 45 minutos tarde al muelle de descarga.",
+      "buyer_stance": "UNFOUNDED_OBJECTION",
+      "buyer_demand_credit_memo": "7500.00",
+      "buyer_cash_payout_offer": "0.00",
+      "supplier_message": "Rechazamos de plano la objeción planteada por retraso de transporte. Conforme a la Cláusula 5.2 del Contrato Marco de Suministro y el estándar logístico B2B, existe una ventana contractual de tolerancia de 60 minutos de gracia posterior a la hora de cita. El transportista arribó con 45 minutos de diferencia, operando plenamente dentro del margen contractual protegido. En consecuencia, la penalización alegada carece de sustento vinculante ($0.00 admisible). Exigimos la restitución íntegra del importe de $2,500.00 USD.",
+      "supplier_stance": "LEGAL_REFUTATION",
+      "supplier_offer_credit_memo": "5000.00",
+      "supplier_claim_cash": "2500.00",
+      "evidence_exhibited": [
+        "Bitácora de arribo de transporte con sello de muelle dentro de ventana de tolerancia (45 min <= 60 min)",
+        "Contrato Marco Cláusula 5.2 de Tolerancia Operativa en Muelle",
+        "Acuse de recibo de cita logística sin reserva de penalización"
+      ],
+      "spread": "2500.00",
+      "convergence_pct": 66.7,
+      "round_status": "IMPASSE"
+    },
+    {
+      "round_number": 6,
+      "buyer_message": "El comprador deduce $500 por folleto publicitario / co-op de verano según su política interna.",
+      "buyer_stance": "UNFOUNDED_OBJECTION",
+      "buyer_demand_credit_memo": "7500.00",
+      "buyer_cash_payout_offer": "0.00",
+      "supplier_message": "La deducción unilateral por concepto de folleto de verano / cuota publicitaria es contractualmente inadmisible. Conforme a la Cláusula 7.2 del Contrato Marco y el principio mercantil de inalterabilidad de las obligaciones (Art. 78 del Código de Comercio), cualquier cargo de mercadeo o cooperación requiere una orden de inserción bilateral formalmente autorizada por nuestra dirección comercial. Al no existir adenda previa firmada, la retención constituye una deducción ilícita de fondos. Exigimos la restitución del saldo retenido de $2,500.00 USD.",
+      "supplier_stance": "LEGAL_REFUTATION",
+      "supplier_offer_credit_memo": "5000.00",
+      "supplier_claim_cash": "2500.00",
+      "evidence_exhibited": [
+        "Código de Comercio Art. 78 y 88 (Inalterabilidad contractual de las partes)",
+        "Contrato Marco Cláusula 7.2 / 10.4 (Prohibición expresa de retención unilateral sin adenda)",
+        "Auditoría interna de acuerdos comerciales sin orden de inserción autorizada"
+      ],
+      "spread": "2500.00",
+      "convergence_pct": 66.7,
+      "round_status": "IMPASSE"
+    },
+    {
+      "round_number": 7,
+      "buyer_message": "Amazon rechaza tu carta porque el transportista llegó 45 minutos tarde al muelle de descarga.",
+      "buyer_stance": "UNFOUNDED_OBJECTION",
+      "buyer_demand_credit_memo": "7500.00",
+      "buyer_cash_payout_offer": "0.00",
+      "supplier_message": "Rechazamos de plano la objeción planteada por retraso de transporte. Conforme a la Cláusula 5.2 del Contrato Marco de Suministro y el estándar logístico B2B, existe una ventana contractual de tolerancia de 60 minutos de gracia posterior a la hora de cita. El transportista arribó con 45 minutos de diferencia, operando plenamente dentro del margen contractual protegido. En consecuencia, la penalización alegada carece de sustento vinculante ($0.00 admisible). Exigimos la restitución íntegra del importe de $2,500.00 USD.",
+      "supplier_stance": "LEGAL_REFUTATION",
+      "supplier_offer_credit_memo": "5000.00",
+      "supplier_claim_cash": "2500.00",
+      "evidence_exhibited": [
+        "Bitácora de arribo de transporte con sello de muelle dentro de ventana de tolerancia (45 min <= 60 min)",
+        "Contrato Marco Cláusula 5.2 de Tolerancia Operativa en Muelle",
+        "Acuse de recibo de cita logística sin reserva de penalización"
+      ],
+      "spread": "2500.00",
+      "convergence_pct": 66.7,
+      "round_status": "IMPASSE"
+    },
+    {
+      "round_number": 8,
+      "buyer_message": "Amazon rechaza tu carta porque el transportista llegó 45 minutos tarde al muelle de descarga.",
+      "buyer_stance": "UNFOUNDED_OBJECTION",
+      "buyer_demand_credit_memo": "7500.00",
+      "buyer_cash_payout_offer": "0.00",
+      "supplier_message": "Rechazamos de plano la objeción planteada por retraso de transporte. Conforme a la Cláusula 5.2 del Contrato Marco de Suministro y el estándar logístico B2B, existe una ventana contractual de tolerancia de 60 minutos de gracia posterior a la hora de cita. El transportista arribó con 45 minutos de diferencia, operando plenamente dentro del margen contractual protegido. En consecuencia, la penalización alegada carece de sustento vinculante ($0.00 admisible). Exigimos la restitución íntegra del importe de $2,500.00 USD.",
+      "supplier_stance": "LEGAL_REFUTATION",
+      "supplier_offer_credit_memo": "5000.00",
+      "supplier_claim_cash": "2500.00",
+      "evidence_exhibited": [
+        "Bitácora de arribo de transporte con sello de muelle dentro de ventana de tolerancia (45 min <= 60 min)",
+        "Contrato Marco Cláusula 5.2 de Tolerancia Operativa en Muelle",
+        "Acuse de recibo de cita logística sin reserva de penalización"
+      ],
+      "spread": "2500.00",
+      "convergence_pct": 66.7,
+      "round_status": "IMPASSE"
     }
   ],
   "final_agreed_credit_memo": "5625.00",
   "final_agreed_cash_recovery": "1875.00",
-  "settlement_minutes_hash": "af0554f269e4fddf483a74b6fb4d29fe3ffa4b7e56ea124bacc17d5ab477c37f",
+  "settlement_minutes_hash": "ea41cd010acb80471e9865c6a8961339799555629925472d207cf02cfa02d548",
   "minutes_markdown_path": "C:\\Users\\USUARIO\\Downloads\\platica\\reports\\convenio_finiquito_case_005_amazon_shortage.md",
-  "started_at": "2026-11-03T12:39:44.752731+00:00",
-  "completed_at": "2026-11-03T12:39:44.773023+00:00",
-  "summary_verdict": "Acuerdo bilateral formalizado con éxito en Ronda 4. Recuperación neta en banco: $1,875.00 USD | Nota de Crédito autorizada: $5,625.00 USD.",
+  "started_at": "2026-11-05T00:19:20.555170+00:00",
+  "completed_at": "2026-11-05T00:19:21.412154+00:00",
+  "summary_verdict": "Punto muerto alcanzado en Ronda 8. Brecha irreducible de $2,500.00 USD.",
   "rhi_score": 84.5,
   "modulation_mode": "DIPLOMATIC_PRESERVATION",
   "churn_risk_level": "LOW_STRATEGIC"

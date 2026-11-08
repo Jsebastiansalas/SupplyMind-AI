@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T16:11:21.134510+00:00",
+  "generated_at": "2026-11-05T16:12:53.268098+00:00",
   "total_units": 3,
   "status_breakdown": {
     "SUCCESS": 1,
@@ -17,23 +17,23 @@
     "mae_zero_verified": true
   },
   "telemetry": {
-    "total_cost_usd": 0.02192,
-    "avg_cost_usd": 0.007307,
-    "min_cost_usd": 0.006825,
-    "max_cost_usd": 0.007645,
-    "total_tokens": 3382,
-    "avg_tokens_per_unit": 1127.3,
-    "total_duration_seconds": 0.04,
+    "total_cost_usd": 0.022775,
+    "avg_cost_usd": 0.007592,
+    "min_cost_usd": 0.007465,
+    "max_cost_usd": 0.007805,
+    "total_tokens": 3437,
+    "avg_tokens_per_unit": 1145.7,
+    "total_duration_seconds": 0.06,
     "total_duration_hours": 0.0,
-    "avg_latency_seconds": 0.015,
-    "p50_latency_seconds": 0.015,
-    "p95_latency_seconds": 0.015
+    "avg_latency_seconds": 0.021,
+    "p50_latency_seconds": 0.014,
+    "p95_latency_seconds": 0.034
   },
   "cryptographic_seal": {
     "manifest_json": "reports\\small_batch_smoke_test\\unattended_batch_audit_manifest.json",
     "manifest_sha256": "reports\\small_batch_smoke_test\\unattended_batch_audit_manifest.sha256",
-    "merkle_root": "909cd93d712e0add7748c4d071ecb8a4928c5705be2602d2b1ef1214ab522e7a",
-    "tip_chain_hash": "14a4e8e0678b9256aa406ff87c0d17a743ff4f0ce46176e7ec507abba20ae0a0",
+    "merkle_root": "19a3e5e354a926dd2728632f9cab84c91ced150eaee94fc442c219ec17c32454",
+    "tip_chain_hash": "0ed381c13958f62e31ad1db3e56498418b8d44398df75d0c7b520058c0246499",
     "total_units_sealed": 3
   },
   "retailer_breakdown": [
@@ -43,7 +43,7 @@
       "units_count": 1,
       "disputed_mxn": 3828.78,
       "recovered_mxn": 3254.46,
-      "cost_usd": 0.007645
+      "cost_usd": 0.007505
     },
     {
       "retailer_id": "LIVERPOOL_MX",
@@ -51,7 +51,7 @@
       "units_count": 1,
       "disputed_mxn": 1281.2,
       "recovered_mxn": 0.0,
-      "cost_usd": 0.00745
+      "cost_usd": 0.007805
     },
     {
       "retailer_id": "SORIANA_MX",
@@ -59,7 +59,7 @@
       "units_count": 1,
       "disputed_mxn": 3821.6,
       "recovered_mxn": 0.0,
-      "cost_usd": 0.006825
+      "cost_usd": 0.007465
     }
   ],
   "category_breakdown": [
@@ -89,26 +89,26 @@
     {
       "unit_index": 1,
       "task_id": "smoke_unit_0001",
-      "cumulative_cost_usd": 0.007645,
+      "cumulative_cost_usd": 0.007505,
       "cumulative_recovered_mxn": 3254.46,
-      "cumulative_tokens": 1145,
-      "timestamp_end": "2026-11-05T16:11:20.993783+00:00"
+      "cumulative_tokens": 1131,
+      "timestamp_end": "2026-11-05T16:12:53.084654+00:00"
     },
     {
       "unit_index": 2,
       "task_id": "smoke_unit_0002",
-      "cumulative_cost_usd": 0.015095,
+      "cumulative_cost_usd": 0.01531,
       "cumulative_recovered_mxn": 3254.46,
-      "cumulative_tokens": 2255,
-      "timestamp_end": "2026-11-05T16:11:21.018518+00:00"
+      "cumulative_tokens": 2266,
+      "timestamp_end": "2026-11-05T16:12:53.124626+00:00"
     },
     {
       "unit_index": 3,
       "task_id": "smoke_unit_0003",
-      "cumulative_cost_usd": 0.02192,
+      "cumulative_cost_usd": 0.022775,
       "cumulative_recovered_mxn": 3254.46,
-      "cumulative_tokens": 3382,
-      "timestamp_end": "2026-11-05T16:11:21.038817+00:00"
+      "cumulative_tokens": 3437,
+      "timestamp_end": "2026-11-05T16:12:53.145250+00:00"
     }
   ]
 }

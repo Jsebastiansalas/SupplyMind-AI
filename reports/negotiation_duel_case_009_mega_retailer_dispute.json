@@ -1,5 +1,5 @@
 {
-  "session_id": "DUEL-CASE_009_MEGA_RETAILER_DISPUTE-8AFEE352",
+  "session_id": "DUEL-CASE_009_MEGA_RETAILER_DISPUTE-68809DEC",
   "case_id": "case_009_mega_retailer_dispute",
   "retailer_name": "Cadena Comercial Mayorista B2B",
   "archetype": {
@@ -47,7 +47,7 @@
   "final_agreed_cash_recovery": null,
   "settlement_minutes_hash": null,
   "minutes_markdown_path": null,
-  "started_at": "2026-11-03T12:39:38.567672+00:00",
+  "started_at": "2026-11-05T00:19:11.636854+00:00",
   "completed_at": null,
   "summary_verdict": "Careo iniciado. Posturas preliminares bajo política TIER_1_STRATEGIC | Salud Relacional RHI 59.5/100 (FIRM_COMMERCIAL).",
   "rhi_score": 59.5,

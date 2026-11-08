@@ -1,8 +1,8 @@
 # CONVENIO JUDICIAL-EXTRAJUDICIAL DE TRANSACCIÓN MERCANTIL Y FINIQUITO DEFINITIVO
-**Folio Oficial:** `AGR-CASE_002-D52F6434`  
+**Folio Oficial:** `AGR-CASE_002-8A20DC95`  
 **Expediente Vinculado:** `case_002`  
-**Fecha de Suscripción:** 03 de November de 2026 a las 12:39:45 UTC  
-**Sello Criptográfico ZKP SHA-256:** `a8a603eee95190ac8737519d5ef6daa676c133203f1173667eebe51c0cd280ad`  
+**Fecha de Suscripción:** 05 de November de 2026 a las 00:19:21 UTC  
+**Sello Criptográfico ZKP SHA-256:** `1a05f6647dd31210224dae1820e16bd724e7315ac5d1d15760b37803fdd7b4b0`  
 **Suscrito por:** Auditor Senior B2B  
 
 ---
@@ -54,7 +54,7 @@ El presente instrumento se rige e interpreta de conformidad con el marco jurídi
 Las partes renuncian expresamente a cualquier acción civil, mercantil o penal que pudiera derivar de los hechos materia de este acuerdo, quedando prohibida la reapertura del expediente o la aplicación de deducciones retroactivas por estos mismos conceptos.
 
 #### SEXTA. FE ELECTRÓNICA Y FIRMA CRIPTOGRÁFICA
-El presente convenio ha sido sellado criptográficamente mediante algoritmo ZKP SHA-256 (`a8a603eee95190ac8737519d5ef6daa676c133203f1173667eebe51c0cd280ad`), garantizando la inmutabilidad de los montos y compromisos suscritos.
+El presente convenio ha sido sellado criptográficamente mediante algoritmo ZKP SHA-256 (`1a05f6647dd31210224dae1820e16bd724e7315ac5d1d15760b37803fdd7b4b0`), garantizando la inmutabilidad de los montos y compromisos suscritos.
 
 ---
 **POR EL PROVEEDOR:**  

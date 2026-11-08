@@ -2,14 +2,14 @@
 **CONCILIACIÓN BANCARIA 3-WAY (EDI 820 / NIF C-3)**
 
 ---
-- **Folio de Certificado:** `CERT-O2C-NON_EXISTE-B294A2F5`
+- **Folio de Certificado:** `CERT-O2C-NON_EXISTE-000415BE`
 - **Expediente Auditado:** `non_existent_case_99999`
 - **Cadena Comercial Pagadora:** Cadena Comercial Mayorista B2B
 - **Factura Comercial Liquidada:** `INV-NON_EXISTENT`
-- **Referencia Bancaria SPEI / ACH (TRN):** `SPEI820202611047E81D3B9`
-- **Fecha de Liquidación:** `2026-11-04`
+- **Referencia Bancaria SPEI / ACH (TRN):** `SPEI820202611057E81D3B9`
+- **Fecha de Liquidación:** `2026-11-05`
 - **Estatus de Cartera:** `LIQUIDATED_CLOSED ($0.00 SALDO INSOLUTO)`
-- **Sello Criptográfico ZKP SHA-256:** `b294a2f582f1911a10d1c017f095973223f0bcf5ff5723004731f4352d219739`
+- **Sello Criptográfico ZKP SHA-256:** `000415be6d44b6424b070f6f47404e17568321aa31e4925c8f859aa159e8e072`
 
 ---
 
@@ -20,7 +20,7 @@
 | **1. Factura Comercial Original (+)** | **$0.00** | Factura `INV-NON_EXISTENT` |
 | **2. Deducción Inicial Retailer (-)** | **-$0.00** | Retención unilateral previa (`Pago inicial: $0.00`) |
 | **3. Monto Recuperado por Convenio (+)** | **+$0.00** | Restitución líquida en remesa `REM-820-7E81D3B9` |
-| **4. Depósito Neto Total en Banco (=)** | **$0.00** | Confirmación Tesorería TRN `SPEI820202611047E81D3B9` |
+| **4. Depósito Neto Total en Banco (=)** | **$0.00** | Confirmación Tesorería TRN `SPEI820202611057E81D3B9` |
 | **5. Nota de Crédito Comercial Aplicada** | **$0.00** | CFDI 4.0 Tipo E (Egreso) autorizado |
 | **6. SALDO INSOLUTO EN CARTERA (RESIDUAL)** | **$0.00** | **MAE = `$0.00` (Cero Alucinación Aritmética)** |
 

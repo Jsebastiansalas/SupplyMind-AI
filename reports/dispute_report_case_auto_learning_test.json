@@ -27,5 +27,18 @@
   "deduction_type": null,
   "adversarial_critique": null,
   "mcts_negotiation_plan": null,
-  "cross_border_assessment": null
+  "cross_border_assessment": null,
+  "failure_diagnostics": null,
+  "cost_telemetry": {
+    "task_id": "case_auto_learning_test",
+    "measured_cost_usd": 0.0,
+    "requests_count": 0,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "budget_cap_usd": null,
+    "was_throttled": false,
+    "gateway_baseline_cost_per_request_usd": 0.01134,
+    "cost_basis_description": "Calibrado con el consumo histórico real medido en Platica Gateway ($10.66 en 940 peticiones = $0.011340 USD/req)."
+  }
 }

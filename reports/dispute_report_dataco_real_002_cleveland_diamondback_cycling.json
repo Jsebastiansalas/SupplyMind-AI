@@ -40,11 +40,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-11-04T12:20:07.031273+00:00"
+    "generated_at": "2026-11-05T00:19:19.357907+00:00"
   },
   "financial_proof": {
     "case_id": "dataco_real_002_cleveland_diamondback_cycling",
-    "proof_hash": "SM-PROOF-SHA256-AC4956BC4A839204",
+    "proof_hash": "SM-PROOF-SHA256-EB93E62922BE9248",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -58,7 +58,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-11-04T12:20:07.036715+00:00"
+    "tamper_proof_timestamp": "2026-11-05T00:19:19.364119+00:00"
   },
   "evidence_manifest": {
     "case_id": "dataco_real_002_cleveland_diamondback_cycling",
@@ -133,7 +133,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-11-04T12:20:07Z"
+    "generated_at": "2026-11-05T00:19:19Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -146,16 +146,22 @@
     "claimable_amount": "800.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-AC4956BC4A839204",
+    "zkp_proof_hash": "SM-PROOF-SHA256-EB93E62922BE9248",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-11-04T12:20:07.065052+00:00"
+    "anchored_at": "2026-11-05T00:19:19.390945+00:00"
   },
-  "watchdog_metrics": null,
+  "watchdog_metrics": {
+    "total_tool_calls": 0,
+    "unique_tool_calls": 0,
+    "deduplicated_calls_count": 0,
+    "circuit_breaker_triggered": false,
+    "warnings": []
+  },
   "adversarial_verdict": {
     "case_id": "dataco_real_002_cleveland_diamondback_cycling",
-    "courtroom_session_id": "CRT-27B629D7",
+    "courtroom_session_id": "CRT-93CCBCB7",
     "disputed_amount": "1399.96",
     "justified_amount": "599.96",
     "claimable_amount": "800.00",

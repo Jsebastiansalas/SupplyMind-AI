@@ -23,7 +23,7 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_010_mercadolibre_crossdock — 2026-11-04):**
+**Precedente 1 (Expediente case_010_mercadolibre_crossdock — 2026-11-05):**
 - **Criterio Acreditado:** En el caso case_010_mercadolibre_crossdock, se acreditó la improcedencia de la deducción 'CROSSDOCK-MISROUTING' conforme a CLAUSE-5.1, logrando la restitución de $5,400.00 USD.
 - **Resultado Previo:** Restitución de **$5,400.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CLAUSE-5.1.

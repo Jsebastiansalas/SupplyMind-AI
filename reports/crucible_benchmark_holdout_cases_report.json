@@ -1,6 +1,6 @@
 {
   "benchmark_name": "The Crucible Suite — 20 Casos B2B (fast_no_cache)",
-  "timestamp": "2026-11-04T11:50:14Z",
+  "timestamp": "2026-11-05T00:18:04Z",
   "mode": "fast_no_cache",
   "cases_dir": "C:\\Users\\USUARIO\\Downloads\\platica\\data\\holdout_cases",
   "total_cases": 20,
@@ -19,22 +19,22 @@
       "avg_cost_per_request_usd": 0.01134
     },
     "session_metrics": {
-      "tasks_tracked": 27,
-      "total_requests": 2,
-      "prompt_tokens": 2700,
-      "completion_tokens": 900,
-      "total_tokens": 3600,
-      "measured_total_cost_usd": 0.027,
-      "avg_cost_per_task_usd": 0.001,
-      "throttled_tasks_count": 1
+      "tasks_tracked": 25,
+      "total_requests": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0,
+      "measured_total_cost_usd": 0.0,
+      "avg_cost_per_task_usd": 0.0,
+      "throttled_tasks_count": 0
     },
-    "session_total_requests": 2,
-    "session_measured_cost_usd": 0.027,
-    "throttled_cases_count": 1
+    "session_total_requests": 0,
+    "session_measured_cost_usd": 0.0,
+    "throttled_cases_count": 0
   },
   "total_audited_usd": 806000.0,
   "total_recovered_usd": 36450.0,
-  "total_time_seconds": 2.31,
+  "total_time_seconds": 4.92,
   "cases_results": [
     {
       "case_id": "holdout_case_001",
@@ -51,7 +51,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 97.0
+      "latency_ms": 180.99
     },
     {
       "case_id": "holdout_case_002",
@@ -68,7 +68,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 109.73
+      "latency_ms": 222.37
     },
     {
       "case_id": "holdout_case_003",
@@ -85,7 +85,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 113.25
+      "latency_ms": 234.9
     },
     {
       "case_id": "holdout_case_004",
@@ -102,7 +102,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 95.54
+      "latency_ms": 194.57
     },
     {
       "case_id": "holdout_case_005",
@@ -119,7 +119,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 94.96
+      "latency_ms": 204.95
     },
     {
       "case_id": "holdout_case_006",
@@ -136,7 +136,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 110.05
+      "latency_ms": 420.99
     },
     {
       "case_id": "holdout_case_007",
@@ -153,7 +153,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 129.05
+      "latency_ms": 221.83
     },
     {
       "case_id": "holdout_case_008",
@@ -170,7 +170,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 100.96
+      "latency_ms": 253.15
     },
     {
       "case_id": "holdout_case_009",
@@ -187,7 +187,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 100.34
+      "latency_ms": 265.04
     },
     {
       "case_id": "holdout_case_010",
@@ -204,7 +204,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 146.01
+      "latency_ms": 188.72
     },
     {
       "case_id": "holdout_case_011",
@@ -221,7 +221,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 159.79
+      "latency_ms": 233.55
     },
     {
       "case_id": "holdout_case_012",
@@ -238,7 +238,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 139.08
+      "latency_ms": 388.13
     },
     {
       "case_id": "holdout_case_013",
@@ -255,7 +255,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 104.11
+      "latency_ms": 303.36
     },
     {
       "case_id": "holdout_case_014",
@@ -272,7 +272,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 93.09
+      "latency_ms": 168.19
     },
     {
       "case_id": "holdout_case_015",
@@ -289,7 +289,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 70.62
+      "latency_ms": 185.53
     },
     {
       "case_id": "holdout_case_016",
@@ -306,7 +306,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 98.93
+      "latency_ms": 204.04
     },
     {
       "case_id": "holdout_case_017",
@@ -323,7 +323,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 137.24
+      "latency_ms": 266.84
     },
     {
       "case_id": "holdout_case_018",
@@ -340,7 +340,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 51.21
+      "latency_ms": 123.68
     },
     {
       "case_id": "holdout_case_019",
@@ -357,7 +357,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 147.03
+      "latency_ms": 313.49
     },
     {
       "case_id": "holdout_case_020",
@@ -374,7 +374,7 @@
       "invariant_ok": true,
       "hallucination_detected": false,
       "passed": true,
-      "latency_ms": 165.48
+      "latency_ms": 268.14
     }
   ]
 }

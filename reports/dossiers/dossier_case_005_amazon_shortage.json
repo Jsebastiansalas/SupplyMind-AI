@@ -1,5 +1,5 @@
 {
-  "dossier_id": "DOSSIER-CASE_005_AMAZON_SHORTAGE-43D59F",
+  "dossier_id": "DOSSIER-CASE_005_AMAZON_SHORTAGE-86227B",
   "case_id": "case_005_amazon_shortage",
   "portal_type": "AMAZON_VENDOR_CENTRAL",
   "retailer_name": "Amazon Vendor Central (AP Financials & Co-Op)",
@@ -48,8 +48,8 @@
       "doc_type": "SETTLEMENT_AGREEMENT",
       "file_name": "convenio_finiquito_case_005_amazon_shortage.md",
       "file_size_bytes": 5600,
-      "sha256_hash": "af0554f269e4fddf483a74b6fb4d29fe3ffa4b7e56ea124bacc17d5ab477c37f",
-      "description": "Convenio de Transacción Mercantil sellado con hash ZKP `af0554f269e4fddf...`",
+      "sha256_hash": "ea41cd010acb80471e9865c6a8961339799555629925472d207cf02cfa02d548",
+      "description": "Convenio de Transacción Mercantil sellado con hash ZKP `ea41cd010acb8047...`",
       "status": "VERIFIED_VALID"
     }
   ],
@@ -58,9 +58,9 @@
     "retailer_name": "Amazon Fulfillment Services LLC",
     "claim_code": "SHORTAGE_FC_DOCK",
     "invoice_uuid_or_folio": "INV-AMZ-CASE_005",
-    "po_reference": "PO-AMZ-85131C",
+    "po_reference": "PO-AMZ-1ADCDF",
     "dc_or_fc_code": "DAL3 (Dallas Fulfillment Center)",
-    "receipt_folio": "BOL-AMZ-FB1CA2",
+    "receipt_folio": "BOL-AMZ-AFE576",
     "dispute_reason": "Shipment verified intact under C-TPAT ISO 17712 security seal. Carton variance is unsubstantiated.",
     "claimable_amount": "2500.00",
     "currency": "USD",
@@ -78,6 +78,6 @@
       "edi_997_status": "ACCEPTED_CONFIRMED"
     }
   },
-  "zkp_dossier_digest": "67ad7434d7cb6e06fe064fb184fcea9895357d9fb7a01f7bdbfac24658a6f8fa",
-  "generated_at": "2026-11-03T12:40:01.592130+00:00"
+  "zkp_dossier_digest": "e74c7ad7aa655bd5ef95d582bcc0e0035ff6ddbb906f06072aefa98c24e44856",
+  "generated_at": "2026-11-05T00:19:30.650963+00:00"
 }

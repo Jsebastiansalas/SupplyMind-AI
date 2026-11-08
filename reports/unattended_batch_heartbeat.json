@@ -1,13 +1,13 @@
 {
-  "timestamp": "2026-11-07T23:19:09.809702+00:00",
-  "pid": 1480,
-  "status": "STOPPED_BY_USER",
-  "current_unit_index": 238,
+  "timestamp": "2026-11-08T05:31:40.434995+00:00",
+  "pid": 23488,
+  "status": "RUNNING",
+  "current_unit_index": 21,
   "total_units": 1024,
-  "current_task_id": "STOPPED_BY_USER",
-  "completed_count": 238,
-  "total_cost_usd": 3.300555,
-  "success_count": 230,
-  "quarantine_count": 7,
+  "current_task_id": "work_unit_0021",
+  "completed_count": 20,
+  "total_cost_usd": 0.33042499999999997,
+  "success_count": 19,
+  "quarantine_count": 0,
   "failed_count": 1
 }

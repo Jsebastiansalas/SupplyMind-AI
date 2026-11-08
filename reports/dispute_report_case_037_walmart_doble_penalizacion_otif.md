@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `case_037_walmart_doble_penalizacion_otif` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-11-04 11:48:44 UTC | **Nivel de Confianza:** 80.0%
+> **Fecha de Emisión:** 2026-11-05 00:18:41 UTC | **Nivel de Confianza:** 80.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO
@@ -106,6 +106,16 @@ Aceptar deducción de $3,000.00 USD mediante Nota de Crédito por el faltante re
 | **Acuerdo Estructurado — Concesión Comercial del 15%** | $3,825.00 USD | $675.00 USD | 5d | BAJO |
 | **Escalamiento Legal — Póliza Contable NIF C-3** | $4,500.00 USD | $0.00 USD | 45d | MEDIO |
 
+
+---
+## 6. MÉTRICAS DE EJECUCIÓN Y COSTO REAL MEDIDO POR TAREA (UNIT ECONOMICS)
+
+- **Motor de Ejecución:** Motor Simbólico en Python (`Decimal`)
+- **Peticiones a Grok consumidas:** 0 peticiones (Ahorro de API cuota)
+- **Costo Real por Tarea:** **$0.00000 USD**
+- **Invariantes Financieros:** Consistencia matemática exacta ($0.00 MAE)
+- **Tiempo de Resolución:** 3.69 s
+- **Gobernanza:** Separación estricta entre cálculo numérico en Python y razonamiento semántico en Grok.
 
 ---
 *Documento oficial generado autónomamente por SupplyMind AI para gestión de cartera, operaciones y auditoría B2B.*

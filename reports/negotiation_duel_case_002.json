@@ -1,5 +1,5 @@
 {
-  "session_id": "DUEL-CASE_002-7641C058",
+  "session_id": "DUEL-CASE_002-29308788",
   "case_id": "case_002",
   "retailer_name": "Cadena Comercial Mayorista B2B",
   "archetype": {
@@ -64,10 +64,10 @@
   ],
   "final_agreed_credit_memo": null,
   "final_agreed_cash_recovery": null,
-  "settlement_minutes_hash": "a8a603eee95190ac8737519d5ef6daa676c133203f1173667eebe51c0cd280ad",
+  "settlement_minutes_hash": "1a05f6647dd31210224dae1820e16bd724e7315ac5d1d15760b37803fdd7b4b0",
   "minutes_markdown_path": "C:\\Users\\USUARIO\\Downloads\\platica\\reports\\convenio_finiquito_case_002.md",
-  "started_at": "2026-11-03T12:39:45.254528+00:00",
-  "completed_at": "2026-11-03T12:39:45.306733+00:00",
+  "started_at": "2026-11-05T00:19:21.027164+00:00",
+  "completed_at": "2026-11-05T00:19:21.084623+00:00",
   "summary_verdict": "Acuerdo bilateral rubricado y aprobado por el operador (Auditor Senior B2B). Recuperación neta en banco: $12,500.00 USD | Nota de Crédito: $4,000.00 USD.",
   "rhi_score": 30.5,
   "modulation_mode": "ASSERTIVE_LITIGIOUS",

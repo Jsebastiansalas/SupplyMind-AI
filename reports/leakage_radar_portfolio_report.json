@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-11-04T21:28:31.324841+00:00",
+  "generated_at": "2026-11-05T00:19:15.746931+00:00",
   "total_cases_scanned": 82,
   "total_disputed_volume": "798216.54",
-  "total_recovered_capital": "458332.31",
-  "total_leakage_at_risk": "339884.23",
-  "portfolio_win_rate_pct": 57.4,
-  "portfolio_recovery_ratio_pct": 57.4,
+  "total_recovered_capital": "457707.31",
+  "total_leakage_at_risk": "340509.23",
+  "portfolio_win_rate_pct": 57.3,
+  "portfolio_recovery_ratio_pct": 57.3,
   "risk_tier_distribution": {
     "PREDATORIO": 1,
     "ALTO": 3,
@@ -27,7 +27,7 @@
       "win_rate_pct": 92.4,
       "recovery_ratio_pct": 88.5,
       "total_disputed_volume": "14800.00",
-      "total_recovered_amount": "9320.08",
+      "total_recovered_amount": "8695.08",
       "primary_abusive_pattern": "Penalización Automatizada de ASN EDI 856",
       "recommended_incoterm": "FCA"
     },
@@ -182,7 +182,7 @@
   ],
   "executive_recommendations": [
     "Migrar términos de contratación con retailers de nivel PREDATORIO (ej. Walmart) hacia Incoterm FOB/FCA en origen.",
-    "Blindar el 57.4% de tasa de recuperación mediante contestación legal inmediata dentro de los primeros 15 días.",
+    "Blindar el 57.3% de tasa de recuperación mediante contestación legal inmediata dentro de los primeros 15 días.",
     "Instalar escaneo RFID de tarima completa para anular la deducción por auditoría masiva en órdenes multi-SKU.",
     "Exigir a transportistas el sellado de la carta porte bajo el Art. 88 del Código de Comercio."
   ]

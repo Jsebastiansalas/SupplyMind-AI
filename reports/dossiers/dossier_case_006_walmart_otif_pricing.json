@@ -1,5 +1,5 @@
 {
-  "dossier_id": "DOSSIER-CASE_006_WALMART_OTIF_PRICING-DB0965",
+  "dossier_id": "DOSSIER-CASE_006_WALMART_OTIF_PRICING-DFC16B",
   "case_id": "case_006_walmart_otif_pricing",
   "portal_type": "WALMART_RETAIL_LINK",
   "retailer_name": "Walmart Retail Link / Luminate AP Claims",
@@ -49,9 +49,9 @@
     "retailer_name": "Walmart Inc. Retail Operations",
     "claim_code": "21 (Shortage en Muelle)",
     "invoice_uuid_or_folio": "FAC-WM-CASE_006",
-    "po_reference": "PO-WAL-459C98",
+    "po_reference": "PO-WAL-8B5BDC",
     "dc_or_fc_code": "CEDIS 6014 San Martín Obispo",
-    "receipt_folio": "REC-WM-6A6FF0",
+    "receipt_folio": "REC-WM-9584F7",
     "dispute_reason": "Recepción conforme en muelle acreditada mediante remisión sellada y EDI 856 ASN pre-notificado.",
     "claimable_amount": "3500.00",
     "currency": "USD",
@@ -68,6 +68,6 @@
       "request_fast_track_settlement": true
     }
   },
-  "zkp_dossier_digest": "f8d8ee475bd5572a2eca718fc4f7572d244230e73a7abf49ff9eb36b427d089f",
-  "generated_at": "2026-11-03T12:40:01.543539+00:00"
+  "zkp_dossier_digest": "bd3cffafeb051dd3f728e90ebdf2044846b63f117e44c5f60558d5a8eb14e521",
+  "generated_at": "2026-11-05T00:19:30.588958+00:00"
 }

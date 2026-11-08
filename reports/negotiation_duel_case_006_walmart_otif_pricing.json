@@ -1,5 +1,5 @@
 {
-  "session_id": "DUEL-CASE_006_WALMART_OTIF_PRICING-DFE9F34F",
+  "session_id": "DUEL-CASE_006_WALMART_OTIF_PRICING-F0F7E188",
   "case_id": "case_006_walmart_otif_pricing",
   "retailer_name": "Walmart Inc. Retail Operations",
   "archetype": {
@@ -67,7 +67,7 @@
   "final_agreed_cash_recovery": null,
   "settlement_minutes_hash": null,
   "minutes_markdown_path": null,
-  "started_at": "2026-11-03T12:39:59.538520+00:00",
+  "started_at": "2026-11-05T00:19:29.522471+00:00",
   "completed_at": null,
   "summary_verdict": "Careo iniciado. Posturas preliminares bajo política TIER_1_STRATEGIC | Salud Relacional RHI 88.0/100 (DIPLOMATIC_PRESERVATION).",
   "rhi_score": 88.0,

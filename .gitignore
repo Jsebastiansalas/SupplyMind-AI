@@ -35,3 +35,8 @@ frontend/.vite/
 reports/*.zip
 reports/backup_prior_run/
 data/cache/ocr/
+reports/batch_dossiers/
+reports/batch_summary_*.json
+reports/batch_summary_*.md
+reports/unattended_batch_supervisor_log.jsonl
+reports/erp_non_existent_case_99999/

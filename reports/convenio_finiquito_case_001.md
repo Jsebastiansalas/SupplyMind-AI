@@ -1,22 +1,23 @@
 # CONVENIO JUDICIAL-EXTRAJUDICIAL DE TRANSACCIÓN MERCANTIL Y FINIQUITO DEFINITIVO
-**Folio Oficial:** `AGR-CASE_001-4F5A1FB6`  
+**Folio Oficial:** `AGR-CASE_001-65909E35`  
 **Expediente Vinculado:** `case_001`  
-**Fecha de Suscripción:** 03 de November de 2026 a las 12:39:44 UTC  
-**Sello Criptográfico ZKP SHA-256:** `e3691d90a5e733da092fe03ad5b75224161987aff223e9c943f2e46f317e50d1`  
-**Suscrito por:** Director Comercial B2B / SupplyMind AI  
+**Fecha de Suscripción:** 05 de November de 2026 a las 00:19:21 UTC  
+**Sello Criptográfico ZKP SHA-256:** `e4d8347dc6d3816922f0417c9374fc33cf8147d9fa09f3cd20bade7b26588246`  
+**Suscrito por:** Evaluador B2B  
 
 ---
 
 ### COMPARECENCIA Y DECLARACIONES
-Comparecen por una parte el **Proveedor Autorizado de Suministro** (en adelante "El Proveedor"), representado en este acto por **Director Comercial B2B / SupplyMind AI** y asistido por la plataforma autónoma **SupplyMind AI**, y por la otra parte **Cadena Comercial Mayorista B2B** (en adelante "El Comprador"), representada por su **Lic. Fernando Mora (Gerente de Cuentas por Pagar y Abastecimiento)**.
+Comparecen por una parte el **Proveedor Autorizado de Suministro** (en adelante "El Proveedor"), representado en este acto por **Evaluador B2B** y asistido por la plataforma autónoma **SupplyMind AI**, y por la otra parte **Cadena Comercial Mayorista B2B** (en adelante "El Comprador"), representada por su **Lic. Fernando Mora (Gerente de Cuentas por Pagar y Abastecimiento)**.
 
 Ambas partes declaran y reconocen expresamente:
 1. Que derivado de las operaciones de entrega y facturación correspondientes al expediente `case_001`, existía una controversia por deducciones y cargos no conciliados por la cantidad total de **$800.00 USD**.
-2. Que a fin de prevenir un litigio judicial o arbitral prolongado y preservar sus relaciones comerciales estratégicas, celebraron un careo dialéctico estructurado en **1 rondas** con el siguiente registro pericial:
+2. Que a fin de prevenir un litigio judicial o arbitral prolongado y preservar sus relaciones comerciales estratégicas, celebraron un careo dialéctico estructurado en **2 rondas** con el siguiente registro pericial:
 
 | Ronda | Postura Comprador | Demanda NC | Oferta Efectivo | Postura Proveedor | Concesión NC | Reclamo Efectivo | Spread | Convergencia |
 | :---: | :--- | :---: | :---: | :--- | :---: | :---: | :---: | :---: |
 | R1 | INTRANSIGENT | $800.00 | $0.00 | EVIDENCE_FIRMNESS | $800.00 | $0.00 | $0.00 | 100.0% |
+| R2 | UNFOUNDED_OBJECTION | $800.00 | $0.00 | LEGAL_REFUTATION | $800.00 | $0.00 | $0.00 | 100.0% |
 
 
 ---
@@ -52,11 +53,11 @@ El presente instrumento se rige e interpreta de conformidad con el marco jurídi
 Las partes renuncian expresamente a cualquier acción civil, mercantil o penal que pudiera derivar de los hechos materia de este acuerdo, quedando prohibida la reapertura del expediente o la aplicación de deducciones retroactivas por estos mismos conceptos.
 
 #### SEXTA. FE ELECTRÓNICA Y FIRMA CRIPTOGRÁFICA
-El presente convenio ha sido sellado criptográficamente mediante algoritmo ZKP SHA-256 (`e3691d90a5e733da092fe03ad5b75224161987aff223e9c943f2e46f317e50d1`), garantizando la inmutabilidad de los montos y compromisos suscritos.
+El presente convenio ha sido sellado criptográficamente mediante algoritmo ZKP SHA-256 (`e4d8347dc6d3816922f0417c9374fc33cf8147d9fa09f3cd20bade7b26588246`), garantizando la inmutabilidad de los montos y compromisos suscritos.
 
 ---
 **POR EL PROVEEDOR:**  
-*Director Comercial B2B / SupplyMind AI*  
+*Evaluador B2B*  
 Dirección de Finanzas & Tesorería B2B  
 
 **POR EL COMPRADOR:**  

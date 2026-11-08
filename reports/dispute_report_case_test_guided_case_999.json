@@ -41,11 +41,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-11-03T12:38:13.104221+00:00"
+    "generated_at": "2026-11-05T00:18:19.963173+00:00"
   },
   "financial_proof": {
     "case_id": "case_test_guided_case_999",
-    "proof_hash": "SM-PROOF-SHA256-B9DAD72F5440D37D",
+    "proof_hash": "SM-PROOF-SHA256-B5BB8688BAAF801B",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -59,7 +59,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-11-03T12:38:13.114402+00:00"
+    "tamper_proof_timestamp": "2026-11-05T00:18:19.974671+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_test_guided_case_999",
@@ -134,7 +134,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-11-03T12:38:13Z"
+    "generated_at": "2026-11-05T00:18:19Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -147,16 +147,22 @@
     "claimable_amount": "200.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-B9DAD72F5440D37D",
+    "zkp_proof_hash": "SM-PROOF-SHA256-B5BB8688BAAF801B",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-11-03T12:38:13.155337+00:00"
+    "anchored_at": "2026-11-05T00:18:20.037755+00:00"
   },
-  "watchdog_metrics": null,
+  "watchdog_metrics": {
+    "total_tool_calls": 0,
+    "unique_tool_calls": 0,
+    "deduplicated_calls_count": 0,
+    "circuit_breaker_triggered": false,
+    "warnings": []
+  },
   "adversarial_verdict": {
     "case_id": "case_test_guided_case_999",
-    "courtroom_session_id": "CRT-54BCEDD5",
+    "courtroom_session_id": "CRT-940D1C3C",
     "disputed_amount": "700.0",
     "justified_amount": "500.00",
     "claimable_amount": "200.00",
@@ -202,14 +208,14 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria sobre factura INV-TEST_G-101 y liquidación PAY-TEST_G: El contrato marco bilateral CTR-TEST_G-2026 prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $200.00 USD. La retención constituye incumplimiento de pago. RELOJ SLA: Restan 22 días de ventana perentoria (MEDIUM_ATTENTION). Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_test_guided_case_999 (fecha 2026-11-03), donde Cust-Test acordó el reintegro de $200.00 USD ante una deducción análoga por 'DED-FALTANTE', amparada en la cláusula contractual CLAUSE-3.1..",
+        "argument_text": "Objeción perentoria sobre factura INV-TEST_G-101 y liquidación PAY-TEST_G: El contrato marco bilateral CTR-TEST_G-2026 prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $200.00 USD. La retención constituye incumplimiento de pago. RELOJ SLA: Restan 22 días de ventana perentoria (MEDIUM_ATTENTION). Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_test_guided_case_999 (fecha 2026-11-04), donde Cust-Test acordó el reintegro de $200.00 USD ante una deducción análoga por 'DED-FALTANTE', amparada en la cláusula contractual CLAUSE-3.1..",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [
           "CTR-TEST_G-2026",
           "INV-TEST_G-101",
           "PAY-TEST_G",
-          "Conforme al precedente formalizado en el expediente case_test_guided_case_999 (fecha 2026-11-03), donde Cust-Test acordó el reintegro de $200.00 USD ante una deducción análoga por 'DED-FALTANTE', amparada en la cláusula contractual CLAUSE-3.1."
+          "Conforme al precedente formalizado en el expediente case_test_guided_case_999 (fecha 2026-11-04), donde Cust-Test acordó el reintegro de $200.00 USD ante una deducción análoga por 'DED-FALTANTE', amparada en la cláusula contractual CLAUSE-3.1."
         ]
       }
     ],
@@ -297,5 +303,28 @@
   "deduction_type": null,
   "adversarial_critique": null,
   "mcts_negotiation_plan": null,
-  "cross_border_assessment": null
+  "cross_border_assessment": null,
+  "failure_diagnostics": {
+    "case_id": "case_test_guided_case_999",
+    "is_fully_autonomous": true,
+    "requires_human_in_the_loop": false,
+    "detected_failure_modes": [],
+    "failure_severity": "CAUTION_MARGIN",
+    "error_analysis_explanation": "Conciliación cuantitativa completada con precisión Decimal exacta. Sin anomalías de corrupción ni contaminación documental.",
+    "prevented_harm_description": "Se documentó el rechazo formal de $200.00 USD en retenciones sin sustento, y se reconoció honestamente $500.00 USD de faltante/avería comprobada.",
+    "human_escalation_protocol": "No requerida; el dictamen cuenta con respaldo probatorio pleno.",
+    "lesson_learned_record": "Separación estricta entre cálculo numérico en Python y razonamiento semántico en Grok."
+  },
+  "cost_telemetry": {
+    "task_id": "case_test_guided_case_999",
+    "measured_cost_usd": 0.0,
+    "requests_count": 0,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "budget_cap_usd": null,
+    "was_throttled": false,
+    "gateway_baseline_cost_per_request_usd": 0.01134,
+    "cost_basis_description": "Calibrado con el consumo histórico real medido en Platica Gateway ($10.66 en 940 peticiones = $0.011340 USD/req)."
+  }
 }

@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `test_bad_schema` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-11-03 12:41:21 UTC | **Nivel de Confianza:** 0.0%
+> **Fecha de Emisión:** 2026-11-05 00:22:00 UTC | **Nivel de Confianza:** 0.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO
@@ -45,6 +45,16 @@ FORENSIC_QUARANTINE: SEVERE_DOCUMENT_DEFICIT
 **Recomendación:**  
 🚨 PROTOCOLO FORENSE ACTIVADO: Expediente en CUARENTENA PREVENTIVA. La emisión de Notas de Crédito comerciales y acuerdos vinculantes ha sido BLOQUEADA. Motivo principal: Salud documental deficiente (0.0%): Inconsistencia estructural o ausencia de documentos esenciales para el 3-way match.. Requiere intervención y subsanación documental por el operador antes de proceder.
 
+
+---
+## 6. MÉTRICAS DE EJECUCIÓN Y COSTO REAL MEDIDO POR TAREA (UNIT ECONOMICS)
+
+- **Motor de Ejecución:** Motor Simbólico en Python (`Decimal`)
+- **Peticiones a Grok consumidas:** 0 peticiones (Ahorro de API cuota)
+- **Costo Real por Tarea:** **$0.00000 USD**
+- **Invariantes Financieros:** Consistencia matemática exacta ($0.00 MAE)
+- **Tiempo de Resolución:** 0.01 s
+- **Gobernanza:** Separación estricta entre cálculo numérico en Python y razonamiento semántico en Grok.
 
 ---
 *Documento oficial generado autónomamente por SupplyMind AI para gestión de cartera, operaciones y auditoría B2B.*

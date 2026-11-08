@@ -36,7 +36,7 @@
     "schema_warnings": [],
     "execution_safety_level": "QUARANTINE_ISOLATION_SETTLEMENT_BLOCKED",
     "quarantine_docket": {
-      "quarantine_id": "FRQ-TEST_BAD_SCHEMA-45CDE32C",
+      "quarantine_id": "FRQ-TEST_BAD_SCHEMA-A19F6345",
       "case_id": "test_bad_schema",
       "severity": "SEVERE_DOCUMENT_DEFICIT",
       "is_settlement_blocked": true,
@@ -49,13 +49,13 @@
       "remediation_steps": [
         "Cargar los documentos faltantes identificados: invoice, purchase_order, payment, contract, delivery."
       ],
-      "quarantine_timestamp": "2026-11-03T12:41:21.762547+00:00",
+      "quarantine_timestamp": "2026-11-05T00:22:00.766490+00:00",
       "release_conditions": [
         "Completar el expediente con al menos 3 documentos primarios válidos."
       ],
       "operator_override_permitted": true
     },
-    "generated_at": "2026-11-03T12:41:21.762450+00:00"
+    "generated_at": "2026-11-05T00:22:00.766423+00:00"
   },
   "financial_proof": {
     "case_id": "test_bad_schema",
@@ -68,7 +68,7 @@
     "verified_figures": [],
     "confidence_penalty": 0.0,
     "audit_status": "ARITHMETIC_MISMATCH",
-    "tamper_proof_timestamp": "2026-11-03T12:41:21.763676+00:00"
+    "tamper_proof_timestamp": "2026-11-05T00:22:00.767152+00:00"
   },
   "evidence_manifest": {
     "case_id": "test_bad_schema",
@@ -84,10 +84,10 @@
     ],
     "binding_verdict": "CRITICAL_UNBACKED_DEFICIT",
     "confidence_penalty": 1.0,
-    "generated_at": "2026-11-03T12:41:21.763804+00:00"
+    "generated_at": "2026-11-05T00:22:00.767211+00:00"
   },
   "quarantine_docket": {
-    "quarantine_id": "FRQ-TEST_BAD_SCHEMA-45CDE32C",
+    "quarantine_id": "FRQ-TEST_BAD_SCHEMA-A19F6345",
     "case_id": "test_bad_schema",
     "severity": "SEVERE_DOCUMENT_DEFICIT",
     "is_settlement_blocked": true,
@@ -100,7 +100,7 @@
     "remediation_steps": [
       "Cargar los documentos faltantes identificados: invoice, purchase_order, payment, contract, delivery."
     ],
-    "quarantine_timestamp": "2026-11-03T12:41:21.762547+00:00",
+    "quarantine_timestamp": "2026-11-05T00:22:00.766490+00:00",
     "release_conditions": [
       "Completar el expediente con al menos 3 documentos primarios válidos."
     ],
@@ -120,15 +120,48 @@
     "zkp_status": "ARITHMETIC_MISMATCH",
     "is_quarantined": true,
     "evidence_backing_ratio": 0.0,
-    "anchored_at": "2026-11-03T12:41:21.763960+00:00"
+    "anchored_at": "2026-11-05T00:22:00.767314+00:00"
   },
-  "watchdog_metrics": null,
+  "watchdog_metrics": {
+    "total_tool_calls": 0,
+    "unique_tool_calls": 0,
+    "deduplicated_calls_count": 0,
+    "circuit_breaker_triggered": false,
+    "warnings": []
+  },
   "adversarial_verdict": null,
   "recovery_prediction": null,
   "sanity_gate_audit": null,
-  "resolution_notes": [],
+  "resolution_notes": [
+    "LÍMITE OPERACIONAL RECONOCIDO: Caso en Cuarentena Forense con intervención humana mandatoria."
+  ],
   "deduction_type": null,
   "adversarial_critique": null,
   "mcts_negotiation_plan": null,
-  "cross_border_assessment": null
+  "cross_border_assessment": null,
+  "failure_diagnostics": {
+    "case_id": "test_bad_schema",
+    "is_fully_autonomous": false,
+    "requires_human_in_the_loop": true,
+    "detected_failure_modes": [
+      "DOCUMENTARY_EVIDENCE_ABSENCE"
+    ],
+    "failure_severity": "CRITICAL_BLOCKED",
+    "error_analysis_explanation": "El expediente no puede ser liquidado de forma autónoma. Se detectaron anomalías severas: Salud documental deficiente (0.0%): Inconsistencia estructural o ausencia de documentos esenciales para el 3-way match..",
+    "prevented_harm_description": "Se evitó la emisión errónea de Notas de Crédito, la aceptación de deducciones fraudulentas y la pérdida de capital por manipulación adversarial.",
+    "human_escalation_protocol": "1. Remitir al Oficial de Cumplimiento Legal y Auditoría Interna.\n2. Exigir al retailer comprobante bancario original y POD físico certificado.\n3. Bloquear la cuenta comercial temporalmente hasta resolución de la controversia.",
+    "lesson_learned_record": "Un agente comercial nunca debe fingir resolución perfecta cuando los datos de entrada están contaminados o falsificados. Reconocer la incapacidad de procesar el caso protege los activos de la empresa."
+  },
+  "cost_telemetry": {
+    "task_id": "test_bad_schema",
+    "measured_cost_usd": 0.0,
+    "requests_count": 0,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "budget_cap_usd": null,
+    "was_throttled": false,
+    "gateway_baseline_cost_per_request_usd": 0.01134,
+    "cost_basis_description": "Calibrado con el consumo histórico real medido en Platica Gateway ($10.66 en 940 peticiones = $0.011340 USD/req)."
+  }
 }

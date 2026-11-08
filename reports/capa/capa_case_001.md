@@ -9,7 +9,7 @@
 - **Líder Operativo Asignado:** **Jefe de Almacén y Embarques - Turno B**
 - **Severidad / Prioridad:** `MEDIUM` (SLA de Implementación: `72 horas`)
 - **Impacto Financiero en Disputa:** **$800.00 USD** (Fuga Justificada: `$800.00 USD`)
-- **Fecha de Emisión UTC:** `2026-11-03T12:40:37.145243+00:00`
+- **Fecha de Emisión UTC:** `2026-11-05T00:26:51.083220+00:00`
 
 ---
 

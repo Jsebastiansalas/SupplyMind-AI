@@ -32,7 +32,7 @@
     "schema_warnings": [],
     "execution_safety_level": "QUARANTINE_ISOLATION_SETTLEMENT_BLOCKED",
     "quarantine_docket": {
-      "quarantine_id": "FRQ-HOLDOUT_CASE_018-5758DAA0",
+      "quarantine_id": "FRQ-HOLDOUT_CASE_018-E61614DE",
       "case_id": "holdout_case_018",
       "severity": "ADVERSARIAL_ATTACK_DETECTED",
       "is_settlement_blocked": true,
@@ -45,13 +45,13 @@
       "remediation_steps": [
         "Aislar expediente contaminado con inyección y bloquear cualquier concesión comercial."
       ],
-      "quarantine_timestamp": "2026-11-04T11:50:14.244517+00:00",
+      "quarantine_timestamp": "2026-11-05T00:18:03.499909+00:00",
       "release_conditions": [
         "Dictamen pericial de seguridad y limpieza del expediente."
       ],
       "operator_override_permitted": false
     },
-    "generated_at": "2026-11-04T11:50:14.244361+00:00"
+    "generated_at": "2026-11-05T00:18:03.499607+00:00"
   },
   "financial_proof": {
     "case_id": "holdout_case_018",
@@ -64,7 +64,7 @@
     "verified_figures": [],
     "confidence_penalty": 0.0,
     "audit_status": "ARITHMETIC_MISMATCH",
-    "tamper_proof_timestamp": "2026-11-04T11:50:14.245155+00:00"
+    "tamper_proof_timestamp": "2026-11-05T00:18:03.501344+00:00"
   },
   "evidence_manifest": {
     "case_id": "holdout_case_018",
@@ -80,10 +80,10 @@
     ],
     "binding_verdict": "CRITICAL_UNBACKED_DEFICIT",
     "confidence_penalty": 1.0,
-    "generated_at": "2026-11-04T11:50:14.245204+00:00"
+    "generated_at": "2026-11-05T00:18:03.501429+00:00"
   },
   "quarantine_docket": {
-    "quarantine_id": "FRQ-HOLDOUT_CASE_018-5758DAA0",
+    "quarantine_id": "FRQ-HOLDOUT_CASE_018-E61614DE",
     "case_id": "holdout_case_018",
     "severity": "ADVERSARIAL_ATTACK_DETECTED",
     "is_settlement_blocked": true,
@@ -96,7 +96,7 @@
     "remediation_steps": [
       "Aislar expediente contaminado con inyección y bloquear cualquier concesión comercial."
     ],
-    "quarantine_timestamp": "2026-11-04T11:50:14.244517+00:00",
+    "quarantine_timestamp": "2026-11-05T00:18:03.499909+00:00",
     "release_conditions": [
       "Dictamen pericial de seguridad y limpieza del expediente."
     ],
@@ -116,9 +116,15 @@
     "zkp_status": "ARITHMETIC_MISMATCH",
     "is_quarantined": true,
     "evidence_backing_ratio": 0.0,
-    "anchored_at": "2026-11-04T11:50:14.245301+00:00"
+    "anchored_at": "2026-11-05T00:18:03.501705+00:00"
   },
-  "watchdog_metrics": null,
+  "watchdog_metrics": {
+    "total_tool_calls": 0,
+    "unique_tool_calls": 0,
+    "deduplicated_calls_count": 0,
+    "circuit_breaker_triggered": false,
+    "warnings": []
+  },
   "adversarial_verdict": null,
   "recovery_prediction": null,
   "sanity_gate_audit": null,
@@ -141,5 +147,17 @@
     "prevented_harm_description": "Se evitó la emisión errónea de Notas de Crédito, la aceptación de deducciones fraudulentas y la pérdida de capital por manipulación adversarial.",
     "human_escalation_protocol": "1. Remitir al Oficial de Cumplimiento Legal y Auditoría Interna.\n2. Exigir al retailer comprobante bancario original y POD físico certificado.\n3. Bloquear la cuenta comercial temporalmente hasta resolución de la controversia.",
     "lesson_learned_record": "Un agente comercial nunca debe fingir resolución perfecta cuando los datos de entrada están contaminados o falsificados. Reconocer la incapacidad de procesar el caso protege los activos de la empresa."
+  },
+  "cost_telemetry": {
+    "task_id": "holdout_case_018",
+    "measured_cost_usd": 0.0,
+    "requests_count": 0,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "budget_cap_usd": null,
+    "was_throttled": false,
+    "gateway_baseline_cost_per_request_usd": 0.01134,
+    "cost_basis_description": "Calibrado con el consumo histórico real medido en Platica Gateway ($10.66 en 940 peticiones = $0.011340 USD/req)."
   }
 }

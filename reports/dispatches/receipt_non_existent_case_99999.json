@@ -1,23 +1,23 @@
 {
-  "receipt_id": "RCPT-WALM-6828995C",
+  "receipt_id": "RCPT-WALM-7AB9BAA7",
   "case_id": "non_existent_case_99999",
   "portal_type": "WALMART_RETAIL_LINK",
   "retailer_name": "Walmart Retail Link / Luminate AP Claims",
-  "tracking_ticket": "WLMT-TK-2026-EFF3B3",
+  "tracking_ticket": "WLMT-TK-2026-E85CE7",
   "status": "CONFIRMED_ACCEPTED",
   "http_status_code": 201,
   "claimable_amount": "0.00",
   "currency": "USD",
-  "confirmation_seal_sha256": "62b5dfbec109b32bd8812030e89b953a72328743821c06aa9a4fa5e116123ae9",
+  "confirmation_seal_sha256": "bbaa5219cd9f7a5a03762602c2bf0de8f06dbf7ddea888300ca30caf49b4c6bc",
   "estimated_sla_days": 15,
   "log_trace": [
-    "[11:50:18.121] [INIT] Iniciando agente despachador robótico para Walmart Retail Link / Luminate AP Claims...",
-    "[11:50:18.121] [AUTH] Estableciendo apretón de manos TLS 1.3 y autenticación federada (SSO_SAML2_OIDC (Luminate Supplier ID))...",
-    "[11:50:18.121] [DOSSIER] Validando integridad del expediente pericial con 4 evidencias foliadas (Digest: 26a85f05bc1bd60c...)...",
-    "[11:50:18.121] [UPLOAD] Transfiriendo lote probatorio cifrado y telemetría EDI al bucket pericial del portal...",
-    "[11:50:18.121] [ADAPTER] Mapeando payload normativo WALMART_RETAIL_LINK con código de reclamo '21 (Shortage en Muelle)'...",
-    "[11:50:18.121] [SUBMIT] Radicación transmitida a https://retaillink.wal-mart.com/api/ap/claims/v3/disputes. Código de respuesta HTTP 201 Created recibido...",
-    "[11:50:18.121] [CONFIRMED] Ticket oficial emitido: WLMT-TK-2026-EFF3B3. SLA de resolución: 15 días hábiles."
+    "[00:18:26.701] [INIT] Iniciando agente despachador robótico para Walmart Retail Link / Luminate AP Claims...",
+    "[00:18:26.701] [AUTH] Estableciendo apretón de manos TLS 1.3 y autenticación federada (SSO_SAML2_OIDC (Luminate Supplier ID))...",
+    "[00:18:26.701] [DOSSIER] Validando integridad del expediente pericial con 4 evidencias foliadas (Digest: 5617d51812d1a910...)...",
+    "[00:18:26.701] [UPLOAD] Transfiriendo lote probatorio cifrado y telemetría EDI al bucket pericial del portal...",
+    "[00:18:26.701] [ADAPTER] Mapeando payload normativo WALMART_RETAIL_LINK con código de reclamo '21 (Shortage en Muelle)'...",
+    "[00:18:26.701] [SUBMIT] Radicación transmitida a https://retaillink.wal-mart.com/api/ap/claims/v3/disputes. Código de respuesta HTTP 201 Created recibido...",
+    "[00:18:26.701] [CONFIRMED] Ticket oficial emitido: WLMT-TK-2026-E85CE7. SLA de resolución: 15 días hábiles."
   ],
-  "submitted_at": "2026-11-04T11:50:18.121125+00:00"
+  "submitted_at": "2026-11-05T00:18:26.701210+00:00"
 }

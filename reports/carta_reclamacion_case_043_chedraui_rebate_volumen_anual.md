@@ -23,12 +23,12 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_043_chedraui_rebate_volumen_anual — 2026-11-04):**
+**Precedente 1 (Expediente case_043_chedraui_rebate_volumen_anual — 2026-11-05):**
 - **Criterio Acreditado:** En el caso case_043_chedraui_rebate_volumen_anual, se acreditó la improcedencia de la deducción 'DED-UNAUTHORIZED' conforme a CTR-GENERAL-TERMS, logrando la restitución de $8,000.00 USD.
 - **Resultado Previo:** Restitución de **$8,000.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CTR-GENERAL-TERMS.
 
-**Precedente 2 (Expediente case_013_chedraui_flete_compartido — 2026-11-04):**
+**Precedente 2 (Expediente case_013_chedraui_flete_compartido — 2026-11-05):**
 - **Criterio Acreditado:** En el caso case_013_chedraui_flete_compartido, se acreditó la improcedencia de la deducción 'MANIOBRA-MUELLE' conforme a CLAUSE-9.3, logrando la restitución de $3,800.00 USD.
 - **Resultado Previo:** Restitución de **$3,800.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CLAUSE-9.3.

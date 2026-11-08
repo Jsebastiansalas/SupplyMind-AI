@@ -36,11 +36,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-11-04T11:50:13.834453+00:00"
+    "generated_at": "2026-11-05T00:18:02.659521+00:00"
   },
   "financial_proof": {
     "case_id": "holdout_case_014",
-    "proof_hash": "SM-PROOF-SHA256-E29BFAACCB18BDD1",
+    "proof_hash": "SM-PROOF-SHA256-7B4B40C8ACD15E54",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -52,7 +52,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-11-04T11:50:13.838141+00:00"
+    "tamper_proof_timestamp": "2026-11-05T00:18:02.665578+00:00"
   },
   "evidence_manifest": {
     "case_id": "holdout_case_014",
@@ -117,7 +117,7 @@
     ],
     "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
     "confidence_penalty": 0.1,
-    "generated_at": "2026-11-04T11:50:13Z"
+    "generated_at": "2026-11-05T00:18:02Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -130,16 +130,22 @@
     "claimable_amount": "0.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-E29BFAACCB18BDD1",
+    "zkp_proof_hash": "SM-PROOF-SHA256-7B4B40C8ACD15E54",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 95.24,
-    "anchored_at": "2026-11-04T11:50:13.844265+00:00"
+    "anchored_at": "2026-11-05T00:18:02.674381+00:00"
   },
-  "watchdog_metrics": null,
+  "watchdog_metrics": {
+    "total_tool_calls": 0,
+    "unique_tool_calls": 0,
+    "deduplicated_calls_count": 0,
+    "circuit_breaker_triggered": false,
+    "warnings": []
+  },
   "adversarial_verdict": {
     "case_id": "holdout_case_014",
-    "courtroom_session_id": "CRT-035E83E2",
+    "courtroom_session_id": "CRT-B3672BDA",
     "disputed_amount": "1000.0",
     "justified_amount": "1000.00",
     "claimable_amount": "0.00",
@@ -263,5 +269,17 @@
     "prevented_harm_description": "Se documentó el rechazo formal de $0.00 USD en retenciones sin sustento, y se reconoció honestamente $1,000.00 USD de faltante/avería comprobada.",
     "human_escalation_protocol": "No requerida; el dictamen cuenta con respaldo probatorio pleno.",
     "lesson_learned_record": "Separación estricta entre cálculo numérico en Python y razonamiento semántico en Grok."
+  },
+  "cost_telemetry": {
+    "task_id": "holdout_case_014",
+    "measured_cost_usd": 0.0,
+    "requests_count": 0,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "budget_cap_usd": null,
+    "was_throttled": false,
+    "gateway_baseline_cost_per_request_usd": 0.01134,
+    "cost_basis_description": "Calibrado con el consumo histórico real medido en Platica Gateway ($10.66 en 940 peticiones = $0.011340 USD/req)."
   }
 }

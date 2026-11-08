@@ -2,14 +2,14 @@
 **FUNDAMENTO LEGAL: ARTÍCULO 1041 DEL CÓDIGO DE COMERCIO**
 
 ---
-- **Folio de Interpelación Extrajudicial:** `INT-1041-CASE_006_WAL-C0109361`
+- **Folio de Interpelación Extrajudicial:** `INT-1041-CASE_006_WAL-62067EC9`
 - **Expediente de Auditoría:** `case_006_walmart_otif_pricing`
 - **Deudor / Contraparte Comercial:** Walmart Retail Link (MABD / APDP)
-- **Factura Comercial Reclamada:** `INV-CASE_006_WAL` (Fecha: `2026-08-02`)
+- **Factura Comercial Reclamada:** `INV-CASE_006_WAL` (Fecha: `2026-08-04`)
 - **Importe Líquido y Exigible en Disputa:** **$3,500.00 USD**
-- **Timestamp UTC de Congelamiento del Reloj SLA:** `2026-11-03T12:40:01.362850+00:00`
+- **Timestamp UTC de Congelamiento del Reloj SLA:** `2026-11-05T00:19:30.353222+00:00`
 - **Días Restantes al Momento de la Interpelación:** `12` días (Ventana SLA: `90` días)
-- **Sello Criptográfico Forense SHA-256:** `c0109361f0639a9f51f19d2e0ee11c85b6115cc451fae067efccd60ff85d1cec`
+- **Sello Criptográfico Forense SHA-256:** `62067ec9af04e06a2b4aa9d5d4c0bcb4f702dc753d1c3811bb5856ea8e29f7bf`
 
 ---
 
@@ -32,4 +32,4 @@ Así como la jurisprudencia aplicable de la Suprema Corte de Justicia de la Naci
 
 ---
 **Firmado Electrónicamente por:** Lic. Roberto Villarreal (Director Jurídico)  
-**Hash de Inmutabilidad Probatoria:** `c0109361f0639a9f51f19d2e0ee11c85b6115cc451fae067efccd60ff85d1cec`
+**Hash de Inmutabilidad Probatoria:** `62067ec9af04e06a2b4aa9d5d4c0bcb4f702dc753d1c3811bb5856ea8e29f7bf`

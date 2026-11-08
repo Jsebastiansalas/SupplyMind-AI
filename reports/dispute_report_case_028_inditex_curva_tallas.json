@@ -37,11 +37,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-11-04T11:48:41.698564+00:00"
+    "generated_at": "2026-11-05T00:18:35.753261+00:00"
   },
   "financial_proof": {
     "case_id": "case_028_inditex_curva_tallas",
-    "proof_hash": "SM-PROOF-SHA256-1158FFEF645F81BF",
+    "proof_hash": "SM-PROOF-SHA256-2EE77316A8FB137A",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -55,7 +55,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-11-04T11:48:41.710351+00:00"
+    "tamper_proof_timestamp": "2026-11-05T00:18:35.760111+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_028_inditex_curva_tallas",
@@ -133,7 +133,7 @@
     ],
     "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
     "confidence_penalty": 0.21,
-    "generated_at": "2026-11-04T11:48:41Z"
+    "generated_at": "2026-11-05T00:18:35Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -146,16 +146,22 @@
     "claimable_amount": "8300.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-1158FFEF645F81BF",
+    "zkp_proof_hash": "SM-PROOF-SHA256-2EE77316A8FB137A",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 84.52,
-    "anchored_at": "2026-11-04T11:48:41.731709+00:00"
+    "anchored_at": "2026-11-05T00:18:35.824628+00:00"
   },
-  "watchdog_metrics": null,
+  "watchdog_metrics": {
+    "total_tool_calls": 0,
+    "unique_tool_calls": 0,
+    "deduplicated_calls_count": 0,
+    "circuit_breaker_triggered": false,
+    "warnings": []
+  },
   "adversarial_verdict": {
     "case_id": "case_028_inditex_curva_tallas",
-    "courtroom_session_id": "CRT-864278B4",
+    "courtroom_session_id": "CRT-F86DBD2C",
     "disputed_amount": "22300.00",
     "justified_amount": "14000.00",
     "claimable_amount": "8300.00",
@@ -201,14 +207,14 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria sobre factura INV-CASE_028-F2E6 y liquidación PAY-CASE_028-7D9F: El contrato marco bilateral CTR-INDITEX_MX-2026 prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $8,300.00 USD. La retención constituye incumplimiento de pago. RELOJ SLA: Restan 22 días de ventana perentoria (MEDIUM_ATTENTION). Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_028_inditex_curva_tallas (fecha 2026-11-04), donde Cust-Inditex Mx acordó el reintegro de $8,300.00 USD ante una deducción análoga por 'DEMERITO-CURVA-TALLAS', amparada en la cláusula contractual CLAUSE-4.7..",
+        "argument_text": "Objeción perentoria sobre factura INV-CASE_028-F2E6 y liquidación PAY-CASE_028-7D9F: El contrato marco bilateral CTR-INDITEX_MX-2026 prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $8,300.00 USD. La retención constituye incumplimiento de pago. RELOJ SLA: Restan 22 días de ventana perentoria (MEDIUM_ATTENTION). Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_028_inditex_curva_tallas (fecha 2026-11-05), donde Cust-Inditex Mx acordó el reintegro de $8,300.00 USD ante una deducción análoga por 'DEMERITO-CURVA-TALLAS', amparada en la cláusula contractual CLAUSE-4.7..",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [
           "CTR-INDITEX_MX-2026",
           "INV-CASE_028-F2E6",
           "PAY-CASE_028-7D9F",
-          "Conforme al precedente formalizado en el expediente case_028_inditex_curva_tallas (fecha 2026-11-04), donde Cust-Inditex Mx acordó el reintegro de $8,300.00 USD ante una deducción análoga por 'DEMERITO-CURVA-TALLAS', amparada en la cláusula contractual CLAUSE-4.7."
+          "Conforme al precedente formalizado en el expediente case_028_inditex_curva_tallas (fecha 2026-11-05), donde Cust-Inditex Mx acordó el reintegro de $8,300.00 USD ante una deducción análoga por 'DEMERITO-CURVA-TALLAS', amparada en la cláusula contractual CLAUSE-4.7."
         ]
       }
     ],
@@ -307,5 +313,17 @@
     "prevented_harm_description": "Se documentó el rechazo formal de $8,300.00 USD en retenciones sin sustento, y se reconoció honestamente $14,000.00 USD de faltante/avería comprobada.",
     "human_escalation_protocol": "No requerida; el dictamen cuenta con respaldo probatorio pleno.",
     "lesson_learned_record": "Separación estricta entre cálculo numérico en Python y razonamiento semántico en Grok."
+  },
+  "cost_telemetry": {
+    "task_id": "case_028_inditex_curva_tallas",
+    "measured_cost_usd": 0.0,
+    "requests_count": 0,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "budget_cap_usd": null,
+    "was_throttled": false,
+    "gateway_baseline_cost_per_request_usd": 0.01134,
+    "cost_basis_description": "Calibrado con el consumo histórico real medido en Platica Gateway ($10.66 en 940 peticiones = $0.011340 USD/req)."
   }
 }

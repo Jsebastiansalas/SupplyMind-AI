@@ -34,11 +34,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-11-04T11:48:40.789910+00:00"
+    "generated_at": "2026-11-05T00:18:34.676244+00:00"
   },
   "financial_proof": {
     "case_id": "case_024_pepsico_coop_publicitaria",
-    "proof_hash": "SM-PROOF-SHA256-66D1E68480A361EB",
+    "proof_hash": "SM-PROOF-SHA256-54F0DEB8D0722CFC",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -52,7 +52,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-11-04T11:48:40.795589+00:00"
+    "tamper_proof_timestamp": "2026-11-05T00:18:34.683018+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_024_pepsico_coop_publicitaria",
@@ -105,7 +105,7 @@
     ],
     "binding_verdict": "CAUTIONARY_ITEMS_DETECTED",
     "confidence_penalty": 0.12,
-    "generated_at": "2026-11-04T11:48:40Z"
+    "generated_at": "2026-11-05T00:18:34Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -118,16 +118,22 @@
     "claimable_amount": "13600.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-66D1E68480A361EB",
+    "zkp_proof_hash": "SM-PROOF-SHA256-54F0DEB8D0722CFC",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 86.4,
-    "anchored_at": "2026-11-04T11:48:40.849687+00:00"
+    "anchored_at": "2026-11-05T00:18:34.750058+00:00"
   },
-  "watchdog_metrics": null,
+  "watchdog_metrics": {
+    "total_tool_calls": 0,
+    "unique_tool_calls": 0,
+    "deduplicated_calls_count": 0,
+    "circuit_breaker_triggered": false,
+    "warnings": []
+  },
   "adversarial_verdict": {
     "case_id": "case_024_pepsico_coop_publicitaria",
-    "courtroom_session_id": "CRT-DA6AF90B",
+    "courtroom_session_id": "CRT-6103200D",
     "disputed_amount": "13600.00",
     "justified_amount": "0.00",
     "claimable_amount": "13600.00",
@@ -160,14 +166,14 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria sobre factura INV-CASE_024-4919 y liquidación PAY-CASE_024-8164: El contrato marco bilateral CTR-PEPSICO_MX-2026 prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $13,600.00 USD. La retención constituye incumplimiento de pago. RELOJ SLA: Restan 22 días de ventana perentoria (MEDIUM_ATTENTION). Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_024_pepsico_coop_publicitaria (fecha 2026-11-04), donde Cust-Pepsico Mx acordó el reintegro de $13,600.00 USD ante una deducción análoga por 'COOP-PUB-UNILATERAL', amparada en la cláusula contractual CLAUSE-10.4..",
+        "argument_text": "Objeción perentoria sobre factura INV-CASE_024-4919 y liquidación PAY-CASE_024-8164: El contrato marco bilateral CTR-PEPSICO_MX-2026 prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $13,600.00 USD. La retención constituye incumplimiento de pago. RELOJ SLA: Restan 22 días de ventana perentoria (MEDIUM_ATTENTION). Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_024_pepsico_coop_publicitaria (fecha 2026-11-05), donde Cust-Pepsico Mx acordó el reintegro de $13,600.00 USD ante una deducción análoga por 'COOP-PUB-UNILATERAL', amparada en la cláusula contractual CLAUSE-10.4..",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [
           "CTR-PEPSICO_MX-2026",
           "INV-CASE_024-4919",
           "PAY-CASE_024-8164",
-          "Conforme al precedente formalizado en el expediente case_024_pepsico_coop_publicitaria (fecha 2026-11-04), donde Cust-Pepsico Mx acordó el reintegro de $13,600.00 USD ante una deducción análoga por 'COOP-PUB-UNILATERAL', amparada en la cláusula contractual CLAUSE-10.4."
+          "Conforme al precedente formalizado en el expediente case_024_pepsico_coop_publicitaria (fecha 2026-11-05), donde Cust-Pepsico Mx acordó el reintegro de $13,600.00 USD ante una deducción análoga por 'COOP-PUB-UNILATERAL', amparada en la cláusula contractual CLAUSE-10.4."
         ]
       }
     ],
@@ -264,5 +270,17 @@
     "prevented_harm_description": "Se documentó el rechazo formal de $13,600.00 USD en retenciones sin sustento, y se reconoció honestamente $0.00 USD de faltante/avería comprobada.",
     "human_escalation_protocol": "No requerida; el dictamen cuenta con respaldo probatorio pleno.",
     "lesson_learned_record": "Separación estricta entre cálculo numérico en Python y razonamiento semántico en Grok."
+  },
+  "cost_telemetry": {
+    "task_id": "case_024_pepsico_coop_publicitaria",
+    "measured_cost_usd": 0.0,
+    "requests_count": 0,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "total_tokens": 0,
+    "budget_cap_usd": null,
+    "was_throttled": false,
+    "gateway_baseline_cost_per_request_usd": 0.01134,
+    "cost_basis_description": "Calibrado con el consumo histórico real medido en Platica Gateway ($10.66 en 940 peticiones = $0.011340 USD/req)."
   }
 }

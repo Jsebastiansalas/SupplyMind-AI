@@ -23,15 +23,15 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente holdout_case_003 — 2026-11-04):**
+**Precedente 1 (Expediente holdout_case_003 — 2026-11-05):**
 - **Criterio Acreditado:** En el caso holdout_case_003, se acreditó la improcedencia de la deducción 'PRC_VAR_UNILATERAL' conforme a CL-03, logrando la restitución de $2,000.00 USD.
 - **Resultado Previo:** Restitución de **$2,000.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CL-03.
 
-**Precedente 2 (Expediente holdout_case_004 — 2026-11-04):**
-- **Criterio Acreditado:** En el caso holdout_case_004, se acreditó la improcedencia de la deducción 'EARLY_PAY_EXTEMP' conforme a CL-04, logrando la restitución de $1,000.00 USD.
-- **Resultado Previo:** Restitución de **$1,000.00 USD** a favor del proveedor.
-- **Fundamento Vinculante:** CL-04.
+**Precedente 2 (Expediente holdout_case_002 — 2026-11-05):**
+- **Criterio Acreditado:** En el caso holdout_case_002, se acreditó la improcedencia de la deducción 'ALLEGED_DAMAGE_UNILATERAL' conforme a CL-02, logrando la restitución de $1,500.00 USD.
+- **Resultado Previo:** Restitución de **$1,500.00 USD** a favor del proveedor.
+- **Fundamento Vinculante:** CL-02.
 
 Por tanto, en observancia del principio de coherencia comercial y buena fe contractual, solicitamos la aplicación del mismo criterio para el reintegro de la presente retención.
 

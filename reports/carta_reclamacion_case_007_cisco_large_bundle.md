@@ -1,6 +1,6 @@
 # 📑 NOTIFICACIÓN FORMAL DE DISPUTA COMERCIAL Y REQUERIMIENTO DE PAGO
 **Ref: Expediente de Cartera case_007_cisco_large_bundle / Factura INV-CISCO-CORP-99214**  
-**Fecha:** 04 de November de 2026  
+**Fecha:** 07 de November de 2026  
 **De:** Departamento de Cartera y Asuntos Comerciales — CISCO_SYSTEMS_GLOBAL  
 **Para:** Gerencia de Cuentas por Pagar y Conciliación — TELCO_ENTERPRISE_NETWORK  
 
@@ -23,7 +23,7 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_007_cisco_large_bundle — 2026-11-04):**
+**Precedente 1 (Expediente case_007_cisco_large_bundle — 2026-11-08):**
 - **Criterio Acreditado:** En el caso case_007_cisco_large_bundle, se acreditó la improcedencia de la deducción 'DED-PRC-VAR' conforme a 3.1, logrando la restitución de $14,000.00 USD.
 - **Resultado Previo:** Restitución de **$14,000.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** 3.1.

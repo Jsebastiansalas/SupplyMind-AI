@@ -23,12 +23,12 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_024_pepsico_coop_publicitaria — 2026-11-04):**
+**Precedente 1 (Expediente case_024_pepsico_coop_publicitaria — 2026-11-05):**
 - **Criterio Acreditado:** En el caso case_024_pepsico_coop_publicitaria, se acreditó la improcedencia de la deducción 'COOP-PUB-UNILATERAL' conforme a CLAUSE-10.4, logrando la restitución de $13,600.00 USD.
 - **Resultado Previo:** Restitución de **$13,600.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CLAUSE-10.4.
 
-**Precedente 2 (Expediente holdout_case_012 — 2026-11-04):**
+**Precedente 2 (Expediente holdout_case_012 — 2026-11-05):**
 - **Criterio Acreditado:** En el caso holdout_case_012, se acreditó la improcedencia de la deducción 'COOP-PUB_NO_AUTORIZAD' conforme a CL-12, logrando la restitución de $4,000.00 USD.
 - **Resultado Previo:** Restitución de **$4,000.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CL-12.

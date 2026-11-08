@@ -1,6 +1,6 @@
 # 📋 INFORME FORMAL DE CONCILIACIÓN Y ANÁLISIS DE DISPUTA B2B
 > **Expediente:** `case_014_soriana_rebate_unilateral` | **Generado por:** SupplyMind AI (SKYNET Framework / Grok 4.7)
-> **Fecha de Emisión:** 2026-11-04 11:48:38 UTC | **Nivel de Confianza:** 87.0%
+> **Fecha de Emisión:** 2026-11-05 00:18:32 UTC | **Nivel de Confianza:** 87.0%
 
 ---
 ## 1. RESUMEN FINANCIERO EJECUTIVO
@@ -93,6 +93,16 @@ Aceptar deducción de $0.00 USD mediante Nota de Crédito por el faltante real, 
 | **Acuerdo Estructurado — Concesión Comercial del 15%** | $8,330.00 USD | $1,470.00 USD | 5d | BAJO |
 | **Escalamiento Legal — Póliza Contable NIF C-3** | $9,800.00 USD | $0.00 USD | 45d | MEDIO |
 
+
+---
+## 6. MÉTRICAS DE EJECUCIÓN Y COSTO REAL MEDIDO POR TAREA (UNIT ECONOMICS)
+
+- **Motor de Ejecución:** Motor Simbólico en Python (`Decimal`)
+- **Peticiones a Grok consumidas:** 0 peticiones (Ahorro de API cuota)
+- **Costo Real por Tarea:** **$0.00000 USD**
+- **Invariantes Financieros:** Consistencia matemática exacta ($0.00 MAE)
+- **Tiempo de Resolución:** 0.08 s
+- **Gobernanza:** Separación estricta entre cálculo numérico en Python y razonamiento semántico en Grok.
 
 ---
 *Documento oficial generado autónomamente por SupplyMind AI para gestión de cartera, operaciones y auditoría B2B.*

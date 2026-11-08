@@ -23,12 +23,12 @@ Rechazamos formalmente las deducciones adicionales aplicadas por un importe tota
 #### 4. Antecedentes y Precedentes Comerciales Vinculantes
 Hacemos notar que esta discrepancia no constituye un hecho aislado, existiendo antecedentes previos resueltos favorablemente con su representada bajo idénticos fundamentos técnico-contractuales:
 
-**Precedente 1 (Expediente case_025_miniso_faltante_cif — 2026-11-04):**
+**Precedente 1 (Expediente case_025_miniso_faltante_cif — 2026-11-05):**
 - **Criterio Acreditado:** En el caso case_025_miniso_faltante_cif, se acreditó la improcedencia de la deducción 'DESESTIBA-CONTENEDOR' conforme a CLAUSE-3.6, logrando la restitución de $2,800.00 USD.
 - **Resultado Previo:** Restitución de **$2,800.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CLAUSE-3.6.
 
-**Precedente 2 (Expediente holdout_case_002 — 2026-11-04):**
+**Precedente 2 (Expediente holdout_case_002 — 2026-11-05):**
 - **Criterio Acreditado:** En el caso holdout_case_002, se acreditó la improcedencia de la deducción 'ALLEGED_DAMAGE_UNILATERAL' conforme a CL-02, logrando la restitución de $1,500.00 USD.
 - **Resultado Previo:** Restitución de **$1,500.00 USD** a favor del proveedor.
 - **Fundamento Vinculante:** CL-02.

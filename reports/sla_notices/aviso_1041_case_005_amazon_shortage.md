@@ -2,14 +2,14 @@
 **FUNDAMENTO LEGAL: ARTÍCULO 1041 DEL CÓDIGO DE COMERCIO**
 
 ---
-- **Folio de Interpelación Extrajudicial:** `INT-1041-CASE_005_AMA-729B922A`
+- **Folio de Interpelación Extrajudicial:** `INT-1041-CASE_005_AMA-52C614B9`
 - **Expediente de Auditoría:** `case_005_amazon_shortage`
 - **Deudor / Contraparte Comercial:** Amazon Vendor Central
-- **Factura Comercial Reclamada:** `INV-CASE_005_AMA` (Fecha: `2026-09-26`)
+- **Factura Comercial Reclamada:** `INV-CASE_005_AMA` (Fecha: `2026-09-28`)
 - **Importe Líquido y Exigible en Disputa:** **$2,500.00 USD**
-- **Timestamp UTC de Congelamiento del Reloj SLA:** `2026-11-03T12:40:01.451856+00:00`
+- **Timestamp UTC de Congelamiento del Reloj SLA:** `2026-11-05T00:19:30.444418+00:00`
 - **Días Restantes al Momento de la Interpelación:** `7` días (Ventana SLA: `30` días)
-- **Sello Criptográfico Forense SHA-256:** `729b922a7cc4a7e10328602f20dc9f988e4551638bf568b6a638ac31162b821d`
+- **Sello Criptográfico Forense SHA-256:** `52c614b90c3f72b78c2773f54018d1bd0a6fc177d28a87e368d423a6b6735714`
 
 ---
 
@@ -32,4 +32,4 @@ Así como la jurisprudencia aplicable de la Suprema Corte de Justicia de la Naci
 
 ---
 **Firmado Electrónicamente por:** Lic. Roberto Villarreal (Director Jurídico)  
-**Hash de Inmutabilidad Probatoria:** `729b922a7cc4a7e10328602f20dc9f988e4551638bf568b6a638ac31162b821d`
+**Hash de Inmutabilidad Probatoria:** `52c614b90c3f72b78c2773f54018d1bd0a6fc177d28a87e368d423a6b6735714`
