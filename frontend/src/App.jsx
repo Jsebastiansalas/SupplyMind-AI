@@ -107,6 +107,28 @@ function Workspace() {
   const [chatMessages, setChatMessages] = useState([]);
   const [isChatThinking, setIsChatThinking] = useState(false);
   const [globalError, setGlobalError] = useState(null);
+  const [agentHeartbeat, setAgentHeartbeat] = useState(null);
+
+  // Sincronización reactiva en tiempo real del estado del agente (Activo / Detenido) cada 2.5s
+  useEffect(() => {
+    let isMounted = true;
+    async function checkAgentStatus() {
+      try {
+        const hb = await apiClient.getUnattendedBatchHeartbeat();
+        if (isMounted && hb) {
+          setAgentHeartbeat(hb);
+        }
+      } catch (err) {
+        // Fallback silencioso
+      }
+    }
+    checkAgentStatus();
+    const interval = setInterval(checkAgentStatus, 2500);
+    return () => {
+      isMounted = false;
+      clearInterval(interval);
+    };
+  }, []);
 
   // 1. Cargar salud y lista de casos inicial
   useEffect(() => {
@@ -298,6 +320,11 @@ function Workspace() {
       <Header 
         health={health} 
         onOpenCreateCase={() => setShowCreateModal(true)}
+        agentHeartbeat={agentHeartbeat}
+        onNavigateToLiveAgent={() => {
+          setActiveTab('unattended');
+          setForceShowSummary(false);
+        }}
       />
 
       {/* Main Container */}
@@ -531,13 +558,28 @@ function Workspace() {
                     className={`btn-tactile px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors flex items-center space-x-1.5 ${
                       activeTab === 'unattended'
                         ? 'bg-[#12241b] text-emerald-300 border border-emerald-500/70 shadow-tactile font-bold'
+                        : agentHeartbeat?.is_alive && agentHeartbeat?.status === 'RUNNING'
+                        ? 'bg-emerald-950/70 text-emerald-300 border border-emerald-600/50 animate-pulse'
                         : 'text-zinc-400 hover:text-white hover:bg-[#12131a]'
                     }`}
                     title="Jornada Desatendida de 1,024 Unidades, 12 Horas, Sello Criptográfico Merkle SHA-256 y Smoke Test"
                   >
-                    <Activity className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>Carga 1,024 (12h)</span>
-                    <span className="text-[9px] px-1 py-0.2 rounded bg-emerald-950 text-emerald-300 font-mono hidden md:inline">0</span>
+                    {agentHeartbeat?.is_alive && agentHeartbeat?.status === 'RUNNING' ? (
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                      </span>
+                    ) : (
+                      <Activity className="w-3.5 h-3.5 text-emerald-400" />
+                    )}
+                    <span>
+                      {agentHeartbeat?.is_alive && agentHeartbeat?.status === 'RUNNING'
+                        ? `En Vivo (#${agentHeartbeat?.current_unit_index || agentHeartbeat?.completed_count || 1})`
+                        : 'Carga 1,024 (12h)'}
+                    </span>
+                    <span className="text-[9px] px-1 py-0.2 rounded bg-emerald-950 text-emerald-300 font-mono hidden md:inline">
+                      {agentHeartbeat?.is_alive && agentHeartbeat?.status === 'RUNNING' ? 'RUN' : '0'}
+                    </span>
                   </button>
 
                   <button
@@ -572,16 +614,31 @@ function Workspace() {
                   setActiveTab(activeTab === 'unattended' ? 'financial' : 'unattended');
                   setForceShowSummary(false);
                 }}
-                className={`btn-tactile px-2.5 py-1.5 rounded bg-[#111218] hover:bg-[#161822] border text-xs font-mono font-bold transition-all flex items-center space-x-1.5 shadow-tactile ${
+                className={`btn-tactile px-2.5 py-1.5 rounded text-xs font-mono font-bold transition-all flex items-center space-x-1.5 shadow-tactile ${
                   activeTab === 'unattended'
-                    ? 'bg-[#12241b] border-emerald-500 text-emerald-300'
-                    : 'border-[#222432] text-zinc-300 hover:text-white'
+                    ? 'bg-[#12241b] border border-emerald-500 text-emerald-300'
+                    : agentHeartbeat?.is_alive && agentHeartbeat?.status === 'RUNNING'
+                    ? 'bg-emerald-950/80 border border-emerald-500/70 text-emerald-300 animate-pulse'
+                    : 'bg-[#111218] hover:bg-[#161822] border border-[#222432] text-zinc-300 hover:text-white'
                 }`}
                 title="Auditoría de Carga Desatendida de 1,024 Unidades / 12 Horas"
               >
-                <Activity className="w-3.5 h-3.5 text-emerald-400" />
-                <span className="hidden sm:inline">Carga 1,024 (12h)</span>
-                <span className="text-[9px] px-1 py-0.2 rounded bg-emerald-950 text-emerald-300 font-mono">100%</span>
+                {agentHeartbeat?.is_alive && agentHeartbeat?.status === 'RUNNING' ? (
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                ) : (
+                  <Activity className="w-3.5 h-3.5 text-emerald-400" />
+                )}
+                <span className="hidden sm:inline">
+                  {agentHeartbeat?.is_alive && agentHeartbeat?.status === 'RUNNING'
+                    ? `En Vivo: #${agentHeartbeat?.current_unit_index || agentHeartbeat?.completed_count}/1,024`
+                    : 'Carga 1,024 (12h)'}
+                </span>
+                <span className="text-[9px] px-1 py-0.2 rounded bg-emerald-950 text-emerald-300 font-mono">
+                  {agentHeartbeat?.is_alive && agentHeartbeat?.status === 'RUNNING' ? 'RUN' : '100%'}
+                </span>
               </button>
 
               {/* Dedicated Benchmark 35 Button */}

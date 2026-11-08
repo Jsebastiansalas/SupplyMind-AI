@@ -48,7 +48,19 @@ class TelemetryBroadcaster:
         if heartbeat_path.exists():
             try:
                 with open(heartbeat_path, "r", encoding="utf-8") as f:
-                    return json.load(f)
+                    data = json.load(f)
+
+                pid = data.get("pid")
+                is_alive = False
+                if pid:
+                    from tools.batch_processor.batch_supervisor import BatchSupervisor
+                    is_alive = BatchSupervisor.is_process_running(pid)
+
+                data["is_alive"] = is_alive
+                if not is_alive and data.get("status") == "RUNNING":
+                    data["status"] = "STOPPED"
+
+                return data
             except Exception:
                 pass
 

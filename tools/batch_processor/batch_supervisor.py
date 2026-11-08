@@ -267,3 +267,70 @@ class BatchSupervisor:
             except Exception:
                 continue
         return recent
+
+
+    @staticmethod
+    def start_batch_run(resume: bool = True, no_pacing: bool = False, no_resume: bool = False) -> Dict[str, Any]:
+        """Inicia el orquestador en segundo plano si no está corriendo."""
+        supervisor = BatchSupervisor()
+        snap = supervisor.inspect_health()
+        if snap.is_pid_alive:
+            return {
+                "success": False,
+                "message": f"El agente ya se encuentra activo en segundo plano (PID {snap.pid}).",
+                "pid": snap.pid,
+                "status": "RUNNING"
+            }
+
+        launcher_script = supervisor.workspace_root / "scripts" / "run_unattended_12h_batch.py"
+        cmd = [supervisor.python_executable, "-u", str(launcher_script)]
+        if no_resume:
+            cmd.append("--no-resume")
+        elif resume:
+            cmd.append("--resume")
+        if no_pacing:
+            cmd.append("--no-pacing")
+
+        creationflags = subprocess.CREATE_NEW_PROCESS_GROUP if sys.platform == "win32" else 0
+        proc = subprocess.Popen(cmd, creationflags=creationflags)
+
+        return {
+            "success": True,
+            "message": f"Agente iniciado en segundo plano exitosamente (PID {proc.pid}).",
+            "pid": proc.pid,
+            "status": "RUNNING"
+        }
+
+    @staticmethod
+    def stop_batch_run() -> Dict[str, Any]:
+        """Detiene de forma segura el proceso del agente si está corriendo."""
+        heartbeat_path = Path("reports/unattended_batch_heartbeat.json")
+        if not heartbeat_path.exists():
+            return {"success": True, "message": "No hay proceso activo registrado.", "was_running": False}
+
+        try:
+            with open(heartbeat_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            pid = data.get("pid")
+            if not pid or not BatchSupervisor.is_process_running(pid):
+                data["status"] = "STOPPED"
+                data["is_alive"] = False
+                with open(heartbeat_path, "w", encoding="utf-8") as f:
+                    json.dump(data, f, indent=2)
+                return {"success": True, "message": "El agente ya no está en ejecución.", "was_running": False}
+
+            if sys.platform == "win32":
+                subprocess.run(["taskkill", "/F", "/PID", str(pid), "/T"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            else:
+                import signal
+                os.kill(pid, signal.SIGTERM)
+
+            data["status"] = "STOPPED"
+            data["is_alive"] = False
+            with open(heartbeat_path, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=2)
+
+            return {"success": True, "message": f"Agente detenido exitosamente (PID {pid}).", "was_running": True}
+        except Exception as e:
+            return {"success": False, "message": f"Error al detener proceso: {str(e)}"}

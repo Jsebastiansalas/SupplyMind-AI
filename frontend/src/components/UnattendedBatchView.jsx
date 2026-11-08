@@ -41,6 +41,40 @@ export default function UnattendedBatchView() {
   const [sealResult, setSealResult] = useState(null);
   const [verifyingSeal, setVerifyingSeal] = useState(false);
   const [copiedHash, setCopiedHash] = useState(null);
+  const [isStartingBatch, setIsStartingBatch] = useState(false);
+  const [isStoppingBatch, setIsStoppingBatch] = useState(false);
+  const [batchActionMsg, setBatchActionMsg] = useState(null);
+
+  const handleStartBatch = async (noPacing = false) => {
+    setIsStartingBatch(true);
+    setBatchActionMsg(null);
+    try {
+      const res = await apiClient.startUnattendedBatch({ resume: true, no_pacing: noPacing });
+      setBatchActionMsg(res.message);
+      // Actualizar latido
+      const hb = await apiClient.getUnattendedBatchHeartbeat();
+      setHeartbeat(hb);
+    } catch (err) {
+      setBatchActionMsg(`Error: ${err.message}`);
+    } finally {
+      setIsStartingBatch(false);
+    }
+  };
+
+  const handleStopBatch = async () => {
+    setIsStoppingBatch(true);
+    setBatchActionMsg(null);
+    try {
+      const res = await apiClient.stopUnattendedBatch();
+      setBatchActionMsg(res.message);
+      const hb = await apiClient.getUnattendedBatchHeartbeat();
+      setHeartbeat(hb);
+    } catch (err) {
+      setBatchActionMsg(`Error: ${err.message}`);
+    } finally {
+      setIsStoppingBatch(false);
+    }
+  };
 
   // Smoke Test Interactivo
   const [smokeUnits, setSmokeUnits] = useState(6);
@@ -235,13 +269,24 @@ export default function UnattendedBatchView() {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="space-y-1.5">
             <div className="flex items-center space-x-3">
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-              </span>
-              <span className="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold uppercase tracking-wider bg-emerald-950/80 text-emerald-400 border border-emerald-500/40">
-                {heartbeat?.status === 'RUNNING' ? 'Jornada en Ejecución Continua' : 'Jornada Desatendida Sellada (12 Horas)'}
-              </span>
+              {heartbeat?.is_alive && heartbeat?.status === 'RUNNING' ? (
+                <>
+                  <span className="relative flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold uppercase tracking-wider bg-emerald-950/90 text-emerald-300 border border-emerald-500/60 ring-2 ring-emerald-500/20 animate-pulse">
+                    🟢 AGENTE EN VIVO: #{heartbeat?.current_unit_index || heartbeat?.completed_count || 1}/1,024 (PID {heartbeat?.pid})
+                  </span>
+                </>
+              ) : (
+                <>
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500 ring-2 ring-amber-500/20" />
+                  <span className="px-2.5 py-0.5 rounded text-[11px] font-mono font-bold uppercase tracking-wider bg-amber-950/70 text-amber-300 border border-amber-600/40">
+                    ⏸️ AGENTE EN REPOSO / DETENIDO ({heartbeat?.completed_count || 0}/1,024 Completadas)
+                  </span>
+                </>
+              )}
 
               {wsConnected ? (
                 <span className="flex items-center space-x-1.5 px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950/90 text-emerald-300 border border-emerald-500/50 shadow-sm" title="Canal dúplex WebSocket de baja latencia activo">

@@ -10,7 +10,9 @@ import {
 
 export default function Header({ 
   health, 
-  onOpenCreateCase
+  onOpenCreateCase,
+  agentHeartbeat,
+  onNavigateToLiveAgent
 }) {
   const { currentUser, logout, loginAsPersona, personas } = useAuth();
   const [showPersonaMenu, setShowPersonaMenu] = useState(false);
@@ -47,6 +49,54 @@ export default function Header({
             <span className="text-zinc-600">|</span>
             <span className="text-[10px] text-zinc-500">FastPath</span>
           </div>
+
+          {/* Live Agent Dynamic Status Button (Reactive on Active/Stopped) */}
+          {onNavigateToLiveAgent && (
+            <button
+              onClick={onNavigateToLiveAgent}
+              className={`btn-tactile flex items-center space-x-2 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all shadow-tactile ${
+                agentHeartbeat?.is_alive && agentHeartbeat?.status === 'RUNNING'
+                  ? 'bg-emerald-950/90 hover:bg-emerald-900 border border-emerald-500 text-emerald-300 ring-2 ring-emerald-500/30 shadow-[0_0_18px_rgba(16,185,129,0.35)]'
+                  : agentHeartbeat?.status === 'COMPLETED'
+                  ? 'bg-blue-950/80 hover:bg-blue-900 border border-blue-500/80 text-blue-200'
+                  : 'bg-[#141620] hover:bg-[#1c1f2e] border border-[#2d3146] hover:border-[#d4af37]/70 text-zinc-300 hover:text-white'
+              }`}
+              title="Monitoreo del agente en vivo: telemetría, streaming JSONL, tokens y auditoría 12h"
+            >
+              {agentHeartbeat?.is_alive && agentHeartbeat?.status === 'RUNNING' ? (
+                <>
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                  </span>
+                  <span className="text-white font-extrabold tracking-wide">
+                    AGENTE EN VIVO: #{agentHeartbeat?.current_unit_index || agentHeartbeat?.completed_count || 1}/1,024
+                  </span>
+                  <span className="px-1.5 py-0.2 rounded text-[9px] font-mono font-bold bg-emerald-900 text-emerald-200 border border-emerald-500/50 uppercase tracking-wider animate-pulse">
+                    ACTIVO
+                  </span>
+                </>
+              ) : agentHeartbeat?.status === 'COMPLETED' ? (
+                <>
+                  <span className="w-2.5 h-2.5 rounded-full bg-blue-400" />
+                  <span className="text-blue-100 font-bold">JORNADA 1,024 COMPLETADA</span>
+                  <span className="px-1.5 py-0.2 rounded text-[9px] bg-blue-900 text-blue-200 border border-blue-500/50">
+                    100%
+                  </span>
+                </>
+              ) : (
+                <>
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500 ring-2 ring-amber-500/20" />
+                  <span className="text-zinc-200">
+                    VER AGENTE ({agentHeartbeat?.completed_count || 0}/1,024)
+                  </span>
+                  <span className="px-1.5 py-0.2 rounded text-[9px] font-mono font-bold bg-amber-950 text-amber-300 border border-amber-600/40 uppercase tracking-wider">
+                    DETENIDO
+                  </span>
+                </>
+              )}
+            </button>
+          )}
 
           {/* Download Master ZIP Dossier Button */}
           <a

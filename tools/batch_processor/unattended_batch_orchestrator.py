@@ -869,7 +869,12 @@ class UnattendedBatchOrchestrator:
         batch_start_wall = time.time()
         target_seconds_per_unit = self.target_duration_seconds / max(1, total_to_process)
 
+        # Emitir latido inmediato para sincronizar UI en tiempo real
+        self.update_heartbeat(already_done_count, total_to_process, f"init_{already_done_count+1}", "RUNNING")
+
         for i, unit in enumerate(remaining_units, start=already_done_count + 1):
+            # Latido al arrancar cada unidad
+            self.update_heartbeat(i, total_to_process, unit.task_id, "RUNNING")
             unit_start = time.time()
 
             # Ejecución de la unidad de trabajo

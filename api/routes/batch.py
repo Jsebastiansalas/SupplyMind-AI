@@ -184,7 +184,32 @@ def get_unattended_batch_heartbeat():
     try:
         with open(heartbeat_path, "r", encoding="utf-8") as f:
             data = json.load(f)
-            return data
+
+        pid = data.get("pid")
+        is_alive = False
+        if pid:
+            from tools.batch_processor.batch_supervisor import BatchSupervisor
+            is_alive = BatchSupervisor.is_process_running(pid)
+
+        data["is_alive"] = is_alive
+
+        # Verificar antigüedad del latido
+        ts_str = data.get("timestamp")
+        if ts_str:
+            try:
+                from datetime import datetime, timezone
+                dt = datetime.fromisoformat(ts_str.replace("Z", "+00:00"))
+                age = (datetime.now(timezone.utc) - dt).total_seconds()
+                data["seconds_since_heartbeat"] = round(age, 1)
+                if age > 120 and is_alive:
+                    data["status"] = "STALLED"
+            except Exception:
+                pass
+
+        if not is_alive and data.get("status") == "RUNNING":
+            data["status"] = "STOPPED"
+
+        return data
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al leer latido: {str(e)}")
 
@@ -419,3 +444,29 @@ def download_master_audit_zip():
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al generar ZIP maestro: {str(e)}")
+
+
+class BatchControlRequest(BaseModel):
+    resume: bool = Field(default=True, description="Reanudar desde última tarea completada")
+    no_pacing: bool = Field(default=False, description="Máxima velocidad sin pausas de 42s")
+    no_resume: bool = Field(default=False, description="Iniciar desde unidad 1 con respaldo")
+
+
+@router.post("/unattended/start")
+def start_unattended_batch_runner(request: BatchControlRequest = BatchControlRequest()):
+    """Inicia la ejecución desatendida del agente en segundo plano."""
+    from tools.batch_processor.batch_supervisor import BatchSupervisor
+    res = BatchSupervisor.start_batch_run(
+        resume=request.resume,
+        no_pacing=request.no_pacing,
+        no_resume=request.no_resume
+    )
+    return res
+
+
+@router.post("/unattended/stop")
+def stop_unattended_batch_runner():
+    """Detiene de forma segura la ejecución del agente en segundo plano."""
+    from tools.batch_processor.batch_supervisor import BatchSupervisor
+    res = BatchSupervisor.stop_batch_run()
+    return res
