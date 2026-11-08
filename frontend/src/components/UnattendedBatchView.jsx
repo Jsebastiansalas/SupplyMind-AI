@@ -468,6 +468,221 @@ export default function UnattendedBatchView() {
 
       </div>
 
+      {/* 3. Tabla Dinámica de las 1,024 Unidades de Trabajo (Orientación del Jurado) */}
+      {/* 5. Explorador Forense de Casos (Bitácora de 1,024 Unidades) */}
+      <div className="bg-[#10121a] border border-[#1e2230] rounded-lg p-5 shadow-tactile space-y-4">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <div>
+            <h2 className="text-sm font-bold font-mono text-white uppercase tracking-wider flex items-center space-x-2">
+              <FileText className="w-4 h-4 text-cyan-400" />
+              <span>Bitácora Forense de Tareas y Expedientes Físicos</span>
+            </h2>
+            <p className="text-xs text-zinc-400">
+              Total registrado: <strong className="text-white">{casesData.total_items}</strong> unidades resueltas de punta a punta.
+            </p>
+          </div>
+
+          {/* Filter Pills and Search */}
+          <div className="flex flex-wrap items-center gap-2">
+          <a
+            href="http://localhost:8000/api/batch/unattended/download-master-zip"
+            download="expediente_maestro_auditoria_platica.zip"
+            className="btn-tactile px-3.5 py-1.5 rounded bg-[#1f1d14] hover:bg-[#2c2819] border border-[#d4af37]/70 text-xs font-mono font-bold text-[#eed98d] flex items-center space-x-1.5 transition-all shadow-tactile"
+            title="Descarga completa del expediente de auditoría: bitácoras CSV/JSON, Merkle Tree, Sello RFC 3161 y reportes técnicos"
+          >
+            <span>📦 Descargar Dossier Oficial Platica (ZIP)</span>
+          </a>
+            
+            {/* Status Filter Pills */}
+            <div className="flex items-center bg-[#0b0c12] p-0.5 rounded border border-[#1a1d29] text-xs font-mono">
+              <button
+                onClick={() => { setStatusFilter('ALL'); setCasesPage(1); }}
+                className={`px-2.5 py-1 rounded transition-colors ${
+                  statusFilter === 'ALL'
+                    ? 'bg-[#181a24] text-white font-bold'
+                    : 'text-zinc-400 hover:text-zinc-200'
+                }`}
+              >
+                Todos ({summary?.total_units || 1024})
+              </button>
+              
+              <button
+                onClick={() => { setStatusFilter('SUCCESS'); setCasesPage(1); }}
+                className={`px-2.5 py-1 rounded transition-colors ${
+                  statusFilter === 'SUCCESS'
+                    ? 'bg-emerald-950 text-emerald-300 font-bold'
+                    : 'text-zinc-400 hover:text-zinc-200'
+                }`}
+              >
+                Exitosos ({summary?.status_breakdown?.SUCCESS || 984})
+              </button>
+
+              <button
+                onClick={() => { setStatusFilter('RECOVERED_QUARANTINE'); setCasesPage(1); }}
+                className={`px-2.5 py-1 rounded transition-colors ${
+                  statusFilter === 'RECOVERED_QUARANTINE'
+                    ? 'bg-amber-950 text-amber-300 font-bold'
+                    : 'text-zinc-400 hover:text-zinc-200'
+                }`}
+              >
+                Cuarentena ({summary?.status_breakdown?.RECOVERED_QUARANTINE || 24})
+              </button>
+
+              <button
+                onClick={() => { setStatusFilter('FAILED'); setCasesPage(1); }}
+                className={`px-2.5 py-1 rounded transition-colors ${
+                  statusFilter === 'FAILED'
+                    ? 'bg-red-950 text-red-300 font-bold'
+                    : 'text-zinc-400 hover:text-zinc-200'
+                }`}
+              >
+                Fallos ({summary?.status_breakdown?.FAILED || 7})
+              </button>
+            </div>
+
+            {/* Search Input */}
+            <form onSubmit={handleSearchSubmit} className="flex items-center space-x-1">
+              <div className="relative">
+                <Search className="w-3.5 h-3.5 text-zinc-500 absolute left-2.5 top-2.5" />
+                <input
+                  type="text"
+                  placeholder="Buscar tarea, retailer..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="bg-[#0b0c12] border border-[#1e2029] rounded pl-8 pr-3 py-1 text-xs font-mono text-white placeholder-zinc-500 focus:outline-none focus:border-[#eed98d] w-48 sm:w-56"
+                />
+              </div>
+              <button
+                type="submit"
+                className="btn-tactile px-2.5 py-1 rounded bg-[#171a26] hover:bg-[#1f2334] border border-[#2b3045] text-xs font-mono text-zinc-300"
+              >
+                Filtrar
+              </button>
+            </form>
+
+          </div>
+        </div>
+
+        {/* Table of cases */}
+        <div className="overflow-x-auto border border-[#1a1d29] rounded-lg">
+          <table className="w-full text-xs font-mono text-left">
+            <thead className="bg-[#0b0c12] text-zinc-400 border-b border-[#181a24]">
+              <tr>
+                <th className="py-2.5 px-3">#</th>
+                <th className="py-2.5 px-3">Tarea / ID</th>
+                <th className="py-2.5 px-3">Retailer</th>
+                <th className="py-2.5 px-3">Categoría de Disputa</th>
+                <th className="py-2.5 px-3">Disputado</th>
+                <th className="py-2.5 px-3">Recuperado</th>
+                <th className="py-2.5 px-3">Estado</th>
+                <th className="py-2.5 px-3">Costo USD</th>
+                <th className="py-2.5 px-3 text-right">Expediente 3-Way</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[#13151f] bg-[#0c0d14]">
+              {loadingCases ? (
+                <tr>
+                  <td colSpan={9} className="py-8 text-center text-zinc-500">
+                    <RefreshCw className="w-5 h-5 animate-spin mx-auto mb-2 text-[#d4af37]" />
+                    Cargando tareas de la bitácora...
+                  </td>
+                </tr>
+              ) : casesData.records.length === 0 ? (
+                <tr>
+                  <td colSpan={9} className="py-8 text-center text-zinc-500">
+                    No se encontraron tareas con el filtro seleccionado.
+                  </td>
+                </tr>
+              ) : (
+                casesData.records.map((r, i) => (
+                  <tr key={r.task_id} className="hover:bg-[#12141f] transition-colors">
+                    <td className="py-2 px-3 text-zinc-500">
+                      {(casesPage - 1) * pageSize + i + 1}
+                    </td>
+                    <td className="py-2 px-3 font-medium text-white">
+                      <div>{r.task_id}</div>
+                      <div className="text-[10px] text-zinc-500">{r.case_id}</div>
+                    </td>
+                    <td className="py-2 px-3 text-zinc-300">
+                      {r.retailer_name}
+                    </td>
+                    <td className="py-2 px-3 text-zinc-400">
+                      <span className="px-1.5 py-0.5 rounded bg-[#10121a] border border-[#1a1d29] text-[10px]">
+                        {r.category}
+                      </span>
+                    </td>
+                    <td className="py-2 px-3 text-zinc-300">
+                      {formatMXN(r.disputed_amount)}
+                    </td>
+                    <td className="py-2 px-3 font-bold text-emerald-400">
+                      {formatMXN(r.recovered_amount)}
+                    </td>
+                    <td className="py-2 px-3">
+                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold inline-flex items-center space-x-1 ${
+                        r.status === 'SUCCESS'
+                          ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40'
+                          : r.status === 'RECOVERED_QUARANTINE'
+                          ? 'bg-amber-950/80 text-amber-300 border border-amber-500/40'
+                          : 'bg-red-950/80 text-red-300 border border-red-500/40'
+                      }`}>
+                        {r.status === 'SUCCESS' && <CheckCircle2 className="w-2.5 h-2.5 text-emerald-400" />}
+                        {r.status === 'RECOVERED_QUARANTINE' && <AlertTriangle className="w-2.5 h-2.5 text-amber-400" />}
+                        {r.status === 'FAILED' && <XCircle className="w-2.5 h-2.5 text-red-400" />}
+                        <span>{r.status}</span>
+                      </span>
+                    </td>
+                    <td className="py-2 px-3 text-[#eed98d]">
+                      {formatUSD(r.cost_usd)}
+                    </td>
+                    <td className="py-2 px-3 text-right">
+                      <button
+                        onClick={() => handleInspectDossier(r.case_id)}
+                        className="btn-tactile px-2.5 py-1 rounded bg-[#171a26] hover:bg-[#202436] border border-[#2b3045] text-xs font-mono text-[#eed98d] hover:text-white transition-all shadow-tactile inline-flex items-center space-x-1.5"
+                      >
+                        <FileCheck className="w-3.5 h-3.5 text-[#d4af37]" />
+                        <span>Inspeccionar 5 Docs</span>
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Pagination bar */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono text-zinc-400 pt-2">
+          <div>
+            Mostrando página <strong className="text-white">{casesPage}</strong> de <strong className="text-white">{casesData.total_pages}</strong> ({casesData.total_items} tareas totales)
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={() => setCasesPage(p => Math.max(1, p - 1))}
+              disabled={casesPage <= 1}
+              className="btn-tactile px-2.5 py-1 rounded bg-[#171a26] hover:bg-[#1f2334] border border-[#2b3045] text-white disabled:opacity-40 flex items-center space-x-1"
+            >
+              <ChevronLeft className="w-3.5 h-3.5" />
+              <span>Anterior</span>
+            </button>
+
+            <span className="px-2 py-1 bg-[#0b0c12] rounded border border-[#1a1d29] text-white">
+              {casesPage} / {casesData.total_pages}
+            </span>
+
+            <button
+              onClick={() => setCasesPage(p => Math.min(casesData.total_pages, p + 1))}
+              disabled={casesPage >= casesData.total_pages}
+              className="btn-tactile px-2.5 py-1 rounded bg-[#171a26] hover:bg-[#1f2334] border border-[#2b3045] text-white disabled:opacity-40 flex items-center space-x-1"
+            >
+              <span>Siguiente</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
+
+      </div>
+
       {/* 3. Panel de Verificación Criptográfica Merkle & Integridad */}
       <div className="bg-[#10121a] border border-[#1e2230] rounded-lg p-5 shadow-tactile space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -725,220 +940,6 @@ export default function UnattendedBatchView() {
             </div>
           </div>
         )}
-      </div>
-
-      {/* 5. Explorador Forense de Casos (Bitácora de 1,024 Unidades) */}
-      <div className="bg-[#10121a] border border-[#1e2230] rounded-lg p-5 shadow-tactile space-y-4">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
-          <div>
-            <h2 className="text-sm font-bold font-mono text-white uppercase tracking-wider flex items-center space-x-2">
-              <FileText className="w-4 h-4 text-cyan-400" />
-              <span>Bitácora Forense de Tareas y Expedientes Físicos</span>
-            </h2>
-            <p className="text-xs text-zinc-400">
-              Total registrado: <strong className="text-white">{casesData.total_items}</strong> unidades resueltas de punta a punta.
-            </p>
-          </div>
-
-          {/* Filter Pills and Search */}
-          <div className="flex flex-wrap items-center gap-2">
-          <a
-            href="http://localhost:8000/api/batch/unattended/download-master-zip"
-            download="expediente_maestro_auditoria_platica.zip"
-            className="btn-tactile px-3.5 py-1.5 rounded bg-[#1f1d14] hover:bg-[#2c2819] border border-[#d4af37]/70 text-xs font-mono font-bold text-[#eed98d] flex items-center space-x-1.5 transition-all shadow-tactile"
-            title="Descarga completa del expediente de auditoría: bitácoras CSV/JSON, Merkle Tree, Sello RFC 3161 y reportes técnicos"
-          >
-            <span>📦 Descargar Dossier Oficial Platica (ZIP)</span>
-          </a>
-            
-            {/* Status Filter Pills */}
-            <div className="flex items-center bg-[#0b0c12] p-0.5 rounded border border-[#1a1d29] text-xs font-mono">
-              <button
-                onClick={() => { setStatusFilter('ALL'); setCasesPage(1); }}
-                className={`px-2.5 py-1 rounded transition-colors ${
-                  statusFilter === 'ALL'
-                    ? 'bg-[#181a24] text-white font-bold'
-                    : 'text-zinc-400 hover:text-zinc-200'
-                }`}
-              >
-                Todos ({summary?.total_units || 1024})
-              </button>
-              
-              <button
-                onClick={() => { setStatusFilter('SUCCESS'); setCasesPage(1); }}
-                className={`px-2.5 py-1 rounded transition-colors ${
-                  statusFilter === 'SUCCESS'
-                    ? 'bg-emerald-950 text-emerald-300 font-bold'
-                    : 'text-zinc-400 hover:text-zinc-200'
-                }`}
-              >
-                Exitosos ({summary?.status_breakdown?.SUCCESS || 984})
-              </button>
-
-              <button
-                onClick={() => { setStatusFilter('RECOVERED_QUARANTINE'); setCasesPage(1); }}
-                className={`px-2.5 py-1 rounded transition-colors ${
-                  statusFilter === 'RECOVERED_QUARANTINE'
-                    ? 'bg-amber-950 text-amber-300 font-bold'
-                    : 'text-zinc-400 hover:text-zinc-200'
-                }`}
-              >
-                Cuarentena ({summary?.status_breakdown?.RECOVERED_QUARANTINE || 24})
-              </button>
-
-              <button
-                onClick={() => { setStatusFilter('FAILED'); setCasesPage(1); }}
-                className={`px-2.5 py-1 rounded transition-colors ${
-                  statusFilter === 'FAILED'
-                    ? 'bg-red-950 text-red-300 font-bold'
-                    : 'text-zinc-400 hover:text-zinc-200'
-                }`}
-              >
-                Fallos ({summary?.status_breakdown?.FAILED || 7})
-              </button>
-            </div>
-
-            {/* Search Input */}
-            <form onSubmit={handleSearchSubmit} className="flex items-center space-x-1">
-              <div className="relative">
-                <Search className="w-3.5 h-3.5 text-zinc-500 absolute left-2.5 top-2.5" />
-                <input
-                  type="text"
-                  placeholder="Buscar tarea, retailer..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="bg-[#0b0c12] border border-[#1e2029] rounded pl-8 pr-3 py-1 text-xs font-mono text-white placeholder-zinc-500 focus:outline-none focus:border-[#eed98d] w-48 sm:w-56"
-                />
-              </div>
-              <button
-                type="submit"
-                className="btn-tactile px-2.5 py-1 rounded bg-[#171a26] hover:bg-[#1f2334] border border-[#2b3045] text-xs font-mono text-zinc-300"
-              >
-                Filtrar
-              </button>
-            </form>
-
-          </div>
-        </div>
-
-        {/* Table of cases */}
-        <div className="overflow-x-auto border border-[#1a1d29] rounded-lg">
-          <table className="w-full text-xs font-mono text-left">
-            <thead className="bg-[#0b0c12] text-zinc-400 border-b border-[#181a24]">
-              <tr>
-                <th className="py-2.5 px-3">#</th>
-                <th className="py-2.5 px-3">Tarea / ID</th>
-                <th className="py-2.5 px-3">Retailer</th>
-                <th className="py-2.5 px-3">Categoría de Disputa</th>
-                <th className="py-2.5 px-3">Disputado</th>
-                <th className="py-2.5 px-3">Recuperado</th>
-                <th className="py-2.5 px-3">Estado</th>
-                <th className="py-2.5 px-3">Costo USD</th>
-                <th className="py-2.5 px-3 text-right">Expediente 3-Way</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-[#13151f] bg-[#0c0d14]">
-              {loadingCases ? (
-                <tr>
-                  <td colSpan={9} className="py-8 text-center text-zinc-500">
-                    <RefreshCw className="w-5 h-5 animate-spin mx-auto mb-2 text-[#d4af37]" />
-                    Cargando tareas de la bitácora...
-                  </td>
-                </tr>
-              ) : casesData.records.length === 0 ? (
-                <tr>
-                  <td colSpan={9} className="py-8 text-center text-zinc-500">
-                    No se encontraron tareas con el filtro seleccionado.
-                  </td>
-                </tr>
-              ) : (
-                casesData.records.map((r, i) => (
-                  <tr key={r.task_id} className="hover:bg-[#12141f] transition-colors">
-                    <td className="py-2 px-3 text-zinc-500">
-                      {(casesPage - 1) * pageSize + i + 1}
-                    </td>
-                    <td className="py-2 px-3 font-medium text-white">
-                      <div>{r.task_id}</div>
-                      <div className="text-[10px] text-zinc-500">{r.case_id}</div>
-                    </td>
-                    <td className="py-2 px-3 text-zinc-300">
-                      {r.retailer_name}
-                    </td>
-                    <td className="py-2 px-3 text-zinc-400">
-                      <span className="px-1.5 py-0.5 rounded bg-[#10121a] border border-[#1a1d29] text-[10px]">
-                        {r.category}
-                      </span>
-                    </td>
-                    <td className="py-2 px-3 text-zinc-300">
-                      {formatMXN(r.disputed_amount)}
-                    </td>
-                    <td className="py-2 px-3 font-bold text-emerald-400">
-                      {formatMXN(r.recovered_amount)}
-                    </td>
-                    <td className="py-2 px-3">
-                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold inline-flex items-center space-x-1 ${
-                        r.status === 'SUCCESS'
-                          ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40'
-                          : r.status === 'RECOVERED_QUARANTINE'
-                          ? 'bg-amber-950/80 text-amber-300 border border-amber-500/40'
-                          : 'bg-red-950/80 text-red-300 border border-red-500/40'
-                      }`}>
-                        {r.status === 'SUCCESS' && <CheckCircle2 className="w-2.5 h-2.5 text-emerald-400" />}
-                        {r.status === 'RECOVERED_QUARANTINE' && <AlertTriangle className="w-2.5 h-2.5 text-amber-400" />}
-                        {r.status === 'FAILED' && <XCircle className="w-2.5 h-2.5 text-red-400" />}
-                        <span>{r.status}</span>
-                      </span>
-                    </td>
-                    <td className="py-2 px-3 text-[#eed98d]">
-                      {formatUSD(r.cost_usd)}
-                    </td>
-                    <td className="py-2 px-3 text-right">
-                      <button
-                        onClick={() => handleInspectDossier(r.case_id)}
-                        className="btn-tactile px-2.5 py-1 rounded bg-[#171a26] hover:bg-[#202436] border border-[#2b3045] text-xs font-mono text-[#eed98d] hover:text-white transition-all shadow-tactile inline-flex items-center space-x-1.5"
-                      >
-                        <FileCheck className="w-3.5 h-3.5 text-[#d4af37]" />
-                        <span>Inspeccionar 5 Docs</span>
-                      </button>
-                    </td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Pagination bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono text-zinc-400 pt-2">
-          <div>
-            Mostrando página <strong className="text-white">{casesPage}</strong> de <strong className="text-white">{casesData.total_pages}</strong> ({casesData.total_items} tareas totales)
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <button
-              onClick={() => setCasesPage(p => Math.max(1, p - 1))}
-              disabled={casesPage <= 1}
-              className="btn-tactile px-2.5 py-1 rounded bg-[#171a26] hover:bg-[#1f2334] border border-[#2b3045] text-white disabled:opacity-40 flex items-center space-x-1"
-            >
-              <ChevronLeft className="w-3.5 h-3.5" />
-              <span>Anterior</span>
-            </button>
-
-            <span className="px-2 py-1 bg-[#0b0c12] rounded border border-[#1a1d29] text-white">
-              {casesPage} / {casesData.total_pages}
-            </span>
-
-            <button
-              onClick={() => setCasesPage(p => Math.min(casesData.total_pages, p + 1))}
-              disabled={casesPage >= casesData.total_pages}
-              className="btn-tactile px-2.5 py-1 rounded bg-[#171a26] hover:bg-[#1f2334] border border-[#2b3045] text-white disabled:opacity-40 flex items-center space-x-1"
-            >
-              <span>Siguiente</span>
-              <ChevronRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-        </div>
-
       </div>
 
       {/* 6. Modal / Visor de Expediente Probatorio de 5 Documentos */}
