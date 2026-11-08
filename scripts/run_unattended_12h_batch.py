@@ -112,6 +112,10 @@ def main():
     )
 
     if args.no_resume and orchestrator.stream_path.exists():
+        import shutil
+        backup_dir = orchestrator.output_dir / "backup_prior_run"
+        backup_dir.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(orchestrator.stream_path, backup_dir / f"stream_backup_{int(time.time())}.jsonl")
         orchestrator.stream_path.unlink()
 
     # Captura elegante de SIGINT (Ctrl+C) para exportar bitácora antes de salir
