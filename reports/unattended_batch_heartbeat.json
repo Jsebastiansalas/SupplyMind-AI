@@ -1,13 +1,13 @@
 {
-  "timestamp": "2026-11-08T05:31:40.434995+00:00",
+  "timestamp": "2026-11-08T05:32:54.063462+00:00",
   "pid": 23488,
   "status": "RUNNING",
-  "current_unit_index": 21,
+  "current_unit_index": 22,
   "total_units": 1024,
-  "current_task_id": "work_unit_0021",
-  "completed_count": 20,
-  "total_cost_usd": 0.33042499999999997,
-  "success_count": 19,
+  "current_task_id": "work_unit_0022",
+  "completed_count": 21,
+  "total_cost_usd": 0.34743,
+  "success_count": 20,
   "quarantine_count": 0,
   "failed_count": 1
 }
