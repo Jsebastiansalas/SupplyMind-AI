@@ -83,6 +83,11 @@ def parse_arguments() -> argparse.Namespace:
         action="store_true",
         help="No reanudar desde stream previo; comenzar desde cero.",
     )
+    parser.add_argument(
+        "--resume",
+        action="store_true",
+        help="Reanudar desde stream previo (modo predeterminado tolerante a interrupciones).",
+    )
     return parser.parse_args()
 
 
@@ -111,12 +116,25 @@ def main():
         resume=not args.no_resume,
     )
 
-    if args.no_resume and orchestrator.stream_path.exists():
+    if args.no_resume:
         import shutil
         backup_dir = orchestrator.output_dir / "backup_prior_run"
         backup_dir.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(orchestrator.stream_path, backup_dir / f"stream_backup_{int(time.time())}.jsonl")
-        orchestrator.stream_path.unlink()
+        ts = int(time.time())
+        for path in [
+            orchestrator.stream_path,
+            orchestrator.checkpoint_path,
+            orchestrator.heartbeat_path,
+            orchestrator.csv_log_path,
+            orchestrator.json_log_path,
+            orchestrator.summary_md_path,
+        ]:
+            if path.exists():
+                shutil.copy2(path, backup_dir / f"{path.stem}_backup_{ts}{path.suffix}")
+                try:
+                    path.unlink()
+                except Exception:
+                    pass
 
     # Captura elegante de SIGINT (Ctrl+C) para exportar bitácora antes de salir
     def handle_sigint(sig, frame):

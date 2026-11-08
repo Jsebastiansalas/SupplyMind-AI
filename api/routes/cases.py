@@ -35,6 +35,7 @@ def _decimal_to_float(obj: Any) -> Any:
 class AnalyzeRequest(BaseModel):
     fast_path: bool = Field(default=True, description="Usar motor determinístico acelerado (<1s)")
     use_cache: bool = Field(default=True, description="Usar caché en memoria si no hay cambios")
+    profile: str = Field(default='BALANCED_FORENSIC', description='Perfil cognitivo')
 
 
 class CaseSummary(BaseModel):
@@ -296,7 +297,8 @@ def analyze_case(case_id: str, request: AnalyzeRequest = AnalyzeRequest()):
                 recommended_action=str(clean_dict.get("recommended_action") or ""),
                 retailer_name=cust_name,
                 failure_diagnostics=fd,
-                notice_window_label=window_label
+                notice_window_label=window_label,
+                profile=getattr(request, 'profile', 'BALANCED_FORENSIC')
             )
         except Exception as err:
             pass

@@ -273,6 +273,14 @@ export default function UnattendedBatchView() {
 
           {/* Quick Action Badges */}
           <div className="flex flex-wrap items-center gap-2">
+          <a
+            href="http://localhost:8000/api/batch/unattended/download-master-zip"
+            download="expediente_maestro_auditoria_platica.zip"
+            className="btn-tactile px-3.5 py-1.5 rounded bg-[#1f1d14] hover:bg-[#2c2819] border border-[#d4af37]/70 text-xs font-mono font-bold text-[#eed98d] flex items-center space-x-1.5 transition-all shadow-tactile"
+            title="Descarga completa del expediente de auditoría: bitácoras CSV/JSON, Merkle Tree, Sello RFC 3161 y reportes técnicos"
+          >
+            <span>📦 Descargar Dossier Oficial Platica (ZIP)</span>
+          </a>
             <button
               onClick={() => setShowChaosModal(true)}
               className="btn-tactile px-3 py-2 rounded bg-[#251515] hover:bg-[#331c1c] border border-red-500/60 text-xs font-mono font-bold text-red-200 hover:text-white flex items-center space-x-2 transition-all shadow-tactile"
@@ -505,6 +513,33 @@ export default function UnattendedBatchView() {
 
         </div>
 
+        {/* RFC 3161 Notarial Timestamp Token Card */}
+        <div className="bg-[#0b0c12] p-3.5 rounded border border-[#1d2030] space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] font-mono text-[#eed98d] uppercase flex items-center space-x-1.5 font-bold">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#d4af37]" />
+              <span>Sello Notarial Digital RFC 3161 & NOM-151-SCFI-2016</span>
+            </span>
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950/60 text-amber-300 border border-amber-600/30">
+              Certificado TSA Válido
+            </span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px] font-mono">
+            <div className="bg-[#0e1017] p-2 rounded border border-[#161824]">
+              <span className="text-zinc-500 block text-[10px]">AUTORIDAD TSA (EMISOR):</span>
+              <span className="text-zinc-200">Platica Autonomous Legal TSA (MX)</span>
+            </div>
+            <div className="bg-[#0e1017] p-2 rounded border border-[#161824]">
+              <span className="text-zinc-500 block text-[10px]">POLÍTICA OID:</span>
+              <span className="text-cyan-300">1.3.6.1.4.1.58921.1.1 (Platica Batch)</span>
+            </div>
+            <div className="bg-[#0e1017] p-2 rounded border border-[#161824]">
+              <span className="text-zinc-500 block text-[10px]">VALIDEZ JURÍDICA:</span>
+              <span className="text-emerald-400">Art. 49 CCom & NOM-151</span>
+            </div>
+          </div>
+        </div>
+
         {/* Verification Status Details */}
         {sealResult && sealResult.is_valid && (
           <div className="p-3 bg-emerald-950/20 border border-emerald-500/30 rounded text-xs font-mono text-emerald-300 flex items-center justify-between">
@@ -662,6 +697,14 @@ export default function UnattendedBatchView() {
 
           {/* Filter Pills and Search */}
           <div className="flex flex-wrap items-center gap-2">
+          <a
+            href="http://localhost:8000/api/batch/unattended/download-master-zip"
+            download="expediente_maestro_auditoria_platica.zip"
+            className="btn-tactile px-3.5 py-1.5 rounded bg-[#1f1d14] hover:bg-[#2c2819] border border-[#d4af37]/70 text-xs font-mono font-bold text-[#eed98d] flex items-center space-x-1.5 transition-all shadow-tactile"
+            title="Descarga completa del expediente de auditoría: bitácoras CSV/JSON, Merkle Tree, Sello RFC 3161 y reportes técnicos"
+          >
+            <span>📦 Descargar Dossier Oficial Platica (ZIP)</span>
+          </a>
             
             {/* Status Filter Pills */}
             <div className="flex items-center bg-[#0b0c12] p-0.5 rounded border border-[#1a1d29] text-xs font-mono">

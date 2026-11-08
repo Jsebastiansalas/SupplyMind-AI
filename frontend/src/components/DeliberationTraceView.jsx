@@ -16,7 +16,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 
-export default function DeliberationTraceView({ trace, failureDiagnostics, report }) {
+export default function DeliberationTraceView({ trace, failureDiagnostics, report, onProfileSelect }) {
   const [expandedStep, setExpandedStep] = useState(null);
   const [showAllSteps, setShowAllSteps] = useState(true);
 
@@ -90,6 +90,49 @@ export default function DeliberationTraceView({ trace, failureDiagnostics, repor
             className="text-[10px] font-mono px-2 py-1 rounded bg-[#161722] hover:bg-[#202232] text-zinc-400 hover:text-white border border-[#27293d] transition-colors"
           >
             {showAllSteps ? 'Plegar Pasos' : 'Desplegar 5 Pasos'}
+          </button>
+        </div>
+      </div>
+
+      {/* Selector de Perfil Cognitivo de Razonamiento (Mejora 4 Platica) */}
+      <div className="p-2.5 rounded-lg bg-[#12141c] border border-[#202330] flex flex-wrap items-center justify-between gap-2">
+        <div className="flex items-center space-x-2 text-[11px] font-mono text-zinc-400">
+          <span className="text-[#eed98d] font-bold">ESTILO COGNITIVO:</span>
+          <span className="text-zinc-300">{trace?.profile_name || 'Forense Equilibrado ($0.00 MAE)'}</span>
+        </div>
+
+        <div className="flex items-center space-x-1.5">
+          <button
+            onClick={() => onProfileSelect && onProfileSelect('BALANCED_FORENSIC')}
+            className={`px-2.5 py-1 rounded text-[10px] font-mono font-bold transition-all ${
+              (!trace?.cognitive_profile || trace?.cognitive_profile === 'BALANCED_FORENSIC')
+                ? 'bg-emerald-950 text-emerald-300 border border-emerald-500/60 shadow-sm'
+                : 'bg-[#181a24] text-zinc-400 hover:text-white border border-[#262838]'
+            }`}
+          >
+            🛡️ Forense Equilibrado
+          </button>
+
+          <button
+            onClick={() => onProfileSelect && onProfileSelect('CONSERVATIVE_COMMERCIAL')}
+            className={`px-2.5 py-1 rounded text-[10px] font-mono font-bold transition-all ${
+              trace?.cognitive_profile === 'CONSERVATIVE_COMMERCIAL'
+                ? 'bg-cyan-950 text-cyan-300 border border-cyan-500/60 shadow-sm'
+                : 'bg-[#181a24] text-zinc-400 hover:text-white border border-[#262838]'
+            }`}
+          >
+            🤝 Comercial Conservador
+          </button>
+
+          <button
+            onClick={() => onProfileSelect && onProfileSelect('AGGRESSIVE_LITIGIOUS')}
+            className={`px-2.5 py-1 rounded text-[10px] font-mono font-bold transition-all ${
+              trace?.cognitive_profile === 'AGGRESSIVE_LITIGIOUS'
+                ? 'bg-rose-950 text-rose-300 border border-rose-500/60 shadow-sm'
+                : 'bg-[#181a24] text-zinc-400 hover:text-white border border-[#262838]'
+            }`}
+          >
+            ⚖️ Cobranza Litigiosa
           </button>
         </div>
       </div>

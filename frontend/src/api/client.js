@@ -32,11 +32,11 @@ export const apiClient = {
     return res.json();
   },
 
-  async analyzeCase(caseId, fastPath = true, useCache = true) {
+  async analyzeCase(caseId, fastPath = true, useCache = true, profile = 'BALANCED_FORENSIC') {
     const res = await fetch(`${BASE_URL}/cases/${caseId}/analyze`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ fast_path: fastPath, use_cache: useCache }),
+      body: JSON.stringify({ fast_path: fastPath, use_cache: useCache, profile }),
     });
     if (!res.ok) {
       const err = await res.json().catch(() => ({ detail: 'Error al analizar caso' }));
@@ -586,6 +586,15 @@ export const apiClient = {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  },
+  getMasterZipDownloadUrl() {
+    return `${BASE_URL}/batch/unattended/download-master-zip`;
+  },
+
+  async getRFC3161Token() {
+    const res = await fetch(`${BASE_URL}/batch/unattended/rfc3161-token`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return res.json();
   },

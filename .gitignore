@@ -30,3 +30,8 @@ frontend/node_modules/
 # Local Vector DB & Cache
 data/vector_db/
 
+.vite/
+frontend/.vite/
+reports/*.zip
+reports/backup_prior_run/
+data/cache/ocr/

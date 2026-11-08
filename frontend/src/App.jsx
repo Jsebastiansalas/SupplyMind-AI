@@ -219,12 +219,12 @@ function Workspace() {
   }, [selectedCaseId]);
 
   // Manejador manual de auditoría (se activa SOLO al dar clic en el botón)
-  const handleRunAudit = async () => {
+  const handleRunAudit = async (profile = 'BALANCED_FORENSIC') => {
     if (!selectedCaseId) return;
     setIsAnalyzing(true);
     setGlobalError(null);
     try {
-      const rep = await apiClient.analyzeCase(selectedCaseId, fastPath, useCache);
+      const rep = await apiClient.analyzeCase(selectedCaseId, fastPath, false, profile);
       setReport(rep);
       setSolvedReports(prev => ({ ...prev, [selectedCaseId]: rep }));
       setForceShowSummary(false);
@@ -799,6 +799,7 @@ function Workspace() {
                   onSubTabChange={setFinancialSubTab}
                   onOpenOfficialDossier={() => setShowDossierModal(true)}
                   onApplyScenario={(scenarioId) => handleSendMessage(`Aplica el escenario ${scenarioId.toLowerCase()}`, 'commercial_negotiator')}
+                  onRunAuditWithProfile={handleRunAudit}
                 />
               )}
 

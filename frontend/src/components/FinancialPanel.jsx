@@ -38,7 +38,8 @@ export default function FinancialPanel({
   activeSubTab: externalSubTab, 
   onSubTabChange, 
   onOpenOfficialDossier,
-  onApplyScenario
+  onApplyScenario,
+  onRunAuditWithProfile
 }) {
   const [localSubTab, setLocalSubTab] = useState('summary');
   const activeSubTab = externalSubTab || localSubTab;
@@ -557,6 +558,7 @@ export default function FinancialPanel({
               trace={report.deliberation_trace} 
               failureDiagnostics={report.failure_diagnostics} 
               report={report} 
+              onProfileSelect={onRunAuditWithProfile} 
             />
 </div>
           </div>
@@ -569,6 +571,7 @@ export default function FinancialPanel({
               trace={report.deliberation_trace} 
               failureDiagnostics={report.failure_diagnostics} 
               report={report} 
+              onProfileSelect={onRunAuditWithProfile} 
             />
           </div>
         )}

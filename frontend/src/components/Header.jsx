@@ -4,7 +4,8 @@ import {
   LogOut, 
   ChevronDown, 
   Check, 
-  Plus
+  Plus,
+  Package
 } from 'lucide-react';
 
 export default function Header({ 
@@ -46,6 +47,17 @@ export default function Header({
             <span className="text-zinc-600">|</span>
             <span className="text-[10px] text-zinc-500">FastPath</span>
           </div>
+
+          {/* Download Master ZIP Dossier Button */}
+          <a
+            href="http://localhost:8000/api/batch/unattended/download-master-zip"
+            download="expediente_maestro_auditoria_platica.zip"
+            className="btn-tactile flex items-center space-x-1.5 px-3 py-1.5 rounded bg-[#151722] hover:bg-[#1f2233] border border-[#2d3148] hover:border-[#d4af37]/60 text-xs font-mono text-zinc-300 hover:text-white transition-all shadow-sm"
+            title="Descargar Dossier Completo Oficial Platica (Bitácoras CSV/JSON, Resumen Ejecutivo, Merkle Root y Sello RFC 3161 en ZIP)"
+          >
+            <Package className="w-3.5 h-3.5 text-[#d4af37]" />
+            <span className="hidden sm:inline">Dossier Oficial (ZIP)</span>
+          </a>
 
           {/* Primary Action Button: Poner Caso */}
           {onOpenCreateCase && (

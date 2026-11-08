@@ -20,6 +20,7 @@ import {
   Network
 } from 'lucide-react';
 import PrecedentsGraphView from './PrecedentsGraphView';
+import HumanVsAgentCalibrationPanel from './HumanVsAgentCalibrationPanel';
 
 export default function BenchmarkView({ onSelectCase }) {
   const [benchmarkData, setBenchmarkData] = useState(null);
@@ -670,66 +671,9 @@ export default function BenchmarkView({ onSelectCase }) {
         </div>
       )}
 
-      {/* 6. SubTab: Unit Economics (Humano vs AI) */}
+      {/* 6. SubTab: Calibración Empírica Humano vs Agente & Simulador de ROI (Platica 10.0) */}
       {activeSubTab === 'unit_economics' && (
-        <div className="space-y-6">
-          {/* Comparative Matrix Table */}
-          <div className="rounded-xl border border-[#20222e] bg-[#101117] overflow-hidden shadow-tactile">
-            <div className="px-5 py-3.5 bg-[#14151e] border-b border-[#20222a] flex items-center justify-between">
-              <h3 className="text-sm font-bold text-white uppercase font-mono flex items-center space-x-2">
-                <TrendingUp className="w-4 h-4 text-emerald-400" />
-                <span>Matriz Comparativa de Unit Economics (CFO & VP Operations)</span>
-              </h3>
-              <span className="text-[10px] font-mono text-zinc-500">Benchmark Corporativo B2B</span>
-            </div>
-
-            <div className="overflow-x-auto">
-              <table className="w-full text-left font-mono text-xs">
-                <thead>
-                  <tr className="border-b border-[#20222a] bg-[#161722] text-[11px] text-zinc-400 uppercase">
-                    <th className="py-2.5 px-4">Dimensión Operativa</th>
-                    <th className="py-2.5 px-4 text-rose-300">Equipo Humano (Analista B2B)</th>
-                    <th className="py-2.5 px-4 text-emerald-300">SupplyMind AI (Agente Autónomo)</th>
-                    <th className="py-2.5 px-4 text-yellow-300">Ganancia de Eficiencia / ROI</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-[#181924]">
-                  {economicsData?.comparative_unit_economics?.map((row, idx) => (
-                    <tr key={idx} className="hover:bg-[#151620]">
-                      <td className="py-3 px-4 font-bold text-white">{row.metric}</td>
-                      <td className="py-3 px-4 text-zinc-300">{row.human_analyst}</td>
-                      <td className="py-3 px-4 text-emerald-400 font-medium">{row.supplymind_ai}</td>
-                      <td className="py-3 px-4 text-yellow-300/90 font-medium">{row.efficiency_gain}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* Enterprise ROI Banner */}
-          <div className="p-5 rounded-xl bg-gradient-to-r from-[#0d1612] to-[#12131a] border border-emerald-900/60 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="space-y-1">
-              <div className="flex items-center space-x-2">
-                <Building2 className="w-4 h-4 text-emerald-400" />
-                <h4 className="text-sm font-bold text-white font-mono uppercase">
-                  Proyección Empresarial de Ahorro Neto Anual (100,000 Disputas)
-                </h4>
-              </div>
-              <p className="text-xs text-zinc-400 font-mono">
-                Gasto Tradicional: <span className="text-rose-400 font-bold">$3,500,000 USD</span> | Costo SupplyMind AI: <span className="text-emerald-400 font-bold">$382.10 USD</span>
-              </p>
-            </div>
-            <div className="text-right">
-              <div className="text-2xl font-black font-mono text-emerald-400">
-                +${parseFloat(economicsData?.annual_savings_projection_100k_cases_usd || "3499617.90").toLocaleString('en-US', { minimumFractionDigits: 2 })} USD
-              </div>
-              <div className="text-[10px] text-zinc-400 font-mono">
-                Reducción directa de 99.99% en OPEX contable
-              </div>
-            </div>
-          </div>
-        </div>
+        <HumanVsAgentCalibrationPanel comparativeData={economicsData?.comparative_unit_economics} />
       )}
 
       {/* 5. Precedents Graph View (Sprint 4.7) */}

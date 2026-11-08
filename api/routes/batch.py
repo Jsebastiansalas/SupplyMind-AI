@@ -7,6 +7,9 @@ from pathlib import Path
 import json
 from typing import Optional, List, Dict, Any
 import asyncio
+import zipfile
+from tools.batch_processor.rfc3161_timestamp import RFC3161TimestampSealer
+from fastapi.responses import FileResponse
 from fastapi import APIRouter, HTTPException, BackgroundTasks, Query, WebSocket, WebSocketDisconnect
 from tools.batch_processor.telemetry_ws import telemetry_broadcaster
 from pydantic import BaseModel, Field
@@ -347,3 +350,72 @@ async def batch_telemetry_websocket(websocket: WebSocket):
         telemetry_broadcaster.disconnect(websocket)
     except Exception:
         telemetry_broadcaster.disconnect(websocket)
+
+
+# ==============================================================================
+# Sello Notarial RFC 3161 y Descarga de Expediente Maestro ZIP
+# ==============================================================================
+
+@router.get("/unattended/rfc3161-token")
+def get_rfc3161_timestamp_token():
+    """
+    Retorna el Time-Stamp Token (TST) formal conforme a RFC 3161 y NOM-151-SCFI-2016
+    vinculado a la raíz criptográfica de Merkle del lote desatendido de 1,024 unidades.
+    """
+    try:
+        sealer = RFC3161TimestampSealer()
+        token = sealer.load_or_issue_token()
+        return token
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al obtener sello RFC 3161: {str(e)}")
+
+
+@router.get("/unattended/download-master-zip")
+def download_master_audit_zip():
+    """
+    Genera y descarga en tiempo real el Expediente Maestro de Auditoría B2B en formato ZIP.
+    Empaqueta todas las bitácoras (CSV, JSON), resúmenes ejecutivos, el manifiesto criptográfico Merkle,
+    el sello RFC 3161, reportes técnicos semanales y la documentación del agente para evaluación por Platica.
+    """
+    try:
+        reports_dir = Path("reports")
+        reports_dir.mkdir(parents=True, exist_ok=True)
+        zip_path = reports_dir / "expediente_maestro_auditoria_platica.zip"
+
+        # Emitir o refrescar el sello RFC 3161 antes de empaquetar
+        sealer = RFC3161TimestampSealer()
+        sealer.issue_timestamp_token()
+
+        files_to_pack = [
+            ("unattended_batch_execution_log.csv", reports_dir / "unattended_batch_execution_log.csv"),
+            ("unattended_batch_execution_log.json", reports_dir / "unattended_batch_execution_log.json"),
+            ("unattended_batch_executive_summary.md", reports_dir / "unattended_batch_executive_summary.md"),
+            ("unattended_batch_audit_manifest.json", reports_dir / "unattended_batch_audit_manifest.json"),
+            ("unattended_batch_audit_manifest.sha256", reports_dir / "unattended_batch_audit_manifest.sha256"),
+            ("unattended_batch_analytics_summary.json", reports_dir / "unattended_batch_analytics_summary.json"),
+            ("unattended_batch_rfc3161_token.json", reports_dir / "unattended_batch_rfc3161_token.json"),
+            ("README.md", Path("README.md")),
+        ]
+
+        # Agregar reportes técnicos de la carpeta docs
+        docs_dir = Path("docs")
+        if docs_dir.exists():
+            for doc_file in docs_dir.glob("*.md"):
+                files_to_pack.append((f"documentacion_tecnica/{doc_file.name}", doc_file))
+
+        # Crear archivo ZIP maestro
+        with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
+            for arcname, file_path in files_to_pack:
+                if file_path.exists() and file_path.is_file():
+                    zf.write(file_path, arcname=arcname)
+
+        if not zip_path.exists():
+            raise HTTPException(status_code=500, detail="No se pudo construir el archivo ZIP maestro.")
+
+        return FileResponse(
+            path=str(zip_path),
+            media_type="application/zip",
+            filename="expediente_maestro_auditoria_platica.zip"
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al generar ZIP maestro: {str(e)}")
