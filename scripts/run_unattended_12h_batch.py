@@ -166,15 +166,15 @@ def main():
 
             progress_bar.update(task_tracker, completed=index)
 
-            # Notificación de línea en consola cada 10 unidades o si es anomalía
-            if index % 10 == 0 or record.status != "SUCCESS" or index == 1 or index == total:
-                console.print(
-                    f"[{datetime.now().strftime('%H:%M:%S')}] "
-                    f"#{index:04d}/{total} | {record.task_id} | {record.retailer_name[:20]:20s} | "
-                    f"Disputado: ${record.disputed_amount:8.2f} MXN | "
-                    f"Status: {status_color} | Costo: ${accumulated_cost:.4f} USD | "
-                    f"Δ: ${record.financial_delta:.2f}"
-                )
+            # Notificación de línea en consola en tiempo real para cada unidad procesada
+            console.print(
+                f"[{datetime.now().strftime('%H:%M:%S')}] "
+                f"#{index:04d}/{total} | {record.task_id} | {record.retailer_name[:20]:20s} | "
+                f"Disputado: ${record.disputed_amount:8.2f} MXN | "
+                f"Recuperado: ${record.recovered_amount:8.2f} MXN | "
+                f"Status: {status_color} | Costo: ${accumulated_cost:.4f} USD | "
+                f"Δ: ${record.financial_delta:.2f}"
+            )
 
         result = orchestrator.run_unattended_batch(progress_callback=on_unit_completed)
 
