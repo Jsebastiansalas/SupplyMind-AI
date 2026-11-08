@@ -66,32 +66,53 @@ SupplyMind AI incorpora una infraestructura de carga masiva de grado bancario qu
 
 ---
 
-## 🎯 3. Comandos de Verificación Rápida para Jurados y Evaluadores
+## 🎯 3. Activación y Comandos de Verificación para Jurados y Evaluadores
+
+El agente de 12 horas desatendido puede activarse de **dos formas**: directamente desde la interfaz web o mediante comandos en terminal.
+
+### 🌐 Método A: Desde la Plataforma Web (1 Clic)
+1. Abre la aplicación en tu navegador: [http://localhost:5173](http://localhost:5173) (o [http://localhost:8000](http://localhost:8000)).
+2. Dirígete a la pestaña **`Carga 1,024 (12h)`** en la barra de navegación superior.
+3. Utiliza la botonera de control en vivo:
+   - **`▶ Reanudar Agente`**: Inicia o continúa la jornada de 12 horas con ritmo adaptativo (~42s / caso).
+   - **`⚡ Sin Pausas`**: Procesa la cola a velocidad de cómputo máxima sin esperar los 42 segundos por caso.
+   - **`⏹️ Detener Agente`**: Pausa de forma segura el proceso y guarda el estado sin perder datos.
+4. En el encabezado superior verás el botón pulsante reactivo **`🟢 AGENTE EN VIVO: #X / 1,024 [ACTIVO]`**, el cual te lleva directamente al monitor en tiempo real.
+
+---
+
+### 💻 Método B: Desde la Terminal (PowerShell / Bash)
 
 Todos los comandos están listos para ser probados de inmediato en la terminal:
 
 ```powershell
-# 1. Auditoría Pre-Vuelo (Verifica en 2s la conexión a Platica Gateway, cola de 1,024 y permisos):
+# 1. Iniciar la Jornada Oficial Desatendida de 12 Horas (Consumo real en pasarela Platica grok-4.7, ~42s por tarea):
+python scripts/run_unattended_12h_batch.py
+
+# 2. Reanudar una corrida interrumpida desde la tarea exacta sin duplicar trabajo (Idempotente):
+python scripts/run_unattended_12h_batch.py --resume
+
+# 3. Iniciar desde cero (Unidad #0001) respaldando bitácoras previas automáticamente:
+python scripts/run_unattended_12h_batch.py --no-resume
+
+# 4. Modo Evaluación Rápida sin pausas de 42s (Para que los jurados vean avanzar las tablas en segundos):
+python scripts/run_unattended_12h_batch.py --no-pacing --resume
+
+# 5. Auditoría Pre-Vuelo (Verifica en 2s la conexión a Platica Gateway, cola de 1,024 y permisos):
 python scripts/verify_unattended_readiness.py
 
-# 2. Prueba Corta de Carga (Procesa 5 tareas en 3s demostrando telemetría y $0.00 MAE):
+# 6. Prueba Corta de Carga (Procesa 5 tareas en 3s demostrando telemetría y $0.00 MAE):
 python scripts/run_unattended_12h_batch.py --dry-run --units 5
 
-# 3. Visor Interactivo de Expedientes (Inspecciona cualquier caso a detalle con su dictamen y póliza ERP):
+# 7. Visor Interactivo de Expedientes (Inspecciona cualquier caso a detalle con su dictamen y póliza ERP):
 python scripts/view_task_detail.py 1
 python scripts/view_task_detail.py --list
 python scripts/view_task_detail.py --quarantine
 
-# 4. Monitor de Telemetría en Vivo (Tablero en tiempo real con estado de salud, ETA y tokens):
+# 8. Monitor de Telemetría en Vivo (Tablero en tiempo real con estado de salud, ETA y tokens):
 python scripts/monitor_unattended_batch.py --watch
 
-# 5. Iniciar la Jornada Oficial Desatendida de 12 Horas (Consumo real en pasarela Platica grok-4.7):
-python scripts/run_unattended_12h_batch.py
-
-# 6. Reanudar una corrida interrumpida desde la tarea exacta sin duplicar trabajo:
-python scripts/run_unattended_12h_batch.py --resume
-
-# 7. Suite Completa de Pruebas Automatizadas (538 pruebas pasando al 100%):
+# 9. Suite Completa de Pruebas Automatizadas (538 pruebas pasando al 100%):
 pytest tests/ -q
 ```
 
