@@ -2,7 +2,7 @@
   {
     "precedent_id": "PREC-CUST-CASE_001",
     "case_id": "case_001",
-    "date_resolved": "2026-11-08",
+    "date_resolved": "2026-11-11",
     "retailer_id": "CUST-RETAIL-101",
     "retailer_name": "Cust-Retail-101",
     "dispute_type": "Faltante físico en entrega valorado en $800.00 USD, constatado en remisión de en",
@@ -22,6 +22,101 @@
     ],
     "binding_argument": "En el caso case_001, se acreditó la improcedencia de la deducción 'DED-MISSING-ITEM' conforme a CLAUSE-3.1, logrando la restitución de $0.00 USD.",
     "precedent_summary": "Resolución LOST: $0.00 USD recuperados de $800.00 USD disputados."
+  },
+  {
+    "precedent_id": "PREC-CUST-CASE_HARNESS_BLIND_01",
+    "case_id": "case_harness_blind_01",
+    "date_resolved": "2026-11-11",
+    "retailer_id": "CUST-RETAIL-01",
+    "retailer_name": "Cust-Retail-01",
+    "dispute_type": "Discrepancia mixta en expediente case_harness_blind_01: Faltante físico comproba",
+    "deduction_code": "DED-FALTANTE",
+    "governing_clause": "CLAUSE-3.1",
+    "billed_amount": "10000.0",
+    "disputed_amount": "2500.0",
+    "justified_amount": "1000.00",
+    "recovered_amount": "1500.00",
+    "outcome": "PARTIAL_CONCESSION",
+    "success_rate_ratio": 0.6,
+    "key_evidence_cited": [
+      "Faltante físico comprobado en SKU-900 (Servidor Rack Industrial): 2 unidades faltantes s/ remisión DEL-HARNES valoradas en $1,000.00",
+      "Deducción aplicada en comprobante PAY-HARNES: código DED-FALTANTE, motivo 'Deducción por faltante físico en recepción s/ remisión DEL-HARNES', monto $1,000.00",
+      "Deducción aplicada en comprobante PAY-HARNES: código DED-PENALTY, motivo 'Cargo unilateral por promoción no pactada', monto $1,500.00",
+      "Respaldo contractual: La CLAUSE-4.2 autoriza la deducción por faltantes físicos acreditados en remisión de entrega."
+    ],
+    "binding_argument": "En el caso case_harness_blind_01, se acreditó la improcedencia de la deducción 'DED-FALTANTE' conforme a CLAUSE-3.1, logrando la restitución de $1,500.00 USD.",
+    "precedent_summary": "Resolución PARTIAL_CONCESSION: $1,500.00 USD recuperados de $2,500.00 USD disputados."
+  },
+  {
+    "precedent_id": "PREC-RET--CASE_CASO_EXTERNO_JURADO",
+    "case_id": "case_caso_externo_jurado",
+    "date_resolved": "2026-11-11",
+    "retailer_id": "RET-01",
+    "retailer_name": "Ret-01",
+    "dispute_type": "Discrepancia mixta en expediente case_caso_externo_jurado: Faltante físico compr",
+    "deduction_code": "DED-ARB",
+    "governing_clause": "CLAUSE-3.1",
+    "billed_amount": "5000.0",
+    "disputed_amount": "800.0",
+    "justified_amount": "0.00",
+    "recovered_amount": "800.00",
+    "outcome": "WON",
+    "success_rate_ratio": 1.0,
+    "key_evidence_cited": [
+      "Deducción aplicada en comprobante PAY-EXT-01: código DED-ARB, motivo 'Penalización administrativa unilateral sin soporte', monto $800.00",
+      "[Factura INV-EXT-01 §Total $5,000.00 USD]",
+      "[Comprobante PAY-EXT-01 §Liquidación $4,200.00 USD]"
+    ],
+    "binding_argument": "En el caso case_caso_externo_jurado, se acreditó la improcedencia de la deducción 'DED-ARB' conforme a CLAUSE-3.1, logrando la restitución de $800.00 USD.",
+    "precedent_summary": "Resolución WON: $800.00 USD recuperados de $800.00 USD disputados."
+  },
+  {
+    "precedent_id": "PREC-CUST-CASE_002",
+    "case_id": "case_002",
+    "date_resolved": "2026-11-11",
+    "retailer_id": "CUST-RETAIL-202",
+    "retailer_name": "Cust-Retail-202",
+    "dispute_type": "Discrepancia mixta en expediente case_002: Faltante físico comprobado de $4,000.",
+    "deduction_code": "DED-MISSING-PHYSICAL",
+    "governing_clause": "CLAUSE-3.1",
+    "billed_amount": "54200.0",
+    "disputed_amount": "16500.0",
+    "justified_amount": "4000.00",
+    "recovered_amount": "12500.00",
+    "outcome": "PARTIAL_CONCESSION",
+    "success_rate_ratio": 0.7575757575757576,
+    "key_evidence_cited": [
+      "Faltante físico comprobado en PROD-102 (Caja Aceite de Oliva Extra Virgen 12x500ml): 50 unidades faltantes s/ remisión DEL-12044 valoradas en $4,000.00",
+      "Deducción aplicada en comprobante PAY-9931: código DED-MISSING-PHYSICAL, motivo 'Deducción por 50 cajas faltantes PROD-102 s/ remisión DEL-12044', monto $4,000.00",
+      "Deducción aplicada en comprobante PAY-9931: código DED-ALLEGED-DAMAGE, motivo 'Retención por supuesta avería interna PROD-103 no acreditada en muelle ni reportada en 48h', monto $6,500.00",
+      "Deducción aplicada en comprobante PAY-9931: código DED-UNILATERAL-PENALTY, motivo 'Penalización administrativa unilateral no contemplada en contrato comercial', monto $6,000.00"
+    ],
+    "binding_argument": "En el caso case_002, se acreditó la improcedencia de la deducción 'DED-MISSING-PHYSICAL' conforme a CLAUSE-3.1, logrando la restitución de $12,500.00 USD.",
+    "precedent_summary": "Resolución PARTIAL_CONCESSION: $12,500.00 USD recuperados de $16,500.00 USD disputados."
+  },
+  {
+    "precedent_id": "PREC-CUST-CASE_HARNESS_API_02",
+    "case_id": "case_harness_api_02",
+    "date_resolved": "2026-11-11",
+    "retailer_id": "CUST-RETAIL-01",
+    "retailer_name": "Cust-Retail-01",
+    "dispute_type": "Discrepancia mixta en expediente case_harness_api_02: Faltante físico comprobado",
+    "deduction_code": "DED-PENALTY",
+    "governing_clause": "CLAUSE-3.1",
+    "billed_amount": "20000.0",
+    "disputed_amount": "2000.0",
+    "justified_amount": "0.00",
+    "recovered_amount": "2000.00",
+    "outcome": "WON",
+    "success_rate_ratio": 1.0,
+    "key_evidence_cited": [
+      "Deducción aplicada en comprobante PAY-HARNES: código DED-PENALTY, motivo 'Deducción unilateral sin sustento contractual', monto $2,000.00",
+      "Respaldo contractual: La CLAUSE-8.2 ('Ventana de Notificación y Pago') estipula la improcedencia de penalizaciones unilaterales sin acuerdo formal previo.",
+      "[Factura INV-HARNES-101 §Total $20,000.00 USD]",
+      "[Comprobante PAY-HARNES §Liquidación $18,000.00 USD]"
+    ],
+    "binding_argument": "En el caso case_harness_api_02, se acreditó la improcedencia de la deducción 'DED-PENALTY' conforme a CLAUSE-3.1, logrando la restitución de $2,000.00 USD.",
+    "precedent_summary": "Resolución WON: $2,000.00 USD recuperados de $2,000.00 USD disputados."
   },
   {
     "precedent_id": "PREC-TELC-CASE_007_CISCO_LARGE_BUNDLE",
@@ -1694,30 +1789,6 @@
     ],
     "binding_argument": "En el caso case_001, se acreditó la improcedencia de la deducción 'SETTLEMENT-GENERIC_B2B' conforme a CTR-GENERAL-TERMS, logrando la restitución de $0.00 USD.",
     "precedent_summary": "Resolución LOST: $0.00 USD recuperados de $800.00 USD disputados."
-  },
-  {
-    "precedent_id": "PREC-CUST-CASE_002",
-    "case_id": "case_002",
-    "date_resolved": "2026-11-05",
-    "retailer_id": "CUST-RETAIL-202",
-    "retailer_name": "Cust-Retail-202",
-    "dispute_type": "Discrepancia mixta en expediente case_002: Faltante físico comprobado de $4,000.",
-    "deduction_code": "DED-MISSING-PHYSICAL",
-    "governing_clause": "CLAUSE-3.1",
-    "billed_amount": "54200.0",
-    "disputed_amount": "16500.0",
-    "justified_amount": "4000.00",
-    "recovered_amount": "12500.00",
-    "outcome": "PARTIAL_CONCESSION",
-    "success_rate_ratio": 0.7575757575757576,
-    "key_evidence_cited": [
-      "Faltante físico comprobado en PROD-102 (Caja Aceite de Oliva Extra Virgen 12x500ml): 50 unidades faltantes s/ remisión DEL-12044 valoradas en $4,000.00",
-      "Deducción aplicada en comprobante PAY-9931: código DED-MISSING-PHYSICAL, motivo 'Deducción por 50 cajas faltantes PROD-102 s/ remisión DEL-12044', monto $4,000.00",
-      "Deducción aplicada en comprobante PAY-9931: código DED-ALLEGED-DAMAGE, motivo 'Retención por supuesta avería interna PROD-103 no acreditada en muelle ni reportada en 48h', monto $6,500.00",
-      "Deducción aplicada en comprobante PAY-9931: código DED-UNILATERAL-PENALTY, motivo 'Penalización administrativa unilateral no contemplada en contrato comercial', monto $6,000.00"
-    ],
-    "binding_argument": "En el caso case_002, se acreditó la improcedencia de la deducción 'DED-MISSING-PHYSICAL' conforme a CLAUSE-3.1, logrando la restitución de $12,500.00 USD.",
-    "precedent_summary": "Resolución PARTIAL_CONCESSION: $12,500.00 USD recuperados de $16,500.00 USD disputados."
   },
   {
     "precedent_id": "PREC-AMAZ-CASE_005_AMAZON_SHORTAGE",

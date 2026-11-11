@@ -412,6 +412,8 @@ def download_master_audit_zip():
         sealer.issue_timestamp_token()
 
         files_to_pack = [
+            ("bitacora_consumo_consola_platica.csv", reports_dir / "bitacora_consumo_consola_platica.csv"),
+            ("bitacora_consumo_consola_platica.json", reports_dir / "bitacora_consumo_consola_platica.json"),
             ("unattended_batch_execution_log.csv", reports_dir / "unattended_batch_execution_log.csv"),
             ("unattended_batch_execution_log.json", reports_dir / "unattended_batch_execution_log.json"),
             ("unattended_batch_executive_summary.md", reports_dir / "unattended_batch_executive_summary.md"),
@@ -420,6 +422,7 @@ def download_master_audit_zip():
             ("unattended_batch_analytics_summary.json", reports_dir / "unattended_batch_analytics_summary.json"),
             ("unattended_batch_rfc3161_token.json", reports_dir / "unattended_batch_rfc3161_token.json"),
             ("README.md", Path("README.md")),
+            ("LICENSE", Path("LICENSE")),
         ]
 
         # Agregar reportes técnicos de la carpeta docs

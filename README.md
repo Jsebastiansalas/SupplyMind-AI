@@ -2,12 +2,46 @@
 > **Analista Digital Autónomo de Disputas Comerciales y Arbitraje en Cadenas de Suministro B2B**  
 > *Desarrollado para el **Reto Agente 2026** (Platica.mx × Campuslands) sobre la arquitectura **SKYNET Framework** y el motor de razonamiento **Grok 4.7 (xAI)**.*
 
-[![Status](https://img.shields.io/badge/Reto%20Agente%202026-Semana%20de%20Carga%20(1%2C000%2B%20Unidades)-emerald?style=for-the-badge&logo=checkmarx)](https://github.com/Jsebastiansalas/platica)
-[![Unattended 12h](https://img.shields.io/badge/12%20Horas%20Desatendido-Pacing%20Adaptativo-blue?style=for-the-badge&logo=speedtest)](scripts/run_unattended_12h_batch.py)
+[![License: MIT](https://img.shields.io/badge/License-MIT%20Open%20Source-green?style=for-the-badge)](LICENSE)
+[![Status](https://img.shields.io/badge/Reto%20Agente%202026-Entrega%20Final%20Track%201%20(100%20Pts)-emerald?style=for-the-badge&logo=checkmarx)](docs/REPORTE_TECNICO_FINAL_3_PAGINAS.md)
+[![Unattended 12h](https://img.shields.io/badge/12%20Horas%20Desatendido-1%2C024%20Unidades-blue?style=for-the-badge&logo=speedtest)](scripts/run_unattended_12h_batch.py)
 [![MAE](https://img.shields.io/badge/MAE-$0.00%20USD%20(Decimal%20Exact)-success?style=for-the-badge)](reports/crucible_benchmark_real_supply_chain_cases_report.md)
-[![Measured Telemetry](https://img.shields.io/badge/Platica%20Gateway%20Cost-$0.011340%20USD%20%2F%20req-gold?style=for-the-badge)](reports/live_executions_manifest.md)
-[![Complete Bitacora](https://img.shields.io/badge/Bitácora%20Completa-CSV%20%7C%20JSON-purple?style=for-the-badge)](reports/unattended_batch_execution_log.csv)
+[![Measured Telemetry](https://img.shields.io/badge/Platica%20Gateway%20Cost-$0.011340%20USD%20%2F%20req-gold?style=for-the-badge)](reports/bitacora_consumo_consola_platica.csv)
+[![Complete Bitacora](https://img.shields.io/badge/Bitácora%20Consumo-CSV%20%7C%20JSON-purple?style=for-the-badge)](reports/bitacora_consumo_consola_platica.json)
 [![Docker Ready](https://img.shields.io/badge/Docker-1--Click%20Deploy-blue?style=for-the-badge&logo=docker)](docker-compose.yml)
+
+---
+
+## 🏆 0. Índice Maestro de Entregables del Hito Final (Track 1 — 100 Puntos)
+
+Todo lo requerido para que el **Jurado** y el **Harness Automatizado** de Platica evalúen el agente en menos de 60 segundos:
+
+| Entregable Oficial Exigido | Ubicación en el Repositorio / Comando Directo | Rúbrica Track 1 Cubierta |
+| :--- | :--- | :--- |
+| **1. Repositorio Público con Licencia Abierta y Arranque de 1 Comando** | Archivo [`LICENSE`](LICENSE) (MIT) + [`start_docker.bat`](start_docker.bat) / [`start_app.bat`](start_app.bat) / `docker compose up --build -d` | Reproducibilidad & Viabilidad (10 pts) |
+| **2. Reporte Técnico Oficial (Máximo 3 Páginas)** | 📄 **[`docs/REPORTE_TECNICO_FINAL_3_PAGINAS.md`](docs/REPORTE_TECNICO_FINAL_3_PAGINAS.md)** | Impacto (25), Autonomía (25), Grok (20), Datos Reales (15), Viabilidad (10), Comunicación (5) |
+| **3. Video de Demostración (5 Minutos) — Guion Cronometrado** | 🎬 **[`docs/GUION_VIDEO_5_MINUTOS_FINAL.md`](docs/GUION_VIDEO_5_MINUTOS_FINAL.md)** | Comunicación y Demostración de Punta a Punta (5 pts + Multiplicador) |
+| **4. Bitácora Oficial de Consumo (Exportación de Consola Platica)** | 📊 **[`reports/bitacora_consumo_consola_platica.csv`](reports/bitacora_consumo_consola_platica.csv)** y **[`reports/bitacora_consumo_consola_platica.json`](reports/bitacora_consumo_consola_platica.json)** (`$10.66 USD / 940 reqs = $0.011340 USD/req`, `1,024 unidades`) | Evidencia con Datos Reales (15) & Viabilidad (10) |
+| **5. CLI y Endpoint Ejecutable para el Harness con sus Propios Casos** | 💻 **CLI:** `python main.py --input <ruta_carpeta_o_json> --json`<br>🌐 **REST API:** `POST http://localhost:8000/api/evaluate` (o `POST /evaluate`) | Autonomía y Funcionalidad (25 pts) + Evaluación Ciega del Harness |
+
+---
+
+## 🤖 0.1 Ejecución para el Harness Automatizado (Con Casos Propios del Evaluador)
+
+El **Harness de Platica** puede inyectar cualquier caso propio (una carpeta externa con documentos JSON/PDF/XLSX/CSV en inglés o español, un archivo `.json` único o un payload HTTP) y recibir **JSON 100% puro en `stdout` o vía HTTP 200**:
+
+```bash
+# Opción 1 — CLI con salida JSON pura en stdout (sin bordes ANSI):
+python main.py --input /ruta/a/carpeta_o_caso.json --json
+
+# Opción 2 — CLI exportando el dictamen a un archivo específico:
+python main.py --input /ruta/a/carpeta_o_caso.json --output dictamen_harness.json
+
+# Opción 3 — Endpoint REST Universal (POST /api/evaluate o POST /evaluate):
+curl -X POST http://localhost:8000/api/evaluate \
+  -H "Content-Type: application/json" \
+  -d '{"case_id": "harness_test_01", "billed_amount": 10000, "amount_paid": 8500, "unauthorized_penalty": 1500}'
+```
 
 ---
 

@@ -4,11 +4,13 @@ Servidor principal FastAPI para SupplyMind AI Enterprise.
 """
 
 from pathlib import Path
-from fastapi import FastAPI
+from typing import Any, Dict, Optional
+from fastapi import FastAPI, Body, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from config.settings import settings
+from agent.core.harness_adapter import HarnessAdapter
 from api.routes import cases, tribunal, chat, documents, export, sandbox, telemetry, negotiation, erp, fx_leakage, precedents, adversarial, batch, edi, meta_cognition, fiscal, predictive_radar, portal_agent, vision_inspection, remittance
 
 app = FastAPI(
@@ -55,6 +57,7 @@ app.include_router(remittance.router, prefix="/api")
 
 
 @app.get("/api/health", tags=["Salud del Sistema"])
+@app.get("/health", tags=["Salud del Sistema"])
 def health_check():
     """Estado del sistema, motor determinístico y pasarela con Grok 4.7."""
     return {
@@ -68,6 +71,44 @@ def health_check():
         "mastery_threshold": 90.0,
         "active_cases_dir": str(settings.DATA_DIR),
     }
+
+
+@app.post("/api/evaluate", tags=["Evaluación Harness Platica"])
+@app.post("/evaluate", tags=["Evaluación Harness Platica"])
+def evaluate_harness_case(payload: Optional[Dict[str, Any]] = Body(default=None)):
+    """
+    Endpoint Universal de Evaluación para el Harness de Platica.
+    Acepta:
+    - `case_id` (ej. `"case_001"`, `"case_005_amazon_shortage"`)
+    - `case_dir` o `input` (ruta a carpeta o archivo JSON local)
+    - Documentos en línea (`invoice`, `purchase_order`, `delivery`, `payment`, `contract`)
+    - O parámetros de disputa (`billed_amount`, `amount_paid`, `items`, `unauthorized_penalty`)
+    """
+    try:
+        body = payload or {}
+        fast_path = bool(body.get("fast_path", False))
+        question = body.get("question") or body.get("prompt") or body.get("query")
+        target: Any = body.get("input") or body.get("case_dir") or body.get("case_path")
+        if not target:
+            has_inline_docs = any(
+                k in body
+                for k in [
+                    "invoice", "factura", "purchase_order", "delivery", "payment",
+                    "contract", "items", "billed_amount", "unauthorized_penalty"
+                ]
+            )
+            if has_inline_docs:
+                target = body
+            else:
+                target = body.get("case_id", "case_001")
+        return HarnessAdapter.evaluate(
+            target=target,
+            fast_path=fast_path,
+            question=question,
+            silent_stdout=True,
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al evaluar caso en Harness: {str(e)}")
 
 
 # Montaje de frontend/dist si ya fue compilado para servir en producción

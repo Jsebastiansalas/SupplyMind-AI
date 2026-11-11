@@ -38,11 +38,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-11-08T04:47:04.007713+00:00"
+    "generated_at": "2026-11-11T13:17:16.369581+00:00"
   },
   "financial_proof": {
     "case_id": "case_001",
-    "proof_hash": "SM-PROOF-SHA256-644302EF681E17B9",
+    "proof_hash": "SM-PROOF-SHA256-8934887EC78241CA",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -54,7 +54,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-11-08T04:47:04.049523+00:00"
+    "tamper_proof_timestamp": "2026-11-11T13:17:16.375665+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_001",
@@ -117,7 +117,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-11-08T04:47:04Z"
+    "generated_at": "2026-11-11T13:17:16Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -130,16 +130,16 @@
     "claimable_amount": "0.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-644302EF681E17B9",
+    "zkp_proof_hash": "SM-PROOF-SHA256-8934887EC78241CA",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-11-08T04:47:04.115098+00:00"
+    "anchored_at": "2026-11-11T13:17:16.413377+00:00"
   },
   "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_001",
-    "courtroom_session_id": "CRT-7A1B5092",
+    "courtroom_session_id": "CRT-16FE3C27",
     "disputed_amount": "800.0",
     "justified_amount": "800.00",
     "claimable_amount": "0.00",

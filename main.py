@@ -364,6 +364,47 @@ def main():
     is_careo = any(a.lower() in ["--careo", "careo", "--duel", "duel", "negociacion", "--negociacion"] for a in args)
     is_export_erp = any(a.lower() in ["--export-erp", "--fiscal", "fiscal", "--edi", "--cfdi"] for a in args)
     is_radar = any(a.lower() in ["--radar", "-r", "radar", "--leakage", "leakage", "--fugas"] for a in args)
+    is_json_output = any(a.lower() in ["--json", "--harness", "--harness-json"] for a in args)
+
+    # Extraer --input / --case-dir / --output si fueron provistos por el Harness
+    harness_input = None
+    harness_output_file = None
+    for i, a in enumerate(args):
+        if a.lower() in ["--input", "--case-dir", "--dir", "--file"] and i + 1 < len(args):
+            harness_input = args[i + 1]
+        elif a.lower() in ["--output", "-o", "--out"] and i + 1 < len(args):
+            harness_output_file = args[i + 1]
+
+    # 0.0 Modo Harness Automatizado (--json o --output o archivo .json externo)
+    if is_json_output or harness_output_file or (harness_input and Path(harness_input).is_file()):
+        from agent.core.harness_adapter import HarnessAdapter
+        is_fast = any(a.lower() in ["--fast", "-f", "fast"] for a in args)
+        target = harness_input
+        if not target:
+            for i, a in enumerate(args):
+                if a in ["--case", "-c"] and i + 1 < len(args):
+                    target = args[i + 1]
+                    break
+                elif not a.startswith("-") and a.lower() not in ["fast", "ask", "pregunta"]:
+                    target = a
+                    break
+        target = target or "case_001"
+        result_dict = HarnessAdapter.evaluate(
+            target=target,
+            fast_path=is_fast,
+            silent_stdout=True,
+        )
+        json_text = json.dumps(result_dict, indent=2, ensure_ascii=False)
+        if harness_output_file:
+            out_path = Path(harness_output_file)
+            out_path.parent.mkdir(parents=True, exist_ok=True)
+            out_path.write_text(json_text, encoding="utf-8")
+        if is_json_output or not harness_output_file:
+            sys.stdout.write(json_text + "\n")
+            sys.stdout.flush()
+            return
+        case_id = result_dict["case_id"]
+        explicit_case = True
 
     # 0. Modo Batch Masivo Desatendido
     if is_batch:
@@ -410,8 +451,9 @@ def main():
         case_id = "case_001"
         explicit_case = False
     for i, a in enumerate(args):
-        if a in ["--case", "-c"] and i + 1 < len(args):
-            case_id = args[i + 1]
+        if a in ["--case", "-c", "--input", "--case-dir", "--dir"] and i + 1 < len(args):
+            from agent.core.harness_adapter import HarnessAdapter
+            case_id = HarnessAdapter.resolve_input_target(args[i + 1])
             explicit_case = True
             break
         elif Path(a).is_dir():

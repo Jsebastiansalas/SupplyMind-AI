@@ -43,11 +43,11 @@
     "schema_warnings": [],
     "execution_safety_level": "SAFE_FOR_AUTONOMOUS_SETTLEMENT",
     "quarantine_docket": null,
-    "generated_at": "2026-11-05T00:19:24.122022+00:00"
+    "generated_at": "2026-11-11T13:17:17.503424+00:00"
   },
   "financial_proof": {
     "case_id": "case_002",
-    "proof_hash": "SM-PROOF-SHA256-03E8E9AFAE53337A",
+    "proof_hash": "SM-PROOF-SHA256-7BE3E7829E62B772",
     "invariant_conservation_ok": true,
     "invariant_deductions_ok": true,
     "invariant_line_items_ok": true,
@@ -61,7 +61,7 @@
     ],
     "confidence_penalty": 0.0,
     "audit_status": "MATHEMATICALLY_PROVEN",
-    "tamper_proof_timestamp": "2026-11-05T00:19:24.131943+00:00"
+    "tamper_proof_timestamp": "2026-11-11T13:17:17.507876+00:00"
   },
   "evidence_manifest": {
     "case_id": "case_002",
@@ -148,7 +148,7 @@
     "cautelar_items": [],
     "binding_verdict": "FULL_EVIDENCE_BINDING_VERIFIED",
     "confidence_penalty": 0.0,
-    "generated_at": "2026-11-05T00:19:24Z"
+    "generated_at": "2026-11-11T13:17:17Z"
   },
   "quarantine_docket": null,
   "session_anchor": {
@@ -161,22 +161,16 @@
     "claimable_amount": "12500.00",
     "health_status": "PRISTINE",
     "health_score": 100.0,
-    "zkp_proof_hash": "SM-PROOF-SHA256-03E8E9AFAE53337A",
+    "zkp_proof_hash": "SM-PROOF-SHA256-7BE3E7829E62B772",
     "zkp_status": "MATHEMATICALLY_PROVEN",
     "is_quarantined": false,
     "evidence_backing_ratio": 100.0,
-    "anchored_at": "2026-11-05T00:19:24.183715+00:00"
+    "anchored_at": "2026-11-11T13:17:17.524172+00:00"
   },
-  "watchdog_metrics": {
-    "total_tool_calls": 0,
-    "unique_tool_calls": 0,
-    "deduplicated_calls_count": 0,
-    "circuit_breaker_triggered": false,
-    "warnings": []
-  },
+  "watchdog_metrics": null,
   "adversarial_verdict": {
     "case_id": "case_002",
-    "courtroom_session_id": "CRT-229F03E1",
+    "courtroom_session_id": "CRT-194BF9A8",
     "disputed_amount": "16500.0",
     "justified_amount": "4000.00",
     "claimable_amount": "12500.00",
@@ -222,14 +216,14 @@
         "role": "DEFENDER",
         "speaker_name": "Dra. Sofía Valenzuela (Abogada Corporativa del Proveedor)",
         "topic": "Nulidad Absoluta de Cargos Unilaterales",
-        "argument_text": "Objeción perentoria sobre factura INV-88301 y liquidación PAY-9931: El contrato marco bilateral CTR-MEGAMARKET-2026 prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $12,500.00 USD. La retención constituye incumplimiento de pago. RELOJ SLA: Restan 12 días de ventana perentoria (HIGH_IMMINENT). Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_002 (fecha 2026-11-05), donde Cust-Retail-202 acordó el reintegro de $12,500.00 USD ante una deducción análoga por 'DED-MISSING-PHYSICAL', amparada en la cláusula contractual CLAUSE-3.1..",
+        "argument_text": "Objeción perentoria sobre factura INV-88301 y liquidación PAY-9931: El contrato marco bilateral CTR-MEGAMARKET-2026 prevalece jerárquicamente sobre cualquier guía o portal unilateral del comprador. No existe adenda bilateral suscrita que habilite retener $12,500.00 USD. La retención constituye incumplimiento de pago. RELOJ SLA: Restan 12 días de ventana perentoria (HIGH_IMMINENT). Reforzado por jurisprudencia vinculante: Conforme al precedente formalizado en el expediente case_002 (fecha 2026-11-11), donde Cust-Retail-202 acordó el reintegro de $12,500.00 USD ante una deducción análoga por 'DED-MISSING-PHYSICAL', amparada en la cláusula contractual CLAUSE-3.1..",
         "legal_or_contractual_ground": "Art. 88 del Código de Comercio & Cláusula de Prohibición de Penalidades Unilaterales",
         "strength_score": 0.99,
         "evidence_referenced": [
           "CTR-MEGAMARKET-2026",
           "INV-88301",
           "PAY-9931",
-          "Conforme al precedente formalizado en el expediente case_002 (fecha 2026-11-05), donde Cust-Retail-202 acordó el reintegro de $12,500.00 USD ante una deducción análoga por 'DED-MISSING-PHYSICAL', amparada en la cláusula contractual CLAUSE-3.1."
+          "Conforme al precedente formalizado en el expediente case_002 (fecha 2026-11-11), donde Cust-Retail-202 acordó el reintegro de $12,500.00 USD ante una deducción análoga por 'DED-MISSING-PHYSICAL', amparada en la cláusula contractual CLAUSE-3.1."
         ]
       }
     ],

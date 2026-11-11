@@ -10,10 +10,20 @@ class Settings:
     PROJECT_NAME: str = "SupplyMind AI"
     VERSION: str = "0.1.0"
     
-    # Credenciales del reto
-    RETO_KEY: str = os.getenv("RETO_KEY", "").strip()
-    PLATICA_BASE_URL: str = os.getenv("PLATICA_BASE_URL", "https://api.reto.pltk.mx/v1")
-    MODEL_NAME: str = os.getenv("MODEL_NAME", "grok-4.7")
+    # Credenciales del reto (soporta RETO_KEY, PLATICA_API_KEY, XAI_API_KEY u OPENAI_API_KEY para compatibilidad con el Harness)
+    RETO_KEY: str = (
+        os.getenv("RETO_KEY")
+        or os.getenv("PLATICA_API_KEY")
+        or os.getenv("XAI_API_KEY")
+        or os.getenv("OPENAI_API_KEY")
+        or ""
+    ).strip()
+    PLATICA_BASE_URL: str = (
+        os.getenv("PLATICA_BASE_URL")
+        or os.getenv("OPENAI_BASE_URL")
+        or "https://api.reto.pltk.mx/v1"
+    ).strip()
+    MODEL_NAME: str = os.getenv("MODEL_NAME", "grok-4.7").strip()
     
     # Directorios base
     ROOT_DIR: Path = Path(__file__).resolve().parent.parent
