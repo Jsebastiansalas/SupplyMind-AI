@@ -1,9 +1,9 @@
 """
-tests/test_sprint_2_2.py
-Batería de pruebas automatizadas para certificar las historias de usuario del Sprint 2.2:
-- US-2.2.1: Ingesta y conciliación de datos reales en PDF (Amazon Vendor Central y Walmart).
-- US-2.2.2: Ingesta de remisión física escaneada con sellos y OCR de visión (Home Depot).
-- US-2.2.3: Demostración de resiliencia y captura de fallos (JSON corrupto y esquema inválido).
+tests/test_multimodal_pdf_and_ocr_cases.py
+Batería de pruebas automatizadas para certificar ingesta multimodal y resiliencia:
+- Ingesta y conciliación de datos reales en PDF (Amazon Vendor Central y Walmart).
+- Ingesta de remisión física escaneada con sellos y OCR de visión (Home Depot).
+- Demostración de resiliencia y captura de fallos (JSON corrupto y esquema inválido).
 """
 
 from decimal import Decimal

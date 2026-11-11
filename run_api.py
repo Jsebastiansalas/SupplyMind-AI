@@ -29,12 +29,14 @@ def main():
     port = int(os.getenv("PORT", "8000"))
     reload_opt = os.getenv("UVICORN_RELOAD", "false").lower() in ("1", "true", "yes")
 
-    print("=" * 60)
-    print(" SupplyMind AI Enterprise — Backend API Server")
-    print(f" Servidor REST FastAPI disponible en: http://{host}:{port}")
-    print(f" Documentación interactiva Swagger: http://{host}:{port}/docs")
-    print(f" Modo recarga en caliente (Reload): {reload_opt}")
-    print("=" * 60)
+    print("=" * 68)
+    print(" SupplyMind AI Enterprise — Unified Platform & Harness Server")
+    print(f" * Interfaz Web Unificada (SPA): http://{host}:{port}")
+    print(f" * Endpoint Harness Platica:     POST http://{host}:{port}/api/evaluate")
+    print(f" * Documentación Swagger / API:  http://{host}:{port}/docs")
+    print(f" * Healthcheck:                  http://{host}:{port}/api/health")
+    print(f" * Modo recarga (Reload):        {reload_opt}")
+    print("=" * 68)
     uvicorn.run("api.main:app", host=host, port=port, reload=reload_opt)
 
 

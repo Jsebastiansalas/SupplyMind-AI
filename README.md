@@ -146,7 +146,7 @@ python scripts/view_task_detail.py --quarantine
 # 8. Monitor de Telemetría en Vivo (Tablero en tiempo real con estado de salud, ETA y tokens):
 python scripts/monitor_unattended_batch.py --watch
 
-# 9. Suite Completa de Pruebas Automatizadas (538 pruebas pasando al 100%):
+# 9. Suite Completa de Pruebas Automatizadas (570 pruebas pasando al 100%):
 pytest tests/ -q
 ```
 

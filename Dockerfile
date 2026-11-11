@@ -50,17 +50,21 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-# Copy application backend codebase, tests, scripts and assets
+# Copy application backend codebase, tests, scripts, reports, docs and assets
 COPY agent/ ./agent/
 COPY api/ ./api/
 COPY config/ ./config/
 COPY data/ ./data/
+COPY docs/ ./docs/
+COPY reports/ ./reports/
 COPY scripts/ ./scripts/
 COPY tests/ ./tests/
 COPY tools/ ./tools/
 COPY main.py .
 COPY dashboard.py .
 COPY run_api.py .
+COPY README.md .
+COPY LICENSE .
 COPY .env.example .
 
 # Ensure runtime directories exist
