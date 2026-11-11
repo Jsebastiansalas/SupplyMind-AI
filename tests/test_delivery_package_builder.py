@@ -16,8 +16,11 @@ from tools.batch_processor.delivery_package_builder import (
 )
 
 
-def test_delivery_package_builder_audit(tmp_path):
+def test_delivery_package_builder_audit(tmp_path, monkeypatch):
     """Valida la auditoría de cumplimiento técnico de entrega."""
+    from config.settings import settings
+
+    monkeypatch.setattr(settings, "RETO_KEY", "test_verified_key")
     builder = DeliveryPackageBuilder(reports_dir=tmp_path)
     audit = builder.audit_delivery_readiness()
 
